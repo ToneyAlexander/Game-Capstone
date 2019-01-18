@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractCommand<TReceiver> : ICommand
+namespace CCC.Commands
 {
-    private TReceiver receiver;
-    protected AbstractCommand(TReceiver receiver)
+    public abstract class AbstractCommand<TReceiver> : ICommand
     {
-        this.receiver = receiver;
-    }
+        private TReceiver receiver;
+        protected AbstractCommand(TReceiver receiver)
+        {
+            this.receiver = receiver;
+        }
 
-    protected TReceiver Receiver
-    {
-        get { return receiver; }
-    }
+        protected TReceiver Receiver
+        {
+            get { return receiver; }
+        }
 
-    public abstract void InvokeCommand();
+        public abstract void InvokeCommand();
+    }
 }
