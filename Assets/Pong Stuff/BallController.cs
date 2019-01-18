@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
-    const float basespeed = 7f;
-    const float speedGain = 1.3f;
+    const float basespeed = 8f;
+    const float speedGain = 1.05f;
     Rigidbody rb;
 
     // Start is called before the first frame update
