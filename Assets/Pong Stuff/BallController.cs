@@ -13,7 +13,7 @@ public class BallController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-1f, 1f)) * basespeed;
+        rb.velocity = Vector3.Normalize(new Vector3(Random.Range(-0.5f, 0.5f), 0, Random.Range(-1f, 1f))) * basespeed;
     }
 
     // Update is called once per frame
