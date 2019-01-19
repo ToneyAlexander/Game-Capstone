@@ -6,16 +6,20 @@ public class LazyPaddle : PaddleAI
 {
     public override void Move()
     {
-        Vector3 position = transform.position;
-        Vector3 scale = transform.localScale;
-        
-        if (ball.transform.position.z > (position.z + scale.z / 2))
-        {
-            transform.position += new Vector3(0f, 0f, 0.05f);
-        }
-        else if (ball.transform.position.z < (position.z - scale.z / 2))
-        {
-            transform.position -= new Vector3(0f, 0f, 0.05f);
+        // LazyPaddle moves only if the ball is coming and is not within paddle's range
+        if (ball.transform.position.x >= 0) {
+            if (ball.transform.position.z > (position.z + scale.z / 2))
+            {
+                transform.Translate(velocity * Time.deltaTime);
+            }
+            else if (ball.transform.position.z < (position.z - scale.z / 2))
+            {
+                transform.Translate(-1 * velocity * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.zero);
+            }
         }
     }
 }
