@@ -6,6 +6,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     const float basespeed = 8f;
+    const float maxSpeed = 25f;
     const float speedGain = 1.05f;
     const float size = 10.3f;
     Rigidbody rb;
@@ -29,6 +30,7 @@ public class BallController : MonoBehaviour
         {
             rb.velocity = Vector3.Normalize(new Vector3(Random.Range(-0.2f, -1f), 0, Random.Range(-1f, 1f))) * basespeed;
         }
+        
     }
 
     // Update is called once per frame
@@ -48,7 +50,13 @@ public class BallController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        rb.velocity = rb.velocity * speedGain;
-    }
+        if (rb.velocity.magnitude < maxSpeed)
+        {
+            rb.velocity = rb.velocity * speedGain;
+        } else
+        {
+            rb.velocity = Vector3.Normalize(rb.velocity) * maxSpeed;
+        }
+    } 
    
 }
