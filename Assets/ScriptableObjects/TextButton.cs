@@ -10,17 +10,30 @@ public class TextButton : MonoBehaviour
 
     public ICommand command;
     private Text text;
+    [SerializeField]
+    public commandType buttonType;
+    public enum commandType{
+        resume,
+        quit
+    }
 
-    void Activate(GameObject canvasObject)
+    void Start()
     {
-        transform.parent = canvasObject.transform;
-        text = gameObject.AddComponent<Text>();
-        text.text = textField;
-
+        if (buttonType == commandType.quit)
+        {
+            command = new QuitCommand();
+        }
+        if (buttonType == commandType.resume)
+        {
+            command = new ResumeCommand();
+        }
     }
     void highlight()
     {
 
     }
-    
+    void OnMouseDown()
+    {
+        command.InvokeCommand();
+    }
 }
