@@ -36,4 +36,8 @@ public class TextButton : MonoBehaviour
     {
         command.InvokeCommand();
     }
+    void OnClick()
+    {
+        command.InvokeCommand();
+    }
 }
