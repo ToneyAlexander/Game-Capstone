@@ -7,6 +7,7 @@ public abstract class PaddleAI : MonoBehaviour
     protected Vector3 position;
     protected Vector3 scale;
     protected Vector3 velocity;
+    protected float speed;
     protected GameObject ball;
 
     // Start is called before the first frame update
@@ -15,8 +16,11 @@ public abstract class PaddleAI : MonoBehaviour
         position = transform.position;
         scale = transform.localScale;
 
-        velocity = new Vector3(0.0f, 0.0f, 5.0f);
+        // Set default velocity and speed
+        velocity = new Vector3(0.0f, 0.0f, 1.0f);
+        speed = 5.0f;
 
+        // Get ball game object
         ball = GameObject.Find("Sphere");
     }
 
@@ -28,4 +32,5 @@ public abstract class PaddleAI : MonoBehaviour
     }
 
     public abstract void Move();
+    
 }
