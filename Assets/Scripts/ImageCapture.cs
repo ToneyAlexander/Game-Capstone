@@ -12,6 +12,10 @@ public class ImageCapture : MonoBehaviour
     public int resHeight = 1080; //height of sceenshot
     private bool takeScreenShot = false;
     
+	public ImageCapture()
+	{
+		System.IO.Directory.CreateDirectory("./Assets/Snapshots");
+	}
     void LateUpdate()
     {
         takeScreenShot |= Input.GetKeyDown(KeyCode.P);
@@ -27,14 +31,14 @@ public class ImageCapture : MonoBehaviour
 			Destroy(rt);
 			byte[] bytes = screenShot.EncodeToPNG();
             string fileName = ScreenshotName();
-            System.IO.File.WriteAllBytes(fileName, bytes);
+			System.IO.File.WriteAllBytes(fileName, bytes);
             Debug.Log("Captured!");
             takeScreenShot = false;
         }
     }
 
     string ScreenshotName(){
-        return string.Format("{0}/Snapshots/snap_{1}x{2}_{3}.png", 
+		return string.Format("{0}/Snapshots/snap_{1}x{2}_{3}.png", 
         Application.dataPath, resWidth, resHeight, 
         System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
     }
