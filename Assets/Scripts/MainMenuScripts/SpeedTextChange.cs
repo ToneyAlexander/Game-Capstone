@@ -9,5 +9,6 @@ public class SpeedTextChange : MonoBehaviour {
     public void TextAdjust()
     {
         text.text = slider.value.ToString();
+        GameSystem.SetSpeed((int)slider.value);
     }
 }

@@ -10,14 +10,17 @@ public class AiTypeChange : MonoBehaviour {
     {
         if(text.text == "Stupid"){
             text.text = "Lazy";
+            GameSystem.SetAiDifficulty(1);
         }
 
         else if(text.text == "Lazy"){
             text.text = "Smart";
+            GameSystem.SetAiDifficulty(2);
         }
         else if (text.text == "Smart")
         {
             text.text = "Stupid";
+            GameSystem.SetAiDifficulty(0);
         }
     }
 }
