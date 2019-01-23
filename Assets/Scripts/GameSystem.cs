@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameSystem
 {
     static bool isPaused = false;
+    static GameObject toggleMenu;
     private static int aiDiff = 0;
     private static int ballSpeed = 0;
     public static bool getPaused()
@@ -34,5 +35,13 @@ public class GameSystem
     public static int BallSpeed()
     {
         return ballSpeed;
+    }
+    public static void setToggleMenu(GameObject obj)
+    {
+        toggleMenu = obj;
+    }
+    public static GameObject getToggleMenu()
+    {
+        return toggleMenu;
     }
 }
