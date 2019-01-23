@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
-    const float basespeed = 8f;
+    float basespeed = 8f;
     const float speedGain = 1.05f;
     const float size = 10.3f;
     Rigidbody rb;
@@ -14,6 +14,26 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int speed = GameSystem.BallSpeed();
+        switch(speed)
+        {
+            case 0:
+                basespeed = 4.5f;
+                break;
+            case 1:
+                basespeed = 6f;
+                break;
+            case 2:
+                basespeed = 8f;
+                break;
+            case 3:
+                basespeed = 10f;
+                break;
+            default:
+                basespeed = 12f;
+                break;
+                
+        }
         rb = GetComponent<Rigidbody>();
         pc = GameObject.Find("LeftScore").GetComponent<PongController>();
         ResetBall();
@@ -44,6 +64,35 @@ public class BallController : MonoBehaviour
             ++pc.leftScore;
             ResetBall();
         }
+
+        //test states
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            ResetBall();
+        }
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            TestBall(1);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            TestBall(2);
+        }
+    }
+
+    void TestBall(int i)
+    {
+        transform.position = new Vector3(0, 1, 0);
+        switch(i)
+        {
+            case 1:
+                rb.velocity = new Vector3(0, 0, 1) * basespeed;
+                break;
+            case 2:
+                rb.velocity = new Vector3(1, 0, 0) * basespeed;
+                break;
+        }
+
     }
 
     void OnCollisionEnter(Collision col)
