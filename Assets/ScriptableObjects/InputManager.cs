@@ -26,7 +26,7 @@ public sealed class InputManager : ScriptableObject
     }
     public void SendPauseCommand()
     {
-        ICommand command = new PauseCommand(GameSystem.getToggleMenu());
+        ICommand command = new PauseCommand(GameSystem.getMenu("Pause"));
         commandProcessor.ProcessCommand(command);
     }
 }
