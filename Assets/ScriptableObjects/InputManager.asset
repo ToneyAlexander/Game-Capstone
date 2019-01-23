@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b18a6cf3c5f24285aeee9bd2fb4e61b, type: 3}
-  m_Name: PlayerInputManager
+  m_Name: InputManager
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  keyToStateMap: {fileID: 11400000, guid: 7bcab4493314049acbbec331d19732e8, type: 2}
+  gameStateMachine: {fileID: 11400000, guid: 634692c1f1669497a85b458b99bfdd86, type: 2}
