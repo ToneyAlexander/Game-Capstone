@@ -45,25 +45,25 @@ MonoBehaviour:
     overrideState: 1
     value: 1
   noiseFilterTolerance:
-    overrideState: 0
+    overrideState: 1
     value: 0
   blurTolerance:
-    overrideState: 0
+    overrideState: 1
     value: -4.6
   upsampleTolerance:
-    overrideState: 0
+    overrideState: 1
     value: -12
   thicknessModifier:
     overrideState: 1
     value: 2.2
   directLightingStrength:
-    overrideState: 0
+    overrideState: 1
     value: 0
   radius:
-    overrideState: 0
+    overrideState: 1
     value: 0.25
   quality:
-    overrideState: 0
+    overrideState: 1
     value: 2
 --- !u!114 &114321562739882692
 MonoBehaviour:
@@ -1397,4 +1397,4 @@ MonoBehaviour:
     value: 184
   sampleCount:
     overrideState: 1
-    value: 10
+    value: 5
