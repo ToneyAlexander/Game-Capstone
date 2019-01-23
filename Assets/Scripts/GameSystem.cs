@@ -6,6 +6,7 @@ public class GameSystem
 {
     static bool isPaused = false;
     static GameObject toggleMenu;
+   private static Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
     private static int aiDiff = 0;
     private static int ballSpeed = 0;
     public static bool getPaused()
@@ -36,12 +37,21 @@ public class GameSystem
     {
         return ballSpeed;
     }
-    public static void setToggleMenu(GameObject obj)
+    public static void setMenu(string type, GameObject obj)
     {
-        toggleMenu = obj;
+        menus.Add(type, obj);
     }
-    public static GameObject getToggleMenu()
+    public static GameObject getMenu(string type)
     {
-        return toggleMenu;
+        GameObject temp;
+        if (menus.TryGetValue(type, out temp))
+        {
+            return temp;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 }

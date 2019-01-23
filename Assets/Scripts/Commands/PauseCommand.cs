@@ -12,12 +12,7 @@ public class PauseCommand : ICommand
     }
     public PauseCommand()
     {
-        pauseMenu = GameObject.Find("PauseMenu");
-        if (pauseMenu == null)
-        {
-            Debug.Log(pauseMenu);
-            pauseMenu = GameObject.Find("/Canvas/PauseMenu");
-        }
+        pauseMenu = GameSystem.getMenu("Pause");
         
     }
     // Start is called before the first frame update
