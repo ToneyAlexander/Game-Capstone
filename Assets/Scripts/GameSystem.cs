@@ -27,7 +27,7 @@ public class GameSystem
     }
     public static int AiDifficulty()
     {
-        return 0;
+        return aiDiff;
     }
     public static void SetSpeed(int speedl)
     {
