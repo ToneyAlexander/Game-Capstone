@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -53,7 +52,7 @@ public class LoadingScript : MonoBehaviour
         yield return new WaitForSeconds(20);
 
         //Asynchronous operation to load SampleScene
-        AsyncOperation async = SceneManager.LoadSceneAsync("SampleScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync("Menu");
 
         //Wait until the scene's done loading
         while (!async.isDone)
