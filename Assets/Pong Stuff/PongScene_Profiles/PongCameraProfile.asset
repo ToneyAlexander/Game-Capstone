@@ -90,22 +90,22 @@ MonoBehaviour:
     defaultState: 1
   tonemapper:
     overrideState: 1
-    value: 1
-  toneCurveToeStrength:
-    overrideState: 0
     value: 0
+  toneCurveToeStrength:
+    overrideState: 1
+    value: 0.05
   toneCurveToeLength:
-    overrideState: 0
+    overrideState: 1
     value: 0.5
   toneCurveShoulderStrength:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.25
   toneCurveShoulderLength:
-    overrideState: 0
+    overrideState: 1
     value: 0.5
   toneCurveShoulderAngle:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 0.04
   toneCurveGamma:
     overrideState: 0
     value: 1
@@ -136,7 +136,7 @@ MonoBehaviour:
     value: 0
   postExposure:
     overrideState: 1
-    value: 1
+    value: 0.25
   contrast:
     overrideState: 0
     value: -5
@@ -168,8 +168,8 @@ MonoBehaviour:
     overrideState: 0
     value: 100
   lift:
-    overrideState: 0
-    value: {x: 0.847909, y: 0.82120204, z: 1, w: -5.0964183e-10}
+    overrideState: 1
+    value: {x: 1, y: 0.9679086, z: 0.9876287, w: -5.0964183e-10}
   gamma:
     overrideState: 0
     value: {x: 0.772891, y: 0.8209982, z: 1, w: -0.0000000135081155}
