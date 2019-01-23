@@ -6,6 +6,17 @@ public class SmartPaddle : PaddleAI
 {
     public override void Move()
     {
-        transform.position = new Vector3(position.x, position.y, ball.transform.position.z);
+        if (ball.transform.position.z > 3.75f)
+        {
+            transform.position = new Vector3(position.x, position.y, 3.75f);
+        } 
+        else if (ball.transform.position.z < -3.75f)
+        {
+            transform.position = new Vector3(position.x, position.y, -3.75f);
+        }
+        else 
+        {
+            transform.position = new Vector3(position.x, position.y, ball.transform.position.z);
+        }
     }
 }
