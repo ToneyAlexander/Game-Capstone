@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using States;
 
 [CreateAssetMenu]
 public sealed class InputManager : ScriptableObject
