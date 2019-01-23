@@ -32,8 +32,8 @@ public class TextButton : MonoBehaviour
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
-        entry.callback.AddListener(delegate { OnClick(); });
-       // ev.triggers.Add(entry);
+        entry.callback.AddListener((eventData) => { OnClick(); });
+        ev.triggers.Add(entry);
     }
     void highlight()
     {
