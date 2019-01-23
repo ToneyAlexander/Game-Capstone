@@ -6,8 +6,13 @@ public class GameSystem
 {
     static bool isPaused = false;
     static GameObject toggleMenu;
-    private static int aiDiff = 0;
-    private static int ballSpeed = 0;
+    private static Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
+    private static int aiDiff = 1;
+    private static int ballSpeed = 2;
+    public static void resetMenu()
+    {
+        menus.Clear();
+    }
     public static bool getPaused()
     {
         return isPaused;
@@ -26,7 +31,7 @@ public class GameSystem
     }
     public static int AiDifficulty()
     {
-        return 0;
+        return aiDiff;
     }
     public static void SetSpeed(int speedl)
     {
@@ -36,12 +41,22 @@ public class GameSystem
     {
         return ballSpeed;
     }
-    public static void setToggleMenu(GameObject obj)
+    public static void setMenu(string type, GameObject obj)
     {
-        toggleMenu = obj;
+        
+        menus[type] = obj;
     }
-    public static GameObject getToggleMenu()
+    public static GameObject getMenu(string type)
     {
-        return toggleMenu;
+        GameObject temp;
+        if (menus.TryGetValue(type, out temp))
+        {
+            return temp;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 }

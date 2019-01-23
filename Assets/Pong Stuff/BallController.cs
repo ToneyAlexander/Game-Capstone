@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
-    const float basespeed = 8f;
+    float basespeed = 8f;
     const float maxSpeed = 25f;
     const float speedGain = 1.05f;
     const float size = 10.3f;
@@ -16,6 +16,26 @@ public class BallController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int speed = GameSystem.BallSpeed();
+        switch(speed)
+        {
+            case 0:
+                basespeed = 6f;
+                break;
+            case 1:
+                basespeed = 7f;
+                break;
+            case 2:
+                basespeed = 8.5f;
+                break;
+            case 3:
+                basespeed = 10f;
+                break;
+            default:
+                basespeed = 12f;
+                break;
+                
+        }
         rb = GetComponent<Rigidbody>();
         pc = GameObject.Find("LeftScore").GetComponent<PongController>();
         ResetBall();
@@ -69,6 +89,35 @@ public class BallController : MonoBehaviour
             ++pc.leftScore;
             ResetBall();
         }
+
+        //test states
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            ResetBall();
+        }
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            TestBall(1);
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            TestBall(2);
+        }
+    }
+
+    void TestBall(int i)
+    {
+        transform.position = new Vector3(0, 1, 0);
+        switch(i)
+        {
+            case 1:
+                rb.velocity = new Vector3(0, 0, 1) * basespeed;
+                break;
+            case 2:
+                rb.velocity = new Vector3(1, 0, 0) * basespeed;
+                break;
+        }
+
     }
 
     void OnCollisionEnter(Collision col)
@@ -83,7 +132,9 @@ public class BallController : MonoBehaviour
 
         // Ball changes to a random color on collision.
         Color newColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor);
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor); //set ball color
+        Light ballLight =  GameObject.Find("BallLight").GetComponent<Light>();
+        ballLight.color = newColor; //set ball's light
     } 
    
 }

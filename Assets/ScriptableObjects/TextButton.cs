@@ -16,7 +16,10 @@ public class TextButton : MonoBehaviour
     public commandType buttonType;
     public enum commandType{
         resume,
-        quit
+        quit,
+        quitmenu,
+        pausemenu,
+        mainmenu
     }
 
     void Start()
@@ -25,9 +28,21 @@ public class TextButton : MonoBehaviour
         {
             command = new QuitCommand();
         }
-        if (buttonType == commandType.resume)
+        else if (buttonType == commandType.resume)
         {
             command = new ResumeCommand(gameObject.transform.parent.gameObject);
+        }
+        else if (buttonType == commandType.quitmenu)
+        {
+            command = new QuitMenuCommand();
+        }
+        else if (buttonType == commandType.pausemenu)
+        {
+            command = new QuitMenuCommand("Quit","Pause");
+        }
+        else if (buttonType == commandType.mainmenu)
+        {
+            command = new MainMenuCommand();
         }
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
