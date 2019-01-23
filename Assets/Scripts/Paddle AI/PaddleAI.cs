@@ -25,8 +25,10 @@ public abstract class PaddleAI : MonoBehaviour
     }
 
     // Update is called once per frame
+
     void Update()
     {
+       // if (Gam)
         position = transform.position;
         Move();
     }
