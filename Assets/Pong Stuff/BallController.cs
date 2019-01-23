@@ -132,7 +132,9 @@ public class BallController : MonoBehaviour
 
         // Ball changes to a random color on collision.
         Color newColor = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor);
+        GetComponent<Renderer>().material.SetColor("_EmissionColor", newColor); //set ball color
+        Light ballLight =  GameObject.Find("BallLight").GetComponent<Light>();
+        ballLight.color = newColor; //set ball's light
     } 
    
 }

@@ -6,9 +6,13 @@ public class GameSystem
 {
     static bool isPaused = false;
     static GameObject toggleMenu;
-   private static Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
+    private static Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
     private static int aiDiff = 1;
     private static int ballSpeed = 2;
+    public static void resetMenu()
+    {
+        menus.Clear();
+    }
     public static bool getPaused()
     {
         return isPaused;
@@ -39,7 +43,8 @@ public class GameSystem
     }
     public static void setMenu(string type, GameObject obj)
     {
-        menus.Add(type, obj);
+        
+        menus[type] = obj;
     }
     public static GameObject getMenu(string type)
     {
