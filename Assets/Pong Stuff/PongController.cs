@@ -34,10 +34,10 @@ public class PongController : MonoBehaviour
 
         switch (ai)
         {
-            case 1:
+            case 0:
                 aipaddle = (GameObject)Instantiate(Resources.Load("Prefabs/StupidPaddle"));
                 break;
-            case 2:
+            case 1:
                 aipaddle = (GameObject)Instantiate(Resources.Load("Prefabs/LazyPaddle"));
                 break;
             default:

@@ -20,13 +20,13 @@ public class BallController : MonoBehaviour
         switch(speed)
         {
             case 0:
-                basespeed = 4.5f;
-                break;
-            case 1:
                 basespeed = 6f;
                 break;
+            case 1:
+                basespeed = 7f;
+                break;
             case 2:
-                basespeed = 8f;
+                basespeed = 8.5f;
                 break;
             case 3:
                 basespeed = 10f;

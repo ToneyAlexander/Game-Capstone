@@ -7,8 +7,8 @@ public class GameSystem
     static bool isPaused = false;
     static GameObject toggleMenu;
    private static Dictionary<string, GameObject> menus = new Dictionary<string, GameObject>();
-    private static int aiDiff = 0;
-    private static int ballSpeed = 0;
+    private static int aiDiff = 1;
+    private static int ballSpeed = 2;
     public static bool getPaused()
     {
         return isPaused;
