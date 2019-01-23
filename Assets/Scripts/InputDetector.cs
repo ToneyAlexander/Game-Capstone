@@ -29,5 +29,10 @@ public class InputDetector : MonoBehaviour
 
         float verticalAxisValue = Input.GetAxis("Vertical");
         inputManager.HandleVerticalAxisInput(verticalAxisValue, movable);
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            inputManager.SendPauseCommand();
+        }
     }
 }

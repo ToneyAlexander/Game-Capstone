@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using States;
 
 [CreateAssetMenu]
 public sealed class InputManager : ScriptableObject
@@ -21,6 +22,11 @@ public sealed class InputManager : ScriptableObject
     private void SendMoveCommand(Vector3 velocity, Movable movable)
     {
         ICommand command = new MoveCommand(movable, velocity);
+        commandProcessor.ProcessCommand(command);
+    }
+    public void SendPauseCommand()
+    {
+        ICommand command = new PauseCommand(GameSystem.getToggleMenu());
         commandProcessor.ProcessCommand(command);
     }
 }
