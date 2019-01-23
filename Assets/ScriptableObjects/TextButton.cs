@@ -18,7 +18,8 @@ public class TextButton : MonoBehaviour
         resume,
         quit,
         quitmenu,
-        pausemenu
+        pausemenu,
+        mainmenu
     }
 
     void Start()
@@ -38,6 +39,10 @@ public class TextButton : MonoBehaviour
         else if (buttonType == commandType.pausemenu)
         {
             command = new QuitMenuCommand("Quit","Pause");
+        }
+        else if (buttonType == commandType.mainmenu)
+        {
+            command = new MainMenuCommand();
         }
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();

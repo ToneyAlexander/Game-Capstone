@@ -20,6 +20,9 @@ public class ChoicesSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!GameSystem.getPaused())
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
