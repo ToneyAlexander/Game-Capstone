@@ -7,6 +7,7 @@ public class QuitCommand : ICommand
 
     public void InvokeCommand()
     {
-        Application.Quit();
+        //Application.Quit();
+        Debug.Log("Working");
     }
 }

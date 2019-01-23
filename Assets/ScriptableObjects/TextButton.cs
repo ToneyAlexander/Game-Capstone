@@ -27,23 +27,28 @@ public class TextButton : MonoBehaviour
         }
         if (buttonType == commandType.resume)
         {
-            command = new ResumeCommand();
+            command = new ResumeCommand(gameObject.transform.parent.gameObject);
         }
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
         entry.callback.AddListener(delegate { OnClick(); });
-        ev.triggers.Add(entry);
+       // ev.triggers.Add(entry);
     }
     void highlight()
     {
-
+        command.InvokeCommand();
     }
+
     void OnMouseDown()
     {
         command.InvokeCommand();
     }
     void OnClick()
+    {
+        command.InvokeCommand();
+    }
+    void Click()
     {
         command.InvokeCommand();
     }
