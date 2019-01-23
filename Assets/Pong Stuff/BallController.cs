@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour
     const float maxSpeed = 25f;
     const float speedGain = 1.05f;
     const float size = 10.3f;
+    Vector3 savedVelocity;
     Rigidbody rb;
     PongController pc;
 
@@ -36,7 +37,29 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x > size)
+        // if (getPa)
+        
+        if (GameSystem.getPaused())
+        {
+            rb.isKinematic = true ;
+        }
+        else
+        {
+            
+            if (rb.isKinematic)
+            {
+                rb.isKinematic = false;
+                rb.AddForce(savedVelocity, ForceMode.VelocityChange);
+            }
+            else
+            {
+                savedVelocity = rb.velocity;
+            }
+            
+            
+            
+        }
+        if (transform.position.x > size)
         {
             ++pc.rightScore;
             ResetBall();

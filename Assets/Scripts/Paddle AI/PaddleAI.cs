@@ -29,8 +29,12 @@ public abstract class PaddleAI : MonoBehaviour
     void Update()
     {
        // if (Gam)
-        position = transform.position;
-        Move();
+        if (!GameSystem.getPaused())
+        {
+            position = transform.position;
+            Move();
+        }
+
     }
 
     public abstract void Move();

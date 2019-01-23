@@ -25,7 +25,8 @@ public class PauseCommand : ICommand
 
     {
         pauseMenu.SetActive(true);
-        GameSystem.setPaused(false);
+        GameSystem.setPaused(true);
+        Debug.Log(GameSystem.getPaused());
         Cursor.visible = true;
         
     }
