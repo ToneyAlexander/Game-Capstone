@@ -24,4 +24,9 @@ public sealed class InputManager : ScriptableObject
         ICommand command = new MoveCommand(movable, velocity);
         commandProcessor.ProcessCommand(command);
     }
+    public void SendPauseCommand()
+    {
+        ICommand command = new PauseCommand(GameSystem.getToggleMenu());
+        commandProcessor.ProcessCommand(command);
+    }
 }

@@ -14,7 +14,7 @@ public class ResumeCommand : ICommand
 
     {
         pauseMenu.SetActive(false);
-        GameSystem.setPaused(true);
+        GameSystem.setPaused(false);
         Cursor.visible = true;
 
     }
