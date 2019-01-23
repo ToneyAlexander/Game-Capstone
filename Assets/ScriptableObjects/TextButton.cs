@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
 
 public class TextButton : MonoBehaviour
 {
@@ -27,6 +29,11 @@ public class TextButton : MonoBehaviour
         {
             command = new ResumeCommand();
         }
+        EventTrigger ev = gameObject.GetComponent<EventTrigger>();
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerClick;
+        entry.callback.AddListener(delegate { OnClick(); });
+        ev.triggers.Add(entry);
     }
     void highlight()
     {
