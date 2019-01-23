@@ -4,7 +4,7 @@ using UnityEngine;
 
 /*
  *Script for capturing screenshots.
- * Press 'P' to take a screenshot -> will save in Assets/Snapshots folder
+ * Press 'C' to take a screenshot -> will save in Assets/Snapshots folder
  */
 public class ImageCapture : MonoBehaviour
 {
@@ -18,7 +18,7 @@ public class ImageCapture : MonoBehaviour
 	}
     void LateUpdate()
     {
-        takeScreenShot |= Input.GetKeyDown(KeyCode.P);
+        takeScreenShot |= Input.GetKeyDown(KeyCode.C);
         if(takeScreenShot){
             RenderTexture rt = new RenderTexture(resWidth, resHeight, 24);
             GetComponent<Camera>().targetTexture = rt;
