@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,7 +11,11 @@ public class LoadingScript : MonoBehaviour
     [SerializeField]
     private GameObject loadingSprites;
 
+    [SerializeField]
+    private Slider loadingSlider;
+
     private float nextImage;
+    private float nextLoad;
     private int imageIndex;
     private int imageCount;
 
@@ -22,7 +25,8 @@ public class LoadingScript : MonoBehaviour
         StartCoroutine(LoadMainMenu());
         imageIndex = 0;
         imageCount = loadingSprites.transform.childCount;
-        nextImage = Time.time + 2;
+        nextImage = Time.time + .9f;
+        nextLoad = Time.time + .033f;
         displayNextImage();
     }
 
@@ -41,19 +45,24 @@ public class LoadingScript : MonoBehaviour
     {
         if (Time.time > nextImage)
         {
-            nextImage = Time.time + 2;
+            nextImage = Time.time + .9f;
             displayNextImage();
             imageIndex = (imageIndex + 1) % imageCount;
+        }
+        if(Time.time > nextLoad)
+        {
+            loadingSlider.value += .005f;
+            nextLoad = Time.time + .033f;
         }
     }
 
     IEnumerator LoadMainMenu()
     {
-        //Waits for 20 seconds before executing to show the logoState off
-        yield return new WaitForSeconds(20);
+        //Waits for 8 seconds before executing to show the logoState off
+        yield return new WaitForSeconds(8);
 
         //Asynchronous operation to load SampleScene
-        AsyncOperation async = SceneManager.LoadSceneAsync("SampleScene");
+        AsyncOperation async = SceneManager.LoadSceneAsync("Menu");
 
         //Wait until the scene's done loading
         while (!async.isDone)

@@ -10,12 +10,18 @@ public class PauseCommand : ICommand
     {
         pauseMenu = menu;
     }
+    public PauseCommand()
+    {
+        pauseMenu = GameSystem.getMenu("Pause");
+        
+    }
     // Start is called before the first frame update
     public void InvokeCommand()
 
     {
         pauseMenu.SetActive(true);
-        GameSystem.setPaused(false);
+        GameSystem.setPaused(true);
+        Debug.Log(GameSystem.getPaused());
         Cursor.visible = true;
         
     }

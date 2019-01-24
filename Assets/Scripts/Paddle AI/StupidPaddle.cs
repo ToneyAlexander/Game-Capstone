@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class StupidPaddle : PaddleAI
 {
-    private float speed = 1.0f;
-
     public override void Move() 
     {
         transform.Translate(velocity * speed * Time.deltaTime);
-        if ((position.z + scale.z / 2) > 6)
+        if (position.z > upperBound)
         {
-            transform.position = new Vector3(position.x, position.y, 6.0f - scale.z/2);
-            speed = Random.Range(0.2f, 2.0f);
+            transform.position = new Vector3(position.x, position.y, upperBound);
+            speed = Random.Range(1.0f, 10.0f);
             velocity = -velocity;
         }
-        if ((position.z - scale.z / 2) < -6)
+        if (position.z < lowerBound)
         {
-            transform.position = new Vector3(position.x, position.y, -(6.0f - scale.z/2));
-            speed = Random.Range(0.2f, 2.0f);
+            transform.position = new Vector3(position.x, position.y, lowerBound);
+            speed = Random.Range(1.0f, 10.0f);
             velocity = -velocity;
         }
     }
