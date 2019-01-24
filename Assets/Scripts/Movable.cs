@@ -3,18 +3,33 @@
 /// <summary>
 /// Causes a GameObject to move.
 /// </summary>
+[RequireComponent(typeof(Rigidbody))]
 public class Movable : MonoBehaviour
 {
     [SerializeField]
     private MovementData movementData;
 
-    public void Move(Vector3 velocity)
+    private Rigidbody rb;
+
+    private Vector3 velocity = Vector3.zero;
+
+    public void Move(Vector3 newVelocity)
     {
         if (!GameSystem.getPaused())
         {
-            transform.Translate(velocity * Time.deltaTime * movementData.Speed);
+            velocity = newVelocity * movementData.Speed;
         }
         
+    }
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        rb.velocity = velocity;
     }
 
 }
