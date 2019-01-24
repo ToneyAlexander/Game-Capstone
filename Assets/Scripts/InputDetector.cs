@@ -24,10 +24,12 @@ public class InputDetector : MonoBehaviour
 
     private void Update()
     {
-        float horizontalAxisValue = Input.GetAxis("Horizontal");
-        inputManager.HandleHorizontalAxisInput(horizontalAxisValue, movable);
-
         float verticalAxisValue = Input.GetAxis("Vertical");
         inputManager.HandleVerticalAxisInput(verticalAxisValue, movable);
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            inputManager.SendPauseCommand();
+        }
     }
 }
