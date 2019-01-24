@@ -24,7 +24,7 @@ public class AudioFadeIn : MonoBehaviour
             maxVolume = .5f;
         }
         startTime = Time.time;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void Update()
