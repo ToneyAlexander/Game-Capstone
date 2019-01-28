@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-    public void PlayGame()
+    public void PlayKongGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
         Debug.Log("Quit!");
+    }
+
+    public void PlayMainGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
 }
