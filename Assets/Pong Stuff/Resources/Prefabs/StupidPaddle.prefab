@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1958269992118447363}
   - component: {fileID: 1958269992118447362}
   - component: {fileID: 1958269992118447361}
+  - component: {fileID: 771759435846168965}
+  - component: {fileID: 2203798672121017466}
   m_Layer: 0
   m_Name: StupidPaddle
   m_TagString: Paddle
@@ -102,5 +104,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b71f96d47a9bb4911a818950cb955b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &771759435846168965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958269992118447364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2203798672121017466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958269992118447364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8e2b6398b433d45ac59df385a7ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
