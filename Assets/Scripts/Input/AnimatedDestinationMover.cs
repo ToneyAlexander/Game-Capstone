@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Represents a Component that causes it's GameObject to move towards a given
+/// Represents a Component that causes its GameObject to move towards a given
 /// world space location and animate itself as it moves.
 /// </summary>
 public sealed class AnimatedDestinationMover : MonoBehaviour, IDestinationMover
