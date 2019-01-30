@@ -19,7 +19,7 @@ public class Movable : MonoBehaviour
         {
             velocity = newVelocity * movementData.Speed;
         }
-        
+
     }
 
     private void Start()
