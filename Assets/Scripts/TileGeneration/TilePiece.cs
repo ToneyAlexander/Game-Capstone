@@ -9,11 +9,11 @@ public class TilePiece
 {
 
     public GameObject prefab;
-    public string colorID;
+    public int colorID;
     public int rotation;
     public Vector3 modif;
 
-    public TilePiece(GameObject _prefab, string _colorID, int _rotiation, Vector3 _modif)
+    public TilePiece(GameObject _prefab, int _colorID, int _rotiation, Vector3 _modif)
     {
         prefab = _prefab;
         colorID = _colorID;
