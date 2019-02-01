@@ -57,6 +57,5 @@ public class TileGeneration : MonoBehaviour
             }
             startingLocation.x += tileSize;
         }
-
     }
 }
