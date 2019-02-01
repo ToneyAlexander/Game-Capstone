@@ -35,6 +35,7 @@ public class StatBlock : MonoBehaviour
     //Fort subset
     public float MagicRes { get; set; }
     public float MagicResMult { get; set; }
+    public float StatusRec { get; set; }
     public float StatusRecMult { get; set; }
     public float AfflictRes { get; set; }
     public float AfflictResMult { get; set; }
@@ -47,12 +48,6 @@ public class StatBlock : MonoBehaviour
     public float CritDamageMult { get; set; }
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
-    
-    void Start()
-    {
-        //real values will be set externally
-        //all values inately init to 0.0f
-    }
 
     void Update()
     {
