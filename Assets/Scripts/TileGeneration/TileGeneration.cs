@@ -4,85 +4,59 @@ using System.IO;
 
 public class TileGeneration : MonoBehaviour
 {
+    [SerializeField]
+    private TileData tileData;
 
-    private List<TilePiece> colorTileDict;
-    public GameObject noRise;
-    public GameObject Quarter;
-    public GameObject Half;
-    public GameObject Eighth;
-    public GameObject SevenEighth;
-    public GameObject ThreeQuarter;
+    [SerializeField]
+    private int tileSize;
 
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
-        colorTileDict = new List<TilePiece>();
-        createColorToTileDictionary();
-        colorTileDict.Add(new TilePiece(noRise, 255, 0, new Vector3(0, 1, 0)));
-        colorTileDict.Add(new TilePiece(Quarter, 254, 0, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Eighth, 244, 270, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Eighth, 242, 180, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Eighth, 243, 90, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Eighth, 245, 0, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Half, 251, 0, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Half, 252, 180, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Half, 250, 270, Vector3.zero));
-        colorTileDict.Add(new TilePiece(Half, 253, 90, Vector3.zero));
-        colorTileDict.Add(new TilePiece(SevenEighth, 248, 0, Vector3.zero));
-        colorTileDict.Add(new TilePiece(SevenEighth, 247, 270, Vector3.zero));
-        colorTileDict.Add(new TilePiece(SevenEighth, 246, 90, Vector3.zero));
-        colorTileDict.Add(new TilePiece(SevenEighth, 249, 180, Vector3.zero));
+        Vector3 startingLocation = Vector3.zero;
 
         //read in file 
-        List<int> x = new List<int>();
-        string owo = Directory.GetCurrentDirectory();
         string path = Application.dataPath + "/Images/TestImage2.png";
         byte[] byteImg = File.ReadAllBytes(path);
-        Vector3 spot = new Vector3(0, 0, 0);
         Texture2D img = new Texture2D(20, 20);
         img.LoadImage(byteImg);
-        int tileSize = 4;
+
+        //iterate through image and place tiles in Unity scene: 
         for (int i = img.height - 1; i >= 0; i--) //x
         {
-            spot.z = 0;
+            startingLocation.z = 0;
             for (int j = 0; j < img.width; j++) //z
             {
                 Color pixel = img.GetPixel(j, i);
-                float test = pixel.r * (255);
-                //go through map of (tile, color)
-
-                foreach (TilePiece a in colorTileDict)
+                float pixelValue = pixel.r * (255);
+        
+                foreach (TilePiece currentPiece in tileData.TileMap)
                 {
-                    if (test.Equals(a.colorID))
+                    if (pixelValue.Equals(currentPiece.colorID)) //found correct tile
                     {
-                        GameObject aaa = Instantiate(a.prefab, spot + a.modif, Quaternion.identity);
-                        aaa.transform.Rotate(Vector3.up, a.rotation);
+                        GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+                        newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
 
-                        if (a.rotation == 90)
+                        //apply adjustment to tile after rotation
+                        if (currentPiece.rotation == 90)
                         {
-
-                            aaa.transform.position += new Vector3(2, 0, 2);
+                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
                         }
-                        else if (a.rotation == 180)
+                        else if (currentPiece.rotation == 180)
                         {
-                            aaa.transform.position += new Vector3(4, 0, 0);
+                            newlyCreatedTile.transform.position += new Vector3(tileSize, 0, 0);
                         }
-                        else if (a.rotation == 270)
+                        else if (currentPiece.rotation == 270)
                         {
-                            aaa.transform.position += new Vector3(2, 0, -2);
+                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize/2));
                         }
-
                         break;
                     }
                 }
-                spot.z += tileSize;
+                startingLocation.z += tileSize;
             }
-            spot.x += tileSize;
+            startingLocation.x += tileSize;
         }
 
-    }
-
-    void createColorToTileDictionary()
-    {
     }
 }
