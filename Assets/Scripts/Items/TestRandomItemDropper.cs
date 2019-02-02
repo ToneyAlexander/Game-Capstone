@@ -6,7 +6,7 @@ namespace CCC.Items
 {
     /// <summary>
     /// Represents a testing Component that causes its GameObject to drop a randomly
-    /// generated Item.
+    /// generated Item and automatically places in in a given Inventory.
     /// </summary>
     public class TestRandomItemDropper : MonoBehaviour, ItemDropper
     {
@@ -20,6 +20,10 @@ namespace CCC.Items
                 Debug.Log(stat.Name + ": " + stat.Value);
             }
 
+            inventory.AddItem(item);
+
+            Debug.Log(inventory.Items[0].Name);
+
             return item;
         }
 
@@ -29,6 +33,9 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private ItemGenerator itemGenerator;
+
+        [SerializeField]
+        private Inventory inventory;
 
         #region MonoBehaviour Messages
 
