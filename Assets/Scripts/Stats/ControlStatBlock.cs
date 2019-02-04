@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Items;
+using CCC.Stats;
 
 [RequireComponent(typeof(StatBlock))]
 public class ControlStatBlock : MonoBehaviour
@@ -22,11 +24,13 @@ public class ControlStatBlock : MonoBehaviour
 
     private StatBlock stats;
     private float oldHpPrecent;
+    private InventoryUser inv;
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<StatBlock>();
+        inv = GetComponent<InventoryUser>();
         Str = 10f;
         Dex = 10f;
         Myst = 10f;
@@ -48,6 +52,17 @@ public class ControlStatBlock : MonoBehaviour
 
     void ResetBaseStats()
     {
+        stats.AfflictRes = 0f;
+        stats.MagicRes = 0f;
+        stats.StatusRec = 0f;
+        stats.CdrMult = 0f;
+        stats.SpellMult = 0f;
+        stats.AttackSpeedMult = 0f;
+        stats.MoveSpeedMult = 0f;
+        stats.RangedAttackMult = 0f;
+        stats.HealthBase = 0f;
+        stats.HealthRegen = 0f;
+        stats.MeleeAttackMult = 0f;
         stats.MoveSpeed = 10f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
@@ -64,6 +79,11 @@ public class ControlStatBlock : MonoBehaviour
         stats.StatusRecMult = 0f;
     }
 
+    void ApplyStat(Stat stat)
+    {
+        //switch statemnt
+    }
+
     void StatsChanged()
     {
         if (oldHpPrecent >= -1000f)
@@ -75,29 +95,39 @@ public class ControlStatBlock : MonoBehaviour
 
         TestStatIncrease();
 
-        float strReal = Str * (1 + StrMult);
-        stats.HealthBase = strReal * 10f;
-        stats.HealthRegen = strReal / 20f;
-        stats.MeleeAttackMult = strReal / 1000f;
-
-        float dexReal = Dex * (1 + DexMult);
-        stats.AttackSpeedMult = dexReal / 1000f;
-        stats.MoveSpeedMult = dexReal / 500f;
-        stats.RangedAttackMult = dexReal / 1000f;
-
-        float mystReal = Myst * (1 + MystMult);
-        stats.CdrMult = mystReal / 2000f;
-        stats.SpellMult = mystReal / 1000f;
-
-        float fortReal = Fort * (1 + FortMult);
-        stats.MagicRes = fortReal / 5f;
-        stats.AfflictRes = fortReal / 5f;
-        stats.StatusRec = fortReal / 1000f;
+        if(inv != null)
+        {
+            foreach (Item item in inv.Inventory.Items)
+            {
+                foreach (Stat s in item.Stats)
+                {
+                    ApplyStat(s);
+                }
+            }
+        }
 
         //loop through class traits
-        //loop through items
         //loop through buffs
         //loop through debuffs
+
+        float strReal = Str * (1 + StrMult);
+        stats.HealthBase += strReal * 10f;
+        stats.HealthRegen += strReal / 20f;
+        stats.MeleeAttackMult += strReal / 1000f;
+
+        float dexReal = Dex * (1 + DexMult);
+        stats.AttackSpeedMult += dexReal / 1000f;
+        stats.MoveSpeedMult += dexReal / 500f;
+        stats.RangedAttackMult += dexReal / 1000f;
+
+        float mystReal = Myst * (1 + MystMult);
+        stats.CdrMult += mystReal / 2000f;
+        stats.SpellMult += mystReal / 1000f;
+
+        float fortReal = Fort * (1 + FortMult);
+        stats.MagicRes += fortReal / 5f;
+        stats.AfflictRes += fortReal / 5f;
+        stats.StatusRec += fortReal / 1000f;
 
         stats.HealthCur = oldHpPrecent * stats.HealthBase * (1 + stats.HealthMult);
     }
