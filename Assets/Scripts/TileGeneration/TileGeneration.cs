@@ -10,7 +10,6 @@ public class TileGeneration : MonoBehaviour
     [SerializeField]
     private int tileSize;
 
-    // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
         Vector3 startingLocation = Vector3.zero;
@@ -32,7 +31,7 @@ public class TileGeneration : MonoBehaviour
         
                 foreach (TilePiece currentPiece in tileData.TileMap)
                 {
-                    if (pixelValue.Equals(currentPiece.colorID)) //found correct tile
+                    if (pixelValue.Equals(currentPiece.ID)) //found correct tile
                     {
                         GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
                         newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
