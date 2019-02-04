@@ -1678,6 +1678,8 @@ GameObject:
   - component: {fileID: 1211844015}
   - component: {fileID: 1211844018}
   - component: {fileID: 1211844019}
+  - component: {fileID: 1211844022}
+  - component: {fileID: 1211844021}
   m_Layer: 0
   m_Name: Player_Paddle
   m_TagString: Paddle
@@ -1799,6 +1801,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
+--- !u!114 &1211844021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1211844022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1346748038
 GameObject:
   m_ObjectHideFlags: 0
