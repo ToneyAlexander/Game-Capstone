@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// [RequireComponent(typeof(StatBlock))]
+[RequireComponent(typeof(StatBlock))]
 public class BasicAttackController : MonoBehaviour
 {
     private GameObject target;
-    // private StatBlock stats;
+    private StatBlock stats;
     private float tta;
     private float ttaBase;
 
@@ -19,15 +19,15 @@ public class BasicAttackController : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("remy");
-        // stats = GetComponent<StatBlock>();
+        stats = GetComponent<StatBlock>();
         tta = ttaBase = 0.25f;
         weaponDmgMin = 35f;
         weaponDmgMax = 45f;
-        // stats.RangedAttackMult = 0.23f;
-        // stats.DamageMult = 0.08f;
-        // stats.CritChance = 0.1f;
-        // stats.CritChanceMult = 1.5f;
-        // stats.CritDamage = 2.3f;
+        stats.RangedAttackMult = 0.23f;
+        stats.DamageMult = 0.08f;
+        stats.CritChance = 0.1f;
+        stats.CritChanceMult = 1.5f;
+        stats.CritDamage = 2.3f;
 
         attack = false;
     }
@@ -54,10 +54,10 @@ public class BasicAttackController : MonoBehaviour
         o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         o.transform.LookAt(target.transform);
         o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        // Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
-        // dmg = stats.RealDamage(dmg);
+        Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
+        dmg = stats.RealDamage(dmg);
         ProjectileController pb = o.AddComponent<ProjectileController>();
-        // pb.dmg = dmg;
+        pb.dmg = dmg;
         pb.speed = 10f;
         pb.ttl = 5f;
         o.GetComponent<SphereCollider>().isTrigger = true;

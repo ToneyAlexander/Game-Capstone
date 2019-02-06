@@ -185,7 +185,7 @@ public class ControlStatBlock : MonoBehaviour
         }
     }
 
-    void StatsChanged()
+    public void StatsChanged()
     {
         if (oldHpPrecent >= -1000f)
             oldHpPrecent = stats.HealthCur / stats.HealthMax;

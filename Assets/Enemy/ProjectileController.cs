@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileController : MonoBehaviour
 {
-    // public Damage dmg;
+    public Damage dmg;
     public float speed;
     public float ttl;
 
@@ -25,15 +25,15 @@ public class ProjectileController : MonoBehaviour
         }
     }
 
-    // void OnTriggerEnter(Collider col)
-    // {
-    //     if (col.gameObject.name.Equals("Player_Paddle")) {
-    //         StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
-    //         if (enemy != null)
-    //         {
-    //             enemy.TakeDamage(dmg);
-    //         }
-    //         Destroy(gameObject);
-    //     }
-    // }
+     void OnTriggerEnter(Collider col)
+     {
+         if (col.gameObject.name.Equals("remy")) {
+             StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+             if (enemy != null)
+             {
+                 enemy.TakeDamage(dmg);
+             }
+             Destroy(gameObject);
+         }
+     }
 }

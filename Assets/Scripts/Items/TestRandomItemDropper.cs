@@ -26,8 +26,6 @@ namespace CCC.Items
             Debug.Log("Equipped " + equipment.Equipment[EquipmentSlot.Weapon].Name);
             Debug.Log(equipment.Equipment[EquipmentSlot.Weapon]);
 
-            Debug.Log(inventory.Items[0].Name);
-
             return item;
         }
 
