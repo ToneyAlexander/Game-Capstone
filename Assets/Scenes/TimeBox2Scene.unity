@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -267,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 326670351230168773, guid: 39f22d3f444835c4a93900eb21ea6dcf,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 791865747073576737, guid: 39f22d3f444835c4a93900eb21ea6dcf,
         type: 3}
@@ -401,10 +401,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &290558795
 BoxCollider:
@@ -484,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -706,7 +706,7 @@ PrefabInstance:
     - target: {fileID: 5431719566831484577, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1431996281980729121, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
@@ -789,7 +789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &830339842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,7 +1001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -1197,7 +1197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -1211,6 +1211,97 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1612894947}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1791792871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791792875}
+  - component: {fileID: 1791792874}
+  - component: {fileID: 1791792873}
+  - component: {fileID: 1791792872}
+  m_Layer: 0
+  m_Name: Cube (1)
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1791792872
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791792871}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1791792873
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791792871}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1791792874
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791792871}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1791792875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791792871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.64, y: 1.8997091, z: -4.86}
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863447950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1226,7 +1317,7 @@ PrefabInstance:
     - target: {fileID: 326670351230168773, guid: 39f22d3f444835c4a93900eb21ea6dcf,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 791865747073576737, guid: 39f22d3f444835c4a93900eb21ea6dcf,
         type: 3}
@@ -1356,7 +1447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -1427,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_TagString
@@ -1453,7 +1544,6 @@ GameObject:
   - component: {fileID: 1992494701}
   - component: {fileID: 1992494700}
   - component: {fileID: 1992494699}
-  - component: {fileID: 1992494698}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Wall
@@ -1461,22 +1551,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!54 &1992494698
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992494697}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!65 &1992494699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1544,7 +1618,7 @@ Transform:
   m_GameObject: {fileID: 1992494697}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.049286, y: 1.5, z: -6.7362914}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1564,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 5431719566831484577, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1431996281980729121, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
@@ -1654,7 +1728,7 @@ PrefabInstance:
     - target: {fileID: 5431719566831484577, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1431996281980729121, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
@@ -1744,7 +1818,7 @@ PrefabInstance:
     - target: {fileID: 5431719566831484577, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
       propertyPath: m_TagString
-      value: Wall
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1431996281980729121, guid: 07262d72498b0e94b9aa4b91f9d6b3d3,
         type: 3}
