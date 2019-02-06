@@ -22,10 +22,27 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stored = gameObject.transform.GetChild(2).gameObject;
-        storedButtons = stored.GetComponentsInChildren<Button>();
-        equipment = gameObject.transform.GetChild(3).gameObject;
-        equipmentButtons = stored.GetComponentsInChildren<Button>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).name.Equals("Stored"))
+            {
+                stored = gameObject.transform.GetChild(i).gameObject;
+                storedButtons = stored.GetComponentsInChildren<Button>();
+            }
+            else if (transform.GetChild(i).name.Equals("Equipment"))
+            {
+                equipment = gameObject.transform.GetChild(i).gameObject;
+                equipmentButtons = stored.GetComponentsInChildren<Button>();
+            }
+            else if (transform.GetChild(i).name.Equals("SpriteImage"))
+            {
+                image = gameObject.transform.GetChild(i).gameObject.GetComponent<Image>();
+            }
+            else if (transform.GetChild(i).name.Equals("DescText"))
+            {
+                descriptionText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
+            }
+        }
      //   image = gameObject.transform.GetChild(4).gameObject.GetComponent<Image>();
 
 
