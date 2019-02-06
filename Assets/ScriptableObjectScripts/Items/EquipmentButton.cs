@@ -22,7 +22,7 @@ public class EquipmentButton : MonoBehaviour
         EquipmentSlot[] slots = { EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Weapon, EquipmentSlot.Offhand, EquipmentSlot.Ring, EquipmentSlot.Amulet };
         int index = transform.GetSiblingIndex();
         InventoryUI selected = transform.parent.parent.gameObject.GetComponent<InventoryUI>();
-        selected.euser.Equipment.Equipment[slots[index]] = Item.Null;
+        selected.euser.Equipment[slots[index]] = Item.Null;
     }
     void OnMouseOver()
     {
