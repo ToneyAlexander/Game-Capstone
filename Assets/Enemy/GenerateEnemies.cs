@@ -36,6 +36,6 @@ public class GenerateEnemies : MonoBehaviour
     private Vector3 RandomPos()
     {
         // According to the world scale
-        return new Vector3(Random.Range(-25f, 25f), 0f, Random.Range(-25f, 25f));
+        return new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
     }
 }
