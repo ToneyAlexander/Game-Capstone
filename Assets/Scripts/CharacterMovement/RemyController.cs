@@ -12,10 +12,12 @@ public class RemyController : MonoBehaviour
     private  Animator animator;
     private float timer;
     private float EPSSION;
+    private float reLocateDelay;
     // Start is called before the first frame update
     void Start()
     {
-        EPSSION = 0.2f;
+        EPSSION = 0.0001f;
+        reLocateDelay = 0.15f;
         timer = 0;
         rotationSpeed = 20;
         movingSpeed = 10;
@@ -25,14 +27,14 @@ public class RemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         DoNotFlay();
         Rotate();
         Move();
         //lastPosition = transform.position;
-        SavePos();
+        //SavePos();
 
     }
 
@@ -46,7 +48,9 @@ public class RemyController : MonoBehaviour
     }
     void Move()
     {
-        if (transform.position != destination) {
+        Vector3 differ = transform.position - destination;
+        if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
+        //if (transform.position != destination) {
             animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
@@ -67,12 +71,12 @@ public class RemyController : MonoBehaviour
     void SavePos()
     {
         timer += Time.deltaTime;
-        if (timer > EPSSION)
+        if (timer > reLocateDelay)
         {
             lastPosition = transform.position;
-            Debug.Log("last position: " + RemyController.lastPosition);
-            Debug.Log("current position: " + transform.position);
-            Debug.Log(timer);
+            //Debug.Log("last position: " + RemyController.lastPosition);
+            //Debug.Log("current position: " + transform.position);
+            //Debug.Log(timer);
             timer = 0;
         }
     }
