@@ -5,43 +5,43 @@
     /// </summary>
     public struct Stat
     {
-        public static readonly string STR = "str";
-        public static readonly string STR_MULT = "strx";
-        public static readonly string HEALTH = "hp";
-        public static readonly string HEALTH_MULT = "hpx";
-        public static readonly string HEALTH_REGEN = "hpreg";
-        public static readonly string HEALTH_REGEN_MULT = "hpregx";
-        public static readonly string MELEE_ATTACK_MULT = "meleeattx";
+        public const string STR = "str";
+        public const string STR_MULT = "strx";
+        public const string HEALTH = "hp";
+        public const string HEALTH_MULT = "hpx";
+        public const string HEALTH_REGEN = "hpreg";
+        public const string HEALTH_REGEN_MULT = "hpregx";
+        public const string MELEE_ATTACK_MULT = "meleeattx";
 
-        public static readonly string DEX = "dex";
-        public static readonly string DEX_MULT = "dexx";
-        public static readonly string MOVE_SPEED = "ms";
-        public static readonly string MOVE_SPEED_MULT = "msx";
-        public static readonly string ATTACK_SPEED = "atps";
-        public static readonly string ATTACK_SPEED_MULT = "atpsx";
-        public static readonly string RANGED_ATTACK_MULT = "rangedattx";
+        public const string DEX = "dex";
+        public const string DEX_MULT = "dexx";
+        public const string MOVE_SPEED = "ms";
+        public const string MOVE_SPEED_MULT = "msx";
+        public const string ATTACK_SPEED = "atps";
+        public const string ATTACK_SPEED_MULT = "atpsx";
+        public const string RANGED_ATTACK_MULT = "rangedattx";
 
-        public static readonly string MYST = "myst";
-        public static readonly string MYST_MULT = "mystx";
-        public static readonly string CDR_MULT = "cdrx";
-        public static readonly string SPELL_MULT = "spellx";
+        public const string MYST = "myst";
+        public const string MYST_MULT = "mystx";
+        public const string CDR_MULT = "cdrx";
+        public const string SPELL_MULT = "spellx";
 
-        public static readonly string FORT = "fort";
-        public static readonly string FORT_MULT = "fortx";
-        public static readonly string MAGIC_RES = "mr";
-        public static readonly string MAGIC_RES_MULT = "mrx";
-        public static readonly string STATUS_REC = "statrec";
-        public static readonly string STATUS_REC_MULT = "statrecx";
-        public static readonly string AFFLICT_RES = "affres";
-        public static readonly string AFFLICT_RES_MULT = "affresx";
+        public const string FORT = "fort";
+        public const string FORT_MULT = "fortx";
+        public const string MAGIC_RES = "mr";
+        public const string MAGIC_RES_MULT = "mrx";
+        public const string STATUS_REC = "statrec";
+        public const string STATUS_REC_MULT = "statrecx";
+        public const string AFFLICT_RES = "affres";
+        public const string AFFLICT_RES_MULT = "affresx";
 
-        public static readonly string ARMOR = "arm";
-        public static readonly string ARMOR_MULT = "armx";
-        public static readonly string DMG_MULT = "dmg";
-        public static readonly string CRIT_DMG = "critdmg";
-        public static readonly string CRIT_DMG_MULT = "critdmgx";
-        public static readonly string CRIT_CHANCE = "critchan";
-        public static readonly string CRIT_CHASE_MULT = "critchanx";
+        public const string ARMOR = "arm";
+        public const string ARMOR_MULT = "armx";
+        public const string DMG_MULT = "dmg";
+        public const string CRIT_DMG = "critdmg";
+        public const string CRIT_DMG_MULT = "critdmgx";
+        public const string CRIT_CHANCE = "critchan";
+        public const string CRIT_CHANCE_MULT = "critchanx";
 
         /// <summary>
         /// Gets the name of this Stat.
