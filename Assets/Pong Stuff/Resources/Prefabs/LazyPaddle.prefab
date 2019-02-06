@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1597110221}
   - component: {fileID: 1597110220}
   - component: {fileID: 2520379914975168852}
+  - component: {fileID: 5188361568703863859}
+  - component: {fileID: 254472680249519822}
   m_Layer: 0
   m_Name: LazyPaddle
   m_TagString: Paddle
@@ -102,5 +104,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7c0bb0f78751469e9be5d1f4640cab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5188361568703863859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597110218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &254472680249519822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597110218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8e2b6398b433d45ac59df385a7ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

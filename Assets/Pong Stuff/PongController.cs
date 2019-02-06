@@ -11,6 +11,7 @@ public class PongController : MonoBehaviour
     Text right;
     Text left;
     private GameObject aipaddle;
+    private StatBlock playerstats;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class PongController : MonoBehaviour
         rightScore = 0;
         left = GameObject.Find("LeftScore").GetComponent<Text>();
         right = GameObject.Find("RightScore").GetComponent<Text>();
+        playerstats = GameObject.Find("Player_Paddle").GetComponent<StatBlock>();
 
         RespawnPaddle();
     }
@@ -53,6 +55,7 @@ public class PongController : MonoBehaviour
     void Update()
     {
         left.text = "Score: " + rightScore;
+        left.text += "\nHealth: " + (int)playerstats.HealthCur + "/" + (int)playerstats.HealthMax;
         right.text = "Score: " + leftScore;
     }
 }

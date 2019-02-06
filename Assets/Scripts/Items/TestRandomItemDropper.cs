@@ -6,7 +6,8 @@ namespace CCC.Items
 {
     /// <summary>
     /// Represents a testing Component that causes its GameObject to drop a randomly
-    /// generated Item and automatically places in in a given Inventory.
+    /// generated Item and automatically places in in a given Inventory and 
+    /// EquipmentDictionary.
     /// </summary>
     public class TestRandomItemDropper : MonoBehaviour, ItemDropper
     {
@@ -21,11 +22,20 @@ namespace CCC.Items
             }
 
             inventory.AddItem(item);
+            equipment.EquipItem(item);
+            Debug.Log("Equipped " + equipment.Equipment[EquipmentSlot.Weapon].Name);
+            Debug.Log(equipment.Equipment[EquipmentSlot.Weapon]);
 
             Debug.Log(inventory.Items[0].Name);
 
             return item;
         }
+
+        /// <summary>
+        /// The EquipmentDictionary to put the newly generated Item in.
+        /// </summary>
+        [SerializeField]
+        private EquipmentDictionary equipment;
 
         /// <summary>
         /// The ItemGenerator that this TestRandomItemDropper will use to get
@@ -34,6 +44,9 @@ namespace CCC.Items
         [SerializeField]
         private ItemGenerator itemGenerator;
 
+        /// <summary>
+        /// The Iventory to place the newly generated Item in.
+        /// </summary>
         [SerializeField]
         private Inventory inventory;
 

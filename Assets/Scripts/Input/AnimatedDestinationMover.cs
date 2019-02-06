@@ -14,7 +14,7 @@ public sealed class AnimatedDestinationMover : MonoBehaviour, IDestinationMover
 
     public void MoveTo(Vector3 destination)
     {
-        transform.position = destination;
+        RemyController.destination = destination;
     }
     #endregion
 }
