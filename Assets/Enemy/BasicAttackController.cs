@@ -18,9 +18,9 @@ public class BasicAttackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Player");
+        target = GameObject.Find("remy");
         // stats = GetComponent<StatBlock>();
-        tta = ttaBase = 0.75f;
+        tta = ttaBase = 0.25f;
         weaponDmgMin = 35f;
         weaponDmgMax = 45f;
         // stats.RangedAttackMult = 0.23f;
@@ -51,13 +51,14 @@ public class BasicAttackController : MonoBehaviour
     {
         GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         o.transform.position = transform.position;
+        o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         o.transform.LookAt(target.transform);
         o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
         // Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         // dmg = stats.RealDamage(dmg);
         ProjectileController pb = o.AddComponent<ProjectileController>();
         // pb.dmg = dmg;
-        pb.speed = 5f;
+        pb.speed = 10f;
         pb.ttl = 5f;
         o.GetComponent<SphereCollider>().isTrigger = true;
         Rigidbody rb = o.AddComponent<Rigidbody>();
