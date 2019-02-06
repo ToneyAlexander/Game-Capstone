@@ -1,17 +1,22 @@
 fileFormatVersion: 2
-guid: 21146e5b43c391a45a00c69efbf0a83a
+guid: 719109fde79275941b87939f5fe6efb1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: default
+    100000: Cube
     100002: //RootNode
-    400000: default
+    100004: Plane
+    400000: Cube
     400002: //RootNode
-    2100000: defaultMat
-    2300000: default
-    3300000: default
-    4300000: default
-    6400000: default
+    400004: Plane
+    2100000: CubeMat
+    2100002: PlaneMat
+    2300000: Cube
+    2300002: Plane
+    3300000: Cube
+    3300002: Plane
+    4300000: Cube
+    4300002: Plane
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,7 +50,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
