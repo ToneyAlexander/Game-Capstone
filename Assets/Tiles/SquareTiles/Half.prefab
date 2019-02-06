@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2045663292485319879}
   m_Layer: 0
   m_Name: Half
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,6 +41,14 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_Name
       value: half
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 21146e5b43c391a45a00c69efbf0a83a, type: 3}
       propertyPath: m_LocalPosition.x
