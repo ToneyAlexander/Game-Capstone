@@ -22,6 +22,6 @@ public class InventoryButton : MonoBehaviour
     {
         int index = transform.GetSiblingIndex();
         InventoryUI selected = transform.parent.parent.gameObject.GetComponent<InventoryUI>();
-        selected.euser.Equipment.EquipItem(selected.user.Inventory.Items[index]);
+        selected.euser.EquipItem(selected.user.Items[index]);
     }
 }

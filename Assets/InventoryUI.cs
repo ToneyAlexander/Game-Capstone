@@ -6,8 +6,12 @@ using CCC.Items;
 
 public class InventoryUI : MonoBehaviour
 {
-    public InventoryUser user;
-    public EquipmentUser euser;
+    [SerializeField]
+    public Inventory user;
+
+    [SerializeField]
+    public EquipmentDictionary euser;
+
     GameObject stored;
     Button[] storedButtons;
     GameObject equipment;
@@ -18,11 +22,11 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stored = gameObject.transform.GetChild(1).gameObject;
+        stored = gameObject.transform.GetChild(2).gameObject;
         storedButtons = stored.GetComponentsInChildren<Button>();
-        equipment = gameObject.transform.GetChild(2).gameObject;
+        equipment = gameObject.transform.GetChild(3).gameObject;
         equipmentButtons = stored.GetComponentsInChildren<Button>();
-        image = gameObject.transform.GetChild(2).gameObject.GetComponent<Image>();
+     //   image = gameObject.transform.GetChild(4).gameObject.GetComponent<Image>();
 
 
     }
@@ -32,18 +36,21 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < storedButtons.Length; i++)
         {
-            Item go = user.Inventory.Items[i];
-            Text textfield = storedButtons[i].GetComponent<Text>();
-            textfield.text = go.Name;
-            textfield.color = Color.black;
+            if (user.Items.Count > 0)
+            {
+                Item go = user.Items[i];
+                Text textfield = storedButtons[i].GetComponent<Text>();
+                textfield.text = go.Name;
+                textfield.color = Color.black;
+            }
         }
-        for (int i = 0; i < equipmentButtons.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
-            EquipmentSlot[] slots = { EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Weapon, EquipmentSlot.Offhand, EquipmentSlot.Ring, EquipmentSlot.Amulet};
-            Item go = euser.Equipment.Equipment[slots[i]];
-            Text textfield = equipmentButtons[i].GetComponent<Text>();
-            textfield.text = go.Name;
-            textfield.color = Color.black;
+                EquipmentSlot[] slots = { EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Weapon, EquipmentSlot.Offhand, EquipmentSlot.Ring, EquipmentSlot.Amulet };
+                Item go = euser.Equipment[slots[i]];
+                Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
+                textfield.text = go.Name;
+                textfield.color = Color.black;
         }
 
     }
