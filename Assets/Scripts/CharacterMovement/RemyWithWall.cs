@@ -12,14 +12,12 @@ public class RemyWithWall : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("撞墙");
+            //Debug.Log("撞墙");
 
-            transform.position = RemyController.lastPosition;
+            //transform.position = RemyController.lastPosition;
 
             RemyController.destination = transform.position;
 
-            Debug.Log("last position: " + RemyController.lastPosition);
-            Debug.Log("current position: " + transform.position);
         }
     }
 }
