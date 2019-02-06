@@ -32,7 +32,7 @@ public class InventoryUI : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("Equipment"))
             {
                 equipment = gameObject.transform.GetChild(i).gameObject;
-                equipmentButtons = stored.GetComponentsInChildren<Button>();
+                equipmentButtons = equipment.GetComponentsInChildren<Button>();
             }
             else if (transform.GetChild(i).name.Equals("SpriteImage"))
             {
@@ -53,11 +53,17 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < storedButtons.Length; i++)
         {
-            if (user.Items.Count > 0)
+            if (user.Items.Count > i)
             {
                 Item go = user.Items[i];
-                Text textfield = storedButtons[i].GetComponent<Text>();
+                Text textfield = storedButtons[i].GetComponentInChildren<Text>();
                 textfield.text = go.Name;
+                textfield.color = Color.black;
+            }
+            else
+            {
+                Text textfield = storedButtons[i].GetComponentInChildren<Text>();
+                textfield.text = "Straight and to the Point";
                 textfield.color = Color.black;
             }
         }
