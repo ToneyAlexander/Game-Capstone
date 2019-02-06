@@ -44,7 +44,7 @@ public class MeleeEnemyController : MonoBehaviour
 
         inCoroutine = false;
 
-        player = GameObject.Find("Player");
+        player = GameObject.Find("remy");
         targetPos = Vector3.zero;
         targetFound = false;
 
