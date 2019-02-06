@@ -5,15 +5,18 @@ using UnityEngine;
 public class RemyController : MonoBehaviour
 {
     public static Vector3 destination;
+    public static Vector3 lastPosition;
     public float rotationSpeed;
     public float movingSpeed;
     private Quaternion playerRot;
-    static Animator animator;
-    private Vector3 differ;
-    private const float EPSINON = 0.00001f;
+    private  Animator animator;
+    private float timer;
+    private float EPSSION;
     // Start is called before the first frame update
     void Start()
     {
+        EPSSION = 0.2f;
+        timer = 0;
         rotationSpeed = 20;
         movingSpeed = 10;
         animator = GetComponent<Animator>();
@@ -24,25 +27,27 @@ public class RemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        DoNotFlay();
+        Rotate();
         Move();
+        //lastPosition = transform.position;
+        SavePos();
+
     }
 
-    void Move()
+    void Rotate()
     {
-       
-        differ.x = transform.position.x - destination.x;
-        differ.y = transform.position.y - destination.y;
-        differ.z = transform.position.z - destination.z;
-
-        //if ((differ.x > EPSINON || differ.x < -EPSINON)
-        //    || (differ.y > EPSINON || differ.y < -EPSINON)
-        //    || (differ.z > EPSINON || differ.z < -EPSINON)
-        //) {
-
-        if (transform.position != destination) {
-            animator.SetBool("isRunning", true);
+        if (destination != new Vector3(0,0,0)) {
             playerRot = Quaternion.LookRotation(destination);
             transform.rotation = Quaternion.Slerp(transform.rotation, playerRot, rotationSpeed * Time.deltaTime);
+        }
+
+    }
+    void Move()
+    {
+        if (transform.position != destination) {
+            animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
         else
@@ -50,5 +55,25 @@ public class RemyController : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
     }
-    
+
+    void DoNotFlay()
+    {
+        if (destination.y > 0.1f)
+        {
+            destination.y = 0.1f;
+        }
+    }
+
+    void SavePos()
+    {
+        timer += Time.deltaTime;
+        if (timer > EPSSION)
+        {
+            lastPosition = transform.position;
+            Debug.Log("last position: " + RemyController.lastPosition);
+            Debug.Log("current position: " + transform.position);
+            Debug.Log(timer);
+            timer = 0;
+        }
+    }
 }
