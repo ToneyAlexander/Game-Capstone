@@ -81,7 +81,108 @@ public class ControlStatBlock : MonoBehaviour
 
     void ApplyStat(Stat stat)
     {
-        //switch statemnt
+        switch(stat.Name)
+        {
+            case Stat.AFFLICT_RES:
+                stats.AfflictRes += stat.Value;
+                break;
+            case Stat.AFFLICT_RES_MULT:
+                stats.AfflictResMult += stat.Value;
+                break;
+            case Stat.ARMOR:
+                stats.Armor += stat.Value;
+                break;
+            case Stat.ARMOR_MULT:
+                stats.ArmorMult += stat.Value;
+                break;
+            case Stat.ATTACK_SPEED:
+                stats.AttackSpeed += stat.Value;
+                break;
+            case Stat.ATTACK_SPEED_MULT:
+                stats.AttackSpeedMult += stat.Value;
+                break;
+            case Stat.CDR_MULT:
+                stats.CdrMult += stat.Value;
+                break;
+            case Stat.CRIT_CHANCE:
+                stats.CritChance += stat.Value;
+                break;
+            case Stat.CRIT_CHANCE_MULT:
+                stats.CritChanceMult += stat.Value;
+                break;
+            case Stat.CRIT_DMG:
+                stats.CritDamage += stat.Value;
+                break;
+            case Stat.CRIT_DMG_MULT:
+                stats.CritDamageMult += stat.Value;
+                break;
+            case Stat.DEX:
+                Dex += stat.Value;
+                break;
+            case Stat.DEX_MULT:
+                DexMult += stat.Value;
+                break;
+            case Stat.DMG_MULT:
+                stats.DamageMult += stat.Value;
+                break;
+            case Stat.FORT:
+                Fort += stat.Value;
+                break;
+            case Stat.FORT_MULT:
+                FortMult += stat.Value;
+                break;
+            case Stat.HEALTH:
+                stats.HealthBase += stat.Value;
+                break;
+            case Stat.HEALTH_MULT:
+                stats.HealthMult += stat.Value;
+                break;
+            case Stat.HEALTH_REGEN:
+                stats.HealthRegen += stat.Value;
+                break;
+            case Stat.HEALTH_REGEN_MULT:
+                stats.HealthRegenMult += stat.Value;
+                break;
+            case Stat.MAGIC_RES:
+                stats.MagicRes += stat.Value;
+                break;
+            case Stat.MAGIC_RES_MULT:
+                stats.MagicResMult += stat.Value;
+                break;
+            case Stat.MELEE_ATTACK_MULT:
+                stats.MeleeAttackMult += stat.Value;
+                break;
+            case Stat.MOVE_SPEED:
+                stats.MoveSpeed += stat.Value;
+                break;
+            case Stat.MOVE_SPEED_MULT:
+                stats.MoveSpeedMult += stat.Value;
+                break;
+            case Stat.MYST:
+                Myst += stat.Value;
+                break;
+            case Stat.MYST_MULT:
+                MystMult += stat.Value;
+                break;
+            case Stat.RANGED_ATTACK_MULT:
+                stats.RangedAttackMult += stat.Value;
+                break;
+            case Stat.SPELL_MULT:
+                stats.SpellMult += stat.Value;
+                break;
+            case Stat.STATUS_REC:
+                stats.StatusRec += stat.Value;
+                break;
+            case Stat.STATUS_REC_MULT:
+                stats.StatusRecMult += stat.Value;
+                break;
+            case Stat.STR:
+                Str += stat.Value;
+                break;
+            case Stat.STR_MULT:
+                StrMult += stat.Value;
+                break;
+        }
     }
 
     void StatsChanged()
