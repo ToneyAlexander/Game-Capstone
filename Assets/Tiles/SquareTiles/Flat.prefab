@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 791865747073576737}
   m_Layer: 0
   m_Name: Flat
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,10 +38,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 791865747073576737}
     m_Modifications:
-    - target: {fileID: 100002, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
-      propertyPath: m_Name
-      value: flat
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -85,6 +81,18 @@ PrefabInstance:
     - target: {fileID: 400002, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
+      propertyPath: m_Name
+      value: flat
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb21e7ec7903ad140b9b934e11b68b97, type: 3}
