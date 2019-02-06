@@ -16,7 +16,7 @@ public class TileGeneration : MonoBehaviour
         Vector3 startingLocation = Vector3.zero;
 
         //read in file 
-        string path = Application.dataPath + "/Images/TestImage2.png";
+        string path = Application.dataPath + "/Images/TileAdjacencies.png";
         byte[] byteImg = File.ReadAllBytes(path);
         Texture2D img = new Texture2D(20, 20);
         img.LoadImage(byteImg);

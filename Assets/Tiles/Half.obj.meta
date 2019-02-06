@@ -17,7 +17,17 @@ ModelImporter:
     3300002: Plane
     4300000: Cube
     4300002: Plane
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CubeMat
+    second: {fileID: 2100000, guid: 2359c8d427f2a0c4d9f4506e307fb4e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlaneMat
+    second: {fileID: 2100000, guid: f43c58520a2cc54479f532a0290b2dd4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
