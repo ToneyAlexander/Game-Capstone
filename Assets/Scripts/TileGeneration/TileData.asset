@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4554ffbc436ef6c43b6598bdb008be24, type: 3}
+  m_Name: TileData
+  m_EditorClassIdentifier: 
+  TileMap:
+  - prefab: {fileID: 100002, guid: 732af4c18a352be4d8bfd8f42df28096, type: 3}
+    ID: 250
+    rotation: 270
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: 732af4c18a352be4d8bfd8f42df28096, type: 3}
+    ID: 251
+    rotation: 0
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: 732af4c18a352be4d8bfd8f42df28096, type: 3}
+    ID: 252
+    rotation: 180
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: 732af4c18a352be4d8bfd8f42df28096, type: 3}
+    ID: 253
+    rotation: 90
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: f6944bb5a529c22458cb2ee4174121a1, type: 3}
+    ID: 242
+    rotation: 180
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: f6944bb5a529c22458cb2ee4174121a1, type: 3}
+    ID: 243
+    rotation: 90
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: f6944bb5a529c22458cb2ee4174121a1, type: 3}
+    ID: 244
+    rotation: 270
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100002, guid: f6944bb5a529c22458cb2ee4174121a1, type: 3}
+    ID: 245
+    rotation: 0
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100000, guid: 6e9aca4900668d44aac2fd340a673fa6, type: 3}
+    ID: 255
+    rotation: 0
+    modifier: {x: 0, y: 1, z: 0}
+  - prefab: {fileID: 100000, guid: 6e9aca4900668d44aac2fd340a673fa6, type: 3}
+    ID: 254
+    rotation: 0
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100006, guid: 5dfa3e14b89f6d642a4535da35fbc7cc, type: 3}
+    ID: 246
+    rotation: 90
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100006, guid: 5dfa3e14b89f6d642a4535da35fbc7cc, type: 3}
+    ID: 247
+    rotation: 270
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100006, guid: 5dfa3e14b89f6d642a4535da35fbc7cc, type: 3}
+    ID: 248
+    rotation: 0
+    modifier: {x: 0, y: 0, z: 0}
+  - prefab: {fileID: 100006, guid: 5dfa3e14b89f6d642a4535da35fbc7cc, type: 3}
+    ID: 249
+    rotation: 180
+    modifier: {x: 0, y: 0, z: 0}
