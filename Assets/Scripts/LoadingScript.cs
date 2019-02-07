@@ -62,7 +62,7 @@ public class LoadingScript : MonoBehaviour
         yield return new WaitForSeconds(8);
 
         //Asynchronous operation to load SampleScene
-        AsyncOperation async = SceneManager.LoadSceneAsync("Menu");
+        AsyncOperation async = SceneManager.LoadSceneAsync("TimeBox2Scene");
 
         //Wait until the scene's done loading
         while (!async.isDone)
