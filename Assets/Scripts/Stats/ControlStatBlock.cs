@@ -31,10 +31,6 @@ public class ControlStatBlock : MonoBehaviour
     {
         stats = GetComponent<StatBlock>();
         inv = GetComponent<InventoryUser>();
-        Str = 10f;
-        Dex = 10f;
-        Myst = 10f;
-        Fort = 10f;
 
         oldHpPrecent = -10000f;
 
@@ -52,6 +48,14 @@ public class ControlStatBlock : MonoBehaviour
 
     void ResetBaseStats()
     {
+        Dex = 10;
+        DexMult = 0;
+        Str = 10;
+        StrMult = 0;
+        Fort = 10;
+        FortMult = 0;
+        Myst = 10;
+        MystMult = 0;
         stats.AfflictRes = 0f;
         stats.MagicRes = 0f;
         stats.StatusRec = 0f;
