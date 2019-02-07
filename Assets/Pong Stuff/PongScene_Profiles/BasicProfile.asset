@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: PongCameraProfile
+  m_Name: BasicProfile
   m_EditorClassIdentifier: 
   settings:
   - {fileID: 114321562739882692}
   - {fileID: 114340243436282970}
-  - {fileID: 114151662163951810}
---- !u!114 &114151662163951810
+  - {fileID: 114093083251078090}
+--- !u!114 &114093083251078090
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,34 +34,34 @@ MonoBehaviour:
     value: 1
   mode:
     overrideState: 1
-    value: 1
+    value: 0
   intensity:
     overrideState: 1
-    value: 2.46
+    value: 3.52
   color:
-    overrideState: 1
-    value: {r: 0.5568628, g: 0.12283629, b: 0.07058822, a: 1}
+    overrideState: 0
+    value: {r: 0, g: 0, b: 0, a: 1}
   ambientOnly:
-    overrideState: 1
+    overrideState: 0
     value: 1
   noiseFilterTolerance:
-    overrideState: 1
+    overrideState: 0
     value: 0
   blurTolerance:
-    overrideState: 1
+    overrideState: 0
     value: -4.6
   upsampleTolerance:
-    overrideState: 1
+    overrideState: 0
     value: -12
   thicknessModifier:
-    overrideState: 1
+    overrideState: 0
     value: 1
   directLightingStrength:
-    overrideState: 1
+    overrideState: 0
     value: 0
   radius:
     overrideState: 1
-    value: 0.25
+    value: 0.9
   quality:
     overrideState: 1
     value: 2
