@@ -24,13 +24,13 @@ public class ControlStatBlock : MonoBehaviour
 
     private StatBlock stats;
     private float oldHpPrecent;
-    private InventoryUser inv;
+    private EquipmentUser inv;
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<StatBlock>();
-        inv = GetComponent<InventoryUser>();
+        inv = GetComponent<EquipmentUser>();
 
         oldHpPrecent = -10000f;
 
@@ -202,7 +202,7 @@ public class ControlStatBlock : MonoBehaviour
 
         if(inv != null)
         {
-            foreach (Item item in inv.Inventory.Items)
+            foreach (Item item in inv.Equipment.Equipment.Values)
             {
                 foreach (Stat s in item.Stats)
                 {

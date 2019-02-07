@@ -29,6 +29,7 @@ namespace CCC.Items
 
         private void Update()
         {
+            // TODO Put in on equip
             controlStatBlock.StatsChanged();
         }
 
