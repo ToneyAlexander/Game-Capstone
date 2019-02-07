@@ -13,7 +13,7 @@ public class RemyWithWall : MonoBehaviour
 
             //transform.position = RemyController.lastPosition;
 
-            //RemyController.destination = transform.position;
+            RemyController.destination = transform.position;
 
         }
     }

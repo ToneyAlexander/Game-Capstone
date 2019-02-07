@@ -69,7 +69,7 @@ public class InventoryUI : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
-                EquipmentSlot[] slots = { EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Head, EquipmentSlot.Body, EquipmentSlot.Weapon, EquipmentSlot.Offhand, EquipmentSlot.Ring, EquipmentSlot.Amulet };
+                EquipmentSlot[] slots = {  EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
                 Item go = euser.Equipment[slots[i]];
                 Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
                 textfield.text = go.Name;
