@@ -29,7 +29,7 @@ namespace CCC.Items
         }
 
         private readonly Dictionary<EquipmentSlot, Item> equipment = 
-            new Dictionary<EquipmentSlot, Item>()
+            new Dictionary<EquipmentSlot, Item>
             {
                 {EquipmentSlot.Head, Item.Null},
                 {EquipmentSlot.Body, Item.Null},

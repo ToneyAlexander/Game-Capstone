@@ -6,6 +6,7 @@ namespace CCC.Items
     /// Represents a Component that allows its GameObject to have a set of
     /// equipment represented by an EquipmentDictionary.
     /// </summary>
+    [RequireComponent(typeof(ControlStatBlock))]
     public class EquipmentUser : MonoBehaviour
     {
         /// <summary>
@@ -23,5 +24,17 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private EquipmentDictionary equipment;
+
+        private ControlStatBlock controlStatBlock;
+
+        private void Update()
+        {
+            controlStatBlock.StatsChanged();
+        }
+
+        private void Start()
+        {
+            controlStatBlock = GetComponent<ControlStatBlock>();
+        }
     }
 }
