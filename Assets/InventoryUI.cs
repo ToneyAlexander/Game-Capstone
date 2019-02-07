@@ -63,7 +63,7 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 Text textfield = storedButtons[i].GetComponentInChildren<Text>();
-                textfield.text = "Straight and to the Point";
+                textfield.text = "--";
                 textfield.color = Color.black;
             }
         }

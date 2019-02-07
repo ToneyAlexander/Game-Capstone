@@ -24,4 +24,8 @@ public class InventoryButton : MonoBehaviour
         InventoryUI selected = transform.parent.parent.gameObject.GetComponent<InventoryUI>();
         selected.euser.EquipItem(selected.user.Items[index]);
     }
+    void OnPointerEnter()
+    {
+        Debug.Log("Working!");
+    }
 }
