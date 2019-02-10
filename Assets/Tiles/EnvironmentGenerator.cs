@@ -10,16 +10,10 @@ public class EnvironmentGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        replaceObjects();
+        replaceObjectsToTrees();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void replaceObjects()
+    private void replaceObjectsToTrees()
     {
         GameObject[] listOfTrees = GameObject.FindGameObjectsWithTag("Tree");
         System.Random rnd = new System.Random();
