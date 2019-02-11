@@ -33,7 +33,7 @@ public class TileGeneration : MonoBehaviour
                 {
                     if (pixelValue.Equals(currentPiece.ID)) //found correct tile
                     {
-                        GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+                        GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier *Mathf.FloorToInt(Mathf.Sqrt(tileSize)), Quaternion.identity);
                         newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
 
                         //apply adjustment to tile after rotation
