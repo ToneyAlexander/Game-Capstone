@@ -219,6 +219,7 @@ public class ControlStatBlock : MonoBehaviour
             {
                 //tmp
                 Str += 25;
+                stats.Armor += 1000f;
 
                 //foreach (Stat s in perk.Stats)
                 //{
@@ -226,8 +227,7 @@ public class ControlStatBlock : MonoBehaviour
                 //}
             }
         }
-
-        //loop through class traits
+        
         //loop through buffs
         //loop through debuffs
 
