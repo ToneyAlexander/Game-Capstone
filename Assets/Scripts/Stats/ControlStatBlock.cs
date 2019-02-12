@@ -25,12 +25,14 @@ public class ControlStatBlock : MonoBehaviour
     private StatBlock stats;
     private float oldHpPrecent;
     private InventoryUser inv;
+    private PlayerClass pClass;
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<StatBlock>();
         inv = GetComponent<InventoryUser>();
+        pClass = GetComponent<PlayerClass>();
 
         oldHpPrecent = -10000f;
 
@@ -208,6 +210,20 @@ public class ControlStatBlock : MonoBehaviour
                 {
                     ApplyStat(s);
                 }
+            }
+        }
+
+        if (pClass != null)
+        {
+            foreach (Perk perk in pClass.takenPerks)
+            {
+                //tmp
+                Str += 25;
+
+                //foreach (Stat s in perk.Stats)
+                //{
+                //    ApplyStat(s);
+                //}
             }
         }
 
