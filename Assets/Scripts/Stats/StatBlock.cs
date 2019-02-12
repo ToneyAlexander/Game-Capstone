@@ -49,7 +49,7 @@ public class StatBlock : MonoBehaviour
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
 
-    private float CalcMult(float baseV, float multV)
+    public static float CalcMult(float baseV, float multV)
     {
         if (multV > 0)
         {
@@ -61,7 +61,7 @@ public class StatBlock : MonoBehaviour
         }
     }
 
-    private float CalcLog(float n)
+    public static float CalcLog(float n)
     {
         if(n >= LOG_BASE)
         {
@@ -93,15 +93,9 @@ public class StatBlock : MonoBehaviour
         float armorL = CalcMult(Armor, ArmorMult);
         float mrL = CalcMult(MagicRes, MagicResMult);
 
-        if (mrL > LOG_BASE)
-            total += dmg.magicDmgReal / Mathf.Log(mrL, LOG_BASE);
-        else
-            total += dmg.magicDmgReal;
-        if (armorL > LOG_BASE)
-            total += dmg.physicalDmgReal / Mathf.Log(armorL, LOG_BASE);
-        else
-            total += dmg.physicalDmgReal;
-
+        total += dmg.magicDmgReal / CalcLog(mrL);
+        total += dmg.physicalDmgReal / CalcLog(armorL);
+        
         HealthCur -= total;
 
         Debug.Log("Took " + total + " damage.");
