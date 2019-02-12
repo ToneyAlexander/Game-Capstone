@@ -7,25 +7,27 @@ public class TestPlayerClass : MonoBehaviour
 {
     PlayerClass pClass;
     int index;
+    public List<PerkPrototype> perks;
 
     // Start is called before the first frame update
     void Start()
     {
         pClass = GetComponent<PlayerClass>();
 
-        List<Perk> testPerkSet = new List<Perk>
-        {
-            new Perk(),
-            new Perk()
-        };
-        Perk p = new Perk();
-        List<Perk> up = new List<Perk>
-        {
-            p
-        };
-        testPerkSet.Add(new Perk(up));
+        pClass.allPerks = perks;
+        //List<Perk> testPerkSet = new List<Perk>
+        //{
+        //    new Perk(),
+        //    new Perk()
+        //};
+        //Perk p = new Perk();
+        //List<Perk> up = new List<Perk>
+        //{
+        //    p
+        //};
+        //testPerkSet.Add(new Perk(up));
 
-        pClass.allPerks = testPerkSet;
+        //pClass.allPerks = testPerkSet;
         index = 0;
         Debug.Log("Init: " + index + ", " + pClass.allPerks.Count);
     }

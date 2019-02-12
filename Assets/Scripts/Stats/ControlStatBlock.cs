@@ -215,16 +215,17 @@ public class ControlStatBlock : MonoBehaviour
 
         if (pClass != null)
         {
-            foreach (Perk perk in pClass.takenPerks)
+            foreach (PerkPrototype perk in pClass.takenPerks)
             {
                 //tmp
-                Str += 25;
-                stats.Armor += 1000f;
+                //Str += 25;
+                //stats.Armor += 1000f;
 
-                //foreach (Stat s in perk.Stats)
-                //{
-                //    ApplyStat(s);
-                //}
+                foreach (PerkStatEntry sp in perk.Stats)
+                {
+                    
+                    ApplyStat(sp.StatInst);
+                }
             }
         }
         

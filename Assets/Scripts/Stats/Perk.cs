@@ -1,38 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Stats;
 
 public class Perk
 {
-    public List<Perk> require;
-    public List<Perk> blockedBy;
-    public List<Perk> children;
-    public List<Perk> blocks;
-    public bool requireAll;
+    public List<Perk> Require;
+    public List<Perk> BlockedBy;
+    public List<Perk> Children;
+    public List<Perk> Blocks;
+    public bool RequireAll;
+    public List<Stat> Stats;
+    public string Name;
 
-    public static bool CheckPrereq(Perk p, List<Perk> taken)
-    {
-        int matched = 0;
-        foreach (Perk t in taken)
-        {
-            if(p.blockedBy.Contains(t))
-            {
-                return false;
-            }
-            if(p.require.Contains(t))
-            {
-                ++matched;
-            }
-        }
-        if(p.requireAll)
-        {
-            return matched >= p.require.Count;
-        } else
-        {
-            int req = p.require.Count > 0 ? 1 : 0;
-            return matched >= req;
-        }
-    }
 
     public Perk() : this(new List<Perk>())
     {
@@ -40,10 +20,10 @@ public class Perk
 
     public Perk(List<Perk> require, bool requireAll = false)
     {
-        this.require = require;
-        blockedBy = new List<Perk>();
-        children = new List<Perk>();
-        blocks = new List<Perk>();
-        this.requireAll = requireAll;
+        this.Require = require;
+        BlockedBy = new List<Perk>();
+        Children = new List<Perk>();
+        Blocks = new List<Perk>();
+        this.RequireAll = requireAll;
     }
 }

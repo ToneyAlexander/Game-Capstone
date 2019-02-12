@@ -1686,6 +1686,8 @@ GameObject:
   - component: {fileID: 1211844019}
   - component: {fileID: 1211844022}
   - component: {fileID: 1211844021}
+  - component: {fileID: 1211844024}
+  - component: {fileID: 1211844023}
   m_Layer: 0
   m_Name: Player_Paddle
   m_TagString: Paddle
@@ -1832,6 +1834,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1211844023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98aeb3cf415311c4387ed60fcabc1bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perks:
+  - {fileID: 11400000, guid: 8672a577004b33645b6fba87f4b96c42, type: 2}
+  - {fileID: 11400000, guid: b0cfd8cb27ab52d41a79c4331f95c6df, type: 2}
+--- !u!114 &1211844024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84233be1f9e18384c92cc9481a98f1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPerks: []
+  takenPerks: []
 --- !u!1 &1346748038
 GameObject:
   m_ObjectHideFlags: 0
