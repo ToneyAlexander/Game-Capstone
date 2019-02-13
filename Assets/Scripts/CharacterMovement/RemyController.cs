@@ -63,9 +63,9 @@ public class RemyController : MonoBehaviour
 
     void DoNotFlay()
     {
-        if (destination.y > 0.1f)
+        if (destination.y > transform.position.y)
         {
-            destination.y = 0.1f;
+            destination.y = transform.position.y;
         }
     }
 
