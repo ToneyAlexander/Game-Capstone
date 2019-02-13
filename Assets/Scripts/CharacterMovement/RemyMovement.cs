@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RemyController : MonoBehaviour
+public class RemyMovement : MonoBehaviour
 {
     public static Vector3 destination;
     public static Vector3 lastPosition;
@@ -31,13 +31,10 @@ public class RemyController : MonoBehaviour
     void FixedUpdate()
     {
         DoNotFly();
-        //if (Mathf.Abs((transform.rotation.eulerAngles - playerRot.eulerAngles).y) > 0.1f)
 
         Rotate();
 
         Move();
-
-        //RemyDead();
 
         //SavePos();
 
@@ -57,9 +54,9 @@ public class RemyController : MonoBehaviour
     }
     void Move()
     {
-        //Vector3 differ = transform.position - destination;
-        //if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
-        if (transform.position != destination) {
+        Vector3 differ = transform.position - destination;
+        if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
+        //if (transform.position != destination) {
             animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
@@ -84,12 +81,4 @@ public class RemyController : MonoBehaviour
         }
     }
 
-    void RemyDead()
-    {
-        if (Input.GetKey("D"))
-        {
-            animator.SetBool("isDead", true);
-            destination = this.transform.position;
-        }
-    }
 }
