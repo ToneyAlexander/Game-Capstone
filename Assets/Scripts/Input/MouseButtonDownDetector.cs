@@ -33,7 +33,7 @@ namespace CCC.Inputs
             {
                 if (destinationMover != null)
                 {
-                    if (Input.GetButtonDown(button.Name))
+                    if (Input.GetButton(button.Name))
                     {
                         inputManager.HandleMouseButtonDown(
                             button,
