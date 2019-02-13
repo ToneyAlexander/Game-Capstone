@@ -13,6 +13,7 @@ public class RemyController : MonoBehaviour
     private float timer;
     private float EPSSION;
     private float reLocateDelay;
+    private Vector3 lookAtTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,29 +30,36 @@ public class RemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        DoNotFly();
+        //if (Mathf.Abs((transform.rotation.eulerAngles - playerRot.eulerAngles).y) > 0.1f)
 
-        DoNotFlay();
         Rotate();
+
         Move();
+
         //RemyDead();
-        //lastPosition = transform.position;
+
         //SavePos();
 
     }
 
     void Rotate()
     {
-
-            playerRot = Quaternion.LookRotation(destination);
+        if (transform.position != destination) {
+            lookAtTarget = destination - transform.position;
+            playerRot = Quaternion.LookRotation(lookAtTarget);
             transform.rotation = Quaternion.Slerp(transform.rotation, playerRot, rotationSpeed * Time.deltaTime);
-
-
+        }
+        else
+        {
+            lookAtTarget = transform.position;
+        }
     }
     void Move()
     {
-        Vector3 differ = transform.position - destination;
-        if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
-        //if (transform.position != destination) {
+        //Vector3 differ = transform.position - destination;
+        //if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
+        if (transform.position != destination) {
             animator.SetBool("isRunning", true);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
@@ -61,12 +69,9 @@ public class RemyController : MonoBehaviour
         }
     }
 
-    void DoNotFlay()
+    void DoNotFly()
     {
-        if (destination.y > transform.position.y)
-        {
             destination.y = transform.position.y;
-        }
     }
 
     void SavePos()
