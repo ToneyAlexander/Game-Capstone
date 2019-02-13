@@ -22,13 +22,13 @@ public class TileGeneration : MonoBehaviour
     {
         generateTiles();
         replaceObjects(60, treeList.EnvironmentList, "Tree");
-        replaceObjects(20, grassList.EnvironmentList, "Grass");
+        replaceObjects(40, grassList.EnvironmentList, "Grass");
         replaceObjects(20, mediumObjectList.EnvironmentList, "MediumObject");
     }
 
     private void generateTiles()
     {
-        Vector3 startingLocation = Vector3.zero;
+        Vector3 startingLocation = new Vector3(0,0,0);
 
         //read in file 
         string path = Application.dataPath + "/Images/TestImage2.png";

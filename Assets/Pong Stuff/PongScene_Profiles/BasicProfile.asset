@@ -28,7 +28,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -124,13 +124,13 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 0
-    value: {r: 0.2971698, g: 0.7383905, b: 1, a: 1}
+    value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 0
     value: 0
   saturation:
     overrideState: 0
-    value: 0
+    value: 16
   brightness:
     overrideState: 0
     value: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
     value: 0.5
   contrast:
     overrideState: 1
-    value: 2
+    value: 16
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -171,8 +171,8 @@ MonoBehaviour:
     overrideState: 1
     value: {x: 1, y: 0.9679086, z: 0.9876287, w: -5.0964183e-10}
   gamma:
-    overrideState: 0
-    value: {x: 0.772891, y: 0.8209982, z: 1, w: -0.0000000135081155}
+    overrideState: 1
+    value: {x: 0.4349031, y: 0.40939778, z: 1, w: 0.017761977}
   gain:
     overrideState: 0
     value: {x: 0.9636914, y: 0.9727681, z: 1, w: 0.060790285}
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
