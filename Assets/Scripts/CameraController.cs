@@ -63,9 +63,10 @@ public class CameraController : MonoBehaviour
         Vector3 offset = new Vector3();
         Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);
         Debug.Log(mousePositionRelativetoCenter);
+        mousePositionRelativetoCenter = Vector3.ClampMagnitude(mousePositionRelativetoCenter, 1.0f);
         if (mousePositionRelativetoCenter.magnitude >= 0.1f)
         {
-            transform.Rotate(-Mathf.Pow(mousePositionRelativetoCenter.y*1.5,3), Mathf.Pow(mousePositionRelativetoCenter.x * 1.5, 3), mousePositionRelativetoCenter.z);
+            transform.Rotate(-Mathf.Pow(mousePositionRelativetoCenter.y*1.5f,3.0f), Mathf.Pow(mousePositionRelativetoCenter.x * 1.5f, 3.0f), mousePositionRelativetoCenter.z);
         }
 
 
