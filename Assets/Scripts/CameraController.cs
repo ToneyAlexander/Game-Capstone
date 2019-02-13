@@ -65,7 +65,7 @@ public class CameraController : MonoBehaviour
         Debug.Log(mousePositionRelativetoCenter);
         if (mousePositionRelativetoCenter.magnitude >= 0.1f)
         {
-            transform.Rotate(-mousePositionRelativetoCenter.y, mousePositionRelativetoCenter.x, mousePositionRelativetoCenter.z);
+            transform.Rotate(-Mathf.Pow(mousePositionRelativetoCenter.y*1.5,3), Mathf.Pow(mousePositionRelativetoCenter.x * 1.5, 3), mousePositionRelativetoCenter.z);
         }
 
 
