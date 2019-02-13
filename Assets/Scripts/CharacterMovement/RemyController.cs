@@ -23,7 +23,7 @@ public class RemyController : MonoBehaviour
         movingSpeed = 10;
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
-        transform.position = destination;
+        destination = transform.position;
     }
 
     // Update is called once per frame
@@ -33,6 +33,7 @@ public class RemyController : MonoBehaviour
         DoNotFlay();
         Rotate();
         Move();
+        //RemyDead();
         //lastPosition = transform.position;
         //SavePos();
 
@@ -40,10 +41,10 @@ public class RemyController : MonoBehaviour
 
     void Rotate()
     {
-        if (destination != new Vector3(0,0,0)) {
+
             playerRot = Quaternion.LookRotation(destination);
             transform.rotation = Quaternion.Slerp(transform.rotation, playerRot, rotationSpeed * Time.deltaTime);
-        }
+
 
     }
     void Move()
@@ -74,10 +75,16 @@ public class RemyController : MonoBehaviour
         if (timer > reLocateDelay)
         {
             lastPosition = transform.position;
-            //Debug.Log("last position: " + RemyController.lastPosition);
-            //Debug.Log("current position: " + transform.position);
-            //Debug.Log(timer);
             timer = 0;
+        }
+    }
+
+    void RemyDead()
+    {
+        if (Input.GetKey("D"))
+        {
+            animator.SetBool("isDead", true);
+            destination = this.transform.position;
         }
     }
 }
