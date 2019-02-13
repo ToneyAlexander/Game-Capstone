@@ -41,9 +41,23 @@ public class CameraController : MonoBehaviour
         {
             direction = (direction + 1) % cameras.Length;
         }
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, Vector3.Distance(player.transform.position, transform.position));
+        foreach(RaycastHit h in hits)
+        {
+            Renderer rend = h.transform.GetComponent<Renderer>();
+            Debug.Log(h.transform.position);
+            if (rend)
+            {
+                Color col = rend.material.color;
+                col.a = 0.3f;
+                rend.material.color = col;
+               
+            }
+   
+        }
         Vector3 position = player.transform.position;
         position += cameras[direction];
-        transform.position = Vector3.MoveTowards(transform.position, position, 20 * Time.deltaTime) ;
+        transform.position = Vector3.MoveTowards(transform.position, position, 30 * Time.deltaTime) ;
         transform.LookAt(player.transform);
 
     }
