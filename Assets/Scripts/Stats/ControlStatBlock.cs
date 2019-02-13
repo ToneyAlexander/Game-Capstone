@@ -25,12 +25,14 @@ public class ControlStatBlock : MonoBehaviour
     private StatBlock stats;
     private float oldHpPrecent;
     private EquipmentUser inv;
+    private PlayerClass pClass;
 
     // Start is called before the first frame update
     void Start()
     {
         stats = GetComponent<StatBlock>();
         inv = GetComponent<EquipmentUser>();
+        pClass = GetComponent<PlayerClass>();
 
         oldHpPrecent = -10000f;
 
@@ -211,30 +213,45 @@ public class ControlStatBlock : MonoBehaviour
             }
         }
 
-        //loop through class traits
+        if (pClass != null)
+        {
+            foreach (PerkPrototype perk in pClass.takenPerks)
+            {
+                //tmp
+                //Str += 25;
+                //stats.Armor += 1000f;
+
+                foreach (PerkStatEntry sp in perk.Stats)
+                {
+                    
+                    ApplyStat(sp.StatInst);
+                }
+            }
+        }
+        
         //loop through buffs
         //loop through debuffs
 
-        float strReal = Str * (1 + StrMult);
+        float strReal = StatBlock.CalcMult(Str, StrMult);
         stats.HealthBase += strReal * 10f;
         stats.HealthRegen += strReal / 20f;
         stats.MeleeAttackMult += strReal / 1000f;
 
-        float dexReal = Dex * (1 + DexMult);
+        float dexReal = StatBlock.CalcMult(Dex, DexMult);
         stats.AttackSpeedMult += dexReal / 1000f;
         stats.MoveSpeedMult += dexReal / 500f;
         stats.RangedAttackMult += dexReal / 1000f;
 
-        float mystReal = Myst * (1 + MystMult);
+        float mystReal = StatBlock.CalcMult(Myst, MystMult);
         stats.CdrMult += mystReal / 2000f;
         stats.SpellMult += mystReal / 1000f;
 
-        float fortReal = Fort * (1 + FortMult);
+        float fortReal = StatBlock.CalcMult(Fort, FortMult);
         stats.MagicRes += fortReal / 5f;
         stats.AfflictRes += fortReal / 5f;
         stats.StatusRec += fortReal / 1000f;
 
-        stats.HealthCur = oldHpPrecent * stats.HealthBase * (1 + stats.HealthMult);
+        stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
     }
 
     // Update is called once per frame
