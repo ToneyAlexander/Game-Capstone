@@ -17,15 +17,21 @@ public class TileGeneration : MonoBehaviour
     private EnvironmentData grassList;
     [SerializeField]
     private EnvironmentData mediumObjectList;
+    [SerializeField]
+    private EnvironmentData particleEffects;
+    [SerializeField]
+    private EnvironmentData specialObjects;
 
     void Start()
     {
         generateTiles();
-        replaceObjects(90, treeList.EnvironmentList, "Tree");
-        replaceObjects(40, grassList.EnvironmentList, "Grass");
-        replaceObjects(20, mediumObjectList.EnvironmentList, "MediumObject");
+        replaceObjects(60, treeList.EnvironmentList, "Tree");
+        replaceObjects(20, grassList.EnvironmentList, "Grass");
+        replaceObjects(20, mediumObjectList.EnvironmentList, "Rock");
+        replaceObjects(30, particleEffects.EnvironmentList, "Particles");
+        replaceObjects(1, specialObjects.EnvironmentList, "SpecialObject");
     }
-
+    
     private void generateTiles()
     {
         Vector3 startingLocation = new Vector3(0,0,0);
