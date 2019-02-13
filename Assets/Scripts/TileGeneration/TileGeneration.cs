@@ -21,7 +21,7 @@ public class TileGeneration : MonoBehaviour
     void Start()
     {
         generateTiles();
-        replaceObjects(60, treeList.EnvironmentList, "Tree");
+        replaceObjects(90, treeList.EnvironmentList, "Tree");
         replaceObjects(40, grassList.EnvironmentList, "Grass");
         replaceObjects(20, mediumObjectList.EnvironmentList, "MediumObject");
     }
