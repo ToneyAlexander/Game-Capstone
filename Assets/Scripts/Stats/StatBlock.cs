@@ -49,11 +49,37 @@ public class StatBlock : MonoBehaviour
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
 
+    public static float CalcMult(float baseV, float multV)
+    {
+        if (multV > 0)
+        {
+            return baseV * (1 + multV);
+        }
+        else
+        {
+            return baseV * (100 / (100 - (multV * 100)));
+        }
+    }
+
+    public static float CalcLog(float n)
+    {
+        if(n >= LOG_BASE)
+        {
+            return Mathf.Log(n, LOG_BASE);
+        } else if(n > -LOG_BASE)
+        {
+            return 1;
+        } else
+        {
+            return 1 / Mathf.Log(Mathf.Abs(n), LOG_BASE);
+        }
+    }
+
     void Update()
     {
-        HealthCur += HealthRegen * (1 + HealthRegenMult) * Time.deltaTime;
+        HealthCur += CalcMult(HealthRegen,HealthRegenMult) * Time.deltaTime;
 
-        HealthMax = HealthBase * (1 + HealthMult);
+        HealthMax = CalcMult(HealthBase, HealthMult);
         if (HealthCur > HealthMax)
             HealthCur = HealthMax;
 
@@ -64,18 +90,12 @@ public class StatBlock : MonoBehaviour
     {
         float total = 0;
 
-        float armorL = Armor * (1 + ArmorMult);
-        float mrL = MagicRes * (1 + MagicResMult);
+        float armorL = CalcMult(Armor, ArmorMult);
+        float mrL = CalcMult(MagicRes, MagicResMult);
 
-        if (mrL > LOG_BASE)
-            total += dmg.magicDmgReal * Mathf.Log(LOG_BASE, mrL);
-        else
-            total += dmg.magicDmgReal;
-        if (armorL > LOG_BASE)
-            total += dmg.physicalDmgReal * Mathf.Log(LOG_BASE, armorL);
-        else
-            total += dmg.physicalDmgReal;
-
+        total += dmg.magicDmgReal / CalcLog(mrL);
+        total += dmg.physicalDmgReal / CalcLog(armorL);
+        
         HealthCur -= total;
 
         Debug.Log("Took " + total + " damage.");
@@ -85,8 +105,8 @@ public class StatBlock : MonoBehaviour
 
     public Damage RealDamage(Damage dmg)
     {
-        float physMult = 1;
-        float magicMult = 1;
+        float physMult = 0;
+        float magicMult = 0;
         if (dmg.rangedAttack)
         {
             physMult += RangedAttackMult;
@@ -105,11 +125,11 @@ public class StatBlock : MonoBehaviour
         physMult += DamageMult;
         magicMult += DamageMult;
 
-        dmg.physicalDmgReal = dmg.physicalDmg * physMult;
-        dmg.magicDmgReal = dmg.magicDmg * magicMult;
+        dmg.physicalDmgReal = CalcMult(dmg.physicalDmg, physMult);
+        dmg.magicDmgReal = CalcMult(dmg.magicDmg, magicMult);
 
-        if(Random.Range(0f, 1f) < CritChance * (1 + CritChanceMult)) {
-            float critDM = CritDamage * (1 + CritDamageMult);
+        if(Random.Range(0f, 1f) < CalcMult(CritChance, CritChanceMult)) {
+            float critDM = CalcMult(CritDamage, CritDamageMult);
             dmg.physicalDmgReal *= critDM;
             dmg.magicDmgReal *= critDM;
         }

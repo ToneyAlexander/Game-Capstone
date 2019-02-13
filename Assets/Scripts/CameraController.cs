@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
             angle += Mathf.PI * 2 / cameras.Length;
         }
     }
-
+    
     // Update is called once per frame
 
     void Update()
@@ -41,7 +41,8 @@ public class CameraController : MonoBehaviour
         {
             direction = (direction + 1) % cameras.Length;
         }
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, Vector3.Distance(player.transform.position, transform.position));
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
+        Debug.Log(hits.Length);
         foreach(RaycastHit h in hits)
         {
             Renderer rend = h.transform.GetComponent<Renderer>();
@@ -59,6 +60,14 @@ public class CameraController : MonoBehaviour
         position += cameras[direction];
         transform.position = Vector3.MoveTowards(transform.position, position, 30 * Time.deltaTime) ;
         transform.LookAt(player.transform);
+        Vector3 offset = new Vector3();
+        Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);
+        Debug.Log(mousePositionRelativetoCenter);
+        if (mousePositionRelativetoCenter.magnitude >= 0.1f)
+        {
+            transform.Rotate(-mousePositionRelativetoCenter.y, mousePositionRelativetoCenter.x, mousePositionRelativetoCenter.z);
+        }
+
 
     }
 }
