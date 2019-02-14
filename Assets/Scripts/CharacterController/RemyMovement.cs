@@ -56,8 +56,14 @@ public class RemyMovement : MonoBehaviour
     {
         Vector3 differ = transform.position - destination;
         if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
-        //if (transform.position != destination) {
+            //if (transform.position != destination) {
+
+            animator.SetBool("isIdleToMelee", false);
+
+            animator.SetBool("isIdleToMagic", false);
+
             animator.SetBool("isRunning", true);
+
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
         else
