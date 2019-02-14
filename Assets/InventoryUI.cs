@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using CCC.Items;
 
 public class InventoryUI : MonoBehaviour
@@ -43,6 +44,15 @@ public class InventoryUI : MonoBehaviour
                 descriptionText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
             }
         }
+        for (int i = 0; i < 6; i++)
+        {
+            EventTrigger ev = equipmentButtons[i].GetComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            entry.callback.AddListener((eventData) => { OnClick(eventData); });
+            ev.triggers.Add(entry);
+        }
+
      //   image = gameObject.transform.GetChild(4).gameObject.GetComponent<Image>();
 
 
@@ -69,12 +79,25 @@ public class InventoryUI : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
-                EquipmentSlot[] slots = {  EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
+                EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
                 Item go = euser.Equipment[slots[i]];
                 Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
+                EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
+                equipmentButtonScript.item = go;
                 textfield.text = go.Name;
                 textfield.color = Color.black;
+                
         }
+
+    }
+
+    void OnClick(BaseEventData data)
+    {
+        EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
+        Debug.Log(data.selectedObject.GetComponent<EquipmentButton>().item.Name);
+    }
+    void OnMouseOver(BaseEventData data)
+    {
 
     }
 }
