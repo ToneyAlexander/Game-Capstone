@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -22,6 +23,8 @@ public class TileGeneration : MonoBehaviour
     [SerializeField]
     private EnvironmentData specialObjects;
 
+    public NavMeshSurface surface;
+
     void Start()
     {
         generateTiles();
@@ -30,6 +33,8 @@ public class TileGeneration : MonoBehaviour
         replaceObjects(20, mediumObjectList.EnvironmentList, "Rock");
         replaceObjects(30, particleEffects.EnvironmentList, "Particles");
         replaceObjects(1, specialObjects.EnvironmentList, "SpecialObject");
+
+        surface.BuildNavMesh();
     }
     
     private void generateTiles()
