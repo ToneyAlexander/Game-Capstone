@@ -752,7 +752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &607305985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68e2e0eb0efb4fbea3602c2bc5c4f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRange: 20
   meleeEnemy: {fileID: 5215939200856656837, guid: 4f03d76477aa744d4889a1a1dd42414b,
     type: 3}
   meleeNumber: 1
