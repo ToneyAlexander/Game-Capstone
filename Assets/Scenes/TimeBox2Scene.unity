@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34808093, g: 0.41702402, b: 0.5515218, a: 1}
+  m_IndirectSpecularColor: {r: 0.34807953, g: 0.41702214, b: 0.55151063, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -121,7 +121,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100144, guid: 6b75b8fd59bff4a1691eceb12f1b90a8, type: 3}
       propertyPath: m_Name
-      value: remy
+      value: c
       objectReference: {fileID: 0}
     - target: {fileID: 400144, guid: 6b75b8fd59bff4a1691eceb12f1b90a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -282,8 +282,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.8, z: 1}
-  m_Center: {x: 0, y: 1.9, z: 0}
+  m_Size: {x: 1, y: 3.5, z: 1}
+  m_Center: {x: 0, y: 1.75, z: 0}
 --- !u!114 &290558796
 MonoBehaviour:
   m_ObjectHideFlags: 0
