@@ -51,6 +51,10 @@ public class InventoryUI : MonoBehaviour
             entry.eventID = EventTriggerType.PointerClick;
             entry.callback.AddListener((eventData) => { OnClick(eventData); });
             ev.triggers.Add(entry);
+            EventTrigger.Entry entry2 = new EventTrigger.Entry();
+            entry2.eventID = EventTriggerType.PointerEnter;
+            entry2.callback.AddListener((eventData) => { OnMouseOver((PointerEventData)eventData); });
+            ev.triggers.Add(entry2);
         }
 
      //   image = gameObject.transform.GetChild(4).gameObject.GetComponent<Image>();
@@ -95,9 +99,11 @@ public class InventoryUI : MonoBehaviour
     {
         EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
         Debug.Log(data.selectedObject.GetComponent<EquipmentButton>().item.Name);
+        
     }
-    void OnMouseOver(BaseEventData data)
+    void OnMouseOver(PointerEventData data)
     {
-
+       Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
+        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
     }
 }
