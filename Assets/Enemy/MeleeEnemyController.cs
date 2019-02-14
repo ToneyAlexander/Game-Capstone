@@ -61,7 +61,7 @@ public class MeleeEnemyController : MonoBehaviour
     void Update()
     {
         // Get player's current position
-        Vector3 playerPos = player.transform.position;
+        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 2.0f, 0.0f);
 
         agent.isStopped = false;
         animator.SetBool("meleeAttack", false);

@@ -674,7 +674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &607305985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68e2e0eb0efb4fbea3602c2bc5c4f6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRange: 5
   meleeEnemy: {fileID: 5215939200856656837, guid: 4f03d76477aa744d4889a1a1dd42414b,
     type: 3}
   meleeNumber: 1
@@ -701,7 +702,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607305984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 30, y: 6, z: 30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
