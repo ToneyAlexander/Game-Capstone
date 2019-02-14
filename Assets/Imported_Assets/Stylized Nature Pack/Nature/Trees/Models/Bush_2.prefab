@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 19310186}
   - component: {fileID: 3390428}
   - component: {fileID: 2372216}
+  - component: {fileID: 332864832383908493}
   m_Layer: 0
   m_Name: Bush_2
   m_TagString: Untagged
@@ -88,6 +89,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!208 &332864832383908493
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132320}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.673, y: 0.42400002, z: 0.673}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.20300001, y: 0.39800003, z: 0.010000001}
+  m_TimeToStationary: 0.5
 --- !u!21 &2162612
 Material:
   serializedVersion: 6
@@ -166,6 +183,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Cutoff: 0.3
     - _SquashAmount: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

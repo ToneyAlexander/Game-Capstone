@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3373892}
   - component: {fileID: 2309914}
   - component: {fileID: 6452096016807891110}
+  - component: {fileID: 8777683934075489842}
   m_Layer: 0
   m_Name: Spruce_2
   m_TagString: Untagged
@@ -103,6 +104,22 @@ CapsuleCollider:
   m_Height: 21
   m_Direction: 1
   m_Center: {x: 0, y: 11, z: 0}
+--- !u!208 &8777683934075489842
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155120}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.368, y: 10.820001, z: 0.368}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: -0.104, y: 10.820001, z: 0.067}
+  m_TimeToStationary: 0.5
 --- !u!21 &2167218
 Material:
   serializedVersion: 6
