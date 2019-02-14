@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5295613273066638704}
   m_Layer: 0
-  m_Name: TransitionHalfRamp
+  m_Name: HalfRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1283687604175277268
 Transform:
@@ -659,6 +659,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: intermediateCornerRamp (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e3764f4776516d44bb738c6465eb9ac, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3e3764f4776516d44bb738c6465eb9ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16
@@ -733,6 +737,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 3e3764f4776516d44bb738c6465eb9ac, type: 3}
       propertyPath: m_Name
       value: intermediateCornerRamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3e3764f4776516d44bb738c6465eb9ac, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 3e3764f4776516d44bb738c6465eb9ac, type: 3}
       propertyPath: m_LocalPosition.x
