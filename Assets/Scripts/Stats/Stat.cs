@@ -11,6 +11,7 @@
         public const string HEALTH_MULT = "hpx";
         public const string HEALTH_REGEN = "hpreg";
         public const string HEALTH_REGEN_MULT = "hpregx";
+        public const string MELEE_ATTACK = "meleeatt";
         public const string MELEE_ATTACK_MULT = "meleeattx";
 
         public const string DEX = "dex";
@@ -19,11 +20,13 @@
         public const string MOVE_SPEED_MULT = "msx";
         public const string ATTACK_SPEED = "atps";
         public const string ATTACK_SPEED_MULT = "atpsx";
+        public const string RANGED_ATTACK = "rangedatt";
         public const string RANGED_ATTACK_MULT = "rangedattx";
 
         public const string MYST = "myst";
         public const string MYST_MULT = "mystx";
         public const string CDR_MULT = "cdrx";
+        public const string SPELL = "spell";
         public const string SPELL_MULT = "spellx";
 
         public const string FORT = "fort";

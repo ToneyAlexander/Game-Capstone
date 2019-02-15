@@ -54,6 +54,7 @@ public class BasicAttackController : MonoBehaviour
         o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
         o.transform.LookAt(target.transform);
         o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        o.transform.parent = transform;
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         dmg = stats.RealDamage(dmg);
         ProjectileController pb = o.AddComponent<ProjectileController>();
@@ -62,6 +63,7 @@ public class BasicAttackController : MonoBehaviour
         pb.ttl = 5f;
         o.GetComponent<SphereCollider>().isTrigger = true;
         Rigidbody rb = o.AddComponent<Rigidbody>();
+        rb.useGravity = false;
         rb.isKinematic = true;
     }
 
