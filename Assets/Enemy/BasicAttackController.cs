@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(StatBlock))]
 public class BasicAttackController : MonoBehaviour
 {
+    public GameObject projectile;
+
     private GameObject target;
     private StatBlock stats;
     private float tta;
@@ -49,22 +51,31 @@ public class BasicAttackController : MonoBehaviour
 
     void AttackPlayer()
     {
-        GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        o.transform.position = transform.position;
-        o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-        o.transform.LookAt(target.transform);
-        o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        o.transform.parent = transform;
+        // Old code - to be removed...
+        // GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        // o.transform.position = transform.position;
+        // o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
+        // o.transform.LookAt(target.transform);
+        // o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        // o.transform.parent = transform;
+        // Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
+        // dmg = stats.RealDamage(dmg);
+        // ProjectileController pb = o.AddComponent<ProjectileController>();
+        // pb.dmg = dmg;
+        // pb.speed = 10f;
+        // pb.ttl = 5f;
+        // o.GetComponent<SphereCollider>().isTrigger = true;
+        // Rigidbody rb = o.AddComponent<Rigidbody>();
+        // rb.useGravity = false;
+        // rb.isKinematic = true;
+
+        // Generates projectiles
+        var projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
+        ProjectileMover pm = projectileInstance.GetComponent<ProjectileMover>();
+
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         dmg = stats.RealDamage(dmg);
-        ProjectileController pb = o.AddComponent<ProjectileController>();
-        pb.dmg = dmg;
-        pb.speed = 10f;
-        pb.ttl = 5f;
-        o.GetComponent<SphereCollider>().isTrigger = true;
-        Rigidbody rb = o.AddComponent<Rigidbody>();
-        rb.useGravity = false;
-        rb.isKinematic = true;
+        pm.dmg = dmg;
     }
 
     public void SetAttack(bool _attack)
