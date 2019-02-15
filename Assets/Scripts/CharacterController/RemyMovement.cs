@@ -32,6 +32,8 @@ public class RemyMovement : MonoBehaviour
     {
         DoNotFly();
 
+        DoNotShake();
+
         Rotate();
 
         Move();
@@ -75,6 +77,14 @@ public class RemyMovement : MonoBehaviour
     void DoNotFly()
     {
             destination.y = transform.position.y;
+    }
+
+    void DoNotShake()
+    {
+        if (Vector3.Distance(destination, this.transform.position) < 1.0f)
+        {
+            destination = this.transform.position;
+        }
     }
 
     void SavePos()
