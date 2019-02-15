@@ -15,7 +15,11 @@ public class MeleeEnemyController : EnemyController
         visionAngle = 120f;
         visionDistance = 10f;
         attackDistance = 5f;
+
+        // Default stat
+        healthPoints = 80f;
     }
+    
     protected override void UniqueUpdate()
     {
         // Nothing here for melee enemy now...
