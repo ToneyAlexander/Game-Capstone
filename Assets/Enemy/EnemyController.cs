@@ -23,6 +23,9 @@ public abstract class EnemyController : MonoBehaviour
     protected float visionDistance;
     protected float attackDistance;
 
+    // Enemy health
+    protected float healthPoints;
+
     /* Note: attackDistance <= visionDistance <= movingRange */
     
     protected GameObject player;
@@ -89,6 +92,13 @@ public abstract class EnemyController : MonoBehaviour
             StartCoroutine(Move());
         }
 
+        // Under attack and death animations
+        UnderAttack();
+        if (healthPoints <= 0.0f)
+        {
+            StartCoroutine(Die());
+        }
+
         // Display field of view and moving area only in Scene (not in Game)
         DisplayVisionAndRange();
     }
@@ -147,6 +157,22 @@ public abstract class EnemyController : MonoBehaviour
     private bool InAttackRange(Vector3 pos)
     {
         return Vector3.Distance(transform.position, pos) <= attackDistance;
+    }
+
+    private void UnderAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            healthPoints--;
+            animator.SetTrigger("hit");
+        }
+    }
+
+    private IEnumerator Die()
+    {
+        animator.SetBool("death", true);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 
     /* Debugging code */
