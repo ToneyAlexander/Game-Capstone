@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ClassUI : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ClassUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).name.Equals("ScrollBox"))
@@ -26,9 +28,29 @@ public class ClassUI : MonoBehaviour
         takenPerks = playerClass.takenPerks;
         foreach (PerkPrototype proto in allPerks)
         {
-            Image image = new Image();
+            GameObject image = new GameObject();
             image.transform.parent = content.transform;
-            image.sprite = proto.sprite;
+            //image.GetComponent<Image>.sprite = proto.sprite;
+            image.transform.localPosition = new Vector3(proto.uiCoords.x, proto.uiCoords.y, 0);
+            EventTrigger ev = image.AddComponent<EventTrigger>();
+
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            entry.callback.AddListener((eventData) => { OnPerkClick((PointerEventData)eventData); });
+            ev.triggers.Add(entry);
+
+            EventTrigger.Entry entry2 = new EventTrigger.Entry();
+            entry2.eventID = EventTriggerType.PointerEnter;
+            entry2.callback.AddListener((eventData) => {
+                 OnPerkEnter((PointerEventData)eventData); });
+            ev.triggers.Add(entry2);
+
+            EventTrigger.Entry entry3 = new EventTrigger.Entry();
+            entry3.eventID = EventTriggerType.PointerExit;
+            entry3.callback.AddListener((eventData) => { OnPerkExit((PointerEventData)eventData); });
+            ev.triggers.Add(entry3);
+
+
         }
     }
 
@@ -36,5 +58,18 @@ public class ClassUI : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnPerkClick(PointerEventData data)
+    {
+
+    }
+    void OnPerkEnter(PointerEventData data)
+    {
+
+    }
+    void OnPerkExit(PointerEventData data)
+    {
+
     }
 }
