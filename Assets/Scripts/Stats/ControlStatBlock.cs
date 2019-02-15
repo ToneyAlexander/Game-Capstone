@@ -27,6 +27,10 @@ public class ControlStatBlock : MonoBehaviour
     private EquipmentUser inv;
     private PlayerClass pClass;
 
+    public StatBlock getStatBlock()
+    {
+        return stats;
+    }
     // Start is called before the first frame update
     void Start()
     {

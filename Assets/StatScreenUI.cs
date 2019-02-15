@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StatScreenUI : MonoBehaviour
 {
+    public ControlStatBlock stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,8 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Text statlist = gameObject.GetComponent<Text>();
+        statlist.text = "Strength: " + stats.Str + "\n\nDexterity: " + stats.Dex + "\n\nMysticism: " + stats.Myst + "\n\nFortitude: " + stats.Fort;
+
     }
 }
