@@ -6,7 +6,18 @@ using CCC.Items;
 
 public class InventoryButton : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Item _item;
+    private int _position;
+    public Item item
+    {
+        get { return _item; }
+        set { _item = value; }
+    }
+    public int position
+    {
+        get { return _position; }
+        set { _position = value; }
+    }
     void Start()
     {
         

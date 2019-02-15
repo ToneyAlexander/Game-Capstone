@@ -27,6 +27,14 @@ namespace CCC.Items
         {
             equipment[item.EquipmentSlot] = item;
         }
+        /// <summary>
+        /// Disequip the item corresponding to this item's slot.
+        /// </summary>
+        /// <param name="item"></param>
+        public void DisequipItem(Item item)
+        {
+            equipment[item.EquipmentSlot] = Item.Null;
+        }
 
         private readonly Dictionary<EquipmentSlot, Item> equipment = 
             new Dictionary<EquipmentSlot, Item>
