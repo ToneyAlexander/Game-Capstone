@@ -72,6 +72,7 @@ public class BasicAttackController : MonoBehaviour
         // Generates projectiles
         var projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
         ProjectileMover pm = projectileInstance.GetComponent<ProjectileMover>();
+        projectileInstance.GetComponent<SphereCollider>().isTrigger = true;
 
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         dmg = stats.RealDamage(dmg);
