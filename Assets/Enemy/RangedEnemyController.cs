@@ -12,9 +12,9 @@ public class RangedEnemyController : EnemyController
         movingRange = 20f;
 
         // Default vision
-        visionAngle = 90f;
-        visionDistance = 15;
-        attackDistance = 10f;
+        visionAngle = 60f;
+        visionDistance = 20;
+        attackDistance = 20f;
 
         // Default stat
         healthPoints = 100f;
