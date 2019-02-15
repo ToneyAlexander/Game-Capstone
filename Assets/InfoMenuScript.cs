@@ -30,33 +30,39 @@ public class InfoMenuScript : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("Tabs"))
             {
                 tabs = gameObject.transform.GetChild(i).gameObject;
+                
             }
         }
         for (int i = 0; i < tabs.transform.childCount; i++)
         {
-            if (transform.GetChild(i).name.Equals("Inventory"))
+          
+            if (tabs.transform.GetChild(i).name.Equals("Inventory"))
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickInventory(); });
                 ev.triggers.Add(entry);
+                
             }
-            if (transform.GetChild(i).name.Equals("StatSheet"))
+            if (tabs.transform.GetChild(i).name.Equals("StatsSheet"))
             {
+                Debug.Log("tesrad");
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickStats(); });
                 ev.triggers.Add(entry);
+               
             }
-            if (transform.GetChild(i).name.Equals("ClassSheet"))
+            if (tabs.transform.GetChild(i).name.Equals("ClassSheet"))
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickClass(); });
                 ev.triggers.Add(entry);
+                
             }
         }
     }
@@ -67,12 +73,14 @@ public class InfoMenuScript : MonoBehaviour
     }
     void OnClickInventory()
     {
-        stats.SetActive( false);
+        Debug.Log("showing Inventory");
+        stats.SetActive(false);
         classinfo.SetActive(false);
         inventory.SetActive(true);
     }
     void OnClickClass()
     {
+        Debug.Log("showing Class info");
         stats.SetActive(false);
         classinfo.SetActive(true);
         inventory.SetActive(false);
@@ -80,6 +88,7 @@ public class InfoMenuScript : MonoBehaviour
     }
     void OnClickStats()
     {
+        Debug.Log("showing Stats");
         stats.SetActive(true);
         classinfo.SetActive(false);
         inventory.SetActive(false);

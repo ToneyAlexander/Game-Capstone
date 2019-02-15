@@ -10,14 +10,11 @@ public class StatScreenUI : MonoBehaviour
     void Start()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log("kurai MY LIFE");
         if (gameObjects.Length > 0)
         {
-            Debug.Log("kurai MY SIGHT");
             ControlStatBlock temp = gameObjects[0].GetComponent<ControlStatBlock>();
             if (temp)
             {
-                Debug.Log("kurai MY HEART IN SUCH UNCOMMON PLACES");
                 stats = temp;
             }
         }
