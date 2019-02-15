@@ -13,4 +13,6 @@ public class PerkPrototype : ScriptableObject
     public bool RequireAll;
     public List<PerkStatEntry> Stats;
     public string Name;
+    public Vector2 uiCoords;
+    public Sprite sprite;
 }
