@@ -54,7 +54,7 @@ public class ProjectileMover : MonoBehaviour
 
         if (hit != null)
         {
-            var hitInstance = Instantiate(hit, pos, transform.rotation);
+            var hitInstance = Instantiate(hit, pos, Quaternion.identity);
             if (UseFirePointRotation)
             { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
             else
