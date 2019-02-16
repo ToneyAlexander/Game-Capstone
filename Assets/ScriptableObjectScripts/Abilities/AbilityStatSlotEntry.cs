@@ -18,7 +18,7 @@ namespace CCC.Abilities
         }
 
         [SerializeField]
-        private AbilityStatIdentifier statIdentifier;
+        private StatIdentifier statIdentifier;
 
         [SerializeField]
         private float value;
