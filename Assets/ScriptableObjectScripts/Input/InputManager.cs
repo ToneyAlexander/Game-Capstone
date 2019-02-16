@@ -48,23 +48,14 @@ namespace CCC.Inputs
         /// </param>
         /// <param name="mousePosition">Mouse position.</param>
         public void HandleMouseButtonDown(InputButton button, 
-            IDestinationMover destinationMover, Vector3 mousePosition)
+            IDestinationMover destinationMover, Vector3 worldSpaceDestination)
         {
             if (button.Equals(leftMouseButton))
             {
-                Ray castPoint = Camera.main.ScreenPointToRay(mousePosition);
-                RaycastHit hit;
-                Vector3 destination = destinationMover.Position;
-                if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-                {
-                    destination = hit.point;
-                }
-
                 commandProcessor.ProcessCommand(new MoveToCommand(
                     destinationMover,
                     destinationMover.Position,
-                    // Keep height at 0.5 so player always above ground
-                    destination + new Vector3(0.0f, 0.5f, 0.0f)
+                    worldSpaceDestination
                 ));
             }
         }
