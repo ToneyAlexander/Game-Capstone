@@ -11,6 +11,7 @@ public class InfoMenuScript : MonoBehaviour
     GameObject stats;
     GameObject classinfo;
     // Start is called before the first frame update
+
     void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
