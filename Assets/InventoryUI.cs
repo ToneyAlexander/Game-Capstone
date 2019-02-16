@@ -20,6 +20,10 @@ public class InventoryUI : MonoBehaviour
 
     Image image;
     Text descriptionText;
+    GameObject statsBlock;
+    Vector3 visibleLoc = new Vector3(-275, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    bool statsShown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +47,10 @@ public class InventoryUI : MonoBehaviour
             {
                 descriptionText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
             }
+            else if (transform.GetChild(i).name.Equals("StatsBlock"))
+            {
+                statsBlock = gameObject.transform.GetChild(i).gameObject;
+            }
         }
         for (int i = 0; i < 6; i++)
         {
@@ -51,10 +59,17 @@ public class InventoryUI : MonoBehaviour
             entry.eventID = EventTriggerType.PointerClick;
             entry.callback.AddListener((eventData) => { OnClickEquipment(eventData); });
             ev.triggers.Add(entry);
+
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
             entry2.eventID = EventTriggerType.PointerEnter;
             entry2.callback.AddListener((eventData) => { OnMouseOverEquipment((PointerEventData)eventData); });
             ev.triggers.Add(entry2);
+
+            EventTrigger.Entry entry3 = new EventTrigger.Entry();
+            entry3.eventID = EventTriggerType.PointerExit;
+            entry3.callback.AddListener((eventData) => { OnMouseExitEquipment((PointerEventData)eventData); });
+            ev.triggers.Add(entry3);
+
             EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
             equipmentButtonScript.position = i;
         }
@@ -65,13 +80,21 @@ public class InventoryUI : MonoBehaviour
             entry.eventID = EventTriggerType.PointerClick;
             entry.callback.AddListener((eventData) => { OnClickInventory(eventData); });
             ev.triggers.Add(entry);
+
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
             entry2.eventID = EventTriggerType.PointerEnter;
             entry2.callback.AddListener((eventData) => { OnMouseOverInventory((PointerEventData)eventData); });
             ev.triggers.Add(entry2);
+            
             InventoryButton inventoryButtonScript = storedButtons[i].GetComponent<InventoryButton>();
             inventoryButtonScript.position = i;
+
+            EventTrigger.Entry entry3 = new EventTrigger.Entry();
+            entry3.eventID = EventTriggerType.PointerExit;
+            entry3.callback.AddListener((eventData) => { OnMouseExitInventory((PointerEventData)eventData); });
+            ev.triggers.Add(entry3);
         }
+
 
      //   image = gameObject.transform.GetChild(4).gameObject.GetComponent<Image>();
 
@@ -114,6 +137,15 @@ public class InventoryUI : MonoBehaviour
                 textfield.color = Color.black;
                 
         }
+        if (statsShown)
+        {
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
+
+        }
+        else
+        {
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
+        }
 
     }
 
@@ -129,6 +161,7 @@ public class InventoryUI : MonoBehaviour
        Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+        statsShown = true;
     }
     void OnClickInventory(BaseEventData data)
     {
@@ -139,7 +172,15 @@ public class InventoryUI : MonoBehaviour
         Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText);
         descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText;
         image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
-
+        statsShown = true;
+    }
+    void OnMouseExitEquipment(PointerEventData data)
+    {
+        statsShown = false;
+    }
+    void OnMouseExitInventory(PointerEventData data)
+    {
+        statsShown = false;
     }
 
 }

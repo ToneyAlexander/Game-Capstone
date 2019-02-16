@@ -27,6 +27,10 @@ public class ControlStatBlock : MonoBehaviour
     private EquipmentUser inv;
     private PlayerClass pClass;
 
+    public StatBlock getStatBlock()
+    {
+        return stats;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -62,12 +66,15 @@ public class ControlStatBlock : MonoBehaviour
         stats.MagicRes = 0f;
         stats.StatusRec = 0f;
         stats.CdrMult = 0f;
+        stats.Spell = 0f;
         stats.SpellMult = 0f;
         stats.AttackSpeedMult = 0f;
         stats.MoveSpeedMult = 0f;
+        stats.RangedAttack = 0f;
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
         stats.HealthRegen = 0f;
+        stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
         stats.MoveSpeed = 10f;
         stats.HealthRegenMult = 0f;
@@ -155,6 +162,9 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.MAGIC_RES_MULT:
                 stats.MagicResMult += stat.Value;
                 break;
+            case Stat.MELEE_ATTACK:
+                stats.MeleeAttack += stat.Value;
+                break;
             case Stat.MELEE_ATTACK_MULT:
                 stats.MeleeAttackMult += stat.Value;
                 break;
@@ -170,8 +180,14 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
                 break;
+            case Stat.RANGED_ATTACK:
+                stats.RangedAttack += stat.Value;
+                break;
             case Stat.RANGED_ATTACK_MULT:
                 stats.RangedAttackMult += stat.Value;
+                break;
+            case Stat.SPELL:
+                stats.Spell += stat.Value;
                 break;
             case Stat.SPELL_MULT:
                 stats.SpellMult += stat.Value;
@@ -217,9 +233,6 @@ public class ControlStatBlock : MonoBehaviour
         {
             foreach (PerkPrototype perk in pClass.takenPerks)
             {
-                //tmp
-                //Str += 25;
-                //stats.Armor += 1000f;
 
                 foreach (PerkStatEntry sp in perk.Stats)
                 {

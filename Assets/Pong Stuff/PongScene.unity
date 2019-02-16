@@ -1846,9 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aeb3cf415311c4387ed60fcabc1bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perks:
-  - {fileID: 11400000, guid: 8672a577004b33645b6fba87f4b96c42, type: 2}
-  - {fileID: 11400000, guid: b0cfd8cb27ab52d41a79c4331f95c6df, type: 2}
+  ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
 --- !u!114 &1211844024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2625,6 +2623,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileData: {fileID: 11400000, guid: 4fce1f2e29439ce42a56d5ac17315471, type: 2}
   tileSize: 4
+  treeList: {fileID: 0}
+  grassList: {fileID: 0}
+  mediumObjectList: {fileID: 0}
+  particleEffects: {fileID: 0}
+  specialObjects: {fileID: 0}
+  surface: {fileID: 0}
 --- !u!4 &2128611824
 Transform:
   m_ObjectHideFlags: 0
