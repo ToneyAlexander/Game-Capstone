@@ -17,6 +17,10 @@ namespace CCC.Abilities
             get { return usableAbilities; }
         }
 
+        /// <summary>
+        /// The AbilitySet of Abilities that this AbilityUser's GameObject can 
+        /// use.
+        /// </summary>
         [SerializeField]
         private AbilitySet usableAbilities;
 
@@ -24,7 +28,11 @@ namespace CCC.Abilities
         /// Use the given Ability.
         /// </summary>
         /// <param name="ability">The Ability to use.</param>
-        public void Use(Ability ability)
+        /// <param name="mouseWorldPosition">
+        /// The world space position of the mouse during the frame the given 
+        /// Ability was cast.
+        /// </param>
+        public void Use(Ability ability, Vector3 mouseWorldPosition)
         {
             if (usableAbilities.Set.Contains(ability))
             {
@@ -37,13 +45,14 @@ namespace CCC.Abilities
             }
         }
 
+        #region MonoBehaviour Messages
         private void Start()
         {
-            Debug.Log("Test");
             foreach (Ability ability in usableAbilities.Set)
             {
                 Debug.Log(ability.AbilityName);
             }
         }
+        #endregion
     }
 }
