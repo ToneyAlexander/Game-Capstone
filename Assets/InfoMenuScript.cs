@@ -47,7 +47,7 @@ public class InfoMenuScript : MonoBehaviour
             }
             if (tabs.transform.GetChild(i).name.Equals("StatsSheet"))
             {
-                Debug.Log("tesrad");
+              //  Debug.Log("tesrad");
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
                 entry.eventID = EventTriggerType.PointerClick;
