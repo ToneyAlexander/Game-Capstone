@@ -19,6 +19,7 @@ public class StatBlock : MonoBehaviour
     public float HealthMax { get; set; }
     public float HealthRegen { get; set; }
     public float HealthRegenMult { get; set; }
+    public float MeleeAttack { get; set; }
     public float MeleeAttackMult { get; set; }
 
     //Dex subset
@@ -26,10 +27,12 @@ public class StatBlock : MonoBehaviour
     public float MoveSpeedMult { get; set; }
     public float AttackSpeed { get; set; }
     public float AttackSpeedMult { get; set; }
+    public float RangedAttack { get; set; }
     public float RangedAttackMult { get; set; }
 
     //Myst subset
     public float CdrMult { get; set; }
+    public float Spell { get; set; }
     public float SpellMult { get; set; }
 
     //Fort subset
@@ -98,35 +101,43 @@ public class StatBlock : MonoBehaviour
         
         HealthCur -= total;
 
-        Debug.Log("Took " + total + " damage.");
+        //Debug.Log("Took " + total + " damage.");
 
         return total;
     }
 
     public Damage RealDamage(Damage dmg)
     {
+        float phys = dmg.physicalDmg;
         float physMult = 0;
+        float magic = dmg.magicDmg;
         float magicMult = 0;
         if (dmg.rangedAttack)
         {
+            phys += RangedAttack;
+            magic += RangedAttack;
             physMult += RangedAttackMult;
             magicMult += RangedAttackMult;
         }
         if (dmg.meleeAttack)
         {
+            phys += MeleeAttack;
+            magic += MeleeAttack;
             physMult += MeleeAttackMult;
             magicMult += MeleeAttackMult;
         }
         if (dmg.spell)
         {
+            phys += Spell;
+            magic += Spell;
             physMult += SpellMult;
             magicMult += SpellMult;
         }
         physMult += DamageMult;
         magicMult += DamageMult;
 
-        dmg.physicalDmgReal = CalcMult(dmg.physicalDmg, physMult);
-        dmg.magicDmgReal = CalcMult(dmg.magicDmg, magicMult);
+        dmg.physicalDmgReal = CalcMult(phys, physMult);
+        dmg.magicDmgReal = CalcMult(phys, magicMult);
 
         if(Random.Range(0f, 1f) < CalcMult(CritChance, CritChanceMult)) {
             float critDM = CalcMult(CritDamage, CritDamageMult);
