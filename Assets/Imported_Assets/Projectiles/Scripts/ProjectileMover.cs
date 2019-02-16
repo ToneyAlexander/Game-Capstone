@@ -39,21 +39,26 @@ public class ProjectileMover : MonoBehaviour
         }
 	}
 
-    //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider col)
     {
+        if (col.gameObject.name.Equals("remy")) {
+            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(dmg);
+            }
+        }
+        
         speed = 0;   
-        ContactPoint contact = collision.contacts[0];
-        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        Vector3 pos = contact.point + contact.normal * hitOffset;
+        Vector3 pos = col.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         if (hit != null)
         {
-            var hitInstance = Instantiate(hit, pos, rot);
+            var hitInstance = Instantiate(hit, pos, transform.rotation);
             if (UseFirePointRotation)
             { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
             else
-            { hitInstance.transform.LookAt(contact.point + contact.normal); }
+            { hitInstance.transform.LookAt(pos); }
 
             var hitPs = hitInstance.GetComponent<ParticleSystem>();
             if (hitPs == null)
@@ -66,17 +71,7 @@ public class ProjectileMover : MonoBehaviour
                 Destroy(hitInstance, hitPsParts.main.duration);
             }
         }
-        Destroy(gameObject);
-    }
 
-    void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.name.Equals("remy")) {
-            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(dmg);
-            }
-        }
+        Destroy(gameObject);
     }
 }
