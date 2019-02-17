@@ -54,4 +54,8 @@ public class TestPlayerClass : MonoBehaviour
             }
         }
     }
+    public PlayerClass GetClass()
+    {
+        return pClass;
+    }
 }

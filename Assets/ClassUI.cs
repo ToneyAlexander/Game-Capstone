@@ -14,6 +14,23 @@ public class ClassUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
+        if (gameObjects.Length > 0)
+        {
+            PlayerClass temp = gameObjects[0].GetComponent<PlayerClass>();
+            if (temp)
+            {
+                playerClass = temp;
+            }
+            else
+            {
+                TestPlayerClass temp2 = gameObjects[0].GetComponent<TestPlayerClass>();
+                if (temp2)
+                {
+                    playerClass = temp2.GetClass();
+                }
+            }
+        }
 
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -30,6 +47,8 @@ public class ClassUI : MonoBehaviour
         {
             GameObject image = new GameObject();
             image.transform.parent = content.transform;
+            image.name = proto.Name;
+            image.AddComponent<Image>();
             //image.GetComponent<Image>.sprite = proto.sprite;
             image.transform.localPosition = new Vector3(proto.uiCoords.x, proto.uiCoords.y, 0);
             EventTrigger ev = image.AddComponent<EventTrigger>();
