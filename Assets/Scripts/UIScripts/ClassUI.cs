@@ -9,8 +9,6 @@ public class ClassUI : MonoBehaviour
     GameObject box;
     GameObject content;
     public PlayerClass playerClass;
-    List<PerkPrototype> allPerks;
-    List<PerkPrototype> takenPerks;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +39,17 @@ public class ClassUI : MonoBehaviour
             }
 
         }
-        allPerks = playerClass.allPerks;
-        takenPerks = playerClass.takenPerks;
-        foreach (PerkPrototype proto in allPerks)
+      //  allPerks = playerClass.allPerks;
+      //  takenPerks = playerClass.takenPerks;
+        foreach (PerkPrototype proto in playerClass.allPerks)
         {
             GameObject image = new GameObject();
+            PerkHolder perkHolder = image.AddComponent<PerkHolder>();
+            perkHolder.perkInfo = proto;
+            if (proto.Require.Count == 0)
+            {
+                perkHolder.available = true;
+            }
             image.transform.parent = content.transform;
             image.name = proto.Name;
             //RectTransform rect = image.GetComponent<RectTransform>();
@@ -80,6 +84,7 @@ public class ClassUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       // for ()
         
     }
 
@@ -87,11 +92,32 @@ public class ClassUI : MonoBehaviour
     {
         Debug.Log("HERE WE GO");
         Debug.Log(data.pointerCurrentRaycast.gameObject);
+        PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
+       // if (Perk)
+        Transform holder = data.pointerCurrentRaycast.gameObject.transform.parent;
+
+        
+       
+
+
+
     }
     void OnPerkEnter(PointerEventData data)
     {
-        Debug.Log("HERE WE GOOOO");
+        
         Debug.Log(data.pointerCurrentRaycast.gameObject);
+        PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
+        Transform holder = data.pointerCurrentRaycast.gameObject.transform.parent;
+        for (int i = 0; i < holder.childCount; i++)
+        {
+            PerkHolder perkInfo =  holder.GetChild(i).gameObject.GetComponent<PerkHolder>();
+            if (perkInfo.taken = false)
+            {
+                Debug.Log(perkInfo.perkInfo);
+            }
+
+        }
+
     }
     void OnPerkExit(PointerEventData data)
     {
