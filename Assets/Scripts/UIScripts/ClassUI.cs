@@ -85,14 +85,17 @@ public class ClassUI : MonoBehaviour
 
     void OnPerkClick(PointerEventData data)
     {
-
+        Debug.Log("HERE WE GO");
+        Debug.Log(data.pointerCurrentRaycast.gameObject);
     }
     void OnPerkEnter(PointerEventData data)
     {
-
+        Debug.Log("HERE WE GOOOO");
+        Debug.Log(data.pointerCurrentRaycast.gameObject);
     }
     void OnPerkExit(PointerEventData data)
     {
-
+       // Debug.Log("HERE WE GOOOOOOOO");
+       // Debug.Log(data.pointerCurrentRaycast.gameObject);
     }
 }
