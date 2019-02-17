@@ -48,9 +48,13 @@ public class ClassUI : MonoBehaviour
             GameObject image = new GameObject();
             image.transform.parent = content.transform;
             image.name = proto.Name;
+            //RectTransform rect = image.GetComponent<RectTransform>();
+            image.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+              // image.width = 30;
+            //image.height = 30;
             image.AddComponent<Image>();
             //image.GetComponent<Image>.sprite = proto.sprite;
-            image.transform.localPosition = new Vector3(proto.uiCoords.x, proto.uiCoords.y, 0);
+            image.transform.localPosition = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
             EventTrigger ev = image.AddComponent<EventTrigger>();
 
             EventTrigger.Entry entry = new EventTrigger.Entry();
