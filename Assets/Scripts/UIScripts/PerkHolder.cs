@@ -25,7 +25,7 @@ public class PerkHolder : MonoBehaviour
     {
        if (!taken && !blocked)
         {
-            if (playerClass.takenPerks.contains(perkInfo))
+            if (playerClass.takenPerks.Contains(perkInfo))
             {
                 taken = true;
             }
@@ -39,10 +39,10 @@ public class PerkHolder : MonoBehaviour
         {
             taken = true;
         }
-       if (other.Blocks.contains(perkInfo)){
+       if (other.Blocks.Contains(perkInfo)){
             blocked = true;
         }
-       if (other.Children.contains(perkInfo))
+       if (other.Children.Contains(perkInfo))
         {
 
         }
