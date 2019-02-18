@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using CCC.Items;
+using CCC.Stats;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -179,10 +180,10 @@ public class InventoryUI : MonoBehaviour
         statsShown = false;
         Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
         Text tooltext = statsBlock.GetComponentInChildren<Text>();
-        tooltext = "";
+        tooltext.text = "";
         foreach (Stat stat in item.Stats)
         {
-            tooltext = stat.Name + ": " + stat.Value + "\n";
+            tooltext.text += stat.Name + ": " + stat.Value + "\n";
 
         }
     }
