@@ -39,6 +39,42 @@ public class PerkHolder : MonoBehaviour
             //TODO finish this;
         }
     }
+    public Color precheck(PerkPrototype other)
+    {
+        Color ret = Color.white;
+        if (other == perkInfo || taken)
+        {
+            ret = Color.green;
+        }
+        else if (other.Blocks.Contains(perkInfo))
+        {
+            ret = Color.red;
+        }
+        else if (!perkInfo.RequireAll && !available && !blocked)
+        {
+            if (other.Children.Contains(perkInfo))
+            {
+                ret = Color.yellow;
+            }
+        }
+        else if (perkInfo.RequireAll && !available && !blocked)
+        {
+            bool req = true;
+            foreach (PerkPrototype p in perkInfo.Require)
+            {
+                if (!(p == other || playerClass.takenPerks.Contains(p)))
+                {
+                    req = false;
+                }
+            }
+            if (req)
+            {
+                ret = Color.yellow;
+            }
+        }
+        return ret;
+    }
+
     public void recheck(PerkPrototype other)
     {
        
