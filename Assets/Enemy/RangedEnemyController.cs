@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class RangedEnemyController : EnemyController
 {
+    public const string AttackMode = "rangedAttack";
+
     protected override void Initialize()
     {
         // Default spawnPos and movingRange
@@ -22,7 +24,8 @@ public class RangedEnemyController : EnemyController
 
     protected override void UniqueUpdate()
     {
-        GetComponent<BasicAttackController>().SetAttack(false);
+        // By default, enemy is not attacking.
+        attackController.SetAttack(AttackMode, false);
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -34,9 +37,9 @@ public class RangedEnemyController : EnemyController
         agent.isStopped = true;
 
         // Change to attack animation
-        animator.SetBool("rangedAttack", true);
+        animator.SetBool(AttackMode, true);
 
         // TODO: Maybe other stuff...
-        GetComponent<BasicAttackController>().SetAttack(true);
+        attackController.SetAttack(AttackMode, true);
     }
 }
