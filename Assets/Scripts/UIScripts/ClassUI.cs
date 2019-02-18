@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using CCC.Stats;
 
 public class ClassUI : MonoBehaviour
 {
     GameObject box;
     GameObject content;
     public PlayerClass playerClass;
+    PerkPrototype mousedOver;
+    bool selected = false;
+    GameObject statsBlock;
+    Vector3 visibleLoc = new Vector3(-275, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    Text descText;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,10 +44,15 @@ public class ClassUI : MonoBehaviour
                 box = gameObject.transform.GetChild(i).gameObject;
                 content = box.transform.GetChild(0).GetChild(0).gameObject;
             }
+            else if (transform.GetChild(i).name.Equals("StatsBlock"))
+            {
+                statsBlock = gameObject.transform.GetChild(i).gameObject;
+            }
 
         }
-      //  allPerks = playerClass.allPerks;
-      //  takenPerks = playerClass.takenPerks;
+        descText = statsBlock.GetComponentInChildren<Text>();
+        //  allPerks = playerClass.allPerks;
+        //  takenPerks = playerClass.takenPerks;
         foreach (PerkPrototype proto in playerClass.allPerks)
         {
             GameObject image = new GameObject();
@@ -88,18 +100,34 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
-            if (test.taken)
+            if (!selected)
             {
-                colorEdit.color = Color.green;
+                statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
+                
+                
+                if (test.taken)
+                {
+                    colorEdit.color = Color.green;
+                }
+                else if (test.blocked)
+                {
+                    colorEdit.color = Color.red;
+                }
+                else if (test.available)
+                {
+                    colorEdit.color = Color.yellow;
+                }
+                else
+                {
+                    colorEdit.color = Color.white;
+                }
             }
-            else if (test.blocked)
+            else
             {
-                colorEdit.color = Color.red;
+                colorEdit.color = test.precheck(mousedOver);
+                statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
             }
-            else if (test.available)
-            {
-                colorEdit.color = Color.yellow;
-            }
+
         }
         
     }
@@ -133,10 +161,20 @@ public class ClassUI : MonoBehaviour
         
         Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
+        mousedOver = clickedEvent.perkInfo;
+        descText.text = mousedOver.Name + "\n" + mousedOver.Desc + "\n\n";
+        foreach (PerkStatEntry stat in mousedOver.Stats)
+        {
+            descText.text = descText.text + stat.StatInst.Name + ": " + stat.StatInst.Value + "\n";
+        }
+        selected = true;
+
 
     }
     void OnPerkExit(PointerEventData data)
     {
+        Debug.Log("goodbye");
+        selected = false;
        // Debug.Log("HERE WE GOOOOOOOO");
        // Debug.Log(data.pointerCurrentRaycast.gameObject);
     }

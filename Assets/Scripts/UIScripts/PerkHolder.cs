@@ -50,14 +50,22 @@ public class PerkHolder : MonoBehaviour
         {
             ret = Color.red;
         }
-        else if (!perkInfo.RequireAll && !available && !blocked)
+        else if (blocked)
+        {
+            ret = Color.red;
+        }
+        else if (available)
+        {
+            ret = Color.yellow;
+        }
+        else if (!perkInfo.RequireAll)
         {
             if (other.Children.Contains(perkInfo))
             {
                 ret = Color.yellow;
             }
         }
-        else if (perkInfo.RequireAll && !available && !blocked)
+        else if (perkInfo.RequireAll)
         {
             bool req = true;
             foreach (PerkPrototype p in perkInfo.Require)
