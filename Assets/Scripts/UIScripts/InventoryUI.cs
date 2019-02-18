@@ -177,6 +177,14 @@ public class InventoryUI : MonoBehaviour
     void OnMouseExitEquipment(PointerEventData data)
     {
         statsShown = false;
+        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
+        Text tooltext = statsBlock.GetComponentInChildren<Text>();
+        tooltext = "";
+        foreach (Stat stat in item.Stats)
+        {
+            tooltext = stat.Name + ": " + stat.Value + "\n";
+
+        }
     }
     void OnMouseExitInventory(PointerEventData data)
     {
