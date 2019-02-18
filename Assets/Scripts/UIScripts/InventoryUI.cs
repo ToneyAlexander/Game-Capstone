@@ -163,6 +163,14 @@ public class InventoryUI : MonoBehaviour
        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
         statsShown = true;
+        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
+        Text tooltext = statsBlock.GetComponentInChildren<Text>();
+        tooltext.text = "";
+        foreach (Stat stat in item.Stats)
+        {
+            tooltext.text += stat.Name + ": " + stat.Value + "\n";
+
+        }
     }
     void OnClickInventory(BaseEventData data)
     {
@@ -174,10 +182,6 @@ public class InventoryUI : MonoBehaviour
         descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText;
         image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
         statsShown = true;
-    }
-    void OnMouseExitEquipment(PointerEventData data)
-    {
-        statsShown = false;
         Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
         Text tooltext = statsBlock.GetComponentInChildren<Text>();
         tooltext.text = "";
@@ -186,6 +190,11 @@ public class InventoryUI : MonoBehaviour
             tooltext.text += stat.Name + ": " + stat.Value + "\n";
 
         }
+    }
+    void OnMouseExitEquipment(PointerEventData data)
+    {
+        statsShown = false;
+
     }
     void OnMouseExitInventory(PointerEventData data)
     {
