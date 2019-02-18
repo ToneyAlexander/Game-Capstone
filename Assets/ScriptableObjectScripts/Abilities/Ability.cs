@@ -52,10 +52,13 @@ namespace CCC.Abilities
         private void OnEnable()
         {
             stats = new List<Stat>();
-            foreach (AbilityStatSlotEntry entry in statSlots)
+            if (statSlots != null)
             {
-                Stat stat = new Stat(entry.StatName, entry.Value);
-                stats.Add(stat);
+                foreach (AbilityStatSlotEntry entry in statSlots)
+                {
+                    Stat stat = new Stat(entry.StatName, entry.Value);
+                    stats.Add(stat);
+                }
             }
         }
         #endregion

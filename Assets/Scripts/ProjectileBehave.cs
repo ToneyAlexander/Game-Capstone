@@ -7,6 +7,7 @@ public class ProjectileBehave : MonoBehaviour
     public Damage dmg;
     public float speed;
     public float ttl;
+    public bool friendly = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class ProjectileBehave : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name.Equals("Player_Paddle")) {
+        if (!friendly && col.gameObject.name.Equals("Player_Paddle")) {
             StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
             if (enemy != null)
             {

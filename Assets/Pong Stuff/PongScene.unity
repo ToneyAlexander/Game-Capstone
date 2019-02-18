@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 534669909}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1688,6 +1688,7 @@ GameObject:
   - component: {fileID: 1211844021}
   - component: {fileID: 1211844024}
   - component: {fileID: 1211844023}
+  - component: {fileID: 1211844025}
   m_Layer: 0
   m_Name: Player_Paddle
   m_TagString: Paddle
@@ -1861,6 +1862,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+--- !u!114 &1211844025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb6edcf9521164488c52bf20ec618d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abil: {fileID: 11400000, guid: 215ff9dad6d8f4275bc645067e4a5267, type: 2}
 --- !u!1 &1346748038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,7 +2622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2128611823
 MonoBehaviour:
   m_ObjectHideFlags: 0
