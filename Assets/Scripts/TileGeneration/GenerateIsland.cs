@@ -27,7 +27,11 @@ public class GenerateIsland : MonoBehaviour
 
     private int ISLE_WIDE = 50;
     private int ISLE_HIGH = 50;
-    private int NUMBER_OF_TILES = 34;
+
+    private static int LAYERS_ABOVE_BEACH = 1;
+    private int NUMBER_OF_TILES = 33 * (LAYERS_ABOVE_BEACH + 1) + 1;
+
+    private int LESS_THAN_LAND_REGEN_COUNT = 10;
 
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
@@ -53,7 +57,7 @@ public class GenerateIsland : MonoBehaviour
         string[] lines = textFile.text.Split('\n');
         tiles = new List<TilePiece>();
 
-        for (int i = 1; i < lines.Length; i++)
+        for (int i = 1; i < NUMBER_OF_TILES+1; i++)
         {
             string[] fields = lines[i].Split(',');
             if (fields.Length >= 11)
@@ -62,7 +66,6 @@ public class GenerateIsland : MonoBehaviour
                 tiles.Add(t);
             }
         }
-        Debug.Log(tiles[33].ID);
         Debug.Log(tiles.Count);
 
         List<Vector2Int> updated = new List<Vector2Int>();
@@ -183,7 +186,10 @@ public class GenerateIsland : MonoBehaviour
                     int otherPixel = pixelToId(adjacencyData.GetPixel(i, j + 1));
                     if ((int)adjacencyData.GetPixel(i, j + 1).r != 1)
                     {
-                        index.Add(pixelValue, otherPixel, 0);
+                        for(int layer = 0; layer <= LAYERS_ABOVE_BEACH; layer++)
+                        {
+                            index.Add(pixelValue+33*layer, otherPixel+33*layer, 0);
+                        }
                     }
                 }
                 //Right 1
@@ -192,7 +198,10 @@ public class GenerateIsland : MonoBehaviour
                     int otherPixel = pixelToId(adjacencyData.GetPixel(i + 1, j));
                     if ((int)adjacencyData.GetPixel(i + 1, j).r != 1)
                     {
-                        index.Add(pixelValue, otherPixel, 1);
+                        for (int layer = 0; layer <= LAYERS_ABOVE_BEACH; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 1);
+                        }
                     }
                 }
                 //Bottom 2
@@ -201,7 +210,10 @@ public class GenerateIsland : MonoBehaviour
                     int otherPixel = pixelToId(adjacencyData.GetPixel(i, j - 1));
                     if ((int)adjacencyData.GetPixel(i, j - 1).r != 1)
                     {
-                        index.Add(pixelValue, otherPixel, 2);
+                        for (int layer = 0; layer <= LAYERS_ABOVE_BEACH; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 2);
+                        }
                     }
                 }
                 //Left 3
@@ -210,7 +222,10 @@ public class GenerateIsland : MonoBehaviour
                     int otherPixel = pixelToId(adjacencyData.GetPixel(i - 1, j));
                     if ((int)adjacencyData.GetPixel(i - 1, j).r != 1)
                     {
-                        index.Add(pixelValue, otherPixel, 3);
+                        for (int layer = 0; layer <= LAYERS_ABOVE_BEACH; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 3);
+                        }
                     }
                 }
             }
@@ -499,9 +514,9 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 33, 12, 3, false);
         validTest(index, 33, 33, 3, true);
 
-
-        Debug.Log("IMPORTANT");
         validTest(index, 13, 14, 1, true);
+
+        validTest(index, 66, 66, 3, true);
 
         /*
         validTest(index, 13, 0, 0, false);
@@ -634,7 +649,8 @@ public class GenerateIsland : MonoBehaviour
 
     private void drawBullshit(Vector3 startingLocation)
     {
-        for (int o = 0; o < NUMBER_OF_TILES; o++)
+        float zStart = startingLocation.z;
+        for (int o = 1; o < NUMBER_OF_TILES; o++)
         {
             TilePiece currentPiece = tiles[o];
             GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
@@ -654,6 +670,11 @@ public class GenerateIsland : MonoBehaviour
                 newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize / 2));
             }
             startingLocation.z += tileSize;
+            if(o%33 == 0)
+            {
+                startingLocation.x += tileSize;
+                startingLocation.z = zStart;
+            }
         }
         startingLocation.x += tileSize;
     }
@@ -791,9 +812,13 @@ public class GenerateIsland : MonoBehaviour
             updated.Add(changed);
         }
         int tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
-        if (tileIndex != LAND_INDEX)
+
+        for(int r = 0; r < LESS_THAN_LAND_REGEN_COUNT; r++)
         {
-            tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
+            if (tileIndex < LAND_INDEX)
+            {
+                tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
+            }
         }
         //if (tileIndex != LAND_INDEX)
         //{
@@ -860,12 +885,6 @@ public class GenerateIsland : MonoBehaviour
 
     private int indexToTile(int index)
     {
-        switch (index)
-        {
-            //case 13:
-            //    return 33;
-            default:
-                return index;
-        }
+        return index;
     }
 }
