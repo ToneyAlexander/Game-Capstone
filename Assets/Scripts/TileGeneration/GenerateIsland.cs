@@ -28,10 +28,13 @@ public class GenerateIsland : MonoBehaviour
     private int ISLE_WIDE = 50;
     private int ISLE_HIGH = 50;
 
+    private int TILE_HEIGHT = 4;
+
     //max 3 right now
     //fix csv/code to be able to work with arbitaray number more
-    private static int LAYERS_ABOVE_BEACH = 3;
-    private int NUMBER_OF_TILES = 33 * (LAYERS_ABOVE_BEACH + 1) + 1;
+    private static int LAYERS_ABOVE_BEACH = 6;
+    private static int TILES_PER_LAYER = 33;
+    private int NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
 
     private int LESS_THAN_LAND_REGEN_COUNT = 10;
 
@@ -61,12 +64,23 @@ public class GenerateIsland : MonoBehaviour
 
         for (int i = 1; i < NUMBER_OF_TILES+1; i++)
         {
-            string[] fields = lines[i].Split(',');
-            if (fields.Length >= 11)
-            {
-                TilePiece t = new TilePiece(Resources.Load<GameObject>(fields[10].Trim()), int.Parse(fields[1]), int.Parse(fields[5]), new Vector3(float.Parse(fields[2]), float.Parse(fields[3]), float.Parse(fields[4])));
-                tiles.Add(t);
-            }
+                if (i <= TILES_PER_LAYER + 1)
+                {
+                    string[] fields = lines[i].Split(',');
+                    if (fields.Length >= 11)
+                    {
+                        TilePiece t = new TilePiece(Resources.Load<GameObject>(fields[10].Trim()), int.Parse(fields[1]), int.Parse(fields[5]), new Vector3(float.Parse(fields[2]), float.Parse(fields[3]), float.Parse(fields[4])));
+                        tiles.Add(t);
+                    }
+                }
+                else
+                {
+                    //higher layers
+                    TilePiece lowClone = tiles[i - TILES_PER_LAYER - 1];
+                    Vector3 newLoc = new Vector3(lowClone.modifier.x, lowClone.modifier.y + TILE_HEIGHT, lowClone.modifier.z);
+                    TilePiece t = new TilePiece(lowClone.prefab, lowClone.ID + TILES_PER_LAYER, lowClone.rotation, newLoc);
+                    tiles.Add(t);
+                }
         }
         Debug.Log(tiles.Count);
 
@@ -76,7 +90,7 @@ public class GenerateIsland : MonoBehaviour
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
-        drawBullshit(startingLocation);
+        drawBullshit(Vector3.zero);
 
         //Propagate from initial set up
         propagate(island, updated, index);
@@ -659,6 +673,7 @@ public class GenerateIsland : MonoBehaviour
     private void drawBullshit(Vector3 startingLocation)
     {
         float zStart = startingLocation.z;
+        startingLocation.x -= tileSize;
         for (int o = 1; o < NUMBER_OF_TILES; o++)
         {
             TilePiece currentPiece = tiles[o];
@@ -681,11 +696,10 @@ public class GenerateIsland : MonoBehaviour
             startingLocation.z += tileSize;
             if(o%33 == 0)
             {
-                startingLocation.x += tileSize;
+                startingLocation.x -= tileSize;
                 startingLocation.z = zStart;
             }
         }
-        startingLocation.x += tileSize;
     }
 
     private void propagate(bool[,][] island, List<Vector2Int> updated, AdjacencyIndex index)
