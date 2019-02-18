@@ -84,7 +84,23 @@ public class ClassUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // for ()
+       for (int i = 0; i <  content.transform.childCount; i++)
+        {
+            PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
+            Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
+            if (test.taken)
+            {
+                colorEdit.color = Color.green;
+            }
+            else if (test.blocked)
+            {
+                colorEdit.color = Color.red;
+            }
+            else if (test.available)
+            {
+                colorEdit.color = Color.yellow;
+            }
+        }
         
     }
 
@@ -93,11 +109,21 @@ public class ClassUI : MonoBehaviour
         Debug.Log("HERE WE GO");
         Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
-       // if (Perk)
-        Transform holder = data.pointerCurrentRaycast.gameObject.transform.parent;
+        // if (Perk)
+        if (clickedEvent.available && !clickedEvent.blocked)
+        {
+            playerClass.TakePerk(clickedEvent.perkInfo);
+            for (int i = 0; i < content.transform.childCount; i++)
+            {
+                PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
+                test.recheck(clickedEvent.perkInfo);
+            }
+        }
 
-        
-       
+       // foreach(Ga)
+
+
+
 
 
 
@@ -107,16 +133,6 @@ public class ClassUI : MonoBehaviour
         
         Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
-        Transform holder = data.pointerCurrentRaycast.gameObject.transform.parent;
-        for (int i = 0; i < holder.childCount; i++)
-        {
-            PerkHolder perkInfo =  holder.GetChild(i).gameObject.GetComponent<PerkHolder>();
-            if (perkInfo.taken = false)
-            {
-                Debug.Log(perkInfo.perkInfo);
-            }
-
-        }
 
     }
     void OnPerkExit(PointerEventData data)

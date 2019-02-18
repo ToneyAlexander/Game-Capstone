@@ -20,7 +20,13 @@ public class PerkHolder : MonoBehaviour
     {
         
     }
-
+    void setStartingState()
+    {
+        if (perkInfo.Require.Count == 0)
+        {
+            available = true;
+        }
+    }
     void recheck()
     {
        if (!taken && !blocked)
@@ -33,18 +39,34 @@ public class PerkHolder : MonoBehaviour
             //TODO finish this;
         }
     }
-    void recheck(PerkPrototype other)
+    public void recheck(PerkPrototype other)
     {
-       if (other == perkInfo)
+       
+       if (other == perkInfo || taken)
         {
             taken = true;
         }
-       if (other.Blocks.Contains(perkInfo)){
+       else if (other.Blocks.Contains(perkInfo)){
             blocked = true;
-        }
-       if (other.Children.Contains(perkInfo))
+       }
+       else if (!perkInfo.RequireAll && !available && !blocked)
         {
-
+            if (other.Children.Contains(perkInfo))
+            {
+                available = true;
+            }
+        }
+       else if (perkInfo.RequireAll && !available && !blocked)
+        {
+            bool req = true;
+            foreach (PerkPrototype p in perkInfo.Require)
+            {
+                if (!(p == other || playerClass.takenPerks.Contains(p)))
+                {
+                    req = false;
+                }
+            }
+            available = req;
         }
     }
 }
