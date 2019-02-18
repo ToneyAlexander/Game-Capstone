@@ -15,7 +15,8 @@ public class BasicAttackController : MonoBehaviour
     private float weaponDmgMin;
     private float weaponDmgMax;
 
-    private bool attack;
+    private bool meleeAttack;
+    private bool rangedAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -31,25 +32,36 @@ public class BasicAttackController : MonoBehaviour
         stats.CritChanceMult = 1.5f;
         stats.CritDamage = 2.3f;
 
-        attack = false;
+        meleeAttack = false;
+        rangedAttack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (attack)
+        if (meleeAttack)
+        {
+            MeleeAttack();
+        }
+
+        if (rangedAttack)
         {
             tta -= Time.deltaTime;
 
             while(tta < 0)
             {
                 tta += ttaBase;
-                AttackPlayer();
+                ProjectileAttack();
             }
         }
     }
 
-    void AttackPlayer()
+    void MeleeAttack()
+    {
+        
+    }
+
+    void ProjectileAttack()
     {
         // Old code - to be removed...
         // GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -80,8 +92,15 @@ public class BasicAttackController : MonoBehaviour
         pm.dmg = dmg;
     }
 
-    public void SetAttack(bool _attack)
+    public void SetAttack(string attackMode, bool attack)
     {
-        attack = _attack;
+        if (attackMode == MeleeEnemyController.AttackMode)
+        {
+            meleeAttack = attack;
+        }
+        else if (attackMode == RangedEnemyController.AttackMode)
+        {
+            rangedAttack = attack;
+        }
     }
 }

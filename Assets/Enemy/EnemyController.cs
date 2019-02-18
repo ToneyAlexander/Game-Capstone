@@ -23,6 +23,9 @@ public abstract class EnemyController : MonoBehaviour
     protected float visionDistance;
     protected float attackDistance;
 
+    // Attack controller
+    protected BasicAttackController attackController;
+
     // Enemy health
     protected float healthPoints;
 
@@ -44,6 +47,9 @@ public abstract class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5f;
         path = new NavMeshPath();
+
+        // Set up attack controller
+        attackController = GetComponent<BasicAttackController>();
 
         inCoroutine = false;
 

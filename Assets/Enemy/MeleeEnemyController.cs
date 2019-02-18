@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class MeleeEnemyController : EnemyController
 {
+    public const string AttackMode = "meleeAttack";
+
     protected override void Initialize()
     {
         // Default spawnPos and movingRange
@@ -22,7 +24,8 @@ public class MeleeEnemyController : EnemyController
     
     protected override void UniqueUpdate()
     {
-        // Nothing here for melee enemy now...
+        // By default, enemy is not attacking.
+        attackController.SetAttack(AttackMode, false);
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -34,9 +37,9 @@ public class MeleeEnemyController : EnemyController
         agent.isStopped = true;
 
         // Change to attack animation
-        animator.SetBool("meleeAttack", true);
+        animator.SetBool(AttackMode, true);
 
         // TODO: Maybe other stuff...
-        // Nothing for melee
+        attackController.SetAttack(AttackMode, true);
     }
 }
