@@ -7,6 +7,8 @@ public class MeleeEnemyController : EnemyController
 {
     public const string AttackMode = "meleeAttack";
 
+    public Damage dmg;
+
     protected override void Initialize()
     {
         // Default spawnPos and movingRange
@@ -41,5 +43,18 @@ public class MeleeEnemyController : EnemyController
 
         // TODO: Maybe other stuff...
         attackController.SetAttack(AttackMode, true);
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        Debug.Log("Error: attacking! " + isAttacking);
+        if (isAttacking && col.gameObject.name.Equals("remy")) {
+            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+            if (enemy != null)
+            {
+                Debug.Log("Error: attacking!");
+                enemy.TakeDamage(dmg);
+            }
+        }
     }
 }

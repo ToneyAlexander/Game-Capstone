@@ -23,7 +23,7 @@ public class BasicAttackController : MonoBehaviour
     {
         target = GameObject.Find("remy");
         stats = GetComponent<StatBlock>();
-        tta = ttaBase = 0.25f;
+        tta = ttaBase = 0.5f;
         weaponDmgMin = 35f;
         weaponDmgMax = 45f;
         stats.RangedAttackMult = 0.23f;
@@ -58,7 +58,9 @@ public class BasicAttackController : MonoBehaviour
 
     void MeleeAttack()
     {
-        
+        Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
+        dmg = stats.RealDamage(dmg);
+        GetComponent<MeleeEnemyController>().dmg = dmg;
     }
 
     void ProjectileAttack()
