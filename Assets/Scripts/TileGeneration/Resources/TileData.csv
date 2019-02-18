@@ -1,17 +1,17 @@
 Name,ID,X,Y,Z,Rotation,Top,Right,Bottom,Left,Prefab0,Weight0,Prefab1,Weight1
 Water,0,0,0,0,0,0,0,0,0,TriangularTiles/None
-Cliff Fourth Top Left,1,0,0,0,90,1,0,0,1,TriangularTiles/Eighth
-Cliff Fourth Top Right,2,0,0,0,180,1,1,0,0,TriangularTiles/Eighth
-Cliff Fourth Bottom Right,3,0,0,0,270,0,1,1,0,TriangularTiles/Eighth
-Cliff Fourth Bottom Left,4,0,0,0,0,0,0,1,1,TriangularTiles/Eighth
-Cliff Half Left,5,0,0,0,0,1,0,1,0,TriangularTiles/Half
-Cliff Half Top,6,0,0,0,90,0,1,0,1,TriangularTiles/Half
-Cliff Half Right,7,0,0,0,180,1,0,1,0,TriangularTiles/Half
-Cliff Half Bottom,8,0,0,0,270,0,1,0,1,TriangularTiles/Half
-Cliff Eighth Top Left,9,0,0,0,90,1,1,1,1,TriangularTiles/SevenEighth
-Cliff Eighth Top Right,10,0,0,0,180,1,1,1,1,TriangularTiles/SevenEighth
-Cliff Eighth Bottom Right,1,0,0,0,270,1,1,1,1,TriangularTiles/SevenEighth
-Cliff Eighth Bottom Left,12,0,0,0,0,1,1,1,1,TriangularTiles/SevenEighth
+Cliff Fourth Top Left,1,0,0,0,90,1,0,0,1,SquareTiles/Fourth
+Cliff Fourth Top Right,2,0,0,0,180,1,1,0,0,SquareTiles/Fourth
+Cliff Fourth Bottom Right,3,0,0,0,270,0,1,1,0,SquareTiles/Fourth
+Cliff Fourth Bottom Left,4,0,0,0,0,0,0,1,1,SquareTiles/Fourth
+Cliff Half Left,5,0,0,0,0,1,0,1,0,SquareTiles/Half
+Cliff Half Top,6,0,0,0,90,0,1,0,1,SquareTiles/Half
+Cliff Half Right,7,0,0,0,180,1,0,1,0,SquareTiles/Half
+Cliff Half Bottom,8,0,0,0,270,0,1,0,1,SquareTiles/Half
+Cliff Eighth Top Left,9,0,0,0,90,1,1,1,1,SquareTiles/ThreeFourth
+Cliff Eighth Top Right,10,0,0,0,180,1,1,1,1,SquareTiles/ThreeFourth
+Cliff Eighth Bottom Right,1,0,0,0,270,1,1,1,1,SquareTiles/ThreeFourth
+Cliff Eighth Bottom Left,12,0,0,0,0,1,1,1,1,SquareTiles/ThreeFourth
 Ramp Fourth Top Left,13
 Ramp Fourth Top Right,14
 Ramp Fourth Bottom Right,15
@@ -32,4 +32,4 @@ Transition Land Left Cliff Bottom,29
 Transition Land Top Cliff Left,30
 Transition Land Right Cliff Top,31
 Transition Land Bottom Cliff Right,32
-HighNone,33,0,1,0,0,1,1,1,1,SquareTiles/Flat
+HighNone,33,0,4,0,0,1,1,1,1,SquareTiles/Flat
