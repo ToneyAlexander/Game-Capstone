@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
             float sin = Mathf.Sin(angle);
             float cos = Mathf.Cos(angle);
             cameras[i] = new Vector3(cameraPosition.x * cos - cameraPosition.z * sin, cameraPosition.y, cameraPosition.x * sin - cameraPosition.z * cos);
-            Debug.Log(cameras[i]);
+//            Debug.Log(cameras[i]);
             angle += Mathf.PI * 2 / cameras.Length;
         }
     }
@@ -42,11 +42,11 @@ public class CameraController : MonoBehaviour
             direction = (direction + 1) % cameras.Length;
         }
         RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
-        Debug.Log(hits.Length);
+//        Debug.Log(hits.Length);
         foreach(RaycastHit h in hits)
         {
             Renderer rend = h.transform.GetComponent<Renderer>();
-            Debug.Log(h.transform.position);
+//            Debug.Log(h.transform.position);
             if (rend)
             {
                 Color col = rend.material.color;
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
         transform.LookAt(player.transform);
         Vector3 offset = new Vector3();
         Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);
-        Debug.Log(mousePositionRelativetoCenter);
+//        Debug.Log(mousePositionRelativetoCenter);
         mousePositionRelativetoCenter = Vector3.ClampMagnitude(mousePositionRelativetoCenter, 1.0f);
         if (mousePositionRelativetoCenter.magnitude >= 0.1f)
         {

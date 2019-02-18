@@ -14,8 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 45017215dd3462b4e8224a5ef4483c27, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: 4ed5d953163cc42b4a20ab5c5fa81d92, type: 2}
+    statValue: -0.1
+  - statName: {fileID: 11400000, guid: c488d8d74d03ad942ac0f6d29924e7c7, type: 2}
+    statValue: 0.2
+  Name: Playing With Fire
+  Desc: 
+  grants: []
+  uiCoords: {x: 100, y: 200}
+  sprite: {fileID: 0}

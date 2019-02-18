@@ -7,12 +7,14 @@ public class TestPlayerClass : MonoBehaviour
 {
     PlayerClass pClass;
     int index;
-    public List<PerkPrototype> perks;
+    public ClassPrototype ClassL;
+    List<PerkPrototype> perks;
 
     // Start is called before the first frame update
     void Start()
     {
         pClass = GetComponent<PlayerClass>();
+        perks = ClassL.Perks;
 
         pClass.allPerks = perks;
         //List<Perk> testPerkSet = new List<Perk>
@@ -51,5 +53,9 @@ public class TestPlayerClass : MonoBehaviour
                 }
             }
         }
+    }
+    public PlayerClass GetClass()
+    {
+        return pClass;
     }
 }

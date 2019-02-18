@@ -59,7 +59,7 @@ public abstract class EnemyController : MonoBehaviour
         UniqueUpdate();
 
         // Get player's current position
-        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 2.0f, 0.0f);
+        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 3.0f, 0.0f);
 
         agent.isStopped = false;
         animator.SetBool("meleeAttack", false);
@@ -100,7 +100,7 @@ public abstract class EnemyController : MonoBehaviour
         }
 
         // Display field of view and moving area only in Scene (not in Game)
-        DisplayVisionAndRange();
+        // DisplayVisionAndRange();
     }
 
     // Gets a random position within enemy's moving area
@@ -175,39 +175,39 @@ public abstract class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /* Debugging code */
+    /* Debugging code (Don't delete them) */
 
-    private void DisplayVisionAndRange()
-    {
-        // View
-        int stepCount = Mathf.RoundToInt(visionAngle * 5f);
-        float stepAngleSize = visionAngle / stepCount;
+    // private void DisplayVisionAndRange()
+    // {
+    //     // View
+    //     int stepCount = Mathf.RoundToInt(visionAngle * 5f);
+    //     float stepAngleSize = visionAngle / stepCount;
 
-        for (int i = 0; i < stepCount; i++)
-        {
-            float angle = transform.eulerAngles.y - visionAngle / 2 + stepAngleSize * i;
-            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * visionDistance, Color.red);
-        }
+    //     for (int i = 0; i < stepCount; i++)
+    //     {
+    //         float angle = transform.eulerAngles.y - visionAngle / 2 + stepAngleSize * i;
+    //         Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * visionDistance, Color.red);
+    //     }
 
-        // Moving Range
-        int stepCount2 = Mathf.RoundToInt(360f * 5f);
-        float stepAngleSize2 = 360f / stepCount2;
+    //     // Moving Range
+    //     int stepCount2 = Mathf.RoundToInt(360f * 5f);
+    //     float stepAngleSize2 = 360f / stepCount2;
 
-        for (int i = 0; i < stepCount2; i++)
-        {
-            float angle2 = 360f / 2 + stepAngleSize2 * i;
-            Debug.DrawLine(spawnPos, spawnPos + DirFromAngle(angle2, true) * movingRange, Color.yellow);
-        }
-    }
+    //     for (int i = 0; i < stepCount2; i++)
+    //     {
+    //         float angle2 = 360f / 2 + stepAngleSize2 * i;
+    //         Debug.DrawLine(spawnPos, spawnPos + DirFromAngle(angle2, true) * movingRange, Color.yellow);
+    //     }
+    // }
 
-    private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-    {
-        if (!angleIsGlobal)
-        {
-            angleInDegrees += transform.eulerAngles.y;
-        }
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    }
+    // private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    // {
+    //     if (!angleIsGlobal)
+    //     {
+    //         angleInDegrees += transform.eulerAngles.y;
+    //     }
+    //     return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    // }
 
     /* Abstract methods */
 

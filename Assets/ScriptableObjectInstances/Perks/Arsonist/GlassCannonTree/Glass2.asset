@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Glass2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 448da77091e93704d9bb9812c85fad14, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 8f3d2aec6be2216498ceabb0f42b2de0, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: 4ed5d953163cc42b4a20ab5c5fa81d92, type: 2}
+    statValue: -0.15
+  - statName: {fileID: 11400000, guid: dd9fbb836d8d8904fa1d6e1ce7977d09, type: 2}
+    statValue: 5
+  Name: Give In To Madness
+  Desc: 
+  grants: []
+  uiCoords: {x: 150, y: 160}
+  sprite: {fileID: 0}

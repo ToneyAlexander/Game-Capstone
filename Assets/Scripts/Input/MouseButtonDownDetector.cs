@@ -7,6 +7,7 @@ namespace CCC.Inputs
     /// for a given list of mouse buttons that an IDestinationMover is 
     /// interested in.
     /// </summary>
+    [RequireComponent(typeof(MousePositionDetector))]
     sealed class MouseButtonDownDetector : MonoBehaviour
     {
         [SerializeField]
@@ -14,12 +15,19 @@ namespace CCC.Inputs
 
         private IDestinationMover destinationMover;
 
+        private MousePositionDetector mousePositionDetector;
+
         [SerializeField]
         private InputManager inputManager;
 
-        private void Start()
+        private void Awake()
         {
             destinationMover = GetComponent<IDestinationMover>();
+            mousePositionDetector = GetComponent<MousePositionDetector>();
+        }
+
+        private void Start()
+        {
             if (destinationMover == null)
             {
                 Debug.LogError(gameObject + "doesn't have an IDestinationMover" +
@@ -38,7 +46,7 @@ namespace CCC.Inputs
                         inputManager.HandleMouseButtonDown(
                             button,
                             destinationMover,
-                            Input.mousePosition
+                            mousePositionDetector.CalculateWorldPosition()
                         );
                     }
                 }

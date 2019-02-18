@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Myst3
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 3df8102358750db4dab0ccc647a067c1, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 67e0445f0c995f642a56296f268c30b6, type: 2}
+  - {fileID: 11400000, guid: 003074ca47f93c441b2b9688d3dee862, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: 3c0e3ddbbaa2b40fa92446d0329c3729, type: 2}
+    statValue: 30
+  Name: Mystagogy
+  Desc: 
+  grants: []
+  uiCoords: {x: 155, y: 102}
+  sprite: {fileID: 0}
