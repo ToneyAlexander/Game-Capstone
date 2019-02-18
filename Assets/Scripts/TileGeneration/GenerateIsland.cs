@@ -32,11 +32,14 @@ public class GenerateIsland : MonoBehaviour
 
     //max 3 right now
     //fix csv/code to be able to work with arbitaray number more
-    private static int LAYERS_ABOVE_BEACH = 6;
-    private static int TILES_PER_LAYER = 33;
-    private int NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
+    [SerializeField]
+    private int LAYERS_ABOVE_BEACH = 6;
 
-    private int LESS_THAN_LAND_REGEN_COUNT = 10;
+    private static int TILES_PER_LAYER = 33;
+    private int NUMBER_OF_TILES = TILES_PER_LAYER + 1;
+
+    [SerializeField]
+    private int LESS_THAN_LAND_REGEN_COUNT = 00;
 
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
@@ -48,6 +51,8 @@ public class GenerateIsland : MonoBehaviour
         //TODO: remove these lines
         ISLE_WIDE = ISLE_WIDE_HIGH;
         ISLE_HIGH = ISLE_WIDE_HIGH;
+
+        NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
 
         Vector3 startingLocation = Vector3.zero;
 
@@ -87,6 +92,8 @@ public class GenerateIsland : MonoBehaviour
         List<Vector2Int> updated = new List<Vector2Int>();
 
         bool[,][] island = initializeCircleMap(updated);
+
+        //FORCE CENTER TO BE TALLEST TILE
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
