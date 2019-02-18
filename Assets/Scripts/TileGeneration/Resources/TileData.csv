@@ -1,4 +1,4 @@
-Name,ID,X,Y,Z,Rotation,Top,Right,Bottom,Left,Prefab0,Weight0,Prefab1,Weight1
+Name,ID,X,Y,Z,Rotation,Top,Right,Bottom,Left,Prefab0
 Water,0,0,0,0,0,0,0,0,0,TriangularTiles/None
 Cliff Fourth Top Left,1,0,0,0,90,1,0,0,1,SquareTiles/Fourth
 Cliff Fourth Top Right,2,0,0,0,180,1,1,0,0,SquareTiles/Fourth
@@ -12,24 +12,24 @@ Cliff Eighth Top Left,9,0,0,0,90,1,1,1,1,SquareTiles/ThreeFourth
 Cliff Eighth Top Right,10,0,0,0,180,1,1,1,1,SquareTiles/ThreeFourth
 Cliff Eighth Bottom Right,1,0,0,0,270,1,1,1,1,SquareTiles/ThreeFourth
 Cliff Eighth Bottom Left,12,0,0,0,0,1,1,1,1,SquareTiles/ThreeFourth
-Ramp Fourth Top Left,13
-Ramp Fourth Top Right,14
-Ramp Fourth Bottom Right,15
-Ramp Fourth Bottom Left,16
-Ramp Half Left,17
-Ramp Half Top,18
-Ramp Half Right,19
-Ramp Half Bottom,20
-Ramp Eighth Top Left,21
-Ramp Eighth Top Right,22
-Ramp Eighth Bottom Right,23
-Ramp Eighth Bottom Left,24
-Transition Land Left Cliff Top,25
-Transition Land Top Cliff Right,26
-Transition Land Right Cliff Bottom,27
-Transition Land Bottom Cliff Left,28
-Transition Land Left Cliff Bottom,29
-Transition Land Top Cliff Left,30
-Transition Land Right Cliff Top,31
-Transition Land Bottom Cliff Right,32
+Ramp Fourth Top Left,13,0,0,0,90,-1,-1,-1,-1,SquareTiles/CornerRamp
+Ramp Fourth Top Right,14,0,0,0,180,-1,-1,-1,-1,SquareTiles/CornerRamp
+Ramp Fourth Bottom Right,15,0,0,0,270,-1,-1,-1,-1,SquareTiles/CornerRamp
+Ramp Fourth Bottom Left,16,0,0,0,0,-1,-1,-1,-1,SquareTiles/CornerRamp
+Ramp Half Left,17,0,0,0,0,-1,-1,-1,-1,SquareTiles/HalfRamp
+Ramp Half Top,18,0,0,0,90,-1,-1,-1,-1,SquareTiles/HalfRamp
+Ramp Half Right,19,0,0,0,180,-1,-1,-1,-1,SquareTiles/HalfRamp
+Ramp Half Bottom,20,0,0,0,270,-1,-1,-1,-1,SquareTiles/HalfRamp
+Ramp Eighth Top Left,21,0,0,0,90,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Top Right,22,0,0,0,180,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Bottom Right,23,0,0,0,270,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Bottom Left,24,0,0,0,0,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
+Transition Land Left Cliff Top,25,0,0,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece2
+Transition Land Top Cliff Right,26,0,0,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece2
+Transition Land Right Cliff Bottom,27,0,0,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece2
+Transition Land Bottom Cliff Left,28,0,0,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece2
+Transition Land Left Cliff Bottom,29,0,0,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece
+Transition Land Top Cliff Left,30,0,0,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece
+Transition Land Right Cliff Top,31,0,0,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece
+Transition Land Bottom Cliff Right,32,0,0,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece
 HighNone,33,0,4,0,0,1,1,1,1,SquareTiles/Flat

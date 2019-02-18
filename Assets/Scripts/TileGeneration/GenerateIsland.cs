@@ -27,10 +27,10 @@ public class GenerateIsland : MonoBehaviour
 
     private int ISLE_WIDE = 50;
     private int ISLE_HIGH = 50;
-    private int NUMBER_OF_TILES = 14;
+    private int NUMBER_OF_TILES = 34;
 
     private int WATER_INDEX = 0;
-    private int LAND_INDEX = 13;
+    private int LAND_INDEX = 33;
 
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
@@ -62,6 +62,8 @@ public class GenerateIsland : MonoBehaviour
                 tiles.Add(t);
             }
         }
+        Debug.Log(tiles[33].ID);
+        Debug.Log(tiles.Count);
 
         List<Vector2Int> updated = new List<Vector2Int>();
 
@@ -105,6 +107,13 @@ public class GenerateIsland : MonoBehaviour
     {
         //initialize map
         bool[,][] island = new bool[ISLE_WIDE, ISLE_HIGH][];
+
+        bool[] basic = new bool[NUMBER_OF_TILES];
+        for(int b = 0; b < basic.Length; b++)
+        {
+            basic[b] = true;
+        }
+        //basic.Clone();
         for (int m = 0; m < island.GetLength(0); m++)
         {
             for (int n = 0; n < island.GetLength(1); n++)
@@ -121,7 +130,7 @@ public class GenerateIsland : MonoBehaviour
                 }
                 else
                 {
-                    island[m, n] = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
+                    island[m, n] = (bool[])basic.Clone();
                 }
             }
         }
@@ -242,7 +251,7 @@ public class GenerateIsland : MonoBehaviour
 
     private bool[] makeWater()
     {
-        bool[] r = new bool[] { false, false, false, false, false, false, false, false, false, false, false, false, false, false };
+        bool[] r = new bool[NUMBER_OF_TILES];
         r[WATER_INDEX] = true;
         return r;
     }
@@ -382,7 +391,7 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 0, 10, 0, false);
         validTest(index, 0, 11, 0, false);
         validTest(index, 0, 12, 0, false);
-        validTest(index, 0, 13, 0, false);
+        validTest(index, 0, 33, 0, false);
 
         validTest(index, 0, 0, 1, true);
         validTest(index, 0, 1, 1, false);
@@ -397,7 +406,7 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 0, 10, 1, false);
         validTest(index, 0, 11, 1, false);
         validTest(index, 0, 12, 1, false);
-        validTest(index, 0, 13, 1, false);
+        validTest(index, 0, 33, 1, false);
 
         validTest(index, 0, 0, 2, true);
         validTest(index, 0, 1, 2, false);
@@ -412,7 +421,7 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 0, 10, 2, false);
         validTest(index, 0, 11, 2, false);
         validTest(index, 0, 12, 2, false);
-        validTest(index, 0, 13, 2, false);
+        validTest(index, 0, 33, 2, false);
 
         validTest(index, 0, 0, 3, true);
         validTest(index, 0, 1, 3, true);
@@ -427,8 +436,74 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 0, 10, 3, false);
         validTest(index, 0, 11, 3, false);
         validTest(index, 0, 12, 3, false);
-        validTest(index, 0, 13, 3, false);
+        validTest(index, 0, 33, 3, false);
 
+
+        validTest(index, 33, 0, 0, false);
+        validTest(index, 33, 1, 0, false);
+        validTest(index, 33, 2, 0, false);
+        validTest(index, 33, 3, 0, false);
+        validTest(index, 33, 4, 0, false);
+        validTest(index, 33, 5, 0, false);
+        validTest(index, 33, 6, 0, false);
+        validTest(index, 33, 7, 0, false);
+        validTest(index, 33, 8, 0, true);
+        validTest(index, 33, 9, 0, false);
+        validTest(index, 33, 10, 0, false);
+        validTest(index, 33, 11, 0, true);
+        validTest(index, 33, 12, 0, true);
+        validTest(index, 33, 33, 0, true);
+
+        validTest(index, 33, 0, 1, false);
+        validTest(index, 33, 1, 1, false);
+        validTest(index, 33, 2, 1, false);
+        validTest(index, 33, 3, 1, false);
+        validTest(index, 33, 4, 1, false);
+        validTest(index, 33, 5, 1, true);
+        validTest(index, 33, 6, 1, false);
+        validTest(index, 33, 7, 1, false);
+        validTest(index, 33, 8, 1, false);
+        validTest(index, 33, 9, 1, true);
+        validTest(index, 33, 10, 1, false);
+        validTest(index, 33, 11, 1, false);
+        validTest(index, 33, 12, 1, true);
+        validTest(index, 33, 33, 1, true);
+
+        validTest(index, 33, 0, 2, false);
+        validTest(index, 33, 1, 2, false);
+        validTest(index, 33, 2, 2, false);
+        validTest(index, 33, 3, 2, false);
+        validTest(index, 33, 4, 2, false);
+        validTest(index, 33, 5, 2, false);
+        validTest(index, 33, 6, 2, true);
+        validTest(index, 33, 7, 2, false);
+        validTest(index, 33, 8, 2, false);
+        validTest(index, 33, 9, 2, true);
+        validTest(index, 33, 10, 2, true);
+        validTest(index, 33, 11, 2, false);
+        validTest(index, 33, 12, 2, false);
+        validTest(index, 33, 33, 2, true);
+
+        validTest(index, 33, 0, 3, false);
+        validTest(index, 33, 1, 3, false);
+        validTest(index, 33, 2, 3, false);
+        validTest(index, 33, 3, 3, false);
+        validTest(index, 33, 4, 3, false);
+        validTest(index, 33, 5, 3, false);
+        validTest(index, 33, 6, 3, false);
+        validTest(index, 33, 7, 3, true);
+        validTest(index, 33, 8, 3, false);
+        validTest(index, 33, 9, 3, false);
+        validTest(index, 33, 10, 3, true);
+        validTest(index, 33, 11, 3, true);
+        validTest(index, 33, 12, 3, false);
+        validTest(index, 33, 33, 3, true);
+
+
+        Debug.Log("IMPORTANT");
+        validTest(index, 13, 14, 1, true);
+
+        /*
         validTest(index, 13, 0, 0, false);
         validTest(index, 13, 1, 0, false);
         validTest(index, 13, 2, 0, false);
@@ -487,7 +562,7 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 13, 10, 3, true);
         validTest(index, 13, 11, 3, true);
         validTest(index, 13, 12, 3, false);
-        validTest(index, 13, 13, 3, true);
+        validTest(index, 13, 13, 3, true);*/
 
         /*validTest(index, 8, 0, 0, true);
         validTest(index, 8, 1, 0, false);
@@ -787,8 +862,8 @@ public class GenerateIsland : MonoBehaviour
     {
         switch (index)
         {
-            case 13:
-                return 33;
+            //case 13:
+            //    return 33;
             default:
                 return index;
         }
