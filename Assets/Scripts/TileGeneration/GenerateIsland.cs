@@ -28,7 +28,9 @@ public class GenerateIsland : MonoBehaviour
     private int ISLE_WIDE = 50;
     private int ISLE_HIGH = 50;
 
-    private static int LAYERS_ABOVE_BEACH = 1;
+    //max 3 right now
+    //fix csv/code to be able to work with arbitaray number more
+    private static int LAYERS_ABOVE_BEACH = 3;
     private int NUMBER_OF_TILES = 33 * (LAYERS_ABOVE_BEACH + 1) + 1;
 
     private int LESS_THAN_LAND_REGEN_COUNT = 10;
@@ -71,6 +73,8 @@ public class GenerateIsland : MonoBehaviour
         List<Vector2Int> updated = new List<Vector2Int>();
 
         bool[,][] island = initializeCircleMap(updated);
+        island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
+        updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
         drawBullshit(startingLocation);
 
@@ -266,8 +270,13 @@ public class GenerateIsland : MonoBehaviour
 
     private bool[] makeWater()
     {
+        return makeTile(WATER_INDEX);
+    }
+
+    private bool[] makeTile(int tileID)
+    {
         bool[] r = new bool[NUMBER_OF_TILES];
-        r[WATER_INDEX] = true;
+        r[tileID] = true;
         return r;
     }
 
