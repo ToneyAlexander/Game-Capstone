@@ -39,18 +39,17 @@ public class BasicAttackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (meleeAttack)
-        {
-            MeleeAttack();
-        }
+        tta -= Time.deltaTime;
 
-        if (rangedAttack)
+        while(tta < 0)
         {
-            tta -= Time.deltaTime;
-
-            while(tta < 0)
+            tta += ttaBase;
+            if (meleeAttack)
             {
-                tta += ttaBase;
+                MeleeAttack();
+            }
+            if (rangedAttack)
+            {
                 ProjectileAttack();
             }
         }
@@ -61,6 +60,13 @@ public class BasicAttackController : MonoBehaviour
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         dmg = stats.RealDamage(dmg);
         GetComponent<MeleeEnemyController>().dmg = dmg;
+
+        StatBlock enemy = GameObject.Find("remy").GetComponent<StatBlock>();
+        if (enemy != null)
+        {
+            Debug.Log("Error: attacking!");
+            enemy.TakeDamage(dmg);            
+        }
     }
 
     void ProjectileAttack()

@@ -29,8 +29,6 @@ public abstract class EnemyController : MonoBehaviour
     // Enemy health
     protected float healthPoints;
 
-    protected bool isAttacking;
-
     /* Note: attackDistance <= visionDistance <= movingRange */
     
     protected GameObject player;
@@ -59,16 +57,12 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
 
-        isAttacking = false;
-
         Initialize();
     }
 
     void Update()
     {
         UniqueUpdate();
-
-        isAttacking = false;
 
         // Get player's current position
         Vector3 playerPos = player.transform.position + new Vector3(0.0f, 3.0f, 0.0f);
@@ -89,7 +83,6 @@ public abstract class EnemyController : MonoBehaviour
             // enemy stops near the target and attacks it
             if (InAttackRange(playerPos))
             {
-                isAttacking = true;
                 Attack(playerPos);
             }
         }
