@@ -64,7 +64,6 @@ public class BasicAttackController : MonoBehaviour
         StatBlock enemy = GameObject.Find("remy").GetComponent<StatBlock>();
         if (enemy != null)
         {
-            Debug.Log("Error: attacking!");
             enemy.TakeDamage(dmg);            
         }
     }
