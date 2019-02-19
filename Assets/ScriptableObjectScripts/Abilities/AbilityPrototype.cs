@@ -14,6 +14,11 @@ namespace CCC.Abilities
             get { return abilityName; }
         }
 
+        public AbilityType AbilityType
+        {
+            get { return abilityType; }
+        }
+
         public string TypeString
         {
             get { return typeString; }
@@ -41,6 +46,9 @@ namespace CCC.Abilities
         /// </summary>
         [SerializeField]
         private string abilityName;
+
+        [SerializeField]
+        private AbilityType abilityType = AbilityType.Null;
 
         [SerializeField]
         private string typeString;
