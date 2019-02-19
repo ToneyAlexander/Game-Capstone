@@ -9,6 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236b32674baf74bb08eb03f5695441ae, type: 3}
-  m_Name: PlayerAbilitySlotDictionary
+  m_Script: {fileID: 11500000, guid: 287ffe4f9046e1b4f882635e1444fd6d, type: 3}
+  m_Name: Ignite
   m_EditorClassIdentifier: 
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: 54cfd71de344d4a80abdb3605347fa59, type: 2}
+    value: -75
+  buffName: Ignite
+  duration: 5.5
