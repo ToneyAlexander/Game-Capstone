@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.45
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3493708, g: 0.35895514, b: 0.3709096, a: 0.45}
+  m_IndirectSpecularColor: {r: 0.34934393, g: 0.35896015, b: 0.37110236, a: 0.45}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -322,6 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4935c4959a6b047b98b9c28838b5f946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitySlotMappings: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d,
+    type: 2}
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   abilitySlotOneButton: {fileID: 11400000, guid: 3c4db673da4d14e97b8303a0f7928ce9,
     type: 2}
@@ -332,8 +334,6 @@ MonoBehaviour:
   abilitySlotFourButton: {fileID: 11400000, guid: 36d41e1ce37404f0dade53fb1a76f2d4,
     type: 2}
   abilitySlotFiveButton: {fileID: 11400000, guid: 04c9c572b91dc4cf7af60e193e6cb1c3,
-    type: 2}
-  abilitySlotMappings: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d,
     type: 2}
 --- !u!4 &290558799 stripped
 Transform:
@@ -378,6 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed61a05beb41445c86287d171415ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &310038213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400088, guid: 6b75b8fd59bff4a1691eceb12f1b90a8,
