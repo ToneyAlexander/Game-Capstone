@@ -52,6 +52,16 @@ namespace CCC.Items
         }
 
         /// <summary>
+        /// Gets the maximum number of affixes that an Item based off of this 
+        /// ItemPrototype can have.
+        /// </summary>
+        /// <value>The maximum number of affixes.</value>
+        public int MaxNumberAffixes
+        {
+            get { return maxNumberAffixes; }
+        }
+
+        /// <summary>
         /// Gets a list of StatPrototype that define are used to create the
         /// Stats that Items based off of this ItemPrototype will have.
         /// </summary>
@@ -94,6 +104,13 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private string internalDescription = "";
+
+        /// <summary>
+        /// The maximum number of affixes that Items generated from this 
+        /// ItemPrototype can possibly have.
+        /// </summary>
+        [SerializeField]
+        private int maxNumberAffixes;
 
         /// <summary>
         /// The list of StatPrototyeSlotEntry used by this ItemPrototype. All
