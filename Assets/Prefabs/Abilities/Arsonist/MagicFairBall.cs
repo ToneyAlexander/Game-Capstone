@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicFairBall : MonoBehaviour
+public class MagicFairBall : ProjectileBehave
 {
-    public float speed = 15f;
-    public float hitOffset = 0f;
     public bool UseFirePointRotation;
     public GameObject hit;
     public GameObject flash;
 
-    public Damage dmg;
-
-    void Start()
+    new void Start()
     {
+        base.Start();
+
         if (flash != null)
         {
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
@@ -36,9 +34,9 @@ public class MagicFairBall : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider col)
+    new void PlayAnim(Collider col)
     {
-    
+        Debug.Log("Playing animation");
         Vector3 pos = col.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         if (hit != null)
@@ -60,7 +58,6 @@ public class MagicFairBall : MonoBehaviour
                 Destroy(hitInstance, hitPsParts.main.duration);
             }
         }
-
-        Destroy(gameObject);
     }
+    
 }

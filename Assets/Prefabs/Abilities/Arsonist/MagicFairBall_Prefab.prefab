@@ -19134,6 +19134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fff89a79b304821b7a404b362685e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  ttl: 0
+  friendly: 0
+  UseFirePointRotation: 0
+  hit: {fileID: 1299586717950946, guid: 5740ae2e014a8b14886dad7e67951070, type: 3}
+  flash: {fileID: 1920765516895132, guid: df8bef245b1373047a1e1320f5ed6ac2, type: 3}
 --- !u!135 &135537387491394736
 SphereCollider:
   m_ObjectHideFlags: 0
