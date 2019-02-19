@@ -28,13 +28,21 @@ public class ProjectileBehave : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        if (!friendly && col.gameObject.name.Equals("Player_Paddle")) {
-            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+        StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+        ProjectileBehave colProj = col.gameObject.GetComponent<ProjectileBehave>();
+        if (colProj == null) //check to see if we collided with another projectile. if so ignore
+        {
             if (enemy != null)
             {
-                enemy.TakeDamage(dmg);
+                if (friendly != enemy.Friendly) {
+                    enemy.TakeDamage(dmg);
+                    Destroy(gameObject);
+                }
             }
-            Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

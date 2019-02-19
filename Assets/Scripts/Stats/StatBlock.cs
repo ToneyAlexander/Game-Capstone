@@ -52,6 +52,8 @@ public class StatBlock : MonoBehaviour
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
 
+    public bool Friendly;
+
     public static float CalcMult(float baseV, float multV)
     {
         if (multV > 0)
