@@ -127,10 +127,10 @@ public class GenerateIsland : MonoBehaviour
         if (makeEnvironment)
         {
             replaceObjects(60, treeList.EnvironmentList, "Tree");
-            replaceObjects(20, grassList.EnvironmentList, "Grass");
-            replaceObjects(20, mediumObjectList.EnvironmentList, "Rock");
+            replaceObjects(40, grassList.EnvironmentList, "Grass");
+            replaceObjects(30, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(30, particleEffects.EnvironmentList, "Particles");
-            replaceObjects(1, specialObjects.EnvironmentList, "SpecialObject");
+            replaceObjects(2, specialObjects.EnvironmentList, "SpecialObject");
         }
     }
 
