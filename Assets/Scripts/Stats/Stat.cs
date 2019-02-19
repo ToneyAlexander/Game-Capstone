@@ -1,9 +1,11 @@
-﻿namespace CCC.Stats
+﻿using System;
+
+namespace CCC.Stats
 {
     /// <summary>
     /// Represents a stat in the game.
     /// </summary>
-    public struct Stat
+    public struct Stat : IComparable<Stat>, IEquatable<Stat>
     {
         public const string STR = "str";
         public const string STR_MULT = "strx";
@@ -46,6 +48,14 @@
         public const string CRIT_CHANCE = "critchan";
         public const string CRIT_CHANCE_MULT = "critchanx";
 
+
+        public const string AS_DMG_MIN = "as_dmgmin";
+        public const string AS_DMG_MAX = "as_dmgmax";
+        public const string AS_CD = "as_cd";
+        public const string AS_PROJ_COUNT = "as_projcount";
+        public const string AS_PROJ_SPEED = "as_projspeed";
+        public const string AS_PROJ_SPREAD = "as_projspread";
+
         /// <summary>
         /// Gets the name of this Stat.
         /// </summary>
@@ -77,6 +87,17 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="T:CCC.Stats.Stat"/> 
+        /// struct with the value set to 0.
+        /// </summary>
+        /// <param name="name">The name for the new Stat.</param>
+        public Stat(string name)
+        {
+            this.name = name;
+            value = 0f;
+        }
+
+        /// <summary>
         /// The name of this Stat.
         /// </summary>
         private readonly string name;
@@ -85,5 +106,15 @@
         /// The value of this Stat.
         /// </summary>
         private readonly float value;
+
+        public int CompareTo(Stat other)
+        {
+            return Name.CompareTo(other.Name);
+        }
+
+        public bool Equals(Stat other)
+        {
+            return Name.Equals(other.Name);
+        }
     }
 }

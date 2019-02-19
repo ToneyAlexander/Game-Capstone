@@ -6,11 +6,17 @@ using CCC.Stats;
 namespace CCC.Abilities
 {
     [CreateAssetMenu]
-    public sealed class Ability : ScriptableObject
+    public sealed class AbilityPrototype : ScriptableObject
     {
+
         public string AbilityName
         {
             get { return abilityName; }
+        }
+
+        public string TypeString
+        {
+            get { return typeString; }
         }
 
         public Sprite Icon
@@ -28,6 +34,8 @@ namespace CCC.Abilities
             get { return stats; }
         }
 
+        public Ability Instance { get { return new Ability(this); }}
+
         /// <summary>
         /// The name of this Ability.
         /// </summary>
@@ -35,8 +43,13 @@ namespace CCC.Abilities
         private string abilityName;
 
         [SerializeField]
+        private string typeString;
+
+        [SerializeField]
         private Sprite icon;
 
+        [SerializeField]
+        private MonoBehaviour script;
         /// <summary>
         /// The prefab that represents the animation of this Ability.
         /// </summary>
@@ -52,10 +65,13 @@ namespace CCC.Abilities
         private void OnEnable()
         {
             stats = new List<Stat>();
-            foreach (AbilityStatSlotEntry entry in statSlots)
+            if (statSlots != null)
             {
-                Stat stat = new Stat(entry.StatName, entry.Value);
-                stats.Add(stat);
+                foreach (AbilityStatSlotEntry entry in statSlots)
+                {
+                    Stat stat = new Stat(entry.StatName, entry.Value);
+                    stats.Add(stat);
+                }
             }
         }
         #endregion

@@ -39,6 +39,7 @@ namespace CCC.Abilities
 
             if (usableAbilities.Set.Contains(ability))
             {
+                ability.use = true;
                 Debug.Log(gameObject.name + " used Ability " + ability.AbilityName);
             }
             else

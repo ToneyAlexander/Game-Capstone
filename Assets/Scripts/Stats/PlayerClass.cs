@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Abilities;
 
 [RequireComponent(typeof(ControlStatBlock))]
 public class PlayerClass : MonoBehaviour
 {
+    [HideInInspector]
     public List<PerkPrototype> allPerks;
+    [HideInInspector]
     public List<PerkPrototype> takenPerks;
+    public AbilitySet abilities;
+    public AbilitySlotDictionary abilDict;
     private ControlStatBlock stats;
 
     public static bool CheckPrereq(PerkPrototype p, List<PerkPrototype> taken)
@@ -34,6 +39,12 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
+    public static void AddAbilityToParent(GameObject o, string typeString)
+    {
+        System.Type type = System.Type.GetType(typeString);
+        Component fv = o.AddComponent(type);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +58,33 @@ public class PlayerClass : MonoBehaviour
         {
             takenPerks.Add(p);
             stats.StatsChanged();
+            foreach (AbilityPrototype a in p.grants)
+            {
+                Ability instA = a.Instance;
+                abilities.Set.Add(instA);
+                //TODO: repalce with ui thing
+                if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
+                {
+                    abilDict.SetSlotAbility(AbilitySlot.One, instA);
+                    AddAbilityToParent(gameObject, instA.TypeString);
+                } else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
+                {
+                    abilDict.SetSlotAbility(AbilitySlot.Two, instA);
+                    AddAbilityToParent(gameObject, instA.TypeString);
+                } else if(abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
+                {
+                    abilDict.SetSlotAbility(AbilitySlot.Three, instA);
+                    AddAbilityToParent(gameObject, instA.TypeString);
+                } else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
+                {
+                    abilDict.SetSlotAbility(AbilitySlot.Four, instA);
+                    AddAbilityToParent(gameObject, instA.TypeString);
+                } else if(abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
+                {
+                    abilDict.SetSlotAbility(AbilitySlot.Five, instA);
+                    AddAbilityToParent(gameObject, instA.TypeString);
+                }
+            }
             return true;
         } else
         {
