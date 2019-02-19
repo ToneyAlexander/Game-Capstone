@@ -34,6 +34,9 @@ namespace CCC.Abilities
         /// </param>
         public void Use(Ability ability, Vector3 mouseWorldPosition)
         {
+            RemyAttacking.ability = ability;
+            RemyAttacking.attackDirection = mouseWorldPosition;
+
             if (usableAbilities.Set.Contains(ability))
             {
                 Debug.Log(gameObject.name + " used Ability " + ability.AbilityName);
