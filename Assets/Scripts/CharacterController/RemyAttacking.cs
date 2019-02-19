@@ -5,7 +5,7 @@ using UnityEngine;
 public class RemyAttacking : MonoBehaviour
 {
     public static Vector3 attackDirection;
-    public static CCC.Abilities.Ability ability;
+    public static Ability ability;
     
 
 
@@ -17,7 +17,7 @@ public class RemyAttacking : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        ablilityName = ability.name;
+        ablilityName = ability.AbilityName;
     }
 
     // Update is called once per frame
