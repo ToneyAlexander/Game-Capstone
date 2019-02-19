@@ -4,11 +4,16 @@ using UnityEngine;
 using CCC.Abilities;
 using CCC.Stats;
 
+[RequireComponent(typeof(StatBlock))]
+[RequireComponent(typeof(PlayerClass))]
+[RequireComponent(typeof(MousePositionDetector))]
 public class FireballVolley : MonoBehaviour, IAbilityBase
 {
     private List<Stat> abilStats;
-    public Ability abil;
-    GameObject projectile;
+    private StatBlock stats;
+    private Ability abil;
+    private MousePositionDetector mpd;
+    private GameObject projectile;
 
     private float cdRemain;
 
@@ -49,14 +54,18 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
 
     void FireProjectile()
     {
-        //TODO: Apply player stats
         GameObject obj = Instantiate(projectile, gameObject.transform.position, new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
-        //TODO: look at mouse
+        //obj.transform.LookAt(mpd.CalculateWorldPosition());
+        var lookPos = mpd.CalculateWorldPosition() - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+
         obj.transform.Rotate(Vector3.up * 90 * Random.Range(-projSpread, projSpread), Space.World);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax),false,false,true);
-        pbh.dmg = dmg;
+        pbh.dmg = stats.RealDamage(dmg);
         pbh.friendly = true;
         pbh.ttl = 2f;
     }
@@ -64,8 +73,11 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: Read in player stats somehow
-        //TODO: Detect stat changes
+        //TODO: Detect ability stat changes
+        mpd = GetComponent<MousePositionDetector>();
+        stats = GetComponent<StatBlock>();
+        PlayerClass pc = GetComponent<PlayerClass>();
+        abil = pc.abilDict.GetAbility(AbilitySlot.One);//TODO find by name not hardcoded slot.
         projectile = abil.Prefab;
         abilStats = abil.Stats;
         cdRemain = 0;
@@ -84,6 +96,10 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         {
             cdRemain -= Time.deltaTime;
         }
-        Use();
+        if(abil.use)
+        {
+            abil.use = false;
+            Use();
+        }
     }
 }

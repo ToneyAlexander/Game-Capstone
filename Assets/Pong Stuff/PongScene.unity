@@ -1688,7 +1688,9 @@ GameObject:
   - component: {fileID: 1211844021}
   - component: {fileID: 1211844024}
   - component: {fileID: 1211844023}
-  - component: {fileID: 1211844025}
+  - component: {fileID: 1211844028}
+  - component: {fileID: 1211844027}
+  - component: {fileID: 1211844026}
   m_Layer: 0
   m_Name: Player_Paddle
   m_TagString: Paddle
@@ -1862,7 +1864,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
---- !u!114 &1211844025
+  abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
+  abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+--- !u!114 &1211844026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1871,10 +1875,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211844013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adb6edcf9521164488c52bf20ec618d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c50c40ec5a6b4f1eb3c568b217fb866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abil: {fileID: 11400000, guid: 215ff9dad6d8f4275bc645067e4a5267, type: 2}
+  usableAbilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
+--- !u!114 &1211844027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed61a05beb41445c86287d171415ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1211844028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4935c4959a6b047b98b9c28838b5f946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilitySlotMappings: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d,
+    type: 2}
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  abilitySlotOneButton: {fileID: 11400000, guid: 3c4db673da4d14e97b8303a0f7928ce9,
+    type: 2}
+  abilitySlotTwoButton: {fileID: 11400000, guid: 563bae75ea9c3489fac18f93cd4d9255,
+    type: 2}
+  abilitySlotThreeButton: {fileID: 11400000, guid: 8dedd32e6b17d4fe9a96532ff9144254,
+    type: 2}
+  abilitySlotFourButton: {fileID: 11400000, guid: 36d41e1ce37404f0dade53fb1a76f2d4,
+    type: 2}
+  abilitySlotFiveButton: {fileID: 11400000, guid: 04c9c572b91dc4cf7af60e193e6cb1c3,
+    type: 2}
 --- !u!1 &1346748038
 GameObject:
   m_ObjectHideFlags: 0

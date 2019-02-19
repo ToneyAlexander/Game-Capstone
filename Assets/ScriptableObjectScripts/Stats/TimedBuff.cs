@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CCC.Stats;
 
+[CreateAssetMenu]
 public class TimedBuff : ScriptableObject
 {
     public string BuffName
