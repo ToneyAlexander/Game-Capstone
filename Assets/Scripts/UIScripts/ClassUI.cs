@@ -55,6 +55,53 @@ public class ClassUI : MonoBehaviour
         //  takenPerks = playerClass.takenPerks;
         foreach (PerkPrototype proto in playerClass.allPerks)
         {
+            Vector3 position = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
+            foreach (PerkPrototype req in proto.Require)
+            {
+                Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                Vector3 direction = other - position;
+                GameObject line = new GameObject();
+                Image l = line.AddComponent<Image>();
+                line.transform.parent = content.transform;
+                RectTransform rect = line.GetComponent<RectTransform>();
+                line.name = proto.Name + " requires " + req.Name;
+                rect.pivot = new Vector2(0, 0.5f);
+                line.transform.localPosition = position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                rect.Rotate(new Vector3(0, 0, angle));
+                if (proto.RequireAll)
+                {
+                    l.color = Color.black;
+                }
+                else
+                {
+                    l.color = Color.grey;
+                }
+                
+            }
+            foreach (PerkPrototype req in proto.BlockedBy)
+            {
+                Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                Vector3 direction = other - position;
+                GameObject line = new GameObject();
+                Image l = line.AddComponent<Image>();
+                line.transform.parent = content.transform;
+                RectTransform rect = line.GetComponent<RectTransform>();
+                line.name = proto.Name + " is blocked by " + req.Name;
+                rect.pivot = new Vector2(0, 0.5f);
+                line.transform.localPosition = position;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                rect.Rotate(new Vector3(0, 0, angle));
+                l.color = Color.red;
+              
+
+            }
+        }
+        foreach (PerkPrototype proto in playerClass.allPerks)
+        {
+           
             GameObject image = new GameObject();
             PerkHolder perkHolder = image.AddComponent<PerkHolder>();
             perkHolder.perkInfo = proto;
@@ -100,33 +147,37 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
-            if (!selected)
+            if (test)
             {
-                statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
-                
-                
-                if (test.taken)
+                if (!selected)
                 {
-                    colorEdit.color = Color.green;
-                }
-                else if (test.blocked)
-                {
-                    colorEdit.color = Color.red;
-                }
-                else if (test.available)
-                {
-                    colorEdit.color = Color.yellow;
+                    statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
+
+
+                    if (test.taken)
+                    {
+                        colorEdit.color = Color.green;
+                    }
+                    else if (test.blocked)
+                    {
+                        colorEdit.color = Color.red;
+                    }
+                    else if (test.available)
+                    {
+                        colorEdit.color = Color.yellow;
+                    }
+                    else
+                    {
+                        colorEdit.color = Color.white;
+                    }
                 }
                 else
                 {
-                    colorEdit.color = Color.white;
+                    colorEdit.color = test.precheck(mousedOver);
+                    statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
                 }
             }
-            else
-            {
-                colorEdit.color = test.precheck(mousedOver);
-                statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
-            }
+            
 
         }
         
@@ -144,7 +195,12 @@ public class ClassUI : MonoBehaviour
             for (int i = 0; i < content.transform.childCount; i++)
             {
                 PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
-                test.recheck(clickedEvent.perkInfo);
+                if (test)
+                {
+                    test.recheck(clickedEvent.perkInfo);
+                }
+                
+                
             }
         }
 

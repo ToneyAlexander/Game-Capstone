@@ -15,14 +15,15 @@ public class BasicAttackController : MonoBehaviour
     private float weaponDmgMin;
     private float weaponDmgMax;
 
-    private bool attack;
+    private bool meleeAttack;
+    private bool rangedAttack;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("remy");
         stats = GetComponent<StatBlock>();
-        tta = ttaBase = 0.25f;
+        tta = ttaBase = 0.5f;
         weaponDmgMin = 35f;
         weaponDmgMax = 45f;
         stats.RangedAttackMult = 0.23f;
@@ -31,25 +32,43 @@ public class BasicAttackController : MonoBehaviour
         stats.CritChanceMult = 1.5f;
         stats.CritDamage = 2.3f;
 
-        attack = false;
+        meleeAttack = false;
+        rangedAttack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (attack)
-        {
-            tta -= Time.deltaTime;
+        tta -= Time.deltaTime;
 
-            while(tta < 0)
+        while(tta < 0)
+        {
+            tta += ttaBase;
+            if (meleeAttack)
             {
-                tta += ttaBase;
-                AttackPlayer();
+                MeleeAttack();
+            }
+            if (rangedAttack)
+            {
+                ProjectileAttack();
             }
         }
     }
 
-    void AttackPlayer()
+    void MeleeAttack()
+    {
+        Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
+        dmg = stats.RealDamage(dmg);
+        GetComponent<MeleeEnemyController>().dmg = dmg;
+
+        StatBlock enemy = GameObject.Find("remy").GetComponent<StatBlock>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(dmg);            
+        }
+    }
+
+    void ProjectileAttack()
     {
         // Old code - to be removed...
         // GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -80,8 +99,15 @@ public class BasicAttackController : MonoBehaviour
         pm.dmg = dmg;
     }
 
-    public void SetAttack(bool _attack)
+    public void SetAttack(string attackMode, bool attack)
     {
-        attack = _attack;
+        if (attackMode == MeleeEnemyController.AttackMode)
+        {
+            meleeAttack = attack;
+        }
+        else if (attackMode == RangedEnemyController.AttackMode)
+        {
+            rangedAttack = attack;
+        }
     }
 }
