@@ -23,11 +23,11 @@ public class ControlStatBlock : MonoBehaviour
     public float FortMult { get; set; }
 
     private List<TimedBuff> buffs;
-
     private StatBlock stats;
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
+    public TimedBuffPrototype testBuff;
 
     public StatBlock GetStatBlock()
     {
@@ -37,6 +37,7 @@ public class ControlStatBlock : MonoBehaviour
     public void ApplyBuff(TimedBuff tb)
     {
         buffs.Add(tb);
+        StatsChanged();
     }
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,11 @@ public class ControlStatBlock : MonoBehaviour
 
         buffs = new List<TimedBuff>();
         oldHpPrecent = -10000f;
+
+        if (testBuff != null)
+        {
+            buffs.Add(testBuff.Instance);
+        }
 
         StatsChanged();
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using CCC.Stats;
 
 [CreateAssetMenu]
-public class TimedBuff : ScriptableObject
+public class TimedBuffPrototype : ScriptableObject
 {
     public string BuffName
     {
@@ -19,10 +19,10 @@ public class TimedBuff : ScriptableObject
     {
         get { return duration; }
     }
-    public float DurationLeft
+
+    public TimedBuff Instance
     {
-        get { return durationLeft; }
-        set { durationLeft = value; }
+        get { return new TimedBuff(this); }
     }
 
     [SerializeField]
@@ -31,12 +31,10 @@ public class TimedBuff : ScriptableObject
     private string buffName;
     [SerializeField]
     private float duration;
-    private float durationLeft;
     private List<Stat> stats;
 
     private void OnEnable()
     {
-        durationLeft = duration;
         stats = new List<Stat>();
         if (statSlots != null)
         {
