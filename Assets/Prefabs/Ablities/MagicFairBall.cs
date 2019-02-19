@@ -38,8 +38,7 @@ public class MagicFairBall : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-
-        //speed = 0;
+    
         Vector3 pos = col.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         if (hit != null)
