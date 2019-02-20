@@ -134,11 +134,11 @@ public class GenerateIsland : MonoBehaviour
     private void deleteIsland()
     {
         //Destroy stuff on terrain
-        deleteObjects("Tree");
-        deleteObjects("Grass");
-        deleteObjects("Rock");
-        deleteObjects("Particles");
-        deleteObjects("SpecialObject");
+        //deleteObjects("Tree");
+        //deleteObjects("Grass");
+        //deleteObjects("Rock");
+        //deleteObjects("Particles");
+        //deleteObjects("SpecialObject");
         while (generatedMap.Count > 0)
         {
             Object.Destroy(generatedMap[0]);
@@ -193,6 +193,8 @@ public class GenerateIsland : MonoBehaviour
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
     {
+        GameObject stuff = new GameObject();
+
         GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
         //a tree's spawn chance shall be 75%
         RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
@@ -210,9 +212,12 @@ public class GenerateIsland : MonoBehaviour
                 GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity);
                 newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
                 newObject.tag = type;
+
+                newObject.transform.SetParent(stuff.transform);
             }
             Destroy(x);
         }
+        generatedMap.Add(stuff);
     }
     private void deleteObjects(string type)
     {
