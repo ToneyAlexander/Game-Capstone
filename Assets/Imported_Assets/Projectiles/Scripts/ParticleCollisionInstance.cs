@@ -32,7 +32,6 @@ public class ParticleCollisionInstance : MonoBehaviour
                 Destroy(instance, DestroyTimeDelay);
             }
         }
-
         Destroy(gameObject, DestroyTimeDelay + 0.5f);
     }
 }
