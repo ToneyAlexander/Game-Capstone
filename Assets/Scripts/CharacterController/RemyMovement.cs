@@ -28,7 +28,7 @@ public class RemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
         this.transform.position = initialPosition;
-        destination = transform.position;
+        destination = initialPosition;
     }
 
     // Update is called once per frame
