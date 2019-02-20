@@ -56,7 +56,7 @@ namespace CCC.Abilities
             if (ability.abilityType == AbilityType.Magic)
             {
                 Debug.Log("Ability: " + ability.abilityType);
-                remyAttacking.MagicAttack();
+                remyAttacking.MagicAttack(ability);
             }
 
             if (usableAbilities.Set.Contains(ability))

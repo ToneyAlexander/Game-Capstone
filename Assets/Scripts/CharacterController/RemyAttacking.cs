@@ -6,7 +6,6 @@ public class RemyAttacking : MonoBehaviour
 {
     public static Vector3 attackDirection;
     public static Ability ability;
-    
 
 
     private Animator animator;
@@ -44,7 +43,9 @@ public class RemyAttacking : MonoBehaviour
 
         if (StopMagicAttack())
         {
-            animator.SetBool("isIdleToMagic", false);
+            animator.SetBool("isFireballIgnite", false);
+            animator.SetBool("isFireballVolley", false);
+
         }
 
         //if (ShouldUnEquip())
@@ -60,20 +61,35 @@ public class RemyAttacking : MonoBehaviour
     {
         RotateToEnemy();
         animator.SetBool("isIdleToMelee", true);
-
     }
 
-    public void MagicAttack()
+    public void MagicAttack(Ability ability)
     {
         RotateToEnemy();
-        animator.SetBool("isIdleToMagic", true);
+        if (ability.AbilityName.Equals("Fireball Ignite")) {
+            animator.SetBool("isFireballIgnite", true);
+        }
+        if (ability.AbilityName.Equals("Fireball Volley"))
+        {
+            animator.SetBool("isFireballVolley", true);
+        }
 
     }
+
+    //public void MagicAttack02()
+    //{
+    //    RotateToEnemy();
+    //    animator.SetBool("isIdleToMagic02", true);
+
+    //}
+
+
 
     void RotateToEnemy()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 01")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")
             ) {
             if (transform.position != attackDirection)
             {
@@ -127,11 +143,14 @@ public class RemyAttacking : MonoBehaviour
     bool StopMagicAttack()
     {
         bool result = false;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 01") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
-        {
-            result = true;
-        }
+            if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley") ||
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")) 
+
+                && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+            {
+                result = true;
+            }
+        
         return result;
     }
 

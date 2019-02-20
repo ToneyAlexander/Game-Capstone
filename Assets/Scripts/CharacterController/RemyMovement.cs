@@ -11,7 +11,7 @@ public class RemyMovement : MonoBehaviour
     public float rotationSpeed;
     public float movingSpeed;
     private Quaternion playerRot;
-    private  Animator animator;
+    private Animator animator;
     private float timer;
     private float EPSSION;
     private float reLocateDelay;
@@ -72,7 +72,9 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isIdleToMelee", false);
 
-            animator.SetBool("isIdleToMagic", false);
+            animator.SetBool("isFireballIgnite", false);
+
+            animator.SetBool("isFireballVolley", false);
 
             animator.SetBool("isRunning", true);
 
