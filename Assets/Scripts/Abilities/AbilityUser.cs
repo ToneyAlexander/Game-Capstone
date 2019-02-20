@@ -45,6 +45,7 @@ namespace CCC.Abilities
 
             //if(remyAttacking != null)
             //remyAttacking.MeleeAttack();
+
             Debug.Log("Ability: "+ability.abilityType);
             if (ability.abilityType == AbilityType.Melee)
             {

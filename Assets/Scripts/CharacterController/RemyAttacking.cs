@@ -64,7 +64,7 @@ public class RemyAttacking : MonoBehaviour
         //{
             RotateToEnemy();
 
-            animator.SetBool("isIdleToMelee", true);
+            animator.SetBool("isIdleToMagic", true);
         //}
     }
 
