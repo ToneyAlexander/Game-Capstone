@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -10,6 +11,9 @@ public class GenerateIsland : MonoBehaviour
 
     //[SerializeField]
     //private TileData tileData;
+    
+    [SerializeField]
+    private NavMeshSurface surface;
 
     [SerializeField]
     private int tileSize;
@@ -129,6 +133,8 @@ public class GenerateIsland : MonoBehaviour
         }
 
         createIsland();
+
+        surface.BuildNavMesh();
     }
 
     private void deleteIsland()
@@ -153,8 +159,9 @@ public class GenerateIsland : MonoBehaviour
 
         //FORCE CENTER TO BE TALLEST TILE
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES - 1);
-        remy.transform.position = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
-        //remy.GetComponent<RemyMovement>().destination = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        Vector3 remyStart = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        remy.transform.position = remyStart;
+        remy.GetComponent<RemyMovement>().setDetination(remyStart);
 
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
