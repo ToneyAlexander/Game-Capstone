@@ -305,6 +305,7 @@ public class ClassUI : MonoBehaviour
         // if (Perk)
         if (clickedEvent.available && !clickedEvent.blocked)
         {
+            Debug.Log(clickedEvent.perkInfo.Name);
             playerClass.TakePerk(clickedEvent.perkInfo);
             for (int i = 0; i < content.transform.childCount; i++)
             {
