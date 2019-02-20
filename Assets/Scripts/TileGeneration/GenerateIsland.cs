@@ -32,7 +32,12 @@ public class GenerateIsland : MonoBehaviour
     private EnvironmentData specialObjects;
 
     [SerializeField]
+    private Vector3 startingLocation = Vector3.zero;
+
+    [SerializeField]
     private bool makeEnvironment = false;
+    [SerializeField]
+    private bool drawTileSet = false;
 
     List<TilePiece> tiles;
 
@@ -68,8 +73,6 @@ public class GenerateIsland : MonoBehaviour
         ISLE_HIGH = ISLE_WIDE_HIGH;
 
         NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
-
-        Vector3 startingLocation = Vector3.zero;
 
         //read in file 
         index = generateIndex(img);
@@ -112,7 +115,10 @@ public class GenerateIsland : MonoBehaviour
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
-        drawBullshit(Vector3.zero);
+        if (drawTileSet)
+        {
+            drawBullshit(Vector3.zero);
+        }
 
         //Propagate from initial set up
         propagate(island, updated, index);
