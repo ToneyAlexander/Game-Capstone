@@ -27,6 +27,8 @@ namespace CCC.Abilities
         [SerializeField]
         private AbilitySet usableAbilities;
         private RemyAttacking remyAttacking;
+        private AbilityType abilityType;
+        
 
         /// <summary>
         /// Use the given Ability.
