@@ -28,7 +28,13 @@ public class RemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
         this.transform.position = initialPosition;
-        destination = initialPosition;
+        //destination = initialPosition;
+    }
+
+    //TODO: DELETE THIS AND FIX IN GENERATEISLAND
+    public void setDetination(Vector3 Destination)
+    {
+        destination = Destination;
     }
 
     // Update is called once per frame
