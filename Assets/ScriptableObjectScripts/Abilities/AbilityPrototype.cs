@@ -56,8 +56,6 @@ namespace CCC.Abilities
         [SerializeField]
         private Sprite icon;
 
-        [SerializeField]
-        private MonoBehaviour script;
         /// <summary>
         /// The prefab that represents the animation of this Ability.
         /// </summary>

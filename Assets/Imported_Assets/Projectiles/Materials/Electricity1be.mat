@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Electricity1be
   m_Shader: {fileID: 4800000, guid: d890af244f7f1ee499b7b772b784d572, type: 3}
-  m_ShaderKeywords: _EMISSION _USEDEPTH_ON
+  m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -101,7 +101,7 @@ Material:
     - _SrcBlend: 1
     - _Steps: 3
     - _UVSec: 0
-    - _Usedepth: 1
+    - _Usedepth: 0
     - _Uspeed: 0.189
     - _Vspeed: 0.225
     - _ZWrite: 1

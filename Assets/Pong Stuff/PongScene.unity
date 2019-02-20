@@ -1691,6 +1691,7 @@ GameObject:
   - component: {fileID: 1211844028}
   - component: {fileID: 1211844027}
   - component: {fileID: 1211844026}
+  - component: {fileID: 1211844025}
   m_Layer: 0
   m_Name: Player_Paddle
   m_TagString: Paddle
@@ -1825,7 +1826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testBuff: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
 --- !u!114 &1211844022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,6 +1868,19 @@ MonoBehaviour:
   takenPerks: []
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+--- !u!114 &1211844025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211844013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c04acfa0eebc12d4e8f9dfb805e678c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
 --- !u!114 &1211844026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1893,6 +1906,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed61a05beb41445c86287d171415ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1211844028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,7 +1977,7 @@ GameObject:
   - component: {fileID: 1375073769}
   - component: {fileID: 1375073768}
   - component: {fileID: 1375073767}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

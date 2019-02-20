@@ -25,12 +25,19 @@ public class TimedBuffPrototype : ScriptableObject
         get { return new TimedBuff(this); }
     }
 
+    public bool IsUnique
+    {
+        get { return isUnique; }
+    }
+
     [SerializeField]
     private List<StatSlotEntry> statSlots;
     [SerializeField]
     private string buffName;
     [SerializeField]
     private float duration;
+    [SerializeField]
+    private bool isUnique;
     private List<Stat> stats;
 
     private void OnEnable()
