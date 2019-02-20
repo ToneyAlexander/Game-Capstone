@@ -133,17 +133,17 @@ public class GenerateIsland : MonoBehaviour
 
     private void deleteIsland()
     {
+        //Destroy stuff on terrain
+        deleteObjects("Tree");
+        deleteObjects("Grass");
+        deleteObjects("Rock");
+        deleteObjects("Particles");
+        deleteObjects("SpecialObject");
         while (generatedMap.Count > 0)
         {
             Object.Destroy(generatedMap[0]);
             generatedMap.RemoveAt(0);
         }
-        //Destroy stuff on terrain
-        deleteObjects(treeList.EnvironmentList, "Tree");
-        deleteObjects(grassList.EnvironmentList, "Grass");
-        deleteObjects(mediumObjectList.EnvironmentList, "Rock");
-        deleteObjects(particleEffects.EnvironmentList, "Particles");
-        deleteObjects(specialObjects.EnvironmentList, "SpecialObject");
     }
 
     private void createIsland()
@@ -214,7 +214,7 @@ public class GenerateIsland : MonoBehaviour
             Destroy(x);
         }
     }
-    private void deleteObjects(List<GameObject> environmentList, string type)
+    private void deleteObjects(string type)
     {
         GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
         foreach (GameObject x in listOfObjects)
