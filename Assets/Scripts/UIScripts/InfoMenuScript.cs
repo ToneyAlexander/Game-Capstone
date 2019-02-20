@@ -65,12 +65,24 @@ public class InfoMenuScript : MonoBehaviour
                 ev.triggers.Add(entry);
                 
             }
+           
         }
+        tabs.SetActive(false);
+        stats.SetActive(false);
+        inventory.SetActive(false);
+        classinfo.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            
+            inventory.SetActive(!tabs.activeSelf);
+            stats.SetActive(false);
+            classinfo.SetActive(false);
+            tabs.SetActive(!tabs.activeSelf);
+        }
     }
     void OnClickInventory()
     {
@@ -85,7 +97,11 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(true);
         inventory.SetActive(false);
+        ClassUI classui =  classinfo.GetComponent<ClassUI>();
+        classui.updatePlayerClass();
+        classui.reloadGraph();
 
+        
     }
     void OnClickStats()
     {
