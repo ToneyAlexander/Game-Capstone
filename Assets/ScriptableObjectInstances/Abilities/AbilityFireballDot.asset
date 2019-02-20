@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
   m_Name: AbilityFireballDot
   m_EditorClassIdentifier: 
-  abilityName: 
+  abilityName: Fireball Ignite
   abilityType: 2
-  typeString: 
+  typeString: FireballIgnite
   icon: {fileID: 0}
-  script: {fileID: 0}
-  prefab: {fileID: 0}
-  statSlots: []
+  prefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c, type: 3}
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: 3c9effc3661081340b193ea123758eb1, type: 2}
+    value: 16
+  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+    value: 35
+  - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+    value: 45
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 3
+  - statIdentifier: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
+    value: 0.25

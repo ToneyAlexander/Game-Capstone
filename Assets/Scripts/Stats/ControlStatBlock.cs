@@ -27,7 +27,6 @@ public class ControlStatBlock : MonoBehaviour
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
-    public TimedBuffPrototype testBuff;
 
     public StatBlock GetStatBlock()
     {
@@ -36,9 +35,13 @@ public class ControlStatBlock : MonoBehaviour
 
     public void ApplyBuff(TimedBuff tb)
     {
-        buffs.Add(tb);
-        StatsChanged();
+        if (!tb.IsUnique || !buffs.Contains(tb))
+        {
+            buffs.Add(tb);
+            StatsChanged();
+        }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,11 +51,6 @@ public class ControlStatBlock : MonoBehaviour
 
         buffs = new List<TimedBuff>();
         oldHpPrecent = -10000f;
-
-        if (testBuff != null)
-        {
-            buffs.Add(testBuff.Instance);
-        }
 
         StatsChanged();
     }
@@ -294,15 +292,25 @@ public class ControlStatBlock : MonoBehaviour
         {
             TimedBuff tb = buffs[i];
             tb.DurationLeft -= Time.deltaTime;
-            if(tb.DurationLeft <= 0f)
+            Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
+            if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
                 needsUpdate = true;
+
             }
         }
         if(needsUpdate)
         {
             StatsChanged();
+        }
+    }
+
+    public void OnHit(Damage dmg)
+    {
+        foreach(TimedBuff tb in dmg.buffs)
+        {
+            ApplyBuff(tb);
         }
     }
 }

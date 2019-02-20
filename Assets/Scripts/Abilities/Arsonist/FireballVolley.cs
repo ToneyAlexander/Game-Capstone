@@ -66,7 +66,9 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         obj.transform.Rotate(Vector3.up * 90 * Random.Range(-projSpread, projSpread), Space.World);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax),false,false,true);
+        //Debug.Log("Magic Dmg: " + dmg.magicDmgReal);
         pbh.dmg = stats.RealDamage(dmg);
+        //Debug.Log("Real Magic Dmg: " + pbh.dmg.magicDmgReal);
         pbh.friendly = true;
         pbh.ttl = 2f;
     }

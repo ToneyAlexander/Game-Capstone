@@ -42,16 +42,9 @@ namespace CCC.Abilities
         {
             RemyAttacking.ability = ability;
             RemyAttacking.attackDirection = mouseWorldPosition;
-
-            //if (ability.abilityType == AbilityType.Melee)
-            //{
+            
+            if(remyAttacking != null)
                 remyAttacking.MeleeAttack();
-            //}
-            if (ability.abilityType == AbilityType.Magic)
-            {
-                remyAttacking.MagicAttack();
-            }
-
 
             if (usableAbilities.Set.Contains(ability))
             {
