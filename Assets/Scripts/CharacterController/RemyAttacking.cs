@@ -17,23 +17,27 @@ public class RemyAttacking : MonoBehaviour
 
     public GameObject swordOnHand;
     public GameObject swordOnBack;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        ablilityName = ability.AbilityName;
+        //ablilityName = ability.AbilityName;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        MeleeAttack();
-        if (ShouldEquip())
-        {
-            EquipSword();
-        }
+        RotateToEnemy();
+
+        //MeleeAttack();
+
+        //if (ShouldEquip())
+        //{
+        //    EquipSword();
+        //}
 
         //if (StopMeleeAttack())
         //{
@@ -45,42 +49,41 @@ public class RemyAttacking : MonoBehaviour
         //    UnEquipSword();
         //}
 
-        MagicAttack();
+        //MagicAttack();
 
     }
 
-    void MeleeAttack()
+
+    public void MeleeAttack()
     {
-        if (Input.GetButton("MeleeAttackTest"))
-        {
-            RotateToEnemy();
-            animator.SetBool("isIdleToMelee", true);
-        }
+        RotateToEnemy();
+        animator.SetBool("isIdleToMelee", true);
+
     }
 
     void MagicAttack()
     {
-
-        if (Input.GetButton("MagicAttackTest"))
-        {
+        //if (Input.GetButton("MagicAttackTest"))
+        //{
             RotateToEnemy();
-            //Debug.Log("abilityName: " + ablilityName);
-            //Debug.Log("attackDirection: " + attackDirection);
-            animator.SetBool("isIdleToMagic", true);
-        }
+
+            animator.SetBool("isIdleToMelee", true);
+        //}
     }
 
     void RotateToEnemy()
     {
-        if (transform.position != attackDirection)
-        {
-            lookAtEnemy = attackDirection - transform.position;
-  
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
-        }
-        else
-        {
-            lookAtEnemy = transform.position;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")) {
+            if (transform.position != attackDirection)
+            {
+                lookAtEnemy = attackDirection - transform.position;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
+            }
+            else
+            {
+                lookAtEnemy = transform.position;
+            }
         }
     }
 
@@ -118,15 +121,15 @@ public class RemyAttacking : MonoBehaviour
         //}
 
         //if doesn't move
-        if (Vector3.Distance(RemyMovement.destination, this.transform.position) > 1.0f)
-        {
-            Debug.Log("Destination: " + RemyMovement.destination);
-            Debug.Log("This Position: " + this.transform.position);
-            result = true;
-        }
-
+        //if (Vector3.Distance(RemyMovement.destination, this.transform.position) > 1.0f)
+        //{
+        //    Debug.Log("Destination: " + RemyMovement.destination);
+        //    Debug.Log("This Position: " + this.transform.position);
+        //    result = true;
+        //}
         return result;
     }
+
     void EquipSword()
     {
         swordOnHand.SetActive(true);
