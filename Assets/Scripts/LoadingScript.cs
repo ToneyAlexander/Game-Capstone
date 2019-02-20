@@ -59,10 +59,10 @@ public class LoadingScript : MonoBehaviour
     IEnumerator LoadMainMenu()
     {
         //Waits for 8 seconds before executing to show the logoState off
-        yield return new WaitForSeconds(8);
+        //yield return new WaitForSeconds(8);
 
         //Asynchronous operation to load SampleScene
-        AsyncOperation async = SceneManager.LoadSceneAsync("TimeBox2Scene");
+        AsyncOperation async = SceneManager.LoadSceneAsync("ProcGen");
 
         //Wait until the scene's done loading
         while (!async.isDone)

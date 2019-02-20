@@ -172,7 +172,7 @@ public class GenerateIsland : MonoBehaviour
 
         //FORCE CENTER TO BE TALLEST TILE
         island[width / 2, height / 2] = makeTile(tileCount - 1, tileCount);
-        Vector3 remyStart = new Vector3((width / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (layersAboveBeach + 1), (height / 2) * tileSize + tileSize / 2);
+        Vector3 remyStart = new Vector3((width / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (layersAboveBeach + 1), (height / 2) * tileSize);
         remy.transform.position = remyStart;
         remy.GetComponent<RemyMovement>().setDetination(remyStart);
 
