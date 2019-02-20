@@ -27,6 +27,9 @@ public class CameraController : MonoBehaviour
 //            Debug.Log(cameras[i]);
             angle += Mathf.PI * 2 / cameras.Length;
         }
+        Vector3 position = player.transform.position;
+        position += cameras[direction];
+        transform.position = position;
     }
     
     // Update is called once per frame
