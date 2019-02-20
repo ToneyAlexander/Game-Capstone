@@ -44,7 +44,7 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
 
     void FireProjectile()
     {
-        GameObject obj = Instantiate(projectile, gameObject.transform.position, new Quaternion());
+        GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
         //obj.transform.LookAt(mpd.CalculateWorldPosition());
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
