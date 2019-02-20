@@ -13,7 +13,7 @@ public class GenerateEnemies : MonoBehaviour
     public int rangedNumber;
     private GameObject[] rangedEnemies;
 
-    void Start()
+    public void Generate()
     {
         meleeEnemies = new GameObject[meleeNumber];
         for (int i = 0; i < meleeNumber; i++)

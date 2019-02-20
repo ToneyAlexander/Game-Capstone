@@ -16,8 +16,9 @@ public class ClassUI : MonoBehaviour
     Vector3 visibleLoc = new Vector3(-275, 0, 0);
     Vector3 hiddenLoc = new Vector3(-110, 0, 0);
     Text descText;
+    bool loaded = false;
     // Start is called before the first frame update
-    void Start()
+    public void updatePlayerClass()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
         if (gameObjects.Length > 0)
@@ -33,6 +34,125 @@ public class ClassUI : MonoBehaviour
                 if (temp2)
                 {
                     playerClass = temp2.GetClass();
+
+                }
+            }
+        }
+    }
+    public void reloadGraph()
+    {
+        
+        if (!loaded)
+        {
+         //   Debug.Log("aljd;adjk;adj;ad");
+            loaded = true;
+            foreach (PerkPrototype proto in playerClass.allPerks)
+            {
+                Vector3 position = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
+                foreach (PerkPrototype req in proto.Require)
+                {
+                    Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                    Vector3 direction = other - position;
+                    GameObject line = new GameObject();
+                    Image l = line.AddComponent<Image>();
+                    line.transform.parent = content.transform;
+                    RectTransform rect = line.GetComponent<RectTransform>();
+                    line.name = proto.Name + " requires " + req.Name;
+                    rect.pivot = new Vector2(0, 0.5f);
+                    line.transform.localPosition = position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                    rect.Rotate(new Vector3(0, 0, angle));
+                    if (proto.RequireAll)
+                    {
+                        l.color = Color.black;
+                    }
+                    else
+                    {
+                        l.color = Color.grey;
+                    }
+
+                }
+                foreach (PerkPrototype req in proto.BlockedBy)
+                {
+                    Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                    Vector3 direction = other - position;
+                    GameObject line = new GameObject();
+                    Image l = line.AddComponent<Image>();
+                    line.transform.parent = content.transform;
+                    RectTransform rect = line.GetComponent<RectTransform>();
+                    line.name = proto.Name + " is blocked by " + req.Name;
+                    rect.pivot = new Vector2(0, 0.5f);
+                    line.transform.localPosition = position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                    rect.Rotate(new Vector3(0, 0, angle));
+                    l.color = Color.red;
+
+
+                }
+            }
+            foreach (PerkPrototype proto in playerClass.allPerks)
+            {
+
+                GameObject image = new GameObject();
+                PerkHolder perkHolder = image.AddComponent<PerkHolder>();
+                perkHolder.perkInfo = proto;
+                if (proto.Require.Count == 0)
+                {
+                    perkHolder.available = true;
+                }
+                image.transform.parent = content.transform;
+                image.name = proto.Name;
+                //RectTransform rect = image.GetComponent<RectTransform>();
+                image.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                // image.width = 30;
+                //image.height = 30;
+                image.AddComponent<Image>();
+                //image.GetComponent<Image>.sprite = proto.sprite;
+                image.transform.localPosition = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
+                EventTrigger ev = image.AddComponent<EventTrigger>();
+
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((eventData) => { OnPerkClick((PointerEventData)eventData); });
+                ev.triggers.Add(entry);
+
+                EventTrigger.Entry entry2 = new EventTrigger.Entry();
+                entry2.eventID = EventTriggerType.PointerEnter;
+                entry2.callback.AddListener((eventData) => {
+                    OnPerkEnter((PointerEventData)eventData);
+                });
+                ev.triggers.Add(entry2);
+
+                EventTrigger.Entry entry3 = new EventTrigger.Entry();
+                entry3.eventID = EventTriggerType.PointerExit;
+                entry3.callback.AddListener((eventData) => { OnPerkExit((PointerEventData)eventData); });
+                ev.triggers.Add(entry3);
+
+
+            }
+
+        }
+
+    }
+    void Awake()
+    {
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
+        if (gameObjects.Length > 0)
+        {
+            PlayerClass temp = gameObjects[0].GetComponent<PlayerClass>();
+            if (temp)
+            {
+                playerClass = temp;
+            }
+            else
+            {
+                TestPlayerClass temp2 = gameObjects[0].GetComponent<TestPlayerClass>();
+                if (temp2)
+                {
+                    playerClass = temp2.GetClass();
+                   
                 }
             }
         }
@@ -53,91 +173,9 @@ public class ClassUI : MonoBehaviour
         descText = statsBlock.GetComponentInChildren<Text>();
         //  allPerks = playerClass.allPerks;
         //  takenPerks = playerClass.takenPerks;
-        foreach (PerkPrototype proto in playerClass.allPerks)
-        {
-            Vector3 position = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
-            foreach (PerkPrototype req in proto.Require)
-            {
-                Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
-                Vector3 direction = other - position;
-                GameObject line = new GameObject();
-                Image l = line.AddComponent<Image>();
-                line.transform.parent = content.transform;
-                RectTransform rect = line.GetComponent<RectTransform>();
-                line.name = proto.Name + " requires " + req.Name;
-                rect.pivot = new Vector2(0, 0.5f);
-                line.transform.localPosition = position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
-                rect.Rotate(new Vector3(0, 0, angle));
-                if (proto.RequireAll)
-                {
-                    l.color = Color.black;
-                }
-                else
-                {
-                    l.color = Color.grey;
-                }
-                
-            }
-            foreach (PerkPrototype req in proto.BlockedBy)
-            {
-                Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
-                Vector3 direction = other - position;
-                GameObject line = new GameObject();
-                Image l = line.AddComponent<Image>();
-                line.transform.parent = content.transform;
-                RectTransform rect = line.GetComponent<RectTransform>();
-                line.name = proto.Name + " is blocked by " + req.Name;
-                rect.pivot = new Vector2(0, 0.5f);
-                line.transform.localPosition = position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
-                rect.Rotate(new Vector3(0, 0, angle));
-                l.color = Color.red;
-              
-
-            }
-        }
-        foreach (PerkPrototype proto in playerClass.allPerks)
-        {
-           
-            GameObject image = new GameObject();
-            PerkHolder perkHolder = image.AddComponent<PerkHolder>();
-            perkHolder.perkInfo = proto;
-            if (proto.Require.Count == 0)
-            {
-                perkHolder.available = true;
-            }
-            image.transform.parent = content.transform;
-            image.name = proto.Name;
-            //RectTransform rect = image.GetComponent<RectTransform>();
-            image.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-              // image.width = 30;
-            //image.height = 30;
-            image.AddComponent<Image>();
-            //image.GetComponent<Image>.sprite = proto.sprite;
-            image.transform.localPosition = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
-            EventTrigger ev = image.AddComponent<EventTrigger>();
-
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => { OnPerkClick((PointerEventData)eventData); });
-            ev.triggers.Add(entry);
-
-            EventTrigger.Entry entry2 = new EventTrigger.Entry();
-            entry2.eventID = EventTriggerType.PointerEnter;
-            entry2.callback.AddListener((eventData) => {
-                 OnPerkEnter((PointerEventData)eventData); });
-            ev.triggers.Add(entry2);
-
-            EventTrigger.Entry entry3 = new EventTrigger.Entry();
-            entry3.eventID = EventTriggerType.PointerExit;
-            entry3.callback.AddListener((eventData) => { OnPerkExit((PointerEventData)eventData); });
-            ev.triggers.Add(entry3);
-
-
-        }
+     //   Debug.Log(playerClass.allPerks);
+   
+     
     }
 
     // Update is called once per frame
@@ -153,10 +191,11 @@ public class ClassUI : MonoBehaviour
                 {
                     statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
 
-
+                    
                     if (test.taken)
                     {
                         colorEdit.color = Color.green;
+
                     }
                     else if (test.blocked)
                     {
@@ -164,6 +203,7 @@ public class ClassUI : MonoBehaviour
                     }
                     else if (test.available)
                     {
+
                         colorEdit.color = Color.yellow;
                     }
                     else
@@ -185,12 +225,12 @@ public class ClassUI : MonoBehaviour
 
     void OnPerkClick(PointerEventData data)
     {
-        Debug.Log("HERE WE GO");
-        Debug.Log(data.pointerCurrentRaycast.gameObject);
+   
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         // if (Perk)
         if (clickedEvent.available && !clickedEvent.blocked)
         {
+           // Debug.Log(clickedEvent.perkInfo.Name);
             playerClass.TakePerk(clickedEvent.perkInfo);
             for (int i = 0; i < content.transform.childCount; i++)
             {
@@ -215,7 +255,7 @@ public class ClassUI : MonoBehaviour
     void OnPerkEnter(PointerEventData data)
     {
         
-        Debug.Log(data.pointerCurrentRaycast.gameObject);
+      //  Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         mousedOver = clickedEvent.perkInfo;
         descText.text = mousedOver.Name + "\n" + mousedOver.Desc + "\n\n";
@@ -229,7 +269,7 @@ public class ClassUI : MonoBehaviour
     }
     void OnPerkExit(PointerEventData data)
     {
-        Debug.Log("goodbye");
+       // Debug.Log("goodbye");
         selected = false;
        // Debug.Log("HERE WE GOOOOOOOO");
        // Debug.Log(data.pointerCurrentRaycast.gameObject);

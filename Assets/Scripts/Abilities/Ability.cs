@@ -22,7 +22,7 @@ public class Ability
 
     private Ability()
     {
-
+        
     }
 
     public Ability(AbilityPrototype ap)

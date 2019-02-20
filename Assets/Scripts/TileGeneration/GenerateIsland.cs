@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -13,6 +14,10 @@ public class GenerateIsland : MonoBehaviour
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
     private static int TILES_PER_LAYER = 33;
+    
+    [SerializeField]
+    private NavMeshSurface surface;
+
     [SerializeField]
     private GameObject remy;
     [SerializeField]
@@ -49,7 +54,12 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private int specialChance = 2;
 
-    [SerializeField]
+	[SerializeField]
+	private EnvironmentData enemySpawner;
+	[SerializeField]
+	private int enemyChance = 5;
+
+	[SerializeField]
     private Vector3 startingLocation = Vector3.zero;
 
     [SerializeField]
@@ -104,6 +114,8 @@ public class GenerateIsland : MonoBehaviour
         tiles = createTileset(NUMBER_OF_TILES);
 
         createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
+
+        surface.BuildNavMesh();
     }
 
     private List<TilePiece> createTileset(int tileCount)
@@ -189,7 +201,8 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(mediumChance, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(particleChance, particleEffects.EnvironmentList, "Particles");
             replaceObjects(specialChance, specialObjects.EnvironmentList, "SpecialObject");
-        }
+			replaceObjects(enemyChance, enemySpawner.EnvironmentList, "EnemySpawner");
+		}
         else
         {
             replaceObjects(0, treeList.EnvironmentList, "Tree");
@@ -197,7 +210,8 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(0, particleEffects.EnvironmentList, "Particles");
             replaceObjects(0, specialObjects.EnvironmentList, "SpecialObject");
-        }
+			replaceObjects(0, enemySpawner.EnvironmentList, "EnemySpawner");
+		}
     }
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
