@@ -37,10 +37,15 @@ public class RemyAttacking : MonoBehaviour
         //    EquipSword();
         //}
 
-        //if (StopMeleeAttack())
-        //{
-        //    animator.SetBool("isUnEquip", true);
-        //}
+        if (StopMeleeAttack())
+        {
+            animator.SetBool("isIdleToMelee", false);
+        }
+
+        if (StopMagicAttack())
+        {
+            animator.SetBool("isIdleToMagic", false);
+        }
 
         //if (ShouldUnEquip())
         //{
@@ -60,17 +65,16 @@ public class RemyAttacking : MonoBehaviour
 
     public void MagicAttack()
     {
-        //if (Input.GetButton("MagicAttackTest"))
-        //{
-            RotateToEnemy();
+        RotateToEnemy();
+        animator.SetBool("isIdleToMagic", true);
 
-            animator.SetBool("isIdleToMagic", true);
-        //}
     }
 
     void RotateToEnemy()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")) {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 01")
+            ) {
             if (transform.position != attackDirection)
             {
                 lookAtEnemy = attackDirection - transform.position;
@@ -112,18 +116,22 @@ public class RemyAttacking : MonoBehaviour
     bool StopMeleeAttack()
     {
         bool result = false;
-        //if (Vector3.Distance(RemyMovement.destination, this.transform.position) < 1.0f)
-        //{
-        //    result = true;
-        //}
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+        {
+            result = true;
+        }
+        return result;
+    }
 
-        //if doesn't move
-        //if (Vector3.Distance(RemyMovement.destination, this.transform.position) > 1.0f)
-        //{
-        //    Debug.Log("Destination: " + RemyMovement.destination);
-        //    Debug.Log("This Position: " + this.transform.position);
-        //    result = true;
-        //}
+    bool StopMagicAttack()
+    {
+        bool result = false;
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 01") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+        {
+            result = true;
+        }
         return result;
     }
 
