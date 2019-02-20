@@ -5,7 +5,8 @@ using UnityEngine;
 public class RemyMovement : MonoBehaviour
 {
     public static Vector3 destination;
-    public static Vector3 lastPosition;
+    public static Vector3 lastDestination;
+
     public float rotationSpeed;
     public float movingSpeed;
     private Quaternion playerRot;
@@ -76,7 +77,8 @@ public class RemyMovement : MonoBehaviour
 
     void DoNotFly()
     {
-            destination.y = transform.position.y;
+        destination.y = transform.position.y;
+        lastDestination.y = destination.y;
     }
 
     void DoNotShake()
@@ -87,14 +89,14 @@ public class RemyMovement : MonoBehaviour
         }
     }
 
-    void SavePos()
-    {
-        timer += Time.deltaTime;
-        if (timer > reLocateDelay)
-        {
-            lastPosition = transform.position;
-            timer = 0;
-        }
-    }
+    //void SavePos()
+    //{
+    //    timer += Time.deltaTime;
+    //    if (timer > reLocateDelay)
+    //    {
+    //        lastPosition = transform.position;
+    //        timer = 0;
+    //    }
+    //}
 
 }

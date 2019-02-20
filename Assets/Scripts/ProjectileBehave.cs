@@ -7,9 +7,10 @@ public class ProjectileBehave : MonoBehaviour
     public Damage dmg;
     public float speed;
     public float ttl;
+    public bool friendly = false;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         
     }
@@ -21,19 +22,45 @@ public class ProjectileBehave : MonoBehaviour
         ttl -= Time.deltaTime;
         if(ttl < 0)
         {
+            //Debug.Log("Destoryed due to ttl");
             Destroy(gameObject);
         }
     }
 
+    public void PlayAnim(Collider col)
+    {
+        //override if you need particle effects on hit
+    }
+
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.name.Equals("Player_Paddle")) {
-            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+        StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+        ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
+        ProjectileBehave colProj = col.gameObject.GetComponent<ProjectileBehave>();
+        if (colProj == null) //check to see if we collided with another projectile. if so ignore
+        {
+            //Debug.Log("Col with non-proj, Proj is: " + friendly);
+
             if (enemy != null)
             {
-                enemy.TakeDamage(dmg);
+                //Debug.Log("Enemy has stat block, enem is friendly: " + enemy.Friendly);
+                if (friendly != enemy.Friendly) {
+                    enemy.TakeDamage(dmg);
+                    if(enemyControl != null)
+                    {
+                        enemyControl.OnHit(dmg);
+                    }
+                    PlayAnim(col);
+                    //Debug.Log("Destroy due to hit non friend");
+                    Destroy(gameObject);
+                }
             }
-            Destroy(gameObject);
+            else
+            {
+                PlayAnim(col);
+                //Debug.Log("Destroy due to hit non stat char " + col.gameObject.name);
+                Destroy(gameObject);
+            }
         }
     }
 }

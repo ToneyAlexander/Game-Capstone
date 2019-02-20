@@ -22,15 +22,26 @@ public class ControlStatBlock : MonoBehaviour
     public float Fort { get; set; }
     public float FortMult { get; set; }
 
+    private List<TimedBuff> buffs;
     private StatBlock stats;
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
 
-    public StatBlock getStatBlock()
+    public StatBlock GetStatBlock()
     {
         return stats;
     }
+
+    public void ApplyBuff(TimedBuff tb)
+    {
+        if (!tb.IsUnique || !buffs.Contains(tb))
+        {
+            buffs.Add(tb);
+            StatsChanged();
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +49,7 @@ public class ControlStatBlock : MonoBehaviour
         inv = GetComponent<EquipmentUser>();
         pClass = GetComponent<PlayerClass>();
 
+        buffs = new List<TimedBuff>();
         oldHpPrecent = -10000f;
 
         StatsChanged();
@@ -242,8 +254,13 @@ public class ControlStatBlock : MonoBehaviour
             }
         }
         
-        //loop through buffs
-        //loop through debuffs
+        foreach (TimedBuff tb in buffs)
+        {
+            foreach (Stat s in tb.Stats)
+            {
+                ApplyStat(s);
+            }
+        }
 
         float strReal = StatBlock.CalcMult(Str, StrMult);
         stats.HealthBase += strReal * 10f;
@@ -270,9 +287,30 @@ public class ControlStatBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //update buff timers
-        //update debuff timers
-        //remove expired buffs
-        //remove expired debuffs
+        bool needsUpdate = false;
+        for(int i = buffs.Count - 1; i > -1; --i)
+        {
+            TimedBuff tb = buffs[i];
+            tb.DurationLeft -= Time.deltaTime;
+            Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
+            if (tb.DurationLeft <= 0f)
+            {
+                buffs.RemoveAt(i);
+                needsUpdate = true;
+
+            }
+        }
+        if(needsUpdate)
+        {
+            StatsChanged();
+        }
+    }
+
+    public void OnHit(Damage dmg)
+    {
+        foreach(TimedBuff tb in dmg.buffs)
+        {
+            ApplyBuff(tb);
+        }
     }
 }

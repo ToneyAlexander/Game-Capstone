@@ -52,6 +52,8 @@ public class StatBlock : MonoBehaviour
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
 
+    public bool Friendly;
+
     public static float CalcMult(float baseV, float multV)
     {
         if (multV > 0)
@@ -101,7 +103,7 @@ public class StatBlock : MonoBehaviour
         
         HealthCur -= total;
 
-        //Debug.Log("Took " + total + " damage.");
+        //Debug.Log(name + " took " + total + " damage.");
 
         return total;
     }
@@ -137,7 +139,7 @@ public class StatBlock : MonoBehaviour
         magicMult += DamageMult;
 
         dmg.physicalDmgReal = CalcMult(phys, physMult);
-        dmg.magicDmgReal = CalcMult(phys, magicMult);
+        dmg.magicDmgReal = CalcMult(magic, magicMult);
 
         if(Random.Range(0f, 1f) < CalcMult(CritChance, CritChanceMult)) {
             float critDM = CalcMult(CritDamage, CritDamageMult);

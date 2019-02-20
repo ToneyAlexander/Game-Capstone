@@ -5,6 +5,9 @@ namespace CCC.Abilities
     /// <summary>
     /// Represents a Component that allows a GameObject to use an Ability.
     /// </summary>
+   
+    [RequireComponent(typeof(RemyAttacking))]
+
     public sealed class AbilityUser : MonoBehaviour
     {
         /// <summary>
@@ -23,6 +26,7 @@ namespace CCC.Abilities
         /// </summary>
         [SerializeField]
         private AbilitySet usableAbilities;
+        private RemyAttacking remyAttacking;
 
         /// <summary>
         /// Use the given Ability.
@@ -36,9 +40,13 @@ namespace CCC.Abilities
         {
             RemyAttacking.ability = ability;
             RemyAttacking.attackDirection = mouseWorldPosition;
+            
+            if(remyAttacking != null)
+                remyAttacking.MeleeAttack();
 
             if (usableAbilities.Set.Contains(ability))
             {
+                ability.use = true;
                 Debug.Log(gameObject.name + " used Ability " + ability.AbilityName);
             }
             else
@@ -49,6 +57,11 @@ namespace CCC.Abilities
         }
 
         #region MonoBehaviour Messages
+        private void Awake()
+        {
+            remyAttacking = GetComponent <RemyAttacking>();
+        }
+
         private void Start()
         {
             foreach (Ability ability in usableAbilities.Set)

@@ -6,9 +6,6 @@ namespace CCC.Abilities
     [CreateAssetMenu]
     public class AbilitySlotDictionary : ScriptableObject
     {
-        [SerializeField]
-        private Ability nullAbility;
-
         private Dictionary<AbilitySlot, Ability> abilities;
 
         public Ability GetAbility(AbilitySlot slot)
@@ -24,11 +21,11 @@ namespace CCC.Abilities
         private void OnEnable()
         {
             abilities = new Dictionary<AbilitySlot, Ability> {
-                { AbilitySlot.One, nullAbility },
-                { AbilitySlot.Two, nullAbility },
-                { AbilitySlot.Three, nullAbility },
-                { AbilitySlot.Four, nullAbility },
-                { AbilitySlot.Five, nullAbility }
+                { AbilitySlot.One, Ability.nullAbility },
+                { AbilitySlot.Two, Ability.nullAbility},
+                { AbilitySlot.Three, Ability.nullAbility },
+                { AbilitySlot.Four, Ability.nullAbility },
+                { AbilitySlot.Five, Ability.nullAbility }
             };
         }
     }
