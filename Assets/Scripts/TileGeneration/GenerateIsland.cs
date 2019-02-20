@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -10,6 +11,9 @@ public class GenerateIsland : MonoBehaviour
 
     //[SerializeField]
     //private TileData tileData;
+    
+    [SerializeField]
+    private NavMeshSurface surface;
 
     [SerializeField]
     private int tileSize;
@@ -129,6 +133,8 @@ public class GenerateIsland : MonoBehaviour
         }
 
         createIsland();
+
+        surface.BuildNavMesh();
     }
 
     private void deleteIsland()
