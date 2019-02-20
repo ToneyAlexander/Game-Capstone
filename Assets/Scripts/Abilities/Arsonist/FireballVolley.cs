@@ -61,6 +61,7 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+        obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
         obj.transform.Rotate(Vector3.up * 90 * Random.Range(-projSpread, projSpread), Space.World);
         pbh.speed = projSpeed;
