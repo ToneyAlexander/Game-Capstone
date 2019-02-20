@@ -39,7 +39,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 290558787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 4, z: 1}
+  m_LocalPosition: {x: 136, y: 12, z: 136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3740708621913588957}
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Friendly: 0
 --- !u!114 &290558790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19f8c2f8d85b4dd58627f3e60e34c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  swordOnHand: {fileID: 0}
+  swordOnBack: {fileID: 0}
 --- !u!114 &290558801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ed61a05beb41445c86287d171415ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &359173971656846165
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,24 +18,41 @@ public class GenerateIsland : MonoBehaviour
     private int ISLE_WIDE_HIGH;
 
     [SerializeField]
-    Texture2D img;
+    private GameObject remy;
 
+    [SerializeField]
+    private Texture2D img;
+
+    [SerializeField]
+    private bool makeEnvironment = false;
     [SerializeField]
     private EnvironmentData treeList;
     [SerializeField]
+    private int treeChance = 40;
+
+    [SerializeField]
     private EnvironmentData grassList;
+    [SerializeField]
+    private int grassChance = 40;
+
     [SerializeField]
     private EnvironmentData mediumObjectList;
     [SerializeField]
+    private int mediumChance = 30;
+
+    [SerializeField]
     private EnvironmentData particleEffects;
     [SerializeField]
+    private int particleChance = 30;
+
+    [SerializeField]
     private EnvironmentData specialObjects;
+    [SerializeField]
+    private int specialChance = 2;
 
     [SerializeField]
     private Vector3 startingLocation = Vector3.zero;
 
-    [SerializeField]
-    private bool makeEnvironment = false;
     [SerializeField]
     private bool drawTileSet = false;
 
@@ -61,6 +78,9 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private int LESS_THAN_LAND_REGEN_COUNT = 00;
 
+    [SerializeField]
+    private bool useLVR = true;
+
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
 
@@ -69,6 +89,8 @@ public class GenerateIsland : MonoBehaviour
     {
         //TODO: add backtracking and optimize search
         //TODO: remove these lines
+        //TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
+        //AKA iterate over tile list, if entropy = 1, remove
         ISLE_WIDE = ISLE_WIDE_HIGH;
         ISLE_HIGH = ISLE_WIDE_HIGH;
 
@@ -113,6 +135,8 @@ public class GenerateIsland : MonoBehaviour
 
         //FORCE CENTER TO BE TALLEST TILE
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
+        remy.transform.position = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT*(LAYERS_ABOVE_BEACH+1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
         if (drawTileSet)
@@ -132,11 +156,19 @@ public class GenerateIsland : MonoBehaviour
         //TODO: add this stuff to regen
         if (makeEnvironment)
         {
-            replaceObjects(40, treeList.EnvironmentList, "Tree");
-            replaceObjects(40, grassList.EnvironmentList, "Grass");
-            replaceObjects(30, mediumObjectList.EnvironmentList, "Rock");
-            replaceObjects(30, particleEffects.EnvironmentList, "Particles");
-            replaceObjects(2, specialObjects.EnvironmentList, "SpecialObject");
+            replaceObjects(treeChance, treeList.EnvironmentList, "Tree");
+            replaceObjects(grassChance, grassList.EnvironmentList, "Grass");
+            replaceObjects(mediumChance, mediumObjectList.EnvironmentList, "Rock");
+            replaceObjects(particleChance, particleEffects.EnvironmentList, "Particles");
+            replaceObjects(specialChance, specialObjects.EnvironmentList, "SpecialObject");
+        }
+        else
+        {
+            replaceObjects(0, treeList.EnvironmentList, "Tree");
+            replaceObjects(0, grassList.EnvironmentList, "Grass");
+            replaceObjects(0, mediumObjectList.EnvironmentList, "Rock");
+            replaceObjects(0, particleEffects.EnvironmentList, "Particles");
+            replaceObjects(0, specialObjects.EnvironmentList, "SpecialObject");
         }
     }
 
@@ -433,11 +465,6 @@ public class GenerateIsland : MonoBehaviour
                     if (island[n, m][o] && o != WATER_INDEX)
                     {
                         int tileId = indexToTile(o);
-                        if (tileId == -1)
-                        {
-                            Debug.Log("NEGATIVE TILE");
-                            continue;
-                        }
                         TilePiece currentPiece = tiles[o];
                         GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
                         //TODO: REFLECTION
@@ -601,127 +628,6 @@ public class GenerateIsland : MonoBehaviour
         validTest(index, 13, 14, 1, true);
 
         validTest(index, 66, 66, 3, true);
-
-        /*
-        validTest(index, 13, 0, 0, false);
-        validTest(index, 13, 1, 0, false);
-        validTest(index, 13, 2, 0, false);
-        validTest(index, 13, 3, 0, false);
-        validTest(index, 13, 4, 0, false);
-        validTest(index, 13, 5, 0, false);
-        validTest(index, 13, 6, 0, false);
-        validTest(index, 13, 7, 0, false);
-        validTest(index, 13, 8, 0, true);
-        validTest(index, 13, 9, 0, false);
-        validTest(index, 13, 10, 0, false);
-        validTest(index, 13, 11, 0, true);
-        validTest(index, 13, 12, 0, true);
-        validTest(index, 13, 13, 0, true);
-
-        validTest(index, 13, 0, 1, false);
-        validTest(index, 13, 1, 1, false);
-        validTest(index, 13, 2, 1, false);
-        validTest(index, 13, 3, 1, false);
-        validTest(index, 13, 4, 1, false);
-        validTest(index, 13, 5, 1, true);
-        validTest(index, 13, 6, 1, false);
-        validTest(index, 13, 7, 1, false);
-        validTest(index, 13, 8, 1, false);
-        validTest(index, 13, 9, 1, true);
-        validTest(index, 13, 10, 1, false);
-        validTest(index, 13, 11, 1, false);
-        validTest(index, 13, 12, 1, true);
-        validTest(index, 13, 13, 1, true);
-
-        validTest(index, 13, 0, 2, false);
-        validTest(index, 13, 1, 2, false);
-        validTest(index, 13, 2, 2, false);
-        validTest(index, 13, 3, 2, false);
-        validTest(index, 13, 4, 2, false);
-        validTest(index, 13, 5, 2, false);
-        validTest(index, 13, 6, 2, true);
-        validTest(index, 13, 7, 2, false);
-        validTest(index, 13, 8, 2, false);
-        validTest(index, 13, 9, 2, true);
-        validTest(index, 13, 10, 2, true);
-        validTest(index, 13, 11, 2, false);
-        validTest(index, 13, 12, 2, false);
-        validTest(index, 13, 13, 2, true);
-
-        validTest(index, 13, 0, 3, false);
-        validTest(index, 13, 1, 3, false);
-        validTest(index, 13, 2, 3, false);
-        validTest(index, 13, 3, 3, false);
-        validTest(index, 13, 4, 3, false);
-        validTest(index, 13, 5, 3, false);
-        validTest(index, 13, 6, 3, false);
-        validTest(index, 13, 7, 3, true);
-        validTest(index, 13, 8, 3, false);
-        validTest(index, 13, 9, 3, false);
-        validTest(index, 13, 10, 3, true);
-        validTest(index, 13, 11, 3, true);
-        validTest(index, 13, 12, 3, false);
-        validTest(index, 13, 13, 3, true);*/
-
-        /*validTest(index, 8, 0, 0, true);
-        validTest(index, 8, 1, 0, false);
-        validTest(index, 8, 2, 0, false);
-        validTest(index, 8, 3, 0, false);
-        validTest(index, 8, 4, 0, false);
-        validTest(index, 8, 5, 0, false);
-        validTest(index, 8, 6, 0, false);
-        validTest(index, 8, 7, 0, false);
-        validTest(index, 8, 8, 0, true);
-        validTest(index, 8, 9, 0, false);
-        validTest(index, 8, 10, 0, false);
-        validTest(index, 8, 11, 0, true);
-        validTest(index, 8, 12, 0, true);
-        validTest(index, 8, 13, 0, false);
-
-        validTest(index, 8, 0, 1, false);
-        validTest(index, 8, 1, 1, true);
-        validTest(index, 8, 2, 1, false);
-        validTest(index, 8, 3, 1, false);
-        validTest(index, 8, 4, 1, false);
-        validTest(index, 8, 5, 1, false);
-        validTest(index, 8, 6, 1, false);
-        validTest(index, 8, 7, 1, false);
-        validTest(index, 8, 8, 1, true);
-        validTest(index, 8, 9, 1, false);
-        validTest(index, 8, 10, 1, true);
-        validTest(index, 8, 11, 1, false);
-        validTest(index, 8, 12, 1, true);
-        validTest(index, 8, 13, 1, false);
-
-        validTest(index, 8, 0, 2, false);
-        validTest(index, 8, 1, 2, false);
-        validTest(index, 8, 2, 2, false);
-        validTest(index, 8, 3, 2, true);
-        validTest(index, 8, 4, 2, false);
-        validTest(index, 8, 5, 2, false);
-        validTest(index, 8, 6, 2, false);
-        validTest(index, 8, 7, 2, false);
-        validTest(index, 8, 8, 2, true);
-        validTest(index, 8, 9, 2, false);
-        validTest(index, 8, 10, 2, true);
-        validTest(index, 8, 11, 2, false);
-        validTest(index, 8, 12, 2, false);
-        validTest(index, 8, 13, 2, true);
-
-        validTest(index, 8, 0, 3, false);
-        validTest(index, 8, 1, 3, false);
-        validTest(index, 8, 2, 3, true);
-        validTest(index, 8, 3, 3, false);
-        validTest(index, 8, 4, 3, false);
-        validTest(index, 8, 5, 3, false);
-        validTest(index, 8, 6, 3, false);
-        validTest(index, 8, 7, 3, false);
-        validTest(index, 8, 8, 3, true);
-        validTest(index, 8, 9, 3, false);
-        validTest(index, 8, 10, 3, false);
-        validTest(index, 8, 11, 3, true);
-        validTest(index, 8, 12, 3, false);
-        validTest(index, 8, 13, 3, true);*/
     }
     private void validTest(AdjacencyIndex index, int a, int b, int dir, bool expected)
     {
@@ -866,7 +772,17 @@ public class GenerateIsland : MonoBehaviour
     private void observe(bool[,][] island, List<Vector2Int> updated)
     {
         //defn Observe(coefficient_matrix):
-        Vector3Int cell = findLowestEntropy(island);
+        Vector3Int cell;
+        if (useLVR)
+        {
+            //Use least remaining values (LRV)
+            cell = findLowestEntropy(island);
+        }
+        else
+        {
+            //select random tile
+            cell = pickRandomTile(island);
+        }
         int m_index = cell.x;
         int n_index = cell.y;
 
@@ -932,14 +848,7 @@ public class GenerateIsland : MonoBehaviour
         {
             for (int n = 0; n < island.GetLength(1); n++)
             {
-                int entropy = 0;
-                foreach (bool b in island[m, n])
-                {
-                    if (b)
-                    {
-                        entropy++;
-                    }
-                }
+                int entropy = countTrues(island[m, n]);
                 if (entropy > 1 && entropy < minEntropy)
                 {
                     minEntropy = entropy;
@@ -950,6 +859,24 @@ public class GenerateIsland : MonoBehaviour
             }
         }
         return new Vector3Int(m_index, n_index, minEntropy);
+    }
+
+    private Vector3Int pickRandomTile(bool[,][] island)
+    {
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int m = 0; m < island.GetLength(0); m++)
+        {
+            for (int n = 0; n < island.GetLength(1); n++)
+            {
+                int entropy = countTrues(island[m, n]);
+                if (entropy > 1)
+                {
+                    availableTiles.Add(new Vector2Int(m, n));
+                }
+            }
+        }
+        Vector2Int tilepos = availableTiles[Random.Range(0, availableTiles.Count)];
+        return new Vector3Int(tilepos.x, tilepos.y, -1);
     }
 
     private bool finished(bool[,][] map)
