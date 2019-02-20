@@ -127,16 +127,35 @@ public class GenerateIsland : MonoBehaviour
                     tiles.Add(t);
                 }
         }
-        Debug.Log(tiles.Count);
 
+        createIsland();
+    }
+
+    private void deleteIsland()
+    {
+        while (generatedMap.Count > 0)
+        {
+            Object.Destroy(generatedMap[0]);
+            generatedMap.RemoveAt(0);
+        }
+        //Destroy stuff on terrain
+        deleteObjects(treeList.EnvironmentList, "Tree");
+        deleteObjects(grassList.EnvironmentList, "Grass");
+        deleteObjects(mediumObjectList.EnvironmentList, "Rock");
+        deleteObjects(particleEffects.EnvironmentList, "Particles");
+        deleteObjects(specialObjects.EnvironmentList, "SpecialObject");
+    }
+
+    private void createIsland()
+    {
         List<Vector2Int> updated = new List<Vector2Int>();
-
         bool[,][] island = initializeCircleMap(updated);
 
         //FORCE CENTER TO BE TALLEST TILE
-        island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES-1);
-        remy.transform.position = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT*(LAYERS_ABOVE_BEACH+1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
-        
+        island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES - 1);
+        remy.transform.position = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        //remy.GetComponent<RemyMovement>().destination = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
         if (drawTileSet)
@@ -152,7 +171,7 @@ public class GenerateIsland : MonoBehaviour
             propagate(island, updated, index);
         }
         generatedMap = drawMap(island, startingLocation);
-        
+
         //TODO: add this stuff to regen
         if (makeEnvironment)
         {
@@ -190,7 +209,16 @@ public class GenerateIsland : MonoBehaviour
                 byte index = (byte)((randomNumber[0] % environmentList.Count));
                 GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity);
                 newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
+                newObject.tag = type;
             }
+            Destroy(x);
+        }
+    }
+    private void deleteObjects(List<GameObject> environmentList, string type)
+    {
+        GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
+        foreach (GameObject x in listOfObjects)
+        {
             Destroy(x);
         }
     }
@@ -199,22 +227,10 @@ public class GenerateIsland : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.R))
         {
-            while (generatedMap.Count > 0)
-            {
-                Object.Destroy(generatedMap[0]);
-                generatedMap.RemoveAt(0);
-            }
-            Vector3 startingLocation = Vector3.zero;
-            List<Vector2Int> updated = new List<Vector2Int>();
-            bool[,][] island = initializeCircleMap(updated);
-            propagate(island, updated, index);
-            while (!finished(island))
-            {
-                observe(island, updated);
-                propagate(island, updated, index);
-            }
-            generatedMap = drawMap(island, startingLocation);
-        }
+            deleteIsland();
+
+            createIsland();
+        }   
     }
 
     private bool[,][] initializeCircleMap(List<Vector2Int> updated)
@@ -502,6 +518,233 @@ public class GenerateIsland : MonoBehaviour
         return generatedMap;
     }
 
+    private void propagate(bool[,][] island, List<Vector2Int> updated, AdjacencyIndex index)
+    {
+        //defn Propagate(coefficient_matrix):
+        //Loop until no more cells are left to be update:
+        while (updated.Count > 0)
+        {
+            Vector2Int current = updated[0];
+            updated.RemoveAt(0);
+
+            int x = current.x;
+            int y = current.y;
+            //For each neighboring cell:
+
+            //Bottom 2
+            if (y < island.GetLength(1) - 1)
+            {
+                if (makeArcConsistent(x, y + 1, x, y, 2, island, index))
+                {
+                    Vector2Int other = new Vector2Int(x, y + 1);
+                    if (!updated.Contains(other))
+                    {
+                        updated.Add(other);
+                    }
+                }
+            }
+            //Left 3
+            if (x > 0)
+            {
+                if (makeArcConsistent(x - 1, y, x, y, 3, island, index))
+                {
+                    Vector2Int other = new Vector2Int(x - 1, y);
+                    if (!updated.Contains(other))
+                    {
+                        updated.Add(other);
+                    }
+                }
+            }
+            //Top 0
+            if (y > 0)
+            {
+                if (makeArcConsistent(x, y - 1, x, y, 0, island, index))
+                {
+                    Vector2Int other = new Vector2Int(x, y - 1);
+                    if (!updated.Contains(other))
+                    {
+                        updated.Add(other);
+                    }
+                }
+            }
+            //Right 1
+            if (x < island.GetLength(0) - 1)
+            {
+                if (makeArcConsistent(x + 1, y, x, y, 1, island, index))
+                {
+                    Vector2Int other = new Vector2Int(x + 1, y);
+                    if (!updated.Contains(other))
+                    {
+                        updated.Add(other);
+                    }
+                }
+            }
+        }
+    }
+
+    //Update (x, y)'s values based on what is allowed in (otherX, otherY)
+    //Returns whether or not (x,y) had an update
+    private bool makeArcConsistent(int x, int y, int otherX, int otherY, int direction, bool[,][] island, AdjacencyIndex index)
+    {
+        if (countTrues(island[x, y]) <= 1)
+        {
+            return false;
+        }
+        bool changed = false;
+        for (int i = 0; i < island[x, y].Length; i++)
+        {
+            if (island[x, y][i])
+            {
+                bool possible = false;
+                //For each pattern that is still potentially valid:
+                for (int j = 0; j < island[otherX, otherY].Length; j++)
+                {
+                    if (island[otherX, otherY][j] && index.isValid(indexToTile(j), indexToTile(i), direction))
+                    {
+                        possible = true;
+                        j = island[otherX, otherY].Length;
+                    }
+                }
+                //If this point in the pattern no longer matches:
+                //Set the array in the wave to false for this pattern
+                changed = changed || (possible != island[x, y][i]);
+                island[x, y][i] = possible;
+
+                //if possible == false
+                //Flag this cell as needing to be updated in the next iteration
+                //Go other way - from the other guy to self?
+            }
+        }
+        return changed;
+    }
+
+    private void observe(bool[,][] island, List<Vector2Int> updated)
+    {
+        //defn Observe(coefficient_matrix):
+        Vector3Int cell;
+        if (useLVR)
+        {
+            //Use least remaining values (LRV)
+            cell = findLowestEntropy(island);
+        }
+        else
+        {
+            //select random tile
+            cell = pickRandomTile(island);
+        }
+        int m_index = cell.x;
+        int n_index = cell.y;
+
+        //If there is a contradiction, throw an error and quit
+        //If all cells are at entropy 0, processing is complete:
+        //Return CollapsedObservations()
+        //Else:
+        //Choose a pattern by a random sample, weighted by the pattern frequency in the source data
+        //Set the boolean array in this cell to false, except for the chosen pattern
+        List<int> unchosenIndecies = new List<int>();
+        for (int o = 0; o < island[m_index, n_index].Length; o++)
+        {
+            if (island[m_index, n_index][o])
+            {
+                unchosenIndecies.Add(o);
+            }
+        }
+
+        if (unchosenIndecies.Count == 0)
+        {
+            return;
+        }
+
+        Vector2Int changed = new Vector2Int(m_index, n_index);
+        if (!updated.Contains(changed))
+        {
+            updated.Add(changed);
+        }
+        int tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
+
+        for(int r = 0; r < LESS_THAN_LAND_REGEN_COUNT; r++)
+        {
+            if (tileIndex < LAND_INDEX)
+            {
+                tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
+            }
+        }
+        for (int o = 0; o < island[m_index, n_index].Length; o++)
+        {
+            island[m_index, n_index][o] = (o == tileIndex);
+        }
+    }
+
+    //defn FindLowestEntropy(coefficient_matrix):
+    //Return the cell that has the lowest greater-than-zero
+    //entropy, defined as:
+    //A cell with one valid pattern has 0 entropy
+    //A cell with no valid patterns is a contradiction
+    //Else: the entropy is based on the sum of the frequency
+    //that the patterns appear in the source data, plus
+    //Use some random noise to break ties and
+    //near-ties.
+    private Vector3Int findLowestEntropy(bool[,][] island)
+    {
+        int minEntropy = NUMBER_OF_TILES + 1;
+        int m_index = 0;
+        int n_index = 0;
+        for (int m = 0; m < island.GetLength(0); m++)
+        {
+            for (int n = 0; n < island.GetLength(1); n++)
+            {
+                int entropy = countTrues(island[m, n]);
+                if (entropy > 1 && entropy < minEntropy)
+                {
+                    minEntropy = entropy;
+                    n_index = n;
+                    m_index = m;
+                    //short circuit on zero entropy
+                }
+            }
+        }
+        return new Vector3Int(m_index, n_index, minEntropy);
+    }
+
+    private Vector3Int pickRandomTile(bool[,][] island)
+    {
+        List<Vector2Int> availableTiles = new List<Vector2Int>();
+        for (int m = 0; m < island.GetLength(0); m++)
+        {
+            for (int n = 0; n < island.GetLength(1); n++)
+            {
+                int entropy = countTrues(island[m, n]);
+                if (entropy > 1)
+                {
+                    availableTiles.Add(new Vector2Int(m, n));
+                }
+            }
+        }
+        Vector2Int tilepos = availableTiles[Random.Range(0, availableTiles.Count)];
+        return new Vector3Int(tilepos.x, tilepos.y, -1);
+    }
+
+    private bool finished(bool[,][] map)
+    {
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int j = 0; j < map.GetLength(1); j++)
+            {
+                if (countTrues(map[i, j]) > 1)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private int indexToTile(int index)
+    {
+        return index;
+    }
+
+    //------------- DEBUGGING METHODS -------------\\
     private void testIndex(AdjacencyIndex index)
     {
         validTest(index, 0, 0, 0, true);
@@ -661,241 +904,11 @@ public class GenerateIsland : MonoBehaviour
                 newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize / 2));
             }
             startingLocation.z += tileSize;
-            if(o%33 == 0)
+            if (o % 33 == 0)
             {
                 startingLocation.x -= tileSize;
                 startingLocation.z = zStart;
             }
         }
-    }
-
-    private void propagate(bool[,][] island, List<Vector2Int> updated, AdjacencyIndex index)
-    {
-        //defn Propagate(coefficient_matrix):
-        //Loop until no more cells are left to be update:
-        while (updated.Count > 0)
-        {
-            Vector2Int current = updated[0];
-            updated.RemoveAt(0);
-
-            int x = current.x;
-            int y = current.y;
-            //For each neighboring cell:
-
-            //Bottom 2
-            if (y < island.GetLength(1) - 1)
-            {
-                if (makeArcConsistent(x, y + 1, x, y, 2, island, index))
-                {
-                    Vector2Int other = new Vector2Int(x, y + 1);
-                    if (!updated.Contains(other))
-                    {
-                        updated.Add(other);
-                    }
-                }
-            }
-            //Left 3
-            if (x > 0)
-            {
-                if (makeArcConsistent(x - 1, y, x, y, 3, island, index))
-                {
-                    Vector2Int other = new Vector2Int(x - 1, y);
-                    if (!updated.Contains(other))
-                    {
-                        updated.Add(other);
-                    }
-                }
-            }
-            //Top 0
-            if (y > 0)
-            {
-                if (makeArcConsistent(x, y - 1, x, y, 0, island, index))
-                {
-                    Vector2Int other = new Vector2Int(x, y - 1);
-                    if (!updated.Contains(other))
-                    {
-                        updated.Add(other);
-                    }
-                }
-            }
-            //Right 1
-            if (x < island.GetLength(0) - 1)
-            {
-                if (makeArcConsistent(x + 1, y, x, y, 1, island, index))
-                {
-                    Vector2Int other = new Vector2Int(x + 1, y);
-                    if (!updated.Contains(other))
-                    {
-                        updated.Add(other);
-                    }
-                }
-            }
-        }
-    }
-
-    //Update (x, y)'s values based on what is allowed in (otherX, otherY)
-    //Returns whether or not (x,y) had an update
-    private bool makeArcConsistent(int x, int y, int otherX, int otherY, int direction, bool[,][] island, AdjacencyIndex index)
-    {
-        if (countTrues(island[x, y]) <= 1)
-        {
-            return false;
-        }
-        bool changed = false;
-        for (int i = 0; i < island[x, y].Length; i++)
-        {
-            if (island[x, y][i])
-            {
-                bool possible = false;
-                //For each pattern that is still potentially valid:
-                for (int j = 0; j < island[otherX, otherY].Length; j++)
-                {
-                    if (island[otherX, otherY][j] && index.isValid(indexToTile(j), indexToTile(i), direction))
-                    {
-                        possible = true;
-                        j = island[otherX, otherY].Length;
-                    }
-                }
-                //If this point in the pattern no longer matches:
-                //Set the array in the wave to false for this pattern
-                changed = changed || (possible != island[x, y][i]);
-                island[x, y][i] = possible;
-
-                //if possible == false
-                //Flag this cell as needing to be updated in the next iteration
-                //Go other way - from the other guy to self?
-            }
-        }
-        return changed;
-    }
-
-    private void observe(bool[,][] island, List<Vector2Int> updated)
-    {
-        //defn Observe(coefficient_matrix):
-        Vector3Int cell;
-        if (useLVR)
-        {
-            //Use least remaining values (LRV)
-            cell = findLowestEntropy(island);
-        }
-        else
-        {
-            //select random tile
-            cell = pickRandomTile(island);
-        }
-        int m_index = cell.x;
-        int n_index = cell.y;
-
-        //If there is a contradiction, throw an error and quit
-        //If all cells are at entropy 0, processing is complete:
-        //Return CollapsedObservations()
-        //Else:
-        //Choose a pattern by a random sample, weighted by the pattern frequency in the source data
-        //Set the boolean array in this cell to false, except for the chosen pattern
-        List<int> unchosenIndecies = new List<int>();
-        for (int o = 0; o < island[m_index, n_index].Length; o++)
-        {
-            if (island[m_index, n_index][o])
-            {
-                unchosenIndecies.Add(o);
-            }
-        }
-
-        if (unchosenIndecies.Count == 0)
-        {
-            return;
-        }
-
-        Vector2Int changed = new Vector2Int(m_index, n_index);
-        if (!updated.Contains(changed))
-        {
-            updated.Add(changed);
-        }
-        int tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
-
-        for(int r = 0; r < LESS_THAN_LAND_REGEN_COUNT; r++)
-        {
-            if (tileIndex < LAND_INDEX)
-            {
-                tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
-            }
-        }
-        //if (tileIndex != LAND_INDEX)
-        //{
-        //    tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
-        //}
-        for (int o = 0; o < island[m_index, n_index].Length; o++)
-        {
-            island[m_index, n_index][o] = (o == tileIndex);
-        }
-    }
-
-    //defn FindLowestEntropy(coefficient_matrix):
-    //Return the cell that has the lowest greater-than-zero
-    //entropy, defined as:
-    //A cell with one valid pattern has 0 entropy
-    //A cell with no valid patterns is a contradiction
-    //Else: the entropy is based on the sum of the frequency
-    //that the patterns appear in the source data, plus
-    //Use some random noise to break ties and
-    //near-ties.
-    private Vector3Int findLowestEntropy(bool[,][] island)
-    {
-        int minEntropy = NUMBER_OF_TILES + 1;
-        int m_index = 0;
-        int n_index = 0;
-        for (int m = 0; m < island.GetLength(0); m++)
-        {
-            for (int n = 0; n < island.GetLength(1); n++)
-            {
-                int entropy = countTrues(island[m, n]);
-                if (entropy > 1 && entropy < minEntropy)
-                {
-                    minEntropy = entropy;
-                    n_index = n;
-                    m_index = m;
-                    //short circuit on zero entropy
-                }
-            }
-        }
-        return new Vector3Int(m_index, n_index, minEntropy);
-    }
-
-    private Vector3Int pickRandomTile(bool[,][] island)
-    {
-        List<Vector2Int> availableTiles = new List<Vector2Int>();
-        for (int m = 0; m < island.GetLength(0); m++)
-        {
-            for (int n = 0; n < island.GetLength(1); n++)
-            {
-                int entropy = countTrues(island[m, n]);
-                if (entropy > 1)
-                {
-                    availableTiles.Add(new Vector2Int(m, n));
-                }
-            }
-        }
-        Vector2Int tilepos = availableTiles[Random.Range(0, availableTiles.Count)];
-        return new Vector3Int(tilepos.x, tilepos.y, -1);
-    }
-
-    private bool finished(bool[,][] map)
-    {
-        for (int i = 0; i < map.GetLength(0); i++)
-        {
-            for (int j = 0; j < map.GetLength(1); j++)
-            {
-                if (countTrues(map[i, j]) > 1)
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private int indexToTile(int index)
-    {
-        return index;
     }
 }
