@@ -5,15 +5,17 @@ using UnityEngine;
 public class PerkHolder : MonoBehaviour
 {
     public PerkPrototype perkInfo;
-    public bool taken = false;
-    public bool available = false;
-    public bool blocked = false;
+    public bool taken;
+    public bool available;
+    public bool blocked;
     public PlayerClass playerClass;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
-    }
+        taken = false;
+        available = false;
+        blocked = false;
+}
 
     // Update is called once per frame
     void Update()

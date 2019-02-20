@@ -7,6 +7,7 @@
     {
         Null,
         Melee,
-        Magic
+        Magic1,
+        Magic2
     }
 }

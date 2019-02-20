@@ -54,7 +54,12 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private int specialChance = 2;
 
-    [SerializeField]
+	[SerializeField]
+	private EnvironmentData enemySpawner;
+	[SerializeField]
+	private int enemyChance = 5;
+
+	[SerializeField]
     private Vector3 startingLocation = Vector3.zero;
 
     [SerializeField]
@@ -187,7 +192,8 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(mediumChance, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(particleChance, particleEffects.EnvironmentList, "Particles");
             replaceObjects(specialChance, specialObjects.EnvironmentList, "SpecialObject");
-        }
+			replaceObjects(enemyChance, enemySpawner.EnvironmentList, "EnemySpawner");
+		}
         else
         {
             replaceObjects(0, treeList.EnvironmentList, "Tree");
@@ -195,7 +201,8 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(0, particleEffects.EnvironmentList, "Particles");
             replaceObjects(0, specialObjects.EnvironmentList, "SpecialObject");
-        }
+			replaceObjects(0, enemySpawner.EnvironmentList, "EnemySpawner");
+		}
     }
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
