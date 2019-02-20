@@ -53,7 +53,7 @@ namespace CCC.Abilities
                 remyAttacking.MeleeAttack();
             }
 
-            if (ability.abilityType == AbilityType.Magic)
+            if (ability.abilityType == AbilityType.Magic1)
             {
                 Debug.Log("Ability: " + ability.abilityType);
                 remyAttacking.MagicAttack();
