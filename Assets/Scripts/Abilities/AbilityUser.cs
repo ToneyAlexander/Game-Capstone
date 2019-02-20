@@ -27,6 +27,8 @@ namespace CCC.Abilities
         [SerializeField]
         private AbilitySet usableAbilities;
         private RemyAttacking remyAttacking;
+        private AbilityType abilityType;
+        
 
         /// <summary>
         /// Use the given Ability.
@@ -40,8 +42,16 @@ namespace CCC.Abilities
         {
             RemyAttacking.ability = ability;
             RemyAttacking.attackDirection = mouseWorldPosition;
-            
-            remyAttacking.MeleeAttack();
+
+            //if (ability.abilityType == AbilityType.Melee)
+            //{
+                remyAttacking.MeleeAttack();
+            //}
+            if (ability.abilityType == AbilityType.Magic)
+            {
+                remyAttacking.MagicAttack();
+            }
+
 
             if (usableAbilities.Set.Contains(ability))
             {

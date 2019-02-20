@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RemyMovement : MonoBehaviour
 {
+    public static Vector3 initialPosition;
     public static Vector3 destination;
     public static Vector3 lastDestination;
 
@@ -18,6 +19,7 @@ public class RemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialPosition = new Vector3(5, 5, 5);
         EPSSION = 0.0001f;
         reLocateDelay = 0.15f;
         timer = 0;
@@ -25,6 +27,7 @@ public class RemyMovement : MonoBehaviour
         movingSpeed = 10;
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
+        this.transform.position = initialPosition;
         destination = transform.position;
     }
 
@@ -78,7 +81,6 @@ public class RemyMovement : MonoBehaviour
     void DoNotFly()
     {
         destination.y = transform.position.y;
-        lastDestination.y = destination.y;
     }
 
     void DoNotShake()

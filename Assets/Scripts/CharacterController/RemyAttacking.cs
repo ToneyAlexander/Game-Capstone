@@ -10,7 +10,6 @@ public class RemyAttacking : MonoBehaviour
 
 
     private Animator animator;
-    private string ablilityName;
     private Vector3 lookAtEnemy;
     private float EPSSION;
     private Vector3 lastDestination;
@@ -24,7 +23,6 @@ public class RemyAttacking : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        //ablilityName = ability.AbilityName;
     }
 
     // Update is called once per frame
@@ -53,7 +51,6 @@ public class RemyAttacking : MonoBehaviour
 
     }
 
-
     public void MeleeAttack()
     {
         RotateToEnemy();
@@ -61,7 +58,7 @@ public class RemyAttacking : MonoBehaviour
 
     }
 
-    void MagicAttack()
+    public void MagicAttack()
     {
         //if (Input.GetButton("MagicAttackTest"))
         //{
@@ -141,5 +138,10 @@ public class RemyAttacking : MonoBehaviour
     {
         swordOnHand.SetActive(false);
         swordOnBack.SetActive(true);
+    }
+
+    void DoNotFly()
+    {
+        attackDirection.y = this.transform.position.y;
     }
 }
