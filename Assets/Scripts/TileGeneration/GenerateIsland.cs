@@ -133,17 +133,17 @@ public class GenerateIsland : MonoBehaviour
 
     private void deleteIsland()
     {
+        //Destroy stuff on terrain
+        //deleteObjects("Tree");
+        //deleteObjects("Grass");
+        //deleteObjects("Rock");
+        //deleteObjects("Particles");
+        //deleteObjects("SpecialObject");
         while (generatedMap.Count > 0)
         {
             Object.Destroy(generatedMap[0]);
             generatedMap.RemoveAt(0);
         }
-        //Destroy stuff on terrain
-        deleteObjects(treeList.EnvironmentList, "Tree");
-        deleteObjects(grassList.EnvironmentList, "Grass");
-        deleteObjects(mediumObjectList.EnvironmentList, "Rock");
-        deleteObjects(particleEffects.EnvironmentList, "Particles");
-        deleteObjects(specialObjects.EnvironmentList, "SpecialObject");
     }
 
     private void createIsland()
@@ -153,8 +153,9 @@ public class GenerateIsland : MonoBehaviour
 
         //FORCE CENTER TO BE TALLEST TILE
         island[ISLE_WIDE / 2, ISLE_HIGH / 2] = makeTile(NUMBER_OF_TILES - 1);
-        remy.transform.position = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
-        //remy.GetComponent<RemyMovement>().destination = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        Vector3 remyStart = new Vector3((ISLE_WIDE / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (LAYERS_ABOVE_BEACH + 1), (ISLE_HIGH / 2) * tileSize + tileSize / 2);
+        remy.transform.position = remyStart;
+        remy.GetComponent<RemyMovement>().setDetination(remyStart);
 
         updated.Add(new Vector2Int(ISLE_WIDE / 2, ISLE_HIGH / 2));
 
@@ -193,6 +194,8 @@ public class GenerateIsland : MonoBehaviour
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
     {
+        GameObject stuff = new GameObject();
+
         GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
         //a tree's spawn chance shall be 75%
         RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
@@ -210,11 +213,14 @@ public class GenerateIsland : MonoBehaviour
                 GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity);
                 newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
                 newObject.tag = type;
+
+                newObject.transform.SetParent(stuff.transform);
             }
             Destroy(x);
         }
+        generatedMap.Add(stuff);
     }
-    private void deleteObjects(List<GameObject> environmentList, string type)
+    private void deleteObjects(string type)
     {
         GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
         foreach (GameObject x in listOfObjects)
