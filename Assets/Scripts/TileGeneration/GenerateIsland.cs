@@ -126,7 +126,7 @@ public class GenerateIsland : MonoBehaviour
         //TODO: add this stuff to regen
         if (makeEnvironment)
         {
-            replaceObjects(60, treeList.EnvironmentList, "Tree");
+            replaceObjects(40, treeList.EnvironmentList, "Tree");
             replaceObjects(40, grassList.EnvironmentList, "Grass");
             replaceObjects(30, mediumObjectList.EnvironmentList, "Rock");
             replaceObjects(30, particleEffects.EnvironmentList, "Particles");
