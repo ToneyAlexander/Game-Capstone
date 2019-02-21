@@ -32,12 +32,12 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private EnvironmentData treeList;
     [SerializeField]
-    private int treeChance = 40;
+    private int treeChance = 60;
 
     [SerializeField]
     private EnvironmentData grassList;
     [SerializeField]
-    private int grassChance = 40;
+    private int grassChance = 50;
 
     [SerializeField]
     private EnvironmentData mediumObjectList;
