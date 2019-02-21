@@ -62,6 +62,7 @@ public class PlayerClass : MonoBehaviour
             {
                 Ability instA = a.Instance;
                 abilities.Set.Add(instA);
+                Debug.Log("Abil set len: "+abilities.Set.Count);
                 //TODO: repalce with ui thing
                 if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
                 {
