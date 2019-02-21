@@ -19,7 +19,7 @@ public class RemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        initialPosition = new Vector3(5, 5, 5);
+        //initialPosition = new Vector3(5, 5, 5);
         EPSSION = 0.0001f;
         reLocateDelay = 0.15f;
         timer = 0;
@@ -27,8 +27,8 @@ public class RemyMovement : MonoBehaviour
         movingSpeed = 10;
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
-        this.transform.position = initialPosition;
-        destination = initialPosition;
+        //this.transform.position = initialPosition;
+        destination = transform.position; //initialPosition;
     }
 
     //TODO: DELETE THIS AND FIX IN GENERATEISLAND
