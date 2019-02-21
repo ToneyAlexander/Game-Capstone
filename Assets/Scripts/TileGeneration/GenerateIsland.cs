@@ -152,11 +152,6 @@ public class GenerateIsland : MonoBehaviour
     private void deleteIsland()
     {
         //Destroy stuff on terrain
-        //deleteObjects("Tree");
-        //deleteObjects("Grass");
-        //deleteObjects("Rock");
-        //deleteObjects("Particles");
-        //deleteObjects("SpecialObject");
         Destroy(terrain);
         while (generatedMap.Count > 0)
         {
@@ -308,6 +303,7 @@ public class GenerateIsland : MonoBehaviour
                 if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1)
                 {
                     LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1;
+                    layersChanged = true;
                 }
             }
         }
@@ -351,12 +347,6 @@ public class GenerateIsland : MonoBehaviour
         floodFill(new Vector2Int(0, island.GetLength(1) - 1), island, updated, tileCount);
         floodFill(new Vector2Int(island.GetLength(0) - 1, 0), island, updated, tileCount);
         floodFill(new Vector2Int(island.GetLength(0) - 1, island.GetLength(1) - 1), island, updated, tileCount);
-
-        //water
-        //island[0, 0] = makeWater();
-        //island[0, ISLE_WIDE-1] = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
-        //island[ISLE_HIGH-1, 0] = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
-        //island[ISLE_HIGH-1, ISLE_WIDE-1] = new bool[] { true, true, true, true, true, true, true, true, true, true, true, true, true, true };
 
         return island;
     }
