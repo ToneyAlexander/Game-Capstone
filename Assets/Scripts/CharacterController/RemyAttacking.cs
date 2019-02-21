@@ -65,6 +65,7 @@ public class RemyAttacking : MonoBehaviour
 
     public void MagicAttack(Ability ability)
     {
+        RemyMovement.destination = this.transform.position;
         RotateToEnemy();
         if (ability.AbilityName.Equals("Fireball Ignite")) {
             animator.SetBool("isFireballIgnite", true);
