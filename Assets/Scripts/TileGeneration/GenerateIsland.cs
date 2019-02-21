@@ -311,6 +311,7 @@ public class GenerateIsland : MonoBehaviour
                 }
             }
         }
+        surface.UpdateNavMesh(surface.navMeshData);
     }
 
     private bool[,][] initializeCircleMap(List<Vector2Int> updated, int tileCount, int width, int height)
