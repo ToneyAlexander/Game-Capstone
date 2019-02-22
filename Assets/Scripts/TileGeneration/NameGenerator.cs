@@ -18,11 +18,11 @@ public class NameGenerator
     public string generateName()
     {
         string mid = "";
-        for(int i = 0; i < Random.Range(1, 3); i++)
+        for(int i = 0; i < Random.Range(1, 4); i++)
         {
-            mid += infixes[Random.Range(0, infixes.Length-1)];
+            mid += infixes[Random.Range(0, infixes.Length)];
         }
-        string end = suffixes[Random.Range(0, suffixes.Length - 1)];
+        string end = suffixes[Random.Range(0, suffixes.Length)];
 
         string prefinal = mid + end;
         prefinal = prefinal.Substring(0,1).ToUpper() + prefinal.Substring(1);
@@ -43,7 +43,10 @@ public class NameGenerator
                 final += c;
             }
         }
-
+        if (final.Equals("Remy"))
+        {
+            Debug.Log("CONGRATS");
+        }
         return final;
     }
 
