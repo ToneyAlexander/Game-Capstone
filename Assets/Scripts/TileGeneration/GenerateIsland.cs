@@ -75,6 +75,8 @@ public class GenerateIsland : MonoBehaviour
     private int ISLE_WIDE = 50;
     private int ISLE_HIGH = 50;
 
+    private NameGenerator g;
+
 
     //max 3 right now
     //fix csv/code to be able to work with arbitaray number more
@@ -113,9 +115,13 @@ public class GenerateIsland : MonoBehaviour
 
         tiles = createTileset(NUMBER_OF_TILES);
 
+        //Sets generated map
         createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
 
         surface.BuildNavMesh();
+        g = new NameGenerator();
+
+        Debug.Log(g.generateName());
     }
 
     private List<TilePiece> createTileset(int tileCount)
@@ -259,6 +265,8 @@ public class GenerateIsland : MonoBehaviour
                 tiles = createTileset(NUMBER_OF_TILES);
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
+            surface.UpdateNavMesh(surface.navMeshData);
+            Debug.Log(g.generateName());
         }
         else if (Input.GetButtonDown("Terrain"))
         {
@@ -269,9 +277,14 @@ public class GenerateIsland : MonoBehaviour
             if (Input.GetAxisRaw("Island Height") > 0)
             {
                 LAYERS_ABOVE_BEACH++;
-                if(LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1)
+                int adjust = 0;
+                if(ISLE_WIDE_HIGH % 6 == 0)
                 {
-                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1;
+                    adjust = -1;
+                }
+                if(LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
+                {
+                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
                 }
 
             }
@@ -300,14 +313,18 @@ public class GenerateIsland : MonoBehaviour
                 ISLE_WIDE_HIGH--;
                 ISLE_WIDE = ISLE_WIDE_HIGH;
                 ISLE_HIGH = ISLE_WIDE_HIGH;
-                if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1)
+                int adjust = 0;
+                if (ISLE_WIDE_HIGH % 6 == 0)
                 {
-                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1;
+                    adjust = -1;
+                }
+                if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
+                {
+                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
                     layersChanged = true;
                 }
             }
         }
-        surface.UpdateNavMesh(surface.navMeshData);
     }
 
     private bool[,][] initializeCircleMap(List<Vector2Int> updated, int tileCount, int width, int height)
