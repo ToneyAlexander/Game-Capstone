@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.45
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34934393, g: 0.35896015, b: 0.37110236, a: 0.45}
+  m_IndirectSpecularColor: {r: 0.3493708, g: 0.35895514, b: 0.3709096, a: 0.45}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -99,8 +99,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 10
+    agentClimb: 0.1
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -167,14 +167,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: swordOnBack
-      value: 
-      objectReference: {fileID: 680842693}
-    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: swordOnHand
-      value: 
-      objectReference: {fileID: 1592547377}
     - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -183,6 +175,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordOnHand
       objectReference: {fileID: 0}
+    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: swordOnBack
+      value: 
+      objectReference: {fileID: 680842693}
+    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: swordOnHand
+      value: 
+      objectReference: {fileID: 1592547377}
     - target: {fileID: 290558802, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: layerMask.m_Bits
       value: 512
@@ -1038,17 +1038,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -13.099998
       objectReference: {fileID: 0}
-    - target: {fileID: 6834649688486324896, guid: 2bc9cf4d910d636498b621b365e8c4de,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6622218830170099695, guid: 2bc9cf4d910d636498b621b365e8c4de,
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 915117692135510694, guid: 2bc9cf4d910d636498b621b365e8c4de,
+    - target: {fileID: 6834649688486324896, guid: 2bc9cf4d910d636498b621b365e8c4de,
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
@@ -1058,12 +1053,17 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4069730518391278821, guid: 2bc9cf4d910d636498b621b365e8c4de,
+    - target: {fileID: 1612493379991777284, guid: 2bc9cf4d910d636498b621b365e8c4de,
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1612493379991777284, guid: 2bc9cf4d910d636498b621b365e8c4de,
+    - target: {fileID: 915117692135510694, guid: 2bc9cf4d910d636498b621b365e8c4de,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069730518391278821, guid: 2bc9cf4d910d636498b621b365e8c4de,
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
