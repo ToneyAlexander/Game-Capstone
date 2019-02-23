@@ -231,11 +231,9 @@ public class GenerateIsland : MonoBehaviour
             {
                 rngCsp2.GetBytes(randomNumber2);
                 byte index = (byte)((randomNumber[0] % environmentList.Count));
-                GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity);
+                GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity, terrain.transform);
                 newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
                 newObject.tag = type;
-
-                newObject.transform.SetParent(terrain.transform);
             }
             Destroy(x);
         }
