@@ -24,4 +24,9 @@ public class EdgySlash : MonoBehaviour, IAbilityBase
     {
         return cdRemain;
     }
+
+    public void UpdateStats()
+    {
+        throw new System.NotImplementedException();
+    }
 }

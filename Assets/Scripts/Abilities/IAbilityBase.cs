@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IAbilityBase
 {
     bool Use();
-    float CooldownLeft();
+    void UpdateStats();
 }

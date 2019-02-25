@@ -17,6 +17,8 @@ public class PerkPrototype : ScriptableObject
     public string Desc;
     [SerializeField]
     public List<AbilityPrototype> grants;
+    [SerializeField]
+    public List<AbilityModifier> Changes;
     public Vector2 uiCoords;
     public Sprite sprite;
 

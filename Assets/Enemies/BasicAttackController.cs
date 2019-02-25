@@ -18,6 +18,10 @@ public class BasicAttackController : MonoBehaviour
     private bool meleeAttack;
     private bool rangedAttack;
 
+    private const string melee = "meleeAttack";
+    private const string ranged = "rangedAttack";
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,24 +74,6 @@ public class BasicAttackController : MonoBehaviour
 
     void ProjectileAttack()
     {
-        // Old code - to be removed...
-        // GameObject o = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        // o.transform.position = transform.position;
-        // o.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-        // o.transform.LookAt(target.transform);
-        // o.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        // o.transform.parent = transform;
-        // Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
-        // dmg = stats.RealDamage(dmg);
-        // ProjectileController pb = o.AddComponent<ProjectileController>();
-        // pb.dmg = dmg;
-        // pb.speed = 10f;
-        // pb.ttl = 5f;
-        // o.GetComponent<SphereCollider>().isTrigger = true;
-        // Rigidbody rb = o.AddComponent<Rigidbody>();
-        // rb.useGravity = false;
-        // rb.isKinematic = true;
-
         // Generates projectiles
         var projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
         ProjectileMover pm = projectileInstance.GetComponent<ProjectileMover>();
@@ -101,11 +87,11 @@ public class BasicAttackController : MonoBehaviour
 
     public void SetAttack(string attackMode, bool attack)
     {
-        if (attackMode == MeleeEnemyController.AttackMode)
+        if (attackMode == melee)
         {
             meleeAttack = attack;
         }
-        else if (attackMode == RangedEnemyController.AttackMode)
+        else if (attackMode == ranged)
         {
             rangedAttack = attack;
         }

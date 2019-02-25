@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 93620f1077017144c8746a20ec2c362c, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
@@ -22,5 +23,6 @@ MonoBehaviour:
   Desc: Fires a volley of fireballs with a small spread
   grants:
   - {fileID: 11400000, guid: 215ff9dad6d8f4275bc645067e4a5267, type: 2}
+  Changes: []
   uiCoords: {x: 200, y: 250}
   sprite: {fileID: 0}

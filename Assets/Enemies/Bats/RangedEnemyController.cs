@@ -5,10 +5,18 @@ using UnityEngine.AI;
 
 public class RangedEnemyController : EnemyController
 {
+    // Animator stuff
+    private Animator animator;
+
     public const string AttackMode = "rangedAttack";
 
     protected override void Initialize()
     {
+        // Set up animator
+        animator = GetComponent<Animator>();
+        animator.SetBool("meleeAttack", false);
+        animator.SetBool("rangedAttack", false);
+
         // Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 20f;
@@ -24,6 +32,10 @@ public class RangedEnemyController : EnemyController
 
     protected override void UniqueUpdate()
     {
+        agent.isStopped = false;
+        animator.SetBool("meleeAttack", false);
+        animator.SetBool("rangedAttack", false);
+
         // By default, enemy is not attacking.
         attackController.SetAttack(AttackMode, false);
     }
@@ -41,5 +53,21 @@ public class RangedEnemyController : EnemyController
 
         // TODO: Maybe other stuff...
         attackController.SetAttack(AttackMode, true);
+    }
+
+    protected override void UnderAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            healthPoints--;
+            animator.SetTrigger("hit");
+        }
+    }
+    
+    protected override IEnumerator Die()
+    {
+        animator.SetBool("death", true);
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 }

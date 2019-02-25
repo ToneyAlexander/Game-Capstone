@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NameGenerator
+[CreateAssetMenu(fileName = "Name Generator", menuName = "Procedural Generation/Name Generator", order = 1)]
+public class NameGenerator : ScriptableObject
 {
     private string[] infixes;
     private string[] suffixes;
-    public NameGenerator()
+    private HashSet<string> usedNames;
+
+    public void OnEnable()
     {
         TextAsset infixFile = Resources.Load<TextAsset>("infixes");
         TextAsset suffixFile = Resources.Load<TextAsset>("suffixes");
 
         infixes = infixFile.text.Split('\n');
         suffixes = suffixFile.text.Split('\n');
+
+        usedNames = new HashSet<string>();
     }
 
     public string generateName()
@@ -47,6 +52,11 @@ public class NameGenerator
         {
             Debug.Log("CONGRATS");
         }
+        if (usedNames.Contains(final))
+        {
+            final = generateName();
+        }
+        usedNames.Add(final);
         return final;
     }
 

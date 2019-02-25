@@ -14,9 +14,13 @@ public class GenerateIsland : MonoBehaviour
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
     private static int TILES_PER_LAYER = 33;
+
+    [SerializeField]
+    private NameGenerator nameGenerator;
     
     [SerializeField]
     private NavMeshSurface surface;
+    private float updateNavMeshTimer = 0f;
 
     [SerializeField]
     private GameObject remy;
@@ -123,9 +127,8 @@ public class GenerateIsland : MonoBehaviour
         createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
 
         surface.BuildNavMesh();
-        g = new NameGenerator();
 
-        Debug.Log(g.generateName());
+        Debug.Log(nameGenerator.generateName());
     }
 
     private List<TilePiece> createTileset(int tileCount)
@@ -262,6 +265,13 @@ public class GenerateIsland : MonoBehaviour
 
     void Update()
     {
+        // It takes some time for the navMesh to update based on the new island.
+        if (updateNavMeshTimer > 0)
+        {
+            surface.UpdateNavMesh(surface.navMeshData);
+            updateNavMeshTimer--;
+        }
+
         if (Input.GetButtonDown("Regenerate"))
         {
             deleteIsland();
@@ -276,7 +286,7 @@ public class GenerateIsland : MonoBehaviour
                 tiles = createTileset(NUMBER_OF_TILES);
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
-            surface.UpdateNavMesh(surface.navMeshData);
+            updateNavMeshTimer = 500;
             Debug.Log(g.generateName());
         }
         else if (Input.GetButtonDown("Terrain"))
