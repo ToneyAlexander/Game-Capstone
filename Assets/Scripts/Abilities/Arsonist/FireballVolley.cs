@@ -29,6 +29,18 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         return cdRemain;
     }
 
+    public void UpdateStats()
+    {
+        abilStats = abil.Stats;
+        Debug.Log("updating stats");
+        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
+        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
+        projSpread = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPREAD).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+    }
+
     public bool Use()
     {
         if(cdRemain <= 0.0001f)
@@ -43,6 +55,7 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
 
     IEnumerator FireAsync()
     {
+        Debug.Log("Min: " + dmgMin + "; Max: " + dmgMax);
         int projCast = 0;
         while (projCast < projCount)
         {
@@ -84,12 +97,7 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         projectile = abil.Prefab;
         abilStats = abil.Stats;
         cdRemain = 0;
-        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
-        projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
-        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
-        projSpread = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPREAD).Value;
-        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
-        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        UpdateStats();
     }
 
     // Update is called once per frame
@@ -103,6 +111,11 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         {
             abil.use = false;
             Use();
+        }
+        if (abil.update)
+        {
+            abil.update = false;
+            UpdateStats();
         }
     }
 }

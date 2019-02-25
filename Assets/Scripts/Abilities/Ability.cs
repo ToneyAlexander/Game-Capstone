@@ -16,6 +16,8 @@ public class Ability
 
     public string TypeString;
     public bool use;
+    public bool update;
+    public float cdRemain;
     public Sprite Icon;
     public GameObject Prefab;
     public List<Stat> Stats;
@@ -33,6 +35,8 @@ public class Ability
         Prefab = ap.Prefab;
         Stats = ap.Stats;
         TypeString = ap.TypeString;
+        cdRemain = 0f;
+        update = false;
         use = false;//TODO replace with proper listener
        // Script = ap.Script;
     }
