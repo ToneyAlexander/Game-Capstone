@@ -56,7 +56,7 @@ namespace CCC.Abilities
             Debug.Log("Ability: " + ability.abilityType);
             remyAttacking.MagicAttack(ability);
 
-            if (usableAbilities.Set.Contains(ability))
+            if (usableAbilities.Set.ContainsKey(ability.AbilityName))
             {
                 ability.use = true;
                 Debug.Log(gameObject.name + " used Ability " + ability.AbilityName);
@@ -76,7 +76,7 @@ namespace CCC.Abilities
 
         private void Start()
         {
-            foreach (Ability ability in usableAbilities.Set)
+            foreach (Ability ability in usableAbilities.Set.Values)
             {
                 Debug.Log(ability.AbilityName);
             }

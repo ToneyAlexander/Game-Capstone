@@ -14,7 +14,7 @@ namespace CCC.Abilities
         /// Get the HashSet of Ability that this AbilitySet is a wrapper for.
         /// </summary>
         /// <value>The actual HashSet of Ability.</value>
-        public HashSet<Ability> Set
+        public Dictionary<string, Ability> Set
         {
             get { return set; }
         }
@@ -22,6 +22,6 @@ namespace CCC.Abilities
         /// <summary>
         /// The actual HashSet of Ability.
         /// </summary>
-        private HashSet<Ability> set = new HashSet<Ability>();
+        private Dictionary<string, Ability> set = new Dictionary<string, Ability>();
     }
 }
