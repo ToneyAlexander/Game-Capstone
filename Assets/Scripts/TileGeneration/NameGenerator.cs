@@ -18,7 +18,7 @@ public class NameGenerator
     public string generateName()
     {
         string mid = "";
-        for(int i = 0; i < Random.Range(1, 4); i++)
+        for(int i = 0; i < Random.Range(1, 3); i++)
         {
             mid += infixes[Random.Range(0, infixes.Length)];
         }
