@@ -27,6 +27,7 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private Texture2D img;
 
+	private int themeID;
 
     [SerializeField]
     private int ISLE_WIDE_HIGH;
@@ -34,34 +35,37 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private bool makeEnvironment = false;
     [SerializeField]
-    private EnvironmentData treeList;
+    private ThemeList treeList;
     [SerializeField]
     private int treeChance = 60;
 
     [SerializeField]
-    private EnvironmentData grassList;
+    private ThemeList grassList;
     [SerializeField]
     private int grassChance = 50;
 
     [SerializeField]
-    private EnvironmentData mediumObjectList;
+    private ThemeList mediumObjectList;
     [SerializeField]
     private int mediumChance = 30;
 
     [SerializeField]
-    private EnvironmentData particleEffects;
+    private ThemeList particleEffects;
     [SerializeField]
     private int particleChance = 30;
 
     [SerializeField]
-    private EnvironmentData specialObjects;
+    private ThemeList specialObjects;
     [SerializeField]
     private int specialChance = 2;
 
 	[SerializeField]
-	private EnvironmentData enemySpawner;
+	private ThemeList enemySpawner;
 	[SerializeField]
 	private int enemyChance = 5;
+
+	[SerializeField]
+	private byte themeCount;
 
 	[SerializeField]
     private Vector3 startingLocation = Vector3.zero;
@@ -289,29 +293,38 @@ public class GenerateIsland : MonoBehaviour
             observe(island, updated, tileCount);
             propagate(island, updated, index);
         }
+		themePicker(); //pick theme before generation 
         generatedMap = drawMap(island, startingLocation, tileSize);
-
+		
         terrain = new GameObject();
 
         if (makeEnvironment)
         {
-            replaceObjects(treeChance, treeList.EnvironmentList, "Tree");
-            replaceObjects(grassChance, grassList.EnvironmentList, "Grass");
-            replaceObjects(mediumChance, mediumObjectList.EnvironmentList, "Rock");
-            replaceObjects(particleChance, particleEffects.EnvironmentList, "Particles");
-            replaceObjects(specialChance, specialObjects.EnvironmentList, "SpecialObject");
-			replaceObjects(enemyChance, enemySpawner.EnvironmentList, "EnemySpawner");
+            replaceObjects(treeChance, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(grassChance, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(mediumChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(particleChance, particleEffects.themeList[themeID].EnvironmentList, "Particles");
+            replaceObjects(specialChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+			replaceObjects(enemyChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
 		}
         else
         {
-            replaceObjects(0, treeList.EnvironmentList, "Tree");
-            replaceObjects(0, grassList.EnvironmentList, "Grass");
-            replaceObjects(0, mediumObjectList.EnvironmentList, "Rock");
-            replaceObjects(0, particleEffects.EnvironmentList, "Particles");
-            replaceObjects(0, specialObjects.EnvironmentList, "SpecialObject");
-			replaceObjects(0, enemySpawner.EnvironmentList, "EnemySpawner");
+            replaceObjects(0, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(0, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(0, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(0, particleEffects.themeList[themeID].EnvironmentList, "Particles");
+            replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+			replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
 		}
     }
+
+	private void themePicker()
+	{
+		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+		byte[] randomNumber = new byte[100];
+		rngCsp.GetBytes(randomNumber); 
+	    themeID = (byte)((randomNumber[0] % themeCount)); //randomly decide on island
+	}
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
     {
