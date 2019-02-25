@@ -15,20 +15,13 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
     private MousePositionDetector mpd;
     private GameObject projectile;
 
-    private float cdRemain;
-
     private float cdBase;
     private float projCount;
     private float projSpread;
     private float projSpeed;
     private float dmgMin;
     private float dmgMax;
-
-    public float CooldownLeft()
-    {
-        return cdRemain;
-    }
-
+    
     public void UpdateStats()
     {
         abilStats = abil.Stats;
@@ -43,9 +36,9 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
 
     public bool Use()
     {
-        if(cdRemain <= 0.0001f)
+        if(abil.cdRemain <= 0.0001f)
         {
-            cdRemain = cdBase;
+            abil.cdRemain = cdBase;
             StartCoroutine(FireAsync());
             return true;
         }
@@ -96,16 +89,16 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         abil = pc.abilDict.GetAbility(AbilitySlot.One);//TODO find by name not hardcoded slot.
         projectile = abil.Prefab;
         abilStats = abil.Stats;
-        cdRemain = 0;
+        abil.cdRemain = 0f;
         UpdateStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cdRemain > 0f)
+        if(abil.cdRemain > 0f)
         {
-            cdRemain -= Time.deltaTime;
+            abil.cdRemain -= Time.deltaTime;
         }
         if(abil.use)
         {
