@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec6c1e47f0109d44b3a5196f633729e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameGenerator: {fileID: 11400000, guid: d7ef3479a52bb4044bfaa26d5119b248, type: 2}
   surface: {fileID: 1507233751}
   remy: {fileID: 1578934640}
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
@@ -927,13 +928,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
         type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

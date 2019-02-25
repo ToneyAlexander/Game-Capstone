@@ -15,13 +15,14 @@ public class RemyAttacking : MonoBehaviour
 
     public GameObject swordOnHand;
     public GameObject swordOnBack;
-    
+    public bool startMagicAttack;
 
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+        startMagicAttack = false;
     }
 
     // Update is called once per frame
@@ -48,6 +49,7 @@ public class RemyAttacking : MonoBehaviour
 
         }
 
+        StartFireballIgnit(startMagicAttack);
         //if (ShouldUnEquip())
         //{
         //    UnEquipSword();
@@ -171,5 +173,25 @@ public class RemyAttacking : MonoBehaviour
     void DoNotFly()
     {
         attackDirection.y = this.transform.position.y;
+    }
+
+    void StartFireballIgnit(bool start)
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6 &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1
+                )
+        {
+            start = true;
+        }else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley") &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.4 &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 1)
+        {
+            start = true;
+        }
+        else
+        {
+            start = false;
+        }
     }
 }

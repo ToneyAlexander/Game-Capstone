@@ -14,6 +14,9 @@ public class GenerateIsland : MonoBehaviour
     private int WATER_INDEX = 0;
     private int LAND_INDEX = 33;
     private static int TILES_PER_LAYER = 33;
+
+    [SerializeField]
+    private NameGenerator nameGenerator;
     
     [SerializeField]
     private NavMeshSurface surface;
@@ -120,9 +123,8 @@ public class GenerateIsland : MonoBehaviour
         createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
 
         surface.BuildNavMesh();
-        g = new NameGenerator();
 
-        Debug.Log(g.generateName());
+        Debug.Log(nameGenerator.generateName());
     }
 
     private List<TilePiece> createTileset(int tileCount)
