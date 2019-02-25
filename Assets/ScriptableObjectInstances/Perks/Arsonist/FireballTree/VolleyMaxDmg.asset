@@ -18,15 +18,16 @@ MonoBehaviour:
   Children: []
   Blocks: []
   RequireAll: 0
-  Stats:
-  - statName: {fileID: 0}
-    statValue: 0
-  Name: 
+  Stats: []
+  Name: Volley Damage
   Desc: 
   grants: []
   Changes:
   - Value: 10
-    abilityName: AbilityFireballVolley
+    abilityName: Fireball Volley
     statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+  - Value: 5
+    abilityName: Fireball Volley
+    statName: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
   uiCoords: {x: 0, y: 0}
   sprite: {fileID: 0}
