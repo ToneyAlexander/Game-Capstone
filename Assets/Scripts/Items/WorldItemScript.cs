@@ -8,10 +8,23 @@ public class WorldItemScript : MonoBehaviour
 {
     public Item item;
 
+    [SerializeField]
+    private Inventory inventory;
+
     public void setItem(Item i)
     {
         this.item = i;
         //Do other stuff here?
+    }
+
+    private void OnMouseDown()
+    {
+        if (inventory.Items.Capacity < inventory.MaxCapacity)
+        {
+            inventory.Items.Add(item);
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+        }
     }
 }
 
