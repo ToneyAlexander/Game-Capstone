@@ -13,7 +13,7 @@ public class GenerateEnemies : MonoBehaviour
     public int rangedNumber;
     private GameObject[] rangedEnemies;
 
-    public void Generate()
+    public void Start()
     {
         meleeEnemies = new GameObject[meleeNumber];
         for (int i = 0; i < meleeNumber; i++)
@@ -37,6 +37,6 @@ public class GenerateEnemies : MonoBehaviour
     private Vector3 RandomPos()
     {
         Vector2 randomPoint = Random.insideUnitCircle * spawnRange;
-        return transform.position + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
+        return transform.position + new Vector3(randomPoint.x, 1.0f, randomPoint.y);
     }
 }
