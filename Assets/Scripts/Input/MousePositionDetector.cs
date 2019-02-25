@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
 /// Represents a Component that detects the position of the mouse in world 
@@ -14,19 +15,27 @@ public sealed class MousePositionDetector : MonoBehaviour
 
     /// <summary>
     /// Calculates the world position of the mouse during the frame that this 
-    /// method was called.
+    /// method was called as long as the mouse pointer was not over an 
+    /// EventSystem object.
     /// </summary>
-    /// <returns>The world position of the mouse.</returns>
+    /// <returns>
+    /// The world position of the mouse pointer if it wasn't over an 
+    /// EventSystem object, Vector3.negativeInfinity otherwise.
+    /// </returns>
     public Vector3 CalculateWorldPosition()
     {
-        Vector3 mouseScreenSpacePosition = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mouseScreenSpacePosition);
+        Vector3 worldSpacePosition = Vector3.negativeInfinity;
 
-        RaycastHit hit;
-        Vector3 worldSpacePosition = Vector3.zero;
-        if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, layerMask))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            worldSpacePosition = hit.point;
+            Vector3 mouseScreenSpacePosition = Input.mousePosition;
+            Ray castPoint = Camera.main.ScreenPointToRay(mouseScreenSpacePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity, layerMask))
+            {
+                worldSpacePosition = hit.point;
+            }
         }
 
         return worldSpacePosition;
