@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public abstract class EnemyController : MonoBehaviour
 {   
-    // Animator stuff
-    protected Animator animator;
 
     // NavMesh stuff
     protected NavMeshAgent agent;
@@ -38,11 +36,6 @@ public abstract class EnemyController : MonoBehaviour
 
     void Start()
     {
-        // Set up animator
-        animator = GetComponent<Animator>();
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
-
         // Set up NavMesh
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5f;
@@ -66,10 +59,6 @@ public abstract class EnemyController : MonoBehaviour
 
         // Get player's current position
         Vector3 playerPos = player.transform.position + new Vector3(0.0f, 3.0f, 0.0f);
-
-        agent.isStopped = false;
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
 
         // If the player character is within the enemy's moving area and is within 
         // enemy's field of view, the enemy chases player character
@@ -165,22 +154,6 @@ public abstract class EnemyController : MonoBehaviour
         return Vector3.Distance(transform.position, pos) <= attackDistance;
     }
 
-    private void UnderAttack()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            healthPoints--;
-            animator.SetTrigger("hit");
-        }
-    }
-
-    private IEnumerator Die()
-    {
-        animator.SetBool("death", true);
-        yield return new WaitForSeconds(0.3f);
-        Destroy(gameObject);
-    }
-
     /* Debugging code (Don't delete them) */
 
     // private void DisplayVisionAndRange()
@@ -222,4 +195,8 @@ public abstract class EnemyController : MonoBehaviour
     protected abstract void UniqueUpdate();
 
     protected abstract void Attack(Vector3 pos);
+
+    protected abstract void UnderAttack();
+
+    protected abstract IEnumerator Die();
 }
