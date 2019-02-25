@@ -169,26 +169,121 @@ public class GenerateIsland : MonoBehaviour
         }
     }
 
-    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
+    private void initializeCircleMap(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
     {
-        List<Vector2Int> updated = new List<Vector2Int>();
-        bool[,][] island = initializeCircleMap(updated, tileCount, width, height);
+        initializeEmptyMap(island, tileCount);
 
+        drawcircle(width / 2, height / 2, (int)Mathf.Ceil(width / 2f), island, updated, tileCount);
+        floodFill(new Vector2Int(0, 0), island, updated, tileCount);
+        floodFill(new Vector2Int(0, island.GetLength(1) - 1), island, updated, tileCount);
+        floodFill(new Vector2Int(island.GetLength(0) - 1, 0), island, updated, tileCount);
+        floodFill(new Vector2Int(island.GetLength(0) - 1, island.GetLength(1) - 1), island, updated, tileCount);
+    }
+
+    private void initializeEmptyMap(bool[,][] island, int tileCount) {
+        //initialize map
+        bool[] basic = new bool[tileCount];
+        for (int b = 0; b < basic.Length; b++)
+        {
+            basic[b] = true;
+        }
+        //basic.Clone();
+        for (int m = 0; m < island.GetLength(0); m++)
+        {
+            for (int n = 0; n < island.GetLength(1); n++)
+            {
+                island[m, n] = (bool[])basic.Clone();
+            }
+        }
+    }
+
+    private void initializeSquareMap(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
+    {
+        //initialize map
+        bool[] basic = new bool[tileCount];
+        for (int b = 0; b < basic.Length; b++)
+        {
+            basic[b] = true;
+        }
+        //basic.Clone();
+        for (int m = 0; m < island.GetLength(0); m++)
+        {
+            for (int n = 0; n < island.GetLength(1); n++)
+            {
+                if ((m == 0 || n == 0 || m == island.GetLength(0) - 1 || n == island.GetLength(1) - 1))
+                {
+                    island[m, n] = makeWater(tileCount);
+                    Vector2Int coords = new Vector2Int(m, n);
+                    //TODO: speed up - list contains is slow?
+                    if (!updated.Contains(coords))
+                    {
+                        updated.Add(coords);
+                    }
+                }
+                else
+                {
+                    island[m, n] = (bool[])basic.Clone();
+                }
+            }
+        }
+    }
+
+    private void initializeCrescentMap(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
+    {
+        initializeCircleMap(island, updated, tileCount, width, height);
+
+        drawcircleFlexible(width, height / 2, (int)Mathf.Ceil(width / 2f), island, updated, tileCount, WATER_INDEX);
+        floodFill(new Vector2Int(island.GetLength(0) - 2, island.GetLength(1)/2), island, updated, tileCount);
+    }
+
+    private void initializeAntiCrescentMap(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
+    {
+        initializeCircleMap(island, updated, tileCount, width, height);
+
+        drawcircleFlexible(width, height / 2, (int)Mathf.Ceil(width / 2f), island, updated, tileCount, WATER_INDEX);
+        floodFill(new Vector2Int(2, island.GetLength(1) / 2), island, updated, tileCount);
+    }
+
+
+    private void makeCenterTallest(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
+    {
         //FORCE CENTER TO BE TALLEST TILE
         island[width / 2, height / 2] = makeTile(tileCount - 1, tileCount);
+        updated.Add(new Vector2Int(width / 2, height / 2));
+    }
+
+    private void placePlayerMaxCenter(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height, int tileSize, int layersAboveBeach)
+    {
         Vector3 remyStart = new Vector3((width / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (layersAboveBeach + 1), (height / 2) * tileSize);
         remy.transform.position = remyStart;
         remy.GetComponent<RemyMovement>().setDetination(remyStart);
+    }
 
-        updated.Add(new Vector2Int(width / 2, height / 2));
+    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
+    {
+        List<Vector2Int> updated = new List<Vector2Int>();
+
+        bool[,][] island = new bool[width, height][];
 
         if (drawTileSet)
         {
             drawBullshit(Vector3.zero, tileSize, tileCount);
         }
 
-        //Propagate from initial set up
+        //initializeEmptyMap(island, tileCount);
+        //initializeCircleMap(island, updated, tileCount, width, height);
+        //initializeSquareMap(island, updated, tileCount, width, height);
+        //initializeCrescentMap(island, updated, tileCount, width, height);
+        initializeAntiCrescentMap(island, updated, tileCount, width, height);
+
         propagate(island, updated, index);
+        //makeCenterTallest(island, updated, tileCount, width, height);
+        propagate(island, updated, index);
+
+        //Better place player methdo - look at map
+        placePlayerMaxCenter(island, updated, tileCount, width, height, tileSize, layersAboveBeach);
+
+
         while (!finished(island))
         {
             observe(island, updated, tileCount);
@@ -333,47 +428,6 @@ public class GenerateIsland : MonoBehaviour
                 }
             }
         }
-    }
-
-    private bool[,][] initializeCircleMap(List<Vector2Int> updated, int tileCount, int width, int height)
-    {
-        //initialize map
-        bool[,][] island = new bool[width, height][];
-
-        bool[] basic = new bool[tileCount];
-        for(int b = 0; b < basic.Length; b++)
-        {
-            basic[b] = true;
-        }
-        //basic.Clone();
-        for (int m = 0; m < island.GetLength(0); m++)
-        {
-            for (int n = 0; n < island.GetLength(1); n++)
-            {
-                if (false && (m == 0 || n == 0 || m == island.GetLength(0) - 1 || n == island.GetLength(1) - 1))
-                {
-                    island[m, n] = makeWater(tileCount);
-                    Vector2Int coords = new Vector2Int(m, n);
-                    //TODO: speed up - list contains is slow?
-                    if (!updated.Contains(coords))
-                    {
-                        updated.Add(coords);
-                    }
-                }
-                else
-                {
-                    island[m, n] = (bool[])basic.Clone();
-                }
-            }
-        }
-
-        drawcircle(width / 2, height / 2, (int)Mathf.Ceil(width / 2f), island, updated, tileCount);
-        floodFill(new Vector2Int(0, 0), island, updated, tileCount);
-        floodFill(new Vector2Int(0, island.GetLength(1) - 1), island, updated, tileCount);
-        floodFill(new Vector2Int(island.GetLength(0) - 1, 0), island, updated, tileCount);
-        floodFill(new Vector2Int(island.GetLength(0) - 1, island.GetLength(1) - 1), island, updated, tileCount);
-
-        return island;
     }
 
     private int pixelToId(Color pixel)
@@ -534,6 +588,87 @@ public class GenerateIsland : MonoBehaviour
             updated.Add(new Vector2Int(x0 - y, y0 - x));
             updated.Add(new Vector2Int(x0 + y, y0 - x));
             updated.Add(new Vector2Int(x0 + x, y0 - y));
+
+            if (err <= 0)
+            {
+                y++;
+                err += dy;
+                dy += 2;
+            }
+
+            if (err > 0)
+            {
+                x--;
+                dx += 2;
+                err += dx - (radius << 1);
+            }
+        }
+    }
+
+    private void drawcircleFlexible(int x0, int y0, int radius, bool[,][] island, List<Vector2Int> updated, int tileCount, int lineTileIndex)
+    {
+        int x = radius - 1;
+        int y = 0;
+        int dx = 1;
+        int dy = 1;
+        int err = dx - (radius << 1);
+
+        while (x >= y)
+        {
+            try
+            {
+                island[x0 + x, y0 + y] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 + x, y0 + y));
+            }
+            catch { }
+            try
+            {
+                island[x0 + y, y0 + x] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 + y, y0 + x));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 - y, y0 + x] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 - y, y0 + x));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 - x, y0 + y] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 - x, y0 + y));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 - x, y0 - y] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 - x, y0 - y));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 - y, y0 - x] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 - y, y0 - x));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 + y, y0 - x] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 + y, y0 - x));
+            }
+            catch { }
+
+            try
+            {
+                island[x0 + x, y0 - y] = makeTile(lineTileIndex, tileCount);
+                updated.Add(new Vector2Int(x0 + x, y0 - y));
+            }
+            catch { }
 
             if (err <= 0)
             {

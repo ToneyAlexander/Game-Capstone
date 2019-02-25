@@ -20,7 +20,7 @@ public class WorldItemScript : MonoBehaviour
     //TODO: USE INVENTORY ADD ITEM
     private void OnMouseDown()
     {
-        if (inventory.Items.Count < inventory.MaxCapacity)
+        if (inventory.Items.Count <= inventory.MaxCapacity)
         {
             inventory.Items.Add(item);
             this.gameObject.SetActive(false);
