@@ -324,7 +324,7 @@ MonoBehaviour:
   enemyChance: 5
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
-  LAYERS_ABOVE_BEACH: 3
+  LAYERS_ABOVE_BEACH: 0
   LESS_THAN_LAND_REGEN_COUNT: 3
   useLVR: 1
   RUN_INDEX_TEST: 0
@@ -928,13 +928,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
         type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

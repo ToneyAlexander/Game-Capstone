@@ -1,14 +1,17 @@
-﻿namespace CCC.Items
+﻿using CCC.Items;
+using UnityEngine;
+
+namespace CCC.Behaviors
 {
     /// <summary>
     /// Represents something that can drop Items.
     /// </summary>
-    public interface ItemDropper
+    public interface IItemDropper
     {
         /// <summary>
-        /// Drop an Item.
+        /// Drop the given Item.
         /// </summary>
         /// <returns>The Item.</returns>
-        Item DropItem();
+        void DropItem(Item item, Vector3 position);
     }
 }
