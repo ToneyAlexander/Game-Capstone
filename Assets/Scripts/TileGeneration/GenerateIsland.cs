@@ -275,10 +275,10 @@ public class GenerateIsland : MonoBehaviour
         }
 
         //initializeEmptyMap(island, tileCount);
-        //initializeCircleMap(island, updated, tileCount, width, height);
+        initializeCircleMap(island, updated, tileCount, width, height);
         //initializeSquareMap(island, updated, tileCount, width, height);
         //initializeCrescentMap(island, updated, tileCount, width, height);
-        initializeAntiCrescentMap(island, updated, tileCount, width, height);
+        //initializeAntiCrescentMap(island, updated, tileCount, width, height);
 
         propagate(island, updated, index);
         //makeCenterTallest(island, updated, tileCount, width, height);
@@ -382,7 +382,7 @@ public class GenerateIsland : MonoBehaviour
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
             updateNavMeshTimer = 500;
-            Debug.Log(g.generateName());
+            Debug.Log(nameGenerator.generateName());
         }
         else if (Input.GetButtonDown("Terrain"))
         {
