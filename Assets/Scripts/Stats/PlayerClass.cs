@@ -89,11 +89,16 @@ public class PlayerClass : MonoBehaviour
             }
             foreach (AbilityModifier aMod in p.Changes)
             {
-                Ability abil = abilities.Set[aMod.AbilityName];
-                Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
-                stat.Value += aMod.Value;
-                Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
-                abil.update = true;
+                if (abilities.Set.ContainsKey(aMod.AbilityName)) {
+                    Ability abil = abilities.Set[aMod.AbilityName];
+                    Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
+                    stat.Value += aMod.Value;
+                    Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
+                    abil.update = true;
+                } else
+                {
+                    Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
+                }
                 
             }
             return true;
