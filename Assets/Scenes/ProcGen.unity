@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -323,10 +323,9 @@ MonoBehaviour:
   enemySpawner: {fileID: 11400000, guid: 7b9fc9061215e7a4792401163db7790f, type: 2}
   enemyChance: 15
   themeCount: 1
-  testMat: {fileID: 0}
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
-  LAYERS_ABOVE_BEACH: 2
+  LAYERS_ABOVE_BEACH: 1
   LESS_THAN_LAND_REGEN_COUNT: 3
   useLVR: 1
   RUN_INDEX_TEST: 0
