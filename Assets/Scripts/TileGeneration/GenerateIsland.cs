@@ -275,10 +275,10 @@ public class GenerateIsland : MonoBehaviour
         }
 
         //initializeEmptyMap(island, tileCount);
-        //initializeCircleMap(island, updated, tileCount, width, height);
+        initializeCircleMap(island, updated, tileCount, width, height);
         //initializeSquareMap(island, updated, tileCount, width, height);
         //initializeCrescentMap(island, updated, tileCount, width, height);
-        initializeAntiCrescentMap(island, updated, tileCount, width, height);
+        //initializeAntiCrescentMap(island, updated, tileCount, width, height);
 
         propagate(island, updated, index);
         //makeCenterTallest(island, updated, tileCount, width, height);
