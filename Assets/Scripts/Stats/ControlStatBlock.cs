@@ -35,11 +35,12 @@ public class ControlStatBlock : MonoBehaviour
 
     public void ApplyBuff(TimedBuff tb)
     {
-        if (!tb.IsUnique || !buffs.Contains(tb))
+        if (tb.IsUnique)
         {
-            buffs.Add(tb);
-            StatsChanged();
+            buffs.Remove(tb);
         }
+        buffs.Add(tb);
+        StatsChanged();
     }
 
     // Start is called before the first frame update

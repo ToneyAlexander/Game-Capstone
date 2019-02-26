@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: FireballIgnite
+  m_Name: IgniteBurnDmg1
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: fe9c08144cd6b1948a14627df92b81dd, type: 2}
   BlockedBy: []
-  Children:
-  - {fileID: 11400000, guid: 95ce5b4cd87ee3f42b0583eca9bc2d8d, type: 2}
+  Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Fireball
-  Desc: A single powerful fireball that ignites the enemy
-  grants:
-  - {fileID: 11400000, guid: c6da7995dbfaae14da41eb03ab37a165, type: 2}
-  Changes: []
-  uiCoords: {x: 50, y: 450}
+  Name: Burn Dmg
+  Desc: Increases Damage of Applied Ignite
+  grants: []
+  Changes:
+  - Value: 0.15
+    abilityName: Fireball Ignite
+    statName: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
+  uiCoords: {x: 150, y: 450}
   sprite: {fileID: 0}

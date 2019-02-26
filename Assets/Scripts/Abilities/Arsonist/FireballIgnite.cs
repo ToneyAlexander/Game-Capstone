@@ -20,6 +20,8 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
     private float dmgMin;
     private float dmgMax;
     private float igniteMult;
+    private float igniteDur;
+    private bool igniteStack;
 
     public static TimedBuffPrototype ignite;
 
@@ -53,6 +55,8 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, igniteMult));
         tb.Stats.Remove(new Stat(Stat.HEALTH_REGEN));
         tb.Stats.Add(stat);
+        tb.Duration += igniteDur;
+        tb.IsUnique = !igniteStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
         pbh.ttl = 2f;
@@ -99,5 +103,7 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
         dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
         dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
         igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
+        igniteDur = abilStats.Find(item => item.Name == Stat.AS_IGNITE_DUR).Value;
+        igniteStack = abilStats.Find(item => item.Name == Stat.AS_IGNITE_STACK).Value > 1f;
     }
 }

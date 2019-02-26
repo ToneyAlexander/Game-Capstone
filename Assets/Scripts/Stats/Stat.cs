@@ -56,6 +56,8 @@ namespace CCC.Stats
         public const string AS_PROJ_SPEED = "as_projspeed";
         public const string AS_PROJ_SPREAD = "as_projspread";
         public const string AS_IGNITE_MULT = "as_ignitex";
+        public const string AS_IGNITE_DUR = "as_ignitedur";
+        public const string AS_IGNITE_STACK = "as_ignitestack";
 
         /// <summary>
         /// Gets the name of this Stat.

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: IgniteStack
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: ab3a90a3de2fdfe4590a71517b4ce3fa, type: 2}
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Stacking Burn
+  Desc: Increases duration and allows ignite to stack.
+  grants: []
+  Changes:
+  - Value: 1
+    abilityName: Fireball Ignite
+    statName: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+  - Value: 2
+    abilityName: Fireball Ignite
+    statName: {fileID: 11400000, guid: 6a180265df9f0fc43838b21798736f66, type: 2}
+  uiCoords: {x: 0, y: 0}
+  sprite: {fileID: 0}

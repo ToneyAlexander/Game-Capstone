@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: VolleyMaxDmg
+  m_Name: VolleyDmg2
   m_EditorClassIdentifier: 
   Require:
-  - {fileID: 11400000, guid: 3aa0df5badac9564e91dd6640e19951b, type: 2}
+  - {fileID: 11400000, guid: 93620f1077017144c8746a20ec2c362c, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Volley Damage
-  Desc: 
+  Name: Volley Damage 2
+  Desc: Further increases volley damage.
   grants: []
   Changes:
-  - Value: 10
-    abilityName: Fireball Volley
-    statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
-  - Value: 5
+  - Value: 7
     abilityName: Fireball Volley
     statName: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
-  uiCoords: {x: 0, y: 0}
+  - Value: 15
+    abilityName: Fireball Volley
+    statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+  uiCoords: {x: 250, y: 250}
   sprite: {fileID: 0}
