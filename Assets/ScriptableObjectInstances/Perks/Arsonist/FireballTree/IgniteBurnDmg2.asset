@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require:
   - {fileID: 11400000, guid: ab3a90a3de2fdfe4590a71517b4ce3fa, type: 2}
-  BlockedBy: []
+  BlockedBy:
+  - {fileID: 11400000, guid: 4c7689cc4d9b89849a9dfd869617b361, type: 2}
   Children: []
-  Blocks: []
+  Blocks:
+  - {fileID: 11400000, guid: 4c7689cc4d9b89849a9dfd869617b361, type: 2}
   RequireAll: 0
   Stats: []
   Name: Burn Damage 2

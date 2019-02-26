@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require:
   - {fileID: 11400000, guid: ab3a90a3de2fdfe4590a71517b4ce3fa, type: 2}
-  BlockedBy: []
+  BlockedBy:
+  - {fileID: 11400000, guid: 2e856941133b840489819fd7b813a00b, type: 2}
   Children: []
-  Blocks: []
+  Blocks:
+  - {fileID: 11400000, guid: 2e856941133b840489819fd7b813a00b, type: 2}
   RequireAll: 0
   Stats: []
   Name: Stacking Burn
@@ -29,5 +31,5 @@ MonoBehaviour:
   - Value: 2
     abilityName: Fireball Ignite
     statName: {fileID: 11400000, guid: 6a180265df9f0fc43838b21798736f66, type: 2}
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 250, y: 475}
   sprite: {fileID: 0}

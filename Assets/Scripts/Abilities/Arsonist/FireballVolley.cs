@@ -9,6 +9,8 @@ using CCC.Stats;
 [RequireComponent(typeof(MousePositionDetector))]
 public class FireballVolley : MonoBehaviour, IAbilityBase
 {
+    private readonly string AbilName = "Fireball Volley";
+
     private List<Stat> abilStats;
     private StatBlock stats;
     private Ability abil;
@@ -86,7 +88,7 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         mpd = GetComponent<MousePositionDetector>();
         stats = GetComponent<StatBlock>();
         PlayerClass pc = GetComponent<PlayerClass>();
-        abil = pc.abilDict.GetAbility(AbilitySlot.One);//TODO find by name not hardcoded slot.
+        abil = pc.abilities.Set[AbilName];
         projectile = abil.Prefab;
         abilStats = abil.Stats;
         abil.cdRemain = 0f;
