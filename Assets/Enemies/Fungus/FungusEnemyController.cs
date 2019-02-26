@@ -4,82 +4,103 @@ using System.Collections;
 public class FungusEnemyController : EnemyController 
 {
 	private Animator animator;
-	bool anyKey =false;
-	bool animation01 = false;
-	bool animation02 = false;
-	bool animation03 = false;
-	bool animation04 = false;
-	bool animation05 = false;
 
 	protected override void Initialize () 
     {
         // Set up animator
 		animator = GetComponent<Animator>();
+
+		// Default spawnPos and movingRange
+        spawnPos = transform.position;
+        movingRange = 10f;
+		movable = false;
+
+		// Default vision
+        visionAngle = 360f;
+        visionDistance = 10f;
+        attackDistance = 5f;
+
+        // Default stat
+        healthPoints = 100f;
 	}
 
 	protected override void UniqueUpdate()
     {
-		if(animator){
-			float h = Input.GetAxis("Horizontal");
-			float v = Input.GetAxis("Vertical");
-			if(Input.anyKeyDown){
-				anyKey = true;
-				animator.SetBool("AnyKey",anyKey);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha1)){
-				animation01 = true;
-				animator.SetBool("Animation01",animation01);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha2)){
-				animation02 = true;
-				animator.SetBool("Animation02",animation02);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha3)){
-				animation03 = true;
-				animator.SetBool("Animation03",animation03);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha4)){
-				animation04 = true;
-				animator.SetBool("Animation04",animation04);
-			}
-			if(Input.GetKeyDown(KeyCode.Alpha5)){
-				animation05 = true;
-				animator.SetBool("Animation05",animation05);
-			}
-			
-			animator.SetFloat("h",h);
-			animator.SetFloat ("v",v);
+		agent.isStopped = false;
+
+		// The fungus moves only when it sees the player
+		if (InVision(player.transform.position + new Vector3(0.0f, 2.0f, 0.0f))) 
+		{
+			movable = true;
+			animator.SetTrigger("AnyKey");
+		}
+		else
+		{
+			movable = false;
+			animator.SetTrigger("Mimic");
 		}
 	}
 
     protected override void Attack(Vector3 playerPos)
     {
-        // Look at target (player character)
-        transform.rotation = Quaternion.LookRotation((playerPos - transform.position).normalized);
-
-        // Stop and attack target (player character)
+		// Stop and attack target (player character)
         agent.isStopped = true;
 
-        // Change to attack animation
-        animator.SetBool("AttackMode", true);
+		if (!inCoroutine)
+		{
+			StartCoroutine(Attack());
+		}
 
-        // TODO: Maybe other stuff...
-        attackController.SetAttack("AttackMode", true);
+        // TODO: Cause damage
+        // attackController.SetAttack("AttackMode", true);
     }
+
+	private IEnumerator Attack()
+	{
+		inCoroutine = true;
+
+        // Change to a random attack animation
+		float attackMode = Random.value;
+
+		if (attackMode < 0.2f) 
+		{
+			animator.SetTrigger("AttackRightTentacle1");
+		}
+		else if (attackMode >= 0.2f && attackMode < 0.4f)
+		{
+			animator.SetTrigger("AttackLeftTentacle2");
+		}
+		else if (attackMode >= 0.4f && attackMode < 0.6f)
+		{
+			animator.SetTrigger("AttackFourTentacle");
+		}
+		else if (attackMode >= 0.6f && attackMode < 0.8f)
+		{
+			animator.SetTrigger("AttackRolling");
+		}
+		else if (attackMode >= 0.8f && attackMode <= 1.0f)
+		{
+			animator.SetTrigger("AttackSpreadSpore");
+		}
+		yield return new WaitForSeconds(1.5f);
+		Debug.Log("new");
+
+		inCoroutine = false;
+	}
 
     protected override void UnderAttack()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            healthPoints--;
-            animator.SetTrigger("hit");
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     healthPoints--;
+        //     animator.SetTrigger("TakeDamage1");
+        // }
     }
     
     protected override IEnumerator Die()
     {
-        animator.SetBool("death", true);
-        yield return new WaitForSeconds(0.3f);
+        animator.SetTrigger("DownSpin");
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }
