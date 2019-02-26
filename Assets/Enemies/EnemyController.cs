@@ -15,6 +15,7 @@ public abstract class EnemyController : MonoBehaviour
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
     protected float movingRange;
+    protected bool movable;
 
     // Field of view
     protected float visionAngle;
@@ -58,33 +59,36 @@ public abstract class EnemyController : MonoBehaviour
         UniqueUpdate();
 
         // Get player's current position
-        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 3.0f, 0.0f);
+        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 2.0f, 0.0f);
 
-        // If the player character is within the enemy's moving area and is within 
-        // enemy's field of view, the enemy chases player character
-        if (InVision(playerPos) && InRange(playerPos)) 
+        if (movable)
         {
-            targetFound = true;
-            targetPos = playerPos;
-            agent.speed = 20f;
-
-            // If the player character is within the enemy's attacking range, the 
-            // enemy stops near the target and attacks it
-            if (InAttackRange(playerPos))
+            // If the player character is within the enemy's moving area and is within 
+            // enemy's field of view, the enemy chases player character
+            if (InVision(playerPos) && InRange(playerPos)) 
             {
-                Attack(playerPos);
-            }
-        }
-        // Otherwise, enemy moves randomly without a target
-        else
-        {
-            targetFound = false;
-            agent.speed = 5f;
-        }
+                targetFound = true;
+                targetPos = playerPos;
+                agent.speed = 20f;
 
-        if (!inCoroutine)
-        {
-            StartCoroutine(Move());
+                // If the player character is within the enemy's attacking range, the 
+                // enemy stops near the target and attacks it
+                if (InAttackRange(playerPos))
+                {
+                    Attack(playerPos);
+                }
+            }
+            // Otherwise, enemy moves randomly without a target
+            else
+            {
+                targetFound = false;
+                agent.speed = 5f;
+            }
+
+            if (!inCoroutine)
+            {
+                StartCoroutine(Move());
+            }
         }
 
         // Under attack and death animations
@@ -102,7 +106,7 @@ public abstract class EnemyController : MonoBehaviour
     private Vector3 GetRandomPosition()
     {
         Vector2 randomPoint = Random.insideUnitCircle * movingRange;
-        return spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
+        return spawnPos + new Vector3(randomPoint.x, 1.0f, randomPoint.y);
     }
 
     private IEnumerator Move()
@@ -139,7 +143,7 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     // Checks if pos is within enemy's vision field
-    private bool InVision(Vector3 pos)
+    protected bool InVision(Vector3 pos)
     {
         Vector3 movingDirection = (targetPos - transform.position).normalized;
         Vector3 directToPos = (pos - transform.position).normalized;

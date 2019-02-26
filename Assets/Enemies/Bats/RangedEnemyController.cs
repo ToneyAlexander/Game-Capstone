@@ -20,6 +20,7 @@ public class RangedEnemyController : EnemyController
         // Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 20f;
+        movable = true;
 
         // Default vision
         visionAngle = 60f;
@@ -51,7 +52,7 @@ public class RangedEnemyController : EnemyController
         // Change to attack animation
         animator.SetBool(AttackMode, true);
 
-        // TODO: Maybe other stuff...
+        // Cause damage
         attackController.SetAttack(AttackMode, true);
     }
 
