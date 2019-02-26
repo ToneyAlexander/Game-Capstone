@@ -29,6 +29,8 @@ public class GenerateIsland : MonoBehaviour
 
 	private int themeID;
 
+    private string themeString; 
+
     [SerializeField]
     private int ISLE_WIDE_HIGH;
 
@@ -65,7 +67,9 @@ public class GenerateIsland : MonoBehaviour
 	private int enemyChance = 5;
 
 	[SerializeField]
-	private byte themeCount;
+    private ThemeDictionary themeDictionary;
+
+	private int themeCount;
 
 	[SerializeField]
     private Vector3 startingLocation = Vector3.zero;
@@ -106,6 +110,7 @@ public class GenerateIsland : MonoBehaviour
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
+		themeCount = themeDictionary.themeDictionary.Count;
         //TODO: add backtracking and optimize search
         //TODO: remove these lines
         //TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
@@ -295,8 +300,8 @@ public class GenerateIsland : MonoBehaviour
         }
 		themePicker(); //pick theme before generation 
         generatedMap = drawMap(island, startingLocation, tileSize);
-		
-        terrain = new GameObject();
+		textureAllTiles();
+		terrain = new GameObject();
 
         if (makeEnvironment)
         {
@@ -344,11 +349,29 @@ public class GenerateIsland : MonoBehaviour
                 byte index = (byte)((randomNumber[0] % environmentList.Count));
                 GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity, terrain.transform);
                 newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
-                newObject.tag = type;
             }
             Destroy(x);
         }
+
     }
+    
+    /*
+    Textures all tiles based off the desired theme.
+     */
+    private void textureAllTiles()
+	{
+		string baseFolder = "SquareTiles/TexturedTiles";
+		string tileName, materialLocation;
+		themeString = themeDictionary.themeDictionary[themeID];
+		GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag("Texturable");
+		foreach(GameObject tile in listOfObjects)
+		{
+			tileName = tile.name; 
+			materialLocation = string.Format("{0}/{1}/Materials/{2}", baseFolder, tileName, themeString);
+			tile.GetComponent<Renderer>().material = new Material(Resources.Load<Material>(materialLocation));
+		}
+	}
+
     private void deleteObjects(string type)
     {
         GameObject[] listOfObjects = GameObject.FindGameObjectsWithTag(type);
@@ -727,7 +750,7 @@ public class GenerateIsland : MonoBehaviour
                         int tileId = indexToTile(o);
                         TilePiece currentPiece = tiles[o];
                         GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-                        //TODO: REFLECTION
+						//TODO: REFLECTION
                         //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
 
                         newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
