@@ -282,11 +282,7 @@ public class GenerateIsland : MonoBehaviour
         //initializeEmptyMap(island, tileCount);
         initializeCircleMap(island, updated, tileCount, width, height);
         //initializeSquareMap(island, updated, tileCount, width, height);
-<<<<<<< HEAD
         //initializeCrescentMap(island, updated, tileCount, width, height);
-=======
-        initializeCrescentMap(island, updated, tileCount, width, height);
->>>>>>> a810ab5939bc642c729ab816eda5ae88e1f797c7
         //initializeAntiCrescentMap(island, updated, tileCount, width, height);
 
         propagate(island, updated, index);
