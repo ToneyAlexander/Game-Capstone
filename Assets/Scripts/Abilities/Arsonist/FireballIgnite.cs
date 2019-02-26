@@ -15,8 +15,6 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
     private MousePositionDetector mpd;
     private GameObject projectile;
 
-    private float cdRemain;
-
     private float cdBase;
     private float projSpeed;
     private float dmgMin;
@@ -25,16 +23,11 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
 
     public static TimedBuffPrototype ignite;
 
-    public float CooldownLeft()
-    {
-        return cdRemain;
-    }
-
     public bool Use()
     {
-        if (cdRemain <= 0.0001f)
+        if (abil.cdRemain <= 0.0001f)
         {
-            cdRemain = cdBase;
+            abil.cdRemain = cdBase;
             FireProjectile();
             return true;
         }
@@ -75,25 +68,36 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
         abil = pc.abilDict.GetAbility(AbilitySlot.Two);//TODO find by name not hardcoded slot.
         projectile = abil.Prefab;
         abilStats = abil.Stats;
-        cdRemain = 0;
-        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
-        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
-        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
-        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
-        igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
+        abil.cdRemain = 0f;
+        UpdateStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cdRemain > 0f)
+        if (abil.cdRemain > 0f)
         {
-            cdRemain -= Time.deltaTime;
+            abil.cdRemain -= Time.deltaTime;
         }
         if (abil.use)
         {
             abil.use = false;
             Use();
         }
+        if(abil.update)
+        {
+            abil.update = false;
+            UpdateStats();
+        }
+    }
+
+    public void UpdateStats()
+    {
+
+        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CCC.Abilities;
+using CCC.Stats;
 
 [RequireComponent(typeof(ControlStatBlock))]
 public class PlayerClass : MonoBehaviour
@@ -61,7 +62,7 @@ public class PlayerClass : MonoBehaviour
             foreach (AbilityPrototype a in p.grants)
             {
                 Ability instA = a.Instance;
-                abilities.Set.Add(instA);
+                abilities.Set.Add(instA.AbilityName, instA);
                 Debug.Log("Abil set len: "+abilities.Set.Count);
                 //TODO: repalce with ui thing
                 if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
@@ -85,6 +86,15 @@ public class PlayerClass : MonoBehaviour
                     abilDict.SetSlotAbility(AbilitySlot.Five, instA);
                     AddAbilityToParent(gameObject, instA.TypeString);
                 }
+            }
+            foreach (AbilityModifier aMod in p.Changes)
+            {
+                Ability abil = abilities.Set[aMod.AbilityName];
+                Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
+                stat.Value += aMod.Value;
+                Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
+                abil.update = true;
+                
             }
             return true;
         } else
