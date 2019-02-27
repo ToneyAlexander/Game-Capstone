@@ -22,6 +22,17 @@ public class InfoMenuScript : MonoBehaviour
         tabs.SetActive(!tabs.activeSelf);
     }
 
+    /// <summary>
+    /// Toggles the stats tab on and off.
+    /// </summary>
+    public void ToggleStatsTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(!tabs.activeSelf);
+        classinfo.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
+
     void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -85,14 +96,6 @@ public class InfoMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.C))
-        {
-
-            inventory.SetActive(false);
-            stats.SetActive(!tabs.activeSelf);
-            classinfo.SetActive(false);
-            tabs.SetActive(!tabs.activeSelf);
-        }
         if (Input.GetKeyDown(KeyCode.P))
         {
 

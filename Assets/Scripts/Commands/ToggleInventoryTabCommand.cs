@@ -1,13 +1,13 @@
 ﻿/// <summary>
-/// Represents an ICommand that causes the inventory tab of the info menu to 
-/// be displayed.
+/// Represents an ICommand that toggles the inventory tab of the info menu 
+/// being displayed.
 /// </summary>
 public sealed class ToggleInventoryTabCommand : ICommand
 {
     /// <summary>
     /// The InfoMenuScript instance to use.
     /// </summary>
-    private InfoMenuScript infoMenuScript;
+    private readonly InfoMenuScript infoMenuScript;
 
     /// <summary>
     /// Initializes a new instance of the 
