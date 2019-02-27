@@ -286,6 +286,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c255937a95562a44adca004445c95b2, type: 3}
+--- !u!1 &133855766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5930947933114172131, guid: 4c255937a95562a44adca004445c95b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 133855765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &134337765
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,22 +926,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: remy
       objectReference: {fileID: 0}
-    - target: {fileID: 290558787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 290558787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_Name
-      value: SwordOnHand
-      objectReference: {fileID: 0}
     - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -980,14 +970,32 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: infoMenu
+      value: 
+      objectReference: {fileID: 133855766}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: inventoryTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: statsTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: classInfoTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395,
+        type: 2}
     - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_Name
+      value: SwordOnHand
       objectReference: {fileID: 0}
     - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: swordOnHand
