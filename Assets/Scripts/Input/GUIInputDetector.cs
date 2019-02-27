@@ -23,6 +23,13 @@ namespace CCC.Inputs
         private GameObject infoMenu;
 
         /// <summary>
+        /// The InputButton that is used to toggle the class info tab of the 
+        /// info menu.
+        /// </summary>
+        [SerializeField]
+        private InputButton classInfoTabButton;
+
+        /// <summary>
         /// The InputButton that is used to toggle the inventory tab of the 
         /// info menu.
         /// </summary>
@@ -59,6 +66,12 @@ namespace CCC.Inputs
             if (Input.GetButtonDown(statsTabButton.Name))
             {
                 ICommand command = new ToggleStatsTabCommand(infoMenuScript);
+                commandProcessor.ProcessCommand(command);
+            }
+
+            if (Input.GetButtonDown(classInfoTabButton.Name))
+            {
+                ICommand command = new ToggleClassInfoTabCommand(infoMenuScript);
                 commandProcessor.ProcessCommand(command);
             }
         }

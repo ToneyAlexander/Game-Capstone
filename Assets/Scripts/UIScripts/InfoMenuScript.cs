@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class InfoMenuScript : MonoBehaviour
 {
@@ -10,6 +7,18 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
+
+    #region Toggle Tab Methods
+    /// <summary>
+    /// Toggles the class info tab on and off.
+    /// </summary>
+    public void ToggleClassInfoTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(false);
+        classinfo.SetActive(!tabs.activeSelf);
+        tabs.SetActive(!tabs.activeSelf);
+    }
 
     /// <summary>
     /// Toggles the inventory tab on and off.
@@ -32,8 +41,10 @@ public class InfoMenuScript : MonoBehaviour
         classinfo.SetActive(false);
         tabs.SetActive(!tabs.activeSelf);
     }
+    #endregion
 
-    void Start()
+    #region MonoBehaviour Messages
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -93,19 +104,8 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(false);
         classinfo.SetActive(false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
+    #endregion
 
-            inventory.SetActive(false);
-            stats.SetActive(false);
-            classinfo.SetActive(!tabs.activeSelf);
-            tabs.SetActive(!tabs.activeSelf);
-        }
-
-    }
     void OnClickInventory()
     {
         Debug.Log("showing Inventory");
