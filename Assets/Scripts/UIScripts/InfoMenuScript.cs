@@ -98,6 +98,9 @@ public class InfoMenuScript : MonoBehaviour
             stats.SetActive(false);
             classinfo.SetActive(!tabs.activeSelf);
             tabs.SetActive(!tabs.activeSelf);
+            ClassUI classui = classinfo.GetComponent<ClassUI>();
+            classui.updatePlayerClass();
+            classui.reloadGraph();
         }
 
     }
