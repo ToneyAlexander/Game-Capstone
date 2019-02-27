@@ -259,6 +259,31 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5930947933241794637, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933359851138, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_Horizontal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933493101869, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933493101869, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933493101869, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000019345318
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c255937a95562a44adca004445c95b2, type: 3}
 --- !u!1 &134337765
@@ -310,21 +335,22 @@ MonoBehaviour:
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
   ISLE_WIDE_HIGH: 14
   makeEnvironment: 1
-  treeList: {fileID: 11400000, guid: a64b85edd232f794eaeb759627615e33, type: 2}
+  treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
   treeChance: 70
-  grassList: {fileID: 11400000, guid: 5301de60c873a3445b0f001b8296e418, type: 2}
+  grassList: {fileID: 11400000, guid: 5bb6e69a5a95f97489e619160baff0a4, type: 2}
   grassChance: 40
-  mediumObjectList: {fileID: 11400000, guid: ec65b87999909da429f9242249dc69c6, type: 2}
+  mediumObjectList: {fileID: 11400000, guid: 17edadd3609a20841a29b3602cb933d7, type: 2}
   mediumChance: 30
-  particleEffects: {fileID: 11400000, guid: 90f610028bd2a2644b3fef25b7b81f58, type: 2}
+  particleEffects: {fileID: 11400000, guid: 0956b4047642cba43b52ca8401bc87cb, type: 2}
   particleChance: 30
-  specialObjects: {fileID: 11400000, guid: c9442634b6e21c840b493d0ec7f20d0b, type: 2}
+  specialObjects: {fileID: 11400000, guid: f644f579a9fe01246b725b06c324128a, type: 2}
   specialChance: 2
-  enemySpawner: {fileID: 11400000, guid: 763aec1928f6ccf4eabb3fc009c05b1f, type: 2}
-  enemyChance: 5
+  enemySpawner: {fileID: 11400000, guid: 7b9fc9061215e7a4792401163db7790f, type: 2}
+  enemyChance: 0
+  themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
-  LAYERS_ABOVE_BEACH: 3
+  LAYERS_ABOVE_BEACH: 0
   LESS_THAN_LAND_REGEN_COUNT: 3
   useLVR: 1
   RUN_INDEX_TEST: 0
@@ -952,6 +978,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,

@@ -7,42 +7,36 @@ using CCC.Abilities;
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]
 [RequireComponent(typeof(MousePositionDetector))]
-public class FireballIgnite : MonoBehaviour, IAbilityBase
+public class FireballIgnite : AbilityBase
 {
+    private readonly string AbilName = "Fireball Ignite";
+
     private List<Stat> abilStats;
     private StatBlock stats;
-    private Ability abil;
     private MousePositionDetector mpd;
     private GameObject projectile;
-
-    private float cdRemain;
-
-    private float cdBase;
+    
     private float projSpeed;
     private float dmgMin;
     private float dmgMax;
     private float igniteMult;
+    private float igniteDur;
+    private bool igniteStack;
 
     public static TimedBuffPrototype ignite;
 
-    public float CooldownLeft()
+    public override void UpdateStats()
     {
-        return cdRemain;
+        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
+        igniteDur = abilStats.Find(item => item.Name == Stat.AS_DUR).Value;
+        igniteStack = abilStats.Find(item => item.Name == Stat.AS_IGNITE_STACK).Value > 1f;
     }
 
-    public bool Use()
-    {
-        if (cdRemain <= 0.0001f)
-        {
-            cdRemain = cdBase;
-            FireProjectile();
-            return true;
-        }
-        //else
-        return false;
-    }
-
-    void FireProjectile()
+    protected override void Activate()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
@@ -60,6 +54,8 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, igniteMult));
         tb.Stats.Remove(new Stat(Stat.HEALTH_REGEN));
         tb.Stats.Add(stat);
+        tb.Duration += igniteDur;
+        tb.IsUnique = !igniteStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
         pbh.ttl = 2f;
@@ -72,28 +68,11 @@ public class FireballIgnite : MonoBehaviour, IAbilityBase
         mpd = GetComponent<MousePositionDetector>();
         stats = GetComponent<StatBlock>();
         PlayerClass pc = GetComponent<PlayerClass>();
-        abil = pc.abilDict.GetAbility(AbilitySlot.Two);//TODO find by name not hardcoded slot.
+
+        abil = pc.abilities.Set[AbilName];
         projectile = abil.Prefab;
         abilStats = abil.Stats;
-        cdRemain = 0;
-        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
-        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
-        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
-        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
-        igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (cdRemain > 0f)
-        {
-            cdRemain -= Time.deltaTime;
-        }
-        if (abil.use)
-        {
-            abil.use = false;
-            Use();
-        }
+        abil.cdRemain = 0f;
+        UpdateStats();
     }
 }

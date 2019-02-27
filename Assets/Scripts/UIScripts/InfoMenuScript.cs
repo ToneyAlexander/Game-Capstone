@@ -83,6 +83,23 @@ public class InfoMenuScript : MonoBehaviour
             classinfo.SetActive(false);
             tabs.SetActive(!tabs.activeSelf);
         }
+        if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.C))
+        {
+
+            inventory.SetActive(false);
+            stats.SetActive(!tabs.activeSelf);
+            classinfo.SetActive(false);
+            tabs.SetActive(!tabs.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+            inventory.SetActive(false);
+            stats.SetActive(false);
+            classinfo.SetActive(!tabs.activeSelf);
+            tabs.SetActive(!tabs.activeSelf);
+        }
+
     }
     void OnClickInventory()
     {

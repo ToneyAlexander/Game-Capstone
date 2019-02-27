@@ -5,7 +5,7 @@ namespace CCC.Stats
     /// <summary>
     /// Represents a stat in the game.
     /// </summary>
-    public struct Stat : IComparable<Stat>, IEquatable<Stat>
+    public class Stat : IComparable<Stat>, IEquatable<Stat>
     {
         public const string STR = "str";
         public const string STR_MULT = "strx";
@@ -56,6 +56,9 @@ namespace CCC.Stats
         public const string AS_PROJ_SPEED = "as_projspeed";
         public const string AS_PROJ_SPREAD = "as_projspread";
         public const string AS_IGNITE_MULT = "as_ignitex";
+        public const string AS_IGNITE_STACK = "as_ignitestack";
+        public const string AS_DUR = "as_dur";
+        public const string AS_DASH_MULT = "as_dashx";
 
         /// <summary>
         /// Gets the name of this Stat.
@@ -73,6 +76,7 @@ namespace CCC.Stats
         public float Value
         {
             get { return value; }
+            set { this.value = value; }
         }
 
         /// <summary>
@@ -106,7 +110,7 @@ namespace CCC.Stats
         /// <summary>
         /// The value of this Stat.
         /// </summary>
-        private readonly float value;
+        private float value;
 
         public int CompareTo(Stat other)
         {

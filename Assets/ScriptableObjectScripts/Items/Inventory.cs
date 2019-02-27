@@ -15,7 +15,7 @@ namespace CCC.Items
         /// <value>The current capacity.</value>
         public int CurrentCapacity
         {
-            get { return currentCapacity; }
+            get { return items.Count; }
         }
 
         /// <summary>
@@ -47,10 +47,9 @@ namespace CCC.Items
         {
             bool wasAdded = false;
 
-            if (currentCapacity < maxCapacity)
+            if (CurrentCapacity < maxCapacity)
             {
                 items.Add(item);
-                currentCapacity = currentCapacity + 1;
                 wasAdded = true;
             }
 
@@ -73,16 +72,10 @@ namespace CCC.Items
             {
                 items.Remove(item);
                 removedItem = item;
-                currentCapacity = currentCapacity - 1;
             }
 
             return removedItem;
         }
-
-        /// <summary>
-        /// The current number of Items that this Inventory has in it.
-        /// </summary>
-        private int currentCapacity;
 
         /// <summary>
         /// The list of Item that this Inventory has in it.
