@@ -10,7 +10,17 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Toggles the inventory tab on and off.
+    /// </summary>
+    public void ToggleInventoryTab()
+    {
+        inventory.SetActive(!tabs.activeSelf);
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
 
     void Start()
     {
@@ -75,14 +85,6 @@ public class InfoMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            
-            inventory.SetActive(!tabs.activeSelf);
-            stats.SetActive(false);
-            classinfo.SetActive(false);
-            tabs.SetActive(!tabs.activeSelf);
-        }
         if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.C))
         {
 
