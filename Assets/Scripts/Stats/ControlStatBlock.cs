@@ -100,6 +100,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1.5f;
         stats.CritDamageMult = 0f;
+        stats.Damage = 0f;
         stats.DamageMult = 0f;
         stats.MagicResMult = 0f;
         stats.StatusRecMult = 0f;
@@ -147,6 +148,9 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.DEX_MULT:
                 DexMult += stat.Value;
+                break;
+            case Stat.DMG:
+                stats.Damage += stat.Value;
                 break;
             case Stat.DMG_MULT:
                 stats.DamageMult += stat.Value;

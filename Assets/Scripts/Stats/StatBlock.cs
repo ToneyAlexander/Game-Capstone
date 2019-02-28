@@ -46,6 +46,7 @@ public class StatBlock : MonoBehaviour
     //misc subset
     public float Armor { get; set; }
     public float ArmorMult { get; set; }
+    public float Damage { get; set; }
     public float DamageMult { get; set; }
     public float CritDamage { get; set; }
     public float CritDamageMult { get; set; }
@@ -135,6 +136,8 @@ public class StatBlock : MonoBehaviour
             physMult += SpellMult;
             magicMult += SpellMult;
         }
+        phys += Damage;
+        magic += Damage;
         physMult += DamageMult;
         magicMult += DamageMult;
 
