@@ -91,7 +91,7 @@ public class RemyAttacking : MonoBehaviour
 
     public void MagicAttack(Ability ability)
     {
-        //TODO check cool down time
+
         if (true) {
             RemyMovement.destination = this.transform.position;
             if (ability.AbilityName.Equals("Fireball Ignite")) {
@@ -125,19 +125,6 @@ public class RemyAttacking : MonoBehaviour
             }
         }
     }
-
-
-    //bool ShouldUnEquip()
-    //{
-    //    bool result = false;
-    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle") &&
-    //            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-    //    {
-    //        animator.SetBool("isUnEquip", true);
-    //        result = true;
-    //    }
-    //    return result;
-    //}
 
 
 
@@ -196,7 +183,7 @@ public class RemyAttacking : MonoBehaviour
                 timeLeft = 5;
             }
             timeLeft -= Time.deltaTime;
-            Debug.Log(timeLeft);
+            //Debug.Log(timeLeft);
         }
     }
 
@@ -226,7 +213,7 @@ public class RemyAttacking : MonoBehaviour
                 //Debug.Log("真的收剑");
             }
 
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
             {
                 animator.SetBool("isUnEquip", false);
             }
