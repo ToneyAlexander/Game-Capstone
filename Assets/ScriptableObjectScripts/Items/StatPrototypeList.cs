@@ -5,7 +5,7 @@ using CCC.Items;
 
 namespace CCC.Stats
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Items/StatPrototypeList")]
     sealed class StatPrototypeList : ScriptableObject
     {
         public List<StatPrototype> Prototypes

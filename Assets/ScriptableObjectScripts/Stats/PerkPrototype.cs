@@ -4,7 +4,7 @@ using UnityEngine;
 using CCC.Stats;
 using CCC.Abilities;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Stats/PerkPrototype")]
 public class PerkPrototype : ScriptableObject
 {
     public List<PerkPrototype> Require;

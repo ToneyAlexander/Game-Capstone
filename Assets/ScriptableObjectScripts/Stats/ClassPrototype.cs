@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Stats/ClassPrototype")]
 public class ClassPrototype : ScriptableObject
 {
     public List<PerkPrototype> Perks;

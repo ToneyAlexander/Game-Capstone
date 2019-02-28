@@ -7,7 +7,7 @@ using States;
 /// Represents a map/dictionary of string to State that can be edited in the
 /// Unity Editor's Inspector panel.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu( menuName = "DataStructures/StringToStateMap")]
 public sealed class StringToStateMap : ScriptableObject
 {
     [SerializeField]

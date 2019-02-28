@@ -5,7 +5,7 @@ using CCC.Stats;
 
 namespace CCC.Abilities
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Abilities/AbilityPrototype")]
     public sealed class AbilityPrototype : ScriptableObject
     {
 

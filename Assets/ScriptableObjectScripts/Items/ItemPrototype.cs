@@ -9,7 +9,7 @@ namespace CCC.Items
     /// Represents the information that an Item can base its randomly generated
     /// values on.
     /// </summary>
-    [CreateAssetMenu(menuName = "Prototypes/Item Prototype")]
+    [CreateAssetMenu(menuName = "Items/ItemPrototype")]
     sealed class ItemPrototype : ScriptableObject
     {
         /// <summary>

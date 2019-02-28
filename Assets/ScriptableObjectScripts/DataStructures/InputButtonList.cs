@@ -5,7 +5,7 @@ using UnityEngine;
 /// Represents a list of InputButtons that can be added to in the Unity 
 /// Inspector.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "DataStructures/InputButtonList")]
 public sealed class InputButtonList : ScriptableObject
 {
     /// <summary>
