@@ -37,9 +37,10 @@ public class GenerationController : ScriptableObject
         }
         age = 0;
     }
-    void ageUp()
+    public void ageUp()
     {
         age++;
     }
+
 
 }
