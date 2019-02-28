@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Behaviors;
 
 public class StatBlock : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class StatBlock : MonoBehaviour
     public float CritChanceMult { get; set; }
 
     public bool Friendly;
+    private IKillable killable;
 
     public static float CalcMult(float baseV, float multV)
     {
@@ -81,6 +83,11 @@ public class StatBlock : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        killable = GetComponent<IKillable>();
+    }
+
     void Update()
     {
         HealthCur += CalcMult(HealthRegen,HealthRegenMult) * Time.deltaTime;
@@ -89,6 +96,15 @@ public class StatBlock : MonoBehaviour
         if (HealthCur > HealthMax)
             HealthCur = HealthMax;
 
+        if(HealthCur <= 0.00001f)
+        {
+            if (killable != null)
+            {
+                ICommand com = new DieCommand(killable);
+                //TODO: Should be sent to command processor when die is ready
+            }
+
+        }
 
     }
 
