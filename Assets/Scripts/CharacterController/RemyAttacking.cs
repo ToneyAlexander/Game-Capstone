@@ -43,6 +43,7 @@ public class RemyAttacking : MonoBehaviour
     void FixedUpdate()
     {
         RotateToEnemy();
+        RotateToEnemyDynamic();
 
         if (Input.GetButtonDown("MeleeAttackTest"))
         {
@@ -114,14 +115,10 @@ public class RemyAttacking : MonoBehaviour
     }
 
 
-    void RotateToEnemy()
+    void RotateToEnemyDynamic()
     {
         dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")
-            ) {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")) {
             if (transform.position != dynamicAttackDirection)
             {
                 lookAtEnemy = dynamicAttackDirection - transform.position;
@@ -135,6 +132,26 @@ public class RemyAttacking : MonoBehaviour
         }
     }
 
+
+    void RotateToEnemy()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
+            )
+        {
+            if (transform.position != attackDirection)
+            {
+                lookAtEnemy = attackDirection - transform.position;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
+            }
+            else
+            {
+                lookAtEnemy = transform.position;
+            }
+        }
+    }
 
 
 
