@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 5850849138554837705}
+  - component: {fileID: 4774811141401711602}
   m_Layer: 0
   m_Name: Rock_Heavy
   m_TagString: Untagged
@@ -91,3 +92,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.936386, y: 1.805209, z: 1.0281559}
   m_Center: {x: 0, y: 0.8818745, z: 0}
+--- !u!208 &4774811141401711602
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.514, y: 0.90300006, z: 0.514}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.882, z: 0}
+  m_TimeToStationary: 0.5

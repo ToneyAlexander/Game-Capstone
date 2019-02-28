@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6338598564167101536}
+  - component: {fileID: 8488776686775177963}
   m_Layer: 0
   m_Name: Cactus_Short_02
   m_TagString: Untagged
@@ -91,3 +92,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64008397, y: 1.532506, z: 0.67069}
   m_Center: {x: 0, y: 0.69198394, z: -0.009954989}
+--- !u!208 &8488776686775177963
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.335, y: 0.76600003, z: 0.335}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.69200003, z: -0.010000001}
+  m_TimeToStationary: 0.5
