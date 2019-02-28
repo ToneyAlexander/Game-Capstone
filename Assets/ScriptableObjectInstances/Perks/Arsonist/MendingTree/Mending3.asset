@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: Str3
+  m_Name: Mending3
   m_EditorClassIdentifier: 
   Require:
-  - {fileID: 11400000, guid: b0cfd8cb27ab52d41a79c4331f95c6df, type: 2}
+  - {fileID: 11400000, guid: b98aef683d0bc414db0ef72dfb8f8436, type: 2}
   BlockedBy: []
-  Children:
-  - {fileID: 11400000, guid: 892eb32854d8fab4aa5940d797f00044, type: 2}
+  Children: []
   Blocks: []
   RequireAll: 0
-  Stats:
-  - statName: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    statValue: 30
-  Name: Bigger Strength
-  Desc: 
-  grants: []
-  uiCoords: {x: 210, y: 25}
+  Stats: []
+  Name: Empowered Mend
+  Desc: Learn how to increase your regen for a brief moment
+  grants:
+  - {fileID: 11400000, guid: 86012c7645df6844196bef37bc37710a, type: 2}
+  Changes: []
+  uiCoords: {x: 200, y: 175}
   sprite: {fileID: 0}
