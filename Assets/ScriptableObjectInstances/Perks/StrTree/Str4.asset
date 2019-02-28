@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: Str1
+  m_Name: Str4
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: edd0ad37342968c4fae508fe34695e86, type: 2}
   BlockedBy: []
   Children:
-  - {fileID: 11400000, guid: b0cfd8cb27ab52d41a79c4331f95c6df, type: 2}
+  - {fileID: 11400000, guid: 090a17cdb7d49b64e9df4f47effd4a8a, type: 2}
   Blocks: []
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    statValue: 10
-  Name: Little Strength
+    statValue: 40
+  Name: Even Bigger Strength
   Desc: 
   grants: []
-  uiCoords: {x: 50, y: 25}
+  Changes: []
+  uiCoords: {x: 275, y: 25}
   sprite: {fileID: 0}

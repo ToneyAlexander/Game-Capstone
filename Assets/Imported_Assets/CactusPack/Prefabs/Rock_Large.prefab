@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 751800815116176036}
+  - component: {fileID: 5965210751048713997}
   m_Layer: 0
   m_Name: Rock_Large
   m_TagString: Untagged
@@ -91,3 +92,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.152921, y: 4.0906887, z: 2.1995158}
   m_Center: {x: 0.074908495, y: 1.9607873, z: -0.03362292}
+--- !u!208 &5965210751048713997
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.1, y: 2.045, z: 1.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.075, y: 1.9610001, z: -0.034}
+  m_TimeToStationary: 0.5
