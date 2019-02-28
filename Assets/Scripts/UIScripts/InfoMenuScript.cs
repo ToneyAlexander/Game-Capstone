@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class InfoMenuScript : MonoBehaviour
 {
@@ -10,9 +7,47 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
-    // Start is called before the first frame update
 
-    void Start()
+    #region Toggle Tab Methods
+    /// <summary>
+    /// Toggles the class info tab on and off.
+    /// </summary>
+    public void ToggleClassInfoTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(false);
+        classinfo.SetActive(!tabs.activeSelf);
+        tabs.SetActive(!tabs.activeSelf);
+        ClassUI classui = classinfo.GetComponent<ClassUI>();
+        classui.updatePlayerClass();
+        classui.reloadGraph();
+    }
+
+    /// <summary>
+    /// Toggles the inventory tab on and off.
+    /// </summary>
+    public void ToggleInventoryTab()
+    {
+        inventory.SetActive(!tabs.activeSelf);
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
+
+    /// <summary>
+    /// Toggles the stats tab on and off.
+    /// </summary>
+    public void ToggleStatsTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(!tabs.activeSelf);
+        classinfo.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
+    #endregion
+
+    #region MonoBehaviour Messages
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -72,35 +107,8 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(false);
         classinfo.SetActive(false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            
-            inventory.SetActive(!tabs.activeSelf);
-            stats.SetActive(false);
-            classinfo.SetActive(false);
-            tabs.SetActive(!tabs.activeSelf);
-        }
-        if (Input.GetKeyDown(KeyCode.O) || Input.GetKeyDown(KeyCode.C))
-        {
+    #endregion
 
-            inventory.SetActive(false);
-            stats.SetActive(!tabs.activeSelf);
-            classinfo.SetActive(false);
-            tabs.SetActive(!tabs.activeSelf);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-            inventory.SetActive(false);
-            stats.SetActive(false);
-            classinfo.SetActive(!tabs.activeSelf);
-            tabs.SetActive(!tabs.activeSelf);
-        }
-
-    }
     void OnClickInventory()
     {
         Debug.Log("showing Inventory");
