@@ -247,6 +247,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordOnHand: {fileID: 0}
   swordOnBack: {fileID: 0}
+  startMagicAttack: 0
 --- !u!114 &290558801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
+  dash: {fileID: 11400000, guid: a628ad4ffafda154b9869dbf0c1eaa75, type: 2}
 --- !u!1 &359173971656846165
 GameObject:
   m_ObjectHideFlags: 0
