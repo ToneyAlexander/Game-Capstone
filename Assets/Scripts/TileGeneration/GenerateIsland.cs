@@ -394,11 +394,12 @@ public class GenerateIsland : MonoBehaviour
     void Update()
     {
         // It takes some time for the navMesh to update based on the new island.
-        if (updateNavMeshTimer > 0)
-        {
-            surface.UpdateNavMesh(surface.navMeshData);
-            updateNavMeshTimer--;
-        }
+        // if (updateNavMeshTimer > 0)
+        // {
+        //     surface.UpdateNavMesh(surface.navMeshData);
+        //     updateNavMeshTimer--;
+        // }
+        surface.UpdateNavMesh(surface.navMeshData);
 
         if (Input.GetButtonDown("Regenerate"))
         {
