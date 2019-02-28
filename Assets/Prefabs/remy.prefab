@@ -27,9 +27,10 @@ GameObject:
   - component: {fileID: 8187193361829400581}
   - component: {fileID: 1138138868517729455}
   - component: {fileID: 2271391383784719827}
+  - component: {fileID: 1578934641}
   m_Layer: 0
   m_Name: remy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swordOnHand: {fileID: 0}
   swordOnBack: {fileID: 0}
+  startMagicAttack: 0
 --- !u!114 &290558801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +319,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
+--- !u!114 &1578934641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290558787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a136697b39742be90c7db71cbdd4ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  infoMenu: {fileID: 0}
+  inventoryButton: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48, type: 2}
 --- !u!1 &359173971656846165
 GameObject:
   m_ObjectHideFlags: 0
@@ -3194,6 +3211,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5788411316935998963, guid: 45b49f8ac49b57841bf95e337b8085e0,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45b49f8ac49b57841bf95e337b8085e0, type: 3}
 --- !u!224 &5788411316745233599 stripped
@@ -3212,6 +3234,10 @@ PrefabInstance:
     - target: {fileID: 1000011335475624, guid: 128f20fd9fec12b4e9587d7fd19322b7, type: 3}
       propertyPath: m_Name
       value: RB_Falchion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011335475624, guid: 128f20fd9fec12b4e9587d7fd19322b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000011191723762, guid: 128f20fd9fec12b4e9587d7fd19322b7, type: 3}
       propertyPath: m_LocalPosition.x

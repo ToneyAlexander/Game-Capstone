@@ -286,6 +286,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c255937a95562a44adca004445c95b2, type: 3}
+--- !u!1 &133855766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5930947933114172131, guid: 4c255937a95562a44adca004445c95b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 133855765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &134337765
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +352,7 @@ MonoBehaviour:
   specialObjects: {fileID: 11400000, guid: f644f579a9fe01246b725b06c324128a, type: 2}
   specialChance: 2
   vegetationSpawner: {fileID: 11400000, guid: 0f7a9e07482b74b4492f99f951808f6e, type: 2}
-  vegetationChance: 20
+  vegetationChance: 25
   enemySpawner: {fileID: 11400000, guid: 7b9fc9061215e7a4792401163db7790f, type: 2}
   enemyChance: 0
   themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
@@ -1003,6 +1009,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_Name
+      value: SwordOnHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: infoMenu
+      value: 
+      objectReference: {fileID: 133855766}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: inventoryTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: statsTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: classInfoTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
 --- !u!1001 &2135178885

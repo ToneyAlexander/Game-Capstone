@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51fa660834a6145cbb2c1aee1e969551, type: 3}
-  m_Name: GameStateMachine
+  m_Script: {fileID: 11500000, guid: 5a99a466cfb3243648c2c6ab321a4708, type: 3}
+  m_Name: ClassInfoTabButton
   m_EditorClassIdentifier: 
-  description: State Machine for the main game as a whole
-  initialState: {fileID: 11400000, guid: aec7070be44bf4314bdc1a2d9f947a78, type: 2}
+  _description: Open class info tab of info menu
+  _name: Toggle Class Info Tab
