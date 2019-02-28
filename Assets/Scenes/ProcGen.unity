@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.005
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -342,19 +342,12 @@ MonoBehaviour:
   ISLE_WIDE_HIGH: 14
   makeEnvironment: 1
   treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
-  treeChance: 50
   grassList: {fileID: 11400000, guid: 5bb6e69a5a95f97489e619160baff0a4, type: 2}
-  grassChance: 40
   mediumObjectList: {fileID: 11400000, guid: 17edadd3609a20841a29b3602cb933d7, type: 2}
-  mediumChance: 30
   particleEffects: {fileID: 11400000, guid: 0956b4047642cba43b52ca8401bc87cb, type: 2}
-  particleChance: 30
   specialObjects: {fileID: 11400000, guid: f644f579a9fe01246b725b06c324128a, type: 2}
-  specialChance: 2
   vegetationSpawner: {fileID: 11400000, guid: 0f7a9e07482b74b4492f99f951808f6e, type: 2}
-  vegetationChance: 25
   enemySpawner: {fileID: 11400000, guid: 7b9fc9061215e7a4792401163db7790f, type: 2}
-  enemyChance: 0
   themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
@@ -656,7 +649,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.5
+  near clip plane: 3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -815,79 +808,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 290558787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934640, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_Name
       value: remy
       objectReference: {fileID: 0}
-    - target: {fileID: 290558787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 290558787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_Name
-      value: SwordOnHand
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_Name
-      value: SwordOnHand
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934660, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -903,12 +868,11 @@ PrefabInstance:
       propertyPath: layerMask.m_Bits
       value: 512
       objectReference: {fileID: 0}
-    - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+    - target: {fileID: 1578934658, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
+      propertyPath: m_Constraints
+      value: 80
       objectReference: {fileID: 0}
-    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+    - target: {fileID: 1578934641, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: infoMenu
       value: 
       objectReference: {fileID: 133855766}

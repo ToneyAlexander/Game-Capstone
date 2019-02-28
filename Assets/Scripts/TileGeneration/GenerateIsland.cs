@@ -38,38 +38,23 @@ public class GenerateIsland : MonoBehaviour
     private bool makeEnvironment = false;
     [SerializeField]
     private ThemeList treeList;
-    [SerializeField]
-    private int treeChance = 60;
 
     [SerializeField]
     private ThemeList grassList;
-    [SerializeField]
-    private int grassChance = 50;
 
     [SerializeField]
     private ThemeList mediumObjectList;
     [SerializeField]
-    private int mediumChance = 30;
-
-    [SerializeField]
     private ThemeList particleEffects;
-    [SerializeField]
-    private int particleChance = 30;
 
     [SerializeField]
     private ThemeList specialObjects;
-    [SerializeField]
-    private int specialChance = 2;
 
     [SerializeField]
     private ThemeList vegetationSpawner;
-    [SerializeField]
-    private int vegetationChance = 20;
 
     [SerializeField]
 	private ThemeList enemySpawner;
-	[SerializeField]
-	private int enemyChance = 5;
 
 	[SerializeField]
     private ThemeDictionary themeDictionary;
@@ -310,13 +295,13 @@ public class GenerateIsland : MonoBehaviour
 
         if (makeEnvironment)
         {
-            replaceObjects(treeChance, treeList.themeList[themeID].EnvironmentList, "Tree");
-            replaceObjects(grassChance, grassList.themeList[themeID].EnvironmentList, "Grass");
-            replaceObjects(mediumChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
-            replaceObjects(particleChance, particleEffects.themeList[themeID].EnvironmentList, "Particles"); 
-            replaceObjects(specialChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
-            replaceObjects(vegetationChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
-            replaceObjects(enemyChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(treeList.themeList[themeID].spawnChance, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(grassList.themeList[themeID].spawnChance, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(mediumObjectList.themeList[themeID].spawnChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(particleEffects.themeList[themeID].spawnChance, particleEffects.themeList[themeID].EnvironmentList, "Particles"); 
+            replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+            replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
+            replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
 		}
         else
         {

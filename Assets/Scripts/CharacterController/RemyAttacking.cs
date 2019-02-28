@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MousePositionDetector))]
+
 public class RemyAttacking : MonoBehaviour
 {
     public static Vector3 attackDirection;
     public static Ability ability;
 
+    MousePositionDetector mousePositionDetector;
 
     private Animator animator;
     private Vector3 lookAtEnemy;
@@ -14,6 +17,7 @@ public class RemyAttacking : MonoBehaviour
     private Vector3 lastDestination;
     private bool isHoldingSword;
     private float timeLeft;
+    private Vector3 dynamicAttackDirection;
 
 
     public GameObject swordOnHand;
@@ -21,7 +25,10 @@ public class RemyAttacking : MonoBehaviour
 
     public bool startMagicAttack;
 
-
+    private void Awake()
+    {
+        mousePositionDetector = GetComponent<MousePositionDetector>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +36,14 @@ public class RemyAttacking : MonoBehaviour
         startMagicAttack = false;
         isHoldingSword = false;
         timeLeft = 5;
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         RotateToEnemy();
+        RotateToEnemyDynamic();
 
         if (Input.GetButtonDown("MeleeAttackTest"))
         {
@@ -106,13 +115,31 @@ public class RemyAttacking : MonoBehaviour
     }
 
 
+    void RotateToEnemyDynamic()
+    {
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")) {
+            if (transform.position != dynamicAttackDirection)
+            {
+                lookAtEnemy = dynamicAttackDirection - transform.position;
+
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
+            }
+            else
+            {
+                lookAtEnemy = transform.position;
+            }
+        }
+    }
+
+
     void RotateToEnemy()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")
-            ) {
+            )
+        {
             if (transform.position != attackDirection)
             {
                 lookAtEnemy = attackDirection - transform.position;
@@ -125,7 +152,6 @@ public class RemyAttacking : MonoBehaviour
             }
         }
     }
-
 
 
 
@@ -163,7 +189,7 @@ public class RemyAttacking : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
 
-            RemyMovement.destination = this.transform.position;
+            //RemyMovement.destination = this.transform.position;
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
 
                 swordOnHand.SetActive(true);

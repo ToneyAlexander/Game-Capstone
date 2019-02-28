@@ -8,6 +8,9 @@ public class EnvironmentData : ScriptableObject
     [SerializeField]
     public List<GameObject> EnvironmentList;
 
+    [SerializeField]
+    public int spawnChance;
+
     // Start is called before the first frame update
     public EnvironmentData()
     {
