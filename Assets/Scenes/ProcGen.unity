@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50899863, g: 0.5223832, b: 0.5390437, a: 1}
+  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -50,7 +50,7 @@ LightmapSettings:
     m_BounceScale: 1
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
@@ -336,7 +336,7 @@ MonoBehaviour:
   ISLE_WIDE_HIGH: 14
   makeEnvironment: 1
   treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
-  treeChance: 70
+  treeChance: 50
   grassList: {fileID: 11400000, guid: 5bb6e69a5a95f97489e619160baff0a4, type: 2}
   grassChance: 40
   mediumObjectList: {fileID: 11400000, guid: 17edadd3609a20841a29b3602cb933d7, type: 2}
@@ -345,6 +345,8 @@ MonoBehaviour:
   particleChance: 30
   specialObjects: {fileID: 11400000, guid: f644f579a9fe01246b725b06c324128a, type: 2}
   specialChance: 2
+  vegetationSpawner: {fileID: 11400000, guid: 0f7a9e07482b74b4492f99f951808f6e, type: 2}
+  vegetationChance: 20
   enemySpawner: {fileID: 11400000, guid: 7b9fc9061215e7a4792401163db7790f, type: 2}
   enemyChance: 0
   themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
@@ -928,14 +930,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_Name
-      value: SwordOnHand
-      objectReference: {fileID: 0}
     - target: {fileID: 290558799, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -980,15 +974,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: swordOnHand
       value: 
@@ -1000,6 +985,23 @@ PrefabInstance:
     - target: {fileID: 290558802, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: layerMask.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788411316764924876, guid: b98e57c1826cb3347a47dc3a6031ed6b,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_Name
+      value: SwordOnHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010893560787, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}

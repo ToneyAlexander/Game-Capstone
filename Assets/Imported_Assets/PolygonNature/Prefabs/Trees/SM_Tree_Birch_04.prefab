@@ -165,6 +165,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4271728572718218}
   - component: {fileID: 205922328305981026}
+  - component: {fileID: 7739162092292988233}
+  - component: {fileID: 7097047115210746281}
   m_Layer: 0
   m_Name: SM_Tree_Birch_04
   m_TagString: Untagged
@@ -181,7 +183,7 @@ Transform:
   m_GameObject: {fileID: 1809296932901464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4550375995212924}
   - {fileID: 4188988182965626}
@@ -211,3 +213,30 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23233568452856764}
   m_Enabled: 1
+--- !u!65 &7739162092292988233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809296932901464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 4, z: 0.2}
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!136 &7097047115210746281
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809296932901464}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0.5, y: 3, z: 0}
