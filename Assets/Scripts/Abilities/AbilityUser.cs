@@ -51,7 +51,9 @@ namespace CCC.Abilities
 
             else
             {
-                remyAttacking.MagicAttack(ability);
+                if (ability.cdRemain <= 0) {
+                    remyAttacking.MagicAttack(ability);
+                }
             }
 
             if (usableAbilities.Set.ContainsKey(ability.AbilityName))

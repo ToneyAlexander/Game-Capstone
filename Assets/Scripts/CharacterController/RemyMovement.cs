@@ -82,6 +82,8 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isFireballVolley", false);
 
+            animator.SetBool("isEquip", false);
+
             animator.SetBool("isRunning", true);
 
             movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);

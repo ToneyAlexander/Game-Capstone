@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MousePositionDetector))]
+
 public class RemyAttacking : MonoBehaviour
 {
     public static Vector3 attackDirection;
     public static Ability ability;
 
+    MousePositionDetector mousePositionDetector;
 
     private Animator animator;
     private Vector3 lookAtEnemy;
@@ -14,6 +17,7 @@ public class RemyAttacking : MonoBehaviour
     private Vector3 lastDestination;
     private bool isHoldingSword;
     private float timeLeft;
+    private Vector3 dynamicAttackDirection;
 
 
     public GameObject swordOnHand;
@@ -21,7 +25,10 @@ public class RemyAttacking : MonoBehaviour
 
     public bool startMagicAttack;
 
-
+    private void Awake()
+    {
+        mousePositionDetector = GetComponent<MousePositionDetector>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +36,7 @@ public class RemyAttacking : MonoBehaviour
         startMagicAttack = false;
         isHoldingSword = false;
         timeLeft = 5;
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
     }
 
     // Update is called once per frame
@@ -91,7 +99,7 @@ public class RemyAttacking : MonoBehaviour
 
     public void MagicAttack(Ability ability)
     {
-        //TODO check cool down time
+
         if (true) {
             RemyMovement.destination = this.transform.position;
             if (ability.AbilityName.Equals("Fireball Ignite")) {
@@ -108,14 +116,15 @@ public class RemyAttacking : MonoBehaviour
 
     void RotateToEnemy()
     {
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")
             ) {
-            if (transform.position != attackDirection)
+            if (transform.position != dynamicAttackDirection)
             {
-                lookAtEnemy = attackDirection - transform.position;
+                lookAtEnemy = dynamicAttackDirection - transform.position;
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
             }
@@ -125,19 +134,6 @@ public class RemyAttacking : MonoBehaviour
             }
         }
     }
-
-
-    //bool ShouldUnEquip()
-    //{
-    //    bool result = false;
-    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle") &&
-    //            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-    //    {
-    //        animator.SetBool("isUnEquip", true);
-    //        result = true;
-    //    }
-    //    return result;
-    //}
 
 
 
@@ -176,7 +172,7 @@ public class RemyAttacking : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
 
-            RemyMovement.destination = this.transform.position;
+            //RemyMovement.destination = this.transform.position;
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
 
                 swordOnHand.SetActive(true);
@@ -196,7 +192,7 @@ public class RemyAttacking : MonoBehaviour
                 timeLeft = 5;
             }
             timeLeft -= Time.deltaTime;
-            Debug.Log(timeLeft);
+            //Debug.Log(timeLeft);
         }
     }
 
@@ -226,7 +222,7 @@ public class RemyAttacking : MonoBehaviour
                 //Debug.Log("真的收剑");
             }
 
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
             {
                 animator.SetBool("isUnEquip", false);
             }

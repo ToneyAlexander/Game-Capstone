@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: AntiArmor1
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy:
+  - {fileID: 11400000, guid: 38544fc8052253b4b9d8c34779b606de, type: 2}
+  Children:
+  - {fileID: 11400000, guid: 27f12fc1b07075f4592c4fbf75a1a893, type: 2}
+  Blocks:
+  - {fileID: 11400000, guid: 38544fc8052253b4b9d8c34779b606de, type: 2}
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 21bbb3baa7dc7d847960f983563596d3, type: 2}
+    statValue: -0.1
+  - statName: {fileID: 11400000, guid: 5d86dc758ff2ed34987cb92c7d9f1d32, type: 2}
+    statValue: 0.15
+  Name: Unencumbered
+  Desc: Forego armor for raw power
+  grants: []
+  Changes: []
+  uiCoords: {x: 50, y: 600}
+  sprite: {fileID: 0}
