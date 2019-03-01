@@ -35,6 +35,28 @@ public abstract class EnemyController : MonoBehaviour
     protected Vector3 targetPos;
     protected bool targetFound;
 
+    /// <summary>
+    /// The CommandProcessor that this EnemyController sends ICommands to.
+    /// </summary>
+    [SerializeField]
+    protected CommandProcessor commandProcessor;
+
+    /// <summary>
+    /// The IDestinationMover Component that 
+    /// </summary>
+    private IDestinationMover destinationMover;
+
+    private void Awake()
+    {
+        destinationMover = GetComponent<IDestinationMover>();
+
+        if (destinationMover == null)
+        {
+            Debug.LogError("[" + gameObject.name + " 's EnemyController] " +
+                "has no IDestinationMover Component attached!");
+        }
+    }
+
     void Start()
     {
         // Set up NavMesh
@@ -119,7 +141,9 @@ public abstract class EnemyController : MonoBehaviour
         // (until the player target is within enemy's attacking distance)
         while (!InAttackRange(targetPos))
         {
-            agent.SetDestination(targetPos);
+            Vector3 destination = targetPos;
+            ICommand command = new MoveToCommand(destinationMover, transform.position, destination);
+            commandProcessor.ProcessCommand(command);
             yield return null;        
         }
 

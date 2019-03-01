@@ -10047,9 +10047,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4808586151644210953}
   - component: {fileID: 7384676897561068052}
-  - component: {fileID: 6373086504389821572}
   - component: {fileID: 3773428104095217059}
   - component: {fileID: 7923207885757088721}
+  - component: {fileID: 5728445885979380307}
+  - component: {fileID: 5863017331188152921}
   m_Layer: 0
   m_Name: FungusBasicWhite
   m_TagString: Fungus
@@ -10094,18 +10095,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6373086504389821572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061365448096428730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51db196ba947e4b8298a1f2b42aadf47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3773428104095217059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10142,6 +10131,31 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5728445885979380307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061365448096428730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51db196ba947e4b8298a1f2b42aadf47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+--- !u!114 &5863017331188152921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6061365448096428730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a69812d46fb94500acb809b2efbe6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6335110780893290871
 GameObject:
   m_ObjectHideFlags: 0

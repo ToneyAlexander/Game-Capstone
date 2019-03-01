@@ -230,7 +230,11 @@ public class GenerateIsland : MonoBehaviour
                 string[] fields = lines[i].Split(',');
                 if (fields.Length >= 11)
                 {
-                    TilePiece t = new TilePiece(Resources.Load<GameObject>(fields[10].Trim()), int.Parse(fields[1]), int.Parse(fields[5]), new Vector3(float.Parse(fields[2]), float.Parse(fields[3]), float.Parse(fields[4])));
+                    //6,7,8,9
+                    TilePiece t = new TilePiece(Resources.Load<GameObject>(fields[10].Trim()),
+                        int.Parse(fields[1]), int.Parse(fields[5]),
+                        new Vector3(float.Parse(fields[2]), float.Parse(fields[3]), float.Parse(fields[4])),
+                        int.Parse(fields[6]) == 1, int.Parse(fields[7]) == 1, int.Parse(fields[8]) == 1, int.Parse(fields[9]) == 1);
                     tileset.Add(t);
                 }
             }
@@ -239,7 +243,7 @@ public class GenerateIsland : MonoBehaviour
                 //higher layers
                 TilePiece lowClone = tileset[i - TILES_PER_LAYER - 1];
                 Vector3 newLoc = new Vector3(lowClone.modifier.x, lowClone.modifier.y + TILE_HEIGHT, lowClone.modifier.z);
-                TilePiece t = new TilePiece(lowClone.prefab, lowClone.ID + TILES_PER_LAYER, lowClone.rotation, newLoc);
+                TilePiece t = new TilePiece(lowClone.prefab, lowClone.ID + TILES_PER_LAYER, lowClone.rotation, newLoc, lowClone.navigability);
                 tileset.Add(t);
             }
         }
@@ -332,49 +336,79 @@ public class GenerateIsland : MonoBehaviour
         List<Vector2Int> updated = new List<Vector2Int>();
 
         Texture[] templates = Resources.LoadAll<Texture2D>("IslandTemplateImages");
-        Texture template = templates[3];
+        Texture template = templates[Random.Range(0, templates.Length)];
 
         bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width, tileCount, WATER_INDEX, updated);
         propagate(island, updated, index);
+
+        //Guarantee that he'll have a beach
+        //TODO: Places it at the top left - put other places later
+        Vector2Int start = new Vector2Int();
+        Vector2Int end = new Vector2Int();
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                for(int k = 17; k <= 20; k++)
+                {
+                    //TODO: force beach two wide
+                    if (island[i, j][k])
+                    {
+                        island[i, j] = IslandTemplateUtilities.makeTile(k, tileCount);
+                        updated.Add(new Vector2Int(i, j));
+                        propagate(island, updated, index);
+                        start.x = i;
+                        start.y = j;
+
+                        k = 21;
+                        j = width;
+                        i = width;
+                    }
+                }
+            }
+        }
+        if(start.x == 0 && start.y == 0)
+        {
+           //TODO: ERROR - NO BEACH TILE
+        }
+        placePlayerOnTileCentered(start.x, start.y, TILE_HEIGHT, tileSize);
+
+        //Decide on end point and collapse it TODO: (lighthouse, boss tile)
+        for (int i = width-1; i >= 0; i--)
+        {
+            for (int j = width-1; j >= 0; j--)
+            {
+                if (island[i, j][LAND_INDEX])
+                {
+                    island[i, j] = IslandTemplateUtilities.makeTile(LAND_INDEX, tileCount);
+                    updated.Add(new Vector2Int(i, j));
+                    propagate(island, updated, index);
+                    end.x = i;
+                    end.y = j;
+
+                    j = 0;
+                    i = 0;
+                }
+            }
+        }
+        //RAMP ISLANDS - FIND A TILE THAT CAN BE THE TALLEST STARTING AT BOTTOM AND SET THAT ONE TO TALLEST
+
+        //TODO: Navigability to end point
+        //TODO: given a set of tiles and weights, normalize and pick one
+        //TODO: give tiles weights
 
         if (drawTileSet)
         {
             IslandGeneratorTesting.drawTileset(tiles, Vector3.zero, tileSize, tileCount);
         }
 
-        //initializeEmptyMap(island, tileCount);
-        //initializeCircleMap(island, updated, tileCount, width, height);
-        //initializeSquareMap(island, updated, tileCount, width, height);
-        //initializeCrescentMap(island, updated, tileCount, width, height);
-        //initializeAntiCrescentMap(island, updated, tileCount, width, height);
         //makeCenterTallest(island, updated, tileCount, width, height);
-        //placePlayerMaxCenter(island, updated, tileCount, width, height, tileSize, layersAboveBeach);
 
         while (!finished(island))
         {
             observe(island, updated, tileCount);
             propagate(island, updated, index);
         }
-        //Better place player methdo - look at map more
-        //Place remy on a beach ramp
-        int x = width / 2;
-        int y = width / 2;
-
-        //TODO: Guarantee that he'll have a beach
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < width; j++)
-            {
-                if (island[i, j][17] || island[i, j][18] || island[i, j][19] || island[i, j][20])
-                {
-                    x = i;
-                    y = j;
-                    i = width;
-                    j = width;
-                }
-            }
-        }
-        placePlayerOnTileCentered(x, y, TILE_HEIGHT, tileSize);
 
         themePicker(); //pick theme before generation 
         generatedMap = drawMap(island, startingLocation, tileSize);
@@ -673,16 +707,16 @@ public class GenerateIsland : MonoBehaviour
         //Else:
         //Choose a pattern by a random sample, weighted by the pattern frequency in the source data
         //Set the boolean array in this cell to false, except for the chosen pattern
-        List<int> unchosenIndecies = new List<int>();
+        List<int> unchosenIndices = new List<int>();
         for (int o = 0; o < island[m_index, n_index].Length; o++)
         {
             if (island[m_index, n_index][o])
             {
-                unchosenIndecies.Add(o);
+                unchosenIndices.Add(o);
             }
         }
 
-        if (unchosenIndecies.Count == 0)
+        if (unchosenIndices.Count == 0)
         {
             return;
         }
@@ -692,19 +726,74 @@ public class GenerateIsland : MonoBehaviour
         {
             updated.Add(changed);
         }
-        int tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
 
-        for(int r = 0; r < LESS_THAN_LAND_REGEN_COUNT; r++)
-        {
-            if (tileIndex < LAND_INDEX)
-            {
-                tileIndex = unchosenIndecies[Random.Range(0, unchosenIndecies.Count)];
-            }
-        }
+        int tileIndex = unchosenIndices[weightedIndexSelect(makeDistribution(unchosenIndices))];
+
         for (int o = 0; o < island[m_index, n_index].Length; o++)
         {
             island[m_index, n_index][o] = (o == tileIndex);
         }
+    }
+
+    private List<float> makeDistribution(List<int> unchosenIndices)
+    {
+        //return plateauDistribution(unchosenIndices);
+        return increasingDistribution(unchosenIndices);
+    }
+
+    private List<float> evenDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        foreach(int TileID in unchosenIndices)
+        {
+            probabilities.Add(1.0f);
+        }
+        return probabilities;
+    }
+    private List<float> increasingDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        float prob = 1.0f;
+        foreach (int TileID in unchosenIndices)
+        {
+            probabilities.Add(prob);
+            prob += .25f;
+        }
+        return probabilities;
+    }
+    private List<float> plateauDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        float prob = 1.0f;
+        foreach (int TileID in unchosenIndices)
+        {
+            if(TileID > 0 && TileID % 33 == 0)
+            {
+                probabilities.Add(2* prob);
+            }
+            else
+            {
+                probabilities.Add(prob);
+            }
+        }
+        return probabilities;
+    }
+
+    private int weightedIndexSelect(List<float> probabilities)
+    {
+        float total = 0;
+        foreach(float p in probabilities)
+        {
+            total += p;
+        }
+        float value = Random.Range(0, total);
+        int index = 0;
+        while(value > 0)
+        {
+            value -= probabilities[index];
+            index++;
+        }
+        return index - 1;
     }
 
     //defn FindLowestEntropy(coefficient_matrix):
@@ -738,6 +827,7 @@ public class GenerateIsland : MonoBehaviour
         return new Vector3Int(m_index, n_index, minEntropy);
     }
 
+    //TODO: store available itles instead of regenerating - have to make sure an island works before implementing though so can cancel island
     private Vector3Int pickRandomTile(bool[,][] island)
     {
         List<Vector2Int> availableTiles = new List<Vector2Int>();
