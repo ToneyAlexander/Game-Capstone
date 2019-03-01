@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.GameManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,4 +20,9 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
+    /// <summary>
+    /// The Game that this MainMenu is a part of.
+    /// </summary>
+    [SerializeField]
+    private Game game;
 }
