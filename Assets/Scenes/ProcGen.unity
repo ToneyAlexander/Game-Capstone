@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
@@ -339,8 +339,8 @@ MonoBehaviour:
   surface: {fileID: 1507233751}
   remy: {fileID: 1318119831}
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
-  ISLE_WIDE_HIGH: 20
-  makeEnvironment: 0
+  ISLE_WIDE_HIGH: 15
+  makeEnvironment: 1
   treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
   grassList: {fileID: 11400000, guid: 5bb6e69a5a95f97489e619160baff0a4, type: 2}
   mediumObjectList: {fileID: 11400000, guid: 17edadd3609a20841a29b3602cb933d7, type: 2}
@@ -351,7 +351,7 @@ MonoBehaviour:
   themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
-  LAYERS_ABOVE_BEACH: 0
+  LAYERS_ABOVE_BEACH: 7
   LESS_THAN_LAND_REGEN_COUNT: 0
   useLVR: 1
   RUN_INDEX_TEST: 0
@@ -835,6 +835,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395,
         type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: infoMenu
+      value: 
+      objectReference: {fileID: 133855766}
     - target: {fileID: 1578934640, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_Name
       value: remy
