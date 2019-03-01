@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -112,6 +112,125 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &71494730
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2427186442904009039, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427186442904009035, guid: 5115a479860ffe347b3191e36db25834,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5115a479860ffe347b3191e36db25834, type: 3}
 --- !u!1001 &133855765
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -339,7 +458,7 @@ MonoBehaviour:
   surface: {fileID: 1507233751}
   remy: {fileID: 1318119831}
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
-  ISLE_WIDE_HIGH: 20
+  ISLE_WIDE_HIGH: 10
   makeEnvironment: 0
   treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
   grassList: {fileID: 11400000, guid: 5bb6e69a5a95f97489e619160baff0a4, type: 2}
@@ -808,33 +927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: swordOnHand
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: swordOnBack
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 290558802, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: inventoryTabButton
-      value: 
-      objectReference: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48,
-        type: 2}
-    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: statsTabButton
-      value: 
-      objectReference: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597,
-        type: 2}
-    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
-      propertyPath: classInfoTabButton
-      value: 
-      objectReference: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395,
-        type: 2}
     - target: {fileID: 1578934640, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_Name
       value: remy
@@ -883,11 +975,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: swordOnHand
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 290558800, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: swordOnBack
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 290558802, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 1578934658, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1578934641, guid: 29aacf9f1d4f749ddac4a09982b7fbd5, type: 3}
+      propertyPath: infoMenu
+      value: 
+      objectReference: {fileID: 133855766}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: inventoryTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: statsTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
+      propertyPath: classInfoTabButton
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395,
+        type: 2}
+    - target: {fileID: 1578934641, guid: b98e57c1826cb3347a47dc3a6031ed6b, type: 3}
       propertyPath: infoMenu
       value: 
       objectReference: {fileID: 133855766}
