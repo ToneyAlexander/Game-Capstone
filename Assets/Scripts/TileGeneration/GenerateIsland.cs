@@ -38,33 +38,23 @@ public class GenerateIsland : MonoBehaviour
     private bool makeEnvironment = false;
     [SerializeField]
     private ThemeList treeList;
-    [SerializeField]
-    private int treeChance = 60;
 
     [SerializeField]
     private ThemeList grassList;
-    [SerializeField]
-    private int grassChance = 50;
 
     [SerializeField]
     private ThemeList mediumObjectList;
     [SerializeField]
-    private int mediumChance = 30;
-
-    [SerializeField]
     private ThemeList particleEffects;
-    [SerializeField]
-    private int particleChance = 30;
 
     [SerializeField]
     private ThemeList specialObjects;
-    [SerializeField]
-    private int specialChance = 2;
 
-	[SerializeField]
+    [SerializeField]
+    private ThemeList vegetationSpawner;
+
+    [SerializeField]
 	private ThemeList enemySpawner;
-	[SerializeField]
-	private int enemyChance = 5;
 
 	[SerializeField]
     private ThemeDictionary themeDictionary;
@@ -251,12 +241,13 @@ public class GenerateIsland : MonoBehaviour
 
         if (makeEnvironment)
         {
-            replaceObjects(treeChance, treeList.themeList[themeID].EnvironmentList, "Tree");
-            replaceObjects(grassChance, grassList.themeList[themeID].EnvironmentList, "Grass");
-            replaceObjects(mediumChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
-            replaceObjects(particleChance, particleEffects.themeList[themeID].EnvironmentList, "Particles");
-            replaceObjects(specialChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
-			replaceObjects(enemyChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(treeList.themeList[themeID].spawnChance, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(grassList.themeList[themeID].spawnChance, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(mediumObjectList.themeList[themeID].spawnChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(particleEffects.themeList[themeID].spawnChance, particleEffects.themeList[themeID].EnvironmentList, "Particles"); 
+            replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+            replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
+            replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
 		}
         else
         {
@@ -265,7 +256,8 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
             replaceObjects(0, particleEffects.themeList[themeID].EnvironmentList, "Particles");
             replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
-			replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
+            replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
 		}
     }
 
@@ -287,14 +279,17 @@ public class GenerateIsland : MonoBehaviour
         byte[] randomNumber2 = new byte[100];
         foreach (GameObject x in listOfObjects)
         {
-            rngCsp.GetBytes(randomNumber);
-            byte spawnRoll = (byte)((randomNumber[0] % 100) + 1);
-            if (spawnRoll <= percentage) //75% chance
+            if (environmentList.Count > 0)
             {
-                rngCsp2.GetBytes(randomNumber2);
-                byte index = (byte)((randomNumber[0] % environmentList.Count));
-                GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity, terrain.transform);
-                newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
+                rngCsp.GetBytes(randomNumber);
+                byte spawnRoll = (byte)((randomNumber[0] % 100) + 1);
+                if (spawnRoll <= percentage) //75% chance
+                {
+                    rngCsp2.GetBytes(randomNumber2);
+                    byte index = (byte)((randomNumber[0] % environmentList.Count));
+                    GameObject newObject = Instantiate(environmentList[index], x.transform.position + environmentList[index].transform.position, Quaternion.identity, terrain.transform);
+                    newObject.transform.rotation = new Quaternion(0, Random.rotation.y, 0, 1);
+                }
             }
             Destroy(x);
         }
@@ -330,11 +325,12 @@ public class GenerateIsland : MonoBehaviour
     void Update()
     {
         // It takes some time for the navMesh to update based on the new island.
-        if (updateNavMeshTimer > 0)
-        {
-            surface.UpdateNavMesh(surface.navMeshData);
-            updateNavMeshTimer--;
-        }
+        // if (updateNavMeshTimer > 0)
+        // {
+        //     surface.UpdateNavMesh(surface.navMeshData);
+        //     updateNavMeshTimer--;
+        // }
+        surface.UpdateNavMesh(surface.navMeshData);
 
         if (Input.GetButtonDown("Regenerate"))
         {

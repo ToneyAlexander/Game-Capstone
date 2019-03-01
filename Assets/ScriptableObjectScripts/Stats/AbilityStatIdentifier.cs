@@ -6,7 +6,7 @@ using UnityEngine;
 /// Encapsulates the internal name of a Stat inside a ScriptableObject that it 
 /// can be dragged around in the Unity Inspector.
 /// </summary>
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Stats/AbilityStatIdentifier")]
 public class AbilityStatIdentifier : ScriptableObject
 {
     /// <summary>

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CCC.Abilities
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Abilities/AbilitySlotDictionary")]
     public class AbilitySlotDictionary : ScriptableObject
     {
         private Dictionary<AbilitySlot, Ability> abilities;

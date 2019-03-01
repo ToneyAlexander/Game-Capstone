@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Inputs/InputButton")]
 public sealed class InputButton : ScriptableObject
 {
     public string Name

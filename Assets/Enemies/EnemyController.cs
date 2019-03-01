@@ -106,13 +106,12 @@ public abstract class EnemyController : MonoBehaviour
     private Vector3 GetRandomPosition()
     {
         Vector2 randomPoint = Random.insideUnitCircle * movingRange;
-        return spawnPos + new Vector3(randomPoint.x, 1.0f, randomPoint.y);
+        return spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
     }
 
     private IEnumerator Move()
     {
         inCoroutine = true;
-
         // Find a random destination if the player character is not the target
         if (!targetFound)
         {
@@ -123,7 +122,6 @@ public abstract class EnemyController : MonoBehaviour
             } 
             while (!agent.CalculatePath(targetPos, path));
         }
-
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
         while (!InAttackRange(targetPos))

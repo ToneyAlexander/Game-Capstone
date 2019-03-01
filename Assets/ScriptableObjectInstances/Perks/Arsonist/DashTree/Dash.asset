@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 8a34e3654bfeb344587a3586d6b9d3c7, type: 2}
+  - {fileID: 11400000, guid: 1b26ba329be2ea848958705b375af886, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
   Name: Dash
   Desc: Sprint quickly for a short duration.
   grants:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 3863635da1866434a8b1821c2c67f9c1, type: 2}
   Changes: []
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 50, y: 525}
   sprite: {fileID: 0}

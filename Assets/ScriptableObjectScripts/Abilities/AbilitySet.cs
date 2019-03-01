@@ -7,7 +7,7 @@ namespace CCC.Abilities
     /// A wrapper around a HashSet of Ability that can be dragged around in the 
     /// Unity inspector.
     /// </summary>
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Abilities/AbilitySet")]
     public class AbilitySet : ScriptableObject
     {
         /// <summary>

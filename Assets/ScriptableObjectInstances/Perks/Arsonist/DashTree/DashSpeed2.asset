@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: DashSpeed2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 8a34e3654bfeb344587a3586d6b9d3c7, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: 
-  Desc: 
+  Name: Dash Speed 2
+  Desc: Increases Dash Speed
   grants: []
-  Changes: []
-  uiCoords: {x: 0, y: 0}
+  Changes:
+  - Value: 0.2
+    abilityName: Dash
+    statName: {fileID: 11400000, guid: 6de6c03f2de7ef4498562688b3b5a92b, type: 2}
+  uiCoords: {x: 200, y: 550}
   sprite: {fileID: 0}

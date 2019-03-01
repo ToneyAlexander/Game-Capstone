@@ -2,45 +2,65 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MousePositionDetector))]
+
 public class RemyAttacking : MonoBehaviour
 {
     public static Vector3 attackDirection;
     public static Ability ability;
 
+    MousePositionDetector mousePositionDetector;
 
     private Animator animator;
     private Vector3 lookAtEnemy;
     private float EPSSION;
     private Vector3 lastDestination;
+    private bool isHoldingSword;
+    private float timeLeft;
+    private Vector3 dynamicAttackDirection;
+
 
     public GameObject swordOnHand;
     public GameObject swordOnBack;
+
     public bool startMagicAttack;
 
-
+    private void Awake()
+    {
+        mousePositionDetector = GetComponent<MousePositionDetector>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         startMagicAttack = false;
+        isHoldingSword = false;
+        timeLeft = 5;
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         RotateToEnemy();
+        RotateToEnemyDynamic();
 
-        //MeleeAttack();
+        if (Input.GetButtonDown("MeleeAttackTest"))
+        {
+            MeleeAttack();
+        }
 
-        //if (ShouldEquip())
-        //{
-        //    EquipSword();
-        //}
+        EquipSword();
 
         if (StopMeleeAttack())
         {
             animator.SetBool("isIdleToMelee", false);
+            animator.SetBool("isEquip", false);
         }
+
+        UnEquipNow();
+        UnEquipSword();
+
 
         if (StopMagicAttack())
         {
@@ -49,51 +69,77 @@ public class RemyAttacking : MonoBehaviour
 
         }
 
-        StartFireballIgnit(startMagicAttack);
-        //if (ShouldUnEquip())
-        //{
-        //    UnEquipSword();
-        //}
+        FiringFireball(startMagicAttack);
 
-        //MagicAttack();
+        UnEquipTimer();
 
     }
+
+
+
 
     public void MeleeAttack()
     {
-        RotateToEnemy();
-        animator.SetBool("isIdleToMelee", true);
+        RemyMovement.destination = this.transform.position;
+
+        if (!isHoldingSword)
+        {
+
+            animator.SetBool("isEquip", true);
+            animator.SetBool("isEquipToMelee", true);
+            isHoldingSword = true;
+        }
+        else
+        {
+           animator.SetBool("isIdleToMelee", true);
+        }
+
     }
+
+
 
     public void MagicAttack(Ability ability)
     {
-        RemyMovement.destination = this.transform.position;
-        RotateToEnemy();
-        if (ability.AbilityName.Equals("Fireball Ignite")) {
-            animator.SetBool("isFireballIgnite", true);
-        }
-        if (ability.AbilityName.Equals("Fireball Volley"))
-        {
-            animator.SetBool("isFireballVolley", true);
+
+        if (true) {
+            RemyMovement.destination = this.transform.position;
+            if (ability.AbilityName.Equals("Fireball Ignite")) {
+                animator.SetBool("isFireballIgnite", true);
+            }
+            if (ability.AbilityName.Equals("Fireball Volley"))
+            {
+                animator.SetBool("isFireballVolley", true);
+            }
         }
 
     }
 
-    //public void MagicAttack02()
-    //{
-    //    RotateToEnemy();
-    //    animator.SetBool("isIdleToMagic02", true);
 
-    //}
+    void RotateToEnemyDynamic()
+    {
+        dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")) {
+            if (transform.position != dynamicAttackDirection)
+            {
+                lookAtEnemy = dynamicAttackDirection - transform.position;
 
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
+            }
+            else
+            {
+                lookAtEnemy = transform.position;
+            }
+        }
+    }
 
 
     void RotateToEnemy()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
-            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")
-            ) {
+            )
+        {
             if (transform.position != attackDirection)
             {
                 lookAtEnemy = attackDirection - transform.position;
@@ -107,28 +153,6 @@ public class RemyAttacking : MonoBehaviour
         }
     }
 
-    bool ShouldEquip()
-    {
-        bool result = false;
-        //if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3"))
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-        {
-            result = true;
-        }
-        return result;
-    }
-
-    bool ShouldUnEquip()
-    {
-        bool result = false;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.UnEquip") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-        {
-            result = true;
-        }
-        return result;
-    }
 
 
     //stop actural melee attack and unequip sword
@@ -136,12 +160,14 @@ public class RemyAttacking : MonoBehaviour
     {
         bool result = false;
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75)
         {
             result = true;
         }
         return result;
     }
+
+
 
     bool StopMagicAttack()
     {
@@ -157,25 +183,80 @@ public class RemyAttacking : MonoBehaviour
         return result;
     }
 
+
+
     void EquipSword()
     {
-        swordOnHand.SetActive(true);
-        swordOnBack.SetActive(false);
-        //Debug.Log("拿剑");
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
+
+            //RemyMovement.destination = this.transform.position;
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
+
+                swordOnHand.SetActive(true);
+                swordOnBack.SetActive(false);
+                //Debug.Log("拿剑");
+            }
+        }
     }
+
+
+    void UnEquipTimer()
+    {
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle") && isHoldingSword)
+        {
+            if (timeLeft < -0.01)
+            {
+                timeLeft = 5;
+            }
+            timeLeft -= Time.deltaTime;
+            //Debug.Log(timeLeft);
+        }
+    }
+
+
+    void UnEquipNow()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle")
+            && timeLeft < 0
+            && isHoldingSword)
+        {
+            //Debug.Log("收剑动作开始");
+            animator.SetBool("isUnEquip", true);
+        }
+    }
+
 
     void UnEquipSword()
     {
-        swordOnHand.SetActive(false);
-        swordOnBack.SetActive(true);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.UnEquip"))
+        {
+            RemyMovement.destination = this.transform.position;
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
+            {
+                swordOnHand.SetActive(false);
+                swordOnBack.SetActive(true);
+                isHoldingSword = false;
+                //Debug.Log("真的收剑");
+            }
+
+            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+            {
+                animator.SetBool("isUnEquip", false);
+            }
+        }
+
     }
+
+
 
     void DoNotFly()
     {
         attackDirection.y = this.transform.position.y;
     }
 
-    void StartFireballIgnit(bool start)
+
+
+    void FiringFireball(bool start)
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite") &&
                 animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6 &&

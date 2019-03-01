@@ -6,7 +6,7 @@ namespace CCC.Items
     /// <summary>
     /// Represents a collection of Items owned by a GameObject.
     /// </summary>
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Items/Inventory")]
     public sealed class Inventory : ScriptableObject
     {
         /// <summary>

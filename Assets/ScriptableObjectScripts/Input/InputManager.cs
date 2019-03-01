@@ -15,7 +15,7 @@ namespace CCC.Inputs
     /// game.
     /// </para>
     /// </remarks>
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Inputs/InputManager")]
     public sealed class InputManager : ScriptableObject
     {
         [SerializeField]

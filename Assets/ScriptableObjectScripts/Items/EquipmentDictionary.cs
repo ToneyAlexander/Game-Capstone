@@ -6,7 +6,7 @@ namespace CCC.Items
     /// <summary>
     /// Represents a set of Items that make up the equipment of a GameObject.
     /// </summary>
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Items/EquipmentDictionary")]
     public sealed class EquipmentDictionary : ScriptableObject
     {
         /// <summary>

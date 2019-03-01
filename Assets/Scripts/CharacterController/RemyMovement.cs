@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(StatBlock))]
 public class RemyMovement : MonoBehaviour
 {
     public static Vector3 initialPosition;
@@ -16,6 +17,8 @@ public class RemyMovement : MonoBehaviour
     private float EPSSION;
     private float reLocateDelay;
     private Vector3 lookAtTarget;
+
+    private StatBlock statBlock;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +27,10 @@ public class RemyMovement : MonoBehaviour
         reLocateDelay = 0.15f;
         timer = 0;
         rotationSpeed = 20;
-        movingSpeed = 10;
+
+        statBlock = GetComponent<StatBlock>();
+        movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
+
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
         //this.transform.position = initialPosition;
@@ -76,8 +82,11 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isFireballVolley", false);
 
+            animator.SetBool("isEquip", false);
+
             animator.SetBool("isRunning", true);
 
+            movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
         }
         else

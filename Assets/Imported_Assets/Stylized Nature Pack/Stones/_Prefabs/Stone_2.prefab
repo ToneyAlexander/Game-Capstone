@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 455720}
   - component: {fileID: 3370160}
   - component: {fileID: 2377780}
+  - component: {fileID: 1401005929171247184}
   m_Layer: 0
   m_Name: Stone_2
   m_TagString: Untagged
@@ -77,3 +78,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!208 &1401005929171247184
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183190}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.75, y: 0.64100003, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.029000001, y: 0.132, z: -0.013}
+  m_TimeToStationary: 0.5
