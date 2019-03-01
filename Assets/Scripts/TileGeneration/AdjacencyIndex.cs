@@ -38,4 +38,9 @@ public class AdjacencyIndex
         }
         return adjacency[ATileID][Direction].Contains(BTileID);
     }
+
+    public int indexToTile(int index)
+    {
+        return index;
+    }
 }

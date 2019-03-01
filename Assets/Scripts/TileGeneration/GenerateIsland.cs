@@ -113,7 +113,7 @@ public class GenerateIsland : MonoBehaviour
         index = generateIndex(img, LAYERS_ABOVE_BEACH);
         if (RUN_INDEX_TEST)
         {
-            testIndex(index, LAYERS_ABOVE_BEACH);
+            IslandGeneratorTesting.testIndex(index, LAYERS_ABOVE_BEACH);
         }
 
         tiles = createTileset(NUMBER_OF_TILES);
@@ -125,6 +125,95 @@ public class GenerateIsland : MonoBehaviour
 
         Debug.Log(nameGenerator.generateName());
     }
+
+    void Update()
+    {
+        // It takes some time for the navMesh to update based on the new island.
+        // if (updateNavMeshTimer > 0)
+        // {
+        //     surface.UpdateNavMesh(surface.navMeshData);
+        //     updateNavMeshTimer--;
+        // }
+        surface.UpdateNavMesh(surface.navMeshData);
+
+        if (Input.GetButtonDown("Regenerate"))
+        {
+            deleteIsland();
+            if (layersChanged)
+            {
+                index = generateIndex(img, LAYERS_ABOVE_BEACH);
+                if (RUN_INDEX_TEST)
+                {
+                    IslandGeneratorTesting.testIndex(index, LAYERS_ABOVE_BEACH);
+                }
+
+                tiles = createTileset(NUMBER_OF_TILES);
+            }
+            createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
+            updateNavMeshTimer = 500;
+            Debug.Log(nameGenerator.generateName());
+        }
+        else if (Input.GetButtonDown("Terrain"))
+        {
+            makeEnvironment = !makeEnvironment;
+            terrain.SetActive(!terrain.activeSelf);
+        }
+        else if (Input.GetButtonDown("Island Height"))
+        {
+            if (Input.GetAxisRaw("Island Height") > 0)
+            {
+                LAYERS_ABOVE_BEACH++;
+                int adjust = 0;
+                if (ISLE_WIDE_HIGH % 6 == 0)
+                {
+                    adjust = -1;
+                }
+                if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
+                {
+                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
+                }
+
+            }
+            else if (Input.GetAxisRaw("Island Height") < 0)
+            {
+                LAYERS_ABOVE_BEACH--;
+                if (LAYERS_ABOVE_BEACH < 0)
+                {
+                    LAYERS_ABOVE_BEACH = 0;
+                }
+            }
+            NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
+
+            layersChanged = true;
+        }
+        else if (Input.GetButtonDown("Island Radius"))
+        {
+            if (Input.GetAxisRaw("Island Radius") > 0)
+            {
+                ISLE_WIDE_HIGH++;
+                ISLE_WIDE = ISLE_WIDE_HIGH;
+                ISLE_HIGH = ISLE_WIDE_HIGH;
+            }
+            else if (Input.GetAxisRaw("Island Radius") < 0)
+            {
+                ISLE_WIDE_HIGH--;
+                ISLE_WIDE = ISLE_WIDE_HIGH;
+                ISLE_HIGH = ISLE_WIDE_HIGH;
+                int adjust = 0;
+                if (ISLE_WIDE_HIGH % 6 == 0)
+                {
+                    adjust = -1;
+                }
+                if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
+                {
+                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
+                    layersChanged = true;
+                }
+            }
+        }
+    }
+
+    /*---------- Setup Methods ----------*/
 
     private List<TilePiece> createTileset(int tileCount)
     {
@@ -157,15 +246,211 @@ public class GenerateIsland : MonoBehaviour
         return tileset;
     }
 
-    private void deleteIsland()
+    private AdjacencyIndex generateIndex(Texture2D adjacencyData, int layersAboveBeach)
     {
-        //Destroy stuff on terrain
-        Destroy(terrain);
-        while (generatedMap.Count > 0)
+        AdjacencyIndex index = new AdjacencyIndex();
+
+        //Get patterns from sample and build propagator
+        //THIS READS IMAGE FROM TOP LEFT TO BOTTOM RIGHT, LIKE A BOOK
+        //YES IT DOES, UNITY READS IMAGES STRANGELY
+        for (int j = adjacencyData.height - 1; j >= 0; j--) //y
         {
-            Object.Destroy(generatedMap[0]);
-            generatedMap.RemoveAt(0);
+            for (int i = 0; i < adjacencyData.width; i++)//x
+            {
+
+                if ((int)adjacencyData.GetPixel(i, j).r == 1)
+                {
+                    continue;
+                }
+
+                int pixelValue = pixelToId(adjacencyData.GetPixel(i, j));
+
+                //Top 0
+                if (j < adjacencyData.height - 1)
+                {
+                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j + 1));
+                    if ((int)adjacencyData.GetPixel(i, j + 1).r != 1)
+                    {
+                        for (int layer = 0; layer <= layersAboveBeach; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 0);
+                        }
+                    }
+                }
+                //Right 1
+                if (i < adjacencyData.width - 1)
+                {
+                    int otherPixel = pixelToId(adjacencyData.GetPixel(i + 1, j));
+                    if ((int)adjacencyData.GetPixel(i + 1, j).r != 1)
+                    {
+                        for (int layer = 0; layer <= layersAboveBeach; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 1);
+                        }
+                    }
+                }
+                //Bottom 2
+                if (j > 0)
+                {
+                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j - 1));
+                    if ((int)adjacencyData.GetPixel(i, j - 1).r != 1)
+                    {
+                        for (int layer = 0; layer <= layersAboveBeach; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 2);
+                        }
+                    }
+                }
+                //Left 3
+                if (i > 0)
+                {
+                    int otherPixel = pixelToId(adjacencyData.GetPixel(i - 1, j));
+                    if ((int)adjacencyData.GetPixel(i - 1, j).r != 1)
+                    {
+                        for (int layer = 0; layer <= layersAboveBeach; layer++)
+                        {
+                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 3);
+                        }
+                    }
+                }
+            }
         }
+        return index;
+    }
+
+    private int pixelToId(Color pixel)
+    {
+        int rgb = (int)(pixel.r * 255);
+        rgb = (rgb << 8) + (int)(pixel.g * 255);
+        rgb = (rgb << 8) + (int)(pixel.b * 255);
+        return rgb;
+    }
+
+    /*---------- Make and Draw the Island ----------*/
+    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
+    {
+        List<Vector2Int> updated = new List<Vector2Int>();
+
+        Texture[] templates = Resources.LoadAll<Texture2D>("IslandTemplateImages");
+        Texture template = templates[3];
+
+        bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width, tileCount, WATER_INDEX, updated);
+        propagate(island, updated, index);
+
+        if (drawTileSet)
+        {
+            IslandGeneratorTesting.drawTileset(tiles, Vector3.zero, tileSize, tileCount);
+        }
+
+        //initializeEmptyMap(island, tileCount);
+        //initializeCircleMap(island, updated, tileCount, width, height);
+        //initializeSquareMap(island, updated, tileCount, width, height);
+        //initializeCrescentMap(island, updated, tileCount, width, height);
+        //initializeAntiCrescentMap(island, updated, tileCount, width, height);
+        //makeCenterTallest(island, updated, tileCount, width, height);
+        //placePlayerMaxCenter(island, updated, tileCount, width, height, tileSize, layersAboveBeach);
+
+        while (!finished(island))
+        {
+            observe(island, updated, tileCount);
+            propagate(island, updated, index);
+        }
+        //Better place player methdo - look at map more
+        //Place remy on a beach ramp
+        int x = width / 2;
+        int y = width / 2;
+
+        //TODO: Guarantee that he'll have a beach
+        for (int i = 0; i < width; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                if (island[i, j][17] || island[i, j][18] || island[i, j][19] || island[i, j][20])
+                {
+                    x = i;
+                    y = j;
+                    i = width;
+                    j = width;
+                }
+            }
+        }
+        placePlayerOnTileCentered(x, y, TILE_HEIGHT, tileSize);
+
+        themePicker(); //pick theme before generation 
+        generatedMap = drawMap(island, startingLocation, tileSize);
+        textureAllTiles();
+        terrain = new GameObject();
+
+        if (makeEnvironment)
+        {
+            replaceObjects(treeList.themeList[themeID].spawnChance, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(grassList.themeList[themeID].spawnChance, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(mediumObjectList.themeList[themeID].spawnChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(particleEffects.themeList[themeID].spawnChance, particleEffects.themeList[themeID].EnvironmentList, "Particles");
+            replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+            replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
+            replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+        }
+        else
+        {
+            replaceObjects(0, treeList.themeList[themeID].EnvironmentList, "Tree");
+            replaceObjects(0, grassList.themeList[themeID].EnvironmentList, "Grass");
+            replaceObjects(0, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
+            replaceObjects(0, particleEffects.themeList[themeID].EnvironmentList, "Particles");
+            replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
+            replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
+            replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+        }
+    }
+
+    private List<GameObject> drawMap(bool[,][] island, Vector3 startingLocation, int tileSize)
+    {
+        List<GameObject> generatedMap = new List<GameObject>();
+        //Draw the map (all at once - interlace with decision for speed)
+        for (int n = 0; n < island.GetLength(0); n++)
+        {
+            for (int m = 0; m < island.GetLength(1); m++)
+            {
+                for (int o = 0; o < island[m, n].Length; o++)
+                {
+                    if (island[n, m][o] && o != WATER_INDEX)
+                    {
+                        int tileId = index.indexToTile(o);
+                        TilePiece currentPiece = tiles[o];
+                        GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+                        //TODO: REFLECTION
+                        //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+
+                        newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
+                        //reflection.transform.Rotate(Vector3.up, currentPiece.rotation);
+                        //reflection.transform.localScale = new Vector3(-1, -1, 1);
+
+                        //apply adjustment to tile after rotation
+                        if (currentPiece.rotation == 90)
+                        {
+                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                        }
+                        else if (currentPiece.rotation == 180)
+                        {
+                            newlyCreatedTile.transform.position += new Vector3(tileSize, 0, 0);
+                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                        }
+                        else if (currentPiece.rotation == 270)
+                        {
+                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize / 2));
+                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                        }
+                        generatedMap.Add(newlyCreatedTile);
+                        break;
+                    }
+                }
+                startingLocation.x += tileSize;
+            }
+            startingLocation.x = 0;
+            startingLocation.z += tileSize;
+        }
+        return generatedMap;
     }
 
     private void makeCenterTallest(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
@@ -182,84 +467,14 @@ public class GenerateIsland : MonoBehaviour
         remy.GetComponent<RemyMovement>().setDetination(remyStart);
     }
 
-    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
+    private void placePlayerOnTileCentered(int x, int y, int height, int tileSize)
     {
-        List<Vector2Int> updated = new List<Vector2Int>();
-
-        Texture[] templates = Resources.LoadAll<Texture2D>("IslandTemplateImages");
-        foreach (Texture t in templates)
-        {
-            Debug.Log(t.name);
-        }
-        Texture template = templates[9];
-
-        bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width, tileCount, WATER_INDEX, updated);
-        propagate(island, updated, index);
-
-        if (drawTileSet)
-        {
-            drawBullshit(Vector3.zero, tileSize, tileCount);
-        }
-
-        //Place remy on a 33 tile
-        for(int i = 0; i < width; i++)
-        {
-            for(int j = 0; j < width; j++)
-            {
-                if (island[i, j][LAND_INDEX])
-                {
-                    Vector3 remyStart = new Vector3(i * tileSize + tileSize / 2, TILE_HEIGHT, j * tileSize);
-                    remy.transform.position = remyStart;
-                    remy.GetComponent<RemyMovement>().setDetination(remyStart);
-
-                    j = width;
-                    i = width;
-                }
-            }
-        }
-
-        //initializeEmptyMap(island, tileCount);
-        //initializeCircleMap(island, updated, tileCount, width, height);
-        //initializeSquareMap(island, updated, tileCount, width, height);
-        //initializeCrescentMap(island, updated, tileCount, width, height);
-        //initializeAntiCrescentMap(island, updated, tileCount, width, height);
-        //makeCenterTallest(island, updated, tileCount, width, height);
-
-        //Better place player methdo - look at map
-        placePlayerMaxCenter(island, updated, tileCount, width, height, tileSize, layersAboveBeach);
-
-
-        while (!finished(island))
-        {
-            observe(island, updated, tileCount);
-            propagate(island, updated, index);
-        }
-		themePicker(); //pick theme before generation 
-        generatedMap = drawMap(island, startingLocation, tileSize);
-		textureAllTiles();
-		terrain = new GameObject();
-
-        if (makeEnvironment)
-        {
-            replaceObjects(treeList.themeList[themeID].spawnChance, treeList.themeList[themeID].EnvironmentList, "Tree");
-            replaceObjects(grassList.themeList[themeID].spawnChance, grassList.themeList[themeID].EnvironmentList, "Grass");
-            replaceObjects(mediumObjectList.themeList[themeID].spawnChance, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
-            replaceObjects(particleEffects.themeList[themeID].spawnChance, particleEffects.themeList[themeID].EnvironmentList, "Particles"); 
-            replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
-            replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
-            replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
-		}
-        else
-        {
-            replaceObjects(0, treeList.themeList[themeID].EnvironmentList, "Tree");
-            replaceObjects(0, grassList.themeList[themeID].EnvironmentList, "Grass");
-            replaceObjects(0, mediumObjectList.themeList[themeID].EnvironmentList, "Rock");
-            replaceObjects(0, particleEffects.themeList[themeID].EnvironmentList, "Particles");
-            replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
-            replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
-            replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
-		}
+        Vector3 remyStart = new Vector3(y * tileSize + tileSize / 2, height, x * tileSize);
+        remy.transform.position = remyStart;
+        remy.GetComponent<RemyMovement>().setDetination(remyStart);
     }
+
+    /*---------- Terrain methods ----------*/
 
 	private void themePicker()
 	{
@@ -322,221 +537,18 @@ public class GenerateIsland : MonoBehaviour
         }
     }
 
-    void Update()
+    private void deleteIsland()
     {
-        // It takes some time for the navMesh to update based on the new island.
-        // if (updateNavMeshTimer > 0)
-        // {
-        //     surface.UpdateNavMesh(surface.navMeshData);
-        //     updateNavMeshTimer--;
-        // }
-        surface.UpdateNavMesh(surface.navMeshData);
-
-        if (Input.GetButtonDown("Regenerate"))
+        //Destroy stuff on terrain
+        Destroy(terrain);
+        while (generatedMap.Count > 0)
         {
-            deleteIsland();
-            if (layersChanged)
-            {
-                index = generateIndex(img, LAYERS_ABOVE_BEACH);
-                if (RUN_INDEX_TEST)
-                {
-                    testIndex(index, LAYERS_ABOVE_BEACH);
-                }
-
-                tiles = createTileset(NUMBER_OF_TILES);
-            }
-            createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
-            updateNavMeshTimer = 500;
-            Debug.Log(nameGenerator.generateName());
-        }
-        else if (Input.GetButtonDown("Terrain"))
-        {
-            makeEnvironment = !makeEnvironment;
-            terrain.SetActive(!terrain.activeSelf);
-        }else if(Input.GetButtonDown("Island Height"))
-        {
-            if (Input.GetAxisRaw("Island Height") > 0)
-            {
-                LAYERS_ABOVE_BEACH++;
-                int adjust = 0;
-                if(ISLE_WIDE_HIGH % 6 == 0)
-                {
-                    adjust = -1;
-                }
-                if(LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
-                {
-                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
-                }
-
-            }
-            else if (Input.GetAxisRaw("Island Height") < 0)
-            {
-                LAYERS_ABOVE_BEACH--;
-                if(LAYERS_ABOVE_BEACH < 0)
-                {
-                    LAYERS_ABOVE_BEACH = 0;
-                }
-            }
-            NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
-
-            layersChanged = true;
-        }
-        else if (Input.GetButtonDown("Island Radius"))
-        {
-            if (Input.GetAxisRaw("Island Radius") > 0)
-            {
-                ISLE_WIDE_HIGH++;
-                ISLE_WIDE = ISLE_WIDE_HIGH;
-                ISLE_HIGH = ISLE_WIDE_HIGH;
-            }
-            else if (Input.GetAxisRaw("Island Radius") < 0)
-            {
-                ISLE_WIDE_HIGH--;
-                ISLE_WIDE = ISLE_WIDE_HIGH;
-                ISLE_HIGH = ISLE_WIDE_HIGH;
-                int adjust = 0;
-                if (ISLE_WIDE_HIGH % 6 == 0)
-                {
-                    adjust = -1;
-                }
-                if (LAYERS_ABOVE_BEACH >= (ISLE_WIDE_HIGH / 3) - 1 + adjust)
-                {
-                    LAYERS_ABOVE_BEACH = (ISLE_WIDE_HIGH / 3) - 1 + adjust;
-                    layersChanged = true;
-                }
-            }
+            Object.Destroy(generatedMap[0]);
+            generatedMap.RemoveAt(0);
         }
     }
 
-    private int pixelToId(Color pixel)
-    {
-        int rgb = (int)(pixel.r*255);
-        rgb = (rgb << 8) + (int)(pixel.g*255);
-        rgb = (rgb << 8) + (int)(pixel.b*255);
-        return rgb;
-    }
-
-    private AdjacencyIndex generateIndex(Texture2D adjacencyData, int layersAboveBeach)
-    {
-        AdjacencyIndex index = new AdjacencyIndex();
-
-        //Get patterns from sample and build propagator
-        //THIS READS IMAGE FROM TOP LEFT TO BOTTOM RIGHT, LIKE A BOOK
-        //YES IT DOES, UNITY READS IMAGES STRANGELY
-        for (int j = adjacencyData.height - 1; j >= 0; j--) //y
-        {
-            for (int i = 0; i < adjacencyData.width; i++)//x
-            {
-
-                if ((int)adjacencyData.GetPixel(i, j).r == 1)
-                {
-                    continue;
-                }
-
-                int pixelValue = pixelToId(adjacencyData.GetPixel(i, j));
-
-                //Top 0
-                if (j < adjacencyData.height - 1)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j + 1));
-                    if ((int)adjacencyData.GetPixel(i, j + 1).r != 1)
-                    {
-                        for(int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue+33*layer, otherPixel+33*layer, 0);
-                        }
-                    }
-                }
-                //Right 1
-                if (i < adjacencyData.width - 1)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i + 1, j));
-                    if ((int)adjacencyData.GetPixel(i + 1, j).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 1);
-                        }
-                    }
-                }
-                //Bottom 2
-                if (j > 0)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j - 1));
-                    if ((int)adjacencyData.GetPixel(i, j - 1).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 2);
-                        }
-                    }
-                }
-                //Left 3
-                if (i > 0)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i - 1, j));
-                    if ((int)adjacencyData.GetPixel(i - 1, j).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 3);
-                        }
-                    }
-                }
-            }
-        }
-        return index;
-    }
-
-    private List<GameObject> drawMap(bool[,][] island, Vector3 startingLocation, int tileSize)
-    {
-        List<GameObject> generatedMap = new List<GameObject>();
-        //Draw the map (all at once - interlace with decision for speed)
-        for (int n = 0; n < island.GetLength(0); n++)
-        {
-            for (int m = 0; m < island.GetLength(1); m++)
-            {
-                for (int o = 0; o < island[m, n].Length; o++)
-                {
-                    if (island[n, m][o] && o != WATER_INDEX)
-                    {
-                        int tileId = indexToTile(o);
-                        TilePiece currentPiece = tiles[o];
-                        GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-						//TODO: REFLECTION
-                        //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-
-                        newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
-                        //reflection.transform.Rotate(Vector3.up, currentPiece.rotation);
-                        //reflection.transform.localScale = new Vector3(-1, -1, 1);
-
-                        //apply adjustment to tile after rotation
-                        if (currentPiece.rotation == 90)
-                        {
-                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
-                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
-                        }
-                        else if (currentPiece.rotation == 180)
-                        {
-                            newlyCreatedTile.transform.position += new Vector3(tileSize, 0, 0);
-                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
-                        }
-                        else if (currentPiece.rotation == 270)
-                        {
-                            newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize / 2));
-                            //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
-                        }
-                        generatedMap.Add(newlyCreatedTile);
-                        break;
-                    }
-                }
-                startingLocation.x += tileSize;
-            }
-            startingLocation.x = 0;
-            startingLocation.z += tileSize;
-        }
-        return generatedMap;
-    }
+    /*---------- Methods to Solve the CSP ----------*/
 
     private void propagate(bool[,][] island, List<Vector2Int> updated, AdjacencyIndex index)
     {
@@ -619,7 +631,7 @@ public class GenerateIsland : MonoBehaviour
                 //For each pattern that is still potentially valid:
                 for (int j = 0; j < island[otherX, otherY].Length; j++)
                 {
-                    if (island[otherX, otherY][j] && index.isValid(indexToTile(j), indexToTile(i), direction))
+                    if (island[otherX, otherY][j] && index.isValid(index.indexToTile(j), index.indexToTile(i), direction))
                     {
                         possible = true;
                         j = island[otherX, otherY].Length;
@@ -757,180 +769,5 @@ public class GenerateIsland : MonoBehaviour
             }
         }
         return true;
-    }
-
-    private int indexToTile(int index)
-    {
-        return index;
-    }
-
-    //------------- DEBUGGING METHODS -------------\\
-    private void testIndex(AdjacencyIndex index, int layersAboveBeach)
-    {
-        validTest(index, 0, 0, 0, true);
-        validTest(index, 0, 1, 0, true);
-        validTest(index, 0, 2, 0, true);
-        validTest(index, 0, 3, 0, false);
-        validTest(index, 0, 4, 0, false);
-        validTest(index, 0, 5, 0, false);
-        validTest(index, 0, 6, 0, true);
-        validTest(index, 0, 7, 0, false);
-        validTest(index, 0, 8, 0, false);
-        validTest(index, 0, 9, 0, false);
-        validTest(index, 0, 10, 0, false);
-        validTest(index, 0, 11, 0, false);
-        validTest(index, 0, 12, 0, false);
-        validTest(index, 0, 33, 0, false);
-
-        validTest(index, 0, 0, 1, true);
-        validTest(index, 0, 1, 1, false);
-        validTest(index, 0, 2, 1, true);
-        validTest(index, 0, 3, 1, true);
-        validTest(index, 0, 4, 1, false);
-        validTest(index, 0, 5, 1, false);
-        validTest(index, 0, 6, 1, false);
-        validTest(index, 0, 7, 1, true);
-        validTest(index, 0, 8, 1, false);
-        validTest(index, 0, 9, 1, false);
-        validTest(index, 0, 10, 1, false);
-        validTest(index, 0, 11, 1, false);
-        validTest(index, 0, 12, 1, false);
-        validTest(index, 0, 33, 1, false);
-
-        validTest(index, 0, 0, 2, true);
-        validTest(index, 0, 1, 2, false);
-        validTest(index, 0, 2, 2, false);
-        validTest(index, 0, 3, 2, true);
-        validTest(index, 0, 4, 2, true);
-        validTest(index, 0, 5, 2, false);
-        validTest(index, 0, 6, 2, false);
-        validTest(index, 0, 7, 2, false);
-        validTest(index, 0, 8, 2, true);
-        validTest(index, 0, 9, 2, false);
-        validTest(index, 0, 10, 2, false);
-        validTest(index, 0, 11, 2, false);
-        validTest(index, 0, 12, 2, false);
-        validTest(index, 0, 33, 2, false);
-
-        validTest(index, 0, 0, 3, true);
-        validTest(index, 0, 1, 3, true);
-        validTest(index, 0, 2, 3, false);
-        validTest(index, 0, 3, 3, false);
-        validTest(index, 0, 4, 3, true);
-        validTest(index, 0, 5, 3, true);
-        validTest(index, 0, 6, 3, false);
-        validTest(index, 0, 7, 3, false);
-        validTest(index, 0, 8, 3, false);
-        validTest(index, 0, 9, 3, false);
-        validTest(index, 0, 10, 3, false);
-        validTest(index, 0, 11, 3, false);
-        validTest(index, 0, 12, 3, false);
-        validTest(index, 0, 33, 3, false);
-
-
-        validTest(index, 33, 0, 0, false);
-        validTest(index, 33, 1, 0, false);
-        validTest(index, 33, 2, 0, false);
-        validTest(index, 33, 3, 0, false);
-        validTest(index, 33, 4, 0, false);
-        validTest(index, 33, 5, 0, false);
-        validTest(index, 33, 6, 0, false);
-        validTest(index, 33, 7, 0, false);
-        validTest(index, 33, 8, 0, true);
-        validTest(index, 33, 9, 0, false);
-        validTest(index, 33, 10, 0, false);
-        validTest(index, 33, 11, 0, true);
-        validTest(index, 33, 12, 0, true);
-        validTest(index, 33, 33, 0, true);
-
-        validTest(index, 33, 0, 1, false);
-        validTest(index, 33, 1, 1, false);
-        validTest(index, 33, 2, 1, false);
-        validTest(index, 33, 3, 1, false);
-        validTest(index, 33, 4, 1, false);
-        validTest(index, 33, 5, 1, true);
-        validTest(index, 33, 6, 1, false);
-        validTest(index, 33, 7, 1, false);
-        validTest(index, 33, 8, 1, false);
-        validTest(index, 33, 9, 1, true);
-        validTest(index, 33, 10, 1, false);
-        validTest(index, 33, 11, 1, false);
-        validTest(index, 33, 12, 1, true);
-        validTest(index, 33, 33, 1, true);
-
-        validTest(index, 33, 0, 2, false);
-        validTest(index, 33, 1, 2, false);
-        validTest(index, 33, 2, 2, false);
-        validTest(index, 33, 3, 2, false);
-        validTest(index, 33, 4, 2, false);
-        validTest(index, 33, 5, 2, false);
-        validTest(index, 33, 6, 2, true);
-        validTest(index, 33, 7, 2, false);
-        validTest(index, 33, 8, 2, false);
-        validTest(index, 33, 9, 2, true);
-        validTest(index, 33, 10, 2, true);
-        validTest(index, 33, 11, 2, false);
-        validTest(index, 33, 12, 2, false);
-        validTest(index, 33, 33, 2, true);
-
-        validTest(index, 33, 0, 3, false);
-        validTest(index, 33, 1, 3, false);
-        validTest(index, 33, 2, 3, false);
-        validTest(index, 33, 3, 3, false);
-        validTest(index, 33, 4, 3, false);
-        validTest(index, 33, 5, 3, false);
-        validTest(index, 33, 6, 3, false);
-        validTest(index, 33, 7, 3, true);
-        validTest(index, 33, 8, 3, false);
-        validTest(index, 33, 9, 3, false);
-        validTest(index, 33, 10, 3, true);
-        validTest(index, 33, 11, 3, true);
-        validTest(index, 33, 12, 3, false);
-        validTest(index, 33, 33, 3, true);
-
-        validTest(index, 13, 14, 1, true);
-        if (layersAboveBeach > 0)
-        {
-            validTest(index, 66, 66, 3, true);
-        }
-    }
-    private void validTest(AdjacencyIndex index, int a, int b, int dir, bool expected)
-    {
-        if (index.isValid(indexToTile(a), indexToTile(b), dir) != expected)
-        {
-            Debug.Log("ERROR: TILE " + a + " -> TILE " + b + " IN DIRECTION " + dir + " EXPECTED: " + expected);
-        }
-    }
-
-    private void drawBullshit(Vector3 startingLocation, int tileSize, int tileCount)
-    {
-        float zStart = startingLocation.z;
-        startingLocation.x -= tileSize;
-        for (int o = 1; o < tileCount; o++)
-        {
-            TilePiece currentPiece = tiles[o];
-            GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-            newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
-
-            //apply adjustment to tile after rotation
-            if (currentPiece.rotation == 90)
-            {
-                newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
-            }
-            else if (currentPiece.rotation == 180)
-            {
-                newlyCreatedTile.transform.position += new Vector3(tileSize, 0, 0);
-            }
-            else if (currentPiece.rotation == 270)
-            {
-                newlyCreatedTile.transform.position += new Vector3(tileSize / 2, 0, -(tileSize / 2));
-            }
-            startingLocation.z += tileSize;
-            if (o % 33 == 0)
-            {
-                startingLocation.x -= tileSize;
-                startingLocation.z = zStart;
-            }
-        }
     }
 }

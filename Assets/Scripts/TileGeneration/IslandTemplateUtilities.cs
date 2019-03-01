@@ -12,10 +12,10 @@ public static class IslandTemplateUtilities
 
         int canvasSize = 100;
 
-        int innerSize = size - 2;
+        float innerSize = size - 2;
         bool[,][] island = new bool[size, size][];
 
-        int rayEnd = canvasSize > innerSize ? canvasSize : innerSize;
+        float rayEnd = canvasSize > innerSize ? canvasSize : innerSize;
 
         Vector3 src = Vector3.zero;
 
