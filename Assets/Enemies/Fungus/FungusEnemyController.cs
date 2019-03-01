@@ -18,7 +18,7 @@ public class FungusEnemyController : EnemyController
 		// Default vision
         visionAngle = 360f;
         visionDistance = 10f;
-        attackDistance = 5f;
+        attackDistance = 3f;
 
         // Default stat
         healthPoints = 100f;
@@ -26,23 +26,35 @@ public class FungusEnemyController : EnemyController
 
 	protected override void UniqueUpdate()
     {
-		agent.isStopped = false;
-
 		// The fungus moves only when it sees the player
 		if (InVision(player.transform.position + new Vector3(0.0f, 2.0f, 0.0f))) 
 		{
+			agent.isStopped = false;
 			movable = true;
 			animator.SetTrigger("AnyKey");
 		}
 		else
 		{
+			agent.isStopped = true;
 			movable = false;
 			animator.SetTrigger("Mimic");
 		}
 	}
 
+	protected override bool InVision(Vector3 pos)
+    {
+		return Vector3.Distance(transform.position, pos) <= visionDistance;
+	}
+
     protected override void Attack(Vector3 playerPos)
     {
+        // Look at target (player character)
+        transform.rotation = Quaternion.LookRotation(new Vector3((
+			playerPos - transform.position).x, 
+			transform.position.y, 
+			(playerPos - transform.position).z
+			).normalized);
+
 		// Stop and attack target (player character)
         agent.isStopped = true;
 
@@ -82,7 +94,7 @@ public class FungusEnemyController : EnemyController
 		{
 			animator.SetTrigger("AttackSpreadSpore");
 		}
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(2f);
 		Debug.Log("new");
 
 		inCoroutine = false;

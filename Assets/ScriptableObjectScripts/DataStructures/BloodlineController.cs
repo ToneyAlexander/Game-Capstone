@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerationController : ScriptableObject
+[CreateAssetMenu(menuName = "DataStructures/BloodlineController")]
+public sealed class BloodlineController : ScriptableObject
 {
     [SerializeField]
     private int generationint = 0;
@@ -19,6 +20,8 @@ public class GenerationController : ScriptableObject
     private List<ClassPrototype> classList = new List<ClassPrototype>();
 
    // private List<ClassPrototype> pastGenerations = new List<ClassPrototype>();
+
+    
     private List<string> pastNames = new List<string>();
 
     public void addGeneration()
@@ -42,5 +45,16 @@ public class GenerationController : ScriptableObject
         age++;
     }
 
+    public List<ClassPrototype> ClassList
+    {
+        get
+        {
+            return classList;
+        }
+        set
+        {
+            classList = value;
+        }
+    }
 
 }

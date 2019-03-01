@@ -21,6 +21,24 @@ public class TimedBuff : IEquatable<TimedBuff>
         DurationLeft = Duration;
     }
 
+    private TimedBuff()
+    {
+
+    }
+
+    public TimedBuff ShallowClone()
+    {
+        TimedBuff tb = new TimedBuff();
+
+        tb.BuffName = BuffName;
+        tb.Duration = Duration;
+        tb.DurationLeft = DurationLeft;
+        tb.IsUnique = IsUnique;
+        tb.Stats = Stats;
+
+        return tb;
+    }
+
     public bool Equals(TimedBuff other)
     {
         return BuffName.Equals(other.BuffName);

@@ -63,6 +63,8 @@ public class ClassUI : MonoBehaviour
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
                     rect.Rotate(new Vector3(0, 0, angle));
+                    line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
+
                     if (proto.RequireAll)
                     {
                         l.color = Color.black;
@@ -86,6 +88,7 @@ public class ClassUI : MonoBehaviour
                     line.transform.localPosition = position;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                     rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                    line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
                     rect.Rotate(new Vector3(0, 0, angle));
                     l.color = Color.red;
 
@@ -105,7 +108,7 @@ public class ClassUI : MonoBehaviour
                 image.transform.parent = content.transform;
                 image.name = proto.Name;
                 //RectTransform rect = image.GetComponent<RectTransform>();
-                image.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+                image.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 // image.width = 30;
                 //image.height = 30;
                 image.AddComponent<Image>();
