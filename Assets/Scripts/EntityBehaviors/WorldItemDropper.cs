@@ -14,7 +14,7 @@ namespace CCC.Behaviors
         private float worldItemHalfFrequency = .25f;
         private float worldItemMargin = 1f;
 
-        public void DropItem(Item item, Vector3 position)
+        public void DropItem(Item item, Vector3 dropperPosition)
         {
             //Debug.Log(param.Name);
 
@@ -22,15 +22,15 @@ namespace CCC.Behaviors
             float zRange = Mathf.Sqrt(radius * radius - x * x);
             float z = Random.Range(-zRange, zRange);
 
-            //Vector3 position = new Vector3(x, this.transform.position.y + worldItemHeight - worldItemHalfFrequency, z);
+            Vector3 position = new Vector3(dropperPosition.x + x, dropperPosition.y + worldItemHeight - worldItemHalfFrequency, dropperPosition.z + z);
 
-            Vector3 origin = new Vector3(this.transform.position.x, this.transform.position.y + worldItemHeight - worldItemHalfFrequency, this.transform.position.z);
+            Vector3 origin = new Vector3(dropperPosition.x, dropperPosition.y + worldItemHeight - worldItemHalfFrequency, dropperPosition.z);
 
             RaycastHit r = new RaycastHit();
 
             //Debug.DrawRay(origin, position-origin, Color.magenta, 200, true);
 
-            //Adjecut itmes that fell inside other things/flew through an object
+            //Adjust itmes that fell inside other things/flew through an object
             if (Physics.Raycast(origin, position - origin, out r, radius, 1 << layer))
             {
                 //Debug.Log(r.transform.position);
