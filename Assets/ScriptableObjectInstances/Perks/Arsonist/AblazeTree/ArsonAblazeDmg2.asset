@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: ArsonAblazeDmg2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 5b23f533e43995c41afa685c0ac6d7b2, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: 
-  Desc: 
+  Name: Damage
+  Desc: Further boosts the burning damage of the field
   grants: []
-  Changes: []
-  uiCoords: {x: 0, y: 0}
+  Changes:
+  - Value: 0.5
+    abilityName: Ablaze
+    statName: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
+  uiCoords: {x: 200, y: 800}
   sprite: {fileID: 0}

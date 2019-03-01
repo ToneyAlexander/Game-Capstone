@@ -15,7 +15,8 @@ MonoBehaviour:
   Require:
   - {fileID: 11400000, guid: 96d54ec277313584ebe44ce43f18af81, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: a29ea1f9dae4fc2458b6ba85327853dc, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
@@ -26,5 +27,5 @@ MonoBehaviour:
   - Value: 0.25
     abilityName: Ablaze
     statName: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 125, y: 800}
   sprite: {fileID: 0}
