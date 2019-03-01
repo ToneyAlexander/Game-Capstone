@@ -25,6 +25,18 @@ namespace CCC.GameManagement
             LoadSceneAsync(sceneReference.Path);
         }
 
+        /// <summary>
+        /// Quit this Game.
+        /// </summary>
+        public void Quit()
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
         IEnumerator LoadSceneAsync(string path)
         {
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(path);
@@ -35,11 +47,11 @@ namespace CCC.GameManagement
             }
         }
 
-        #region ScriptableObject Messages
+#region ScriptableObject Messages
         private void OnEnable()
         {
             currentScene = SceneManager.GetActiveScene();
         }
-        #endregion
+#endregion
     }
 }

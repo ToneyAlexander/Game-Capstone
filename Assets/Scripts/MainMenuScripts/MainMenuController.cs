@@ -2,17 +2,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour {
+public sealed class MainMenuController : MonoBehaviour {
 
     public void PlayKongGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    /// <summary>
+    /// Quit this MainMenuController's Game.
+    /// </summary>
     public void QuitGame()
     {
-        Application.Quit();
-        Debug.Log("Quit!");
+        game.Quit();
     }
 
     public void PlayMainGame()
