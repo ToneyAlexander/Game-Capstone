@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonGlass1
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 45017215dd3462b4e8224a5ef4483c27, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 4ed5d953163cc42b4a20ab5c5fa81d92, type: 2}
+    statValue: -0.1
+  - statName: {fileID: 11400000, guid: c488d8d74d03ad942ac0f6d29924e7c7, type: 2}
+    statValue: 0.2
+  Name: Playing With Fire
+  Desc: 
+  grants: []
+  Changes: []
+  uiCoords: {x: 50, y: 125}
+  sprite: {fileID: 0}

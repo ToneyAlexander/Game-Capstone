@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonFireballVolley
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 93620f1077017144c8746a20ec2c362c, type: 2}
+  - {fileID: 11400000, guid: d25123f69fe9c0f4492061c917aabff2, type: 2}
+  - {fileID: 11400000, guid: 3afbb93b82d673f45a7bc14a48979f1f, type: 2}
+  - {fileID: 11400000, guid: 95ce5b4cd87ee3f42b0583eca9bc2d8d, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Fireball Volley
+  Desc: Fires a volley of fireballs with a small spread
+  grants:
+  - {fileID: 11400000, guid: 215ff9dad6d8f4275bc645067e4a5267, type: 2}
+  Changes: []
+  uiCoords: {x: 50, y: 225}
+  sprite: {fileID: 0}
