@@ -7,24 +7,22 @@ using CCC.Stats;
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]
 [RequireComponent(typeof(MousePositionDetector))]
-public class FireballVolley : MonoBehaviour, IAbilityBase
+public class FireballVolley : AbilityBase
 {
     private readonly string AbilName = "Fireball Volley";
 
     private List<Stat> abilStats;
     private StatBlock stats;
-    private Ability abil;
     private MousePositionDetector mpd;
     private GameObject projectile;
-
-    private float cdBase;
+    
     private float projCount;
     private float projSpread;
     private float projSpeed;
     private float dmgMin;
     private float dmgMax;
     
-    public void UpdateStats()
+    public override void UpdateStats()
     {
         abilStats = abil.Stats;
         Debug.Log("updating stats");
@@ -36,16 +34,9 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
     }
 
-    public bool Use()
+    protected override void Activate()
     {
-        if(abil.cdRemain <= 0.0001f)
-        {
-            abil.cdRemain = cdBase;
-            StartCoroutine(FireAsync());
-            return true;
-        }
-        //else
-        return false;
+        StartCoroutine(FireAsync());
     }
 
     IEnumerator FireAsync()
@@ -94,23 +85,5 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         abil.cdRemain = 0f;
         UpdateStats();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(abil.cdRemain > 0f)
-        {
-            abil.cdRemain -= Time.deltaTime;
-        }
-        if(abil.use)
-        {
-            abil.use = false;
-            Use();
-        }
-        if (abil.update)
-        {
-            abil.update = false;
-            UpdateStats();
-        }
-    }
+    
 }

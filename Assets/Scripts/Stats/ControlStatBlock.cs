@@ -23,24 +23,16 @@ public class ControlStatBlock : MonoBehaviour
     public float FortMult { get; set; }
 
     private List<TimedBuff> buffs;
+    private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
 
-    public StatBlock GetStatBlock()
-    {
-        return stats;
-    }
-
     public void ApplyBuff(TimedBuff tb)
     {
-        if (tb.IsUnique)
-        {
-            buffs.Remove(tb);
-        }
-        buffs.Add(tb);
-        StatsChanged();
+        if(!buffsToAdd.Contains(tb))
+            buffsToAdd.Add(tb);
     }
 
     // Start is called before the first frame update
@@ -51,6 +43,7 @@ public class ControlStatBlock : MonoBehaviour
         pClass = GetComponent<PlayerClass>();
 
         buffs = new List<TimedBuff>();
+        buffsToAdd = new List<TimedBuff>();
         oldHpPrecent = -10000f;
 
         StatsChanged();
@@ -293,7 +286,18 @@ public class ControlStatBlock : MonoBehaviour
     void Update()
     {
         bool needsUpdate = false;
-        for(int i = buffs.Count - 1; i > -1; --i)
+        foreach (TimedBuff tb in buffsToAdd)
+        {
+            if (tb.IsUnique && buffs.Contains(tb))
+            {
+                Debug.Log("Found buff to removes");
+                buffs.Remove(tb);
+            }
+            buffs.Add(tb);
+            needsUpdate = true;
+        }
+        buffsToAdd.Clear();
+        for (int i = buffs.Count - 1; i > -1; --i)
         {
             TimedBuff tb = buffs[i];
             tb.DurationLeft -= Time.deltaTime;
