@@ -35,6 +35,28 @@ public abstract class EnemyController : MonoBehaviour
     protected Vector3 targetPos;
     protected bool targetFound;
 
+    /// <summary>
+    /// The CommandProcessor that this EnemyController sends ICommands to.
+    /// </summary>
+    [SerializeField]
+    protected CommandProcessor commandProcessor;
+
+    /// <summary>
+    /// The IDestinationMover Component that 
+    /// </summary>
+    private IDestinationMover destinationMover;
+
+    private void Awake()
+    {
+        destinationMover = GetComponent<IDestinationMover>();
+
+        if (destinationMover == null)
+        {
+            Debug.LogError("[" + gameObject.name + " 's EnemyController] " +
+                "has no IDestinationMover Component attached!");
+        }
+    }
+
     void Start()
     {
         // Set up NavMesh
@@ -91,13 +113,6 @@ public abstract class EnemyController : MonoBehaviour
             }
         }
 
-        // Under attack and death animations
-        UnderAttack();
-        if (healthPoints <= 0.0f)
-        {
-            StartCoroutine(Die());
-        }
-
         // Display field of view and moving area only in Scene (not in Game)
         // DisplayVisionAndRange();
     }
@@ -126,7 +141,9 @@ public abstract class EnemyController : MonoBehaviour
         // (until the player target is within enemy's attacking distance)
         while (!InAttackRange(targetPos))
         {
-            agent.SetDestination(targetPos);
+            Vector3 destination = targetPos;
+            ICommand command = new MoveToCommand(destinationMover, transform.position, destination);
+            commandProcessor.ProcessCommand(command);
             yield return null;        
         }
 
@@ -200,5 +217,5 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void UnderAttack();
 
-    protected abstract IEnumerator Die();
+    public abstract IEnumerator Die();
 }

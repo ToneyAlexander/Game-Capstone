@@ -21,7 +21,7 @@ public class FungusEnemyController : EnemyController
         attackDistance = 3f;
 
         // Default stat
-        healthPoints = 100f;
+        healthPoints = 10f;
 	}
 
 	protected override void UniqueUpdate()
@@ -95,7 +95,6 @@ public class FungusEnemyController : EnemyController
 			animator.SetTrigger("AttackSpreadSpore");
 		}
 		yield return new WaitForSeconds(2f);
-		Debug.Log("new");
 
 		inCoroutine = false;
 	}
@@ -109,10 +108,10 @@ public class FungusEnemyController : EnemyController
         // }
     }
     
-    protected override IEnumerator Die()
+    public override IEnumerator Die()
     {
         animator.SetTrigger("DownSpin");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.0f);
         Destroy(gameObject);
     }
 }
