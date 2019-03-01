@@ -20,6 +20,8 @@ public sealed class BloodlineController : ScriptableObject
     private List<ClassPrototype> classList = new List<ClassPrototype>();
 
    // private List<ClassPrototype> pastGenerations = new List<ClassPrototype>();
+
+    
     private List<string> pastNames = new List<string>();
 
     public void addGeneration()
@@ -43,5 +45,16 @@ public sealed class BloodlineController : ScriptableObject
         age++;
     }
 
+    public List<ClassPrototype> ClassList
+    {
+        get
+        {
+            return classList;
+        }
+        set
+        {
+            classList = value;
+        }
+    }
 
 }
