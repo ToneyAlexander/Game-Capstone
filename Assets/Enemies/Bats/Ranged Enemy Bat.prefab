@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 7479929134525965400}
   - component: {fileID: 8357379710621756148}
   - component: {fileID: 218778329632564429}
+  - component: {fileID: 252310482576653095}
   m_Layer: 0
   m_Name: Ranged Enemy Bat
   m_TagString: Untagged
@@ -555,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5814981f8674d808a20789eff8f796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &9035894782154122004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,3 +610,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+--- !u!114 &252310482576653095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498373953222630374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661e46a63fc3d458a9cc0c05c262c9d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 202265104}
   - component: {fileID: 202265103}
   m_Layer: 0
-  m_Name: TextMeshPro (1)
+  m_Name: DescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,6 +428,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bc: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
+  title: {fileID: 1469868945}
+  desc: {fileID: 202265102}
 --- !u!4 &1301390495
 Transform:
   m_ObjectHideFlags: 0
@@ -456,7 +458,7 @@ GameObject:
   - component: {fileID: 1469868947}
   - component: {fileID: 1469868946}
   m_Layer: 0
-  m_Name: TextMeshPro
+  m_Name: ClassName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

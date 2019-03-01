@@ -35,6 +35,28 @@ public abstract class EnemyController : MonoBehaviour
     protected Vector3 targetPos;
     protected bool targetFound;
 
+    /// <summary>
+    /// The CommandProcessor that this EnemyController sends ICommands to.
+    /// </summary>
+    [SerializeField]
+    protected CommandProcessor commandProcessor;
+
+    /// <summary>
+    /// The IDestinationMover Component that 
+    /// </summary>
+    private IDestinationMover destinationMover;
+
+    private void Awake()
+    {
+        destinationMover = GetComponent<IDestinationMover>();
+
+        if (destinationMover == null)
+        {
+            Debug.LogError("[" + gameObject.name + " 's EnemyController] " +
+                "has no IDestinationMover Component attached!");
+        }
+    }
+
     void Start()
     {
         // Set up NavMesh
@@ -91,13 +113,6 @@ public abstract class EnemyController : MonoBehaviour
             }
         }
 
-        // Under attack and death animations
-        UnderAttack();
-        if (healthPoints <= 0.0f)
-        {
-            StartCoroutine(Die());
-        }
-
         // Display field of view and moving area only in Scene (not in Game)
         // DisplayVisionAndRange();
     }
@@ -126,7 +141,9 @@ public abstract class EnemyController : MonoBehaviour
         // (until the player target is within enemy's attacking distance)
         while (!InAttackRange(targetPos))
         {
-            agent.SetDestination(targetPos);
+            Vector3 destination = targetPos;
+            ICommand command = new MoveToCommand(destinationMover, transform.position, destination);
+            commandProcessor.ProcessCommand(command);
             yield return null;        
         }
 
@@ -141,7 +158,7 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     // Checks if pos is within enemy's vision field
-    protected bool InVision(Vector3 pos)
+    protected virtual bool InVision(Vector3 pos)
     {
         Vector3 movingDirection = (targetPos - transform.position).normalized;
         Vector3 directToPos = (pos - transform.position).normalized;
@@ -151,44 +168,44 @@ public abstract class EnemyController : MonoBehaviour
             && (distanceToPos <= visionDistance);
     }
 
-    private bool InAttackRange(Vector3 pos)
+    protected bool InAttackRange(Vector3 pos)
     {
         return Vector3.Distance(transform.position, pos) <= attackDistance;
     }
 
-    /* Debugging code (Don't delete them) */
+    /* Debugging code */
 
-    // private void DisplayVisionAndRange()
-    // {
-    //     // View
-    //     int stepCount = Mathf.RoundToInt(visionAngle * 5f);
-    //     float stepAngleSize = visionAngle / stepCount;
+    private void DisplayVisionAndRange()
+    {
+        // View
+        int stepCount = Mathf.RoundToInt(visionAngle * 5f);
+        float stepAngleSize = visionAngle / stepCount;
 
-    //     for (int i = 0; i < stepCount; i++)
-    //     {
-    //         float angle = transform.eulerAngles.y - visionAngle / 2 + stepAngleSize * i;
-    //         Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * visionDistance, Color.red);
-    //     }
+        for (int i = 0; i < stepCount; i++)
+        {
+            float angle = transform.eulerAngles.y - visionAngle / 2 + stepAngleSize * i;
+            Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle, true) * visionDistance, Color.red);
+        }
 
-    //     // Moving Range
-    //     int stepCount2 = Mathf.RoundToInt(360f * 5f);
-    //     float stepAngleSize2 = 360f / stepCount2;
+        // Moving Range
+        int stepCount2 = Mathf.RoundToInt(360f * 5f);
+        float stepAngleSize2 = 360f / stepCount2;
 
-    //     for (int i = 0; i < stepCount2; i++)
-    //     {
-    //         float angle2 = 360f / 2 + stepAngleSize2 * i;
-    //         Debug.DrawLine(spawnPos, spawnPos + DirFromAngle(angle2, true) * movingRange, Color.yellow);
-    //     }
-    // }
+        for (int i = 0; i < stepCount2; i++)
+        {
+            float angle2 = 360f / 2 + stepAngleSize2 * i;
+            Debug.DrawLine(spawnPos, spawnPos + DirFromAngle(angle2, true) * movingRange, Color.yellow);
+        }
+    }
 
-    // private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-    // {
-    //     if (!angleIsGlobal)
-    //     {
-    //         angleInDegrees += transform.eulerAngles.y;
-    //     }
-    //     return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
-    // }
+    private Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
 
     /* Abstract methods */
 
@@ -200,5 +217,5 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void UnderAttack();
 
-    protected abstract IEnumerator Die();
+    public abstract IEnumerator Die();
 }

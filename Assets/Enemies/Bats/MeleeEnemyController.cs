@@ -60,17 +60,17 @@ public class MeleeEnemyController : EnemyController
 
     protected override void UnderAttack()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            healthPoints--;
-            animator.SetTrigger("hit");
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     healthPoints--;
+        //     animator.SetTrigger("hit");
+        // }
     }
         
-    protected override IEnumerator Die()
+    public override IEnumerator Die()
     {
-        animator.SetBool("death", true);
-        yield return new WaitForSeconds(0.3f);
+        animator.SetTrigger("death");
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

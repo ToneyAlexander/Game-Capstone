@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ClassSelection : MonoBehaviour
 {
     // Start is called before the first frame update
     public BloodlineController bc;
+    public GameObject title;
+    public GameObject desc;
     private int index = 0;
     private int count;
     private List<GameObject> classIcons = new List<GameObject>() ;
+
+    TextMeshPro titleText;
+    TextMeshPro descText;
     Color darkenedColor = new Color(0.29f, 0.29f, 0.29f, 1.0f);
     Color backdropColor = new Color(0.7f, 0.7f, 0.7f);
     void Start()
     {
          count = bc.ClassList.Count;
         //count = 2;
-
-
+        titleText = title.GetComponent<TextMeshPro>();
+        descText = desc.GetComponent<TextMeshPro>();
+        titleText.text = bc.ClassList[index].name;
+        descText.text = bc.ClassList[index].description;
         for (int i = 0; i < count; i++)
         {
             GameObject classIcon = new GameObject();
@@ -50,6 +58,8 @@ public class ClassSelection : MonoBehaviour
             {
                 index = count - 1;
             }
+            titleText.text = bc.ClassList[index].name;
+            descText.text = bc.ClassList[index].description;
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -58,6 +68,14 @@ public class ClassSelection : MonoBehaviour
             {
                 index = 0;
             }
+            titleText.text = bc.ClassList[index].name;
+            descText.text = bc.ClassList[index].description;
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            bc.currentClass = bc.ClassList[index];
+            Debug.Log("class selected: " + bc.ClassList[index].name);
+            //TODO: Load Scene.
         }
         for (int i = 0; i < count; i++)
         {
@@ -76,6 +94,7 @@ public class ClassSelection : MonoBehaviour
                 sprite.color = Color.Lerp(backdropColor, darkenedColor, (v.z + 3) / 2.0f);
             }
         }
+        
     }
     private Vector3 computePos(int i)
     {

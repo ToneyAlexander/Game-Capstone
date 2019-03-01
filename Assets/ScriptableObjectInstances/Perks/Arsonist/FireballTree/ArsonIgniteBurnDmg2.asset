@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonIgniteBurnDmg2
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: ab3a90a3de2fdfe4590a71517b4ce3fa, type: 2}
+  BlockedBy:
+  - {fileID: 11400000, guid: 4c7689cc4d9b89849a9dfd869617b361, type: 2}
+  Children: []
+  Blocks:
+  - {fileID: 11400000, guid: 4c7689cc4d9b89849a9dfd869617b361, type: 2}
+  RequireAll: 0
+  Stats: []
+  Name: Burn Damage 2
+  Desc: Increases Ignite Damage at the cost of duration.
+  grants: []
+  Changes:
+  - Value: -1
+    abilityName: Fireball Ignite
+    statName: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+  - Value: 0.25
+    abilityName: Fireball Ignite
+    statName: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
+  uiCoords: {x: 200, y: 400}
+  sprite: {fileID: 0}
