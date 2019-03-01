@@ -9,14 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287ffe4f9046e1b4f882635e1444fd6d, type: 3}
-  m_Name: Weakness to Magic
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonAblazeDmg2
   m_EditorClassIdentifier: 
-  statSlots:
-  - statIdentifier: {fileID: 0}
-    value: 0
-  - statIdentifier: {fileID: 0}
-    value: 0
-  buffName: 
-  duration: 0
-  isUnique: 0
+  Require: []
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: 
+  Desc: 
+  grants: []
+  Changes: []
+  uiCoords: {x: 0, y: 0}
+  sprite: {fileID: 0}

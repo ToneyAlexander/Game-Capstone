@@ -6,13 +6,12 @@ public class AoeBehave : MonoBehaviour
 {
     public float ttl;
     public bool friendly = false;
-    public Damage dmg;
-    public Damage friendDmg;
+    public List<TimedBuff> Friend;
+    public List<TimedBuff> Enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -37,15 +36,21 @@ public class AoeBehave : MonoBehaviour
             if (friendly != enemy.Friendly)
             {
 
-                if (enemyControl != null && dmg != null)
+                if (enemyControl != null && Enemy != null)
                 {
-                    enemyControl.OnHit(dmg);
+                    foreach (TimedBuff tb in Enemy)
+                    {
+                        enemyControl.ApplyBuff(tb.ShallowClone());
+                    }
                 }
             } else
             {
-                if (enemyControl != null && friendDmg != null)
+                if (enemyControl != null && Friend != null)
                 {
-                    enemyControl.OnHit(friendDmg);
+                    foreach (TimedBuff tb in Friend)
+                    {
+                        enemyControl.ApplyBuff(tb.ShallowClone());
+                    }
                 }
             }
         }

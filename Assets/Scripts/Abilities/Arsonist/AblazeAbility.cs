@@ -8,7 +8,7 @@ using CCC.Stats;
 [RequireComponent(typeof(MousePositionDetector))]
 public class AblazeAbility : AbilityBase
 {
-    private readonly string AbilName = "Dash";
+    private readonly string AbilName = "Ablaze";
 
     private List<Stat> abilStats;
     private StatBlock stats;
@@ -17,30 +17,44 @@ public class AblazeAbility : AbilityBase
 
     private float duration;
     private float size;
+    private float igniteMult;
+    private bool buffs;
+    private bool debuffs;
 
     public static TimedBuffPrototype Friendly;
     public static TimedBuffPrototype Enemy;
+    public static TimedBuffPrototype Ignite;
 
     public override void UpdateStats()
     {
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
         duration = abilStats.Find(item => item.Name == Stat.AS_DUR).Value;
         size = abilStats.Find(item => item.Name == Stat.AS_SIZE).Value;
+        buffs = abilStats.Find(item => item.Name == Stat.AS_BUFFS).Value > 1f;
+        debuffs = abilStats.Find(item => item.Name == Stat.AS_DEBUFFS).Value > 1f;
+        igniteMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
     }
 
     protected override void Activate()
     {
         GameObject obj = Instantiate(aoeObj, mpd.CalculateWorldPosition(), new Quaternion());
-        obj.transform.localScale = new Vector3(size, 0.5f, size);
+        obj.transform.localScale = new Vector3(size, 1f, size);
         AoeBehave ab = obj.GetComponent<AoeBehave>();
         ab.friendly = true;
         ab.ttl = duration;
-        Damage dmgFri = new Damage(0f,0f,false,false,false);
-        dmgFri.buffs.Add(Friendly.Instance);
-        ab.friendDmg = dmgFri;
-        Damage dmgEnm = new Damage(0f, 0f, false, false, false);
-        dmgEnm.buffs.Add(Enemy.Instance);
-        ab.dmg = dmgEnm;
+        ab.Friend = new List<TimedBuff>();
+        ab.Enemy = new List<TimedBuff>();
+        TimedBuff ignite = Ignite.Instance;
+        ignite.Stats.Clear();
+        ignite.Stats.Add(new Stat(Stat.HEALTH_REGEN, StatBlock.CalcMult(-15, igniteMult)));
+        ab.Enemy.Add(ignite);
+        if (buffs)
+        {
+            Debug.Log("Buffs");
+            ab.Friend.Add(Friendly.Instance);
+        }
+        if(debuffs)
+            ab.Enemy.Add(Enemy.Instance);
     }
 
     // Start is called before the first frame update
