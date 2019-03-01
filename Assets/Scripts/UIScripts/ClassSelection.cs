@@ -71,6 +71,12 @@ public class ClassSelection : MonoBehaviour
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
         }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            bc.currentClass = bc.ClassList[index];
+            Debug.Log("class selected: " + bc.ClassList[index].name);
+            //TODO: Load Scene.
+        }
         for (int i = 0; i < count; i++)
         {
             GameObject classIcon = classIcons[i];
