@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: c7a722f6d5a67054d913fc93fd5bf79b, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: 03cb56f92f0d86f4d824620423c952e6, type: 2}
+    statValue: 0.02
+  Name: Precision
   Desc: 
   grants: []
   Changes: []

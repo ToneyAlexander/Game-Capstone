@@ -12,13 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Crit4
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 4655c2615f71f30449553d7288b0ad74, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: 03cb56f92f0d86f4d824620423c952e6, type: 2}
+    statValue: 0.03
+  - statName: {fileID: 11400000, guid: c13512a77709a154c86e5ad1e3abf603, type: 2}
+    statValue: 0.02
+  Name: Perfectionist
   Desc: 
   grants: []
   Changes: []

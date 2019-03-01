@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: AtkSpeed3
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 891b0d77ad771db458b37f1acf9e8910, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 63c1742e717d8fd499f59aa9231a4b10, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
+    statValue: 0.1
+  Name: Skilled Movement
   Desc: 
   grants: []
   Changes: []

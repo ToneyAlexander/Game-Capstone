@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenerationController : ScriptableObject
+[CreateAssetMenu(menuName = "DataStructures/BloodlineController")]
+public sealed class BloodlineController : ScriptableObject
 {
     [SerializeField]
     private int generationint = 0;

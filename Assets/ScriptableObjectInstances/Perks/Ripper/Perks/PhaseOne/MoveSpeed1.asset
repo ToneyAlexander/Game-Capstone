@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 0bb00f6c2379491408ce7952735d3f79, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: e40122d757506bd43be8a660eed0edea, type: 2}
+    statValue: 0.08
+  Name: Quickness
   Desc: 
   grants: []
   Changes: []

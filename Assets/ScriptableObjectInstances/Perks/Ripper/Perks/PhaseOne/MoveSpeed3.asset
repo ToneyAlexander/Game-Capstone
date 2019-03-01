@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: MoveSpeed3
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 0bb00f6c2379491408ce7952735d3f79, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: 
+  Stats:
+  - statName: {fileID: 11400000, guid: e40122d757506bd43be8a660eed0edea, type: 2}
+    statValue: 0.16
+  Name: The Big Quick
   Desc: 
   grants: []
   Changes: []
