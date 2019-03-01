@@ -13,8 +13,8 @@ public sealed class BloodlineController : ScriptableObject
     [SerializeField]
     private string name = "Remy";
 
-    [SerializeField]
-    private ClassPrototype currentClass;
+    //[SerializeField]
+    public ClassPrototype currentClass;
 
     [SerializeField]
     private List<ClassPrototype> classList = new List<ClassPrototype>();
