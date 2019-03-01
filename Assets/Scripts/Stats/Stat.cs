@@ -63,6 +63,8 @@ namespace CCC.Stats
         public const string DMG = "dmg";
         //
         public const string DMG_MULT = "dmgx";
+
+
         public const string CRIT_DMG = "critdmg";
         public const string CRIT_DMG_MULT = "critdmgx";
         public const string CRIT_CHANCE = "critchan";
