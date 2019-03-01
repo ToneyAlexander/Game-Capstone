@@ -19,6 +19,6 @@ namespace CCC.GameManagement
         }
 
         [SerializeField]
-        private string path = "Assets/Scenes/";
+        private string path = "Scenes/";
     }
 }

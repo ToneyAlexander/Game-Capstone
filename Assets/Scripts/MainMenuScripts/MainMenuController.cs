@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Represents a Controller for a main menu.
+/// </summary>
 public sealed class MainMenuController : MonoBehaviour {
 
     public void PlayKongGame()
@@ -17,9 +20,16 @@ public sealed class MainMenuController : MonoBehaviour {
         game.Quit();
     }
 
-    public void PlayMainGame()
+    /// <summary>
+    /// Change the current scene of this MainMenuController's Game.
+    /// </summary>
+    /// <param name="sceneReference">
+    /// The SceneReferene that represents the Scene to change to.
+    /// </param>
+    public void ChangeScene(SceneReference sceneReference)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        // Only MonoBehaviours can start coroutines
+        StartCoroutine(game.ChangeToScene(sceneReference));
     }
 
     /// <summary>

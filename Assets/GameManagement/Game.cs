@@ -19,10 +19,14 @@ namespace CCC.GameManagement
         /// <summary>
         /// Change to the Scene represented by the given SceneReference.
         /// </summary>
+        /// <returns>
+        /// The IEnumerator to use to load the Scene represented by the given 
+        /// SceneReference.
+        /// </returns>
         /// <param name="sceneReference">The SceneReference.</param>
-        public void ChangeToScene(SceneReference sceneReference)
+        public IEnumerator ChangeToScene(SceneReference sceneReference)
         {
-            LoadSceneAsync(sceneReference.Path);
+            return LoadSceneAsync(sceneReference.Path);
         }
 
         /// <summary>
