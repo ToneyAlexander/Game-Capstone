@@ -5,5 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Stats/ClassPrototype")]
 public class ClassPrototype : ScriptableObject
 {
+    public Sprite image;
+    public string description;
     public List<PerkPrototype> Perks;
 }
