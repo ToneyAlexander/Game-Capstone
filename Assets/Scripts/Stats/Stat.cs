@@ -59,6 +59,7 @@ namespace CCC.Stats
         public const string AS_IGNITE_MULT = "as_ignitex";
         public const string AS_IGNITE_STACK = "as_ignitestack";
         public const string AS_DUR = "as_dur";
+        public const string AS_SIZE = "as_size";
         public const string AS_DASH_MULT = "as_dashx";
 
         /// <summary>
