@@ -91,13 +91,6 @@ public abstract class EnemyController : MonoBehaviour
             }
         }
 
-        // Under attack and death animations
-        UnderAttack();
-        if (healthPoints <= 0.0f)
-        {
-            StartCoroutine(Die());
-        }
-
         // Display field of view and moving area only in Scene (not in Game)
         // DisplayVisionAndRange();
     }
@@ -200,5 +193,5 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void UnderAttack();
 
-    protected abstract IEnumerator Die();
+    public abstract IEnumerator Die();
 }

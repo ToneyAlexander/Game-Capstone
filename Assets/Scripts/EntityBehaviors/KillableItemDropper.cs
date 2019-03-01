@@ -23,6 +23,8 @@ namespace CCC.Behaviors
                 item.Name + "'!");
             ICommand command = new DropItemCommand(itemDropper, item, transform.position);
             commandProcessor.ProcessCommand(command);
+
+            GetComponent<EnemyController>().Die();
         }
 
         #region MonoBehaviour Messages
