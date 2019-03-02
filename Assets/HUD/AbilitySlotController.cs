@@ -61,7 +61,7 @@ public class AbilitySlotController : MonoBehaviour
 				Ability slot2 = Slots[slot];
 				float remain = slot2.cdRemain;
 				float max = slot2.Stats.Find(item => item.Name == Stat.AS_CD).Value;
-				cd_image.fillAmount = 1 - (max - remain);
+                cd_image.fillAmount = remain / max; 
 			}
 		}
 	}
