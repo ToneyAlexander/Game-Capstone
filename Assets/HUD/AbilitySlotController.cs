@@ -73,9 +73,9 @@ public class AbilitySlotController : MonoBehaviour
 	 */ 
 	private void SetSlots()
 	{
-		int slotAmount = 5;
+		int slotAmount = 4;
 	
-		for(int i = 0; i <= slotAmount-1; i++)
+		for(int i = 0; i <= slotAmount; i++)
 		{
 			Transform slot = this.transform.GetChild(i);
 			Ability ability = abilitiyDictionary.GetAbility(abilityArray[i]);
@@ -83,12 +83,6 @@ public class AbilitySlotController : MonoBehaviour
             {
                 Slots.Add(slot, ability);
                 SetIcon(slot, i);
-            }
-            else
-            {
-                Image img = slot.GetChild(i).GetComponent<Image>();
-                img.sprite = null;
-                img.color = new Color(255, 255, 255, 0);
             }
 		}
 	}
