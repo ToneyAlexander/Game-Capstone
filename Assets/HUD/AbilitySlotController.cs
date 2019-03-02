@@ -9,25 +9,12 @@ using UnityEngine.UI;
 public class AbilitySlotController : MonoBehaviour
 {
 
-    private Image coolDownImage;
-
-    [SerializeField]
-    private Image abilityImage;
-
     [SerializeField]
     private AbilitySlotDictionary abilitiyDictionary;
-
-    private bool isInCoolDown;
-
-	private float cdMax;
-
-	private GameObject SlotOne;
 
 	AbilitySlot[] abilityArray;
 
 	Dictionary<int, Ability> abilities;
-
-	Transform Slot1, Slot2;
 
 	Dictionary<Transform, Ability> Slots;
 
@@ -38,7 +25,6 @@ public class AbilitySlotController : MonoBehaviour
 
     private void Start()
     {
-        isInCoolDown = false;
 		abilityArray = (AbilitySlot[])Enum.GetValues(typeof(AbilitySlot));
 		SetSlots();
 	}
@@ -87,17 +73,23 @@ public class AbilitySlotController : MonoBehaviour
 	 */ 
 	private void SetSlots()
 	{
-		int slotAmount = 1;
+		int slotAmount = 5;
 	
-		for(int i = 0; i <= slotAmount; i++)
+		for(int i = 0; i <= slotAmount-1; i++)
 		{
 			Transform slot = this.transform.GetChild(i);
 			Ability ability = abilitiyDictionary.GetAbility(abilityArray[i]);
-			if (ability != null)
-			{
-				Slots.Add(slot, ability);
-				SetIcon(slot, i);
-			}
+            if (ability != Ability.nullAbility)
+            {
+                Slots.Add(slot, ability);
+                SetIcon(slot, i);
+            }
+            else
+            {
+                Image img = slot.GetChild(i).GetComponent<Image>();
+                img.sprite = null;
+                img.color = new Color(255, 255, 255, 0);
+            }
 		}
 	}
 
@@ -109,8 +101,10 @@ public class AbilitySlotController : MonoBehaviour
 			Transform child = slot.GetChild(i);
 			if(child.name.Equals("Image"))
 			{
-				child.GetComponent<Image>().sprite = Slots[slot].Icon;
-			}
+                Image img = child.GetComponent<Image>();
+                img.sprite = Slots[slot].Icon;
+                img.color = new Color(255, 255, 255, 255);
+            }
 		}
 	}
 }
