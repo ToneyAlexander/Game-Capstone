@@ -21,18 +21,6 @@ public sealed class MainMenuController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Change the current scene of this MainMenuController's Game.
-    /// </summary>
-    /// <param name="sceneReference">
-    /// The SceneReferene that represents the Scene to change to.
-    /// </param>
-    public void ChangeScene(SceneReference sceneReference)
-    {
-        // Only MonoBehaviours can start coroutines
-        StartCoroutine(game.ChangeToScene(sceneReference));
-    }
-
-    /// <summary>
     /// The Game that this MainMenu is a part of.
     /// </summary>
     [SerializeField]

@@ -430,6 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78029479}
   - component: {fileID: 78029480}
+  - component: {fileID: 78029481}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -468,6 +469,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
+--- !u!114 &78029481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78029478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &172754140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,8 +2259,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029480}
-        m_MethodName: ChangeScene
+      - m_Target: {fileID: 78029481}
+        m_MethodName: ChangeToScene
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 2db56306a9dcd4f748706fdf2fcb2c45,
