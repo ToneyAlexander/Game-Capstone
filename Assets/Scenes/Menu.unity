@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -430,6 +430,8 @@ GameObject:
   m_Component:
   - component: {fileID: 78029479}
   - component: {fileID: 78029480}
+  - component: {fileID: 78029481}
+  - component: {fileID: 78029482}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -467,6 +469,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace27b6415bb943eb8f4df5d11936c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &78029481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78029478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &78029482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78029478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a754e4c4bb3ce4a4889b21baba687a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
+  sceneReference: {fileID: 11400000, guid: 2db56306a9dcd4f748706fdf2fcb2c45, type: 2}
 --- !u!1 &172754140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,8 +1201,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029480}
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 1536031358}
+        m_MethodName: ChangeGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2245,8 +2273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029480}
-        m_MethodName: PlayMainGame
+      - m_Target: {fileID: 78029482}
+        m_MethodName: ChangeGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2706,6 +2734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536031356}
   - component: {fileID: 1536031357}
+  - component: {fileID: 1536031358}
   m_Layer: 0
   m_Name: QuitMenu
   m_TagString: Untagged
@@ -2742,6 +2771,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace27b6415bb943eb8f4df5d11936c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1536031358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536031355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a42990b27c944a5a209f2fb2d41fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
 --- !u!1 &1559629237
 GameObject:
   m_ObjectHideFlags: 0

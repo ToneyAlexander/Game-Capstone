@@ -2165,6 +2165,8 @@ GameObject:
   - component: {fileID: 1578934643}
   - component: {fileID: 1578934642}
   - component: {fileID: 1578934641}
+  - component: {fileID: 1318119832}
+  - component: {fileID: 1318119833}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2475,6 +2477,33 @@ MonoBehaviour:
   classInfoTabButton: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395, type: 2}
   inventoryTabButton: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48, type: 2}
   statsTabButton: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597, type: 2}
+--- !u!114 &1318119832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04934ba8ad37246adbe831c14cce4d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
+  mainMenuSceneReference: {fileID: 11400000, guid: 827587ddca0544b1f95d318c0a18cace,
+    type: 2}
+--- !u!114 &1318119833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1582235922
 GameObject:
   m_ObjectHideFlags: 0
