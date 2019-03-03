@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.GameManagement.GameStates;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -16,17 +17,17 @@ namespace CCC.GameManagement
         /// </summary>
         private Scene currentScene;
 
-        /// <summary>
-        /// Change to the Scene represented by the given SceneReference.
-        /// </summary>
-        /// <returns>
-        /// The IEnumerator to use to load the Scene represented by the given 
-        /// SceneReference.
-        /// </returns>
-        /// <param name="sceneReference">The SceneReference.</param>
-        public IEnumerator ChangeToScene(SceneReference sceneReference)
+        private IGameState currentState = NullGameState.Instance;
+
+        public IGameState CurrentState
         {
-            return LoadSceneAsync(sceneReference.Path);
+            get { return currentState; }
+            set
+            {
+                currentState.Exit(this);
+                currentState = value;
+                currentState.Enter(this);
+            }
         }
 
         /// <summary>

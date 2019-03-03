@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 78029479}
   - component: {fileID: 78029480}
   - component: {fileID: 78029481}
+  - component: {fileID: 78029482}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -468,7 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace27b6415bb943eb8f4df5d11936c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
 --- !u!114 &78029481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +481,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &78029482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78029478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a754e4c4bb3ce4a4889b21baba687a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
+  sceneReference: {fileID: 11400000, guid: 2db56306a9dcd4f748706fdf2fcb2c45, type: 2}
 --- !u!1 &172754140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,8 +1201,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029480}
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 1536031358}
+        m_MethodName: ChangeGameState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2259,13 +2273,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029481}
-        m_MethodName: ChangeToScene
-        m_Mode: 2
+      - m_Target: {fileID: 78029482}
+        m_MethodName: ChangeGameState
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 2db56306a9dcd4f748706fdf2fcb2c45,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: CCC.GameManagement.SceneReference, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2721,6 +2734,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536031356}
   - component: {fileID: 1536031357}
+  - component: {fileID: 1536031358}
   m_Layer: 0
   m_Name: QuitMenu
   m_TagString: Untagged
@@ -2757,7 +2771,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace27b6415bb943eb8f4df5d11936c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 0}
+--- !u!114 &1536031358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536031355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a42990b27c944a5a209f2fb2d41fd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
 --- !u!1 &1559629237
 GameObject:
   m_ObjectHideFlags: 0
