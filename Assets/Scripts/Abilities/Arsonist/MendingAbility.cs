@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Stats;
 
 public class MendingAbility : AbilityBase
 {
@@ -13,6 +14,7 @@ public class MendingAbility : AbilityBase
 
     public override void UpdateStats()
     {
+        cdBase = abil.Stats.Find(item => item.Name == Stat.AS_CD).Value;
     }
 
     protected override void Activate()
