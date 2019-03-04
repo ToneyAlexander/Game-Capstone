@@ -18,7 +18,7 @@ public class FungusEnemyController : EnemyController
 		// Default vision
         visionAngle = 360f;
         visionDistance = 10f;
-        attackDistance = 3f;
+        attackDistance = 5f;
 
         // Default stat
         healthPoints = 10f;
@@ -38,6 +38,8 @@ public class FungusEnemyController : EnemyController
 			agent.isStopped = true;
 			movable = false;
 			animator.SetTrigger("Mimic");
+			animator.SetFloat("h", 0.0f);
+			animator.SetFloat("v", 0.0f);
 		}
 	}
 
@@ -51,9 +53,8 @@ public class FungusEnemyController : EnemyController
         // Look at target (player character)
         transform.rotation = Quaternion.LookRotation(new Vector3((
 			playerPos - transform.position).x, 
-			transform.position.y, 
-			(playerPos - transform.position).z
-			).normalized);
+			0.0f,
+			(playerPos - transform.position).z));
 
 		// Stop and attack target (player character)
         agent.isStopped = true;
