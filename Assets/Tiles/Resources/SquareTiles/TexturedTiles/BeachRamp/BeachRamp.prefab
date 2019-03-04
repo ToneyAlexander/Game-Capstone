@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4373748651946806201
+--- !u!1 &5701100182454733685
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,59 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7348645932919424458}
-  - component: {fileID: 2466471691065557714}
-  - component: {fileID: 3151892699943690707}
+  - component: {fileID: 3414766788674707547}
+  - component: {fileID: 6077371849776214918}
   m_Layer: 9
-  m_Name: Transition1
+  m_Name: BeachRamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7348645932919424458
+--- !u!4 &3414766788674707547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4373748651946806201}
+  m_GameObject: {fileID: 5701100182454733685}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 84.17314, y: 1.5, z: 72.213585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7414339221340294049}
+  - {fileID: 6288501101387632612}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2466471691065557714
+--- !u!64 &6077371849776214918
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4373748651946806201}
+  m_GameObject: {fileID: 5701100182454733685}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 14
-  m_Mesh: {fileID: 4300000, guid: 0e5c139d511572a478518ae58fb13da8, type: 3}
---- !u!65 &3151892699943690707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4373748651946806201}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 4}
-  m_Center: {x: -1.5, y: 1, z: 2}
---- !u!1 &6544315173287476031
+  m_Mesh: {fileID: 4300000, guid: 163a668a0c013114fb45f923f1b3d18c, type: 3}
+--- !u!1 &7593314862467783512
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,45 +54,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7414339221340294049}
-  - component: {fileID: 7366622488458029476}
-  - component: {fileID: 4930247698583828486}
+  - component: {fileID: 6288501101387632612}
+  - component: {fileID: 7110792603300763620}
+  - component: {fileID: 5332104913909916703}
   m_Layer: 9
-  m_Name: Transition1
+  m_Name: BeachRamp
   m_TagString: Texturable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7414339221340294049
+--- !u!4 &6288501101387632612
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544315173287476031}
+  m_GameObject: {fileID: 7593314862467783512}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 7348645932919424458}
+  m_Father: {fileID: 3414766788674707547}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7366622488458029476
+--- !u!33 &7110792603300763620
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544315173287476031}
-  m_Mesh: {fileID: 4300000, guid: 0e5c139d511572a478518ae58fb13da8, type: 3}
---- !u!23 &4930247698583828486
+  m_GameObject: {fileID: 7593314862467783512}
+  m_Mesh: {fileID: 4300000, guid: 163a668a0c013114fb45f923f1b3d18c, type: 3}
+--- !u!23 &5332104913909916703
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544315173287476031}
+  m_GameObject: {fileID: 7593314862467783512}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -117,7 +103,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9540fe5c3982ac94bad6a34b6ceba6b4, type: 2}
+  - {fileID: 2100000, guid: 8dfd3943727c9e14e8d7bb6fa0c70059, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
