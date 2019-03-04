@@ -20,7 +20,7 @@ public class CarnivorousFlowerController : EnemyController
 		// Default vision
         visionAngle = 180f;
         visionDistance = 10f;
-        attackDistance = 5f;
+        attackDistance = 3f;
 
         // Default stat
         healthPoints = 10f;
@@ -46,7 +46,6 @@ public class CarnivorousFlowerController : EnemyController
 			{
 				agent.isStopped = false;
 				movable = true;
-				animator.SetBool("Walk Forward", true);
 			}
 		}
 		else

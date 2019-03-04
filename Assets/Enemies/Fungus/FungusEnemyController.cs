@@ -19,7 +19,7 @@ public class FungusEnemyController : EnemyController
 		// Default vision
         visionAngle = 360f;
         visionDistance = 10f;
-        attackDistance = 5f;
+        attackDistance = 3f;
 
         // Default stat
         healthPoints = 10f;
