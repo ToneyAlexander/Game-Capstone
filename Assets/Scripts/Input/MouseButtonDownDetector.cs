@@ -13,12 +13,22 @@ namespace CCC.Inputs
         [SerializeField]
         private InputButtonList buttonList;
 
+        /// <summary>
+        /// The CommandProcessor to send MoveToCommands to.
+        /// </summary>
+        [SerializeField]
+        private CommandProcessor commandProcessor;
+
+        /// <summary>
+        /// The destination mover.
+        /// </summary>
         private IDestinationMover destinationMover;
 
+        /// <summary>
+        /// The MousePositionDetector that this MouseButtonDownDetector will 
+        /// use to get the world space location of the mouse cursor.
+        /// </summary>
         private MousePositionDetector mousePositionDetector;
-
-        [SerializeField]
-        private InputManager inputManager;
 
         #region MonoBehaviour Messages
         private void Awake()
@@ -51,11 +61,10 @@ namespace CCC.Inputs
                         // the void).
                         if (mousePositionDetector.IsValid(destination))
                         {
-                            inputManager.HandleMouseButtonDown(
-                                button,
-                                destinationMover,
-                                destination
-                            );
+                            ICommand moveToCommand = 
+                                new MoveToCommand(destinationMover, 
+                                    transform.position, destination);
+                            commandProcessor.ProcessCommand(moveToCommand);
                         }
                     }
                 }
