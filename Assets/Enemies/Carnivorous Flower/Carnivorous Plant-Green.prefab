@@ -101,8 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3543936259251336040}
   - component: {fileID: 6758794004499590778}
-  - component: {fileID: 6964364346904454086}
   - component: {fileID: 3314903891845387771}
+  - component: {fileID: 6964364346904454086}
+  - component: {fileID: 4270030869102297155}
   m_Layer: 0
   m_Name: Carnivorous Plant-Green
   m_TagString: Untagged
@@ -117,8 +118,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135792098146554806}
-  m_LocalRotation: {x: -0, y: -0.30893898, z: -0, w: 0.9510819}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4076893487194734416}
@@ -213,7 +214,7 @@ Transform:
   - {fileID: 5083400461844534112}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -35.991, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6758794004499590778
 Animator:
   serializedVersion: 3
@@ -233,19 +234,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6964364346904454086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135792098146554806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef9a598ed4df4ac3a1037534f664e49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commandProcessor: {fileID: 0}
 --- !u!195 &3314903891845387771
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -268,6 +256,31 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6964364346904454086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135792098146554806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef9a598ed4df4ac3a1037534f664e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+--- !u!114 &4270030869102297155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135792098146554806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00497655b1c144b9b5280db1155c359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &151710425922692622
 GameObject:
   m_ObjectHideFlags: 0

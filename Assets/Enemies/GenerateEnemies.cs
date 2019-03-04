@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GenerateEnemies : MonoBehaviour
 {
-    public float spawnRange;
+    private float spawnRange;
 
     private int enemiesNumber;
     private GameObject[] enemies;
@@ -13,6 +13,8 @@ public class GenerateEnemies : MonoBehaviour
 
     public void Start()
     {
+        spawnRange = 10f;
+        
         // Random number of enemies
         enemiesNumber = Random.Range(1, 10);
         enemies = new GameObject[enemiesNumber];
