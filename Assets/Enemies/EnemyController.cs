@@ -91,7 +91,7 @@ public abstract class EnemyController : MonoBehaviour
             {
                 targetFound = true;
                 targetPos = playerPos;
-                agent.speed = 20f;
+                agent.speed = 15f;
 
                 // If the player character is within the enemy's attacking range, the 
                 // enemy stops near the target and attacks it

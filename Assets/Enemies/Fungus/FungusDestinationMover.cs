@@ -15,7 +15,8 @@ public sealed class FungusDestinationMover : MonoBehaviour, IDestinationMover
 
     public void MoveTo(Vector3 destination)
     {
-        animator.SetTrigger("AnyKey");
+        animator.SetFloat("v", 1.0f);
+        // animator.SetTrigger("AnyKey");
         navMeshAgent.SetDestination(destination);
     }
 
