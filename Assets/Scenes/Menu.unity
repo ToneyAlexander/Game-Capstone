@@ -430,8 +430,6 @@ GameObject:
   m_Component:
   - component: {fileID: 78029479}
   - component: {fileID: 78029480}
-  - component: {fileID: 78029481}
-  - component: {fileID: 78029482}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -469,32 +467,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace27b6415bb943eb8f4df5d11936c6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &78029481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78029478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &78029482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78029478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a754e4c4bb3ce4a4889b21baba687a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
-  sceneReference: {fileID: 11400000, guid: 2db56306a9dcd4f748706fdf2fcb2c45, type: 2}
 --- !u!1 &172754140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2178,8 @@ GameObject:
   - component: {fileID: 1368379573}
   - component: {fileID: 1368379572}
   - component: {fileID: 1368379571}
+  - component: {fileID: 1368379575}
+  - component: {fileID: 1368379574}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -2273,7 +2247,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 78029482}
+      - m_Target: {fileID: 1368379574}
         m_MethodName: ChangeGameState
         m_Mode: 1
         m_Arguments:
@@ -2335,6 +2309,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368379569}
   m_CullTransparentMesh: 0
+--- !u!114 &1368379574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368379569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b96c37dabc09403bb46eb0b4aad8a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
+  classSelectionSceneReference: {fileID: 11400000, guid: 525a992d57d694e68b3cef3a15fddf77,
+    type: 2}
+--- !u!114 &1368379575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368379569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1393622090
 GameObject:
   m_ObjectHideFlags: 0
