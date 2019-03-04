@@ -225,7 +225,7 @@ public class GenerateIsland : MonoBehaviour
 
         for (int i = 1; i < tileCount + 1; i++)
         {
-            if (i <= TILES_PER_LAYER + 1)
+            if (i <= 2*TILES_PER_LAYER + 1)
             {
                 string[] fields = lines[i].Split(',');
                 if (fields.Length >= 11)
