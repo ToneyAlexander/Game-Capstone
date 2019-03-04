@@ -22,6 +22,7 @@ public class MeleeEnemyController : EnemyController
         // Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 20f;
+        chaseSpeed = 15f;
         movable = true;
 
         // Default vision

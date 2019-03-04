@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarnivorousFlowerController : EnemyController
 {
-private Animator animator;
+	private Animator animator;
 
 	protected override void Initialize () 
     {
@@ -13,34 +13,48 @@ private Animator animator;
 
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
-        movingRange = 10f;
+        movingRange = 15f;
+		chaseSpeed = 5f;
 		movable = false;
 
 		// Default vision
-        visionAngle = 360f;
+        visionAngle = 180f;
         visionDistance = 10f;
         attackDistance = 5f;
 
         // Default stat
         healthPoints = 10f;
+
+		// Initial animation
+		animator.SetBool("Walk Forward", false);
+		animator.SetBool("Walk Backward", false);
+		animator.SetBool("Strafe Left", false);
+		animator.SetBool("Strafe Right", false);
+		animator.SetBool("Sleeping", true);
 	}
 
 	protected override void UniqueUpdate()
     {
-		// The fungus moves only when it sees the player
-		if (InVision(player.transform.position + new Vector3(0.0f, 2.0f, 0.0f))) 
+		// The carnivorous flower awakes when the player is within range
+		if (InRange(player.transform.position))
 		{
-			agent.isStopped = false;
-			movable = true;
-			animator.SetTrigger("AnyKey");
+			agent.isStopped = true;
+			movable = false;
+			animator.SetBool("Sleeping", false);
+			// The carnivorous flower moves only when it sees the player
+			if (InVision(player.transform.position)) 
+			{
+				agent.isStopped = false;
+				movable = true;
+				animator.SetBool("Walk Forward", true);
+			}
 		}
 		else
 		{
 			agent.isStopped = true;
 			movable = false;
-			animator.SetTrigger("Mimic");
-			animator.SetFloat("h", 0.0f);
-			animator.SetFloat("v", 0.0f);
+			animator.SetBool("Sleeping", true);
+			animator.SetBool("Walk Forward", false);
 		}
 	}
 
@@ -76,25 +90,17 @@ private Animator animator;
         // Change to a random attack animation
 		float attackMode = Random.value;
 
-		if (attackMode < 0.2f) 
+		if (attackMode < 0.33f) 
 		{
-			animator.SetTrigger("AttackRightTentacle1");
+			animator.SetTrigger("Breath Attack");
 		}
-		else if (attackMode >= 0.2f && attackMode < 0.4f)
+		else if (attackMode >= 0.33f && attackMode < 0.67f)
 		{
-			animator.SetTrigger("AttackLeftTentacle2");
+			animator.SetTrigger("Bite");
 		}
-		else if (attackMode >= 0.4f && attackMode < 0.6f)
+		else if (attackMode >= 0.67f && attackMode < 1.0f)
 		{
-			animator.SetTrigger("AttackFourTentacle");
-		}
-		else if (attackMode >= 0.6f && attackMode < 0.8f)
-		{
-			animator.SetTrigger("AttackRolling");
-		}
-		else if (attackMode >= 0.8f && attackMode <= 1.0f)
-		{
-			animator.SetTrigger("AttackSpreadSpore");
+			animator.SetTrigger("Breath Attack Surround");
 		}
 		yield return new WaitForSeconds(2f);
 
@@ -106,14 +112,14 @@ private Animator animator;
         // if (Input.GetMouseButtonDown(0))
         // {
         //     healthPoints--;
-        //     animator.SetTrigger("TakeDamage1");
+        //     animator.SetTrigger("Take Damage");
         // }
     }
     
     public override IEnumerator Die()
     {
-        animator.SetTrigger("DownSpin");
-        yield return new WaitForSeconds(2.0f);
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
     }
 }

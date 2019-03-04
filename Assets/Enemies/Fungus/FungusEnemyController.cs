@@ -13,6 +13,7 @@ public class FungusEnemyController : EnemyController
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 10f;
+		chaseSpeed = 5f;
 		movable = false;
 
 		// Default vision
@@ -27,7 +28,7 @@ public class FungusEnemyController : EnemyController
 	protected override void UniqueUpdate()
     {
 		// The fungus moves only when it sees the player
-		if (InVision(player.transform.position + new Vector3(0.0f, 2.0f, 0.0f))) 
+		if (InVision(player.transform.position)) 
 		{
 			agent.isStopped = false;
 			movable = true;
