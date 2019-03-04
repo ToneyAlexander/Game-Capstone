@@ -8,7 +8,7 @@ namespace CCC.Inputs
     /// interested in.
     /// </summary>
     [RequireComponent(typeof(MousePositionDetector))]
-    sealed class MouseButtonDownDetector : MonoBehaviour
+    sealed class MouseMovementInputDetector : MonoBehaviour
     {
         [SerializeField]
         private InputButtonList buttonList;
