@@ -241,7 +241,7 @@ public class GenerateIsland : MonoBehaviour
             else
             {
                 //higher layers
-                TilePiece lowClone = tileset[i - TILES_PER_LAYER - 1];
+                TilePiece lowClone = tileset[i - TILES_PER_LAYER - 2];
                 Vector3 newLoc = new Vector3(lowClone.modifier.x, lowClone.modifier.y + TILE_HEIGHT, lowClone.modifier.z);
                 TilePiece t = new TilePiece(lowClone.prefab, lowClone.ID + TILES_PER_LAYER, lowClone.rotation, newLoc, lowClone.navigability);
                 tileset.Add(t);
@@ -399,7 +399,7 @@ public class GenerateIsland : MonoBehaviour
 
         if (drawTileSet)
         {
-            IslandGeneratorTesting.drawTileset(tiles, Vector3.zero, tileSize, tileCount);
+            IslandGeneratorTesting.drawTileset(tiles, Vector3.zero, tileSize);
         }
 
         //makeCenterTallest(island, updated, tileCount, width, height);
@@ -737,14 +737,25 @@ public class GenerateIsland : MonoBehaviour
 
     private List<float> makeDistribution(List<int> unchosenIndices)
     {
-        //return plateauDistribution(unchosenIndices);
-        return increasingDistribution(unchosenIndices);
+        List<List<float>> heuristics = new List<List<float>>();
+        List<float> combinedDistribution = new List<float>();
+        heuristics.Add(plateauDistribution(unchosenIndices));
+        heuristics.Add(increasingDistribution(unchosenIndices));
+        for (int i = 0; i < unchosenIndices.Count; i++)
+        {
+            combinedDistribution.Add(1.0f);
+            for (int j = 0; j < heuristics.Count; j++)
+            {
+                combinedDistribution[i] *= heuristics[j][i];
+            }
+        }
+        return combinedDistribution;
     }
 
     private List<float> evenDistribution(List<int> unchosenIndices)
     {
         List<float> probabilities = new List<float>();
-        foreach(int TileID in unchosenIndices)
+        foreach (int TileID in unchosenIndices)
         {
             probabilities.Add(1.0f);
         }
@@ -752,14 +763,19 @@ public class GenerateIsland : MonoBehaviour
     }
     private List<float> increasingDistribution(List<int> unchosenIndices)
     {
+        float increaseAmount = 1f;
         List<float> probabilities = new List<float>();
         float prob = 1.0f;
         foreach (int TileID in unchosenIndices)
         {
             probabilities.Add(prob);
-            prob += .25f;
+            prob += increaseAmount;
         }
         return probabilities;
+    }
+    private List<float> lowFlatlandsDistribution(List<int> unchosenIndicies)
+    {
+        return null;
     }
     private List<float> plateauDistribution(List<int> unchosenIndices)
     {
@@ -767,9 +783,9 @@ public class GenerateIsland : MonoBehaviour
         float prob = 1.0f;
         foreach (int TileID in unchosenIndices)
         {
-            if(TileID > 0 && TileID % 33 == 0)
+            if (TileID > 0 && TileID % 33 == 0)
             {
-                probabilities.Add(2* prob);
+                probabilities.Add(2 * prob);
             }
             else
             {
@@ -782,13 +798,13 @@ public class GenerateIsland : MonoBehaviour
     private int weightedIndexSelect(List<float> probabilities)
     {
         float total = 0;
-        foreach(float p in probabilities)
+        foreach (float p in probabilities)
         {
             total += p;
         }
         float value = Random.Range(0, total);
         int index = 0;
-        while(value > 0)
+        while (value > 0)
         {
             value -= probabilities[index];
             index++;
