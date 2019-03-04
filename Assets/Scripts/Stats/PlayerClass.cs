@@ -46,11 +46,16 @@ public class PlayerClass : MonoBehaviour
         Component fv = o.AddComponent(type);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         takenPerks = new List<PerkPrototype>();
         stats = GetComponent<ControlStatBlock>();
+        Debug.Log("stats loaded " + gameObject.name);
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
     }
 
     public bool TakePerk(PerkPrototype p)

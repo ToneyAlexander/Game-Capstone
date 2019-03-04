@@ -14,6 +14,7 @@ public class AlienBeetle : MonoBehaviour
     private StatBlock stats;
     private ControlStatBlock controlStats;
     private PlayerClass beetleClass;
+    private Animator animator;
     private GameObject player;
     public PerkPrototype StatPerk;
     public GameObject EggPrefab;
@@ -27,15 +28,13 @@ public class AlienBeetle : MonoBehaviour
     private int nextAttack;
     public float arenaEndX, arenaEndZ, arenaStartX, arenaStartZ;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         stats = GetComponent<StatBlock>();
         controlStats = GetComponent<ControlStatBlock>();
         beetleClass = GetComponent<PlayerClass>();
         player = GameObject.FindGameObjectWithTag("Player");
-
-        beetleClass.TakePerk(StatPerk);
+        animator = GetComponent<Animator>();
 
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
@@ -43,15 +42,22 @@ public class AlienBeetle : MonoBehaviour
         inUse = false;
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        beetleClass.TakePerk(StatPerk);
+    }
+
     void AbilityZero()
     {
         cooldown = AbilityZeroCd;
-        //TODO: Play some sort of animation.
+        animator.SetTrigger("attack1");
         StartCoroutine(AbilZeroAsync());
     }
 
     IEnumerator AbilZeroAsync()
     {
+        yield return new WaitForSeconds(0.8f);
         int projCast = 0;
         float rangeX = (arenaEndX - arenaStartX) * 0.3f, rangeZ = (arenaEndZ - arenaStartZ) * 0.3f;
         Vector3 target = new Vector3(Random.Range(arenaStartX+rangeX, arenaEndX-rangeX), 0, Random.Range(arenaStartZ+rangeZ, arenaEndZ-rangeZ)); ;
@@ -84,17 +90,19 @@ public class AlienBeetle : MonoBehaviour
     void AbilityOne()
     {
         cooldown = AbilityOneCd;
-        //TODO: Play some sort of animation.
+        animator.SetTrigger("attack2");
+        animator.SetBool("attack2bool", true);
         StartCoroutine(AbilOneAsync());
     }
 
     IEnumerator AbilOneAsync()
     {
+        yield return new WaitForSeconds(0.7f);
         int projCast = 0;
         while (projCast < 15)
         {
             ++projCast;
-            GameObject obj = Instantiate(VolleyPrefab, gameObject.transform.position + new Vector3(0, 0.5f, 0), new Quaternion());
+            GameObject obj = Instantiate(VolleyPrefab, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
             ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
             var lookPos = player.transform.position - transform.position;
             lookPos.y = 0;
@@ -107,9 +115,10 @@ public class AlienBeetle : MonoBehaviour
             Damage dmg = new Damage(0f, Random.Range(17.5f * Level, 22.5f * Level), true, false, false);
             pbh.dmg = stats.RealDamage(dmg);
             pbh.ttl = 3f;
-
+            
             yield return new WaitForSeconds(0.15f);
         }
+        animator.SetBool("attack2bool", false);
         inUse = false;
         float choice = Random.Range(0f, 1f);
         Debug.Log(choice);
@@ -130,20 +139,28 @@ public class AlienBeetle : MonoBehaviour
     void AbilityTwo()
     {
         cooldown = AbilityTwoCd;
-        //TODO: Play some sort of animation.
-        GameObject obj = Instantiate(TrackerPrefab, gameObject.transform.position + new Vector3(0, 0.5f, 0), new Quaternion());
+        animator.SetTrigger("attack2");
+        animator.SetBool("attack2bool", true);
+        StartCoroutine(AbilTwoAsync());
+    }
+
+    IEnumerator AbilTwoAsync()
+    {
+        yield return new WaitForSeconds(0.7f);
+        GameObject obj = Instantiate(TrackerPrefab, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
         obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-        pbh.speed = 9f + Level/5;
+        pbh.speed = 9f + Level / 5;
         Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, false, true);
         pbh.dmg = stats.RealDamage(dmg);
         pbh.ttl = 5f /*+ Level/2f*/;//had to remove scaling due to fixed duration of projectile particle system.
         TrackingBehave tbh = obj.GetComponent<TrackingBehave>();
-        tbh.RotSpeed = 2.5f + Level/5f;
+        tbh.RotSpeed = 2.5f + Level / 5f;
         tbh.Target = player;
 
 
         inUse = false;
+        animator.SetBool("attack2bool", false);
         float choice = Random.Range(0f, 1f);
         Debug.Log(choice);
         if (choice < 0.8)
@@ -151,7 +168,7 @@ public class AlienBeetle : MonoBehaviour
             nextAttack = 0;
         }
         else
-        { 
+        {
             nextAttack = 1;
         }
     }

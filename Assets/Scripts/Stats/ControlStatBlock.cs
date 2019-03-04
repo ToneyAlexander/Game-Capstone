@@ -35,6 +35,17 @@ public class ControlStatBlock : MonoBehaviour
             buffsToAdd.Add(tb);
     }
 
+    void Awake()
+    {
+        stats = GetComponent<StatBlock>();
+        inv = GetComponent<EquipmentUser>();
+        pClass = GetComponent<PlayerClass>();
+
+        buffs = new List<TimedBuff>();
+        buffsToAdd = new List<TimedBuff>();
+        oldHpPrecent = -10000f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

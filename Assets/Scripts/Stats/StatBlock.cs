@@ -83,9 +83,13 @@ public class StatBlock : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         killable = GetComponent<IKillable>();
+    }
+
+    void Start()
+    {
     }
 
     void Update()
