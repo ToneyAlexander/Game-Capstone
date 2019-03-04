@@ -41,6 +41,25 @@ public sealed class MousePositionDetector : MonoBehaviour
         return worldSpacePosition;
     }
 
+    /// <summary>
+    /// Tests whether a given Vector3 is valid or not.
+    /// </summary>
+    /// <returns><c>true</c>, if v is valid, <c>false</c> otherwise.</returns>
+    /// <param name="v">V.</param>
+    public bool IsValid(Vector3 v)
+    {
+        bool isValid = true;
+
+        if (float.IsNegativeInfinity(v.x) &&
+            float.IsNegativeInfinity(v.y) &&
+            float.IsNegativeInfinity(v.z))
+        {
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
     #region MonoBehaviour Messages
     private void Awake()
     {

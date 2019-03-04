@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AoeBehave : MonoBehaviour
+public class AoeBehave : MonoBehaviour, IAttackIgnored
 {
     public float ttl;
     public bool friendly = false;
@@ -30,7 +30,7 @@ public class AoeBehave : MonoBehaviour
     {
         StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
         ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
-        
+
         if (enemy != null)
         {
             if (friendly != enemy.Friendly)

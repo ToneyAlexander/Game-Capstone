@@ -101,6 +101,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3543936259251336040}
   - component: {fileID: 6758794004499590778}
+  - component: {fileID: 6964364346904454086}
+  - component: {fileID: 3314903891845387771}
   m_Layer: 0
   m_Name: Carnivorous Plant-Green
   m_TagString: Untagged
@@ -231,6 +233,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6964364346904454086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135792098146554806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef9a598ed4df4ac3a1037534f664e49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 0}
+--- !u!195 &3314903891845387771
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135792098146554806}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &151710425922692622
 GameObject:
   m_ObjectHideFlags: 0

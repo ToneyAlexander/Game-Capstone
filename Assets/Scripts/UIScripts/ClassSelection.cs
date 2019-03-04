@@ -1,14 +1,17 @@
-﻿using System.Collections;
+﻿using CCC.GameManagement.GameStates;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(PlayIslandGameStateChanger))]
 public class ClassSelection : MonoBehaviour
 {
     // Start is called before the first frame update
     public BloodlineController bc;
     public GameObject title;
     public GameObject desc;
+
+    private PlayIslandGameStateChanger playIslandGameStateChanger;
     private int index = 0;
     private int count;
     private List<GameObject> classIcons = new List<GameObject>() ;
@@ -17,6 +20,13 @@ public class ClassSelection : MonoBehaviour
     TextMeshPro descText;
     Color darkenedColor = new Color(0.29f, 0.29f, 0.29f, 1.0f);
     Color backdropColor = new Color(0.7f, 0.7f, 0.7f);
+
+    #region MonoBehaviour Messages
+    private void Awake()
+    {
+        playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
+    }
+
     void Start()
     {
          count = bc.ClassList.Count;
@@ -75,7 +85,7 @@ public class ClassSelection : MonoBehaviour
         {
             bc.currentClass = bc.ClassList[index];
             Debug.Log("class selected: " + bc.ClassList[index].name);
-            //TODO: Load Scene.
+            playIslandGameStateChanger.ChangeGameState();
         }
         for (int i = 0; i < count; i++)
         {
@@ -96,6 +106,8 @@ public class ClassSelection : MonoBehaviour
         }
         
     }
+    #endregion
+
     private Vector3 computePos(int i)
     {
         int shiftedindex = (index - i + count) % count;

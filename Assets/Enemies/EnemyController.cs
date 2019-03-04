@@ -15,6 +15,7 @@ public abstract class EnemyController : MonoBehaviour
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
     protected float movingRange;
+    protected float chaseSpeed;
     protected bool movable;
 
     // Field of view
@@ -81,17 +82,17 @@ public abstract class EnemyController : MonoBehaviour
         UniqueUpdate();
 
         // Get player's current position
-        Vector3 playerPos = player.transform.position + new Vector3(0.0f, 2.0f, 0.0f);
+        Vector3 playerPos = player.transform.position;
 
         if (movable)
         {
             // If the player character is within the enemy's moving area and is within 
             // enemy's field of view, the enemy chases player character
-            if (InVision(playerPos) && InRange(playerPos)) 
+            if (InRange(playerPos) && InVision(playerPos)) 
             {
                 targetFound = true;
                 targetPos = playerPos;
-                agent.speed = 15f;
+                agent.speed = chaseSpeed;
 
                 // If the player character is within the enemy's attacking range, the 
                 // enemy stops near the target and attacks it
@@ -151,7 +152,7 @@ public abstract class EnemyController : MonoBehaviour
     }
 
     // Checks if pos is within enemy's moving area
-    private bool InRange(Vector3 pos)
+    protected bool InRange(Vector3 pos)
     {
         float distanceToCenter = Vector3.Distance(pos, spawnPos);
         return (distanceToCenter <= movingRange);

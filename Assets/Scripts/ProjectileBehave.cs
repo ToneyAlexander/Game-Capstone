@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileBehave : MonoBehaviour
+public class ProjectileBehave : MonoBehaviour, IAttackIgnored
 {
     public Damage dmg;
     public float speed;
@@ -22,7 +22,7 @@ public class ProjectileBehave : MonoBehaviour
         ttl -= Time.deltaTime;
         if(ttl < 0)
         {
-            //Debug.Log("Destoryed due to ttl");
+            Debug.Log("Destoryed due to ttl");
             Destroy(gameObject);
         }
     }
@@ -36,7 +36,7 @@ public class ProjectileBehave : MonoBehaviour
     {
         StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
         ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
-        ProjectileBehave colProj = col.gameObject.GetComponent<ProjectileBehave>();
+        IAttackIgnored colProj = col.gameObject.GetComponent<IAttackIgnored>();
         if (colProj == null) //check to see if we collided with another projectile. if so ignore
         {
             //Debug.Log("Col with non-proj, Proj is: " + friendly);
