@@ -2160,6 +2160,7 @@ GameObject:
   - component: {fileID: 1578934649}
   - component: {fileID: 1578934648}
   - component: {fileID: 1578934647}
+  - component: {fileID: 109204547679389854}
   - component: {fileID: 1578934646}
   - component: {fileID: 1578934645}
   - component: {fileID: 1578934644}
@@ -2389,6 +2390,23 @@ MonoBehaviour:
   swordOnHand: {fileID: 562894066}
   swordOnBack: {fileID: 1000011366503406}
   startMagicAttack: 0
+--- !u!114 &109204547679389854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b25678ce631841008975f080436708c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remyBodyMaterial: {fileID: 2100000, guid: fa911b9dc70684e1a964a409f1a6cc2c, type: 2}
+  remyBottomMaterial: {fileID: 2100000, guid: 8aae5eba34e064720847eae4ced11c65, type: 2}
+  remyHairMaterial: {fileID: 2100000, guid: 7050f0ef8a98a40b2915bc353a2ee239, type: 2}
+  remyTopMaterial: {fileID: 2100000, guid: 51053554fd5604253b234a974460a659, type: 2}
+  remyShoesMaterial: {fileID: 2100000, guid: 893f5a13b324642c78cc8563c0e18e41, type: 2}
 --- !u!114 &1578934646
 MonoBehaviour:
   m_ObjectHideFlags: 0
