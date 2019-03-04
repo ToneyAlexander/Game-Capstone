@@ -1,32 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.Stats;
+using CCC.Abilities;
 
-public class EdgySlash : MonoBehaviour, IAbilityBase
+[RequireComponent(typeof(StatBlock))]
+[RequireComponent(typeof(PlayerClass))]
+[RequireComponent(typeof(MousePositionDetector))]
+public class EdgySlash : AbilityBase
 {
-    private float cdRemain;
+    private readonly string AbilName = "Slash";
+
+    private List<Stat> abilStats;
+    private StatBlock stats;
+    private MousePositionDetector mpd;
+    private GameObject projectile;
+
+    private float projSpeed;
+    private float dmgMin;
+    private float dmgMax;
+    private float slowdownMult;
+    private float slowdownDur;
+    private bool slowdownStack;
+
+    public static TimedBuffPrototype slowdown;
+
+    public override void UpdateStats()
+    {
+        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        slowdownMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
+        slowdownDur = abilStats.Find(item => item.Name == Stat.AS_DUR).Value;
+        slowdownStack = abilStats.Find(item => item.Name == Stat.AS_IGNITE_STACK).Value > 1f;
+    }
+
+    protected override void Activate()
+    {
+        GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
+        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+        obj.transform.LookAt(mpd.CalculateWorldPosition());
+        var lookPos = mpd.CalculateWorldPosition() - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        pbh.speed = projSpeed;
+        Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), false, false, true);
+        pbh.dmg = stats.RealDamage(dmg);
+        TimedBuff tb = slowdown.Instance;
+        Stat stat = tb.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
+        stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, slowdownMult));
+        tb.Stats.Remove(new Stat(Stat.HEALTH_REGEN));
+        tb.Stats.Add(stat);
+        tb.Duration += slowdownDur;
+        tb.IsUnique = !slowdownStack;
+        pbh.dmg.buffs.Add(tb);
+        pbh.friendly = true;
+        pbh.ttl = 2f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        //TODO: Detect ability stat changes
+        mpd = GetComponent<MousePositionDetector>();
+        stats = GetComponent<StatBlock>();
+        PlayerClass pc = GetComponent<PlayerClass>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public bool Use()
-    {
-        return true;
-    }
-    public float CooldownLeft()
-    {
-        return cdRemain;
-    }
-
-    public void UpdateStats()
-    {
-        throw new System.NotImplementedException();
+        abil = pc.abilities.Set[AbilName];
+        projectile = abil.Prefab;
+        abilStats = abil.Stats;
+        abil.cdRemain = 0f;
+        UpdateStats();
     }
 }
