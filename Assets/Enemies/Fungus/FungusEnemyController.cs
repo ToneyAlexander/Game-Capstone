@@ -18,7 +18,7 @@ public class FungusEnemyController : EnemyController
 		// Default vision
         visionAngle = 360f;
         visionDistance = 10f;
-        attackDistance = 3f;
+        attackDistance = 5f;
 
         // Default stat
         healthPoints = 10f;
@@ -38,6 +38,8 @@ public class FungusEnemyController : EnemyController
 			agent.isStopped = true;
 			movable = false;
 			animator.SetTrigger("Mimic");
+			animator.SetFloat("h", 0.0f);
+			animator.SetFloat("v", 0.0f);
 		}
 	}
 
