@@ -37,6 +37,8 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private bool makeEnvironment = false;
     [SerializeField]
+    private bool makeNavmesh = true;
+    [SerializeField]
     private ThemeList treeList;
 
     [SerializeField]
@@ -120,21 +122,26 @@ public class GenerateIsland : MonoBehaviour
 
         //Sets generated map
         createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
-
-        surface.BuildNavMesh();
+        if (makeNavmesh)
+        {
+            surface.BuildNavMesh();
+        }
 
         Debug.Log(nameGenerator.generateName());
     }
 
     void Update()
     {
-        // It takes some time for the navMesh to update based on the new island.
-        // if (updateNavMeshTimer > 0)
-        // {
-        //     surface.UpdateNavMesh(surface.navMeshData);
-        //     updateNavMeshTimer--;
-        // }
-        surface.UpdateNavMesh(surface.navMeshData);
+        if (makeNavmesh)
+        {
+            // It takes some time for the navMesh to update based on the new island.
+            // if (updateNavMeshTimer > 0)
+            // {
+            //     surface.UpdateNavMesh(surface.navMeshData);
+            //     updateNavMeshTimer--;
+            // }
+            surface.UpdateNavMesh(surface.navMeshData);
+        }
 
         if (Input.GetButtonDown("Regenerate"))
         {
