@@ -141,11 +141,11 @@ public static class IslandGeneratorTesting
         }
     }
 
-    public static void drawTileset(List<TilePiece> tiles, Vector3 startingLocation, int tileSize, int tileCount)
+    public static void drawTileset(List<TilePiece> tiles, Vector3 startingLocation, int tileSize)
     {
         float zStart = startingLocation.z;
         startingLocation.x -= tileSize;
-        for (int o = 1; o < tileCount; o++)
+        for (int o = 1; o < tiles.Count; o++)
         {
             TilePiece currentPiece = tiles[o];
             GameObject newlyCreatedTile = Object.Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);

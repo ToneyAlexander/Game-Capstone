@@ -15,7 +15,15 @@ public class NameGenerator : ScriptableObject
         TextAsset suffixFile = Resources.Load<TextAsset>("suffixes");
 
         infixes = infixFile.text.Split('\n');
+        for(int i = 0; i < infixes.Length; i++)
+        {
+            infixes[i] = infixes[i].Replace("\r", "");
+        }
         suffixes = suffixFile.text.Split('\n');
+        for (int i = 0; i < suffixes.Length; i++)
+        {
+            suffixes[i] = suffixes[i].Replace("\r", "");
+        }
 
         usedNames = new HashSet<string>();
     }
