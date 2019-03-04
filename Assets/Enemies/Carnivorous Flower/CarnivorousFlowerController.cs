@@ -28,7 +28,7 @@ public class CarnivorousFlowerController : EnemyController
 		// Initial animation
 		animator.SetBool("Walk Forward", false);
 		animator.SetBool("Walk Backward", false);
-		animator.SetBool("Strafe Left", false);
+		animator.SetBool("Strafe left", false);
 		animator.SetBool("Strafe Right", false);
 		animator.SetBool("Sleeping", true);
 	}
