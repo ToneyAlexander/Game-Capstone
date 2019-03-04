@@ -22,7 +22,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
         ttl -= Time.deltaTime;
         if(ttl < 0)
         {
-            //Debug.Log("Destoryed due to ttl");
+            Debug.Log("Destoryed due to ttl");
             Destroy(gameObject);
         }
     }

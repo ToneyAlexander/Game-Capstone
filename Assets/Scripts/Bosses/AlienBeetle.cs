@@ -137,9 +137,9 @@ public class AlienBeetle : MonoBehaviour
         pbh.speed = 9f + Level/5;
         Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, false, true);
         pbh.dmg = stats.RealDamage(dmg);
-        pbh.ttl = 8f + Level/1.5f;
+        pbh.ttl = 5f /*+ Level/2f*/;//had to remove scaling due to fixed duration of projectile particle system.
         TrackingBehave tbh = obj.GetComponent<TrackingBehave>();
-        tbh.RotSpeed = 15f;
+        tbh.RotSpeed = 2.5f + Level/5f;
         tbh.Target = player;
 
 

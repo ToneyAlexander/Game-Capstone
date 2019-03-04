@@ -14,7 +14,7 @@ public class TrackingBehave : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         var lookPos = Target.transform.position - transform.position;
         lookPos.y = 0;
