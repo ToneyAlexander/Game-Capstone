@@ -20,6 +20,7 @@ namespace CCC.Inputs
         [SerializeField]
         private InputManager inputManager;
 
+        #region MonoBehaviour Messages
         private void Awake()
         {
             destinationMover = GetComponent<IDestinationMover>();
@@ -45,25 +46,10 @@ namespace CCC.Inputs
                     {
                         Vector3 destination = 
                             mousePositionDetector.CalculateWorldPosition();
-
-                        // MousePositionDetector returns 
-                        // Vector3.negativeInfinity when the mouse pointer is 
-                        // either over an EventSystem object or when the ray 
-                        // cast from the camera to it does not collide with a 
-                        // GameObject in the scene. So, we have to check it 
-                        // here. If destination is equal to 
-                        // Vector3.negativeInfinity then we don't want to have 
-                        // the player move since they shouldn't anyways. The 
-                        // only problem is that Vector3's operator== does not 
-                        // return true when comparing Vector3.negativeInfinity 
-                        // to itself. So, we have to compare each component to 
-                        // the components of Vector3.negativeInfinity. It is 
-                        // safe to do this here without Mathf.Approximately 
-                        // because Vector3.negativeInfinity always has the same 
-                        // component values.
-                        if (destination.x != Vector3.negativeInfinity.x &&
-                            destination.y != Vector3.negativeInfinity.y &&
-                            destination.z != Vector3.negativeInfinity.z)
+                            
+                        // Only move if destination is valid (not clicked on 
+                        // the void).
+                        if (mousePositionDetector.IsValid(destination))
                         {
                             inputManager.HandleMouseButtonDown(
                                 button,
@@ -75,5 +61,6 @@ namespace CCC.Inputs
                 }
             }
         }
+        #endregion
     }
 }
