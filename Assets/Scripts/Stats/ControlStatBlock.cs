@@ -82,7 +82,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.HealthRegen = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
-        stats.MoveSpeed = 10f;
+        stats.MoveSpeed = 5f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
         stats.AttackSpeed = 1f;

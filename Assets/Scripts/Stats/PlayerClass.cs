@@ -59,58 +59,61 @@ public class PlayerClass : MonoBehaviour
         {
             takenPerks.Add(p);
             stats.StatsChanged();
-            foreach (AbilityPrototype a in p.grants)
+            if (abilities != null && abilDict != null)
             {
-                Ability instA = a.Instance;
-                abilities.Set.Add(instA.AbilityName, instA);
-                Debug.Log("Abil set len: "+abilities.Set.Count);
-                //TODO: repalce with ui thing
-                if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
+                foreach (AbilityPrototype a in p.grants)
                 {
-                    abilDict.SetSlotAbility(AbilitySlot.One, instA);
-                    AddAbilityToParent(gameObject, instA.TypeString);
-                } else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
-                {
-                    abilDict.SetSlotAbility(AbilitySlot.Two, instA);
-                    AddAbilityToParent(gameObject, instA.TypeString);
-                } else if(abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
-                {
-                    abilDict.SetSlotAbility(AbilitySlot.Three, instA);
-                    AddAbilityToParent(gameObject, instA.TypeString);
-                } else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
-                {
-                    abilDict.SetSlotAbility(AbilitySlot.Four, instA);
-                    AddAbilityToParent(gameObject, instA.TypeString);
-                } else if(abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
-                {
-                    abilDict.SetSlotAbility(AbilitySlot.Five, instA);
-                    AddAbilityToParent(gameObject, instA.TypeString);
+                    Ability instA = a.Instance;
+                    abilities.Set.Add(instA.AbilityName, instA);
+                    Debug.Log("Abil set len: " + abilities.Set.Count);
+                    //TODO: repalce with ui thing
+                    if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
+                    {
+                        abilDict.SetSlotAbility(AbilitySlot.One, instA);
+                        AddAbilityToParent(gameObject, instA.TypeString);
+                    }
+                    else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
+                    {
+                        abilDict.SetSlotAbility(AbilitySlot.Two, instA);
+                        AddAbilityToParent(gameObject, instA.TypeString);
+                    }
+                    else if (abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
+                    {
+                        abilDict.SetSlotAbility(AbilitySlot.Three, instA);
+                        AddAbilityToParent(gameObject, instA.TypeString);
+                    }
+                    else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
+                    {
+                        abilDict.SetSlotAbility(AbilitySlot.Four, instA);
+                        AddAbilityToParent(gameObject, instA.TypeString);
+                    }
+                    else if (abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
+                    {
+                        abilDict.SetSlotAbility(AbilitySlot.Five, instA);
+                        AddAbilityToParent(gameObject, instA.TypeString);
+                    }
                 }
-            }
-            foreach (AbilityModifier aMod in p.Changes)
-            {
-                if (abilities.Set.ContainsKey(aMod.AbilityName)) {
-                    Ability abil = abilities.Set[aMod.AbilityName];
-                    Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
-                    stat.Value += aMod.Value;
-                    Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
-                    abil.update = true;
-                } else
+                foreach (AbilityModifier aMod in p.Changes)
                 {
-                    Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
+                    if (abilities.Set.ContainsKey(aMod.AbilityName))
+                    {
+                        Ability abil = abilities.Set[aMod.AbilityName];
+                        Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
+                        stat.Value += aMod.Value;
+                        Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
+                        abil.update = true;
+                    }
+                    else
+                    {
+                        Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
+                    }
+
                 }
-                
             }
             return true;
         } else
         {
             return false;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
