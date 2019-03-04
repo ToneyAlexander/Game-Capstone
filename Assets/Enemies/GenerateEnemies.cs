@@ -5,32 +5,23 @@ using UnityEngine;
 public class GenerateEnemies : MonoBehaviour
 {
     public float spawnRange;
-    public GameObject meleeEnemy;
-    public int meleeNumber;
-    private GameObject[] meleeEnemies;
 
-    public GameObject rangedEnemy;
-    public int rangedNumber;
-    private GameObject[] rangedEnemies;
+    private int enemiesNumber;
+    private GameObject[] enemies;
+
+    public EnemiesList enemiesTypes;
 
     public void Start()
     {
-        meleeEnemies = new GameObject[meleeNumber];
-        for (int i = 0; i < meleeNumber; i++)
+        // Random number of enemies
+        enemiesNumber = Random.Range(1, 10);
+        enemies = new GameObject[enemiesNumber];
+        
+        for (int i = 0; i < enemiesNumber; i++)
         {
-            meleeEnemies[i] = Instantiate(meleeEnemy, RandomPos(), Quaternion.identity);
-            meleeEnemies[i].name = "Enemy " + (i + 1);
-
-            meleeEnemies[i].transform.parent = transform;
-        }
-
-        rangedEnemies = new GameObject[rangedNumber];
-        for (int i = 0; i < rangedNumber; i++)
-        {
-            rangedEnemies[i] = Instantiate(rangedEnemy, RandomPos(), Quaternion.identity);
-            rangedEnemies[i].name = "Enemy " + (i + 1);
-
-            rangedEnemies[i].transform.parent = transform;
+            int type = Random.Range(0, enemiesTypes.enemeisList.Count - 1);
+            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], RandomPos(), Quaternion.identity, transform);
+            enemies[i].name = "Enemy " + (i + 1);
         }
     }
 

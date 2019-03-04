@@ -280,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 569254535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -420,12 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRange: 15
-  meleeEnemy: {fileID: 5215939200856656837, guid: 4f03d76477aa744d4889a1a1dd42414b,
-    type: 3}
-  meleeNumber: 5
-  rangedEnemy: {fileID: 6061365448096428730, guid: fc91efea8b1814aae83dc06a0a4d4f3c,
-    type: 3}
-  rangedNumber: 5
+  enemiesTypes: {fileID: 11400000, guid: ff6e2745d3f5a4eb1b14b71bc5b6fa58, type: 2}
 --- !u!4 &1558376582
 Transform:
   m_ObjectHideFlags: 0

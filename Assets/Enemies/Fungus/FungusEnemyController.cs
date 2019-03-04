@@ -51,9 +51,8 @@ public class FungusEnemyController : EnemyController
         // Look at target (player character)
         transform.rotation = Quaternion.LookRotation(new Vector3((
 			playerPos - transform.position).x, 
-			transform.position.y, 
-			(playerPos - transform.position).z
-			).normalized);
+			0.0f,
+			(playerPos - transform.position).z));
 
 		// Stop and attack target (player character)
         agent.isStopped = true;
