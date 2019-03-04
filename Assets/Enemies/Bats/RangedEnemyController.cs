@@ -45,7 +45,10 @@ public class RangedEnemyController : EnemyController
     protected override void Attack(Vector3 playerPos)
     {
         // Look at target (player character)
-        transform.rotation = Quaternion.LookRotation((playerPos - transform.position).normalized);
+        transform.rotation = Quaternion.LookRotation(new Vector3((
+			playerPos - transform.position).x, 
+			0.0f,
+			(playerPos - transform.position).z));
 
         // Stop and attack target (player character)
         agent.isStopped = true;
