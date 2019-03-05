@@ -34,7 +34,10 @@ public class ControlStatBlock : MonoBehaviour
         if(!buffsToAdd.Contains(tb))
             buffsToAdd.Add(tb);
     }
-
+    public getStats()
+    {
+        return stats;
+    }
     void Awake()
     {
         stats = GetComponent<StatBlock>();
