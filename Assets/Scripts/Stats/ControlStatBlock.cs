@@ -34,7 +34,7 @@ public class ControlStatBlock : MonoBehaviour
         if(!buffsToAdd.Contains(tb))
             buffsToAdd.Add(tb);
     }
-    public getStats()
+    public StatBlock getStats()
     {
         return stats;
     }

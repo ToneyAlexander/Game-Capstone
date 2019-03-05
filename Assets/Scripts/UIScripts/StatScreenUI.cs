@@ -55,6 +55,10 @@ public class StatScreenUI : MonoBehaviour
         //Debug.Log(statlist);
         
         statlist.text = "Strength: " + stats.Str + "\nDexterity: " + stats.Dex + "\nMysticism: " + stats.Myst + "\nFortitude: " + stats.Fort;
+        StatBlock detailedStats = stats.getStats();
+        column1.text = "Health:"+ detailedStats.HealthBase + "\nHealth Regen: " + detailedStats.HealthRegen + "\nMelee Attack: " + detailedStats.MeleeAttack + "\n\nMove Speed: " + detailedStats.MoveSpeed + "\nAttack Speed" + detailedStats.MoveSpeed + "\nRanged Attack: " + detailedStats.RangedAttack;
+        column2.text = "Cooldown Reduction Mult: " + detailedStats.CdrMult + "\nSpell: " + detailedStats.Spell + "\n\nMagic Resistance" + detailedStats.MagicRes + "\nStatus Recovery" + detailedStats.StatusRec + "\nAffliction Resistance: " + +detailedStats.AfflictRes;
 
+        column3.text = "Armour: " + detailedStats.Armor + "\nDamage: " + detailedStats.Damage + "\nCrit Damage: " + detailedStats.CritDamage + "\nCrit Chance: " + detailedStats.CritChance;
     }
 }
