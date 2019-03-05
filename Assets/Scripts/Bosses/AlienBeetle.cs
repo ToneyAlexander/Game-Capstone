@@ -26,7 +26,7 @@ public class AlienBeetle : MonoBehaviour
     private float cooldown;
     private bool inUse;
     private int nextAttack;
-    public float arenaEndX, arenaEndZ, arenaStartX, arenaStartZ;
+    public Vector3 arenaStart, arenaEnd;
 
     void Awake()
     {
@@ -59,8 +59,8 @@ public class AlienBeetle : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         int projCast = 0;
-        float rangeX = (arenaEndX - arenaStartX) * 0.3f, rangeZ = (arenaEndZ - arenaStartZ) * 0.3f;
-        Vector3 target = new Vector3(Random.Range(arenaStartX+rangeX, arenaEndX-rangeX), 0, Random.Range(arenaStartZ+rangeZ, arenaEndZ-rangeZ)); ;
+        float rangeX = (arenaEnd.x - arenaStart.x) * 0.3f, rangeZ = (arenaEnd.z - arenaStart.z) * 0.3f;
+        Vector3 target = new Vector3(Random.Range(arenaStart.x+rangeX, arenaEnd.x-rangeX), arenaStart.y, Random.Range(arenaStart.z+rangeZ, arenaEnd.z-rangeZ)); ;
         while (projCast < rangeX*rangeZ/2)
         {
             ++projCast;

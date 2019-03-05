@@ -272,6 +272,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 74118580, guid: 6c6cde871684b094c830015bfc5ca234, type: 3}
+      propertyPath: arenaStart.x
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 74118580, guid: 6c6cde871684b094c830015bfc5ca234, type: 3}
+      propertyPath: arenaStart.z
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 74118580, guid: 6c6cde871684b094c830015bfc5ca234, type: 3}
+      propertyPath: arenaEnd.x
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 74118580, guid: 6c6cde871684b094c830015bfc5ca234, type: 3}
+      propertyPath: arenaEnd.z
+      value: 32
+      objectReference: {fileID: 0}
     - target: {fileID: 74118584, guid: 6c6cde871684b094c830015bfc5ca234, type: 3}
       propertyPath: Target
       value: 
@@ -746,6 +762,11 @@ PrefabInstance:
     - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5930947933053049379, guid: 4c255937a95562a44adca004445c95b2,
