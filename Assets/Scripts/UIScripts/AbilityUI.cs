@@ -94,29 +94,30 @@ public class AbilityUI : MonoBehaviour
     void AbilityOnClick(PointerEventData data)
     {
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
-       if (selected >= 1) { 
-            /*
-            {
+       if (selected >= 1) {
+
+            Ability ability = clicked.GetComponent<AbilityHolder>().ability;
             if (selected == 1)
             {
-                dict[AbilitySlot.One] = clicked.GetComponent<AbilityHolder>().ability;
+                    dict.SetSlotAbility(AbilitySlot.One, ability);
             }
             else if (selected == 2)
             {
-                dict[AbilitySlot.Two] = clicked.GetComponent<AbilityHolder>().ability;
-            }
+                    dict.SetSlotAbility(AbilitySlot.Two, ability);
+                }
             else if (selected == 3)
             {
-                dict[AbilitySlot.Three] = clicked.GetComponent<AbilityHolder>().ability;
-            }
+                    dict.SetSlotAbility(AbilitySlot.Three, ability);
+                }
             else if (selected == 4)
             {
-                dict[AbilitySlot.Four] = clicked.GetComponent<AbilityHolder>().ability;
-            }
+                    dict.SetSlotAbility(AbilitySlot.Four, ability);
+                }
             else if (selected == 5)
             {
-                dict[AbilitySlot.Five] = clicked.GetComponent<AbilityHolder>().ability;
-            }*/
+                    dict.SetSlotAbility(AbilitySlot.Five, ability);
+            }
+                selected = -1;
         }
     }
     void SlotOnClick(PointerEventData data)
