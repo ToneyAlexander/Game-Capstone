@@ -17,7 +17,10 @@ public class GenerateIsland : MonoBehaviour
 
     [SerializeField]
     private NameGenerator nameGenerator;
-    
+
+	[SerializeField]
+	private IslandNameController islandNameDisplay;
+
     [SerializeField]
     private NavMeshSurface surface;
     private float updateNavMeshTimer = 0f;
@@ -126,9 +129,11 @@ public class GenerateIsland : MonoBehaviour
         {
             surface.BuildNavMesh();
         }
+		string islandName = nameGenerator.generateName();
+		Debug.Log(islandName);
+		islandNameDisplay.DisplayName(islandName);
 
-        Debug.Log(nameGenerator.generateName());
-    }
+	}
 
     void Update()
     {
@@ -158,7 +163,9 @@ public class GenerateIsland : MonoBehaviour
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
             updateNavMeshTimer = 500;
-            Debug.Log(nameGenerator.generateName());
+            string islandName = nameGenerator.generateName();
+		    Debug.Log(islandName);
+		    islandNameDisplay.DisplayName(islandName);
         }
         else if (Input.GetButtonDown("Terrain"))
         {
