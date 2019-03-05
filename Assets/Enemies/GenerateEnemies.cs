@@ -16,13 +16,14 @@ public class GenerateEnemies : MonoBehaviour
         spawnRange = 10f;
         
         // Random number of enemies
-        enemiesNumber = Random.Range(1, 10);
+        // enemiesNumber = Random.Range(1, 3);
+        enemiesNumber = 1;
         enemies = new GameObject[enemiesNumber];
         
         for (int i = 0; i < enemiesNumber; i++)
         {
             int type = Random.Range(0, enemiesTypes.enemeisList.Count - 1);
-            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], RandomPos(), Quaternion.identity, transform);
+            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], transform.position, Quaternion.identity, transform);
             enemies[i].name = "Enemy " + (i + 1);
         }
     }
