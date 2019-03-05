@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require:
   - {fileID: 11400000, guid: 4655c2615f71f30449553d7288b0ad74, type: 2}
-  BlockedBy: []
-  Children: []
-  Blocks: []
+  BlockedBy:
+  - {fileID: 11400000, guid: 63c1742e717d8fd499f59aa9231a4b10, type: 2}
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
+  - {fileID: 11400000, guid: 8f69c94ce8d19de489bae170de1ad8a5, type: 2}
+  Children:
+  - {fileID: 11400000, guid: 9bf65f87a7a46fe44aca6f82ed2d2593, type: 2}
+  - {fileID: 11400000, guid: 01b8dff616e8f5d49a23674d28ced589, type: 2}
+  Blocks:
+  - {fileID: 11400000, guid: 63c1742e717d8fd499f59aa9231a4b10, type: 2}
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
+  - {fileID: 11400000, guid: 8f69c94ce8d19de489bae170de1ad8a5, type: 2}
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: 03cb56f92f0d86f4d824620423c952e6, type: 2}

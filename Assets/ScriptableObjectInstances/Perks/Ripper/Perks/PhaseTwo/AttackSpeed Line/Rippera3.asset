@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Rippera3
   m_EditorClassIdentifier: 
   Require: []
-  BlockedBy: []
-  Children: []
+  BlockedBy:
+  - {fileID: 11400000, guid: e0f2508ef5975df4eaa9ee1ef36f5671, type: 2}
+  Children:
+  - {fileID: 11400000, guid: 4df44e65a99a3264ca6f23462e5dcf35, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []

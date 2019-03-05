@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CCC.GameManagement.GameStates;
+using CCC.GameManagement;
 
 public class MaritimeController : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class MaritimeController : MonoBehaviour
     public GameObject prefab;
     public ThemeDictionary themes;
     public NameGenerator nameGen;
+    private PlayIslandGameStateChanger playIslandGameStateChanger;
+
 
     //  public List<Vector3> islandpos = new List<>
     // Start is called before the first frame update\
@@ -32,7 +36,10 @@ public class MaritimeController : MonoBehaviour
     int nums;
     float tolerance = 15.0f;
     public List<Island> islands = new List<Island>();
-
+    private void Awake()
+    {
+        playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
+    }
     void Start()
     {
        float nums = Mathf.Floor(Random.Range(minnum, maxnum));
@@ -56,6 +63,10 @@ public class MaritimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            playIslandGameStateChanger.ChangeGameState();
+
+        }
     }
 }
