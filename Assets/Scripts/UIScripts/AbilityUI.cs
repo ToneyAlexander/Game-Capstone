@@ -58,6 +58,7 @@ public class AbilityUI : MonoBehaviour
             if (holder.transform.GetChild(i).name.Equals("Abilities"))
             {
                 storedAbils = holder.transform.GetChild(i).gameObject;
+
             }
 
         }
@@ -67,6 +68,14 @@ public class AbilityUI : MonoBehaviour
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
             entry.callback.AddListener((eventData) => { SlotOnClick((PointerEventData)eventData); });
+            ev.triggers.Add(entry);
+        }
+        for (int i = 0; i < storedAbils.GetComponentsInChildren<EventTrigger>().Length; i++)
+        {
+            EventTrigger ev = storedAbils.transform.GetChild(i).GetComponent<EventTrigger>();
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            entry.callback.AddListener((eventData) => { AbilityOnClick((PointerEventData)eventData); });
             ev.triggers.Add(entry);
         }
     }
@@ -94,10 +103,12 @@ public class AbilityUI : MonoBehaviour
     }
     void AbilityOnClick(PointerEventData data)
     {
+        Debug.Log("za warudo");
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
-       if (selected >= 1) {
+        Ability ability = clicked.GetComponent<AbilityHolder>().ability;
+        if (selected >= 1 && ability.AbilityName != "Null Ability") {
 
-            Ability ability = clicked.GetComponent<AbilityHolder>().ability;
+            
             if (selected == 1)
             {
                     dict.SetSlotAbility(AbilitySlot.One, ability);
@@ -118,8 +129,9 @@ public class AbilityUI : MonoBehaviour
             {
                     dict.SetSlotAbility(AbilitySlot.Five, ability);
             }
-                selected = -1;
+                
         }
+        selected = -1;
     }
     void SlotOnClick(PointerEventData data)
     {
