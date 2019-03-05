@@ -61,7 +61,7 @@ public class CameraController : MonoBehaviour
         }
         Vector3 position = player.transform.position;
         position += cameras[direction];
-        transform.position = Vector3.MoveTowards(transform.position, position, 30 * Time.deltaTime) ;
+        transform.position = Vector3.MoveTowards(transform.position, position, 60 * Time.deltaTime) ;
         transform.LookAt(player.transform);
         Vector3 offset = new Vector3();
         Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);

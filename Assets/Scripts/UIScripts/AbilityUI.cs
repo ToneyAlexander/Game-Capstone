@@ -28,7 +28,6 @@ public class AbilityUI : MonoBehaviour
                 
                 for (int j = 0; j < slotsHolder.transform.childCount; j++)
                 {
-                    Debug.Log("fuck this" + slotsHolder.transform.GetChild(j).name);
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot1"))
                     {
                         statSlots[0] = slotsHolder.transform.GetChild(j).gameObject;
@@ -103,7 +102,6 @@ public class AbilityUI : MonoBehaviour
     }
     void AbilityOnClick(PointerEventData data)
     {
-        Debug.Log("za warudo");
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
         Ability ability = clicked.GetComponent<AbilityHolder>().ability;
         if (selected >= 1 && ability.AbilityName != "Null Ability") {
@@ -119,11 +117,11 @@ public class AbilityUI : MonoBehaviour
                 }
             else if (selected == 3)
             {
-                    dict.SetSlotAbility(AbilitySlot.Three, ability);
+                    dict.SetSlotAbility(AbilitySlot.Four, ability);
                 }
             else if (selected == 4)
             {
-                    dict.SetSlotAbility(AbilitySlot.Four, ability);
+                    dict.SetSlotAbility(AbilitySlot.Three, ability);
                 }
             else if (selected == 5)
             {
