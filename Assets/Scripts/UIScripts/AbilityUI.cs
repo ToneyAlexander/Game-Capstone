@@ -85,6 +85,7 @@ public class AbilityUI : MonoBehaviour
         foreach(KeyValuePair<string, Ability> abil in fullSet.Set)
         {
             GameObject store = storedAbils.transform.GetChild(count).gameObject;
+            store.GetComponent<Image>().sprite = abil.Value.Icon;
             AbilityHolder x = store.GetComponent<AbilityHolder>();
             x.ability = abil.Value;
            // x = 

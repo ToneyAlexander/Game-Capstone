@@ -71,6 +71,7 @@ public class InfoMenuScript : MonoBehaviour
             }
             else if (transform.GetChild(i).name.Equals("AbilitySheet"))
             {
+                Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 abilities = gameObject.transform.GetChild(i).gameObject;
             }
             else if (transform.GetChild(i).name.Equals("Tabs"))
