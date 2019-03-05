@@ -7,6 +7,8 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
+    GameObject abilities;
+
 
     #region Toggle Tab Methods
     /// <summary>
@@ -16,6 +18,8 @@ public class InfoMenuScript : MonoBehaviour
     {
         inventory.SetActive(false);
         stats.SetActive(false);
+        abilities.SetActive(false);
+
         classinfo.SetActive(!tabs.activeSelf);
         tabs.SetActive(!tabs.activeSelf);
         ClassUI classui = classinfo.GetComponent<ClassUI>();
@@ -31,6 +35,7 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(!tabs.activeSelf);
         stats.SetActive(false);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
         tabs.SetActive(!tabs.activeSelf);
     }
 
@@ -42,6 +47,7 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(false);
         stats.SetActive(!tabs.activeSelf);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
         tabs.SetActive(!tabs.activeSelf);
     }
     #endregion
