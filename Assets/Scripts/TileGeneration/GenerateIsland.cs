@@ -7,7 +7,6 @@ using System.Security.Cryptography;
 public class GenerateIsland : MonoBehaviour
 {
     //TODO: OPTIMIZATIONS USING DATA STRUCTURES - DONT DO N^3 ALL THE TIME
-    //TODO: SWAP N AND M OH FUCK
 
     private int TILE_SIZE = 16;
     private int TILE_HEIGHT = 4;
@@ -126,8 +125,6 @@ public class GenerateIsland : MonoBehaviour
         {
             surface.BuildNavMesh();
         }
-
-        Debug.Log(nameGenerator.generateName());
     }
 
     void Update()
@@ -158,7 +155,6 @@ public class GenerateIsland : MonoBehaviour
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
             updateNavMeshTimer = 500;
-            Debug.Log(nameGenerator.generateName());
         }
         else if (Input.GetButtonDown("Terrain"))
         {
@@ -337,6 +333,20 @@ public class GenerateIsland : MonoBehaviour
         return rgb;
     }
 
+    private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, int tileCount, List<Vector2Int> updated)
+    {
+        island[beach.x, beach.y] = IslandTemplateUtilities.makeTile(beachID, tileCount);
+        updated.Add(beach);
+        island[land.x, land.y] = IslandTemplateUtilities.makeTile(33, tileCount);
+        updated.Add(land);
+        propagate(island, updated, index);
+    }
+
+    private void setupStart(Vector2Int start, Vector2Int firstFlat, bool[,][] island, int tileCount, List<Vector2Int> updated, int width)
+    {
+
+    }
+
     /*---------- Make and Draw the Island ----------*/
     private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
     {
@@ -351,26 +361,53 @@ public class GenerateIsland : MonoBehaviour
         //Guarantee that he'll have a beach
         //TODO: Places it at the top left - put other places later
         Vector2Int start = new Vector2Int();
-        Vector2Int end = new Vector2Int();
-        for (int i = 0; i < width; i++)
-        {
-            for (int j = 0; j < width; j++)
-            {
-                for(int k = 17; k <= 20; k++)
-                {
-                    //TODO: force beach two wide
-                    if (island[i, j][k])
-                    {
-                        island[i, j] = IslandTemplateUtilities.makeTile(k, tileCount);
-                        updated.Add(new Vector2Int(i, j));
-                        propagate(island, updated, index);
-                        start.x = i;
-                        start.y = j;
+        Vector2Int firstFlat = new Vector2Int();
+        //Don't look at edges - guaranteed to be water
 
-                        k = 21;
-                        j = width;
-                        i = width;
-                    }
+        //TODO: REFACTOR INTO METHOD
+        //setupStart(start, firstFlat, island, tileCount, updated, width);
+
+        for (int i = 1; i < width-1; i++)
+        {
+            for (int j = 1; j < width-1; j++)
+            {
+                start.x = i;
+                start.y = j;
+                if(island[i, j][17] && island[i - 1, j][33])
+                {
+                    firstFlat = new Vector2Int(i - 1, j);
+
+                    collapseStartLocation(start, 17, firstFlat, island, tileCount, updated);
+
+                    j = width;
+                    i = width;
+                }
+                else if (island[i, j][18] && island[i, j-1][33])
+                {
+                    firstFlat = new Vector2Int(i, j - 1);
+
+                    collapseStartLocation(start, 18, firstFlat, island, tileCount, updated);
+
+                    j = width;
+                    i = width;
+                }
+                else if (island[i, j][19] && island[i+1, j][33])
+                {
+                    firstFlat = new Vector2Int(i + 1, j);
+
+                    collapseStartLocation(start, 19, firstFlat, island, tileCount, updated);
+
+                    j = width;
+                    i = width;
+                }
+                else if (island[i, j][20] && island[i, j + 1][33])
+                {
+                    firstFlat = new Vector2Int(i, j + 1);
+
+                    collapseStartLocation(start, 20, firstFlat, island, tileCount, updated);
+
+                    j = width;
+                    i = width;
                 }
             }
         }
@@ -380,27 +417,54 @@ public class GenerateIsland : MonoBehaviour
         }
         placePlayerOnTileCentered(start.x, start.y, TILE_HEIGHT, tileSize);
 
-        //Decide on end point and collapse it TODO: (lighthouse, boss tile)
-        for (int i = width-1; i >= 0; i--)
+        HashSet<int> fourWayTiles = new HashSet<int>();
+        for(int i = 0; i < tiles.Count; i++)
         {
-            for (int j = width-1; j >= 0; j--)
+            if(tiles[index.indexToTile(i)].navigability[0] && tiles[index.indexToTile(i)].navigability[1] && tiles[index.indexToTile(i)].navigability[2] && tiles[index.indexToTile(i)].navigability[3])
             {
-                if (island[i, j][LAND_INDEX])
-                {
-                    island[i, j] = IslandTemplateUtilities.makeTile(LAND_INDEX, tileCount);
-                    updated.Add(new Vector2Int(i, j));
-                    propagate(island, updated, index);
-                    end.x = i;
-                    end.y = j;
-
-                    j = 0;
-                    i = 0;
-                }
+                fourWayTiles.Add(i);
             }
         }
-        //RAMP ISLANDS - FIND A TILE THAT CAN BE THE TALLEST STARTING AT BOTTOM AND SET THAT ONE TO TALLEST
 
-        //TODO: Navigability to end point
+        Dictionary<Vector2Int, Vector2Int> fullTreeBackpointers = new Dictionary<Vector2Int, Vector2Int>();
+        List<Vector2Int> leaves = new List<Vector2Int>();
+
+        //make tree from start to all tiles
+        //make end on leave
+        //then collapse everything
+        createFullTree(fullTreeBackpointers, leaves, firstFlat, island, fourWayTiles);
+
+        //Decide on end point and collapse it TODO: (lighthouse, boss tile)
+        //TODO: RAMP ISLANDS? - FIND A TILE THAT CAN BE THE TALLEST STARTING AT BOTTOM AND SET THAT ONE TO TALLEST
+        //pick random leaf
+        //follow back to start
+        Vector2Int end = leaves[Random.Range(0, leaves.Count-1)];
+        Vector2Int negative = new Vector2Int(-1, -1);
+
+        //create path
+        Vector2Int prev = end;
+        List<Vector2Int> path = new List<Vector2Int>();
+        while (!prev.Equals(negative))
+        {
+            for(int i = 0; i < island[prev.x, prev.y].Length; i++)
+            {
+                if(island[prev.x, prev.y][i] && !fourWayTiles.Contains(i))
+                {
+                    island[prev.x, prev.y][i] = false;
+                    updated.Add(prev);
+                }
+            }
+            path.Insert(0, prev);
+            prev = fullTreeBackpointers[prev];
+        }
+        propagate(island, updated, index);
+
+        placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize);
+
+        foreach (Vector2Int v in path)
+        {
+            placeMarkerOnTileCentered(v.x, v.y, TILE_HEIGHT, tileSize);
+        }
         //TODO: given a set of tiles and weights, normalize and pick one
         //TODO: give tiles weights
 
@@ -441,6 +505,59 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
             replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
             replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+        }
+    }
+
+    private void createFullTree(Dictionary<Vector2Int, Vector2Int> fullTreeBackpointers, List<Vector2Int> leaves, Vector2Int firstFlat, bool[,][] island, HashSet<int> fourWayTiles)
+    {
+        Queue<Vector2Int> locations = new Queue<Vector2Int>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        Queue<KeyValuePair<Vector2Int, Vector2Int>> tempBackpointers = new Queue<KeyValuePair<Vector2Int, Vector2Int>>();
+        Vector2Int negative = new Vector2Int(-1, -1);
+        tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(firstFlat, negative));
+        locations.Enqueue(firstFlat);
+        while (locations.Count > 0)
+        {
+            firstFlat = locations.Dequeue();
+            KeyValuePair<Vector2Int, Vector2Int> backPair = tempBackpointers.Dequeue();
+            if (!visited.Contains(firstFlat))
+            {
+                fullTreeBackpointers.Add(backPair.Key, backPair.Value);
+                visited.Add(firstFlat);
+                Vector2Int n = new Vector2Int(firstFlat.x, firstFlat.y - 1);
+                Vector2Int s = new Vector2Int(firstFlat.x, firstFlat.y + 1);
+                Vector2Int e = new Vector2Int(firstFlat.x + 1, firstFlat.y);
+                Vector2Int w = new Vector2Int(firstFlat.x - 1, firstFlat.y);
+                bool hasChildren = false;
+                if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
+                {
+                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
+                    locations.Enqueue(n);
+                    hasChildren = true;
+                }
+                if (!visited.Contains(s) && IslandTemplateUtilities.canBeTile(island[s.x, s.y], fourWayTiles))
+                {
+                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(s, firstFlat));
+                    locations.Enqueue(s);
+                    hasChildren = true;
+                }
+                if (!visited.Contains(e) && IslandTemplateUtilities.canBeTile(island[e.x, e.y], fourWayTiles))
+                {
+                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(e, firstFlat));
+                    locations.Enqueue(e);
+                    hasChildren = true;
+                }
+                if (!visited.Contains(w) && IslandTemplateUtilities.canBeTile(island[w.x, w.y], fourWayTiles))
+                {
+                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(w, firstFlat));
+                    locations.Enqueue(w);
+                    hasChildren = true;
+                }
+                if (!hasChildren)
+                {
+                    leaves.Add(firstFlat);
+                }
+            }
         }
     }
 
@@ -514,10 +631,37 @@ public class GenerateIsland : MonoBehaviour
         remy.transform.position = remyStart;
         remy.GetComponent<RemyMovement>().setDetination(remyStart);
     }
+    private void placePortalOnTileCentered(int x, int y, int height, int tileSize)
+    {
+        Vector3 arenaPosition = new Vector3(-30, 5, -30);
+        //TODO: make it the right height for right level, pass in id
+        //TODO: make an dactual tile, not hacky
+        GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
+        GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
+        GameObject boss = Instantiate(Resources.Load<GameObject>("BossBeetle/Boss Beetle"));
+        arena.transform.position = arenaPosition;
+        boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);
+        boss.transform.localScale = new Vector3(2, 2, 2);
+        teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height+1, x * tileSize);
+        teleporter.GetComponent<TeleportScript>().TargetX = -20;
+        teleporter.GetComponent<TeleportScript>().TargetY = 5;
+        teleporter.GetComponent<TeleportScript>().TargetZ = -20;
+
+        AlienBeetle b = boss.GetComponent<AlienBeetle>();
+        b.arenaEndX = arenaPosition.x + 32;
+        b.arenaEndZ = arenaPosition.x + 32;
+        b.arenaStartX = arenaPosition.x - 32;
+        b.arenaStartZ = arenaPosition.x - 32;
+    }
+    private void placeMarkerOnTileCentered(int x, int y, int height, int tileSize)
+    {
+        GameObject marker = Instantiate(Resources.Load<GameObject>("Marker"));
+        marker.transform.position = new Vector3(y * tileSize + tileSize / 2, height + 1, x * tileSize);
+    }
 
     /*---------- Terrain methods ----------*/
 
-	private void themePicker()
+    private void themePicker()
 	{
 		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
 		byte[] randomNumber = new byte[100];
@@ -748,6 +892,7 @@ public class GenerateIsland : MonoBehaviour
         List<float> combinedDistribution = new List<float>();
         heuristics.Add(plateauDistribution(unchosenIndices));
         heuristics.Add(increasingDistribution(unchosenIndices));
+        //heuristics.Add(navigabilityGuaranteeHeuristic(unchosenIndices));
         for (int i = 0; i < unchosenIndices.Count; i++)
         {
             combinedDistribution.Add(1.0f);
@@ -799,6 +944,52 @@ public class GenerateIsland : MonoBehaviour
                 probabilities.Add(prob);
             }
         }
+        return probabilities;
+    }
+    private List<float> navigabilityGuaranteeHeuristic(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        foreach (int TileID in unchosenIndices)
+        {
+            float value = 1.5f;
+            if(this.tiles[this.index.indexToTile(TileID)].navigability[0])
+            {
+                value *= value;
+            }
+            if (this.tiles[this.index.indexToTile(TileID)].navigability[1])
+            {
+                value *= value;
+            }
+            if (this.tiles[this.index.indexToTile(TileID)].navigability[2])
+            {
+                value *= value;
+            }
+            if (this.tiles[this.index.indexToTile(TileID)].navigability[3])
+            {
+                value *= value;
+            }
+            probabilities.Add(value);
+        }
+        return probabilities;
+        int maxIndex = 0;
+        int maxCount = 0;
+        for (int i = 0; i < unchosenIndices.Count; i++)
+        {
+            int count = 0;
+            for(int j = 0; j < 4; j++)
+            {
+                if (this.tiles[this.index.indexToTile(unchosenIndices[i])].navigability[j])
+                {
+                    count++;
+                }
+            }
+            if(count > maxCount)
+            {
+                maxCount = count;
+                maxIndex = i;
+            }
+        }
+        probabilities[maxIndex] = 1.0f;
         return probabilities;
     }
 

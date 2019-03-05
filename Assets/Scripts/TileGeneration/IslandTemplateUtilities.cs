@@ -147,6 +147,17 @@ public static class IslandTemplateUtilities
     {
         return countTrues(Slot) == 1 && Slot[TileID] == true;
     }
+    public static bool canBeTile(bool[] Slot, HashSet<int> TileIDs)
+    {
+        foreach(int i in TileIDs)
+        {
+            if (Slot[i])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     //https://en.wikipedia.org/wiki/Midpoint_circle_algorithm
     public static void drawcircle(int x0, int y0, int radius, bool[,][] island, List<Vector2Int> updated, int tileCount, int floodIndex)
