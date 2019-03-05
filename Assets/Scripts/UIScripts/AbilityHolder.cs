@@ -5,7 +5,11 @@ using CCC.Abilities;
 
 public class AbilityHolder : MonoBehaviour
 {
-    public AbilityPrototype ability;
+    public Ability ability;
     public AbilityPrototype defaultAbility;
+    void Start()
+    {
+        ability = new Ability(defaultAbility);
+    }
   
 }

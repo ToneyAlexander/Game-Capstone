@@ -69,6 +69,10 @@ public class InfoMenuScript : MonoBehaviour
             {
                classinfo = gameObject.transform.GetChild(i).gameObject;
             }
+            else if (transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                abilities = gameObject.transform.GetChild(i).gameObject;
+            }
             else if (transform.GetChild(i).name.Equals("Tabs"))
             {
                 tabs = gameObject.transform.GetChild(i).gameObject;
@@ -106,12 +110,22 @@ public class InfoMenuScript : MonoBehaviour
                 ev.triggers.Add(entry);
                 
             }
-           
+            if (tabs.transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((eventData) => { OnClickAbility(); });
+                ev.triggers.Add(entry);
+
+            }
+
         }
         tabs.SetActive(false);
         stats.SetActive(false);
         inventory.SetActive(false);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
     }
     #endregion
 
@@ -121,6 +135,7 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(false);
         inventory.SetActive(true);
+        abilities.SetActive(false);
     }
     void OnClickClass()
     {
@@ -128,6 +143,7 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(true);
         inventory.SetActive(false);
+        abilities.SetActive(false);
         ClassUI classui =  classinfo.GetComponent<ClassUI>();
         classui.updatePlayerClass();
         classui.reloadGraph();
@@ -140,5 +156,14 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(true);
         classinfo.SetActive(false);
         inventory.SetActive(false);
+        abilities.SetActive(false);
+    }
+    void OnClickAbility()
+    {
+        Debug.Log("showing Inventory");
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        inventory.SetActive(false);
+        abilities.SetActive(true);
     }
 }

@@ -22,6 +22,7 @@ public class Ability
     public GameObject Prefab;
     public List<Stat> Stats;
 
+
     private Ability()
     {
         

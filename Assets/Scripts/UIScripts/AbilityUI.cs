@@ -9,20 +9,26 @@ public class AbilityUI : MonoBehaviour
 {
     GameObject holder;
     GameObject slotsHolder;
+    GameObject storedAbils;
     GameObject[] statSlots = new GameObject[5];
     int selected = -1;
     public AbilitySlotDictionary dict;
+    public AbilitySet fullSet;
     // Start is called before the first frame update
     void Start()
     {
         holder = transform.GetChild(0).gameObject;
         for (int i = 0; i < holder.transform.childCount; i++)
         {
+            
             if (holder.transform.GetChild(i).name.Equals("Slots"))
             {
-                slotsHolder = transform.GetChild(i).gameObject;
+                
+                slotsHolder = holder.transform.GetChild(i).gameObject;
+                
                 for (int j = 0; j < slotsHolder.transform.childCount; j++)
                 {
+                    Debug.Log("fuck this" + slotsHolder.transform.GetChild(j).name);
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot1"))
                     {
                         statSlots[0] = slotsHolder.transform.GetChild(j).gameObject;
@@ -49,6 +55,10 @@ public class AbilityUI : MonoBehaviour
                 }
 
             }
+            if (holder.transform.GetChild(i).name.Equals("Abilities"))
+            {
+                storedAbils = holder.transform.GetChild(i).gameObject;
+            }
 
         }
         for (int i = 0; i < statSlots.Length; i++)
@@ -71,14 +81,43 @@ public class AbilityUI : MonoBehaviour
         {
            statSlots[selected - 1].GetComponent<Image>().color = Color.red;
         }
+        int count = 0;
+        foreach(KeyValuePair<string, Ability> abil in fullSet.Set)
+        {
+            GameObject store = storedAbils.transform.GetChild(count).gameObject;
+            AbilityHolder x = store.GetComponent<AbilityHolder>();
+            x.ability = abil.Value;
+           // x = 
+            count++;
+        }
     }
     void AbilityOnClick(PointerEventData data)
     {
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
-       if (selected >= 1)
+       if (selected >= 1) { 
+            /*
             {
-               //dict.SetAbility() 
+            if (selected == 1)
+            {
+                dict[AbilitySlot.One] = clicked.GetComponent<AbilityHolder>().ability;
             }
+            else if (selected == 2)
+            {
+                dict[AbilitySlot.Two] = clicked.GetComponent<AbilityHolder>().ability;
+            }
+            else if (selected == 3)
+            {
+                dict[AbilitySlot.Three] = clicked.GetComponent<AbilityHolder>().ability;
+            }
+            else if (selected == 4)
+            {
+                dict[AbilitySlot.Four] = clicked.GetComponent<AbilityHolder>().ability;
+            }
+            else if (selected == 5)
+            {
+                dict[AbilitySlot.Five] = clicked.GetComponent<AbilityHolder>().ability;
+            }*/
+        }
     }
     void SlotOnClick(PointerEventData data)
     {
