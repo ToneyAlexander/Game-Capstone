@@ -74,7 +74,6 @@ public class AlienBeetle : MonoBehaviour
         }
         inUse = false;
         float choice = Random.Range(0f, 1f);
-        Debug.Log(choice);
         if(choice < 0.5)
         {
             nextAttack = 1;
@@ -121,7 +120,6 @@ public class AlienBeetle : MonoBehaviour
         animator.SetBool("attack2bool", false);
         inUse = false;
         float choice = Random.Range(0f, 1f);
-        Debug.Log(choice);
         if (choice < 0.6)
         {
             nextAttack = 2;
@@ -162,7 +160,6 @@ public class AlienBeetle : MonoBehaviour
         inUse = false;
         animator.SetBool("attack2bool", false);
         float choice = Random.Range(0f, 1f);
-        Debug.Log(choice);
         if (choice < 0.8)
         {
             nextAttack = 0;
