@@ -20,6 +20,8 @@ public class IslandNameController : MonoBehaviour
 	public void DisplayName(string islandName)
 	{
 		islandText.text = islandName;
+		islandText.color = new Color(1, 1, 1, 0);
+		panel.color = new Color(0, 0, 0, 0);
 		StartCoroutine(FadeInSegment(.50f));
 		StartCoroutine(FadeAwaySegment(3f));
 	}
