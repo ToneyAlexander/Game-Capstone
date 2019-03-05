@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-[RequireComponent(typeof(PlayIslandGameStateChanger))]
 public class ClassSelection : MonoBehaviour
 {
     // Start is called before the first frame update

@@ -7,6 +7,8 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
+    GameObject abilities;
+
 
     #region Toggle Tab Methods
     /// <summary>
@@ -16,6 +18,8 @@ public class InfoMenuScript : MonoBehaviour
     {
         inventory.SetActive(false);
         stats.SetActive(false);
+        abilities.SetActive(false);
+
         classinfo.SetActive(!tabs.activeSelf);
         tabs.SetActive(!tabs.activeSelf);
         ClassUI classui = classinfo.GetComponent<ClassUI>();
@@ -31,6 +35,7 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(!tabs.activeSelf);
         stats.SetActive(false);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
         tabs.SetActive(!tabs.activeSelf);
     }
 
@@ -42,6 +47,7 @@ public class InfoMenuScript : MonoBehaviour
         inventory.SetActive(false);
         stats.SetActive(!tabs.activeSelf);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
         tabs.SetActive(!tabs.activeSelf);
     }
     #endregion
@@ -62,6 +68,10 @@ public class InfoMenuScript : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("ClassScreen"))
             {
                classinfo = gameObject.transform.GetChild(i).gameObject;
+            }
+            else if (transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                abilities = gameObject.transform.GetChild(i).gameObject;
             }
             else if (transform.GetChild(i).name.Equals("Tabs"))
             {
@@ -100,12 +110,22 @@ public class InfoMenuScript : MonoBehaviour
                 ev.triggers.Add(entry);
                 
             }
-           
+            if (tabs.transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((eventData) => { OnClickAbility(); });
+                ev.triggers.Add(entry);
+
+            }
+
         }
         tabs.SetActive(false);
         stats.SetActive(false);
         inventory.SetActive(false);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
     }
     #endregion
 
@@ -115,6 +135,7 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(false);
         inventory.SetActive(true);
+        abilities.SetActive(false);
     }
     void OnClickClass()
     {
@@ -122,6 +143,7 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(true);
         inventory.SetActive(false);
+        abilities.SetActive(false);
         ClassUI classui =  classinfo.GetComponent<ClassUI>();
         classui.updatePlayerClass();
         classui.reloadGraph();
@@ -134,5 +156,14 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(true);
         classinfo.SetActive(false);
         inventory.SetActive(false);
+        abilities.SetActive(false);
+    }
+    void OnClickAbility()
+    {
+        Debug.Log("showing Inventory");
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        inventory.SetActive(false);
+        abilities.SetActive(true);
     }
 }

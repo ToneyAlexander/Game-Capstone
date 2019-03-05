@@ -16,7 +16,10 @@ public class GenerateIsland : MonoBehaviour
 
     [SerializeField]
     private NameGenerator nameGenerator;
-    
+
+	[SerializeField]
+	private IslandNameController islandNameDisplay;
+
     [SerializeField]
     private NavMeshSurface surface;
     private float updateNavMeshTimer = 0f;
@@ -125,7 +128,11 @@ public class GenerateIsland : MonoBehaviour
         {
             surface.BuildNavMesh();
         }
-    }
+		string islandName = nameGenerator.generateName();
+		Debug.Log(islandName);
+		islandNameDisplay.DisplayName(islandName);
+
+	}
 
     void Update()
     {
@@ -155,6 +162,9 @@ public class GenerateIsland : MonoBehaviour
             }
             createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
             updateNavMeshTimer = 500;
+            string islandName = nameGenerator.generateName();
+		    Debug.Log(islandName);
+		    islandNameDisplay.DisplayName(islandName);
         }
         else if (Input.GetButtonDown("Terrain"))
         {
@@ -633,7 +643,7 @@ public class GenerateIsland : MonoBehaviour
     }
     private void placePortalOnTileCentered(int x, int y, int height, int tileSize)
     {
-        Vector3 arenaPosition = new Vector3(-30, 5, -30);
+        Vector3 arenaPosition = new Vector3(-30, 50, -30);
         //TODO: make it the right height for right level, pass in id
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
@@ -642,16 +652,16 @@ public class GenerateIsland : MonoBehaviour
         arena.transform.position = arenaPosition;
         boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);
         boss.transform.localScale = new Vector3(2, 2, 2);
+        boss.GetComponent<TrackingBehave>().Target = this.remy;
         teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height+1, x * tileSize);
-        teleporter.GetComponent<TeleportScript>().TargetX = -20;
-        teleporter.GetComponent<TeleportScript>().TargetY = 5;
-        teleporter.GetComponent<TeleportScript>().TargetZ = -20;
+
+        teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
+        teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
+        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z;
 
         AlienBeetle b = boss.GetComponent<AlienBeetle>();
-        b.arenaEndX = arenaPosition.x + 32;
-        b.arenaEndZ = arenaPosition.x + 32;
-        b.arenaStartX = arenaPosition.x - 32;
-        b.arenaStartZ = arenaPosition.x - 32;
+        b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);
+        b.arenaStart = new Vector3(arenaPosition.x - 32, arenaPosition.y, arenaPosition.z - 16);
     }
     private void placeMarkerOnTileCentered(int x, int y, int height, int tileSize)
     {
@@ -970,26 +980,6 @@ public class GenerateIsland : MonoBehaviour
             }
             probabilities.Add(value);
         }
-        return probabilities;
-        int maxIndex = 0;
-        int maxCount = 0;
-        for (int i = 0; i < unchosenIndices.Count; i++)
-        {
-            int count = 0;
-            for(int j = 0; j < 4; j++)
-            {
-                if (this.tiles[this.index.indexToTile(unchosenIndices[i])].navigability[j])
-                {
-                    count++;
-                }
-            }
-            if(count > maxCount)
-            {
-                maxCount = count;
-                maxIndex = i;
-            }
-        }
-        probabilities[maxIndex] = 1.0f;
         return probabilities;
     }
 

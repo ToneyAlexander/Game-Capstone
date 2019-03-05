@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Require:
   - {fileID: 11400000, guid: bc58d042a08eeeb4faed25010c85ddff, type: 2}
-  BlockedBy: []
-  Children: []
-  Blocks: []
+  BlockedBy:
+  - {fileID: 11400000, guid: bd7eba5cc9ee3bb4e94f8b038c076e67, type: 2}
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
+  - {fileID: 11400000, guid: 8f69c94ce8d19de489bae170de1ad8a5, type: 2}
+  Children:
+  - {fileID: 11400000, guid: 9bf65f87a7a46fe44aca6f82ed2d2593, type: 2}
+  - {fileID: 11400000, guid: 9dff5d0c46cb2af43b38fbfb6b2119d3, type: 2}
+  Blocks:
+  - {fileID: 11400000, guid: bd7eba5cc9ee3bb4e94f8b038c076e67, type: 2}
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
+  - {fileID: 11400000, guid: 8f69c94ce8d19de489bae170de1ad8a5, type: 2}
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
@@ -25,5 +33,5 @@ MonoBehaviour:
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 260, y: 240}
   sprite: {fileID: 0}

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Ripperd1
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 8f69c94ce8d19de489bae170de1ad8a5, type: 2}
+  - {fileID: 11400000, guid: 72298f2972ab66b478b3488476bacc9a, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: b48f4459a6ca5e245b48c834aae1d732, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
@@ -22,5 +25,5 @@ MonoBehaviour:
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 310, y: 100}
   sprite: {fileID: 0}

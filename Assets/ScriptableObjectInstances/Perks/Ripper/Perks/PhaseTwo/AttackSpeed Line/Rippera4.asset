@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Rippera4
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: fbcb5506ecbe88b4db267c7b1d172875, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
@@ -22,5 +23,5 @@ MonoBehaviour:
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
+  uiCoords: {x: 550, y: 180}
   sprite: {fileID: 0}
