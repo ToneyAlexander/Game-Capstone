@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Ripperms2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: f920ae222c9c2c247b6aa7521d0ed259, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 0e11ea93dcea4ec4c9f8e28491fd77ab, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
