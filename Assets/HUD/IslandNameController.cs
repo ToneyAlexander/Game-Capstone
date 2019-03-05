@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class IslandNameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 		GameObject temp = this.transform.GetChild(0).gameObject;
 		panel = temp.GetComponent<Image>();
