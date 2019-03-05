@@ -64,7 +64,7 @@ public class AlienBeetle : MonoBehaviour
         while (projCast < rangeX*rangeZ/2)
         {
             ++projCast;
-            Vector3 pos = new Vector3(target.x + Random.Range(-rangeX, rangeX), 0, target.z + Random.Range(-rangeZ, rangeZ));
+            Vector3 pos = new Vector3(target.x + Random.Range(-rangeX, rangeX), target.y, target.z + Random.Range(-rangeZ, rangeZ));
             GameObject o = Instantiate(EggPrefab, pos, new Quaternion());
             EggBehave eb = o.GetComponent<EggBehave>();
             eb.ttl = 4.5f;

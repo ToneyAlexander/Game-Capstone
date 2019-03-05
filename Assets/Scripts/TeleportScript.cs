@@ -25,5 +25,9 @@ public class TeleportScript : MonoBehaviour
         {
             col.gameObject.transform.position = new Vector3(TargetX,TargetY,TargetZ);
         }
+
+        GameObject.Find("remy").GetComponent<RemyMovement>().setDetination(new Vector3(TargetX, TargetY, TargetZ));
+
+        GameObject.Find("Main Camera").transform.position = new Vector3(TargetX, TargetY + 16, TargetZ);
     }
 }
