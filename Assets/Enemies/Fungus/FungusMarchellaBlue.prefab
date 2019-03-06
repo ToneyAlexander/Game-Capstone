@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 1050976468900211480}
   - component: {fileID: 4603204627249385302}
   - component: {fileID: 4866519656402294341}
+  - component: {fileID: 2708783125512306858}
   m_Layer: 0
   m_Name: FungusMarchellaBlue
   m_TagString: Fungus
@@ -567,6 +568,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+--- !u!114 &2708783125512306858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872620004598150838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Friendly: 0
 --- !u!1 &2017010088746641574
 GameObject:
   m_ObjectHideFlags: 0

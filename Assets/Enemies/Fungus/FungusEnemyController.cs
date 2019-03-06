@@ -5,6 +5,8 @@ public class FungusEnemyController : EnemyController
 {
 	private Animator animator;
 
+	private bool inAttackCoroutine;
+
 	protected override void Initialize () 
     {
         // Set up animator
@@ -20,6 +22,8 @@ public class FungusEnemyController : EnemyController
         visionAngle = 360f;
         visionDistance = 10f;
         attackDistance = 3f;
+
+		inAttackCoroutine = false;
 	}
 
 	protected override void UniqueUpdate()
@@ -57,7 +61,7 @@ public class FungusEnemyController : EnemyController
 		// Stop and attack target (player character)
         agent.isStopped = true;
 
-		if (!inCoroutine)
+		if (!inAttackCoroutine)
 		{
 			StartCoroutine(Attack());
 		}
@@ -68,7 +72,7 @@ public class FungusEnemyController : EnemyController
 
 	private IEnumerator Attack()
 	{
-		inCoroutine = true;
+		inAttackCoroutine = true;
 
         // Change to a random attack animation
 		float attackMode = Random.value;
@@ -95,7 +99,7 @@ public class FungusEnemyController : EnemyController
 		}
 		yield return new WaitForSeconds(2f);
 
-		inCoroutine = false;
+		inAttackCoroutine = false;
 	}
 
     protected override void UnderAttack()

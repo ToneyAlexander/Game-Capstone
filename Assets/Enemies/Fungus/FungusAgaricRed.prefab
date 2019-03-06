@@ -6008,6 +6008,7 @@ GameObject:
   - component: {fileID: 2450943452949699445}
   - component: {fileID: 7842306961854302228}
   - component: {fileID: 6840048747020991141}
+  - component: {fileID: 4221650296923325569}
   m_Layer: 0
   m_Name: FungusAgaricRed
   m_TagString: Fungus
@@ -6140,6 +6141,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+--- !u!114 &4221650296923325569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464440351557324154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Friendly: 0
 --- !u!1 &8562398866068089918
 GameObject:
   m_ObjectHideFlags: 0
