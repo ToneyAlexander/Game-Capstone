@@ -9,6 +9,12 @@ public class RemyDead : MonoBehaviour
     Animator animator;
     private IGameStateChanger gameStateChanger;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        gameStateChanger = GetComponent<MainMenuGameStateChanger>();
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -17,7 +23,7 @@ public class RemyDead : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Dead") &&
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Died") &&
                 animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
             Destroy(gameObject);
