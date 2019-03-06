@@ -192,7 +192,7 @@ public abstract class EnemyController : MonoBehaviour
 
     /* Debugging code */
 
-    private void DisplayVisionAndRange()
+    protected void DisplayVisionAndRange()
     {
         // View
         int stepCount = Mathf.RoundToInt(visionAngle * 5f);
