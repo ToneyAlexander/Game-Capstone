@@ -10,10 +10,16 @@ public class RangedEnemyController : EnemyController
 
     public const string AttackMode = "rangedAttack";
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     protected override void Initialize()
     {
         // Set up animator
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
+        Debug.Log("animator = " + animator);
         animator.SetBool("meleeAttack", false);
         animator.SetBool("rangedAttack", false);
 
@@ -65,9 +71,10 @@ public class RangedEnemyController : EnemyController
         //     animator.SetTrigger("hit");
         // }
     }
-    
+
     public override IEnumerator Die()
     {
+        Debug.Log("animator2 = " + animator);
         animator.SetTrigger("death");
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);

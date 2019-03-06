@@ -46,9 +46,15 @@ public abstract class EnemyController : MonoBehaviour
     /// </summary>
     private IDestinationMover destinationMover;
 
+    [SerializeField]
+    private PerkPrototype initialStats;
+
+    private PlayerClass enemyClass;
+
     private void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
+        enemyClass = GetComponent<PlayerClass>();
 
         if (destinationMover == null)
         {
@@ -73,6 +79,7 @@ public abstract class EnemyController : MonoBehaviour
         player = GameObject.Find("remy");
         targetPos = Vector3.zero;
         targetFound = false;
+        enemyClass.TakePerk(initialStats);
 
         Initialize();
     }

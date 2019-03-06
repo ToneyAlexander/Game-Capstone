@@ -21,9 +21,8 @@ namespace CCC.Behaviors
             Item item = itemGenerator.GenerateItem();
             Debug.Log(gameObject.name + " died and dropped an item '" +
                 item.Name + "'!");
-            ICommand command = new DropItemCommand(itemDropper, item, transform.position);
-            commandProcessor.ProcessCommand(command);
-
+            ICommand dropItemCommand = new DropItemCommand(itemDropper, item, transform.position);
+            commandProcessor.ProcessCommand(dropItemCommand);
             GetComponent<EnemyController>().isKilled();
         }
 
