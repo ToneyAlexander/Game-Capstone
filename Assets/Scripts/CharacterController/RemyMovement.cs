@@ -82,6 +82,8 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isFireballVolley", false);
 
+            animator.SetBool("isAblaze", false);
+
             animator.SetBool("isEquip", false);
 
             animator.SetBool("isRunning", true);
