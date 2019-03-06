@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(PlayerClass))]
 public class RangedEnemyController : EnemyController
 {
     // Animator stuff

@@ -54,7 +54,6 @@ public abstract class EnemyController : MonoBehaviour
     private void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
-        enemyClass = GetComponent<PlayerClass>();
 
         if (destinationMover == null)
         {
@@ -65,6 +64,10 @@ public abstract class EnemyController : MonoBehaviour
 
     void Start()
     {
+        enemyClass = GetComponent<PlayerClass>();
+        Debug.Log("Started Controller for " + gameObject.name);
+        Debug.Log("PlayerClass: " + enemyClass);
+
         // Set up NavMesh
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5f;
