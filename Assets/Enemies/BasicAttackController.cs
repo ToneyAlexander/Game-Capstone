@@ -75,14 +75,16 @@ public class BasicAttackController : MonoBehaviour
     void ProjectileAttack()
     {
         // Generates projectiles
-        var projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
-        ProjectileMover pm = projectileInstance.GetComponent<ProjectileMover>();
-        projectileInstance.GetComponent<SphereCollider>().isTrigger = true;
-        projectileInstance.transform.parent = transform;
+        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
+        ProjectileBehave pbh = projectileInstance.GetComponent<ProjectileBehave>();
+        var lookPos = target.transform.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        projectileInstance.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
 
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
-        dmg = stats.RealDamage(dmg);
-        pm.dmg = dmg;
+        pbh.dmg = stats.RealDamage(dmg);
+        pbh.ttl = 3f;
     }
 
     public void SetAttack(string attackMode, bool attack)

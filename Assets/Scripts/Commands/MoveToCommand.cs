@@ -44,7 +44,7 @@ public sealed class MoveToCommand : ICommand
     }
 
     public void InvokeCommand()
-    {
+    {   
         destinationMover.MoveTo(destination);
     }
 }

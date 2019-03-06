@@ -20,7 +20,7 @@ public class RangedEnemyController : EnemyController
     {
         // Set up animator
         //animator = GetComponent<Animator>();
-        Debug.Log("animator = " + animator);
+        // Debug.Log("animator = " + animator);
         animator.SetBool("meleeAttack", false);
         animator.SetBool("rangedAttack", false);
 
