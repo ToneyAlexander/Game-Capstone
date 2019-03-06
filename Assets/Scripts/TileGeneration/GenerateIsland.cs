@@ -442,7 +442,25 @@ public class GenerateIsland : MonoBehaviour
         //make tree from start to all tiles
         //make end on leave
         //then collapse everything
-        createFullTree(fullTreeBackpointers, leaves, firstFlat, island, fourWayTiles);
+        int treeType = Random.Range(0, 2);
+        switch (treeType)
+        {
+            case 0:
+                createFullTreeDFS(fullTreeBackpointers, leaves, firstFlat, island, fourWayTiles);
+                break;
+            case 1:
+                createFullTreeBFS(fullTreeBackpointers, leaves, firstFlat, island, fourWayTiles);
+                break;
+
+        }
+
+        //Draw the tree rays
+        /*foreach(KeyValuePair<Vector2Int, Vector2Int> p in fullTreeBackpointers)
+        {
+            Vector3 a = new Vector3(p.Key.y * tileSize + tileSize / 2, 30, p.Key.x * tileSize);
+            Vector3 b = new Vector3(p.Value.y * tileSize + tileSize / 2, 30, p.Value.x * tileSize);
+            Debug.DrawRay(a, b - a, Color.magenta, 300);
+        }*/
 
         //Decide on end point and collapse it TODO: (lighthouse, boss tile)
         //TODO: RAMP ISLANDS? - FIND A TILE THAT CAN BE THE TALLEST STARTING AT BOTTOM AND SET THAT ONE TO TALLEST
@@ -518,7 +536,7 @@ public class GenerateIsland : MonoBehaviour
         }
     }
 
-    private void createFullTree(Dictionary<Vector2Int, Vector2Int> fullTreeBackpointers, List<Vector2Int> leaves, Vector2Int firstFlat, bool[,][] island, HashSet<int> fourWayTiles)
+    private void createFullTreeBFS(Dictionary<Vector2Int, Vector2Int> fullTreeBackpointers, List<Vector2Int> leaves, Vector2Int firstFlat, bool[,][] island, HashSet<int> fourWayTiles)
     {
         Queue<Vector2Int> locations = new Queue<Vector2Int>();
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
@@ -534,34 +552,65 @@ public class GenerateIsland : MonoBehaviour
             {
                 fullTreeBackpointers.Add(backPair.Key, backPair.Value);
                 visited.Add(firstFlat);
-                Vector2Int n = new Vector2Int(firstFlat.x, firstFlat.y - 1);
-                Vector2Int s = new Vector2Int(firstFlat.x, firstFlat.y + 1);
-                Vector2Int e = new Vector2Int(firstFlat.x + 1, firstFlat.y);
-                Vector2Int w = new Vector2Int(firstFlat.x - 1, firstFlat.y);
+                List<Vector2Int> neighbors = new List<Vector2Int>();
+                neighbors.Add(new Vector2Int(firstFlat.x, firstFlat.y - 1));
+                neighbors.Add(new Vector2Int(firstFlat.x, firstFlat.y + 1));
+                neighbors.Add(new Vector2Int(firstFlat.x + 1, firstFlat.y));
+                neighbors.Add(new Vector2Int(firstFlat.x - 1, firstFlat.y));
                 bool hasChildren = false;
-                if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
+                while (neighbors.Count > 0)
                 {
-                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
-                    locations.Enqueue(n);
-                    hasChildren = true;
+                    int ind = Random.Range(0, neighbors.Count);
+                    Vector2Int n = neighbors[ind];
+                    neighbors.RemoveAt(ind);
+                    if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
+                    {
+                        tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
+                        locations.Enqueue(n);
+                        hasChildren = true;
+                    }
                 }
-                if (!visited.Contains(s) && IslandTemplateUtilities.canBeTile(island[s.x, s.y], fourWayTiles))
+                if (!hasChildren)
                 {
-                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(s, firstFlat));
-                    locations.Enqueue(s);
-                    hasChildren = true;
+                    leaves.Add(firstFlat);
                 }
-                if (!visited.Contains(e) && IslandTemplateUtilities.canBeTile(island[e.x, e.y], fourWayTiles))
+            }
+        }
+    }
+
+    private void createFullTreeDFS(Dictionary<Vector2Int, Vector2Int> fullTreeBackpointers, List<Vector2Int> leaves, Vector2Int firstFlat, bool[,][] island, HashSet<int> fourWayTiles)
+    {
+        Stack<Vector2Int> locations = new Stack<Vector2Int>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        Stack<KeyValuePair<Vector2Int, Vector2Int>> tempBackpointers = new Stack<KeyValuePair<Vector2Int, Vector2Int>>();
+        Vector2Int negative = new Vector2Int(-1, -1);
+        tempBackpointers.Push(new KeyValuePair<Vector2Int, Vector2Int>(firstFlat, negative));
+        locations.Push(firstFlat);
+        while (locations.Count > 0)
+        {
+            firstFlat = locations.Pop();
+            KeyValuePair<Vector2Int, Vector2Int> backPair = tempBackpointers.Pop();
+            if (!visited.Contains(firstFlat))
+            {
+                fullTreeBackpointers.Add(backPair.Key, backPair.Value);
+                visited.Add(firstFlat);
+                List<Vector2Int> neighbors = new List<Vector2Int>();
+                neighbors.Add(new Vector2Int(firstFlat.x, firstFlat.y - 1));
+                neighbors.Add(new Vector2Int(firstFlat.x, firstFlat.y + 1));
+                neighbors.Add(new Vector2Int(firstFlat.x + 1, firstFlat.y));
+                neighbors.Add(new Vector2Int(firstFlat.x - 1, firstFlat.y));
+                bool hasChildren = false;
+                while (neighbors.Count > 0)
                 {
-                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(e, firstFlat));
-                    locations.Enqueue(e);
-                    hasChildren = true;
-                }
-                if (!visited.Contains(w) && IslandTemplateUtilities.canBeTile(island[w.x, w.y], fourWayTiles))
-                {
-                    tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(w, firstFlat));
-                    locations.Enqueue(w);
-                    hasChildren = true;
+                    int ind = Random.Range(0, neighbors.Count);
+                    Vector2Int n = neighbors[ind];
+                    neighbors.RemoveAt(ind);
+                    if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
+                    {
+                        tempBackpointers.Push(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
+                        locations.Push(n);
+                        hasChildren = true;
+                    }
                 }
                 if (!hasChildren)
                 {
