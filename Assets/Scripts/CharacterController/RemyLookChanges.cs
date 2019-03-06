@@ -73,7 +73,7 @@ public class RemyLookChanges : MonoBehaviour
         thisColor = skinColors[(int)(Random.value * skinArray.Length)];
 
 
-        remyBodyMaterial.color = thisColor;
+        remyBodyMaterial.SetColor("_Color", thisColor);
 
         Debug.Log("Body: " + remyBodyMaterial.color);
     }
@@ -96,7 +96,7 @@ public class RemyLookChanges : MonoBehaviour
         thisColor = hairArray[(int)(Random.value * hairArray.Length)];
 
 
-        remyHairMaterial.color = thisColor;
+        remyHairMaterial.SetColor("_Color", thisColor);
 
         Debug.Log("Hair: " + remyHairMaterial.color);
     }
@@ -116,7 +116,7 @@ public class RemyLookChanges : MonoBehaviour
         thisColor = topArray[(int)(Random.value * hairArray.Length)];
 
 
-        remyTopMaterial.color = thisColor;
+        remyTopMaterial.SetColor("_Color", thisColor);
 
         Debug.Log("Top: " + remyHairMaterial.color);
     }
