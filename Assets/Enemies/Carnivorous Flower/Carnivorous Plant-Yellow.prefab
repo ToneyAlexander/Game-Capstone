@@ -4710,6 +4710,7 @@ GameObject:
   - component: {fileID: 4076931435023576858}
   - component: {fileID: 6723156447981034883}
   - component: {fileID: 8669886565434396897}
+  - component: {fileID: 5468862817785211541}
   m_Layer: 0
   m_Name: Carnivorous Plant-Yellow
   m_TagString: Untagged
@@ -4914,6 +4915,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+--- !u!114 &5468862817785211541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761123989305922609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea0b928f6ede9447a435451b1f3d18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Friendly: 0
 --- !u!1 &6795635131202701044
 GameObject:
   m_ObjectHideFlags: 0

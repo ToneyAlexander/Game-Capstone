@@ -12,6 +12,8 @@ public abstract class EnemyController : MonoBehaviour
     
     protected bool inCoroutine;
 
+    private bool isAlive;
+
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
     protected float movingRange;
@@ -25,9 +27,6 @@ public abstract class EnemyController : MonoBehaviour
 
     // Attack controller
     protected BasicAttackController attackController;
-
-    // Enemy health
-    public bool isAlive { get; set; }
 
     /* Note: attackDistance <= visionDistance <= movingRange */
     
@@ -69,19 +68,18 @@ public abstract class EnemyController : MonoBehaviour
         attackController = GetComponent<BasicAttackController>();
 
         inCoroutine = false;
+        isAlive = true;
 
         player = GameObject.Find("remy");
         targetPos = Vector3.zero;
         targetFound = false;
-
-        isAlive = true;
 
         Initialize();
     }
 
     void Update()
     {
-        if(isAlive)
+        if (isAlive)
         {
             UniqueUpdate();
 
@@ -117,10 +115,6 @@ public abstract class EnemyController : MonoBehaviour
                     StartCoroutine(Move());
                 }
             }
-        }
-        else
-        {
-            StartCoroutine(Die());
         }
 
         // Display field of view and moving area only in Scene (not in Game)
@@ -181,6 +175,12 @@ public abstract class EnemyController : MonoBehaviour
     protected bool InAttackRange(Vector3 pos)
     {
         return Vector3.Distance(transform.position, pos) <= attackDistance;
+    }
+
+    public void isKilled()
+    {
+        isAlive = false;
+        StartCoroutine(Die());
     }
 
     /* Debugging code */
