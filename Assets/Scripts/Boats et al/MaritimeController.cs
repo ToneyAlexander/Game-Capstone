@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CCC.GameManagement.GameStates;
 using CCC.GameManagement;
 
@@ -27,6 +28,11 @@ public class MaritimeController : MonoBehaviour
     public ThemeDictionary themes;
     public NameGenerator nameGen;
     private PlayIslandGameStateChanger playIslandGameStateChanger;
+    public GameObject info;
+    Vector3 hiddenPos = new Vector3(-520, 0, 0);
+    Vector3 visiblePos = new Vector3(-300, 0, 0);
+    bool shown= false;
+    public string guideText = "Press H to show/hide";
 
 
     //  public List<Vector3> islandpos = new List<>
@@ -63,6 +69,19 @@ public class MaritimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        info.transform.GetChild(0).gameObject.GetComponent<Text>().text = guideText;
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            shown = !shown;
+        }
+        if (shown)
+        {
+            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, visiblePos, 100 * Time.deltaTime);
+        }
+        else
+        {
+            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, hiddenPos, 100 * Time.deltaTime);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             playIslandGameStateChanger.ChangeGameState();

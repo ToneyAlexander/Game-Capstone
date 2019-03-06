@@ -7,8 +7,13 @@ public class positionText : MonoBehaviour
 {
     public GameObject player;
     GameObject textObj;
+    public GameObject camera;
+    public GameObject maritimeController;
+    public GameObject info;
     string n;
     // Start is called before the first frame update
+    Vector3 hiddenPos = new Vector3(-520,0,0);
+    Vector3 visiblePos = new Vector3(-300, 0,0);
     void Start()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -33,11 +38,26 @@ public class positionText : MonoBehaviour
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         Debug.Log(g);
         g.text = n;
+ 
+
+        
 
     }
     public void setName(string name)
     {
         n = name;
-
+    }
+    void OnMouseOver()
+    {
+        TextMeshPro g = textObj.GetComponent<TextMeshPro>();
+        g.color = Color.red;
+        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Terrain Type: ??? \n\n\n A mysterious presence haunts this island...";
+    }
+    void OnMouseExit()
+    {
+        TextMeshPro g = textObj.GetComponent<TextMeshPro>();
+        g.color = Color.black;
+        maritimeController.GetComponent<MaritimeController>().guideText = "Press H to hide/show";
+        // info.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Press H to hide/show";
     }
 }
