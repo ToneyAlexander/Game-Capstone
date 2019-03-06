@@ -24,7 +24,7 @@ public class GenerateEnemies : MonoBehaviour
         {
             int type = Random.Range(0, enemiesTypes.enemeisList.Count - 1);
             enemies[i] = Instantiate(enemiesTypes.enemeisList[type], transform.position, Quaternion.identity, transform);
-            enemies[i].name = "Enemy " + (i + 1);
+            enemies[i].name = "Enemy - " + enemiesTypes.enemeisList[type].name;
         }
     }
 
