@@ -36,6 +36,8 @@ public class CarnivorousFlowerController : EnemyController
 
 	protected override void UniqueUpdate()
     {
+		animator.SetBool("Walk Forward", false);
+
 		// The carnivorous plants wake up when the player is within range
 		if (InRange(player.transform.position))
 		{
@@ -49,14 +51,10 @@ public class CarnivorousFlowerController : EnemyController
 		}
 		else
 		{
-			// Not move by default
-			animator.SetBool("Walk Forward", false);
 			animator.SetBool("Sleeping", true);
 			agent.isStopped = true;
 			movable = false;
 		}
-
-		DisplayVisionAndRange();
 	}
 
 	protected override bool InVision(Vector3 pos)
