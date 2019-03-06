@@ -12,7 +12,7 @@ public abstract class EnemyController : MonoBehaviour
     
     protected bool inCoroutine;
 
-    protected bool isAlive;
+    private bool isAlive;
 
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
