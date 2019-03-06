@@ -144,10 +144,10 @@ RectTransform:
   m_Father: {fileID: 1724052019}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -25.2, y: -89.6}
-  m_SizeDelta: {x: 140, y: 500}
+  m_SizeDelta: {x: -60, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15714995
 MonoBehaviour:
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9009434, g: 1, b: 0.9876649, a: 1}
+  m_Color: {r: 0.081035666, g: 0.043387324, b: 0.6132076, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f2ced1938b2c24c98bb048f210d217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 360
+  horizontalSpeed: 400
   player: {fileID: 1328953137}
   position: {x: 15, y: 5, z: 0}
   boatfastness: 0.2
