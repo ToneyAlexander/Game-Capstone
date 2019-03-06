@@ -24,7 +24,7 @@ namespace CCC.Behaviors
             ICommand command = new DropItemCommand(itemDropper, item, transform.position);
             commandProcessor.ProcessCommand(command);
 
-            GetComponent<EnemyController>().Die();
+            GetComponent<EnemyController>().isAlive = false;
         }
 
         #region MonoBehaviour Messages

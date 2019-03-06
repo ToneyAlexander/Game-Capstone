@@ -27,7 +27,7 @@ public abstract class EnemyController : MonoBehaviour
     protected BasicAttackController attackController;
 
     // Enemy health
-    protected float healthPoints;
+    public bool isAlive { get; set; }
 
     /* Note: attackDistance <= visionDistance <= movingRange */
     
@@ -74,44 +74,53 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
 
+        isAlive = true;
+
         Initialize();
     }
 
     void Update()
     {
-        UniqueUpdate();
-
-        // Get player's current position
-        Vector3 playerPos = player.transform.position;
-
-        if (movable)
+        if(isAlive)
         {
-            // If the player character is within the enemy's moving area and is within 
-            // enemy's field of view, the enemy chases player character
-            if (InRange(playerPos) && InVision(playerPos)) 
-            {
-                targetFound = true;
-                targetPos = playerPos;
-                agent.speed = chaseSpeed;
+            UniqueUpdate();
 
-                // If the player character is within the enemy's attacking range, the 
-                // enemy stops near the target and attacks it
-                if (InAttackRange(playerPos))
+            // Get player's current position
+            Vector3 playerPos = player.transform.position;
+
+            if (movable)
+            {
+                // If the player character is within the enemy's moving area and is within 
+                // enemy's field of view, the enemy chases player character
+                if (InRange(playerPos) && InVision(playerPos)) 
                 {
-                    Attack(playerPos);
+                    targetFound = true;
+                    targetPos = playerPos;
+                    agent.speed = chaseSpeed;
+
+                    // If the player character is within the enemy's attacking range, the 
+                    // enemy stops near the target and attacks it
+                    if (InAttackRange(playerPos))
+                    {
+                        Attack(playerPos);
+                    }
+                }
+                // Otherwise, enemy moves randomly without a target
+                else
+                {
+                    targetFound = false;
+                    agent.speed = 5f;
+                }
+
+                if (!inCoroutine)
+                {
+                    StartCoroutine(Move());
                 }
             }
-            // Otherwise, enemy moves randomly without a target
-            else
-            {
-                targetFound = false;
-                agent.speed = 5f;
-            }
-
-            if (!inCoroutine)
-            {
-                StartCoroutine(Move());
-            }
+        }
+        else
+        {
+            StartCoroutine(Die());
         }
 
         // Display field of view and moving area only in Scene (not in Game)
