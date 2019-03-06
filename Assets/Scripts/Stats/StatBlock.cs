@@ -57,6 +57,11 @@ public class StatBlock : MonoBehaviour
     public bool Friendly;
     private IKillable killable;
 
+    [SerializeField]
+    private CommandProcessor commandProcessor;
+
+    private bool isDead = false;
+
     public static float CalcMult(float baseV, float multV)
     {
         if (multV > 0)
@@ -102,10 +107,11 @@ public class StatBlock : MonoBehaviour
 
         if(HealthCur <= 0.00001f)
         {
-            if (killable != null)
+            if (killable != null && !isDead)
             {
                 ICommand com = new DieCommand(killable);
                 //TODO: Should be sent to command processor when die is ready
+                commandProcessor.ProcessCommand(com);
             }
 
         }
