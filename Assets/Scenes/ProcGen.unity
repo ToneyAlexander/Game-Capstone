@@ -1551,6 +1551,7 @@ GameObject:
   - component: {fileID: 594619826}
   - component: {fileID: 872244571}
   - component: {fileID: 872244570}
+  - component: {fileID: 594619840}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -1695,6 +1696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 1
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &594619837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1733,6 +1735,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 10
   movingSpeed: 10
+--- !u!114 &594619840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594619827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0543a794222d440a4919de5d26c2fdf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &603817848
 GameObject:
   m_ObjectHideFlags: 0
