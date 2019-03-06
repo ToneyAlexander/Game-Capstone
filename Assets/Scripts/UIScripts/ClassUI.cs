@@ -81,6 +81,7 @@ public class ClassUI : MonoBehaviour
                     Vector3 direction = other - position;
                     GameObject line = new GameObject();
                     Image l = line.AddComponent<Image>();
+                    
                     line.transform.parent = content.transform;
                     RectTransform rect = line.GetComponent<RectTransform>();
                     line.name = proto.Name + " is blocked by " + req.Name;
@@ -111,7 +112,8 @@ public class ClassUI : MonoBehaviour
                 image.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
                 // image.width = 30;
                 //image.height = 30;
-                image.AddComponent<Image>();
+                Image spr = image.AddComponent<Image>();
+                spr.sprite = proto.sprite;
                 //image.GetComponent<Image>.sprite = proto.sprite;
                 image.transform.localPosition = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
                 EventTrigger ev = image.AddComponent<EventTrigger>();
