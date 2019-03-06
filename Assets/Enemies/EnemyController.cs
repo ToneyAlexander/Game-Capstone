@@ -12,6 +12,8 @@ public abstract class EnemyController : MonoBehaviour
     
     protected bool inCoroutine;
 
+    protected bool isAlive;
+
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
     protected float movingRange;
@@ -66,6 +68,7 @@ public abstract class EnemyController : MonoBehaviour
         attackController = GetComponent<BasicAttackController>();
 
         inCoroutine = false;
+        isAlive = true;
 
         player = GameObject.Find("remy");
         targetPos = Vector3.zero;
@@ -76,38 +79,41 @@ public abstract class EnemyController : MonoBehaviour
 
     void Update()
     {
-        UniqueUpdate();
-
-        // Get player's current position
-        Vector3 playerPos = player.transform.position;
-
-        if (movable)
+        if (isAlive)
         {
-            // If the player character is within the enemy's moving area and is within 
-            // enemy's field of view, the enemy chases player character
-            if (InRange(playerPos) && InVision(playerPos)) 
-            {
-                targetFound = true;
-                targetPos = playerPos;
-                agent.speed = chaseSpeed;
+            UniqueUpdate();
 
-                // If the player character is within the enemy's attacking range, the 
-                // enemy stops near the target and attacks it
-                if (InAttackRange(playerPos))
+            // Get player's current position
+            Vector3 playerPos = player.transform.position;
+
+            if (movable)
+            {
+                // If the player character is within the enemy's moving area and is within 
+                // enemy's field of view, the enemy chases player character
+                if (InRange(playerPos) && InVision(playerPos)) 
                 {
-                    Attack(playerPos);
-                }
-            }
-            // Otherwise, enemy moves randomly without a target
-            else
-            {
-                targetFound = false;
-                agent.speed = 5f;
-            }
+                    targetFound = true;
+                    targetPos = playerPos;
+                    agent.speed = chaseSpeed;
 
-            if (!inCoroutine)
-            {
-                StartCoroutine(Move());
+                    // If the player character is within the enemy's attacking range, the 
+                    // enemy stops near the target and attacks it
+                    if (InAttackRange(playerPos))
+                    {
+                        Attack(playerPos);
+                    }
+                }
+                // Otherwise, enemy moves randomly without a target
+                else
+                {
+                    targetFound = false;
+                    agent.speed = 5f;
+                }
+
+                if (!inCoroutine)
+                {
+                    StartCoroutine(Move());
+                }
             }
         }
 
@@ -169,6 +175,12 @@ public abstract class EnemyController : MonoBehaviour
     protected bool InAttackRange(Vector3 pos)
     {
         return Vector3.Distance(transform.position, pos) <= attackDistance;
+    }
+
+    public void isKilled()
+    {
+        isAlive = false;
+        StartCoroutine(Die());
     }
 
     /* Debugging code */
