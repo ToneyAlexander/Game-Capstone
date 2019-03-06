@@ -20,9 +20,6 @@ public class FungusEnemyController : EnemyController
         visionAngle = 360f;
         visionDistance = 10f;
         attackDistance = 3f;
-
-        // Default stat
-        healthPoints = 10f;
 	}
 
 	protected override void UniqueUpdate()

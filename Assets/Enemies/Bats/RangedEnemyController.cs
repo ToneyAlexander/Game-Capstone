@@ -27,9 +27,6 @@ public class RangedEnemyController : EnemyController
         visionAngle = 60f;
         visionDistance = 20;
         attackDistance = 20f;
-
-        // Default stat
-        healthPoints = 100f;
     }
 
     protected override void UniqueUpdate()

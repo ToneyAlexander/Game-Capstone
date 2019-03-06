@@ -261,6 +261,8 @@ GameObject:
   - component: {fileID: 3350184403700264010}
   - component: {fileID: 2405986980202594866}
   - component: {fileID: 7403018919998478036}
+  - component: {fileID: 1849757918849417668}
+  - component: {fileID: 82105211729140750}
   m_Layer: 0
   m_Name: Melee Enemy Bat
   m_TagString: Untagged
@@ -376,6 +378,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661e46a63fc3d458a9cc0c05c262c9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1849757918849417668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215939200856656837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957e8d339725e394f90e6b3f33521a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 0
+--- !u!114 &82105211729140750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215939200856656837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95b5c6ea1ddf4ed9a085e17497bbcf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
 --- !u!1 &5485106779688537492
 GameObject:
   m_ObjectHideFlags: 0

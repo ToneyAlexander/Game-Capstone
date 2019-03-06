@@ -22,9 +22,6 @@ public class CarnivorousFlowerController : EnemyController
         visionDistance = 10f;
         attackDistance = 3f;
 
-        // Default stat
-        healthPoints = 10f;
-
 		// Initial animation
 		animator.SetBool("Walk Forward", false);
 		animator.SetBool("Walk Backward", false);
