@@ -240,7 +240,7 @@ public class ControlStatBlock : MonoBehaviour
 
         ResetBaseStats();
 
-        TestStatIncrease();
+        //TestStatIncrease();
 
         if(inv != null)
         {
