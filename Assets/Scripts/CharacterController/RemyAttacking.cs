@@ -66,7 +66,9 @@ public class RemyAttacking : MonoBehaviour
         {
             animator.SetBool("isFireballIgnite", false);
             animator.SetBool("isFireballVolley", false);
-
+            animator.SetBool("isAblaze", false);
+            animator.SetBool("isMagic4", false);
+            animator.SetBool("isMagic5", false);
         }
 
         FiringFireball(startMagicAttack);
@@ -102,13 +104,28 @@ public class RemyAttacking : MonoBehaviour
     {
 
         if (true) {
-            RemyMovement.destination = this.transform.position;
+
             if (ability.AbilityName.Equals("Fireball Ignite")) {
+                RemyMovement.destination = this.transform.position;
                 animator.SetBool("isFireballIgnite", true);
             }
             if (ability.AbilityName.Equals("Fireball Volley"))
             {
+                RemyMovement.destination = this.transform.position;
                 animator.SetBool("isFireballVolley", true);
+            }
+            if (ability.AbilityName.Equals("Ablaze"))
+            {
+                RemyMovement.destination = this.transform.position;
+                animator.SetBool("isAblaze", true);
+            }
+            if (ability.AbilityName.Equals("Dash"))
+            {
+                //animator.SetBool("isMagic4", true);
+            }
+            if (ability.AbilityName.Equals("Empowered Mending"))
+            {
+                //animator.SetBool("isMagic5", true);
             }
         }
 
@@ -119,6 +136,7 @@ public class RemyAttacking : MonoBehaviour
     {
         dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley")) {
+            dynamicAttackDirection.y = transform.position.y;
             if (transform.position != dynamicAttackDirection)
             {
                 lookAtEnemy = dynamicAttackDirection - transform.position;
@@ -138,10 +156,16 @@ public class RemyAttacking : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Ablaze")
+            //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 04")
+            //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 05")
             )
         {
+            attackDirection.y = transform.position.y;
+
             if (transform.position != attackDirection)
             {
+
                 lookAtEnemy = attackDirection - transform.position;
 
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookAtEnemy), 20 * Time.deltaTime);
@@ -173,7 +197,8 @@ public class RemyAttacking : MonoBehaviour
     {
         bool result = false;
             if ((animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Volley") ||
-                animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")) 
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite") || 
+                animator.GetCurrentAnimatorStateInfo(0).IsName("Ablaze"))
 
                 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
             {

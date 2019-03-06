@@ -28,6 +28,7 @@ public class ControlStatBlock : MonoBehaviour
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
+    private bool applyTestStats;
 
     public void ApplyBuff(TimedBuff tb)
     {
@@ -40,6 +41,7 @@ public class ControlStatBlock : MonoBehaviour
     }
     void Awake()
     {
+        applyTestStats = false;
         stats = GetComponent<StatBlock>();
         inv = GetComponent<EquipmentUser>();
         pClass = GetComponent<PlayerClass>();
@@ -52,13 +54,11 @@ public class ControlStatBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stats = GetComponent<StatBlock>();
-        inv = GetComponent<EquipmentUser>();
-        pClass = GetComponent<PlayerClass>();
-
-        buffs = new List<TimedBuff>();
-        buffsToAdd = new List<TimedBuff>();
-        oldHpPrecent = -10000f;
+        
+        if (stats != null && stats.Friendly)
+        {
+            applyTestStats = true;
+        }
 
         StatsChanged();
     }
@@ -240,7 +240,10 @@ public class ControlStatBlock : MonoBehaviour
 
         ResetBaseStats();
 
-        //TestStatIncrease();
+        if (applyTestStats)
+        {
+            TestStatIncrease();
+        }
 
         if(inv != null)
         {
