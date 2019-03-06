@@ -28,6 +28,8 @@ public class AlienBeetle : MonoBehaviour
     private int nextAttack;
     public Vector3 arenaStart, arenaEnd;
 
+    public static TimedBuffPrototype Ooze;
+
     void Awake()
     {
         stats = GetComponent<StatBlock>();
@@ -69,7 +71,9 @@ public class AlienBeetle : MonoBehaviour
             EggBehave eb = o.GetComponent<EggBehave>();
             eb.ttl = 4.5f;
             eb.maxScale = 3f + Level/4f;
-            eb.dmg = stats.RealDamage(new Damage(2f * Level, 2f * Level, false, true, true));
+            Damage dmg = stats.RealDamage(new Damage(2f * Level, 2f * Level, false, true, true));
+            dmg.buffs.Add(Ooze.Instance);
+            eb.dmg = dmg;
             yield return new WaitForSeconds(2f/(rangeX * rangeZ / 2));
         }
         inUse = false;

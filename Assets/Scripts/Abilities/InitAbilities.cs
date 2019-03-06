@@ -11,6 +11,8 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ablazeOff;
     public TimedBuffPrototype ablazeDef;
     public TimedBuffPrototype ablazeIgnite;
+    public TimedBuffPrototype ooze;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,6 @@ public class InitAbilities : MonoBehaviour
         AblazeAbility.Enemy = ablazeOff;
         AblazeAbility.Ignite = ablazeIgnite;
         AblazeAbility.Friendly = ablazeDef;
+        AlienBeetle.Ooze = ooze;
     }
 }
