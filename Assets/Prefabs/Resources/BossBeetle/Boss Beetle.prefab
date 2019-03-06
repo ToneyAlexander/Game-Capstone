@@ -267,10 +267,8 @@ MonoBehaviour:
   TrackerPrefab: {fileID: 3284506581622335269, guid: ddbd21f30cb1ecc49aa768dec5ae5c89,
     type: 3}
   Level: 3
-  arenaEndX: 32
-  arenaEndZ: 32
-  arenaStartX: -32
-  arenaStartZ: -16
+  arenaStart: {x: 0, y: 0, z: 0}
+  arenaEnd: {x: 0, y: 0, z: 0}
 --- !u!114 &74118581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 0
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &74118584
 MonoBehaviour:
   m_ObjectHideFlags: 0

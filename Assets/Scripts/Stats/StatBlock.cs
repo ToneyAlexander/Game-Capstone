@@ -112,6 +112,7 @@ public class StatBlock : MonoBehaviour
                 ICommand com = new DieCommand(killable);
                 //TODO: Should be sent to command processor when die is ready
                 commandProcessor.ProcessCommand(com);
+                isDead = true;
             }
 
         }
