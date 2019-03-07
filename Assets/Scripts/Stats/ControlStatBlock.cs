@@ -294,7 +294,7 @@ public class ControlStatBlock : MonoBehaviour
         float fortReal = StatBlock.CalcMult(Fort, FortMult);
         stats.MagicRes += fortReal / 5f;
         stats.AfflictRes += fortReal / 5f;
-        stats.StatusRec += fortReal / 1000f;
+        stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
     }
@@ -317,7 +317,7 @@ public class ControlStatBlock : MonoBehaviour
         for (int i = buffs.Count - 1; i > -1; --i)
         {
             TimedBuff tb = buffs[i];
-            tb.DurationLeft -= Time.deltaTime;
+            tb.DurationLeft -= Time.deltaTime * ( 1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
             Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
             if (tb.DurationLeft <= 0f)
             {
