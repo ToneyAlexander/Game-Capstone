@@ -8,7 +8,7 @@ namespace CCC.Items
     /// <summary>
     /// Represents an item in the game.
     /// </summary>
-    public struct Item
+    public class Item
     {
         /// <summary>
         /// The null Item that is used when no other Item makes sense.
@@ -17,6 +17,7 @@ namespace CCC.Items
             "Null Item", 
             "You probably shouldn't have this.",
             true,
+            1,
             EquipmentSlot.Null,
             null,
             new List<Stat>()
@@ -29,6 +30,13 @@ namespace CCC.Items
         public string Name
         {
             get { return name; }
+            set { name = value; }
+        }
+
+        public string LongName
+        {
+            get { return longName; }
+            set { longName = value; }
         }
 
         /// <summary>
@@ -67,6 +75,11 @@ namespace CCC.Items
             get { return equipmentSlot; }
         }
 
+        public int Tier
+        {
+            get { return tier; }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CCC.Items.Item"/> 
         /// struct.
@@ -83,12 +96,14 @@ namespace CCC.Items
         /// <param name="stats">
         /// The list of Stat that the new Item will have.
         /// </param>
-        public Item(string name, string flavorText, bool isUnique,
+        public Item(string name, string flavorText, bool isUnique, int tier,
             EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats)
         {
             this.name = name;
+            this.longName = name;
             this.flavorText = flavorText;
             this.isUnique = isUnique;
+            this.tier = tier;
             this.equipmentSlot = equipmentSlot;
             this.sprite = sprite;
             this.stats = stats;
@@ -97,7 +112,10 @@ namespace CCC.Items
         /// <summary>
         /// The name of this Item.
         /// </summary>
-        private readonly string name;
+        private string name;
+
+
+        private string longName;
 
         /// <summary>
         /// The flavor text of this Item.
@@ -112,6 +130,8 @@ namespace CCC.Items
         /// Items that should always have the same name.
         /// </remarks>
         private bool isUnique;
+
+        private int tier;
 
         /// <summary>
         /// The Sprite of this Item.

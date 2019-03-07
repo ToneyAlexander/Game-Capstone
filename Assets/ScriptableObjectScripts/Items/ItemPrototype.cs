@@ -10,7 +10,7 @@ namespace CCC.Items
     /// values on.
     /// </summary>
     [CreateAssetMenu(menuName = "Items/ItemPrototype")]
-    sealed class ItemPrototype : ScriptableObject
+    public sealed class ItemPrototype : ScriptableObject
     {
         /// <summary>
         /// Gets the EquipmentSlot that Items based off of this ItemPrototype
@@ -49,6 +49,11 @@ namespace CCC.Items
         public Sprite Sprite
         {
             get { return sprite; }
+        }
+
+        public int BaseItemTier
+        {
+            get { return baseItemTier; }
         }
 
         /// <summary>
@@ -104,6 +109,10 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private string internalDescription = "";
+
+
+        [SerializeField]
+        private int baseItemTier;
 
         /// <summary>
         /// The maximum number of affixes that Items generated from this 

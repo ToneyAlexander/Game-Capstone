@@ -7,7 +7,7 @@ namespace CCC.Stats
     /// can be dragged around in the Unity Inspector.
     /// </summary>
     [CreateAssetMenu(menuName = "Stats/StatIdentifier")]
-    sealed class StatIdentifier : ScriptableObject
+    public class StatIdentifier : ScriptableObject
     {
         /// <summary>
         /// Get the internal name of this StatIdentifier's Stat.

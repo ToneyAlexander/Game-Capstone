@@ -12,6 +12,9 @@ namespace CCC.Items
     [CreateAssetMenu(menuName = "Items/PerfectItemGenerator")]
     public sealed class PerfectItemGenerator : ItemGenerator
     {
+        [SerializeField]
+        private List<AffixSetPrototype> affixSets;
+
         public override Item GenerateItem()
         {
             // Pick a random ItemPrototype
@@ -22,13 +25,20 @@ namespace CCC.Items
             List<Stat> stats = new List<Stat>();
             foreach (StatPrototype statPrototype in proto.StatPrototypes)
             {
-                stats.Add(new Stat(statPrototype.StatName, statPrototype.MaxValue));
+                ApplyStat(stats, statPrototype);
             }
 
-            Item item = new Item(proto.ItemName, proto.FlavorText, false, 
+            Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier,
                 proto.EquipmentSlot, proto.Sprite, stats);
 
+            ApplyAffixes(affixSets, this, item, proto);
+
             return item;
+        }
+
+        public override void ApplyStat(List<Stat> stats, StatPrototype stat)
+        {
+            stats.Add(new Stat(stat.StatName, stat.MaxValue));
         }
 
         [SerializeField]
