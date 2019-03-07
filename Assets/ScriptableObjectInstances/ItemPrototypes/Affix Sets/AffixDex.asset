@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
   m_Name: AffixDex
   m_EditorClassIdentifier: 
-  setName: 
-  setNameShort: 
-  tiers: []
+  setName: Dexterity
+  setNameShort: Dex
+  tiers:
+  - {fileID: 11400000, guid: 3af276c82a875f54fa110d65b8713519, type: 2}
+  - {fileID: 11400000, guid: 224cdea8eb61d54468a9286058871016, type: 2}
+  - {fileID: 11400000, guid: b926444d9c84a7d49bb7b6aac8bceb4c, type: 2}
+  - {fileID: 11400000, guid: d333bd467bee0964cad95d4fed6d2fd2, type: 2}
+  - {fileID: 11400000, guid: 6724c53ffb85b9b44be046194ebcb211, type: 2}

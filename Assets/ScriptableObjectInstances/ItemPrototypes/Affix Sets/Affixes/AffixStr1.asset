@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314b629eb468a0f4cb18606cd5ba66a3, type: 3}
   m_Name: AffixStr1
   m_EditorClassIdentifier: 
-  statIdentifier: {fileID: 0}
-  name: 
-  min: 0
-  max: 0
+  affixName: Inconsequential
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
+    minValue: 10
+    maxValue: 20

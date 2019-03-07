@@ -10,7 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314b629eb468a0f4cb18606cd5ba66a3, type: 3}
-  m_Name: New Affix
+  m_Name: AffixDex5
   m_EditorClassIdentifier: 
-  affixName: 
-  statPrototypeList: []
+  affixName: Superior
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    minValue: 0.81
+    maxValue: 0.9
+  - statIdentifier: {fileID: 11400000, guid: c7adbf3025fc2472bae57ce7680eaa49, type: 2}
+    minValue: 0.02
+    maxValue: 0.05

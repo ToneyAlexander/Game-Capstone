@@ -10,7 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
-  m_Name: New Affix Set Prototype
+  m_Name: AffixStr
   m_EditorClassIdentifier: 
-  tiers: []
-  setName: 
+  setName: Strength
+  setNameShort: Str
+  tiers:
+  - {fileID: 11400000, guid: 9d62471739d9a8543b2a2ec331061995, type: 2}
+  - {fileID: 11400000, guid: 84198f33878bae6499ee678cba2604ad, type: 2}
+  - {fileID: 11400000, guid: 19a51cf9d47054541a384e2b630b1953, type: 2}
+  - {fileID: 11400000, guid: ec48603d5f74d2044a4a06f977995201, type: 2}
+  - {fileID: 11400000, guid: b90f2c482de0cc442bbd612838671b05, type: 2}
