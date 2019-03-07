@@ -42,7 +42,7 @@ public class CameraController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            direction = (direction + 1) % cameras.Length;
+            direction = (direction - 1) % cameras.Length;
         }
         RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
 //        Debug.Log(hits.Length);

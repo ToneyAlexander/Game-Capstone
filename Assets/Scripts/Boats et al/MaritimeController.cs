@@ -8,21 +8,7 @@ using CCC.GameManagement;
 public class MaritimeController : MonoBehaviour
 {
 
-    public struct Island
-    {
-        public Vector3 position;
-        public string name;
-        public int theme;
-        public GameObject transfer;
-        public Island(int i, Vector3 pos, string str, GameObject obj)
-        {
-            position = pos;
-            name = str;
-            theme = i;
-            transfer = obj;
-
-        }
-    }
+    
     public GameObject player;
     public GameObject prefab;
     public ThemeDictionary themes;
@@ -41,7 +27,7 @@ public class MaritimeController : MonoBehaviour
     int minnum = 6;
     int nums;
     float tolerance = 15.0f;
-    public List<Island> islands = new List<Island>();
+    public List<IslandData.Island> islands = new List<IslandData.Island>();
     private void Awake()
     {
         playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
@@ -61,7 +47,7 @@ public class MaritimeController : MonoBehaviour
             Debug.Log(name);
             x.GetComponent<positionText>().setName(name);
             
-            Island isle = new Island(1, new Vector3(sin * 200, 0, cos * 200),name,x);
+            IslandData.Island isle = new IslandData.Island(1, new Vector3(sin * 200, 0, cos * 200),name,x);
         }
 
     }
