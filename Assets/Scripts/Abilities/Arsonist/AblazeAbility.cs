@@ -45,16 +45,17 @@ public class AblazeAbility : AbilityBase
         ab.Friend = new List<TimedBuff>();
         ab.Enemy = new List<TimedBuff>();
         TimedBuff ignite = Ignite.Instance;
-        ignite.Stats.Clear();
-        ignite.Stats.Add(new Stat(Stat.HEALTH_REGEN, StatBlock.CalcMult(-15, igniteMult)));
+        Stat stat = ignite.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
+        stat.Value = stats.RealDotDamage(stat.Value, igniteMult, false, true, false, false, true);
         ab.Enemy.Add(ignite);
         if (buffs)
         {
-            Debug.Log("Buffs");
             ab.Friend.Add(Friendly.Instance);
         }
-        if(debuffs)
+        if (debuffs)
+        {
             ab.Enemy.Add(Enemy.Instance);
+        }
     }
 
     // Start is called before the first frame update

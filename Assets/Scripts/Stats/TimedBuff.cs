@@ -15,7 +15,11 @@ public class TimedBuff : IEquatable<TimedBuff>
     public TimedBuff(TimedBuffPrototype tbp)
     {
         BuffName = tbp.BuffName;
-        Stats = tbp.Stats;
+        Stats = new List<Stat>();
+        foreach (Stat s in tbp.Stats)
+        {
+            Stats.Add(new Stat(s.Name, s.Value));
+        }
         IsUnique = tbp.IsUnique;
         Duration = tbp.Duration;
         DurationLeft = Duration;
@@ -28,13 +32,14 @@ public class TimedBuff : IEquatable<TimedBuff>
 
     public TimedBuff ShallowClone()
     {
-        TimedBuff tb = new TimedBuff();
-
-        tb.BuffName = BuffName;
-        tb.Duration = Duration;
-        tb.DurationLeft = DurationLeft;
-        tb.IsUnique = IsUnique;
-        tb.Stats = Stats;
+        TimedBuff tb = new TimedBuff
+        {
+            BuffName = BuffName,
+            Duration = Duration,
+            DurationLeft = DurationLeft,
+            IsUnique = IsUnique,
+            Stats = Stats
+        };
 
         return tb;
     }

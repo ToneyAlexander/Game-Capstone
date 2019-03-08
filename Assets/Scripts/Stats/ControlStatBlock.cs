@@ -109,6 +109,10 @@ public class ControlStatBlock : MonoBehaviour
         stats.CritDamageMult = 0f;
         stats.Damage = 0f;
         stats.DamageMult = 0f;
+        stats.PhysicalDamage = 0f;
+        stats.PhysicalDamageMult = 0f;
+        stats.MagicDamage = 0f;
+        stats.MagicDamageMult = 0f;
         stats.MagicResMult = 0f;
         stats.StatusRecMult = 0f;
     }
@@ -180,6 +184,12 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.HEALTH_REGEN_MULT:
                 stats.HealthRegenMult += stat.Value;
                 break;
+            case Stat.MAGIC_DMG:
+                stats.MagicDamage += stat.Value;
+                break;
+            case Stat.MAGIC_DMG_MULT:
+                stats.MagicDamageMult += stat.Value;
+                break;
             case Stat.MAGIC_RES:
                 stats.MagicRes += stat.Value;
                 break;
@@ -203,6 +213,12 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
+                break;
+            case Stat.PHYS_DMG:
+                stats.PhysicalDamage += stat.Value;
+                break;
+            case Stat.PHYS_DMG_MULT:
+                stats.PhysicalDamageMult += stat.Value;
                 break;
             case Stat.RANGED_ATTACK:
                 stats.RangedAttack += stat.Value;
@@ -294,7 +310,7 @@ public class ControlStatBlock : MonoBehaviour
         float fortReal = StatBlock.CalcMult(Fort, FortMult);
         stats.MagicRes += fortReal / 5f;
         stats.AfflictRes += fortReal / 5f;
-        stats.StatusRec += fortReal / 1000f;
+        stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
     }
@@ -317,7 +333,7 @@ public class ControlStatBlock : MonoBehaviour
         for (int i = buffs.Count - 1; i > -1; --i)
         {
             TimedBuff tb = buffs[i];
-            tb.DurationLeft -= Time.deltaTime;
+            tb.DurationLeft -= Time.deltaTime * ( 1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
             Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
             if (tb.DurationLeft <= 0f)
             {

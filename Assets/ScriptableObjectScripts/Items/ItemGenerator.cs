@@ -9,7 +9,7 @@ namespace CCC.Items
     /// </summary>
     public abstract class ItemGenerator : ScriptableObject
     {
-        private static float[] tierOdds = {50, 25, 12.5f, 6.25f, 3.125f};
+        private static float[] tierOdds = {115, 85, 60, 40, 15, 5, 0};
         private static readonly float tierIncrease = 1f;
 
         protected static void ApplyAffixes(List<AffixSetPrototype> allAffixSets, ItemGenerator gen, Item item, ItemPrototype proto)
