@@ -145,6 +145,8 @@ public class StatBlock : MonoBehaviour
         float armorL = CalcMult(Armor, ArmorMult);
         float mrL = CalcMult(MagicRes, MagicResMult);
 
+        Debug.Log(name + " armor: " + Armor + " mr: " + MagicRes);
+
         total += ApplyReduction(dmg.magicDmgReal, mrL);
         total += ApplyReduction(dmg.physicalDmgReal, armorL);
 
