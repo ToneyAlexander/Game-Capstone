@@ -20,8 +20,7 @@ public class TeleportScript : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
-        StatBlock colStat = col.gameObject.GetComponent<StatBlock>();
-        if(colStat != null && colStat.Friendly)
+        if(col.gameObject.tag == "Player")
         {
             col.gameObject.transform.position = new Vector3(TargetX,TargetY,TargetZ);
         }
