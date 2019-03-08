@@ -109,6 +109,10 @@ public class ControlStatBlock : MonoBehaviour
         stats.CritDamageMult = 0f;
         stats.Damage = 0f;
         stats.DamageMult = 0f;
+        stats.PhysicalDamage = 0f;
+        stats.PhysicalDamageMult = 0f;
+        stats.MagicDamage = 0f;
+        stats.MagicDamageMult = 0f;
         stats.MagicResMult = 0f;
         stats.StatusRecMult = 0f;
     }
