@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314b629eb468a0f4cb18606cd5ba66a3, type: 3}
-  m_Name: AffixStr3
+  m_Name: AffixMagDmg7
   m_EditorClassIdentifier: 
-  affixName: Moderate
+  affixName: Armageddonlike
   statPrototypeList:
-  - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    minValue: 40
-    maxValue: 60
+  - statIdentifier: {fileID: 11400000, guid: d4a2bb7b1cc39aa4a925ebac1af8259b, type: 2}
+    minValue: 28
+    maxValue: 30
+  - statIdentifier: {fileID: 11400000, guid: 321ce01118a0bb341bd19044ef8a3891, type: 2}
+    minValue: 0.04
+    maxValue: 0.05

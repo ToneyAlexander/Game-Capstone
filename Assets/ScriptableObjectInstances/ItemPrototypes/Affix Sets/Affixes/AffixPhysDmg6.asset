@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314b629eb468a0f4cb18606cd5ba66a3, type: 3}
-  m_Name: AffixStr3
+  m_Name: AffixPhysDmg6
   m_EditorClassIdentifier: 
-  affixName: Moderate
+  affixName: Destructive
   statPrototypeList:
-  - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    minValue: 40
-    maxValue: 60
+  - statIdentifier: {fileID: 11400000, guid: 4128bf8e336d9bc408dc01c44520586c, type: 2}
+    minValue: 25
+    maxValue: 28
+  - statIdentifier: {fileID: 11400000, guid: 183f455eec975b34eb23d49811a1beaa, type: 2}
+    minValue: 0.03
+    maxValue: 0.04
