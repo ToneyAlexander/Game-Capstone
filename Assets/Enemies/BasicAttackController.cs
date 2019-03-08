@@ -25,7 +25,7 @@ public class BasicAttackController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("remy");
+        target = GameObject.FindWithTag("Player");
         stats = GetComponent<StatBlock>();
         tta = ttaBase = 0.5f;
         weaponDmgMin = 35f;

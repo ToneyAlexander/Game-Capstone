@@ -31,9 +31,9 @@ public class RangedEnemyController : EnemyController
         movable = true;
 
         // Default vision
-        visionAngle = 60f;
-        visionDistance = 20;
-        attackDistance = 20f;
+        visionAngle = 90f;
+        visionDistance = 15f;
+        attackDistance = 10f;
     }
 
     protected override void UniqueUpdate()
