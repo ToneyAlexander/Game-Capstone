@@ -74,22 +74,17 @@ public class ControlStatBlock : MonoBehaviour
 
     void ResetBaseStats()
     {
-        Dex = 10;
+        Dex = 0;
         DexMult = 0;
-        Str = 10;
+        Str = 0;
         StrMult = 0;
-        Fort = 10;
+        Fort = 0;
         FortMult = 0;
-        Myst = 10;
+        Myst = 0;
         MystMult = 0;
-        stats.AfflictRes = 0f;
-        stats.MagicRes = 0f;
-        stats.StatusRec = 0f;
         stats.CdrMult = 0f;
         stats.Spell = 0f;
         stats.SpellMult = 0f;
-        stats.AttackSpeedMult = 0f;
-        stats.MoveSpeedMult = 0f;
         stats.RangedAttack = 0f;
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
@@ -97,12 +92,15 @@ public class ControlStatBlock : MonoBehaviour
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
         stats.MoveSpeed = 6.5f;
+        stats.MoveSpeedMult = 0f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
         stats.AttackSpeed = 1f;
+        stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
         stats.ArmorMult = 0f;
         stats.AfflictResMult = 0f;
+        stats.AfflictRes = 0f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1.5f;
@@ -113,7 +111,9 @@ public class ControlStatBlock : MonoBehaviour
         stats.PhysicalDamageMult = 0f;
         stats.MagicDamage = 0f;
         stats.MagicDamageMult = 0f;
+        stats.MagicRes = 0f;
         stats.MagicResMult = 0f;
+        stats.StatusRec = 0f;
         stats.StatusRecMult = 0f;
     }
 
