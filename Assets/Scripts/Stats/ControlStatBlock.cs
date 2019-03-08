@@ -180,6 +180,12 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.HEALTH_REGEN_MULT:
                 stats.HealthRegenMult += stat.Value;
                 break;
+            case Stat.MAGIC_DMG:
+                stats.MagicDamage += stat.Value;
+                break;
+            case Stat.MAGIC_DMG_MULT:
+                stats.MagicDamageMult += stat.Value;
+                break;
             case Stat.MAGIC_RES:
                 stats.MagicRes += stat.Value;
                 break;
@@ -203,6 +209,12 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
+                break;
+            case Stat.PHYS_DMG:
+                stats.PhysicalDamage += stat.Value;
+                break;
+            case Stat.PHYS_DMG_MULT:
+                stats.PhysicalDamageMult += stat.Value;
                 break;
             case Stat.RANGED_ATTACK:
                 stats.RangedAttack += stat.Value;

@@ -49,6 +49,10 @@ public class StatBlock : MonoBehaviour
     public float ArmorMult { get; set; }
     public float Damage { get; set; }
     public float DamageMult { get; set; }
+    public float PhysicalDamage { get; set; }
+    public float PhysicalDamageMult { get; set; }
+    public float MagicDamage { get; set; }
+    public float MagicDamageMult { get; set; }
     public float CritDamage { get; set; }
     public float CritDamageMult { get; set; }
     public float CritChance { get; set; }
@@ -164,9 +168,13 @@ public class StatBlock : MonoBehaviour
             magicMult += SpellMult;
         }
         phys += Damage;
+        phys += PhysicalDamage;
         magic += Damage;
+        magic += MagicDamage;
         physMult += DamageMult;
+        physMult += PhysicalDamageMult;
         magicMult += DamageMult;
+        magicMult += MagicDamageMult;
 
         dmg.physicalDmgReal = CalcMult(phys, physMult);
         dmg.magicDmgReal = CalcMult(magic, magicMult);
