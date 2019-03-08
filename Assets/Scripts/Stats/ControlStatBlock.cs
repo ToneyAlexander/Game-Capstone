@@ -57,7 +57,7 @@ public class ControlStatBlock : MonoBehaviour
         
         if (stats != null && stats.Friendly)
         {
-            applyTestStats = true;
+            //applyTestStats = true;
         }
 
         StatsChanged();
@@ -96,7 +96,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.HealthRegen = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
-        stats.MoveSpeed = 5f;
+        stats.MoveSpeed = 6.5f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
         stats.AttackSpeed = 1f;
@@ -300,7 +300,7 @@ public class ControlStatBlock : MonoBehaviour
 
         float dexReal = StatBlock.CalcMult(Dex, DexMult);
         stats.AttackSpeedMult += dexReal / 1000f;
-        stats.MoveSpeedMult += dexReal / 500f;
+        stats.MoveSpeedMult += dexReal / 750f;
         stats.RangedAttackMult += dexReal / 1000f;
 
         float mystReal = StatBlock.CalcMult(Myst, MystMult);
@@ -323,7 +323,6 @@ public class ControlStatBlock : MonoBehaviour
         {
             if (tb.IsUnique && buffs.Contains(tb))
             {
-                Debug.Log("Found buff to removes");
                 buffs.Remove(tb);
             }
             buffs.Add(tb);
@@ -334,10 +333,11 @@ public class ControlStatBlock : MonoBehaviour
         {
             TimedBuff tb = buffs[i];
             tb.DurationLeft -= Time.deltaTime * ( 1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
-            Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
+            //Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
             if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
+                Debug.Log(tb.BuffName + " expired.");
                 needsUpdate = true;
 
             }

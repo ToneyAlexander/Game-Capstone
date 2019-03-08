@@ -66,20 +66,16 @@ public class PlayerClass : MonoBehaviour
     {
         foreach(PerkPrototype p in perks)
         {
-            int index = allPerks.IndexOf(p);
-            if (index >= 0) {
-                bool succ = TakePerk(allPerks[index]);
-                if (!succ)
-                {
-                    Debug.LogError("Class Defaults Configured Incorrectly");
-                }
+            bool succ = TakePerk(p);
+            if (!succ)
+            {
+                Debug.LogError("Class Defaults Configured Incorrectly");
             }
         }
     }
 
     public bool TakePerk(PerkPrototype p)
     {
-        Debug.Log(p.name + " " + takenPerks.IndexOf(p) + " " + takenPerks.Count);
         if (CheckPrereq(p, takenPerks))
         {
             takenPerks.Add(p);

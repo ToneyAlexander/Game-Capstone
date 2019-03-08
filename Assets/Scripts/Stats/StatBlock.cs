@@ -8,7 +8,7 @@ public class StatBlock : MonoBehaviour
 
     //lower to make armor/magic res better, visa versa
     //armor/magic res lower than this value has no effect
-    private const int LOG_BASE = 14;
+    private const int LOG_BASE = 19;
 
     //All mults are based off base of 1
     //ie: mult of 0.65 = 165%
@@ -78,6 +78,7 @@ public class StatBlock : MonoBehaviour
         }
     }
 
+    [System.Obsolete("CalcLog is deprecated, please use ApplyReduction instead.")]
     public static float CalcLog(float n)
     {
         if(n >= LOG_BASE)
@@ -90,6 +91,20 @@ public class StatBlock : MonoBehaviour
         {
             return 1 / Mathf.Log(Mathf.Abs(n), LOG_BASE);
         }
+    }
+
+    public float ApplyReduction(float ToReduce, float Reducer)
+    {
+        if(ToReduce <= 0)
+        {
+            return 0f;
+        }
+        if(Reducer < -1.5f*ToReduce)
+        {
+            Reducer = -1.5f * ToReduce;
+        }
+        Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
+        return (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce);
     }
 
     void Awake()
@@ -130,12 +145,12 @@ public class StatBlock : MonoBehaviour
         float armorL = CalcMult(Armor, ArmorMult);
         float mrL = CalcMult(MagicRes, MagicResMult);
 
-        total += dmg.magicDmgReal / CalcLog(mrL);
-        total += dmg.physicalDmgReal / CalcLog(armorL);
-        
+        total += ApplyReduction(dmg.magicDmgReal, mrL);
+        total += ApplyReduction(dmg.physicalDmgReal, armorL);
+
         HealthCur -= total;
 
-        //Debug.Log(name + " took " + total + " damage.");
+        Debug.Log(name + " took " + total + " damage.");
 
         return total;
     }
