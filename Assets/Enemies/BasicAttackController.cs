@@ -64,11 +64,11 @@ public class BasicAttackController : MonoBehaviour
         Damage dmg = new Damage(Random.Range(weaponDmgMin, weaponDmgMax), 0f, true, false, false);
         dmg = stats.RealDamage(dmg);
         GetComponent<MeleeEnemyController>().dmg = dmg;
-
-        StatBlock enemy = GameObject.Find("remy").GetComponent<StatBlock>();
+        GameObject remy = GameObject.Find("remy");
+        StatBlock enemy = remy.GetComponent<StatBlock>();
         if (enemy != null)
         {
-            enemy.TakeDamage(dmg);            
+            enemy.TakeDamage(dmg, remy);            
         }
     }
 

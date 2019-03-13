@@ -45,7 +45,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
             {
                 //Debug.Log("Enemy has stat block, enem is friendly: " + enemy.Friendly);
                 if (friendly != enemy.Friendly) {
-                    enemy.TakeDamage(dmg);
+                    enemy.TakeDamage(dmg, col.gameObject);
                     if(enemyControl != null)
                     {
                         enemyControl.OnHit(dmg);

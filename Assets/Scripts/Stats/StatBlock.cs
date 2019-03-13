@@ -64,6 +64,8 @@ public class StatBlock : MonoBehaviour
     [SerializeField]
     private CommandProcessor commandProcessor;
 
+    private DamageNotifier damageNotifier;
+
     private bool isDead = false;
 
     public static float CalcMult(float baseV, float multV)
@@ -110,6 +112,15 @@ public class StatBlock : MonoBehaviour
     void Awake()
     {
         killable = GetComponent<IKillable>();
+        GameObject[] HUDList = GameObject.FindGameObjectsWithTag("HUDElement");
+        foreach(GameObject element in HUDList)
+        {
+            if (element.name.Equals("Damage"))
+            {
+                damageNotifier = element.GetComponent<DamageNotifier>();
+                break;
+            }
+        }
     }
 
     void Start()
@@ -138,7 +149,7 @@ public class StatBlock : MonoBehaviour
 
     }
 
-    public float TakeDamage(Damage dmg)
+    public float TakeDamage(Damage dmg, GameObject parent)
     {
         float total = 0;
 
@@ -154,6 +165,10 @@ public class StatBlock : MonoBehaviour
 
         Debug.Log(name + " took " + total + " damage.");
 
+        if (!Friendly)
+        {
+            damageNotifier.CreateDamageNotifier(total, parent);
+        }
         return total;
     }
 
