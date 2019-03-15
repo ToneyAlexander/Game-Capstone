@@ -15,6 +15,7 @@ public class TestPlayerClass : MonoBehaviour
         pClass = GetComponent<PlayerClass>();
 
         pClass.allPerks = ClassL.Perks;
+        pClass.onLevelUp = ClassL.OnLevel;
         pClass.TakeDefaults(ClassL.Defaults);
     }
 

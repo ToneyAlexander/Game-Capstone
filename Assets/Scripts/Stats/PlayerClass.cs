@@ -11,6 +11,8 @@ public class PlayerClass : MonoBehaviour
     public List<PerkPrototype> allPerks;
     [HideInInspector]
     public List<PerkPrototype> takenPerks;
+    [HideInInspector]
+    public PerkPrototype onLevelUp;
     public AbilitySet abilities;
     public AbilitySlotDictionary abilDict;
     private ControlStatBlock stats;
@@ -60,6 +62,15 @@ public class PlayerClass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void LevelUp()
+    {
+        if (onLevelUp != null)
+        {
+            takenPerks.Add(onLevelUp);
+            stats.StatsChanged();
+        }
     }
 
     public void TakeDefaults(List<PerkPrototype> perks)

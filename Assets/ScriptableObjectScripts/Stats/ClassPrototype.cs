@@ -9,4 +9,5 @@ public class ClassPrototype : ScriptableObject
     public string description;
     public List<PerkPrototype> Perks;
     public List<PerkPrototype> Defaults;
+    public PerkPrototype OnLevel;
 }
