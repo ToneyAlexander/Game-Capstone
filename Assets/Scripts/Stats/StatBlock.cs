@@ -8,7 +8,7 @@ public class StatBlock : MonoBehaviour
 
     //lower to make armor/magic res better, visa versa
     //armor/magic res lower than this value has no effect
-    private const int LOG_BASE = 14;
+    private const int LOG_BASE = 19;
 
     //All mults are based off base of 1
     //ie: mult of 0.65 = 165%
@@ -49,6 +49,10 @@ public class StatBlock : MonoBehaviour
     public float ArmorMult { get; set; }
     public float Damage { get; set; }
     public float DamageMult { get; set; }
+    public float PhysicalDamage { get; set; }
+    public float PhysicalDamageMult { get; set; }
+    public float MagicDamage { get; set; }
+    public float MagicDamageMult { get; set; }
     public float CritDamage { get; set; }
     public float CritDamageMult { get; set; }
     public float CritChance { get; set; }
@@ -59,6 +63,8 @@ public class StatBlock : MonoBehaviour
 
     [SerializeField]
     private CommandProcessor commandProcessor;
+
+    private DamageNotifier damageNotifier;
 
     private bool isDead = false;
 
@@ -74,6 +80,7 @@ public class StatBlock : MonoBehaviour
         }
     }
 
+    [System.Obsolete("CalcLog is deprecated, please use ApplyReduction instead.")]
     public static float CalcLog(float n)
     {
         if(n >= LOG_BASE)
@@ -88,9 +95,32 @@ public class StatBlock : MonoBehaviour
         }
     }
 
+    public float ApplyReduction(float ToReduce, float Reducer)
+    {
+        if(ToReduce <= 0)
+        {
+            return 0f;
+        }
+        if(Reducer < -1.5f*ToReduce)
+        {
+            Reducer = -1.5f * ToReduce;
+        }
+        Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
+        return (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce);
+    }
+
     void Awake()
     {
         killable = GetComponent<IKillable>();
+        GameObject[] HUDList = GameObject.FindGameObjectsWithTag("HUDElement");
+        foreach(GameObject element in HUDList)
+        {
+            if (element.name.Equals("Damage"))
+            {
+                damageNotifier = element.GetComponent<DamageNotifier>();
+                break;
+            }
+        }
     }
 
     void Start()
@@ -119,21 +149,44 @@ public class StatBlock : MonoBehaviour
 
     }
 
-    public float TakeDamage(Damage dmg)
+    public float TakeDamage(Damage dmg, GameObject parent)
     {
         float total = 0;
 
         float armorL = CalcMult(Armor, ArmorMult);
         float mrL = CalcMult(MagicRes, MagicResMult);
 
-        total += dmg.magicDmgReal / CalcLog(mrL);
-        total += dmg.physicalDmgReal / CalcLog(armorL);
-        
+        Debug.Log(name + " armor: " + Armor + " mr: " + MagicRes);
+
+        total += ApplyReduction(dmg.magicDmgReal, mrL);
+        total += ApplyReduction(dmg.physicalDmgReal, armorL);
+
         HealthCur -= total;
 
-        //Debug.Log(name + " took " + total + " damage.");
+        Debug.Log(name + " took " + total + " damage.");
 
+        if (!Friendly)
+        {
+            damageNotifier.CreateDamageNotifier(total, parent);
+        }
         return total;
+    }
+
+    public float RealDotDamage(float baseVal, float baseMult, bool phys, bool magic, bool ranged, bool melee, bool spell)
+    {
+        if(magic)
+            baseMult += MagicDamageMult;
+        if (phys)
+            baseMult += PhysicalDamageMult;
+        if (spell)
+            baseMult += SpellMult;
+        if (ranged)
+            baseMult += RangedAttackMult;
+        if (melee)
+            baseMult += MeleeAttackMult;
+        baseMult += DamageMult;
+
+        return CalcMult(baseVal, baseMult);
     }
 
     public Damage RealDamage(Damage dmg)
@@ -164,9 +217,13 @@ public class StatBlock : MonoBehaviour
             magicMult += SpellMult;
         }
         phys += Damage;
+        phys += PhysicalDamage;
         magic += Damage;
+        magic += MagicDamage;
         physMult += DamageMult;
+        physMult += PhysicalDamageMult;
         magicMult += DamageMult;
+        magicMult += MagicDamageMult;
 
         dmg.physicalDmgReal = CalcMult(phys, physMult);
         dmg.magicDmgReal = CalcMult(magic, magicMult);

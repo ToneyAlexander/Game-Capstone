@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixMyst
+  m_EditorClassIdentifier: 
+  setName: Mystic
+  setNameShort: Myst
+  tiers:
+  - {fileID: 11400000, guid: 075b2ce7d7d269541a945a1a65bc6ffe, type: 2}
+  - {fileID: 11400000, guid: bc44cc687dc012948906bb30eeb56dc3, type: 2}
+  - {fileID: 11400000, guid: c556717c814d2a144a1f21f722ff9c09, type: 2}
+  - {fileID: 11400000, guid: ae35d44556c14404eb0d759f859327bf, type: 2}
+  - {fileID: 11400000, guid: f50417a70213f324782479a789800858, type: 2}

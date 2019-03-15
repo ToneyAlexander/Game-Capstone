@@ -5,7 +5,7 @@ using CCC.Stats;
 using CCC.Abilities;
 
 [CreateAssetMenu(menuName = "Stats/PerkPrototype")]
-public class PerkPrototype : ScriptableObject
+public class PerkPrototype : ScriptableObject, System.IEquatable<PerkPrototype>
 {
     public List<PerkPrototype> Require;
     public List<PerkPrototype> BlockedBy;
@@ -21,6 +21,11 @@ public class PerkPrototype : ScriptableObject
     public List<AbilityModifier> Changes;
     public Vector2 uiCoords;
     public Sprite sprite;
+
+    public bool Equals(PerkPrototype other)
+    {
+        return name.Equals(other.name);
+    }
 
     //public void Awake()
     //{

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixMagDmg
+  m_EditorClassIdentifier: 
+  setName: Spells
+  setNameShort: Magic Dmg
+  tiers:
+  - {fileID: 11400000, guid: 82eb2049037b3f64d8ad1d7eadd57267, type: 2}
+  - {fileID: 11400000, guid: d1e6cdf22a8c0fc4591ea16f2370916f, type: 2}
+  - {fileID: 11400000, guid: bbf2b37480747f642ba2df945b824844, type: 2}
+  - {fileID: 11400000, guid: 551d5882222b3e74789196fd6b63f8c5, type: 2}
+  - {fileID: 11400000, guid: 58cdfddb8c7d4db409a135fa7eb015e6, type: 2}
+  - {fileID: 11400000, guid: b99d1f565f5039b459fc6ed5d63803a1, type: 2}
+  - {fileID: 11400000, guid: 9d77f2425a577384e865652b71e09c9c, type: 2}

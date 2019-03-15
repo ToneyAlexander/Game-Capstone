@@ -17,8 +17,9 @@ MonoBehaviour:
   equipmentSlot: 3
   flavorText: A broken axe.
   internalDescription: Tier 1 common axe
-  maxNumberAffixes: 0
+  baseItemTier: 1
+  maxNumberAffixes: 1
   statPrototypeList:
   - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    minValue: 10
-    maxValue: 50
+    minValue: 5
+    maxValue: 15

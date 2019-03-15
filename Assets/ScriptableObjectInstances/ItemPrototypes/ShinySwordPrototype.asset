@@ -17,11 +17,12 @@ MonoBehaviour:
   equipmentSlot: 3
   flavorText: A Shiny Sword.
   internalDescription: A Sword for testing
-  maxNumberAffixes: 0
+  baseItemTier: 3
+  maxNumberAffixes: 2
   statPrototypeList:
   - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
-    minValue: 5
-    maxValue: 9
-  - statIdentifier: {fileID: 11400000, guid: 44d642503b03642958c4880db7ed0eac, type: 2}
-    minValue: 1.2
-    maxValue: 1.4
+    minValue: 10
+    maxValue: 30
+  - statIdentifier: {fileID: 11400000, guid: 5d86dc758ff2ed34987cb92c7d9f1d32, type: 2}
+    minValue: 0.2
+    maxValue: 0.4

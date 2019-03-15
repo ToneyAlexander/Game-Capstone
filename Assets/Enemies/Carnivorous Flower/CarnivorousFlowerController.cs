@@ -118,6 +118,7 @@ public class CarnivorousFlowerController : EnemyController
     
     public override IEnumerator Die()
     {
+		animator.SetBool("Sleeping", false);
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);

@@ -57,7 +57,7 @@ public class ControlStatBlock : MonoBehaviour
         
         if (stats != null && stats.Friendly)
         {
-            applyTestStats = true;
+            //applyTestStats = true;
         }
 
         StatsChanged();
@@ -74,42 +74,46 @@ public class ControlStatBlock : MonoBehaviour
 
     void ResetBaseStats()
     {
-        Dex = 10;
+        Dex = 0;
         DexMult = 0;
-        Str = 10;
+        Str = 0;
         StrMult = 0;
-        Fort = 10;
+        Fort = 0;
         FortMult = 0;
-        Myst = 10;
+        Myst = 0;
         MystMult = 0;
-        stats.AfflictRes = 0f;
-        stats.MagicRes = 0f;
-        stats.StatusRec = 0f;
         stats.CdrMult = 0f;
         stats.Spell = 0f;
         stats.SpellMult = 0f;
-        stats.AttackSpeedMult = 0f;
-        stats.MoveSpeedMult = 0f;
         stats.RangedAttack = 0f;
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
         stats.HealthRegen = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
-        stats.MoveSpeed = 5f;
+        stats.MoveSpeed = 6.5f;
+        stats.MoveSpeedMult = 0f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
         stats.AttackSpeed = 1f;
+        stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
         stats.ArmorMult = 0f;
         stats.AfflictResMult = 0f;
+        stats.AfflictRes = 0f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1.5f;
         stats.CritDamageMult = 0f;
         stats.Damage = 0f;
         stats.DamageMult = 0f;
+        stats.PhysicalDamage = 0f;
+        stats.PhysicalDamageMult = 0f;
+        stats.MagicDamage = 0f;
+        stats.MagicDamageMult = 0f;
+        stats.MagicRes = 0f;
         stats.MagicResMult = 0f;
+        stats.StatusRec = 0f;
         stats.StatusRecMult = 0f;
     }
 
@@ -180,6 +184,12 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.HEALTH_REGEN_MULT:
                 stats.HealthRegenMult += stat.Value;
                 break;
+            case Stat.MAGIC_DMG:
+                stats.MagicDamage += stat.Value;
+                break;
+            case Stat.MAGIC_DMG_MULT:
+                stats.MagicDamageMult += stat.Value;
+                break;
             case Stat.MAGIC_RES:
                 stats.MagicRes += stat.Value;
                 break;
@@ -203,6 +213,12 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
+                break;
+            case Stat.PHYS_DMG:
+                stats.PhysicalDamage += stat.Value;
+                break;
+            case Stat.PHYS_DMG_MULT:
+                stats.PhysicalDamageMult += stat.Value;
                 break;
             case Stat.RANGED_ATTACK:
                 stats.RangedAttack += stat.Value;
@@ -284,7 +300,7 @@ public class ControlStatBlock : MonoBehaviour
 
         float dexReal = StatBlock.CalcMult(Dex, DexMult);
         stats.AttackSpeedMult += dexReal / 1000f;
-        stats.MoveSpeedMult += dexReal / 500f;
+        stats.MoveSpeedMult += dexReal / 750f;
         stats.RangedAttackMult += dexReal / 1000f;
 
         float mystReal = StatBlock.CalcMult(Myst, MystMult);
@@ -294,7 +310,7 @@ public class ControlStatBlock : MonoBehaviour
         float fortReal = StatBlock.CalcMult(Fort, FortMult);
         stats.MagicRes += fortReal / 5f;
         stats.AfflictRes += fortReal / 5f;
-        stats.StatusRec += fortReal / 1000f;
+        stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
     }
@@ -307,7 +323,6 @@ public class ControlStatBlock : MonoBehaviour
         {
             if (tb.IsUnique && buffs.Contains(tb))
             {
-                Debug.Log("Found buff to removes");
                 buffs.Remove(tb);
             }
             buffs.Add(tb);
@@ -317,11 +332,12 @@ public class ControlStatBlock : MonoBehaviour
         for (int i = buffs.Count - 1; i > -1; --i)
         {
             TimedBuff tb = buffs[i];
-            tb.DurationLeft -= Time.deltaTime;
-            Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
+            tb.DurationLeft -= Time.deltaTime * ( 1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
+            //Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
             if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
+                Debug.Log(tb.BuffName + " expired.");
                 needsUpdate = true;
 
             }

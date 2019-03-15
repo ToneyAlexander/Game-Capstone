@@ -17,6 +17,11 @@ public class PlayerClass : MonoBehaviour
 
     public static bool CheckPrereq(PerkPrototype p, List<PerkPrototype> taken)
     {
+        if(taken.Contains(p))
+        {
+            Debug.LogError("Attempted to take perk that is already owned");
+            return false;
+        }
         int matched = 0;
         foreach (PerkPrototype t in taken)
         {
@@ -50,7 +55,6 @@ public class PlayerClass : MonoBehaviour
     {
         takenPerks = new List<PerkPrototype>();
         stats = GetComponent<ControlStatBlock>();
-        Debug.Log("stats loaded " + gameObject.name);
     }
 
     // Start is called before the first frame update
@@ -58,9 +62,21 @@ public class PlayerClass : MonoBehaviour
     {
     }
 
+    public void TakeDefaults(List<PerkPrototype> perks)
+    {
+        foreach(PerkPrototype p in perks)
+        {
+            bool succ = TakePerk(p);
+            if (!succ)
+            {
+                Debug.LogError("Class Defaults Configured Incorrectly");
+            }
+        }
+    }
+
     public bool TakePerk(PerkPrototype p)
     {
-        if(CheckPrereq(p, takenPerks))
+        if (CheckPrereq(p, takenPerks))
         {
             takenPerks.Add(p);
             stats.StatsChanged();
