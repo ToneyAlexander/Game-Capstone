@@ -17,6 +17,12 @@ public class PlayerClass : MonoBehaviour
     public AbilitySlotDictionary abilDict;
     private ControlStatBlock stats;
 
+    public float Exp { get; private set; }
+    public float ExpToLevel { get; private set; }
+    private readonly float expToLevelInc = 1.25f;
+    public int PerkPoints { get; private set; }
+    public int Level { get; private set; }
+
     public static bool CheckPrereq(PerkPrototype p, List<PerkPrototype> taken)
     {
         if(taken.Contains(p))
@@ -57,6 +63,9 @@ public class PlayerClass : MonoBehaviour
     {
         takenPerks = new List<PerkPrototype>();
         stats = GetComponent<ControlStatBlock>();
+        ExpToLevel = 100;
+        PerkPoints = 1;
+        Level = 1;
     }
 
     // Start is called before the first frame update
@@ -64,8 +73,23 @@ public class PlayerClass : MonoBehaviour
     {
     }
 
-    public void LevelUp()
+    public void ApplyExp(float toAdd)
     {
+        Debug.Log("Gained " + toAdd + " exp.");
+        Exp += toAdd;
+        while (Exp > ExpToLevel)
+        {
+            LevelUp();
+            Exp -= ExpToLevel;
+            ExpToLevel *= expToLevelInc;
+        }
+    }
+
+    private void LevelUp()
+    {
+        Debug.Log("Leveled Up!");
+        ++PerkPoints;
+        ++Level;
         if (onLevelUp != null)
         {
             takenPerks.Add(onLevelUp);
@@ -77,7 +101,7 @@ public class PlayerClass : MonoBehaviour
     {
         foreach(PerkPrototype p in perks)
         {
-            bool succ = TakePerk(p);
+            bool succ = TakePerk(p, false);
             if (!succ)
             {
                 Debug.LogError("Class Defaults Configured Incorrectly");
@@ -85,67 +109,75 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
-    public bool TakePerk(PerkPrototype p)
+    public bool TakePerk(PerkPrototype p, bool needsPerkPoint = true)
     {
-        if (CheckPrereq(p, takenPerks))
+        if (!needsPerkPoint || PerkPoints > 0)
         {
-            takenPerks.Add(p);
-            stats.StatsChanged();
-            if (abilities != null && abilDict != null)
+            if (CheckPrereq(p, takenPerks))
             {
-                foreach (AbilityPrototype a in p.grants)
+                if(needsPerkPoint)
                 {
-                    Ability instA = a.Instance;
-                    abilities.Set.Add(instA.AbilityName, instA);
-                    Debug.Log("Abil set len: " + abilities.Set.Count);
-                    //TODO: repalce with ui thing
-                    if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
-                    {
-                        abilDict.SetSlotAbility(AbilitySlot.One, instA);
-                        AddAbilityToParent(gameObject, instA.TypeString);
-                    }
-                    else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
-                    {
-                        abilDict.SetSlotAbility(AbilitySlot.Two, instA);
-                        AddAbilityToParent(gameObject, instA.TypeString);
-                    }
-                    else if (abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
-                    {
-                        abilDict.SetSlotAbility(AbilitySlot.Three, instA);
-                        AddAbilityToParent(gameObject, instA.TypeString);
-                    }
-                    else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
-                    {
-                        abilDict.SetSlotAbility(AbilitySlot.Four, instA);
-                        AddAbilityToParent(gameObject, instA.TypeString);
-                    }
-                    else if (abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
-                    {
-                        abilDict.SetSlotAbility(AbilitySlot.Five, instA);
-                        AddAbilityToParent(gameObject, instA.TypeString);
-                    }
+                    --PerkPoints;
                 }
-                foreach (AbilityModifier aMod in p.Changes)
+                takenPerks.Add(p);
+                stats.StatsChanged();
+                if (abilities != null && abilDict != null)
                 {
-                    if (abilities.Set.ContainsKey(aMod.AbilityName))
+                    foreach (AbilityPrototype a in p.grants)
                     {
-                        Ability abil = abilities.Set[aMod.AbilityName];
-                        Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
-                        stat.Value += aMod.Value;
-                        Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
-                        abil.update = true;
+                        Ability instA = a.Instance;
+                        abilities.Set.Add(instA.AbilityName, instA);
+                        Debug.Log("Abil set len: " + abilities.Set.Count);
+                        //TODO: repalce with ui thing
+                        if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.One, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
+                        else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Two, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
+                        else if (abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Three, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
+                        else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Four, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
+                        else if (abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Five, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
                     }
-                    else
+                    foreach (AbilityModifier aMod in p.Changes)
                     {
-                        Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
-                    }
+                        if (abilities.Set.ContainsKey(aMod.AbilityName))
+                        {
+                            Ability abil = abilities.Set[aMod.AbilityName];
+                            Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
+                            stat.Value += aMod.Value;
+                            Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
+                            abil.update = true;
+                        }
+                        else
+                        {
+                            Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
+                        }
 
+                    }
                 }
+                return true;
             }
-            return true;
         } else
         {
-            return false;
+            Debug.Log("Not enough perk points to take perk");
         }
+        return false;
     }
 }

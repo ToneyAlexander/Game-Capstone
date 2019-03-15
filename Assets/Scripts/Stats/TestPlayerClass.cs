@@ -38,6 +38,12 @@ public class TestPlayerClass : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            Debug.Log("Pressed Page UP, applying 300 exp");
+            pClass.ApplyExp(300);
+        }
     }
     public PlayerClass GetClass()
     {

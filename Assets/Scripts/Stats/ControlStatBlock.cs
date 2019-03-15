@@ -22,16 +22,6 @@ public class ControlStatBlock : MonoBehaviour
     public float Fort { get; set; }
     public float FortMult { get; set; }
 
-
-    public float Exp { get { return exp; } private set { exp = value; } }
-
-    public void ApplyExp(float toAdd)
-    {
-        exp += toAdd;
-    }
-
-    private float exp;
-
     private List<TimedBuff> buffs;
     private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
