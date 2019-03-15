@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
-  m_Name: CrudeAxePrototype
+  m_Name: StandardAxe
   m_EditorClassIdentifier: 
-  itemName: Crude Axe
-  sprite: {fileID: 21300000, guid: 23d58db72586100488bf85b1f7257bc9, type: 3}
+  itemName: Standard Axe
+  sprite: {fileID: 21300000, guid: a027e5e35bbd16b4aaec5f06da88ff08, type: 3}
   equipmentSlot: 3
-  flavorText: A crude axe.
-  internalDescription: Tier 2 common axe
-  baseItemTier: 2
-  maxNumberAffixes: 1
+  flavorText: A standard axe.
+  internalDescription: Tier 3 axe
+  baseItemTier: 3
+  maxNumberAffixes: 2
   statPrototypeList:
-  - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
+  - statIdentifier: {fileID: 11400000, guid: 4128bf8e336d9bc408dc01c44520586c, type: 2}
     minValue: 10
     maxValue: 20
-  - statIdentifier: {fileID: 11400000, guid: d54b232b3fcae4b45b52cc5127e54fd7, type: 2}
-    minValue: 5
-    maxValue: 15
+  - statIdentifier: {fileID: 11400000, guid: 183f455eec975b34eb23d49811a1beaa, type: 2}
+    minValue: 0.1
+    maxValue: 0.15

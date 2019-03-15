@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 74118584}
   m_Layer: 0
   m_Name: Boss Beetle
-  m_TagString: Untagged
+  m_TagString: BossEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatPerk: {fileID: 11400000, guid: 1136e1b3838dcc04196d6c725498ce1a, type: 2}
+  LevelPerk: {fileID: 11400000, guid: de75126e841c4a24abad26a72deb1c33, type: 2}
   EggPrefab: {fileID: 4683793525412170550, guid: a99a3f150afb634469b28e0a21cdffcf,
     type: 3}
   VolleyPrefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c,
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
 --- !u!114 &74118582

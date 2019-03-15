@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
-  m_Name: ShinySwordPrototype
+  m_Name: Greatsword
   m_EditorClassIdentifier: 
-  itemName: Shiny Sword
+  itemName: Greatsword
   sprite: {fileID: 21300000, guid: 91ead2a1affa26f4ba9e8f2c39330584, type: 3}
   equipmentSlot: 3
-  flavorText: A Shiny Sword.
-  internalDescription: A Sword for testing
+  flavorText: No clue how you are holding this with one hand...
+  internalDescription: asdas
   baseItemTier: 3
   maxNumberAffixes: 2
   statPrototypeList:
-  - statIdentifier: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
+  - statIdentifier: {fileID: 11400000, guid: 4128bf8e336d9bc408dc01c44520586c, type: 2}
     minValue: 10
-    maxValue: 30
-  - statIdentifier: {fileID: 11400000, guid: 5d86dc758ff2ed34987cb92c7d9f1d32, type: 2}
-    minValue: 0.2
-    maxValue: 0.4
+    maxValue: 20
+  - statIdentifier: {fileID: 11400000, guid: 1e4f666d125b24538b6ea01a50a1a565, type: 2}
+    minValue: 0.07
+    maxValue: 0.12

@@ -17,6 +17,7 @@ public class AlienBeetle : MonoBehaviour
     private Animator animator;
     private GameObject player;
     public PerkPrototype StatPerk;
+    public PerkPrototype LevelPerk;
     public GameObject EggPrefab;
     public GameObject VolleyPrefab;
     public GameObject TrackerPrefab;
@@ -48,6 +49,12 @@ public class AlienBeetle : MonoBehaviour
     void Start()
     {
         beetleClass.TakePerk(StatPerk);
+        beetleClass.onLevelUp = LevelPerk;
+
+        for(int i = 0; i < Level; ++i)
+        {
+            beetleClass.LevelUp();
+        }
     }
 
     void AbilityZero()

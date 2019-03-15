@@ -85,7 +85,7 @@ public class PlayerClass : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         Debug.Log("Leveled Up!");
         ++PerkPoints;

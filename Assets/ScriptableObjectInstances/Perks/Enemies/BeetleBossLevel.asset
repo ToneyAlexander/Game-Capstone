@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: BeetleBossStats
+  m_Name: BeetleBossLevel
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
@@ -19,18 +19,16 @@ MonoBehaviour:
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: 99526659c34c448f08210191f6275f0d, type: 2}
-    statValue: 4000
+    statValue: 750
   - statName: {fileID: 11400000, guid: b2775bcec8e333f4391e3984c8de163b, type: 2}
-    statValue: 300
+    statValue: 50
   - statName: {fileID: 11400000, guid: 9f7ca13b26d54d74dbe783c6011aaf48, type: 2}
-    statValue: 300
-  - statName: {fileID: 11400000, guid: db579f37bb6e3da40b9f8333d5ca40af, type: 2}
-    statValue: 5
-  - statName: {fileID: 11400000, guid: c13512a77709a154c86e5ad1e3abf603, type: 2}
-    statValue: 1
+    statValue: 50
+  - statName: {fileID: 11400000, guid: c2470fadeda35b945928980dd0eb9e29, type: 2}
+    statValue: 0.1
   - statName: {fileID: 11400000, guid: 1455ab2b7b5a992438822422a43db0b8, type: 2}
-    statValue: 5
-  Name: Beetle autotake
+    statValue: 0.25
+  Name: Beetle Levelup
   Desc: 
   grants: []
   Changes: []
