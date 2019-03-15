@@ -105,7 +105,7 @@ public class StatBlock : MonoBehaviour
         {
             Reducer = -1.5f * ToReduce;
         }
-        Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
+        //Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
         return (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce);
     }
 
