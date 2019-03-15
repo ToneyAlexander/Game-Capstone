@@ -6,7 +6,7 @@ public class Environment : MonoBehaviour
 {
     public AudioClip forest_wind;
     private AudioSource audiodata;
-    public AudioClip[] footSteps;
+    public bool InBossFight;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,9 @@ public class Environment : MonoBehaviour
 
     void PlayOneStep()
     {
+
         audiodata.clip = forest_wind;
+
         audiodata.Play();
     }
 
