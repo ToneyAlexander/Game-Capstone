@@ -23,6 +23,8 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
 
         remyDead.Dead();
 
+        Debug.Log("dead");
+
         //Destroy(gameObject);
         //gameStateChanger.ChangeGameState();
     }

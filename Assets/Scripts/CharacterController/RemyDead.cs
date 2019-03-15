@@ -33,8 +33,6 @@ public class RemyDead : MonoBehaviour
     }
     public void Dead()
     {
-        RemyMovement.destination = this.transform.position;
-
         animator.SetBool("isDead", true);
 
         animator.SetBool("isRunning", false);
