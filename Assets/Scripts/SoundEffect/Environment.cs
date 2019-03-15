@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class FootSteps : MonoBehaviour
+public class Environment : MonoBehaviour
 {
+    public AudioClip forest_wind;
     private AudioSource audiodata;
     public AudioClip[] footSteps;
 
@@ -16,12 +16,8 @@ public class FootSteps : MonoBehaviour
 
     void PlayOneStep()
     {
-        audiodata.clip = RandomClip();
+        audiodata.clip = forest_wind;
         audiodata.Play();
     }
 
-    AudioClip RandomClip()
-    {
-        return footSteps[Random.Range(0, footSteps.Length)];
-    }
 }
