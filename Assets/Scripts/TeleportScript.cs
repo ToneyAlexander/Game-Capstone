@@ -30,6 +30,14 @@ public class TeleportScript : MonoBehaviour
             GameObject.Find("Main Camera").transform.position = new Vector3(TargetX, TargetY + 16, TargetZ);
 
             enviro.InBossFight = true;
+
+            GameObject[] bosses = GameObject.FindGameObjectsWithTag("BossEnemy");
+            foreach(GameObject boss in bosses)
+            {
+                IActivatableBoss scrpt = boss.GetComponent<IActivatableBoss>();
+                if (scrpt != null)
+                    scrpt.Activate();
+            }
         }
     }
 }

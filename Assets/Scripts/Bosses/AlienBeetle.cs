@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(ControlStatBlock))]
 [RequireComponent(typeof(PlayerClass))]
-public class AlienBeetle : MonoBehaviour
+public class AlienBeetle : MonoBehaviour, IActivatableBoss
 {
     private readonly float AbilityZeroCd = 0.5f;
     private readonly float AbilityOneCd = 1f;
@@ -23,6 +23,7 @@ public class AlienBeetle : MonoBehaviour
     public GameObject TrackerPrefab;
     public int Level;
 
+    private bool active;
     private float timeSinceUse;
     private float cooldown;
     private bool inUse;
@@ -181,27 +182,35 @@ public class AlienBeetle : MonoBehaviour
         }
     }
 
+    public void Activate()
+    {
+        active = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(!inUse)
-            timeSinceUse += Time.deltaTime;
-
-        if(timeSinceUse > cooldown)
+        if (active)
         {
-            timeSinceUse = 0;
-            inUse = true;
-            switch(nextAttack)
+            if (!inUse)
+                timeSinceUse += Time.deltaTime;
+
+            if (timeSinceUse > cooldown)
             {
-                case 0:
-                    AbilityZero();
-                    break;
-                case 1:
-                    AbilityOne();
-                    break;
-                case 2:
-                    AbilityTwo();
-                    break;
+                timeSinceUse = 0;
+                inUse = true;
+                switch (nextAttack)
+                {
+                    case 0:
+                        AbilityZero();
+                        break;
+                    case 1:
+                        AbilityOne();
+                        break;
+                    case 2:
+                        AbilityTwo();
+                        break;
+                }
             }
         }
     }
