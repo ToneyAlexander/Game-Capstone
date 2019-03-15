@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(StatBlock))]
+[RequireComponent(typeof(RemySoundsHandler))]
 public class RemyMovement : MonoBehaviour
 {
     public static Vector3 initialPosition;
     public static Vector3 destination;
     public static Vector3 lastDestination;
 
-    public float rotationSpeed;
-    public float movingSpeed;
+    private float rotationSpeed;
+    private float movingSpeed;
     private Quaternion playerRot;
     private Animator animator;
     private float timer;
@@ -19,6 +20,7 @@ public class RemyMovement : MonoBehaviour
     private Vector3 lookAtTarget;
 
     private StatBlock statBlock;
+    private RemySoundsHandler soundsHandler;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +31,9 @@ public class RemyMovement : MonoBehaviour
         rotationSpeed = 20;
 
         statBlock = GetComponent<StatBlock>();
-        movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
+        soundsHandler = GetComponent<RemySoundsHandler>();
 
+        movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
         animator = GetComponent<Animator>();
         animator.SetBool("isRunning", false);
         //this.transform.position = initialPosition;
@@ -87,6 +90,9 @@ public class RemyMovement : MonoBehaviour
             animator.SetBool("isEquip", false);
 
             animator.SetBool("isRunning", true);
+
+            //play running sound
+            //soundsHandler.RunOnGrass();
 
             movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
             transform.position = Vector3.MoveTowards(transform.position, destination, movingSpeed * Time.deltaTime);  
