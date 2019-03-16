@@ -43,7 +43,7 @@ public class AbilitySlotController : MonoBehaviour
 			if(Slots[slot] != Ability.nullAbility)
 			{
 				GameObject icon = slot.GetChild(0).gameObject;
-				Image cd_image = icon.transform.GetChild(1).gameObject.GetComponent<Image>();
+				Image cd_image = icon.transform.GetChild(0).gameObject.GetComponent<Image>();
 				Ability slot2 = Slots[slot];
 				float remain = slot2.cdRemain;
 				float max = slot2.Stats.Find(item => item.Name == Stat.AS_CD).Value;
