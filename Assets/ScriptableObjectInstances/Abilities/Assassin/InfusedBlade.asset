@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
+  m_Name: InfusedBlade
+  m_EditorClassIdentifier: 
+  abilityName: Infused Blade
+  abilityType: 0
+  typeString: InfusedBlade
+  icon: {fileID: 21300000, guid: 3b4f579a0b141dc4fa15abe80041676c, type: 3}
+  prefab: {fileID: 0}
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 45
+  - statIdentifier: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+    value: 10
+  - statIdentifier: {fileID: 0}
+    value: 0

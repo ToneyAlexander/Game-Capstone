@@ -19,6 +19,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic"
 		_InitialBend("Wind Initial Bend", Float) = 1
 		_Stiffness("Wind Stiffness", Float) = 1
 		_Drag("Wind Drag", Float) = 1
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord3( "", 2D ) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
@@ -62,6 +63,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic"
 		uniform float _MetallicPower;
 		uniform float _SmoothnessPower;
 		uniform float _AmbientOcclusionPower;
+		uniform float _Transparency;
 
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
@@ -85,7 +87,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic"
 			o.Smoothness = ( break22.a * _SmoothnessPower );
 			float clampResult31 = clamp( break22.g , ( 1.0 - _AmbientOcclusionPower ) , 1.0 );
 			o.Occlusion = clampResult31;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 		}
 
 		ENDCG
