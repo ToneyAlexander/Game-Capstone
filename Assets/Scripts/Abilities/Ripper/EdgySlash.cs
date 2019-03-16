@@ -49,9 +49,9 @@ public class EdgySlash : AbilityBase
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), false, false, true);
         pbh.dmg = stats.RealDamage(dmg);
         TimedBuff tb = slowdown.Instance;
-        Stat stat = tb.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
+        Stat stat = tb.Stats.Find(item => item.Name == Stat.MOVE_SPEED);
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, slowdownMult));
-        tb.Stats.Remove(new Stat(Stat.HEALTH_REGEN));
+        tb.Stats.Remove(new Stat(Stat.MOVE_SPEED));
         tb.Stats.Add(stat);
         tb.Duration += slowdownDur;
         tb.IsUnique = !slowdownStack;
