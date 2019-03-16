@@ -59,9 +59,6 @@ public class RangedEnemyController : EnemyController
 
         animator.SetTrigger("rangedAttack");
 		yield return new WaitForSeconds(1.0f);
-        
-        // Cause damage
-        attackController.IsAttacking = true;
 
 		inAttackCoroutine = false;
 	}

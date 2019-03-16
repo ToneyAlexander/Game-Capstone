@@ -7,8 +7,7 @@ public class EnemyAttackController : MonoBehaviour
 {
     public GameObject projectile;
 
-    public bool IsAttacking { get; set; }
-    public enum AttackMode { ProjectileAttack, AoeAttack };
+    // public enum AttackMode { ProjectileAttack, AoeAttack };
 
     private GameObject target;
     private StatBlock statBlock;
@@ -18,12 +17,10 @@ public class EnemyAttackController : MonoBehaviour
 
     void Start()
     {
-        IsAttacking = false;
-
         // Target is object tagged "Player" by default
         target = GameObject.FindWithTag("Player");
         
-        // Get enemy's statBlock and animator
+        // Get enemy's statBlock
         statBlock = GetComponent<StatBlock>();
 
         // Min and max damage
@@ -33,16 +30,23 @@ public class EnemyAttackController : MonoBehaviour
 
     void ProjectileAttack()
     {
-        // Generates projectiles
+        // Generate a projectile instance and get its behave script
         GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
-        ProjectileBehave pbh = projectileInstance.GetComponent<ProjectileBehave>();
+        ProjectileBehave projectileBehave = projectileInstance.GetComponent<ProjectileBehave>();
+
         var lookPos = target.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         projectileInstance.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
 
+        // Cause damage
+        DealDamage(projectileBehave);
+    }
+
+    private void DealDamage(ProjectileBehave projectileBehave)
+    {
         Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), 0f, true, false, false);
-        pbh.dmg = statBlock.RealDamage(dmg);
-        pbh.ttl = 3f;
+        projectileBehave.dmg = statBlock.RealDamage(dmg);
+        projectileBehave.ttl = 5f;
     }
 }
