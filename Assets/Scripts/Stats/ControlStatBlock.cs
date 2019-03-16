@@ -95,7 +95,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.MoveSpeedMult = 0f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
-        stats.AttackSpeed = 1f;
+        stats.AttackSpeed = 0f;
         stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
         stats.ArmorMult = 0f;
@@ -138,6 +138,9 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.ATTACK_SPEED_MULT:
                 stats.AttackSpeedMult += stat.Value;
+                break;
+            case Stat.CDR:
+                stats.Cdr += stat.Value;
                 break;
             case Stat.CDR_MULT:
                 stats.CdrMult += stat.Value;

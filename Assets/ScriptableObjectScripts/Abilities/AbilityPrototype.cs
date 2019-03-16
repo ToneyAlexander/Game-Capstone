@@ -39,6 +39,11 @@ namespace CCC.Abilities
             get { return stats; }
         }
 
+        public bool IsAttack
+        {
+            get { return isAttack; }
+        }
+
         public Ability Instance { get { return new Ability(this); }}
 
         /// <summary>
@@ -61,6 +66,10 @@ namespace CCC.Abilities
         /// </summary>
         [SerializeField]
         private GameObject prefab;
+
+
+        [SerializeField]
+        private bool isAttack;
 
         [SerializeField]
         private List<AbilityStatSlotEntry> statSlots;

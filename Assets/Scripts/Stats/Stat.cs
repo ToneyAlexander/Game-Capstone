@@ -28,6 +28,7 @@ namespace CCC.Stats
 
         public const string MYST = "myst";
         public const string MYST_MULT = "mystx";
+        public const string CDR = "cdr";
         public const string CDR_MULT = "cdrx";
         public const string SPELL = "spell";
         public const string SPELL_MULT = "spellx";

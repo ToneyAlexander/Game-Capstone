@@ -32,6 +32,7 @@ public class StatBlock : MonoBehaviour
     public float RangedAttackMult { get; set; }
 
     //Myst subset
+    public float Cdr { get; set; }
     public float CdrMult { get; set; }
     public float Spell { get; set; }
     public float SpellMult { get; set; }
