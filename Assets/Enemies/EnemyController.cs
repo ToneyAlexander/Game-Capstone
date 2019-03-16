@@ -26,7 +26,7 @@ public abstract class EnemyController : MonoBehaviour
     protected float attackDistance;
 
     // Attack controller
-    protected BasicAttackController attackController;
+    protected EnemyAttackController attackController;
 
     /* Note: attackDistance <= visionDistance <= movingRange */
     
@@ -74,7 +74,7 @@ public abstract class EnemyController : MonoBehaviour
         path = new NavMeshPath();
 
         // Set up attack controller
-        attackController = GetComponent<BasicAttackController>();
+        attackController = GetComponent<EnemyAttackController>();
 
         inCoroutine = false;
         isAlive = true;

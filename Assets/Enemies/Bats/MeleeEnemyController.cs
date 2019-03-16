@@ -8,16 +8,12 @@ public class MeleeEnemyController : EnemyController
     // Animator stuff
     private Animator animator;
 
-    public const string AttackMode = "meleeAttack";
-
-    public Damage dmg;
+    private bool inAttackCoroutine;
 
     protected override void Initialize()
     {
         // Set up animator
         animator = GetComponent<Animator>();
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
 
         // Default spawnPos and movingRange
         spawnPos = transform.position;
@@ -29,16 +25,13 @@ public class MeleeEnemyController : EnemyController
         visionAngle = 120f;
         visionDistance = 10f;
         attackDistance = 5f;
+
+        inAttackCoroutine = false;
     }
     
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
-
-        // By default, enemy is not attacking.
-        attackController.SetAttack(AttackMode, false);
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -52,12 +45,25 @@ public class MeleeEnemyController : EnemyController
         // Stop and attack target (player character)
         agent.isStopped = true;
 
-        // Change to attack animation
-        animator.SetBool(AttackMode, true);
+        // Play attack animation and cause damage
+        if (!inAttackCoroutine)
+		{
+			StartCoroutine(Attack());
+		}
+    }
+    
+    private IEnumerator Attack()
+	{
+		inAttackCoroutine = true;
+
+        animator.SetTrigger("meleeAttack");
+		yield return new WaitForSeconds(1.0f);
 
         // Cause damage
-        attackController.SetAttack(AttackMode, true);
-    }
+        attackController.IsAttacking = true;
+        
+		inAttackCoroutine = false;
+	}
 
     protected override void UnderAttack()
     {
