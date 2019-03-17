@@ -15,12 +15,12 @@ public class EnemyAttackController : MonoBehaviour
     private float dmgMin;
     private float dmgMax;
 
-    void Start()
+    private void Start()
     {
         // Target is object tagged "Player" by default
         target = GameObject.FindWithTag("Player");
         
-        // Get enemy's statBlock
+        // Get enemy(player)'s statBlock
         statBlock = GetComponent<StatBlock>();
 
         if (projectile == null)
@@ -37,12 +37,7 @@ public class EnemyAttackController : MonoBehaviour
         dmgMax = 45f;
     }
 
-    public void Attack()
-    {
-        // Play attack
-    }
-
-    void SingleAttack()
+    public void SingleAttack()
     {
         // Generate a projectile instance and get its behave script
         GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
