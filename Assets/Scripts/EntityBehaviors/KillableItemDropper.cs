@@ -33,14 +33,14 @@ namespace CCC.Behaviors
         }
 
         // TODO: Just for testing. Remove after enemies are able to be killed.
-        private void Update()
-        {
-            if (Input.GetButtonDown("Fire2"))
-            {
-                ICommand command = new DieCommand(this);
-                commandProcessor.ProcessCommand(command);
-            }
-        }
+        //private void Update()
+        //{
+        //    if (Input.GetButtonDown("Fire2"))
+        //    {
+        //        ICommand command = new DieCommand(this);
+        //        commandProcessor.ProcessCommand(command);
+        //    }
+        //}
         #endregion
     }
 }

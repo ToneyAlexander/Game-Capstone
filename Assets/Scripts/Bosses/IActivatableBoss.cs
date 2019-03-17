@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IActivatableBoss
 {
     void Activate();
+    void IsKilled();
 }
