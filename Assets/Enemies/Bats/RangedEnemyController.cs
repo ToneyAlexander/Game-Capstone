@@ -60,7 +60,7 @@ public class RangedEnemyController : EnemyController
         animator.SetTrigger("rangedAttack");
 		yield return new WaitForSeconds(0.5f);
 
-        attackController.SingleAttack();
+        attackController.ProjectileAttack();
 
 		inAttackCoroutine = false;
 	}

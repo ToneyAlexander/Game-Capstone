@@ -37,7 +37,7 @@ public class EnemyAttackController : MonoBehaviour
         dmgMax = 45f;
     }
 
-    public void SingleAttack()
+    public void ProjectileAttack()
     {
         // Generate a projectile instance and get its behave script
         GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
@@ -51,6 +51,18 @@ public class EnemyAttackController : MonoBehaviour
         // Cause damage
         DealDamage(projectileBehave);
     }
+
+    public void MeleeAttack()
+    {
+        // 
+    }
+
+    public void AoeAttack()
+    {
+
+    }
+
+
 
     private void DealDamage(ProjectileBehave projectileBehave)
     {
