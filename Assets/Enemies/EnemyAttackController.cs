@@ -23,12 +23,26 @@ public class EnemyAttackController : MonoBehaviour
         // Get enemy's statBlock
         statBlock = GetComponent<StatBlock>();
 
+        if (projectile == null)
+        {
+            projectile = new GameObject("empty projectile");
+            projectile.transform.position = Vector3.zero;
+            projectile.AddComponent<Rigidbody>();
+            projectile.AddComponent<SphereCollider>();
+            // TODO: add projectile script
+        }
+
         // Min and max damage
         dmgMin = 35f;
         dmgMax = 45f;
     }
 
-    void ProjectileAttack()
+    public void Attack()
+    {
+        // Play attack
+    }
+
+    void SingleAttack()
     {
         // Generate a projectile instance and get its behave script
         GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
