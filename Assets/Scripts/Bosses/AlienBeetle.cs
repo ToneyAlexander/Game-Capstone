@@ -14,6 +14,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     private StatBlock stats;
     private ControlStatBlock controlStats;
     private PlayerClass beetleClass;
+    private TrackingBehave playerTracker;
     private Animator animator;
     private GameObject player;
     public PerkPrototype StatPerk;
@@ -28,6 +29,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     private float cooldown;
     private bool inUse;
     private int nextAttack;
+    private int expValue;
     public Vector3 arenaStart, arenaEnd;
 
     public static TimedBuffPrototype Ooze;
@@ -39,6 +41,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         beetleClass = GetComponent<PlayerClass>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        playerTracker = GetComponent<TrackingBehave>();
 
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
@@ -51,7 +54,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     {
         beetleClass.TakePerk(StatPerk);
         beetleClass.onLevelUp = LevelPerk;
-
+        expValue = 280 * Level;
         for(int i = 0; i < Level; ++i)
         {
             beetleClass.LevelUp();
@@ -89,7 +92,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         if(choice < 0.5)
         {
             nextAttack = 1;
-        } else if(choice < 0.9)
+        } else if(choice < 0.95)
         {
             nextAttack = 2;
         } else
@@ -185,6 +188,25 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     public void Activate()
     {
         active = true;
+    }
+
+    public void IsKilled()
+    {
+        playerTracker.pause = true;
+        Collider col = GetComponent<Collider>();
+        active = false;
+        if (col != null)
+            Destroy(col);
+        if (player != null)
+            player.GetComponent<PlayerClass>().ApplyExp(expValue);
+        StartCoroutine(Die());
+    }
+
+    private IEnumerator Die()
+    {
+        animator.SetTrigger("death2");
+        yield return new WaitForSeconds(3.5f);
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

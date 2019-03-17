@@ -247,6 +247,9 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.STR_MULT:
                 StrMult += stat.Value;
                 break;
+            default:
+                Debug.LogError("Unknown Stat: " + stat.Name);
+                break;
         }
     }
 
