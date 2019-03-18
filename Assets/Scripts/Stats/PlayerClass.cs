@@ -15,7 +15,11 @@ public class PlayerClass : MonoBehaviour
     public PerkPrototype onLevelUp;
     public AbilitySet abilities;
     public AbilitySlotDictionary abilDict;
+
+    public BloodlineController bloodlineController;
+
     private ControlStatBlock stats;
+    private InitAbilities init;
 
     public float Exp { get; private set; }
     public float ExpToLevel { get; private set; }
@@ -63,6 +67,7 @@ public class PlayerClass : MonoBehaviour
     {
         takenPerks = new List<PerkPrototype>();
         stats = GetComponent<ControlStatBlock>();
+        init = GetComponent<InitAbilities>();
         ExpToLevel = 100;
         PerkPoints = 1;
         Level = 1;
@@ -71,6 +76,24 @@ public class PlayerClass : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void IncreaseAge()
+    {
+        bloodlineController.ageUp();
+        if (bloodlineController.Age < 3)
+        {
+            takenPerks.Add(init.Young);
+        }
+        else if (bloodlineController.Age < 5)
+        {
+            takenPerks.Add(init.Middle);
+        }
+        else
+        {
+            takenPerks.Add(init.Old);
+        }
+        stats.StatsChanged();
     }
 
     public void ApplyExp(float toAdd)
