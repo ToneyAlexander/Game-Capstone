@@ -76,7 +76,7 @@ public class MeleeEnemyController : EnemyController
     public override IEnumerator Die()
     {
         animator.SetTrigger("death");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }
