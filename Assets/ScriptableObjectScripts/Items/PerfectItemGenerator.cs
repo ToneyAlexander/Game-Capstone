@@ -29,10 +29,11 @@ namespace CCC.Items
             }
 
             Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier,
-                proto.EquipmentSlot, proto.Sprite, stats);
+                proto.EquipmentSlot, proto.Sprite, stats, proto.WorldDropPrefab);
 
             ApplyAffixes(affixSets, this, item, proto);
 
+            Debug.Log(proto.WorldDropPrefab);
             return item;
         }
 
