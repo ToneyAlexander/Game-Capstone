@@ -10807,6 +10807,7 @@ GameObject:
   - component: {fileID: 3060258294469485993}
   - component: {fileID: 6029557737158233021}
   - component: {fileID: 6600421983504125051}
+  - component: {fileID: 6186098637902771102}
   m_Layer: 0
   m_Name: FungusArgaricViolet
   m_TagString: Fungus
@@ -10865,6 +10866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   initialStats: {fileID: 11400000, guid: 41a3f31904ff444568f31a827d2685af, type: 2}
+  projectile: {fileID: 3846490786656072996, guid: 1855bf27bd5b247039eb96f41a9dc55b,
+    type: 3}
 --- !u!114 &5295314410011962367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10982,6 +10985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
 --- !u!114 &6029557737158233021
@@ -11012,6 +11016,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6186098637902771102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8622879084815584375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aadf477610e44e87bfa64d161b66ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8666885063080850378
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class EnemyAttackController : MonoBehaviour
     public void ProjectileAttack(GameObject projectile)
     {
         // Generate a projectile instance and get its behave script
-        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation, transform);
         ProjectileBehave projectileBehave = projectileInstance.GetComponent<ProjectileBehave>();
 
         var lookPos = target.transform.position - transform.position;
@@ -45,19 +45,20 @@ public class EnemyAttackController : MonoBehaviour
         
     }
 
-    public void AoeAttack(float range)
+    public void AoeAttack(float range, float ttl)
     {
-        GameObject aoeAttack = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        aoeAttack.transform.localScale = new Vector3(range, 4.5f, range);
-        CapsuleCollider collider = aoeAttack.AddComponent<CapsuleCollider>();
+        // Generate an AOE instance
+        GameObject aoeInstance = new GameObject("AOE");
+        aoeInstance.transform.parent = transform;
+        aoeInstance.transform.position = transform.position;
+        aoeInstance.transform.localScale = new Vector3(range, 1f, range);
+        // Add collider
+        CapsuleCollider collider = aoeInstance.AddComponent<CapsuleCollider>();
         collider.isTrigger = true;
         collider.radius = 0.5f;
-
-        // Generate an AOE instance and get its behave script
-        GameObject aoeInstance = Instantiate(aoeAttack, transform.position, transform.rotation);
-        AoeAttackBehave aoeBehave = aoeInstance.GetComponent<AoeAttackBehave>();
-
-        aoeBehave.ttl = 1f;
+        // Add behave script
+        AoeBehave aoeBehave = aoeInstance.AddComponent<AoeAttackBehave>();
+        aoeBehave.ttl = ttl;
 
         // Cause damage
         Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), 0f, true, false, false);
