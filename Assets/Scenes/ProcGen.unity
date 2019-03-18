@@ -434,7 +434,7 @@ MonoBehaviour:
   drawTileSet: 0
   forestChance: 40
   snowChance: 20
-  swampChance: 2000000
+  swampChance: 20
   desertChance: 20
   LAYERS_ABOVE_BEACH: 5
   LESS_THAN_LAND_REGEN_COUNT: 0
@@ -1757,6 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forest_wind: {fileID: 8300000, guid: 420defc4d846d4f119840997fc0bec3b, type: 3}
+  boss_fight: {fileID: 8300000, guid: 6b46c4ada3edd47af82522f5ab4eb0ed, type: 3}
   InBossFight: 0
 --- !u!4 &548910496
 Transform:
