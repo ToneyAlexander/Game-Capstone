@@ -6,7 +6,12 @@ using UnityEngine;
 public class FootSteps : MonoBehaviour
 {
     private AudioSource audiodata;
-    public AudioClip[] footSteps;
+
+    [SerializeField]
+    private AudioClip[] footStepsOnGrass;
+
+    [SerializeField]
+    private AudioClip[] footStepsOnSnow;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,6 @@ public class FootSteps : MonoBehaviour
 
     AudioClip RandomClip()
     {
-        return footSteps[Random.Range(0, footSteps.Length)];
+        return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
     }
 }
