@@ -16,6 +16,9 @@ public class DamageNotifier : MonoBehaviour
     [SerializeField]
     private Color glowColor;
 
+	private Camera cam;
+
+
     public void CreateDamageNotifier(float damage, GameObject parent)
     {
         GameObject newDamage = InitializeText(damage, parent);
@@ -24,7 +27,7 @@ public class DamageNotifier : MonoBehaviour
 
     private GameObject InitializeText(float dmg, GameObject parent)
     {
-
+		cam = Camera.main;
         GameObject damageNotifierCanvas = new GameObject("damageNotifierCanvas");
         Canvas c = damageNotifierCanvas.AddComponent<Canvas>();
         c.transform.position = parent.transform.position;
@@ -72,7 +75,8 @@ public class DamageNotifier : MonoBehaviour
             float t = elapsedTime / time;
             trans.localPosition = Vector2.Lerp(start, new Vector3(start.x, start.y+2, start.z), t);
             elapsedTime += Time.deltaTime;
-            yield return null;
+			newDamage.transform.rotation = cam.transform.rotation;
+			yield return null;
         }
         Destroy(newDamage);
     }
