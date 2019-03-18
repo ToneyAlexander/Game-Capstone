@@ -10,7 +10,7 @@ namespace CCC.Items
     /// maximum values for every Stat.
     /// </summary>
     [CreateAssetMenu(menuName = "Items/PerfectItemGenerator")]
-    public sealed class PerfectItemGenerator : ItemGenerator
+    public sealed class RegularItemGenerator : ItemGenerator
     {
         [SerializeField]
         private List<AffixSetPrototype> affixSets;
@@ -39,7 +39,7 @@ namespace CCC.Items
 
         public override void ApplyStat(List<Stat> stats, StatPrototype stat)
         {
-            stats.Add(new Stat(stat.StatName, stat.MaxValue));
+            stats.Add(new Stat(stat.StatName, Random.Range(stat.MinValue, stat.MaxValue)));
         }
 
         [SerializeField]
