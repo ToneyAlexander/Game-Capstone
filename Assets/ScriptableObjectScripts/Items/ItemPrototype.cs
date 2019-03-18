@@ -51,6 +51,16 @@ namespace CCC.Items
             get { return sprite; }
         }
 
+        /// <summary>
+        /// Gets the prefab that Items created from this ItemPrototype will 
+        /// have when placed in the world.
+        /// </summary>
+        /// <value>The world drop prefab.</value>
+        public GameObject WorldDropPrefab
+        {
+            get { return worldDropPrefab; }
+        }
+
         public int BaseItemTier
         {
             get { return baseItemTier; }
@@ -87,6 +97,13 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private Sprite sprite;
+
+        /// <summary>
+        /// The prefab that Items created from this ItemPrototypes will have 
+        /// when placed in the world.
+        /// </summary>
+        [SerializeField]
+        private GameObject worldDropPrefab;
 
         /// <summary>
         /// The EquipmentSlot that Items based off of this ItemPrototype will
