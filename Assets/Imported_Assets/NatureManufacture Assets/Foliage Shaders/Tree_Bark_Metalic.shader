@@ -27,7 +27,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" }
+		Tags {"Queue" = "Transparent" "RenderType"="Transparent" }
 		Cull Back
 		CGPROGRAM
 		#include "UnityStandardUtils.cginc"
@@ -39,7 +39,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic"
 		#pragma vertex vert
 		#pragma instancing_options procedural:setup
 		#pragma multi_compile GPU_FRUSTUM_ON __
-		#pragma surface surf Standard keepalpha addshadow fullforwardshadows dithercrossfade 
+		#pragma surface surf Standard keepalpha addshadow fullforwardshadows dithercrossfade alpha:fade
 		struct Input
 		{
 			float2 uv_texcoord;

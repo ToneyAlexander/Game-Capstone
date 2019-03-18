@@ -17,13 +17,14 @@ Shader "SyntyStudios/Trees"
 		_Small_WindSpeed("Small_WindSpeed", Float) = 0
 		_Small_WindAmount("Small_WindAmount", Float) = 1
 		_Cutoff( "Mask Clip Value", Float ) = 0.5
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "AlphaTest+0" "IgnoreProjector" = "True" "DisableBatching" = "True" "IsEmissive" = "true"  }
+		Tags{ "Queue" = "Transparent" "RenderType"="Transparent" "IgnoreProjector" = "True" "DisableBatching" = "True" "IsEmissive" = "true"  }
 		Cull Off
 		Stencil
 		{
@@ -32,7 +33,7 @@ Shader "SyntyStudios/Trees"
 		CGPROGRAM
 		#include "UnityShaderVariables.cginc"
 		#pragma target 3.0
-		#pragma surface surf Standard keepalpha addshadow fullforwardshadows vertex:vertexDataFunc 
+		#pragma surface surf Standard keepalpha addshadow fullforwardshadows vertex:vertexDataFunc alpha:fade
 		struct Input
 		{
 			float2 uv_texcoord;
@@ -53,6 +54,8 @@ Shader "SyntyStudios/Trees"
 		uniform float4 _Emission_ST;
 		uniform float4 _EmissionColor;
 		uniform float _Cutoff = 0.5;
+		uniform float _Transparency;
+
 
 
 		float4 CalculateContrast( float contrastValue, float4 colorTarget )
@@ -81,7 +84,7 @@ Shader "SyntyStudios/Trees"
 			o.Albedo = ( tex2DNode2 * _ColorTint ).rgb;
 			float2 uv_Emission = i.uv_texcoord * _Emission_ST.xy + _Emission_ST.zw;
 			o.Emission = ( tex2D( _Emission, uv_Emission ) * _EmissionColor ).rgb;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 			clip( tex2DNode2.a - _Cutoff );
 		}
 
