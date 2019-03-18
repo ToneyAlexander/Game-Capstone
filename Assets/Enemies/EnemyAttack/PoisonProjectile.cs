@@ -29,11 +29,6 @@ public class PoisonProjectile : ProjectileBehave
         }
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
     new void PlayAnim(Collider col)
     {
         Debug.Log("Playing animation");

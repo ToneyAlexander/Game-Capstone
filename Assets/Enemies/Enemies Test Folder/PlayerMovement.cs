@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        GetComponent<StatBlock>().HealthBase = 1000;
-
         velocity = Vector3.zero;
     }
 

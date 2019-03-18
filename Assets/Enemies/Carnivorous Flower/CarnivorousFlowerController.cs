@@ -16,7 +16,7 @@ public class CarnivorousFlowerController : EnemyController
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 15f;
-		chaseSpeed = 5f;
+		chaseSpeed = 2.5f;
 		movable = false;
 
 		// Default vision

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(PlayerClass))]
 public class RangedEnemyController : EnemyController
 {
+    public GameObject projectile;
     // Animator stuff
     private Animator animator;
 
@@ -60,7 +61,7 @@ public class RangedEnemyController : EnemyController
         animator.SetTrigger("rangedAttack");
 		yield return new WaitForSeconds(0.5f);
 
-        attackController.ProjectileAttack();
+        attackController.ProjectileAttack(projectile);
 
 		inAttackCoroutine = false;
 	}
