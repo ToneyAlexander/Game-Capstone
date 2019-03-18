@@ -2040,6 +2040,9 @@ MonoBehaviour:
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
   ooze: {fileID: 11400000, guid: 64f7d07c15773514da22fe3e9a47c1e7, type: 2}
+  Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
+  Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
+  Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
 --- !u!114 &594619826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,6 +2163,8 @@ MonoBehaviour:
   onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
+    type: 2}
 --- !u!114 &594619832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4501,7 +4506,7 @@ PrefabInstance:
     - target: {fileID: 6059857762806475965, guid: 3cb5b252f99ed4d49bf83197089fa15b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6059857762806475965, guid: 3cb5b252f99ed4d49bf83197089fa15b,
         type: 3}
@@ -4839,7 +4844,7 @@ PrefabInstance:
     - target: {fileID: 6698353148364306529, guid: da2d538f0bd560a42bc4d188e473d38e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6698353148364306529, guid: da2d538f0bd560a42bc4d188e473d38e,
         type: 3}
@@ -13537,8 +13542,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0.00000007398201
-  m_Size: 0.3125
+  m_Value: 0.00000007398199
+  m_Size: 0.31249994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -14251,6 +14256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   user: {fileID: 11400000, guid: 145915052229949d0992116c0ad2ea0e, type: 2}
   euser: {fileID: 11400000, guid: d63e3d1f33ea04602a94660242ecfd0d, type: 2}
+  strLength: 30
 --- !u!114 &4115091099661086824
 MonoBehaviour:
   m_ObjectHideFlags: 0

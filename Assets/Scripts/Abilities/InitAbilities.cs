@@ -12,6 +12,9 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ablazeDef;
     public TimedBuffPrototype ablazeIgnite;
     public TimedBuffPrototype ooze;
+    public PerkPrototype Young;
+    public PerkPrototype Middle;
+    public PerkPrototype Old;
 
     // Start is called before the first frame update
     void Start()
