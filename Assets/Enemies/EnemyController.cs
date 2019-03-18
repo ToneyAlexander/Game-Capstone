@@ -26,7 +26,7 @@ public abstract class EnemyController : MonoBehaviour
     protected float attackDistance;
 
     // Attack controller
-    protected BasicAttackController attackController;
+    protected EnemyAttackController attackController;
 
     /* Note: attackDistance <= visionDistance <= movingRange */
     
@@ -50,10 +50,12 @@ public abstract class EnemyController : MonoBehaviour
     private PerkPrototype initialStats;
 
     private PlayerClass enemyClass;
+    protected float expValue;
 
     private void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
+        expValue = 40;//default override for various enemies
 
         if (destinationMover == null)
         {
@@ -65,8 +67,6 @@ public abstract class EnemyController : MonoBehaviour
     void Start()
     {
         enemyClass = GetComponent<PlayerClass>();
-        Debug.Log("Started Controller for " + gameObject.name);
-        Debug.Log("PlayerClass: " + enemyClass);
 
         // Set up NavMesh
         agent = GetComponent<NavMeshAgent>();
@@ -74,7 +74,7 @@ public abstract class EnemyController : MonoBehaviour
         path = new NavMeshPath();
 
         // Set up attack controller
-        attackController = GetComponent<BasicAttackController>();
+        attackController = GetComponent<EnemyAttackController>();
 
         inCoroutine = false;
         isAlive = true;
@@ -190,6 +190,11 @@ public abstract class EnemyController : MonoBehaviour
     public void isKilled()
     {
         isAlive = false;
+        Collider col = GetComponent<Collider>();
+        if (col != null)
+            Destroy(col);
+        if (player != null)
+            player.GetComponent<PlayerClass>().ApplyExp(expValue);
         StartCoroutine(Die());
     }
 

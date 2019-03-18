@@ -6,23 +6,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(PlayerClass))]
 public class RangedEnemyController : EnemyController
 {
+    public GameObject projectile;
     // Animator stuff
     private Animator animator;
 
-    public const string AttackMode = "rangedAttack";
-
-    // private void Awake()
-    // {
-    //     animator = GetComponent<Animator>();
-    // }
+	private bool inAttackCoroutine;
 
     protected override void Initialize()
     {
         // Set up animator
         animator = GetComponent<Animator>();
-        // Debug.Log("animator = " + animator);
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
 
         // Default spawnPos and movingRange
         spawnPos = transform.position;
@@ -31,19 +24,16 @@ public class RangedEnemyController : EnemyController
         movable = true;
 
         // Default vision
-        visionAngle = 60f;
-        visionDistance = 20;
-        attackDistance = 20f;
+        visionAngle = 90f;
+        visionDistance = 15f;
+        attackDistance = 10f;
+
+        inAttackCoroutine = false;
     }
 
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
-
-        // By default, enemy is not attacking.
-        attackController.SetAttack(AttackMode, false);
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -57,12 +47,24 @@ public class RangedEnemyController : EnemyController
         // Stop and attack target (player character)
         agent.isStopped = true;
 
-        // Change to attack animation
-        animator.SetBool(AttackMode, true);
-
-        // Cause damage
-        attackController.SetAttack(AttackMode, true);
+        // Play attack animation and cause damage
+        if (!inAttackCoroutine)
+		{
+			StartCoroutine(Attack());
+		}
     }
+    
+	private IEnumerator Attack()
+	{
+		inAttackCoroutine = true;
+
+        animator.SetTrigger("rangedAttack");
+		yield return new WaitForSeconds(0.5f);
+
+        attackController.ProjectileAttack(projectile);
+
+		inAttackCoroutine = false;
+	}
 
     protected override void UnderAttack()
     {
@@ -75,7 +77,6 @@ public class RangedEnemyController : EnemyController
 
     public override IEnumerator Die()
     {
-        Debug.Log("animator2 = " + animator);
         animator.SetTrigger("death");
         yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);

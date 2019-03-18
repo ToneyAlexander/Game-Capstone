@@ -2169,6 +2169,7 @@ GameObject:
   - component: {fileID: 1578934641}
   - component: {fileID: 1318119832}
   - component: {fileID: 1318119833}
+  - component: {fileID: 6486006169379577781}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2528,6 +2529,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6486006169379577781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cded9829877114fb8bb8ad9720bff293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footSteps:
+  - {fileID: 8300000, guid: 20ba6386702d6427e8b7e20147aae472, type: 3}
+  - {fileID: 8300000, guid: 1dbf94287e83344bd805cf5dbd6dee98, type: 3}
+  - {fileID: 8300000, guid: 1b1eb769805484c7287546a991171806, type: 3}
+  - {fileID: 8300000, guid: 60ff148f3be9647f79b71f68acd61073, type: 3}
+  - {fileID: 8300000, guid: ca35bf0b555654e848fd7189ce4c8192, type: 3}
+  - {fileID: 8300000, guid: 4a37955af775e429895c1eb730d3cff1, type: 3}
+  - {fileID: 8300000, guid: 0237b63f7e4e94a909725dfa9a198304, type: 3}
+  - {fileID: 8300000, guid: 7e706b30a7c0f4e069d8d9205b09daeb, type: 3}
 --- !u!1 &1582235922
 GameObject:
   m_ObjectHideFlags: 0

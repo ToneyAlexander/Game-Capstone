@@ -8,30 +8,15 @@ public class TestPlayerClass : MonoBehaviour
     PlayerClass pClass;
     int index;
     public ClassPrototype ClassL;
-    List<PerkPrototype> perks;
 
     // Start is called before the first frame update
     void Start()
     {
         pClass = GetComponent<PlayerClass>();
-        perks = ClassL.Perks;
 
-        pClass.allPerks = perks;
-        //List<Perk> testPerkSet = new List<Perk>
-        //{
-        //    new Perk(),
-        //    new Perk()
-        //};
-        //Perk p = new Perk();
-        //List<Perk> up = new List<Perk>
-        //{
-        //    p
-        //};
-        //testPerkSet.Add(new Perk(up));
-
-        //pClass.allPerks = testPerkSet;
-        index = 0;
-        Debug.Log("Init: " + index + ", " + pClass.allPerks.Count);
+        pClass.allPerks = ClassL.Perks;
+        pClass.onLevelUp = ClassL.OnLevel;
+        pClass.TakeDefaults(ClassL.Defaults);
     }
 
     // Update is called once per frame
@@ -52,6 +37,12 @@ public class TestPlayerClass : MonoBehaviour
                     Debug.Log("Fail on Take Perk " + index);
                 }
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            Debug.Log("Pressed Page UP, applying 300 exp");
+            pClass.ApplyExp(300);
         }
     }
     public PlayerClass GetClass()

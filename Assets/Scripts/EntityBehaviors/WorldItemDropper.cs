@@ -67,7 +67,7 @@ namespace CCC.Behaviors
                 position.y += worldItemMargin;
             }
 
-            GameObject i = Instantiate(Resources.Load<GameObject>("WorldItem"), position, Quaternion.identity);
+            GameObject i = Instantiate(item.WorldDropPrefab, position, Quaternion.identity);
             i.GetComponent<WorldItemScript>().setItem(item);
         }
     }

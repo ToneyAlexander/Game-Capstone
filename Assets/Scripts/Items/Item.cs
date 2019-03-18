@@ -8,7 +8,7 @@ namespace CCC.Items
     /// <summary>
     /// Represents an item in the game.
     /// </summary>
-    public struct Item
+    public class Item
     {
         /// <summary>
         /// The null Item that is used when no other Item makes sense.
@@ -17,9 +17,11 @@ namespace CCC.Items
             "Null Item", 
             "You probably shouldn't have this.",
             true,
+            1,
             EquipmentSlot.Null,
             null,
-            new List<Stat>()
+            new List<Stat>(),
+            null
         );
 
         /// <summary>
@@ -29,6 +31,13 @@ namespace CCC.Items
         public string Name
         {
             get { return name; }
+            set { name = value; }
+        }
+
+        public string LongName
+        {
+            get { return longName; }
+            set { longName = value; }
         }
 
         /// <summary>
@@ -50,6 +59,15 @@ namespace CCC.Items
         }
 
         /// <summary>
+        /// Gets the prefab to use when placing the Item in the world.
+        /// </summary>
+        /// <value>The world drop prefab.</value>
+        public GameObject WorldDropPrefab
+        {
+            get { return worldDropPrefab; }
+        }
+
+        /// <summary>
         /// Gets the list of Stat for this Item.
         /// </summary>
         /// <value>The list of Stat.</value>
@@ -65,6 +83,11 @@ namespace CCC.Items
         public EquipmentSlot EquipmentSlot
         {
             get { return equipmentSlot; }
+        }
+
+        public int Tier
+        {
+            get { return tier; }
         }
 
         /// <summary>
@@ -83,21 +106,28 @@ namespace CCC.Items
         /// <param name="stats">
         /// The list of Stat that the new Item will have.
         /// </param>
-        public Item(string name, string flavorText, bool isUnique,
-            EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats)
+        public Item(string name, string flavorText, bool isUnique, int tier,
+            EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats, 
+            GameObject worldDropPrefab)
         {
             this.name = name;
+            this.longName = name;
             this.flavorText = flavorText;
             this.isUnique = isUnique;
+            this.tier = tier;
             this.equipmentSlot = equipmentSlot;
             this.sprite = sprite;
             this.stats = stats;
+            this.worldDropPrefab = worldDropPrefab;
         }
 
         /// <summary>
         /// The name of this Item.
         /// </summary>
-        private readonly string name;
+        private string name;
+
+
+        private string longName;
 
         /// <summary>
         /// The flavor text of this Item.
@@ -113,10 +143,17 @@ namespace CCC.Items
         /// </remarks>
         private bool isUnique;
 
+        private int tier;
+
         /// <summary>
         /// The Sprite of this Item.
         /// </summary>
         private readonly Sprite sprite;
+
+        /// <summary>
+        /// The prefab to use when this Item is placed in the world.
+        /// </summary>
+        private readonly GameObject worldDropPrefab;
 
         /// <summary>
         /// The EquipmentSlot that this Item occupies.

@@ -5,19 +5,16 @@ using UnityEngine.AI;
 
 public class MeleeEnemyController : EnemyController
 {
+    public GameObject projectile;
     // Animator stuff
     private Animator animator;
 
-    public const string AttackMode = "meleeAttack";
-
-    public Damage dmg;
+    private bool inAttackCoroutine;
 
     protected override void Initialize()
     {
         // Set up animator
         animator = GetComponent<Animator>();
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
 
         // Default spawnPos and movingRange
         spawnPos = transform.position;
@@ -29,16 +26,13 @@ public class MeleeEnemyController : EnemyController
         visionAngle = 120f;
         visionDistance = 10f;
         attackDistance = 5f;
+
+        inAttackCoroutine = false;
     }
     
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
-        animator.SetBool("meleeAttack", false);
-        animator.SetBool("rangedAttack", false);
-
-        // By default, enemy is not attacking.
-        attackController.SetAttack(AttackMode, false);
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -52,12 +46,24 @@ public class MeleeEnemyController : EnemyController
         // Stop and attack target (player character)
         agent.isStopped = true;
 
-        // Change to attack animation
-        animator.SetBool(AttackMode, true);
-
-        // Cause damage
-        attackController.SetAttack(AttackMode, true);
+        // Play attack animation and cause damage
+        if (!inAttackCoroutine)
+		{
+			StartCoroutine(Attack());
+		}
     }
+    
+    private IEnumerator Attack()
+	{
+		inAttackCoroutine = true;
+
+        animator.SetTrigger("meleeAttack");
+		yield return new WaitForSeconds(1.0f);
+
+        attackController.ProjectileAttack(projectile);
+        
+		inAttackCoroutine = false;
+	}
 
     protected override void UnderAttack()
     {
@@ -71,7 +77,7 @@ public class MeleeEnemyController : EnemyController
     public override IEnumerator Die()
     {
         animator.SetTrigger("death");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }

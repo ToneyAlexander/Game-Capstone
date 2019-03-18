@@ -170,9 +170,11 @@ GameObject:
   - component: {fileID: 74118582}
   - component: {fileID: 74118583}
   - component: {fileID: 74118584}
+  - component: {fileID: 4155542098466211211}
+  - component: {fileID: 3000283068098976756}
   m_Layer: 0
   m_Name: Boss Beetle
-  m_TagString: Untagged
+  m_TagString: BossEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,13 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatPerk: {fileID: 11400000, guid: 1136e1b3838dcc04196d6c725498ce1a, type: 2}
+  LevelPerk: {fileID: 11400000, guid: de75126e841c4a24abad26a72deb1c33, type: 2}
   EggPrefab: {fileID: 4683793525412170550, guid: a99a3f150afb634469b28e0a21cdffcf,
     type: 3}
   VolleyPrefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c,
     type: 3}
   TrackerPrefab: {fileID: 3284506581622335269, guid: ddbd21f30cb1ecc49aa768dec5ae5c89,
     type: 3}
-  Level: 3
+  Level: 1
   arenaStart: {x: 0, y: 0, z: 0}
   arenaEnd: {x: 0, y: 0, z: 0}
 --- !u!114 &74118581
@@ -283,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
 --- !u!114 &74118582
@@ -325,6 +329,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   RotSpeed: 15
+  pause: 0
+--- !u!114 &4155542098466211211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74118576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01be9435c2b150049b0cc10c28e11bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  itemGenerator: {fileID: 11400000, guid: a4cd7c852fe0c214db993708bbb0c1e6, type: 2}
+  maxItemsToDrop: 5
+  baseporb: 1
+--- !u!114 &3000283068098976756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74118576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 957e8d339725e394f90e6b3f33521a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 0
 --- !u!1 &79577767
 GameObject:
   m_ObjectHideFlags: 0

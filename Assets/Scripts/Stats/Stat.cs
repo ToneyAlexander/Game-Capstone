@@ -28,6 +28,7 @@ namespace CCC.Stats
 
         public const string MYST = "myst";
         public const string MYST_MULT = "mystx";
+        public const string CDR = "cdr";
         public const string CDR_MULT = "cdrx";
         public const string SPELL = "spell";
         public const string SPELL_MULT = "spellx";
@@ -45,6 +46,10 @@ namespace CCC.Stats
         public const string ARMOR_MULT = "armx";
         public const string DMG = "dmg";
         public const string DMG_MULT = "dmgx";
+        public const string PHYS_DMG = "pdmg";
+        public const string PHYS_DMG_MULT = "pdmgx";
+        public const string MAGIC_DMG = "mdmg";
+        public const string MAGIC_DMG_MULT = "mdmgx";
 
 
         public const string CRIT_DMG = "critdmg";

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixArmor
+  m_EditorClassIdentifier: 
+  setName: Armor
+  setNameShort: Armor
+  tiers:
+  - {fileID: 11400000, guid: d433aaeb315959f4c96a08df81f9cb9c, type: 2}
+  - {fileID: 11400000, guid: 59f524ace7da4ea469560850e0be106e, type: 2}
+  - {fileID: 11400000, guid: dc90855fda4f22742812c04b72a803d0, type: 2}
+  - {fileID: 11400000, guid: 1ca88233b3a77694cbe57e4a0f65b67b, type: 2}
+  - {fileID: 11400000, guid: a259a46394da7d14b96fecf90e51a1f9, type: 2}

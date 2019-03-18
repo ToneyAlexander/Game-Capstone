@@ -6,6 +6,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
 {
     protected Ability abil;
     protected float cdBase;
+    protected StatBlock stats;
 
     public abstract void UpdateStats();
 
@@ -27,7 +28,16 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
     {
         if (abil.cdRemain > 0f)
         {
-            abil.cdRemain -= Time.deltaTime;
+            float mult = 1;
+            if (stats != null)
+            {
+                mult += StatBlock.CalcMult(stats.Cdr, stats.CdrMult);
+                if (abil.isAttack)
+                {
+                    mult += StatBlock.CalcMult(stats.AttackSpeed,stats.AttackSpeedMult);
+                }
+            }
+            abil.cdRemain -= Time.deltaTime * mult;
         }
         if (abil.use)
         {

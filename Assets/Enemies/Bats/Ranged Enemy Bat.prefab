@@ -475,11 +475,11 @@ GameObject:
   - component: {fileID: 1498373953222630373}
   - component: {fileID: 1498373953222630372}
   - component: {fileID: 1498373953222630375}
-  - component: {fileID: 9035894782154122004}
+  - component: {fileID: 252310482576653095}
+  - component: {fileID: 4286330757770964505}
   - component: {fileID: 7479929134525965400}
   - component: {fileID: 8357379710621756148}
   - component: {fileID: 218778329632564429}
-  - component: {fileID: 252310482576653095}
   - component: {fileID: 3791241321857881171}
   - component: {fileID: 1757410274586781698}
   - component: {fileID: 6168035216469333627}
@@ -499,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498373953222630374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1498373951719199829}
@@ -562,7 +562,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   initialStats: {fileID: 11400000, guid: 41a3f31904ff444568f31a827d2685af, type: 2}
---- !u!114 &9035894782154122004
+  projectile: {fileID: 2889116744576704397, guid: 5a066210c48244d6cb5ec151b206f408,
+    type: 3}
+--- !u!114 &252310482576653095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -571,11 +573,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498373953222630374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2b6a0ad35934377a2ef6b0361163af, type: 3}
+  m_Script: {fileID: 11500000, guid: 661e46a63fc3d458a9cc0c05c262c9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 2889116744576704397, guid: 5a066210c48244d6cb5ec151b206f408,
-    type: 3}
+--- !u!114 &4286330757770964505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498373953222630374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aadf477610e44e87bfa64d161b66ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7479929134525965400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,18 +629,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
---- !u!114 &252310482576653095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498373953222630374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 661e46a63fc3d458a9cc0c05c262c9d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &3791241321857881171
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -685,5 +685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}

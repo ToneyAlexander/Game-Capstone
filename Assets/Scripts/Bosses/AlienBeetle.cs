@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(ControlStatBlock))]
 [RequireComponent(typeof(PlayerClass))]
-public class AlienBeetle : MonoBehaviour
+public class AlienBeetle : MonoBehaviour, IActivatableBoss
 {
     private readonly float AbilityZeroCd = 0.5f;
     private readonly float AbilityOneCd = 1f;
@@ -14,18 +14,22 @@ public class AlienBeetle : MonoBehaviour
     private StatBlock stats;
     private ControlStatBlock controlStats;
     private PlayerClass beetleClass;
+    private TrackingBehave playerTracker;
     private Animator animator;
     private GameObject player;
     public PerkPrototype StatPerk;
+    public PerkPrototype LevelPerk;
     public GameObject EggPrefab;
     public GameObject VolleyPrefab;
     public GameObject TrackerPrefab;
     public int Level;
 
+    private bool active;
     private float timeSinceUse;
     private float cooldown;
     private bool inUse;
     private int nextAttack;
+    private int expValue;
     public Vector3 arenaStart, arenaEnd;
 
     public static TimedBuffPrototype Ooze;
@@ -37,6 +41,7 @@ public class AlienBeetle : MonoBehaviour
         beetleClass = GetComponent<PlayerClass>();
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
+        playerTracker = GetComponent<TrackingBehave>();
 
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
@@ -48,6 +53,12 @@ public class AlienBeetle : MonoBehaviour
     void Start()
     {
         beetleClass.TakePerk(StatPerk);
+        beetleClass.onLevelUp = LevelPerk;
+        expValue = 280 * Level;
+        for(int i = 0; i < Level; ++i)
+        {
+            beetleClass.LevelUp();
+        }
     }
 
     void AbilityZero()
@@ -81,7 +92,7 @@ public class AlienBeetle : MonoBehaviour
         if(choice < 0.5)
         {
             nextAttack = 1;
-        } else if(choice < 0.9)
+        } else if(choice < 0.95)
         {
             nextAttack = 2;
         } else
@@ -174,27 +185,54 @@ public class AlienBeetle : MonoBehaviour
         }
     }
 
+    public void Activate()
+    {
+        active = true;
+    }
+
+    public void IsKilled()
+    {
+        playerTracker.pause = true;
+        Collider col = GetComponent<Collider>();
+        active = false;
+        if (col != null)
+            Destroy(col);
+        if (player != null)
+            player.GetComponent<PlayerClass>().ApplyExp(expValue);
+        StartCoroutine(Die());
+    }
+
+    private IEnumerator Die()
+    {
+        animator.SetTrigger("death2");
+        yield return new WaitForSeconds(3.5f);
+        Destroy(gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(!inUse)
-            timeSinceUse += Time.deltaTime;
-
-        if(timeSinceUse > cooldown)
+        if (active)
         {
-            timeSinceUse = 0;
-            inUse = true;
-            switch(nextAttack)
+            if (!inUse)
+                timeSinceUse += Time.deltaTime;
+
+            if (timeSinceUse > cooldown)
             {
-                case 0:
-                    AbilityZero();
-                    break;
-                case 1:
-                    AbilityOne();
-                    break;
-                case 2:
-                    AbilityTwo();
-                    break;
+                timeSinceUse = 0;
+                inUse = true;
+                switch (nextAttack)
+                {
+                    case 0:
+                        AbilityZero();
+                        break;
+                    case 1:
+                        AbilityOne();
+                        break;
+                    case 2:
+                        AbilityTwo();
+                        break;
+                }
             }
         }
     }

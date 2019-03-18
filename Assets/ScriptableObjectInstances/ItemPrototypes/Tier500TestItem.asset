@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Tier500TestItem
+  m_EditorClassIdentifier: 
+  itemName: Test Giga Offhand
+  sprite: {fileID: 21300000, guid: 8aa199c213196a44ea7b39d09f7845d1, type: 3}
+  worldDropPrefab: {fileID: 5003173780028252508, guid: edf9b1192fac1944e8591a3666c92c37,
+    type: 3}
+  equipmentSlot: 4
+  flavorText: Entirely Random, High tier Item
+  internalDescription: tier 500, 6 affix, no innate
+  baseItemTier: 500
+  maxNumberAffixes: 6
+  statPrototypeList: []

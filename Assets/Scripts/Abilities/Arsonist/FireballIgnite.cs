@@ -51,9 +51,7 @@ public class FireballIgnite : AbilityBase
         pbh.dmg = stats.RealDamage(dmg);
         TimedBuff tb = ignite.Instance;
         Stat stat = tb.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
-        stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, igniteMult));
-        tb.Stats.Remove(new Stat(Stat.HEALTH_REGEN));
-        tb.Stats.Add(stat);
+        stat.Value = stats.RealDotDamage(stat.Value, igniteMult, false, true, false, false, true);
         tb.Duration += igniteDur;
         tb.IsUnique = !igniteStack;
         pbh.dmg.buffs.Add(tb);

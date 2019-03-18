@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GenerateIsland : MonoBehaviour
 {
@@ -17,7 +18,12 @@ public class GenerateIsland : MonoBehaviour
     private Vector3 PlayerStart;
     private bool done = false;
 
-    [SerializeField]
+	private PostProcessVolume volume;
+
+	[SerializeField]
+	private ProfilesList profileList; 
+
+	[SerializeField]
     private NameGenerator nameGenerator;
 
 	[SerializeField]
@@ -87,6 +93,21 @@ public class GenerateIsland : MonoBehaviour
 
     private NameGenerator g;
 
+    [SerializeField]
+    private int forestChance = 100;
+
+    [SerializeField]
+    private int snowChance = 20;
+
+    [SerializeField]
+    private int swampChance = 20;
+
+    [SerializeField]
+    private int desertChance = 20;
+
+
+
+
 
     //max 3 right now
     //fix csv/code to be able to work with arbitaray number more
@@ -109,10 +130,12 @@ public class GenerateIsland : MonoBehaviour
     void Start()
     {
 		themeCount = themeDictionary.themeDictionary.Count;
-        //TODO: add backtracking and optimize search
-        //TODO: remove these lines
-        //TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
-        //AKA iterate over tile list, if entropy = 1, remove
+		volume = Camera.main.GetComponent<PostProcessVolume>();
+
+		//TODO: add backtracking and optimize search
+		//TODO: remove these lines
+		//TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
+		//AKA iterate over tile list, if entropy = 1, remove
 
         NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
         //read in file 
@@ -616,7 +639,23 @@ public class GenerateIsland : MonoBehaviour
 		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
 		byte[] randomNumber = new byte[100];
 		rngCsp.GetBytes(randomNumber); 
-	    themeID = (byte)((randomNumber[0] % themeCount)); //randomly decide on island
+	    int rnd = (randomNumber[0] % (forestChance + desertChance + snowChance + swampChance));
+
+        if(rnd <= forestChance)
+        {
+            themeID = 0; //forest
+		}
+		else if(rnd > forestChance && rnd <= forestChance + desertChance)
+        {
+            themeID = 1;
+        }else if(rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
+        {
+            themeID = 2;
+        }else if(rnd > forestChance + desertChance + snowChance && rnd <= forestChance + desertChance + snowChance + swampChance)
+        {
+            themeID = 3;
+        }
+		volume.profile = profileList.profiles[themeID];
 	}
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)
