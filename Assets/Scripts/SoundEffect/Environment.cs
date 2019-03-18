@@ -21,28 +21,40 @@ public class Environment : MonoBehaviour
     private AudioSource audiodata;
     private bool isPlaying;
 
+    private bool isPlayArena;
+
     public bool InBossFight;
+
+    private int themeID;
 
     private GenerateIsland generateIsland;
     // Start is called before the first frame update
 
+
     void Start()
     {
+        themeID = -1;
         audiodata = GetComponent<AudioSource>();
         generateIsland = GetComponent<GenerateIsland>();
-
-        this.Play();
     }
 
     void Update()
     {
-        if (InBossFight && !isPlaying)
+        if (generateIsland.Done()) {
+            if (themeID != generateIsland.themeID)
+            {
+                themeID = generateIsland.themeID;
+                Play();
+            }
+        }
+
+        if (InBossFight && !isPlayArena)
         {
             audiodata.clip = boss_fight;
 
             audiodata.Play();
 
-            isPlaying = true;
+            isPlayArena = true;
         }
     }
 
@@ -56,26 +68,26 @@ public class Environment : MonoBehaviour
 
     void ThemeCheck()
     {
-        Debug.Log("themeID " + generateIsland.themeID);
-        if (generateIsland.themeID == 0)
+        Debug.Log("themeID " + themeID);
+        if (themeID == 0)
         {
             audiodata.clip = forest_wind;
             //Debug.Log("森林");
         }
 
-        else if (generateIsland.themeID == 1)
+        else if (themeID == 1)
         {
             audiodata.clip = dersert;
             //Debug.Log("沙漠");
         }
 
-        else if (generateIsland.themeID == 2)
+        else if (themeID == 2)
         {
             audiodata.clip = snowstorm;
             //Debug.Log("雪地");
         }
 
-        else if (generateIsland.themeID == 3)
+        else if (themeID == 3)
         {
             audiodata.clip = swamp;
             //Debug.Log("沼泽");
