@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6001,6 +6001,7 @@ GameObject:
   - component: {fileID: 1714307388}
   - component: {fileID: 1714307390}
   - component: {fileID: 1714307389}
+  - component: {fileID: 1714307391}
   m_Layer: 5
   m_Name: ExpBar
   m_TagString: Untagged
@@ -6064,6 +6065,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714307387}
   m_CullTransparentMesh: 0
+--- !u!114 &1714307391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714307387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b8ff1b0a412ba44b40d545b28b3b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1743238351
 GameObject:
   m_ObjectHideFlags: 0
@@ -13361,7 +13374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.0000010023617, y: 0.00014152113}
+  m_AnchoredPosition: {x: -0.000060027236, y: 0.00014152113}
   m_SizeDelta: {x: 1200, y: 1200}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &4115091099013184624
@@ -13874,7 +13887,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 0.00000007398201
   m_Size: 0.3125
   m_NumberOfSteps: 0
   m_OnValueChanged:
