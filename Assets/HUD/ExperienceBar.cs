@@ -9,6 +9,8 @@ public class ExperienceBar : MonoBehaviour
 
     private Image expBar;
 
+	private Text EXPLevelText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,9 @@ public class ExperienceBar : MonoBehaviour
 			player = gameObjects[0].GetComponent<PlayerClass>();
 		}
 		expBar = this.GetComponent<Image>();
-    }
+		EXPLevelText = this.transform.GetChild(0).gameObject.GetComponent<Text>();
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -31,5 +35,7 @@ public class ExperienceBar : MonoBehaviour
 		{
 			expBar.fillAmount = player.Exp / player.ExpToLevel;
 		}
+		string newText = "EXP: " + player.Exp.ToString() + " / " + player.ExpToLevel.ToString();
+		EXPLevelText.text = newText;
     }
 }

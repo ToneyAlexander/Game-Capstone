@@ -90,15 +90,9 @@ public class AbilitySlotController : MonoBehaviour
 	
 	private void SetIcon(Transform slot, int slotNum)
 	{
-		for(int i = 0; i < 2; i++)
-		{
-			Transform child = slot.GetChild(i);
-			if(child.name.Equals("Image"))
-			{
-                Image img = child.GetComponent<Image>();
-                img.sprite = Slots[slot].Icon;
-                img.color = new Color(255, 255, 255, 255);
-            }
-		}
+		Transform child = slot.GetChild(0);
+		Image img = child.GetComponent<Image>();
+        img.sprite = Slots[slot].Icon;
+        img.color = new Color(255, 255, 255, 255);
 	}
 }
