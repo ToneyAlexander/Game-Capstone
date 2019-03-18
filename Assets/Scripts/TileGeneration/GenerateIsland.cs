@@ -14,6 +14,9 @@ public class GenerateIsland : MonoBehaviour
     private int LAND_INDEX = 33;
     private static int TILES_PER_LAYER = 33;
 
+    private Vector3 PlayerStart;
+    private bool done = false;
+
     [SerializeField]
     private NameGenerator nameGenerator;
 
@@ -76,10 +79,11 @@ public class GenerateIsland : MonoBehaviour
     private AdjacencyIndex index;
 
     private List<GameObject> generatedMap;
+    private GameObject[,] mapObjects;
+
     private GameObject terrain;
 
-    private int ISLE_WIDE = 50;
-    private int ISLE_HIGH = 50;
+    bool[,][] ISLAND_REPRESENTATION;
 
     private NameGenerator g;
 
@@ -109,28 +113,26 @@ public class GenerateIsland : MonoBehaviour
         //TODO: remove these lines
         //TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
         //AKA iterate over tile list, if entropy = 1, remove
-        ISLE_WIDE = ISLE_WIDE_HIGH;
-        ISLE_HIGH = ISLE_WIDE_HIGH;
 
         NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
         //read in file 
-        index = generateIndex(img, LAYERS_ABOVE_BEACH);
+        index = IslandGeneratorUtilities.GenerateIndex(img, LAYERS_ABOVE_BEACH);
         if (RUN_INDEX_TEST)
         {
             IslandGeneratorTesting.testIndex(index, LAYERS_ABOVE_BEACH);
         }
 
-        tiles = createTileset(NUMBER_OF_TILES);
+        tiles = IslandGeneratorUtilities.CreateTileset(NUMBER_OF_TILES, TILES_PER_LAYER, TILE_HEIGHT);
 
         //Sets generated map
-        createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
+        createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE_HIGH);
         if (makeNavmesh)
         {
             surface.BuildNavMesh();
         }
 		string islandName = nameGenerator.generateName();
-		Debug.Log(islandName);
 		islandNameDisplay.DisplayName(islandName);
+        done = true;
 
 	}
 
@@ -152,15 +154,15 @@ public class GenerateIsland : MonoBehaviour
             deleteIsland();
             if (layersChanged)
             {
-                index = generateIndex(img, LAYERS_ABOVE_BEACH);
+                index = IslandGeneratorUtilities.GenerateIndex(img, LAYERS_ABOVE_BEACH);
                 if (RUN_INDEX_TEST)
                 {
                     IslandGeneratorTesting.testIndex(index, LAYERS_ABOVE_BEACH);
                 }
 
-                tiles = createTileset(NUMBER_OF_TILES);
+                tiles = IslandGeneratorUtilities.CreateTileset(NUMBER_OF_TILES, TILES_PER_LAYER, TILE_HEIGHT);
             }
-            createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE, ISLE_HIGH);
+            createIsland(TILE_SIZE, NUMBER_OF_TILES, LAYERS_ABOVE_BEACH, ISLE_WIDE_HIGH);
             updateNavMeshTimer = 500;
             string islandName = nameGenerator.generateName();
 		    Debug.Log(islandName);
@@ -173,7 +175,18 @@ public class GenerateIsland : MonoBehaviour
         }
         else if (Input.GetButtonDown("Island Height"))
         {
-            if (Input.GetAxisRaw("Island Height") > 0)
+            Vector3 worldPlace = remy.GetComponent<MousePositionDetector>().CalculateWorldPosition();
+            if (remy.GetComponent<MousePositionDetector>().IsValid(worldPlace))
+            {
+                int tileX = (int)worldPlace.z / TILE_SIZE;
+                int tileY = (int)(worldPlace.x - TILE_SIZE/2) / TILE_SIZE;
+
+                //Vector3 aaa = new Vector3(y * TILE_SIZE + TILE_SIZE / 2, height + 1, x * TILE_SIZE);
+
+
+                cliffToRamp(tileX, tileY, ISLAND_REPRESENTATION, index, NUMBER_OF_TILES, TILE_SIZE, mapObjects);
+            }
+            /*if (Input.GetAxisRaw("Island Height") > 0)
             {
                 LAYERS_ABOVE_BEACH++;
                 int adjust = 0;
@@ -197,21 +210,17 @@ public class GenerateIsland : MonoBehaviour
             }
             NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
 
-            layersChanged = true;
+            layersChanged = true;*/
         }
         else if (Input.GetButtonDown("Island Radius"))
         {
             if (Input.GetAxisRaw("Island Radius") > 0)
             {
                 ISLE_WIDE_HIGH++;
-                ISLE_WIDE = ISLE_WIDE_HIGH;
-                ISLE_HIGH = ISLE_WIDE_HIGH;
             }
             else if (Input.GetAxisRaw("Island Radius") < 0)
             {
                 ISLE_WIDE_HIGH--;
-                ISLE_WIDE = ISLE_WIDE_HIGH;
-                ISLE_HIGH = ISLE_WIDE_HIGH;
                 int adjust = 0;
                 if (ISLE_WIDE_HIGH % 6 == 0)
                 {
@@ -226,123 +235,7 @@ public class GenerateIsland : MonoBehaviour
         }
     }
 
-    /*---------- Setup Methods ----------*/
-
-    private List<TilePiece> createTileset(int tileCount)
-    {
-        //read in TileData
-        TextAsset textFile = Resources.Load<TextAsset>("TileData");
-
-        string[] lines = textFile.text.Split('\n');
-        List<TilePiece>  tileset = new List<TilePiece>();
-
-        for (int i = 1; i < tileCount + 1; i++)
-        {
-            if (i <= 2*TILES_PER_LAYER + 1)
-            {
-                string[] fields = lines[i].Split(',');
-                if (fields.Length >= 11)
-                {
-                    //6,7,8,9
-                    TilePiece t = new TilePiece(Resources.Load<GameObject>(fields[10].Trim()),
-                        int.Parse(fields[1]), int.Parse(fields[5]),
-                        new Vector3(float.Parse(fields[2]), float.Parse(fields[3]), float.Parse(fields[4])),
-                        int.Parse(fields[6]) == 1, int.Parse(fields[7]) == 1, int.Parse(fields[8]) == 1, int.Parse(fields[9]) == 1);
-                    tileset.Add(t);
-                }
-            }
-            else
-            {
-                //higher layers
-                TilePiece lowClone = tileset[i - TILES_PER_LAYER - 2];
-                Vector3 newLoc = new Vector3(lowClone.modifier.x, lowClone.modifier.y + TILE_HEIGHT, lowClone.modifier.z);
-                TilePiece t = new TilePiece(lowClone.prefab, lowClone.ID + TILES_PER_LAYER, lowClone.rotation, newLoc, lowClone.navigability);
-                tileset.Add(t);
-            }
-        }
-        return tileset;
-    }
-
-    private AdjacencyIndex generateIndex(Texture2D adjacencyData, int layersAboveBeach)
-    {
-        AdjacencyIndex index = new AdjacencyIndex();
-
-        //Get patterns from sample and build propagator
-        //THIS READS IMAGE FROM TOP LEFT TO BOTTOM RIGHT, LIKE A BOOK
-        //YES IT DOES, UNITY READS IMAGES STRANGELY
-        for (int j = adjacencyData.height - 1; j >= 0; j--) //y
-        {
-            for (int i = 0; i < adjacencyData.width; i++)//x
-            {
-
-                if ((int)adjacencyData.GetPixel(i, j).r == 1)
-                {
-                    continue;
-                }
-
-                int pixelValue = pixelToId(adjacencyData.GetPixel(i, j));
-
-                //Top 0
-                if (j < adjacencyData.height - 1)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j + 1));
-                    if ((int)adjacencyData.GetPixel(i, j + 1).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 0);
-                        }
-                    }
-                }
-                //Right 1
-                if (i < adjacencyData.width - 1)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i + 1, j));
-                    if ((int)adjacencyData.GetPixel(i + 1, j).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 1);
-                        }
-                    }
-                }
-                //Bottom 2
-                if (j > 0)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i, j - 1));
-                    if ((int)adjacencyData.GetPixel(i, j - 1).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 2);
-                        }
-                    }
-                }
-                //Left 3
-                if (i > 0)
-                {
-                    int otherPixel = pixelToId(adjacencyData.GetPixel(i - 1, j));
-                    if ((int)adjacencyData.GetPixel(i - 1, j).r != 1)
-                    {
-                        for (int layer = 0; layer <= layersAboveBeach; layer++)
-                        {
-                            index.Add(pixelValue + 33 * layer, otherPixel + 33 * layer, 3);
-                        }
-                    }
-                }
-            }
-        }
-        return index;
-    }
-
-    private int pixelToId(Color pixel)
-    {
-        int rgb = (int)(pixel.r * 255);
-        rgb = (rgb << 8) + (int)(pixel.g * 255);
-        rgb = (rgb << 8) + (int)(pixel.b * 255);
-        return rgb;
-    }
-
+    #region Setup Methods
     private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, int tileCount, List<Vector2Int> updated)
     {
         island[beach.x, beach.y] = IslandTemplateUtilities.makeTile(beachID, tileCount);
@@ -351,21 +244,18 @@ public class GenerateIsland : MonoBehaviour
         updated.Add(land);
         propagate(island, updated, index);
     }
+    #endregion
 
-    private void setupStart(Vector2Int start, Vector2Int firstFlat, bool[,][] island, int tileCount, List<Vector2Int> updated, int width)
-    {
-
-    }
-
-    /*---------- Make and Draw the Island ----------*/
-    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width, int height)
+    #region Make and Draw the Island
+    private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width_height)
     {
         List<Vector2Int> updated = new List<Vector2Int>();
 
         Texture[] templates = Resources.LoadAll<Texture2D>("IslandTemplateImages");
         Texture template = templates[Random.Range(0, templates.Length)];
 
-        bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width, tileCount, WATER_INDEX, updated);
+        bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width_height, tileCount, WATER_INDEX, updated);
+        ISLAND_REPRESENTATION = island;
         propagate(island, updated, index);
 
         //Guarantee that he'll have a beach
@@ -377,9 +267,9 @@ public class GenerateIsland : MonoBehaviour
         //TODO: REFACTOR INTO METHOD
         //setupStart(start, firstFlat, island, tileCount, updated, width);
 
-        for (int i = 1; i < width-1; i++)
+        for (int i = 1; i < width_height-1; i++)
         {
-            for (int j = 1; j < width-1; j++)
+            for (int j = 1; j < width_height - 1; j++)
             {
                 start.x = i;
                 start.y = j;
@@ -389,8 +279,8 @@ public class GenerateIsland : MonoBehaviour
 
                     collapseStartLocation(start, 17, firstFlat, island, tileCount, updated);
 
-                    j = width;
-                    i = width;
+                    j = width_height;
+                    i = width_height;
                 }
                 else if (island[i, j][18] && island[i, j-1][33])
                 {
@@ -398,8 +288,8 @@ public class GenerateIsland : MonoBehaviour
 
                     collapseStartLocation(start, 18, firstFlat, island, tileCount, updated);
 
-                    j = width;
-                    i = width;
+                    j = width_height;
+                    i = width_height;
                 }
                 else if (island[i, j][19] && island[i+1, j][33])
                 {
@@ -407,8 +297,8 @@ public class GenerateIsland : MonoBehaviour
 
                     collapseStartLocation(start, 19, firstFlat, island, tileCount, updated);
 
-                    j = width;
-                    i = width;
+                    j = width_height;
+                    i = width_height;
                 }
                 else if (island[i, j][20] && island[i, j + 1][33])
                 {
@@ -416,8 +306,8 @@ public class GenerateIsland : MonoBehaviour
 
                     collapseStartLocation(start, 20, firstFlat, island, tileCount, updated);
 
-                    j = width;
-                    i = width;
+                    j = width_height;
+                    i = width_height;
                 }
             }
         }
@@ -425,7 +315,11 @@ public class GenerateIsland : MonoBehaviour
         {
            //TODO: ERROR - NO BEACH TILE
         }
-        placePlayerOnTileCentered(start.x, start.y, TILE_HEIGHT, tileSize);
+        SetPlayerStart(start.x, start.y, TILE_HEIGHT, tileSize);
+        //WESLEY REMOVE THESE LINES
+        remy.transform.position = this.PlayerStart;
+        remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
+        //WESLEY REMOVE THESE LINES
 
         HashSet<int> fourWayTiles = new HashSet<int>();
         for(int i = 0; i < tiles.Count; i++)
@@ -500,8 +394,6 @@ public class GenerateIsland : MonoBehaviour
         {
             IslandGeneratorTesting.drawTileset(tiles, Vector3.zero, tileSize);
         }
-
-        //makeCenterTallest(island, updated, tileCount, width, height);
 
         while (!finished(island))
         {
@@ -623,12 +515,15 @@ public class GenerateIsland : MonoBehaviour
     private List<GameObject> drawMap(bool[,][] island, Vector3 startingLocation, int tileSize)
     {
         List<GameObject> generatedMap = new List<GameObject>();
+
+        this.mapObjects = new GameObject[island.GetLength(0), island.GetLength(1)];
+
         //Draw the map (all at once - interlace with decision for speed)
         for (int n = 0; n < island.GetLength(0); n++)
         {
             for (int m = 0; m < island.GetLength(1); m++)
             {
-                for (int o = 0; o < island[m, n].Length; o++)
+                for (int o = 0; o < island[n, m].Length; o++)
                 {
                     if (island[n, m][o] && o != WATER_INDEX)
                     {
@@ -659,6 +554,7 @@ public class GenerateIsland : MonoBehaviour
                             //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
                         }
                         generatedMap.Add(newlyCreatedTile);
+                        mapObjects[n, m] = newlyCreatedTile;
                         break;
                     }
                 }
@@ -670,26 +566,21 @@ public class GenerateIsland : MonoBehaviour
         return generatedMap;
     }
 
-    private void makeCenterTallest(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height)
+    private void SetPlayerStart(int x, int y, int height, int tileSize)
     {
-        //FORCE CENTER TO BE TALLEST TILE
-        island[width / 2, height / 2] = IslandTemplateUtilities.makeTile(tileCount - 1, tileCount);
-        updated.Add(new Vector2Int(width / 2, height / 2));
+        this.PlayerStart = new Vector3(y * tileSize + tileSize / 2, height, x * tileSize);
     }
 
-    private void placePlayerMaxCenter(bool[,][] island, List<Vector2Int> updated, int tileCount, int width, int height, int tileSize, int layersAboveBeach)
+    public bool Done()
     {
-        Vector3 remyStart = new Vector3((width / 2) * tileSize + tileSize / 2, TILE_HEIGHT * (layersAboveBeach + 1), (height / 2) * tileSize);
-        remy.transform.position = remyStart;
-        remy.GetComponent<RemyMovement>().setDetination(remyStart);
+        return this.done;
     }
 
-    private void placePlayerOnTileCentered(int x, int y, int height, int tileSize)
+    public Vector3 GetPlayerStart()
     {
-        Vector3 remyStart = new Vector3(y * tileSize + tileSize / 2, height, x * tileSize);
-        remy.transform.position = remyStart;
-        remy.GetComponent<RemyMovement>().setDetination(remyStart);
+        return this.PlayerStart;
     }
+
     private void placePortalOnTileCentered(int x, int y, int height, int tileSize)
     {
         Vector3 arenaPosition = new Vector3(-30, 50, -30);
@@ -717,9 +608,9 @@ public class GenerateIsland : MonoBehaviour
         GameObject marker = Instantiate(Resources.Load<GameObject>("Marker"));
         marker.transform.position = new Vector3(y * tileSize + tileSize / 2, height + 1, x * tileSize);
     }
+    #endregion
 
-    /*---------- Terrain methods ----------*/
-
+    #region Terrain Methods
     private void themePicker()
 	{
 		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
@@ -791,9 +682,9 @@ public class GenerateIsland : MonoBehaviour
             generatedMap.RemoveAt(0);
         }
     }
+    #endregion
 
-    /*---------- Methods to Solve the CSP ----------*/
-
+    #region Methods to Solve the CSP
     private void propagate(bool[,][] island, List<Vector2Int> updated, AdjacencyIndex index)
     {
         //defn Propagate(coefficient_matrix):
@@ -949,9 +840,9 @@ public class GenerateIsland : MonoBehaviour
     {
         List<List<float>> heuristics = new List<List<float>>();
         List<float> combinedDistribution = new List<float>();
+        heuristics.Add(evenDistribution(unchosenIndices));
         heuristics.Add(plateauDistribution(unchosenIndices));
-        heuristics.Add(increasingDistribution(unchosenIndices));
-        //heuristics.Add(navigabilityGuaranteeHeuristic(unchosenIndices));
+        //heuristics.Add(increasingDistribution(unchosenIndices));
         for (int i = 0; i < unchosenIndices.Count; i++)
         {
             combinedDistribution.Add(1.0f);
@@ -974,13 +865,12 @@ public class GenerateIsland : MonoBehaviour
     }
     private List<float> increasingDistribution(List<int> unchosenIndices)
     {
-        float increaseAmount = 1f;
+        float increaseAmount = 2f;
         List<float> probabilities = new List<float>();
         float prob = 1.0f;
         foreach (int TileID in unchosenIndices)
         {
-            probabilities.Add(prob);
-            prob += increaseAmount;
+            probabilities.Add(prob + increaseAmount * (TileID/33));
         }
         return probabilities;
     }
@@ -996,38 +886,12 @@ public class GenerateIsland : MonoBehaviour
         {
             if (TileID > 0 && TileID % 33 == 0)
             {
-                probabilities.Add(2 * prob);
+                probabilities.Add(unchosenIndices.Count * prob);
             }
             else
             {
                 probabilities.Add(prob);
             }
-        }
-        return probabilities;
-    }
-    private List<float> navigabilityGuaranteeHeuristic(List<int> unchosenIndices)
-    {
-        List<float> probabilities = new List<float>();
-        foreach (int TileID in unchosenIndices)
-        {
-            float value = 1.5f;
-            if(this.tiles[this.index.indexToTile(TileID)].navigability[0])
-            {
-                value *= value;
-            }
-            if (this.tiles[this.index.indexToTile(TileID)].navigability[1])
-            {
-                value *= value;
-            }
-            if (this.tiles[this.index.indexToTile(TileID)].navigability[2])
-            {
-                value *= value;
-            }
-            if (this.tiles[this.index.indexToTile(TileID)].navigability[3])
-            {
-                value *= value;
-            }
-            probabilities.Add(value);
         }
         return probabilities;
     }
@@ -1112,5 +976,83 @@ public class GenerateIsland : MonoBehaviour
             }
         }
         return true;
+    }
+    #endregion
+
+    //Debug this child
+    private void cliffToRamp(int x, int y, bool[,][] island, AdjacencyIndex index, int TileCount, int TileSize, GameObject[,] mapObjects)
+    {
+        int tileID = 0;
+        for(int i = 0; i < island[x,y].Length; i++)
+        {
+            if (island[x, y][i])
+            {
+                tileID = i;
+            }
+        }
+        int idMod = tileID % 33;
+        int newID = tileID;
+        if(!(idMod >= 1 && idMod <= 12))
+        {
+            return;
+        }
+        newID = tileID + 12;
+        List<Vector2Int> updated = new List<Vector2Int>();
+        island[x, y][tileID] = false;
+        island[x, y][newID] = true;
+        updated.Add(new Vector2Int(x, y));
+
+        bool[] blank = IslandTemplateUtilities.makeBlankTile(TileCount);
+
+        for(int i = x-1; i <= x + 1; i++)
+        {
+            for(int j = y-1; j <= y + 1; j++)
+            {
+                if(i != x && j != y)
+                {
+                    island[i, j] = (bool[])blank.Clone();
+                    updated.Add(new Vector2Int(i, j));
+                }
+            }
+        }
+        propagate(island, updated, index);
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+                for (int o = 0; o < island[i, j].Length; o++)
+                {
+                    Destroy(mapObjects[i, j]);
+
+                    int tileId = index.indexToTile(o);
+                    TilePiece currentPiece = tiles[o];
+                    GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+                    //TODO: REFLECTION
+                    //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
+
+                    newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
+                    //reflection.transform.Rotate(Vector3.up, currentPiece.rotation);
+                    //reflection.transform.localScale = new Vector3(-1, -1, 1);
+
+                    //apply adjustment to tile after rotation
+                    if (currentPiece.rotation == 90)
+                    {
+                        newlyCreatedTile.transform.position += new Vector3(TileSize / 2, 0, TileSize / 2);
+                        //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                    }
+                    else if (currentPiece.rotation == 180)
+                    {
+                        newlyCreatedTile.transform.position += new Vector3(TileSize, 0, 0);
+                        //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                    }
+                    else if (currentPiece.rotation == 270)
+                    {
+                        newlyCreatedTile.transform.position += new Vector3(TileSize / 2, 0, -(TileSize / 2));
+                        //reflection.transform.position += new Vector3(tileSize / 2, 0, tileSize / 2);
+                    }
+                    mapObjects[i, j] = newlyCreatedTile;
+                }
+            }
+        }
     }
 }
