@@ -23,15 +23,6 @@ public class EnemyAttackController : MonoBehaviour
         // Get enemy(player)'s statBlock
         statBlock = GetComponent<StatBlock>();
 
-        if (projectile == null)
-        {
-            projectile = new GameObject("empty projectile");
-            projectile.transform.position = Vector3.zero;
-            projectile.AddComponent<Rigidbody>();
-            projectile.AddComponent<SphereCollider>();
-            // TODO: add projectile script
-        }
-
         // Min and max damage
         dmgMin = 35f;
         dmgMax = 45f;
@@ -54,7 +45,7 @@ public class EnemyAttackController : MonoBehaviour
 
     public void MeleeAttack()
     {
-        // 
+        
     }
 
     public void AoeAttack()
@@ -62,12 +53,9 @@ public class EnemyAttackController : MonoBehaviour
 
     }
 
-
-
     private void DealDamage(ProjectileBehave projectileBehave)
     {
         Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), 0f, true, false, false);
         projectileBehave.dmg = statBlock.RealDamage(dmg);
-        projectileBehave.ttl = 5f;
     }
 }
