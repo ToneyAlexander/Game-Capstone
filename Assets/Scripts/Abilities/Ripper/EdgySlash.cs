@@ -39,7 +39,7 @@ public class EdgySlash : AbilityBase
     protected override void Activate()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
-        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+        HorizontalSwipe pbh = obj.GetComponent<HorizontalSwipe>();
         obj.transform.LookAt(mpd.CalculateWorldPosition());
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
         lookPos.y = 0;
@@ -57,7 +57,7 @@ public class EdgySlash : AbilityBase
         tb.IsUnique = !slowdownStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
-        pbh.ttl = 2f;
+        pbh.dtl = 60f;
     }
 
     // Start is called before the first frame update

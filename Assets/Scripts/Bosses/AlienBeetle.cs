@@ -207,6 +207,20 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         animator.SetTrigger("death2");
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
+        SpawnTeleportOut();
+    }
+
+    private void SpawnTeleportOut()
+    {
+        Debug.Log("added a way out");
+        GameObject tele = Instantiate(Resources.Load<GameObject>("Teleporter"));
+        TeleportScript tp = tele.GetComponent<TeleportScript>();
+        tp.exitingFight = true;
+        GenerateIsland gen = GameObject.FindGameObjectWithTag("Generator").GetComponent<GenerateIsland>();
+        tp.TargetX = gen.GetPlayerStart().x;
+        tp.TargetY = gen.GetPlayerStart().y;
+        tp.TargetZ = gen.GetPlayerStart().z;
+        tele.transform.position = arenaStart + ((arenaEnd - arenaStart) / 2);
     }
 
     // Update is called once per frame

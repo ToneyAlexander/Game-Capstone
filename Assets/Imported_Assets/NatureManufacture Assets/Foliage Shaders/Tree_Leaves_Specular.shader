@@ -19,13 +19,14 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 		_ShiverDrag("Wind Shiver Drag", Float) = 0.05
 		_WindNormalInfluence("Wind Normal Influence", Float) = 0
 		_ShiverDirectionality("Wind Shiver Directionality", Range( 0 , 1)) = 0.5
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
 
 	SubShader
 	{
-		Tags{ "RenderType" = "TransparentCutout"  "Queue" = "AlphaTest+0" }
+        Tags {"Queue" = "Transparent" "RenderType"="Transparent" }
 		Cull Off
 		CGPROGRAM
 		#include "UnityStandardUtils.cginc"
@@ -36,6 +37,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 		#pragma vertex vert
 		#pragma instancing_options procedural:setup
 		#pragma multi_compile GPU_FRUSTUM_ON __
+		#pragma alpha:fade
 		#pragma surface surf StandardSpecular keepalpha addshadow fullforwardshadows dithercrossfade 
 		struct Input
 		{
@@ -54,6 +56,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 		uniform float _SmoothnessPower;
 		uniform float _AmbientOcclusionPower;
 		uniform float _Cutoff = 0.5;
+		uniform float _Transparency;
 
 
 		float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -104,7 +107,7 @@ Shader "NatureManufacture Shaders/Trees/Tree_Leaves_Specular"
 			o.Smoothness = ( tex2DNode37.a * _SmoothnessPower );
 			float clampResult41 = clamp( tex2DNode37.g , ( 1.0 - _AmbientOcclusionPower ) , 1.0 );
 			o.Occlusion = clampResult41;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 			clip( tex2DNode3.a - _Cutoff );
 		}
 

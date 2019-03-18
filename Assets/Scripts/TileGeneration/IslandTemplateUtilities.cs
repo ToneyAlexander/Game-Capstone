@@ -129,6 +129,15 @@ public static class IslandTemplateUtilities
         r[tileID] = true;
         return r;
     }
+    public static bool[] makeBlankTile(int tileCount)
+    {
+        bool[] basic = new bool[tileCount];
+        for (int b = 0; b < basic.Length; b++)
+        {
+            basic[b] = true;
+        }
+        return basic;
+    }
 
     public static int countTrues(bool[] arr)
     {
