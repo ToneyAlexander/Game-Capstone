@@ -7,7 +7,7 @@ using CCC.Abilities;
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]
 [RequireComponent(typeof(MousePositionDetector))]
-public class EdgySlash : AbilityBase
+public class WhirlwindSlash : AbilityBase
 {
     private readonly string AbilName = "Slash";
 
@@ -57,7 +57,7 @@ public class EdgySlash : AbilityBase
         tb.IsUnique = !slowdownStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
-        pbh.dtl = 60f;
+        pbh.dtl = 1800f;
     }
 
     // Start is called before the first frame update
