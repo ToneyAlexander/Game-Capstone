@@ -20,7 +20,8 @@ namespace CCC.Items
             1,
             EquipmentSlot.Null,
             null,
-            new List<Stat>()
+            new List<Stat>(),
+            null
         );
 
         /// <summary>
@@ -55,6 +56,15 @@ namespace CCC.Items
         public Sprite Sprite
         {
             get { return sprite; }
+        }
+
+        /// <summary>
+        /// Gets the prefab to use when placing the Item in the world.
+        /// </summary>
+        /// <value>The world drop prefab.</value>
+        public GameObject WorldDropPrefab
+        {
+            get { return worldDropPrefab; }
         }
 
         /// <summary>
@@ -97,7 +107,8 @@ namespace CCC.Items
         /// The list of Stat that the new Item will have.
         /// </param>
         public Item(string name, string flavorText, bool isUnique, int tier,
-            EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats)
+            EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats, 
+            GameObject worldDropPrefab)
         {
             this.name = name;
             this.longName = name;
@@ -107,6 +118,7 @@ namespace CCC.Items
             this.equipmentSlot = equipmentSlot;
             this.sprite = sprite;
             this.stats = stats;
+            this.worldDropPrefab = worldDropPrefab;
         }
 
         /// <summary>
@@ -137,6 +149,11 @@ namespace CCC.Items
         /// The Sprite of this Item.
         /// </summary>
         private readonly Sprite sprite;
+
+        /// <summary>
+        /// The prefab to use when this Item is placed in the world.
+        /// </summary>
+        private readonly GameObject worldDropPrefab;
 
         /// <summary>
         /// The EquipmentSlot that this Item occupies.
