@@ -21,6 +21,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular"
 		_InitialBend("Wind Initial Bend", Float) = 1
 		_Stiffness("Wind Stiffness", Float) = 1
 		_Drag("Wind Drag", Float) = 1
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord3( "", 2D ) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
@@ -41,6 +42,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular"
 		#pragma instancing_options procedural:setup
 		#pragma multi_compile GPU_FRUSTUM_ON __
 		#pragma surface surf StandardSpecular keepalpha addshadow fullforwardshadows dithercrossfade 
+		#pragma alpha:fade
 		struct Input
 		{
 			float2 uv_texcoord;
@@ -66,6 +68,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular"
 		uniform sampler2D _AmbientOcclusionG;
 		uniform sampler2D _DetailAmbientOcclusionG;
 		uniform float _AmbientOcclusionPower;
+		uniform float _Transparency;
 
 		void surf( Input i , inout SurfaceOutputStandardSpecular o )
 		{
@@ -91,7 +94,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular"
 			float lerpResult30 = lerp( tex2D( _AmbientOcclusionG, uv_MainTex ).g , tex2D( _DetailAmbientOcclusionG, staticSwitch123 ).g , tex2DNode25.a);
 			float clampResult34 = clamp( lerpResult30 , ( 1.0 - _AmbientOcclusionPower ) , 1.0 );
 			o.Occlusion = clampResult34;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 		}
 
 		ENDCG

@@ -32,6 +32,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular Snow"
 		_InitialBend("Wind Initial Bend", Float) = 1
 		_Stiffness("Wind Stiffness", Float) = 1
 		_Drag("Wind Drag", Float) = 1
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] _texcoord3( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
@@ -46,6 +47,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular Snow"
 		#include "UnityPBSLighting.cginc"
 		#include "Lighting.cginc"
 		#pragma target 3.0
+		#pragma alpha:fade
 		#pragma multi_compile_instancing
 		#pragma shader_feature _DETALUSEUV3_ON
 		#pragma shader_feature _SNOWUSEUV3_ON
@@ -101,6 +103,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular Snow"
 		uniform float _DetailAmbientOcclusionPower;
 		uniform sampler2D _SnowCoverAmbientOcclusionG;
 		uniform float _SnowAmbientOcclusionPower;
+		uniform float _Transparency;
 
 		void surf( Input i , inout SurfaceOutputStandardSpecular o )
 		{
@@ -144,7 +147,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Specular Snow"
 			float clampResult62 = clamp( tex2D( _SnowCoverAmbientOcclusionG, staticSwitch160 ).g , ( 1.0 - _SnowAmbientOcclusionPower ) , 1.0 );
 			float lerpResult39 = lerp( lerpResult53 , clampResult62 , temp_output_33_0);
 			o.Occlusion = lerpResult39;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 		}
 
 		ENDCG
