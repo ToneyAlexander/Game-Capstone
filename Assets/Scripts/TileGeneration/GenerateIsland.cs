@@ -3,6 +3,7 @@ using UnityEngine.AI;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GenerateIsland : MonoBehaviour
 {
@@ -14,7 +15,12 @@ public class GenerateIsland : MonoBehaviour
     private int LAND_INDEX = 33;
     private static int TILES_PER_LAYER = 33;
 
-    [SerializeField]
+	private PostProcessVolume volume;
+
+	[SerializeField]
+	private ProfilesList profileList; 
+
+	[SerializeField]
     private NameGenerator nameGenerator;
 
 	[SerializeField]
@@ -120,11 +126,13 @@ public class GenerateIsland : MonoBehaviour
     void Start()
     {
 		themeCount = themeDictionary.themeDictionary.Count;
-        //TODO: add backtracking and optimize search
-        //TODO: remove these lines
-        //TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
-        //AKA iterate over tile list, if entropy = 1, remove
-        ISLE_WIDE = ISLE_WIDE_HIGH;
+		volume = Camera.main.GetComponent<PostProcessVolume>();
+
+		//TODO: add backtracking and optimize search
+		//TODO: remove these lines
+		//TODO: optimization - in the findLowestEntropy / tile selection, maintain list of tiles left instead of searching over all tiles
+		//AKA iterate over tile list, if entropy = 1, remove
+		ISLE_WIDE = ISLE_WIDE_HIGH;
         ISLE_HIGH = ISLE_WIDE_HIGH;
 
         NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
@@ -745,7 +753,8 @@ public class GenerateIsland : MonoBehaviour
         if(rnd <= forestChance)
         {
             themeID = 0; //forest
-        }else if(rnd > forestChance && rnd <= forestChance + desertChance)
+		}
+		else if(rnd > forestChance && rnd <= forestChance + desertChance)
         {
             themeID = 1;
         }else if(rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
@@ -755,6 +764,7 @@ public class GenerateIsland : MonoBehaviour
         {
             themeID = 3;
         }
+		volume.profile = profileList.profiles[themeID];
 	}
 
     private void replaceObjects(int percentage, List<GameObject> environmentList, string type)

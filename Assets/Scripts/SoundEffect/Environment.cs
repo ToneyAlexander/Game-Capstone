@@ -5,6 +5,7 @@ using UnityEngine;
 public class Environment : MonoBehaviour
 {
     public AudioClip forest_wind;
+    public AudioClip boss_fight;
     private AudioSource audiodata;
     public bool InBossFight;
 
@@ -16,8 +17,14 @@ public class Environment : MonoBehaviour
 
     void PlayOneStep()
     {
-
-        audiodata.clip = forest_wind;
+        if (InBossFight)
+        {
+            audiodata.clip = boss_fight;
+        }
+        else
+        {
+            audiodata.clip = forest_wind;
+        }
 
         audiodata.Play();
     }
