@@ -419,6 +419,7 @@ MonoBehaviour:
   surface: {fileID: 1507233751}
   remy: {fileID: 594619827}
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
+  themeID: 0
   ISLE_WIDE_HIGH: 15
   makeEnvironment: 0
   makeNavmesh: 1
@@ -2099,7 +2100,6 @@ GameObject:
   - component: {fileID: 594619843}
   - component: {fileID: 594619842}
   - component: {fileID: 594619844}
-  - component: {fileID: 594619846}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2450,45 +2450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiedClip: {fileID: 8300000, guid: 3268edfc1df244310b2579dfe2c6bb92, type: 3}
---- !u!114 &594619846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594619827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec6c1e47f0109d44b3a5196f633729e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameGenerator: {fileID: 0}
-  islandNameDisplay: {fileID: 0}
-  surface: {fileID: 0}
-  remy: {fileID: 0}
-  img: {fileID: 0}
-  themeID: 0
-  ISLE_WIDE_HIGH: 0
-  makeEnvironment: 0
-  makeNavmesh: 1
-  treeList: {fileID: 0}
-  grassList: {fileID: 0}
-  mediumObjectList: {fileID: 0}
-  particleEffects: {fileID: 0}
-  specialObjects: {fileID: 0}
-  vegetationSpawner: {fileID: 0}
-  enemySpawner: {fileID: 0}
-  themeDictionary: {fileID: 0}
-  startingLocation: {x: 0, y: 0, z: 0}
-  drawTileSet: 0
-  forestChance: 100
-  snowChance: 20
-  swampChance: 20
-  desertChance: 20
-  LAYERS_ABOVE_BEACH: 6
-  LESS_THAN_LAND_REGEN_COUNT: 0
-  useLVR: 1
-  RUN_INDEX_TEST: 0
 --- !u!1 &603817848
 GameObject:
   m_ObjectHideFlags: 0
@@ -12539,7 +12500,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4115091098514979735}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.23166664
+  m_Size: 0.23166667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13529,8 +13490,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0.000000073981994
-  m_Size: 0.31249997
+  m_Value: 0.00000007398199
+  m_Size: 0.31249994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
