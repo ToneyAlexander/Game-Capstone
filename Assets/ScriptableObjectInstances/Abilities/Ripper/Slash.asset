@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Slash
   abilityType: 1
-  typeString: Slash
+  typeString: EdgySlash
   icon: {fileID: 21300000, guid: b4dbdec716490f14faeff0dc9ae664d7, type: 3}
-  prefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c, type: 3}
+  prefab: {fileID: 2832531226357082016, guid: 8cabe7fecdfd4cc4fa8ab348d3d7260f, type: 3}
+  isAttack: 1
   statSlots:
   - statIdentifier: {fileID: 11400000, guid: 3c9effc3661081340b193ea123758eb1, type: 2}
-    value: 10
+    value: 60
   - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
     value: 70
   - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}

@@ -9,7 +9,7 @@ using CCC.Abilities;
 [RequireComponent(typeof(MousePositionDetector))]
 public class WhirlwindSlash : AbilityBase
 {
-    private readonly string AbilName = "Slash";
+    private readonly string AbilName = "WhirlwindSlash";
 
     private List<Stat> abilStats;
     private StatBlock stats;
@@ -38,26 +38,28 @@ public class WhirlwindSlash : AbilityBase
 
     protected override void Activate()
     {
-        GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
+        GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0f, 2f, 0f), new Quaternion());
         HorizontalSwipe pbh = obj.GetComponent<HorizontalSwipe>();
         obj.transform.LookAt(mpd.CalculateWorldPosition());
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        obj.transform.localScale = new Vector3(-5f, -5f, -5f);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), false, false, true);
         pbh.dmg = stats.RealDamage(dmg);
         TimedBuff tb = slowdown.Instance;
-        Stat stat = tb.Stats.Find(item => item.Name == Stat.MOVE_SPEED);
+        Stat stat = tb.Stats.Find(item => item.Name == Stat.MOVE_SPEED_MULT);
+        Debug.Log("just like the white winged dove : " + stat.Name + stat.Value + slowdownMult);
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, slowdownMult));
-        tb.Stats.Remove(new Stat(Stat.MOVE_SPEED));
+        tb.Stats.Remove(new Stat(Stat.MOVE_SPEED_MULT));
         tb.Stats.Add(stat);
         tb.Duration += slowdownDur;
         tb.IsUnique = !slowdownStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
-        pbh.dtl = 1800f;
+        pbh.ttl = 4000f;
+        pbh.player = gameObject;
     }
 
     // Start is called before the first frame update

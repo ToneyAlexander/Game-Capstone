@@ -12,6 +12,8 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ablazeDef;
     public TimedBuffPrototype ablazeIgnite;
     public TimedBuffPrototype ooze;
+    public TimedBuffPrototype crippled;
+    public TimedBuffPrototype ripperFrenzy;
     public PerkPrototype Young;
     public PerkPrototype Middle;
     public PerkPrototype Old;
@@ -26,5 +28,8 @@ public class InitAbilities : MonoBehaviour
         AblazeAbility.Ignite = ablazeIgnite;
         AblazeAbility.Friendly = ablazeDef;
         AlienBeetle.Ooze = ooze;
+        WhirlwindSlash.slowdown = crippled;
+        EdgySlash.slowdown = crippled;
+        RageMode.RipperFrenzy = ripperFrenzy;
     }
 }

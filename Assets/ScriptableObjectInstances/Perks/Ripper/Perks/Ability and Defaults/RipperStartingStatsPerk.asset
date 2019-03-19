@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: RipperAtkSpeed1
+  m_Name: RipperStartingStatsPerk
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
@@ -18,11 +18,17 @@ MonoBehaviour:
   Blocks: []
   RequireAll: 0
   Stats:
-  - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
-    statValue: 0.05
-  Name: Fast Hands
+  - statName: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    statValue: 220
+  - statName: {fileID: 11400000, guid: d54b232b3fcae4b45b52cc5127e54fd7, type: 2}
+    statValue: 120
+  - statName: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
+    statValue: 210
+  - statName: {fileID: 11400000, guid: 3c0e3ddbbaa2b40fa92446d0329c3729, type: 2}
+    statValue: 150
+  Name: 
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 50, y: 240}
+  uiCoords: {x: 0, y: 0}
   sprite: {fileID: 0}
