@@ -60,7 +60,7 @@ public class MeleeEnemyController : EnemyController
         animator.SetTrigger("meleeAttack");
 		yield return new WaitForSeconds(1.0f);
 
-        attackController.ProjectileAttack(projectile);
+        attackController.ProjectileAttack(projectile, 0.5f);
         
 		inAttackCoroutine = false;
 	}

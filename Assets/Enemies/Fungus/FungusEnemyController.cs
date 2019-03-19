@@ -106,19 +106,19 @@ public class FungusEnemyController : EnemyController
 		if (attackMode < 0.2f) 
 		{
 			animator.SetTrigger("AttackRightTentacle1");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.2f && attackMode < 0.4f)
 		{
 			animator.SetTrigger("AttackLeftTentacle2");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.4f && attackMode < 0.6f)
 		{
 			animator.SetTrigger("AttackFourTentacle");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.6f && attackMode < 0.8f)
