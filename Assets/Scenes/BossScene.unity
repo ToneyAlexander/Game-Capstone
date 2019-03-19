@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 1
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &381579495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1652,6 +1653,12 @@ MonoBehaviour:
   ablazeOff: {fileID: 11400000, guid: 878850fb8c0123249ae78833d22daa1b, type: 2}
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
+  ooze: {fileID: 11400000, guid: 64f7d07c15773514da22fe3e9a47c1e7, type: 2}
+  crippled: {fileID: 11400000, guid: d5b1a127ba5ef2640936e3425e023cc5, type: 2}
+  ripperFrenzy: {fileID: 11400000, guid: d4c4ae70b6dda4e4188730da5ed07256, type: 2}
+  Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
+  Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
+  Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
 --- !u!114 &381579500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,8 +1688,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
+    type: 2}
 --- !u!114 &381579502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,8 +1871,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
+  bloodlineController: {fileID: 0}
 --- !u!114 &391902933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,6 +1888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatPerk: {fileID: 11400000, guid: 1136e1b3838dcc04196d6c725498ce1a, type: 2}
+  LevelPerk: {fileID: 11400000, guid: de75126e841c4a24abad26a72deb1c33, type: 2}
   EggPrefab: {fileID: 4683793525412170550, guid: a99a3f150afb634469b28e0a21cdffcf,
     type: 3}
   VolleyPrefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c,
@@ -1883,6 +1896,7 @@ MonoBehaviour:
   TrackerPrefab: {fileID: 3284506581622335269, guid: ddbd21f30cb1ecc49aa768dec5ae5c89,
     type: 3}
   Level: 3
+  active: 1
   arenaStart: {x: -32, y: 0, z: -16}
   arenaEnd: {x: 32, y: 0, z: 32}
 --- !u!114 &391902934
@@ -1898,6 +1912,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 0
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &391902935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,6 +1958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 381579497}
   RotSpeed: 15
+  pause: 0
 --- !u!1 &395264454
 GameObject:
   m_ObjectHideFlags: 0

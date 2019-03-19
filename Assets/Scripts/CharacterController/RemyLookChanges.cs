@@ -113,6 +113,7 @@ public class RemyLookChanges : MonoBehaviour
         topColors.Add(topYellow = Color.yellow);
 
         topArray = topColors.ToArray();
+        //TODO: this line can throw index out of bounds
         thisColor = topArray[(int)(Random.value * hairArray.Length)];
 
 

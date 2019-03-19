@@ -7,9 +7,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerClass))]
 public class AlienBeetle : MonoBehaviour, IActivatableBoss
 {
-    private readonly float AbilityZeroCd = 0.5f;
+    private readonly float AbilityZeroCd = 3f;
     private readonly float AbilityOneCd = 1f;
-    private readonly float AbilityTwoCd = 0.75f;
+    private readonly float AbilityTwoCd = 1f;
 
     private StatBlock stats;
     private ControlStatBlock controlStats;
@@ -24,12 +24,14 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     public GameObject TrackerPrefab;
     public int Level;
 
-    private bool active;
+    public bool active;
     private float timeSinceUse;
     private float cooldown;
     private bool inUse;
     private int nextAttack;
     private int expValue;
+    private Damage collideDmg;
+    private float dmgTimer;
     public Vector3 arenaStart, arenaEnd;
 
     public static TimedBuffPrototype Ooze;
@@ -43,6 +45,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         animator = GetComponent<Animator>();
         playerTracker = GetComponent<TrackingBehave>();
 
+        dmgTimer = 1f;
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
         nextAttack = 0;
@@ -59,6 +62,8 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         {
             beetleClass.LevelUp();
         }
+
+        collideDmg = new Damage(50 * Level, 0, false, true, false);
     }
 
     void AbilityZero()
@@ -228,11 +233,23 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     {
         if (active)
         {
+            if(dmgTimer < 2f)
+                dmgTimer += Time.deltaTime;
+
             if (!inUse)
+            {
                 timeSinceUse += Time.deltaTime;
+                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                {
+                    Debug.Log("set walk");
+                    animator.SetTrigger("walk");
+                }
+                transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
+            }
 
             if (timeSinceUse > cooldown)
             {
+                animator.SetTrigger("idle");
                 timeSinceUse = 0;
                 inUse = true;
                 switch (nextAttack)
@@ -246,6 +263,35 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
                     case 2:
                         AbilityTwo();
                         break;
+                }
+            }
+        }
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (dmgTimer > 0.5f)
+        {
+            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+            ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
+            IAttackIgnored colProj = col.gameObject.GetComponent<IAttackIgnored>();
+            if (colProj == null) //check to see if we collided with another projectile. if so ignore
+            {
+                //Debug.Log("Col with non-proj, Proj is: " + friendly);
+
+                if (enemy != null)
+                {
+                    //Debug.Log("Enemy has stat block, enem is friendly: " + enemy.Friendly);
+                    if (enemy.Friendly)
+                    {
+                        dmgTimer = 0f;
+
+                        enemy.TakeDamage(collideDmg, col.gameObject);
+                        if (enemyControl != null)
+                        {
+                            enemyControl.OnHit(collideDmg);
+                        }
+                    }
                 }
             }
         }
