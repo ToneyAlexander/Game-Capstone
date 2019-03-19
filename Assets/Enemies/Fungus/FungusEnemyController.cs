@@ -43,18 +43,25 @@ public class FungusEnemyController : EnemyController
 			{
 				StartCoroutine(NotAttack());
 			}
+			awake = true;
 		}
 		else
 		{
 			agent.isStopped = true;
 			movable = false;
-			if (awake) 
-			{
-				animator.SetTrigger("Mimic");
-				animator.SetFloat("h", 0.0f);
-				animator.SetFloat("v", 0.0f);
-				awake = false;
-			}
+			animator.SetTrigger("Mimic");
+			animator.SetFloat("h", 0.0f);
+			animator.SetFloat("v", 0.0f);
+			awake = false;
+		}
+
+		DisplayVisionAndRange();
+
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Debug.Log("movable = " + movable);
+			Debug.Log("awake = " + awake);
+			Debug.Log("agent.isStopped = " + agent.isStopped);
 		}
 	}
 
@@ -85,8 +92,6 @@ public class FungusEnemyController : EnemyController
 		inAttackCoroutine = true;
 
 		yield return new WaitForSeconds(1.5f);
-
-		awake = true;
 
 		inAttackCoroutine = false;
 	}

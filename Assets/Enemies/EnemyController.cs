@@ -81,7 +81,7 @@ public abstract class EnemyController : MonoBehaviour
         inCoroutine = false;
         isAlive = true;
 
-        player = GameObject.Find("remy");
+        player = GameObject.FindWithTag("Player");
         targetPos = Vector3.zero;
         targetFound = false;
         enemyClass.TakePerk(initialStats);
