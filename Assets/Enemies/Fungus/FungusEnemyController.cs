@@ -54,15 +54,6 @@ public class FungusEnemyController : EnemyController
 			animator.SetFloat("v", 0.0f);
 			awake = false;
 		}
-
-		DisplayVisionAndRange();
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			Debug.Log("movable = " + movable);
-			Debug.Log("awake = " + awake);
-			Debug.Log("agent.isStopped = " + agent.isStopped);
-		}
 	}
 
 	protected override bool InVision(Vector3 pos)
