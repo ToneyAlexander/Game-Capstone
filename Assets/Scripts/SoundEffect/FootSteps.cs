@@ -27,6 +27,17 @@ public class FootSteps : MonoBehaviour
 
     AudioClip RandomClip()
     {
-        return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
+        if (Environment.themeID == 0 || Environment.themeID == 3)
+        {
+            return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
+        }
+        if (Environment.themeID == 2)
+        {
+            return footStepsOnSnow[Random.Range(0, footStepsOnGrass.Length)];
+        }
+        else
+        {
+            return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
+        }
     }
 }

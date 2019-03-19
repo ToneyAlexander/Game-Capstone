@@ -18,6 +18,10 @@ public class Environment : MonoBehaviour
     [SerializeField]
     private AudioClip boss_fight;
 
+    [SerializeField]
+    private AudioClip ocean;
+
+
     private AudioSource audiodata;
     private bool isPlaying;
 
@@ -25,7 +29,7 @@ public class Environment : MonoBehaviour
 
     public bool InBossFight;
 
-    private int themeID;
+    public static int themeID;
 
     private GenerateIsland generateIsland;
     // Start is called before the first frame update
@@ -80,7 +84,12 @@ public class Environment : MonoBehaviour
     void Play()
     {
         //Debug.Log("播放");
+        //audiodata.clip = ocean;
+        //audiodata.volume = 1f;
+        //audiodata.Play();
+
         ThemeCheck();
+        audiodata.volume = 0.4f;
         audiodata.Play();
 
     }
