@@ -9,7 +9,7 @@ using CCC.Abilities;
 [RequireComponent(typeof(MousePositionDetector))]
 public class WhirlwindSlash : AbilityBase
 {
-    private readonly string AbilName = "WhirlwindSlash";
+    private readonly string AbilName = "Whirlwind Slash";
 
     private List<Stat> abilStats;
     private StatBlock stats;

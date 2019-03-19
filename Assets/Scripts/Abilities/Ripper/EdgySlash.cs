@@ -50,7 +50,7 @@ public class EdgySlash : AbilityBase
         pbh.dmg = stats.RealDamage(dmg);
         TimedBuff tb = slowdown.Instance;
         Stat stat = tb.Stats.Find(item => item.Name == Stat.MOVE_SPEED_MULT);
-        Debug.Log("just like the white winged dove : " + stat.Name+ stat.Value+ slowdownMult);
+        //Debug.Log("just like the white winged dove : " + stat.Name+ stat.Value+ slowdownMult);
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, slowdownMult));
         tb.Stats.Remove(new Stat(Stat.MOVE_SPEED_MULT));
         tb.Stats.Add(stat);
@@ -58,7 +58,8 @@ public class EdgySlash : AbilityBase
         tb.IsUnique = !slowdownStack;
         pbh.dmg.buffs.Add(tb);
         pbh.friendly = true;
-        pbh.ttl = 4000f;
+        pbh.ttl = 60f;
+        pbh.transform.RotateAround(transform.position, Vector3.up, 150);
         pbh.player = gameObject;
     }
 

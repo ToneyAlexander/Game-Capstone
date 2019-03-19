@@ -5,7 +5,7 @@ using CCC.Stats;
 
 public class RageMode : AbilityBase
 {
-    private readonly string AbilName = "Empowered Mending";
+    private readonly string AbilName = "Rage Mode";
 
     private StatBlock stats;
     private ControlStatBlock controlStats;
