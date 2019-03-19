@@ -40,22 +40,41 @@ public class Environment : MonoBehaviour
 
     void Update()
     {
-        if (generateIsland.Done()) {
+        if (generateIsland.Done())
+        {
             if (themeID != generateIsland.themeID)
             {
                 themeID = generateIsland.themeID;
+
                 Play();
+
             }
         }
 
-        if (InBossFight && !isPlayArena)
-        {
-            audiodata.clip = boss_fight;
 
-            audiodata.Play();
+            if (InBossFight)
+            {
+                if (!isPlayArena)
+                {
 
-            isPlayArena = true;
-        }
+                    audiodata.clip = boss_fight;
+
+                    audiodata.Play();
+
+                    isPlayArena = true;
+
+                }
+            }
+
+            if (!InBossFight && isPlayArena)
+            {
+
+                isPlayArena = false;
+
+                Play();
+
+            }
+
     }
 
     void Play()

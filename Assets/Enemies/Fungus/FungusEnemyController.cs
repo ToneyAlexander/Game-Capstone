@@ -7,7 +7,7 @@ public class FungusEnemyController : EnemyController
 
 	private Animator animator;
 
-	private bool inAttackCoroutine, inNotAttackCoroutine;
+	private bool awake, inAttackCoroutine;
 
 	protected override void Initialize () 
     {
@@ -25,8 +25,8 @@ public class FungusEnemyController : EnemyController
         visionDistance = 10f;
         attackDistance = 3f;
 
+		awake = false;
 		inAttackCoroutine = false;
-		inNotAttackCoroutine = false;
 	}
 
 	protected override void UniqueUpdate()
@@ -38,7 +38,8 @@ public class FungusEnemyController : EnemyController
 			movable = true;
 			animator.SetTrigger("AnyKey");
 			// Wait for seconds so the enemy does not attack immediately
-			if (!inNotAttackCoroutine)
+			// Wakeup animation plays only when it is in Mimic state
+			if (!awake && !inAttackCoroutine)
 			{
 				StartCoroutine(NotAttack());
 			}
@@ -47,9 +48,13 @@ public class FungusEnemyController : EnemyController
 		{
 			agent.isStopped = true;
 			movable = false;
-			animator.SetTrigger("Mimic");
-			animator.SetFloat("h", 0.0f);
-			animator.SetFloat("v", 0.0f);
+			if (awake) 
+			{
+				animator.SetTrigger("Mimic");
+				animator.SetFloat("h", 0.0f);
+				animator.SetFloat("v", 0.0f);
+				awake = false;
+			}
 		}
 	}
 
@@ -69,7 +74,7 @@ public class FungusEnemyController : EnemyController
 		// Stop and attack target (player character)
         agent.isStopped = true;
 
-		if (!inAttackCoroutine)
+		if (awake && !inAttackCoroutine)
 		{
 			StartCoroutine(Attack());
 		}
@@ -77,11 +82,13 @@ public class FungusEnemyController : EnemyController
 
 	private IEnumerator NotAttack()
 	{
-		inNotAttackCoroutine = true;
+		inAttackCoroutine = true;
 
 		yield return new WaitForSeconds(1.5f);
 
-		inNotAttackCoroutine = false;
+		awake = true;
+
+		inAttackCoroutine = false;
 	}
 
 	private IEnumerator Attack()
