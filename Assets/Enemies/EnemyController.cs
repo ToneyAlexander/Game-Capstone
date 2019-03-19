@@ -66,6 +66,8 @@ public abstract class EnemyController : MonoBehaviour
 
     void Start()
     {
+        gameObject.tag = "Enemy";
+
         enemyClass = GetComponent<PlayerClass>();
 
         // Set up NavMesh
