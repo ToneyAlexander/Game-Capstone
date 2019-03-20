@@ -9,8 +9,10 @@ public class FungusEnemyController : EnemyController
 
 	private bool awake, inAttackCoroutine;
 
-	protected override void Initialize () 
+	new void Start()
     {
+		base.Start();
+		
         // Set up animator
 		animator = GetComponent<Animator>();
 

@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MeleeEnemyController : EnemyController
+public class MeleeBatController : EnemyController
 {
     public GameObject projectile;
-    // Animator stuff
+    
     private Animator animator;
 
     private bool inAttackCoroutine;
 
-    protected override void Initialize()
+    new void Start()
     {
+        base.Start();
+
         // Set up animator
         animator = GetComponent<Animator>();
 
@@ -58,9 +60,8 @@ public class MeleeEnemyController : EnemyController
 		inAttackCoroutine = true;
 
         animator.SetTrigger("meleeAttack");
-		yield return new WaitForSeconds(1.0f);
-
         attackController.ProjectileAttack(projectile, 0.5f);
+		yield return new WaitForSeconds(1.0f);
         
 		inAttackCoroutine = false;
 	}
