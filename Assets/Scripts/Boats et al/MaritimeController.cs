@@ -43,6 +43,7 @@ public class MaritimeController : MonoBehaviour
             GameObject x =  Instantiate(prefab, new Vector3(sin*200, 0, cos*200),Quaternion.identity);
             
             x.GetComponent<positionText>().player = player;
+            x.GetComponent<positionText>().themeDictionary = themes;
             //  x
             string name = nameGen.generateName();
             Debug.Log(name);
