@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 1
-  commandProcessor: {fileID: 0}
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!114 &1578934654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,7 +2404,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578934640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b25678ce631841008975f080436708c, type: 3}
   m_Name: 
@@ -2459,7 +2459,8 @@ MonoBehaviour:
   onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  bloodlineController: {fileID: 0}
+  bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
+    type: 2}
 --- !u!114 &1578934643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2473,7 +2474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
-  BControl: {fileID: 0}
+  BControl: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
   useClassSelection: 1
 --- !u!114 &1578934642
 MonoBehaviour:
@@ -2494,11 +2495,11 @@ MonoBehaviour:
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
   ooze: {fileID: 11400000, guid: 64f7d07c15773514da22fe3e9a47c1e7, type: 2}
-  crippled: {fileID: 0}
-  ripperFrenzy: {fileID: 0}
-  Young: {fileID: 0}
-  Middle: {fileID: 0}
-  Old: {fileID: 0}
+  crippled: {fileID: 11400000, guid: d5b1a127ba5ef2640936e3425e023cc5, type: 2}
+  ripperFrenzy: {fileID: 11400000, guid: d4c4ae70b6dda4e4188730da5ed07256, type: 2}
+  Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
+  Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
+  Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
 --- !u!114 &1578934641
 MonoBehaviour:
   m_ObjectHideFlags: 0
