@@ -88,6 +88,9 @@ GameObject:
   - component: {fileID: 5555267754835503255}
   - component: {fileID: 7711098022546068574}
   - component: {fileID: 7676638733741826657}
+  - component: {fileID: 9068443600126064140}
+  - component: {fileID: 389778571976747286}
+  - component: {fileID: 8349153783309857613}
   m_Layer: 9
   m_Name: BeachTransition2
   m_TagString: Untagged
@@ -135,5 +138,44 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 2, z: 4}
-  m_Center: {x: -6.5, y: 1, z: 2}
+  m_Size: {x: 4, y: 2, z: 5}
+  m_Center: {x: -6, y: 1, z: 2.5}
+--- !u!65 &9068443600126064140
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148044489690674779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 0.5}
+  m_Center: {x: -6, y: 3, z: 4}
+--- !u!65 &389778571976747286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148044489690674779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 0.5}
+  m_Center: {x: -2, y: 2, z: 5}
+--- !u!65 &8349153783309857613
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148044489690674779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2, z: 2}
+  m_Center: {x: -4, y: 3, z: 4.75}

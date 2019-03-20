@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 3625752803632031214}
   - component: {fileID: 1751790271330223980}
   - component: {fileID: 484690308755299747}
+  - component: {fileID: 8618616006531842037}
+  - component: {fileID: 9185087855235887029}
+  - component: {fileID: 642489080913685676}
   m_Layer: 9
   m_Name: ThreeFourthPortion
   m_TagString: Texturable
@@ -106,6 +109,45 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 166c4584fe24da544a44c7d0484e2542, type: 3}
+--- !u!65 &8618616006531842037
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315141578820146530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 4}
+  m_Center: {x: -6, y: 1, z: 2}
+--- !u!65 &9185087855235887029
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315141578820146530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 0.5}
+  m_Center: {x: -6, y: 3, z: 4}
+--- !u!65 &642489080913685676
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315141578820146530}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2, z: 4}
+  m_Center: {x: -4, y: 3, z: 6}
 --- !u!1 &3380653416825401979
 GameObject:
   m_ObjectHideFlags: 0
