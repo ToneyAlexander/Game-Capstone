@@ -7,8 +7,11 @@ namespace CCC.Behaviors.Props
     /// Represents an interactable prop that acts like a chest meaning it drops 
     /// Items.
     /// </summary>
+    [RequireComponent(typeof(Animator))]
     public sealed class InteractableChest : MonoBehaviour, IInteractable
     {
+        private Animator animator;
+
         /// <summary>
         /// The CommandProcessor that ICommands created by this 
         /// InteractableChest are sent to.
@@ -35,10 +38,9 @@ namespace CCC.Behaviors.Props
         {
             if (itemDropper != null)
             {
-                Item item = itemGenerator.GenerateItem();
-                ICommand dropItemCommand = new DropItemCommand(itemDropper, 
-                    item, transform.position);
-                commandProcessor.ProcessCommand(dropItemCommand);
+                animator.SetBool("isOpen", true);
+                // This InteractableChets's Animator will take care of changing 
+                // the state to open and dropping the item.
             }
         }
         #endregion
@@ -46,6 +48,7 @@ namespace CCC.Behaviors.Props
         #region MonoBehaviour Messages
         private void Awake()
         {
+            animator = GetComponent<Animator>();
             itemDropper = GetComponent<IItemDropper>();
 
             if (itemDropper == null)
@@ -56,5 +59,16 @@ namespace CCC.Behaviors.Props
             }
         }
         #endregion
+
+        /// <summary>
+        /// Drop an Item.
+        /// </summary>
+        private void DropItem()
+        {
+            Item item = itemGenerator.GenerateItem();
+            ICommand dropItemCommand = new DropItemCommand(itemDropper, item, 
+                transform.position);
+            commandProcessor.ProcessCommand(dropItemCommand);
+        }
     }
 }
