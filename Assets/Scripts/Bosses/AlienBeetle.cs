@@ -2,44 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(StatBlock))]
-[RequireComponent(typeof(ControlStatBlock))]
-[RequireComponent(typeof(PlayerClass))]
-public class AlienBeetle : MonoBehaviour, IActivatableBoss
+public class AlienBeetle : BaseBoss
 {
     private readonly float AbilityZeroCd = 0.5f;
     private readonly float AbilityOneCd = 1f;
     private readonly float AbilityTwoCd = 0.75f;
 
-    private StatBlock stats;
-    private ControlStatBlock controlStats;
-    private PlayerClass beetleClass;
     private TrackingBehave playerTracker;
     private Animator animator;
-    private GameObject player;
-    public PerkPrototype StatPerk;
-    public PerkPrototype LevelPerk;
     public GameObject EggPrefab;
     public GameObject VolleyPrefab;
     public GameObject TrackerPrefab;
-    public int Level;
-
-    private bool active;
     private float timeSinceUse;
     private float cooldown;
     private bool inUse;
     private int nextAttack;
-    private int expValue;
-    public Vector3 arenaStart, arenaEnd;
 
     public static TimedBuffPrototype Ooze;
 
-    void Awake()
+    new void Awake()
     {
-        stats = GetComponent<StatBlock>();
-        controlStats = GetComponent<ControlStatBlock>();
-        beetleClass = GetComponent<PlayerClass>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        base.Awake();
         animator = GetComponent<Animator>();
         playerTracker = GetComponent<TrackingBehave>();
 
@@ -50,15 +33,10 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
     }
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
-        beetleClass.TakePerk(StatPerk);
-        beetleClass.onLevelUp = LevelPerk;
+        base.Start();
         expValue = 280 * Level;
-        for(int i = 0; i < Level; ++i)
-        {
-            beetleClass.LevelUp();
-        }
     }
 
     void AbilityZero()
@@ -185,42 +163,13 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
         }
     }
 
-    public void Activate()
-    {
-        active = true;
-    }
-
-    public void IsKilled()
+    protected override IEnumerator Die()
     {
         playerTracker.pause = true;
-        Collider col = GetComponent<Collider>();
-        active = false;
-        if (col != null)
-            Destroy(col);
-        if (player != null)
-            player.GetComponent<PlayerClass>().ApplyExp(expValue);
-        StartCoroutine(Die());
-    }
-
-    private IEnumerator Die()
-    {
         animator.SetTrigger("death2");
         yield return new WaitForSeconds(3.5f);
         Destroy(gameObject);
         SpawnTeleportOut();
-    }
-
-    private void SpawnTeleportOut()
-    {
-        Debug.Log("added a way out");
-        GameObject tele = Instantiate(Resources.Load<GameObject>("Teleporter"));
-        TeleportScript tp = tele.GetComponent<TeleportScript>();
-        tp.exitingFight = true;
-        GenerateIsland gen = GameObject.FindGameObjectWithTag("Generator").GetComponent<GenerateIsland>();
-        tp.TargetX = gen.GetPlayerStart().x;
-        tp.TargetY = gen.GetPlayerStart().y;
-        tp.TargetZ = gen.GetPlayerStart().z;
-        tele.transform.position = arenaStart + ((arenaEnd - arenaStart) / 2);
     }
 
     // Update is called once per frame
