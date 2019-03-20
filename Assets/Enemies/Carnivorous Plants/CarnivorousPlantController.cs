@@ -68,8 +68,6 @@ public class CarnivorousPlantController : EnemyController
 			animator.SetBool("Sleeping", true);
 			awake = false;
 		}
-
-		DisplayVisionAndRange();
 	}
 
 	protected override bool InVision(Vector3 pos)

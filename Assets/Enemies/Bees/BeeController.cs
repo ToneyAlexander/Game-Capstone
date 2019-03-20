@@ -42,8 +42,6 @@ public class BeeController : EnemyController
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
-
-        DisplayVisionAndRange();
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -55,6 +53,7 @@ public class BeeController : EnemyController
 			(playerPos - transform.position).z));
 
         // Stop and attack target (player character)
+		animator.SetBool("Fly Forward", false);
         agent.isStopped = true;
 
         // Play attack animation and cause damage

@@ -47,6 +47,9 @@ public abstract class EnemyController : MonoBehaviour
     private bool inCoroutine;
     private bool isAlive;
 
+    // maxTimes is the max times that a navMeshAgent looks for a new path, so that it won't lead to infinite loop
+    private int maxTimes;
+
     protected void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
@@ -80,6 +83,8 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
         enemyClass.TakePerk(initialStats);
+
+        maxTimes = 100;
     }
 
     protected void Update()
@@ -130,7 +135,15 @@ public abstract class EnemyController : MonoBehaviour
     private Vector3 GetRandomPosition()
     {
         Vector2 randomPoint = Random.insideUnitCircle * movingRange;
-        return spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
+        Vector3 randomPos = spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
+
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomPos, out hit, 5, 1)) 
+        {
+            randomPos = hit.position;            
+        }
+
+        return randomPos;
     }
 
     protected IEnumerator Move()
@@ -146,9 +159,9 @@ public abstract class EnemyController : MonoBehaviour
                 targetPos = GetRandomPosition();
                 i += 1;
             }
-            while (!agent.CalculatePath(targetPos, path) && i < 50);
+            while (!agent.CalculatePath(targetPos, path) && i < maxTimes);
 
-            if (i >= 50)
+            if (i >= maxTimes)
             {
                 gameObject.SetActive(false);
                 Debug.Log(gameObject.name + " is deactivated.");
