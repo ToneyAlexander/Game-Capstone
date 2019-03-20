@@ -140,7 +140,7 @@ public abstract class EnemyController : MonoBehaviour
         return spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
     }
 
-    private IEnumerator Move()
+    protected IEnumerator Move()
     {
         inCoroutine = true;
         // Find a random destination if the player character is not the target
@@ -155,7 +155,7 @@ public abstract class EnemyController : MonoBehaviour
         }
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
-        while (!InAttackRange(targetPos))
+        if (!InAttackRange(targetPos))
         {
             Vector3 destination = targetPos;
             ICommand command = new MoveToCommand(destinationMover, transform.position, destination);

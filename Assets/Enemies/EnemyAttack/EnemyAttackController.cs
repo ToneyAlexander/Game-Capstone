@@ -24,11 +24,18 @@ public class EnemyAttackController : MonoBehaviour
         dmgMax = 45f;
     }
 
-    public void ProjectileAttack(GameObject projectile)
+    public void SetDamageRange(float min, float max)
+    {
+        dmgMin = min;
+        dmgMax = max;
+    }
+
+    public void ProjectileAttack(GameObject projectile, float ttl)
     {
         // Generate a projectile instance and get its behave script
-        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation, transform);
+        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
         ProjectileBehave projectileBehave = projectileInstance.GetComponent<ProjectileBehave>();
+        projectileBehave.ttl = ttl;
 
         var lookPos = target.transform.position - transform.position;
         lookPos.y = 0;

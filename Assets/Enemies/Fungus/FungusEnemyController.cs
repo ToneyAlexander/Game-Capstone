@@ -54,15 +54,6 @@ public class FungusEnemyController : EnemyController
 			animator.SetFloat("v", 0.0f);
 			awake = false;
 		}
-
-		DisplayVisionAndRange();
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			Debug.Log("movable = " + movable);
-			Debug.Log("awake = " + awake);
-			Debug.Log("agent.isStopped = " + agent.isStopped);
-		}
 	}
 
 	protected override bool InVision(Vector3 pos)
@@ -106,19 +97,19 @@ public class FungusEnemyController : EnemyController
 		if (attackMode < 0.2f) 
 		{
 			animator.SetTrigger("AttackRightTentacle1");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.2f && attackMode < 0.4f)
 		{
 			animator.SetTrigger("AttackLeftTentacle2");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.4f && attackMode < 0.6f)
 		{
 			animator.SetTrigger("AttackFourTentacle");
-			attackController.ProjectileAttack(projectile);
+			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.6f && attackMode < 0.8f)

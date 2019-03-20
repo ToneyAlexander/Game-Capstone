@@ -102,6 +102,7 @@ public class ClassUI : MonoBehaviour
                 GameObject image = new GameObject();
                 PerkHolder perkHolder = image.AddComponent<PerkHolder>();
                 perkHolder.perkInfo = proto;
+                perkHolder.playerClass = playerClass;
                 if (proto.Require.Count == 0)
                 {
                     perkHolder.available = true;
@@ -233,10 +234,11 @@ public class ClassUI : MonoBehaviour
    
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         // if (Perk)
-        if (clickedEvent.available && !clickedEvent.blocked)
+        bool taken = playerClass.TakePerk(clickedEvent.perkInfo);
+        if (taken)
         {
            // Debug.Log(clickedEvent.perkInfo.Name);
-            playerClass.TakePerk(clickedEvent.perkInfo);
+            
             for (int i = 0; i < content.transform.childCount; i++)
             {
                 PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();

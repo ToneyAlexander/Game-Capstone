@@ -7,16 +7,15 @@ public class TeleportScript : MonoBehaviour
     public float TargetX, TargetY, TargetZ;
     private Environment enviro;
     private float timeAlive;
-    public bool exitingFight;
+    public bool exitingFight = false;
 
     // Start is called before the first frame update
     void Awake()
     {
-        GameObject envTmp = GameObject.Find("EnvironmentSound");
-        if(envTmp != null)
-            enviro = envTmp.GetComponent<Environment>();
+        GameObject tmp = GameObject.FindGameObjectWithTag("Generator");
+        if(tmp != null)
+            enviro = tmp.GetComponent<Environment>();
         timeAlive = 0f;
-        exitingFight = false;
     }
 
     // Update is called once per frame
