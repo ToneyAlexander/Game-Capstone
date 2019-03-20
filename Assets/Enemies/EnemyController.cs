@@ -145,20 +145,20 @@ public abstract class EnemyController : MonoBehaviour
             {
                 targetPos = GetRandomPosition();
                 i += 1;
-            } 
-            while (!agent.CalculatePath(targetPos, path) && i < 30);
+            }
+            while (!agent.CalculatePath(targetPos, path) && i < 50);
 
-            if (i >= 30)
+            if (i >= 50)
             {
                 gameObject.SetActive(false);
-                Debug.Log(gameObject.name + " is disabled.");
+                Debug.Log(gameObject.name + " is deactivated.");
                 inCoroutine = false;
                 yield return null;
             }
         }
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
-        if (!InAttackRange(targetPos))
+        while (!InAttackRange(targetPos) && !agent.isStopped)
         {
             Vector3 destination = targetPos;
             ICommand command = new MoveToCommand(destinationMover, transform.position, destination);
@@ -245,5 +245,5 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void UnderAttack();
 
-    public abstract IEnumerator Die();
+    protected abstract IEnumerator Die();
 }

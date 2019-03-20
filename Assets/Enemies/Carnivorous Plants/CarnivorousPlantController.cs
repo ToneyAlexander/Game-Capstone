@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class FungusEnemyController : EnemyController 
+public class CarnivorousPlantController : EnemyController
 {
 	public GameObject projectile;
 
@@ -18,27 +19,36 @@ public class FungusEnemyController : EnemyController
 
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
-        movingRange = 10f;
-		chaseSpeed = 2.5f;
+        movingRange = 15f;
+		chaseSpeed = 1f;
 		movable = false;
 
 		// Default vision
-        visionAngle = 360f;
+        visionAngle = 180f;
         visionDistance = 10f;
         attackDistance = 3f;
 
 		awake = false;
 		inAttackCoroutine = false;
+
+		// Initial animation
+		animator.SetBool("Walk Forward", false);
+		animator.SetBool("Walk Backward", false);
+		animator.SetBool("Strafe left", false);
+		animator.SetBool("Strafe Right", false);
+		animator.SetBool("Sleeping", true);
 	}
 
 	protected override void UniqueUpdate()
     {
-		// The fungus moves only when it sees the player
-		if (InRange(player.transform.position)) 
+		animator.SetBool("Walk Forward", false);
+		agent.isStopped = true;
+		movable = false;
+		
+		// The carnivorous plants wake up when the player is within range
+		if (InRange(player.transform.position))
 		{
-			agent.isStopped = false;
-			movable = true;
-			animator.SetTrigger("AnyKey");
+			animator.SetBool("Sleeping", false);
 			// Wait for seconds so the enemy does not attack immediately
 			// Wakeup animation plays only when it is in Mimic state
 			if (!awake && !inAttackCoroutine)
@@ -46,16 +56,20 @@ public class FungusEnemyController : EnemyController
 				StartCoroutine(NotAttack());
 			}
 			awake = true;
+			// The carnivorous flower moves only when it sees the player
+			if (InVision(player.transform.position)) 
+			{
+				agent.isStopped = false;
+				movable = true;
+			}
 		}
 		else
 		{
-			agent.isStopped = true;
-			movable = false;
-			animator.SetTrigger("Mimic");
-			animator.SetFloat("h", 0.0f);
-			animator.SetFloat("v", 0.0f);
+			animator.SetBool("Sleeping", true);
 			awake = false;
 		}
+
+		DisplayVisionAndRange();
 	}
 
 	protected override bool InVision(Vector3 pos)
@@ -71,20 +85,21 @@ public class FungusEnemyController : EnemyController
 			0.0f,
 			(playerPos - transform.position).z));
 
-		// Stop and attack target (player character)
+		// Stop moving and attack target (player character)
+		animator.SetBool("Walk Forward", false);
         agent.isStopped = true;
 
-		if (awake && !inAttackCoroutine)
+		if (!inAttackCoroutine)
 		{
 			StartCoroutine(Attack());
 		}
     }
-
+	
 	private IEnumerator NotAttack()
 	{
 		inAttackCoroutine = true;
 
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(2.5f);
 
 		inAttackCoroutine = false;
 	}
@@ -96,34 +111,22 @@ public class FungusEnemyController : EnemyController
         // Change to a random attack animation
 		float attackMode = Random.value;
 
-		if (attackMode < 0.2f) 
+		if (attackMode < 0.33f) 
 		{
-			animator.SetTrigger("AttackRightTentacle1");
+			animator.SetTrigger("Breath Attack");
+			attackController.ProjectileAttack(projectile, 1.5f);
+			yield return new WaitForSeconds(2.5f);
+		}
+		else if (attackMode >= 0.33f && attackMode < 0.67f)
+		{
+			animator.SetTrigger("Bite");
 			attackController.ProjectileAttack(projectile, 0.5f);
 			yield return new WaitForSeconds(1.5f);
 		}
-		else if (attackMode >= 0.2f && attackMode < 0.4f)
+		else if (attackMode >= 0.67f && attackMode < 1.0f)
 		{
-			animator.SetTrigger("AttackLeftTentacle2");
-			attackController.ProjectileAttack(projectile, 0.5f);
-			yield return new WaitForSeconds(1.5f);
-		}
-		else if (attackMode >= 0.4f && attackMode < 0.6f)
-		{
-			animator.SetTrigger("AttackFourTentacle");
-			attackController.ProjectileAttack(projectile, 0.5f);
-			yield return new WaitForSeconds(1.5f);
-		}
-		else if (attackMode >= 0.6f && attackMode < 0.8f)
-		{
-			animator.SetTrigger("AttackRolling");
-			attackController.AoeAttack(8f, 1.25f);
-			yield return new WaitForSeconds(2f);
-		}
-		else if (attackMode >= 0.8f && attackMode <= 1.0f)
-		{
-			animator.SetTrigger("AttackSpreadSpore");
-			attackController.AoeAttack(5f, 1.2f);
+			animator.SetTrigger("Breath Attack Surround");
+			attackController.ProjectileAttack(projectile, 2.0f);
 			yield return new WaitForSeconds(2.5f);
 		}
 
@@ -135,14 +138,15 @@ public class FungusEnemyController : EnemyController
         // if (Input.GetMouseButtonDown(0))
         // {
         //     healthPoints--;
-        //     animator.SetTrigger("TakeDamage1");
+        //     animator.SetTrigger("Take Damage");
         // }
     }
     
-    public override IEnumerator Die()
+    protected override IEnumerator Die()
     {
-        animator.SetTrigger("DownSpin");
-        yield return new WaitForSeconds(2.0f);
+		animator.SetBool("Sleeping", false);
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(2.5f);
         Destroy(gameObject);
     }
 }

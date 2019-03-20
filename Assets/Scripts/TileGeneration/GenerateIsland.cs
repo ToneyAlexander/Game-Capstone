@@ -76,7 +76,10 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
 	private ThemeList enemySpawner;
 
-	[SerializeField]
+    [SerializeField]
+    private EnvironmentData chestSpawner;
+
+    [SerializeField]
     private ThemeDictionary themeDictionary;
 
 	private int themeCount;
@@ -445,8 +448,10 @@ public class GenerateIsland : MonoBehaviour
             observe(island, updated, tileCount);
             propagate(island, updated, index);
         }
-
-        themePicker(); //pick theme before generation 
+        
+            themePicker();
+        
+         //pick theme before generation 
         generatedMap = drawMap(island, startingLocation, tileSize);
         textureAllTiles();
         terrain = new GameObject();
@@ -460,6 +465,7 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
             replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
             replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(chestSpawner.spawnChance, chestSpawner.EnvironmentList, "ChestObject");
         }
         else
         {
@@ -470,6 +476,7 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
             replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
             replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(0, chestSpawner.EnvironmentList, "ChestObject");
         }
     }
 
@@ -688,25 +695,34 @@ public class GenerateIsland : MonoBehaviour
     #region Terrain Methods
     private void themePicker()
 	{
-		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-		byte[] randomNumber = new byte[100];
-		rngCsp.GetBytes(randomNumber); 
-	    int rnd = (randomNumber[0] % (forestChance + desertChance + snowChance + swampChance));
+        themeID = islandStorage.theme;
+        if (!useIngameIslandStats)
+        {
+            RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+            byte[] randomNumber = new byte[100];
+            rngCsp.GetBytes(randomNumber);
+            int rnd = (randomNumber[0] % (forestChance + desertChance + snowChance + swampChance));
 
-        if(rnd <= forestChance)
-        {
-            themeID = 0; //forest
-		}
-		else if(rnd > forestChance && rnd <= forestChance + desertChance)
-        {
-            themeID = 1;
-        }else if(rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
-        {
-            themeID = 2;
-        }else if(rnd > forestChance + desertChance + snowChance && rnd <= forestChance + desertChance + snowChance + swampChance)
-        {
-            themeID = 3;
+            if (rnd <= forestChance)
+            {
+                themeID = 0; //forest
+            }
+            else if (rnd > forestChance && rnd <= forestChance + desertChance)
+            {
+                themeID = 1;
+            }
+            else if (rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
+            {
+                themeID = 2;
+            }
+            else if (rnd > forestChance + desertChance + snowChance && rnd <= forestChance + desertChance + snowChance + swampChance)
+            {
+                themeID = 3;
+            }
+
         }
+
+
 		volume.profile = profileList.profiles[themeID];
 	}
 

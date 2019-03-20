@@ -6,7 +6,7 @@ using UnityEngine.AI;
 /// </summary>
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-public sealed class CarnivorousFlowerMover : MonoBehaviour, IDestinationMover
+public sealed class BeeMover : MonoBehaviour, IDestinationMover
 {
     public Vector3 Position
     {
@@ -15,7 +15,7 @@ public sealed class CarnivorousFlowerMover : MonoBehaviour, IDestinationMover
 
     public void MoveTo(Vector3 destination)
     {
-		animator.SetBool("Walk Forward", true);
+		animator.SetBool("Fly Forward", true);
         navMeshAgent.SetDestination(destination);
     }
 

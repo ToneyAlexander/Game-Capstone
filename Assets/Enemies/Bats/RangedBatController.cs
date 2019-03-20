@@ -77,7 +77,7 @@ public class RangedBatController : EnemyController
         // }
     }
 
-    public override IEnumerator Die()
+    protected override IEnumerator Die()
     {
         animator.SetTrigger("death");
         yield return new WaitForSeconds(0.5f);
