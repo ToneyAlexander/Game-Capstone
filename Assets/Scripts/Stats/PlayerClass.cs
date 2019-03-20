@@ -31,7 +31,7 @@ public class PlayerClass : MonoBehaviour
     {
         if(taken.Contains(p))
         {
-            Debug.LogError("Attempted to take perk that is already owned");
+            //Debug.LogError("Attempted to take perk that is already owned");
             return false;
         }
         int matched = 0;
@@ -98,7 +98,7 @@ public class PlayerClass : MonoBehaviour
 
     public void ApplyExp(float toAdd)
     {
-        Debug.Log("Gained " + toAdd + " exp.");
+        //Debug.Log("Gained " + toAdd + " exp.");
         Exp += toAdd;
         while (Exp > ExpToLevel)
         {
@@ -110,7 +110,7 @@ public class PlayerClass : MonoBehaviour
 
     public void LevelUp()
     {
-        Debug.Log("Leveled Up!");
+        //Debug.Log("Leveled Up!");
         ++PerkPoints;
         ++Level;
         if (onLevelUp != null)
@@ -150,7 +150,7 @@ public class PlayerClass : MonoBehaviour
                     {
                         Ability instA = a.Instance;
                         abilities.Set.Add(instA.AbilityName, instA);
-                        Debug.Log("Abil set len: " + abilities.Set.Count);
+                        //Debug.Log("Abil set len: " + abilities.Set.Count);
                         //TODO: repalce with ui thing
                         if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
                         {
@@ -185,21 +185,14 @@ public class PlayerClass : MonoBehaviour
                             Ability abil = abilities.Set[aMod.AbilityName];
                             Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
                             stat.Value += aMod.Value;
-                            Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
+                            //Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
                             abil.update = true;
-                        }
-                        else
-                        {
-                            Debug.Log("Player does not know this ability (Not neccarily an error, perk might modify more than one ability)");
                         }
 
                     }
                 }
                 return true;
             }
-        } else
-        {
-            Debug.Log("Not enough perk points to take perk");
         }
         return false;
     }

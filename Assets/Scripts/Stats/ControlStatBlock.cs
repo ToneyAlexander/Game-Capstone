@@ -343,7 +343,7 @@ public class ControlStatBlock : MonoBehaviour
             if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
-                Debug.Log(tb.BuffName + " expired.");
+                //Debug.Log(tb.BuffName + " expired.");
                 needsUpdate = true;
 
             }

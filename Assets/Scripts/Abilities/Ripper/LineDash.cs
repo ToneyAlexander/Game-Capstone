@@ -54,7 +54,7 @@ public class LineDash : AbilityBase
     {
         if (ttl > 0)
         {
-            Debug.Log("big if true");
+           // Debug.Log("big if true");
             ttl -= Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, destination, fastness * Time.deltaTime);
 
