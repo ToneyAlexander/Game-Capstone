@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerClass))]
 public class AlienBeetle : MonoBehaviour, IActivatableBoss
 {
-    private readonly float AbilityZeroCd = 3f;
+    private readonly float AbilityZeroCd = 2f;
     private readonly float AbilityOneCd = 1f;
     private readonly float AbilityTwoCd = 1f;
 
@@ -92,6 +92,7 @@ public class AlienBeetle : MonoBehaviour, IActivatableBoss
             eb.dmg = dmg;
             yield return new WaitForSeconds(2f/(rangeX * rangeZ / 2));
         }
+        yield return new WaitForSeconds(1f);
         inUse = false;
         float choice = Random.Range(0f, 1f);
         if(choice < 0.5)
