@@ -1,4 +1,5 @@
 ﻿using CCC.Behaviors;
+using CCC.GameManagement;
 using CCC.GameManagement.GameStates;
 using UnityEngine;
 
@@ -21,9 +22,9 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
     {
         Debug.Log("Player '" + gameObject.name + "' died!");
 
-        remyDead.Dead();
+        Instantiate(Resources.Load("Black Screen"));
 
-        Debug.Log("dead");
+        remyDead.Dead();
 
         //Destroy(gameObject);
         //gameStateChanger.ChangeGameState();

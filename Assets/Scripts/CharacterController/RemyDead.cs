@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CCC.GameManagement.GameStates;
+using CCC.GameManagement;
 
 [RequireComponent(typeof(MainMenuGameStateChanger))]
 public class RemyDead : MonoBehaviour
@@ -9,6 +10,9 @@ public class RemyDead : MonoBehaviour
     Animator animator;
     private IGameStateChanger gameStateChanger;
     // Start is called before the first frame update
+
+    [SerializeField]
+    private SceneReference deathScene;
 
     private void Awake()
     {
@@ -26,11 +30,19 @@ public class RemyDead : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Died") &&
                 animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
         {
-            Destroy(gameObject);
-            gameStateChanger.ChangeGameState();
+            StartCoroutine(DeathProcess());
         }
 
     }
+    IEnumerator DeathProcess()
+    {
+        //Wait for the FadeIn.cs to finish
+        yield return new WaitForSeconds(10);
+        GetComponent<SceneChanger>().ChangeToScene(deathScene);
+        //Destroy(gameObject);
+        //gameStateChanger.ChangeGameState();
+    }
+
     public void Dead()
     {
         animator.SetBool("isDead", true);

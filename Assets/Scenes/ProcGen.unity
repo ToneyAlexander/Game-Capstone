@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50899863, g: 0.5223832, b: 0.5390437, a: 1}
+  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -423,7 +423,7 @@ MonoBehaviour:
   remy: {fileID: 594619827}
   img: {fileID: 2800000, guid: e3b4c218ea6415f40841c853f3443a5f, type: 3}
   themeID: 0
-  ISLE_WIDE_HIGH: 15
+  ISLE_WIDE_HIGH: 30
   makeEnvironment: 1
   makeNavmesh: 1
   treeList: {fileID: 11400000, guid: a72f7c50e0100514d8142021add01b66, type: 2}
@@ -440,7 +440,7 @@ MonoBehaviour:
   snowChance: 20
   swampChance: 20
   desertChance: 30
-  LAYERS_ABOVE_BEACH: 5
+  LAYERS_ABOVE_BEACH: 7
   LESS_THAN_LAND_REGEN_COUNT: 0
   useLVR: 1
   RUN_INDEX_TEST: 0
@@ -2092,7 +2092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aeb3cf415311c4387ed60fcabc1bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassL: {fileID: 11400000, guid: c1abf8c8281881846a8da8d6a47de6fa, type: 2}
+  ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
 --- !u!114 &594619825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2381,6 +2381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd90795c81c640aa9845091e7f7f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScene: {fileID: 11400000, guid: df73f47732c2ada4faab4257cf26a046, type: 2}
 --- !u!114 &594619842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6217,6 +6218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6e8c1e8c6bfbb449d71979ebd9bc34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSpeed: 100
 --- !u!114 &1825723153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6330,7 +6332,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825723148}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbf6adfa2ec28374889b1935029da1b0, type: 3}
   m_Name: 
@@ -12593,7 +12595,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4115091098514979735}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.23166664
+  m_Size: 0.23166667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13583,8 +13585,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0.000000073982015
-  m_Size: 0.31250003
+  m_Value: 0.000000073981994
+  m_Size: 0.31249997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
