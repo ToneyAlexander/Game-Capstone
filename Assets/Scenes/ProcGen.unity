@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899863, g: 0.5223832, b: 0.5390437, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2170,6 +2170,7 @@ GameObject:
   - component: {fileID: 594619843}
   - component: {fileID: 594619842}
   - component: {fileID: 594619844}
+  - component: {fileID: 594619845}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2520,6 +2521,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiedClip: {fileID: 8300000, guid: 3268edfc1df244310b2579dfe2c6bb92, type: 3}
+--- !u!114 &594619845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594619827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd297b66be944a9b94a7092d18b4c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeA1: {fileID: 8300000, guid: ee7a920474f954c49aae94e672e7ddb9, type: 3}
+  MeleeA2: {fileID: 8300000, guid: d7bb9c0afaa2c4debac64c2aa05c4574, type: 3}
+  MeleeA3: {fileID: 8300000, guid: fa4a621dd19a3490e9652baab23f2f45, type: 3}
 --- !u!1 &603817848
 GameObject:
   m_ObjectHideFlags: 0
@@ -4951,6 +4967,123 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da2d538f0bd560a42bc4d188e473d38e, type: 3}
+--- !u!1 &1512329779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3739683854279408171, guid: da2d538f0bd560a42bc4d188e473d38e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1512329778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1512329780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512329779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd297b66be944a9b94a7092d18b4c5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeleeA1: {fileID: 0}
+  MeleeA2: {fileID: 0}
+  MeleeA3: {fileID: 0}
+--- !u!82 &1512329781
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512329779}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1519151107
 Transform:
   m_ObjectHideFlags: 0
@@ -12593,7 +12726,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4115091098514979735}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.23166667
+  m_Size: 0.23166664
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
