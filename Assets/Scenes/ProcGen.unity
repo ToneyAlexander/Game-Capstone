@@ -2172,6 +2172,7 @@ GameObject:
   - component: {fileID: 594619844}
   - component: {fileID: 594619845}
   - component: {fileID: 594619846}
+  - component: {fileID: 594619847}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2552,6 +2553,20 @@ MonoBehaviour:
   MagicVolley: {fileID: 8300000, guid: 1940de51d4757445f89d0a947bb09966, type: 3}
   MagicIgnite: {fileID: 8300000, guid: bd00f3e4bc83046618b1e768c9e8f951, type: 3}
   MagicAOE: {fileID: 0}
+--- !u!114 &594619847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594619827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8d4ddd13793d4eb994d9861cdf747f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Equip: {fileID: 8300000, guid: 2746e771055e54ae8bf46263dcff1af2, type: 3}
+  UnEquip: {fileID: 8300000, guid: 2746e771055e54ae8bf46263dcff1af2, type: 3}
 --- !u!1 &603817848
 GameObject:
   m_ObjectHideFlags: 0
@@ -12742,7 +12757,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4115091098514979735}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.23166668
+  m_Size: 0.23166664
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13732,8 +13747,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0.000000073982015
-  m_Size: 0.31250003
+  m_Value: 0.00000007398201
+  m_Size: 0.3125
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
