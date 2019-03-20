@@ -6,7 +6,7 @@ using UnityEngine.AI;
 /// </summary>
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(NavMeshAgent))]
-public sealed class CarnivorousFlowerMover : MonoBehaviour, IDestinationMover
+public sealed class CarnivorousPlantMover : MonoBehaviour, IDestinationMover
 {
     public Vector3 Position
     {

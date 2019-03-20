@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(PlayerClass))]
-public class RangedBatController : EnemyController
+public class BeeController : EnemyController
 {
     public GameObject projectile;
     
     private Animator animator;
 
-	private bool inAttackCoroutine;
+    private bool inAttackCoroutine;
 
     new void Start()
     {
         base.Start();
-        
+
         // Set up animator
         animator = GetComponent<Animator>();
 
@@ -26,13 +25,13 @@ public class RangedBatController : EnemyController
         movable = true;
 
         // Default vision
-        visionAngle = 90f;
-        visionDistance = 15f;
-        attackDistance = 10f;
+        visionAngle = 120f;
+        visionDistance = 10f;
+        attackDistance = 5f;
 
         inAttackCoroutine = false;
     }
-
+    
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
@@ -56,15 +55,14 @@ public class RangedBatController : EnemyController
 		}
     }
     
-	private IEnumerator Attack()
+    private IEnumerator Attack()
 	{
 		inAttackCoroutine = true;
 
-        animator.SetTrigger("rangedAttack");
-		yield return new WaitForSeconds(0.5f);
-
-        attackController.ProjectileAttack(projectile, 5f);
-
+        animator.SetTrigger("meleeAttack");
+        attackController.ProjectileAttack(projectile, 0.5f);
+		yield return new WaitForSeconds(1.0f);
+        
 		inAttackCoroutine = false;
 	}
 
@@ -76,11 +74,11 @@ public class RangedBatController : EnemyController
         //     animator.SetTrigger("hit");
         // }
     }
-
+        
     protected override IEnumerator Die()
     {
         animator.SetTrigger("death");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
 }
