@@ -70,6 +70,7 @@ public class ClassSelection : MonoBehaviour
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
             bc.currentClass = bc.ClassList[index];
+           // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -81,11 +82,12 @@ public class ClassSelection : MonoBehaviour
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
             bc.currentClass = bc.ClassList[index];
+           // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            bc.currentClass = bc.ClassList[index];
-            Debug.Log("class selected: " + bc.ClassList[index].name);
+           // bc.currentClass = bc.ClassList[index];
+            Debug.Log("class selected: " + bc.currentClass.name);
             playIslandGameStateChanger.ChangeGameState();
         }
         for (int i = 0; i < count; i++)

@@ -341,6 +341,7 @@ MonoBehaviour:
   camera: {fileID: 61161209}
   maritimeController: {fileID: 467532903}
   info: {fileID: 0}
+  themeDictionary: {fileID: 0}
 --- !u!135 &318434172
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -399,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 391897ea623172d42b7fe84ae457e819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bc: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
   player: {fileID: 1328953137}
   prefab: {fileID: 318434169}
   themes: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
@@ -555,20 +557,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
+    - target: {fileID: 5930947933493101869, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000028941271
       objectReference: {fileID: 0}
     - target: {fileID: 5930947933053049379, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
@@ -585,10 +577,20 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5930947933493101869, guid: 4c255937a95562a44adca004445c95b2,
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.000028941271
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c255937a95562a44adca004445c95b2, type: 3}
