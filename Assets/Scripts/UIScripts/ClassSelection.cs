@@ -69,6 +69,7 @@ public class ClassSelection : MonoBehaviour
             }
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
+            bc.currentClass = bc.ClassList[index];
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -79,6 +80,7 @@ public class ClassSelection : MonoBehaviour
             }
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
+            bc.currentClass = bc.ClassList[index];
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {

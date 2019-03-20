@@ -18,6 +18,7 @@ public class TestPlayerClass : MonoBehaviour
         pClass = GetComponent<PlayerClass>();
         if (useClassSelection)
         {
+            Debug.Log(BControl.currentClass);
             ClassL = BControl.currentClass;
         }
         pClass.allPerks = ClassL.Perks;
