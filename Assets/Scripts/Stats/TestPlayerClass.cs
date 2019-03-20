@@ -8,12 +8,18 @@ public class TestPlayerClass : MonoBehaviour
     PlayerClass pClass;
     int index;
     public ClassPrototype ClassL;
+    public BloodlineController BControl;
+    public bool useClassSelection = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        pClass = GetComponent<PlayerClass>();
 
+        pClass = GetComponent<PlayerClass>();
+        if (useClassSelection)
+        {
+            ClassL = BControl.currentClass;
+        }
         pClass.allPerks = ClassL.Perks;
         pClass.onLevelUp = ClassL.OnLevel;
         pClass.TakeDefaults(ClassL.Defaults);
