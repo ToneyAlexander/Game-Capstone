@@ -18,11 +18,14 @@ public class AoeBehave : MonoBehaviour, IAttackIgnored
     // Update is called once per frame
     void Update()
     {
-        ttl -= Time.deltaTime;
-        if (ttl < 0)
+        if (ttl > -5)
         {
-            //Debug.Log("Destoryed due to ttl");
-            Destroy(gameObject);
+            ttl -= Time.deltaTime;
+            if (ttl < 0)
+            {
+                //Debug.Log("Destoryed due to ttl");
+                Destroy(gameObject);
+            }
         }
     }
 

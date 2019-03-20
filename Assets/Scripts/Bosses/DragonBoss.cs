@@ -12,12 +12,14 @@ public class DragonBoss : BaseBoss
     private Animator animator;
     public GameObject LargeFlamePrefab;
     public GameObject WarningPrefab;
+    public GameObject TrackerPrefab;
     private float timeSinceUse;
     private float cooldown;
     private int nextAttack;
 
     private float landY, floatY;
     private bool flyUp;
+    private float ballTimer;
 
     void AbilityZero()
     {
@@ -129,6 +131,38 @@ public class DragonBoss : BaseBoss
         Destroy(o);
     }
 
+    void SpawnBall()
+    {
+        Vector3 target;
+        float choice = Random.Range(0f, 1f);
+        if (choice < 0.25f)
+        {
+            target = new Vector3(Random.Range(arenaStart.x + 2, arenaEnd.x - 2), arenaStart.y + 3, arenaEnd.z - 2);
+        } else if(choice < 0.5f)
+        {
+            target = new Vector3(Random.Range(arenaStart.x + 2, arenaEnd.x - 2), arenaStart.y + 3, arenaStart.z + 2);
+        }
+        else if(choice < 0.75f)
+        {
+            target = new Vector3(arenaEnd.x - 2, arenaStart.y + 3, Random.Range(arenaStart.z + 2, arenaEnd.z - 2));
+        }
+        else
+        {
+            target = new Vector3(arenaStart.x + 2, arenaStart.y + 3, Random.Range(arenaStart.z + 2, arenaEnd.z - 2));
+        }
+        //Debug.Log("spawn tracker at " + target);
+        GameObject obj = Instantiate(TrackerPrefab, target, new Quaternion());
+        DragonTracking pbh = obj.GetComponent<DragonTracking>();
+        obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        pbh.speed = 9f;
+        Damage dmg = new Damage(0f, 0f, true, false, true);
+        pbh.realIgniteDmg = stats.RealDotDamage(-25f, 0.5f * Level, false, true, false, false, true);
+        pbh.dmg = stats.RealDamage(dmg);
+        pbh.ttl = 5f /*+ Level/2f*/;//had to remove scaling due to fixed duration of projectile particle system.
+        TrackingBehave tbh = obj.GetComponent<TrackingBehave>();
+        tbh.Target = player;
+    }
+
     new void Awake()
     {
         base.Awake();
@@ -138,6 +172,7 @@ public class DragonBoss : BaseBoss
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
         nextAttack = 0;
+        ballTimer = 0f;
         inUse = false;
     }
 
@@ -173,10 +208,17 @@ public class DragonBoss : BaseBoss
                 timeSinceUse += Time.deltaTime;
                 if (!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
                 {
-                    Debug.Log("set walk");
+                    //Debug.Log("set walk");
                     animator.SetTrigger("walk");
                 }
                 transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
+            }
+
+            ballTimer += Time.deltaTime;
+            while(ballTimer > 5f)
+            {
+                ballTimer -= 5f;
+                SpawnBall();
             }
 
             if(flyUp && transform.position.y < floatY)
