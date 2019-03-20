@@ -6,7 +6,9 @@ using UnityEngine;
 public class Died: MonoBehaviour
 {
     private AudioSource audiodata;
-    public AudioClip DiedClip;
+
+    [SerializeField]
+    private AudioClip DiedClip;
 
     // Start is called before the first frame update
     void Start()
