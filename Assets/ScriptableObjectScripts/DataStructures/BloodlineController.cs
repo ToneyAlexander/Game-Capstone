@@ -13,7 +13,7 @@ public sealed class BloodlineController : ScriptableObject
     [SerializeField]
     private string playerName = "Remy";
 
-    //[SerializeField]
+    [SerializeField]
     public ClassPrototype currentClass;
 
     [SerializeField]

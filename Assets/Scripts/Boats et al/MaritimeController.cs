@@ -8,7 +8,7 @@ using CCC.GameManagement;
 public class MaritimeController : MonoBehaviour
 {
 
-    
+    public BloodlineController bc;
     public GameObject player;
     public GameObject prefab;
     public ThemeDictionary themes;

@@ -6,8 +6,7 @@ using CCC.Stats;
 public class MendingAbility : AbilityBase
 {
     private readonly string AbilName = "Empowered Mending";
-
-    private StatBlock stats;
+    
     private ControlStatBlock controlStats;
 
     public static TimedBuffPrototype Mending;
