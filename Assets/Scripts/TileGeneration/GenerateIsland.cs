@@ -609,18 +609,22 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        GameObject boss = Instantiate(Resources.Load<GameObject>("BossBeetle/Boss Beetle"));
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon"};
+        string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
+        GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
         boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);
-        boss.transform.localScale = new Vector3(2, 2, 2);
-        boss.GetComponent<TrackingBehave>().Target = this.remy;
+        //boss.transform.localScale = new Vector3(2, 2, 2);
+        TrackingBehave tb = boss.GetComponent<TrackingBehave>();
+        if(tb != null)
+            tb.Target = remy;
         teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height+1, x * tileSize);
 
         teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
         teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
-        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z;
+        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z + 8;
 
-        AlienBeetle b = boss.GetComponent<AlienBeetle>();
+        BaseBoss b = boss.GetComponent<BaseBoss>();
         b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);
         b.arenaStart = new Vector3(arenaPosition.x - 32, arenaPosition.y, arenaPosition.z - 16);
     }

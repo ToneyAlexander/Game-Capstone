@@ -8,6 +8,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
     public float speed;
     public float ttl;
     public bool friendly = false;
+    public bool destroyable = true;
 
     // Start is called before the first frame update
     public void Start()
@@ -50,16 +51,20 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
                     {
                         enemyControl.OnHit(dmg);
                     }
-                    PlayAnim(col);
-                    //Debug.Log("Destroy due to hit non friend");
-                    Destroy(gameObject);
+                    if(destroyable)
+                    {
+                        PlayAnim(col);
+                        Destroy(gameObject);
+                    }
                 }
             }
             else
             {
-                PlayAnim(col);
-                //Debug.Log("Destroy due to hit non stat char " + col.gameObject.name);
-                Destroy(gameObject);
+                if (destroyable)
+                {
+                    PlayAnim(col);
+                    Destroy(gameObject);
+                }
             }
         }
     }

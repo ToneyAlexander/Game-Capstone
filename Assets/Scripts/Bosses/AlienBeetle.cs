@@ -15,9 +15,6 @@ public class AlienBeetle : BaseBoss
     public GameObject TrackerPrefab;
     private float timeSinceUse;
     private float cooldown;
-    private float dmgTimer;
-    private Damage collideDmg;
-    private bool inUse;
     private int nextAttack;
 
     public static TimedBuffPrototype Ooze;
@@ -28,7 +25,6 @@ public class AlienBeetle : BaseBoss
         animator = GetComponent<Animator>();
         playerTracker = GetComponent<TrackingBehave>();
 
-        dmgTimer = 1f;
         timeSinceUse = 0f;
         cooldown = AbilityZeroCd;
         nextAttack = 0;
@@ -39,8 +35,9 @@ public class AlienBeetle : BaseBoss
     new void Start()
     {
         base.Start();
+        playerTracker.Target = GameObject.FindGameObjectWithTag("Player");
         expValue = 280 * Level;
-        collideDmg = new Damage(50f, 0f, false, true, false);
+        collideDmg = new Damage(15f * Level, 0f, false, true, false);
     }
 
     void AbilityZero()
@@ -55,7 +52,7 @@ public class AlienBeetle : BaseBoss
         yield return new WaitForSeconds(0.8f);
         int projCast = 0;
         float rangeX = (arenaEnd.x - arenaStart.x) * 0.3f, rangeZ = (arenaEnd.z - arenaStart.z) * 0.3f;
-        Vector3 target = new Vector3(Random.Range(arenaStart.x+rangeX, arenaEnd.x-rangeX), arenaStart.y, Random.Range(arenaStart.z+rangeZ, arenaEnd.z-rangeZ)); ;
+        Vector3 target = new Vector3(Random.Range(arenaStart.x+rangeX, arenaEnd.x-rangeX), arenaStart.y, Random.Range(arenaStart.z+rangeZ, arenaEnd.z-rangeZ));
         while (projCast < rangeX*rangeZ/2)
         {
             ++projCast;
@@ -178,13 +175,11 @@ public class AlienBeetle : BaseBoss
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+        base.Update();
         if (active)
         {
-            if(dmgTimer < 2f)
-                dmgTimer += Time.deltaTime;
-
             if (!inUse)
             {
                 timeSinceUse += Time.deltaTime;
@@ -212,35 +207,6 @@ public class AlienBeetle : BaseBoss
                     case 2:
                         AbilityTwo();
                         break;
-                }
-            }
-        }
-    }
-
-    void OnTriggerStay(Collider col)
-    {
-        if (dmgTimer > 0.5f && !inUse)
-        {
-            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
-            ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
-            IAttackIgnored colProj = col.gameObject.GetComponent<IAttackIgnored>();
-            if (colProj == null) //check to see if we collided with another projectile. if so ignore
-            {
-                //Debug.Log("Col with non-proj, Proj is: " + friendly);
-
-                if (enemy != null)
-                {
-                    //Debug.Log("Enemy has stat block, enem is friendly: " + enemy.Friendly);
-                    if (enemy.Friendly)
-                    {
-                        dmgTimer = 0f;
-
-                        enemy.TakeDamage(collideDmg, col.gameObject);
-                        if (enemyControl != null)
-                        {
-                            enemyControl.OnHit(collideDmg);
-                        }
-                    }
                 }
             }
         }

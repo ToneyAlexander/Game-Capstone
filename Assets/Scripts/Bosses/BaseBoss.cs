@@ -7,12 +7,15 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerClass))]
 public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
 {
-    protected bool active;
     protected StatBlock stats;
     protected ControlStatBlock controlStats;
     protected PlayerClass bossClass;
     protected GameObject player;
+    protected Damage collideDmg;
+    protected bool inUse;
     protected int expValue;
+    private float dmgTimer;
+    public bool active;
     public int Level;
     public PerkPrototype StatPerk;
     public PerkPrototype LevelPerk;
@@ -64,6 +67,8 @@ public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
     // Start is called before the first frame update
     protected void Start()
     {
+
+        dmgTimer = 1f;
         bossClass.TakePerk(StatPerk);
         bossClass.onLevelUp = LevelPerk;
         for (int i = 0; i < Level; ++i)
@@ -73,8 +78,38 @@ public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        
+        if (dmgTimer < 2f)
+            dmgTimer += Time.deltaTime;
+    }
+
+    void OnTriggerStay(Collider col)
+    {
+        if (dmgTimer > 0.5f && !inUse)
+        {
+            StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
+            ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();
+            IAttackIgnored colProj = col.gameObject.GetComponent<IAttackIgnored>();
+            if (colProj == null) //check to see if we collided with another projectile. if so ignore
+            {
+                //Debug.Log("Col with non-proj, Proj is: " + friendly);
+
+                if (enemy != null)
+                {
+                    //Debug.Log("Enemy has stat block, enem is friendly: " + enemy.Friendly);
+                    if (enemy.Friendly)
+                    {
+                        dmgTimer = 0f;
+
+                        enemy.TakeDamage(collideDmg, col.gameObject);
+                        if (enemyControl != null)
+                        {
+                            enemyControl.OnHit(collideDmg);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
