@@ -20,7 +20,14 @@ public class GenerateIsland : MonoBehaviour
 
 	private PostProcessVolume volume;
 
-	[SerializeField]
+    [SerializeField]
+    private bool useIngameIslandStats = true;
+
+    [SerializeField]
+    private IslandStorage islandStorage;
+
+
+    [SerializeField]
 	private ProfilesList profileList; 
 
 	[SerializeField]
@@ -125,6 +132,11 @@ public class GenerateIsland : MonoBehaviour
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
+        if (useIngameIslandStats)
+        {
+            LinkIslandStat();
+        }
+
 		themeCount = themeDictionary.themeDictionary.Count;
 		volume = Camera.main.GetComponent<PostProcessVolume>();
 
@@ -149,7 +161,11 @@ public class GenerateIsland : MonoBehaviour
         {
             surface.BuildNavMesh();
         }
-		string islandName = nameGenerator.generateName();
+		string islandName = islandStorage.name;
+        if (!useIngameIslandStats)
+        {
+            islandName = nameGenerator.generateName();
+        }
 		islandNameDisplay.DisplayName(islandName);
         done = true;
 
@@ -253,7 +269,15 @@ public class GenerateIsland : MonoBehaviour
             }
         }
     }
+    #region Menu Connection
 
+    private string LinkIslandStat()
+    {
+        ISLE_WIDE_HIGH = islandStorage.size;
+        LAYERS_ABOVE_BEACH = islandStorage.height;
+        return islandStorage.name;
+    }
+    #endregion
     #region Setup Methods
     private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, int tileCount, List<Vector2Int> updated)
     {
