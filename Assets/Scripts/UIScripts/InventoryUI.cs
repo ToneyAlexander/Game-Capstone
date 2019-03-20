@@ -14,6 +14,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     public EquipmentDictionary euser;
 
+    public int strLength = 30;
+
     GameObject stored;
     Button[] storedButtons;
     GameObject equipment;
@@ -113,7 +115,13 @@ public class InventoryUI : MonoBehaviour
             {
                 Item go = user.Items[i];
                 Text textfield = storedButtons[i].GetComponentInChildren<Text>();
-                textfield.text = go.Name;
+                string name = go.Name;
+                if (name.Length > strLength)
+                {
+                    name = name.Substring(0, strLength) + "...";
+                }
+                textfield.text = name;
+
                 textfield.color = Color.black;
                 inventoryButtonScript.item = go;
 
@@ -134,7 +142,12 @@ public class InventoryUI : MonoBehaviour
                 Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
                 EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
                 equipmentButtonScript.item = go;
-                textfield.text = go.Name;
+                 string name = go.Name;
+                 if (name.Length > strLength)
+                {
+                name = name.Substring(0, strLength) + "...";
+                }
+            textfield.text = name;
                 textfield.color = Color.black;
                 
         }

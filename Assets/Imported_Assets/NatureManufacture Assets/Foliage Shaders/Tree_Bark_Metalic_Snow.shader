@@ -29,6 +29,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic Snow"
 		_InitialBend("Wind Initial Bend", Float) = 1
 		_Stiffness("Wind Stiffness", Float) = 1
 		_Drag("Wind Drag", Float) = 1
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] _texcoord3( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
@@ -36,7 +37,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic Snow"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" }
+		Tags{ "RenderType" = "Transparent"  "Queue" = "Transparent" }
 		Cull Back
 		CGINCLUDE
 		#include "UnityStandardUtils.cginc"
@@ -51,6 +52,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic Snow"
 		#pragma vertex vert
 		#pragma instancing_options procedural:setup
 		#pragma multi_compile GPU_FRUSTUM_ON __
+		#pragma alpha:fade
 		#ifdef UNITY_PASS_SHADOWCASTER
 			#undef INTERNAL_DATA
 			#undef WorldReflectionVector
@@ -95,6 +97,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic Snow"
 		uniform float _SnowSmoothnessPower;
 		uniform float _AmbientOcclusionPower;
 		uniform float _SnowAmbientOcclusionPower;
+		uniform float _Transparency;
 
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
@@ -134,7 +137,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Bark Metalic Snow"
 			float clampResult61 = clamp( tex2DNode45.g , ( 1.0 - _SnowAmbientOcclusionPower ) , 1.0 );
 			float lerpResult39 = lerp( clampResult59 , clampResult61 , temp_output_33_0);
 			o.Occlusion = lerpResult39;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 		}
 
 		ENDCG

@@ -45,12 +45,12 @@ public class RemyAttacking : MonoBehaviour
         RotateToEnemy();
         RotateToEnemyDynamic();
 
-        if (Input.GetButtonDown("MeleeAttackTest"))
-        {
-            MeleeAttack();
-        }
+        //if (Input.GetButtonDown("MeleeAttackTest"))
+        //{
+        //    MeleeAttack();
+        //}
 
-        EquipSword();
+        //EquipSword();
 
         if (StopMeleeAttack())
         {
@@ -59,7 +59,7 @@ public class RemyAttacking : MonoBehaviour
         }
 
         UnEquipNow();
-        UnEquipSword();
+        //UnEquipSword();
 
 
         if (StopMagicAttack())
@@ -84,7 +84,7 @@ public class RemyAttacking : MonoBehaviour
     {
         RemyMovement.destination = this.transform.position;
 
-        if (!isHoldingSword)
+        if (swordOnBack.activeSelf)
         {
 
             animator.SetBool("isEquip", true);
@@ -210,24 +210,30 @@ public class RemyAttacking : MonoBehaviour
 
 
 
-    void EquipSword()
+    //void EquipSword()
+    //{
+    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
+
+    //        //RemyMovement.destination = this.transform.position;
+    //        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
+
+    //            swordOnHand.SetActive(true);
+    //            swordOnBack.SetActive(false);
+    //            //Debug.Log("拿剑");
+    //        }
+    //    }
+    //}
+
+    void EquipWeapon()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
-
-            //RemyMovement.destination = this.transform.position;
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
-
-                swordOnHand.SetActive(true);
-                swordOnBack.SetActive(false);
-                //Debug.Log("拿剑");
-            }
-        }
+        swordOnHand.SetActive(true);
+        swordOnBack.SetActive(false);
     }
 
 
     void UnEquipTimer()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle") && isHoldingSword)
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle") && swordOnHand.activeSelf)
         {
             if (timeLeft < -0.01)
             {
@@ -243,7 +249,7 @@ public class RemyAttacking : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Idle")
             && timeLeft < 0
-            && isHoldingSword)
+            && swordOnHand.activeSelf)
         {
             //Debug.Log("收剑动作开始");
             animator.SetBool("isUnEquip", true);
@@ -251,26 +257,33 @@ public class RemyAttacking : MonoBehaviour
     }
 
 
-    void UnEquipSword()
+    //void UnEquipSword()
+    //{
+    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.UnEquip"))
+    //    {
+    //        RemyMovement.destination = this.transform.position;
+    //        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
+    //        {
+    //            swordOnHand.SetActive(false);
+    //            swordOnBack.SetActive(true);
+    //            isHoldingSword = false;
+    //            //Debug.Log("真的收剑");
+    //        }
+
+    //        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
+    //        {
+    //            animator.SetBool("isUnEquip", false);
+    //        }
+    //    }
+
+    //}
+
+    void UnEquipWeapon()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.UnEquip"))
-        {
-            RemyMovement.destination = this.transform.position;
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-            {
-                swordOnHand.SetActive(false);
-                swordOnBack.SetActive(true);
-                isHoldingSword = false;
-                //Debug.Log("真的收剑");
-            }
-
-            if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
-            {
-                animator.SetBool("isUnEquip", false);
-            }
-        }
-
+        swordOnHand.SetActive(false);
+        swordOnBack.SetActive(true);
     }
+
 
 
 
@@ -300,4 +313,6 @@ public class RemyAttacking : MonoBehaviour
             start = false;
         }
     }
+
+
 }

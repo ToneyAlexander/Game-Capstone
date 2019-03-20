@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AoeBehave : MonoBehaviour, IAttackIgnored
 {
+    public Damage dmg;
     public float ttl;
     public bool friendly = false;
     public List<TimedBuff> Friend;
@@ -26,7 +27,7 @@ public class AoeBehave : MonoBehaviour, IAttackIgnored
     }
 
 
-    void OnTriggerStay(Collider col)
+    protected virtual void OnTriggerStay(Collider col)
     {
         StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
         ControlStatBlock enemyControl = col.gameObject.GetComponent<ControlStatBlock>();

@@ -38,7 +38,7 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private Texture2D img;
 
-	private int themeID;
+	public int themeID;
 
     private string themeString; 
 

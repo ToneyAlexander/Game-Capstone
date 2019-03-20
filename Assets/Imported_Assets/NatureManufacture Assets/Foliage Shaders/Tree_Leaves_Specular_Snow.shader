@@ -29,6 +29,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Leaves Specular Snow"
 		_Drag("Wind Drag", Float) = 1
 		_ShiverDrag("Wind Shiver Drag", Float) = 0.05
 		_ShiverDirectionality("Wind Shiver Directionality", Range( 0 , 1)) = 0.5
+		_Transparency("Transparency", Float) = 1
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
@@ -48,6 +49,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Leaves Specular Snow"
 		#pragma vertex vert
 		#pragma instancing_options procedural:setup
 		#pragma multi_compile GPU_FRUSTUM_ON __
+		#pragma alpha:fade
 		#ifdef UNITY_PASS_SHADOWCASTER
 			#undef INTERNAL_DATA
 			#undef WorldReflectionVector
@@ -88,6 +90,8 @@ Shader "NatureManufacture Shaders/Trees/Tree Leaves Specular Snow"
 		uniform sampler2D _SnowAmbientOcclusionG;
 		uniform float _SnowAmbientOcclusionPower;
 		uniform float _Cutoff = 0.5;
+		uniform float _Transparency;
+
 
 
 		float3 mod2D289( float3 x ) { return x - floor( x * ( 1.0 / 289.0 ) ) * 289.0; }
@@ -155,7 +159,7 @@ Shader "NatureManufacture Shaders/Trees/Tree Leaves Specular Snow"
 			float clampResult123 = clamp( tex2D( _SnowAmbientOcclusionG, uv_SnowAlbedoRGB ).g , ( 1.0 - _SnowAmbientOcclusionPower ) , 1.0 );
 			float lerpResult65 = lerp( clampResult125 , clampResult123 , temp_output_45_0);
 			o.Occlusion = lerpResult65;
-			o.Alpha = 1;
+			o.Alpha = _Transparency;
 			clip( tex2DNode3.a - _Cutoff );
 		}
 

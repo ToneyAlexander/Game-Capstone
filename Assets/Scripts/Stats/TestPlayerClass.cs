@@ -39,10 +39,16 @@ public class TestPlayerClass : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.PageUp))
+        if (Input.GetKeyDown(KeyCode.Backslash))
         {
             Debug.Log("Pressed Page UP, applying 300 exp");
             pClass.ApplyExp(300);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Debug.Log("Pressed Page DOWN, Increasing Age");
+            pClass.IncreaseAge();
         }
     }
     public PlayerClass GetClass()

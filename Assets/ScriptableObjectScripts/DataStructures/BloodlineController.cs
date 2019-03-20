@@ -8,10 +8,10 @@ public sealed class BloodlineController : ScriptableObject
     [SerializeField]
     private int generationint = 0;
     [SerializeField]
-    private int age = 0;
+    public int Age { get; private set; }
 
     [SerializeField]
-    private string name = "Remy";
+    private string playerName = "Remy";
 
     //[SerializeField]
     public ClassPrototype currentClass;
@@ -26,23 +26,23 @@ public sealed class BloodlineController : ScriptableObject
 
     public void addGeneration()
     {
-        pastNames.Add(name + " the " + currentClass.name);
+        pastNames.Add(playerName + " the " + currentClass.name);
     }
     public void endGeneration(bool retired)
     {
         if (retired)
         {
-            pastNames[pastNames.Count - 1] = name + " the " + currentClass.name + "\n" + "Retired at" + age;
+            pastNames[pastNames.Count - 1] = playerName + " the " + currentClass.name + "\n" + "Retired at" + Age;
         }
         else
         {
-            pastNames[pastNames.Count - 1] = name + " the " + currentClass.name + "\n" + "Died at" + age;
+            pastNames[pastNames.Count - 1] = playerName + " the " + currentClass.name + "\n" + "Died at" + Age;
         }
-        age = 0;
+        Age = 0;
     }
     public void ageUp()
     {
-        age++;
+        Age++;
     }
 
     public List<ClassPrototype> ClassList

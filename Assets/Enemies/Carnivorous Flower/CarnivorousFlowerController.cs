@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CarnivorousFlowerController : EnemyController
 {
+	public GameObject projectile;
+
 	private Animator animator;
 
-	private bool inAttackCoroutine;
+	private bool awake, inAttackCoroutine;
 
 	protected override void Initialize () 
     {
@@ -16,7 +18,7 @@ public class CarnivorousFlowerController : EnemyController
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 15f;
-		chaseSpeed = 2.5f;
+		chaseSpeed = 1f;
 		movable = false;
 
 		// Default vision
@@ -24,6 +26,7 @@ public class CarnivorousFlowerController : EnemyController
         visionDistance = 10f;
         attackDistance = 3f;
 
+		awake = false;
 		inAttackCoroutine = false;
 
 		// Initial animation
@@ -36,12 +39,20 @@ public class CarnivorousFlowerController : EnemyController
 
 	protected override void UniqueUpdate()
     {
-		animator.SetBool("Walk Forward", false);
-
+		agent.isStopped = true;
+		movable = false;
+		
 		// The carnivorous plants wake up when the player is within range
 		if (InRange(player.transform.position))
 		{
 			animator.SetBool("Sleeping", false);
+			// Wait for seconds so the enemy does not attack immediately
+			// Wakeup animation plays only when it is in Mimic state
+			if (!awake && !inAttackCoroutine)
+			{
+				StartCoroutine(NotAttack());
+			}
+			awake = true;
 			// The carnivorous flower moves only when it sees the player
 			if (InVision(player.transform.position)) 
 			{
@@ -50,10 +61,10 @@ public class CarnivorousFlowerController : EnemyController
 			}
 		}
 		else
-		{
+		{		
+			animator.SetBool("Walk Forward", false);
 			animator.SetBool("Sleeping", true);
-			agent.isStopped = true;
-			movable = false;
+			awake = false;
 		}
 	}
 
@@ -78,10 +89,16 @@ public class CarnivorousFlowerController : EnemyController
 		{
 			StartCoroutine(Attack());
 		}
-
-        // TODO: Cause damage
-        // attackController.SetAttack("AttackMode", true);
     }
+	
+	private IEnumerator NotAttack()
+	{
+		inAttackCoroutine = true;
+
+		yield return new WaitForSeconds(2.5f);
+
+		inAttackCoroutine = false;
+	}
 
 	private IEnumerator Attack()
 	{
@@ -93,16 +110,21 @@ public class CarnivorousFlowerController : EnemyController
 		if (attackMode < 0.33f) 
 		{
 			animator.SetTrigger("Breath Attack");
+			attackController.ProjectileAttack(projectile, 1.5f);
+			yield return new WaitForSeconds(2.5f);
 		}
 		else if (attackMode >= 0.33f && attackMode < 0.67f)
 		{
 			animator.SetTrigger("Bite");
+			attackController.ProjectileAttack(projectile, 0.5f);
+			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.67f && attackMode < 1.0f)
 		{
 			animator.SetTrigger("Breath Attack Surround");
+			attackController.ProjectileAttack(projectile, 2.0f);
+			yield return new WaitForSeconds(2.5f);
 		}
-		yield return new WaitForSeconds(2f);
 
 		inAttackCoroutine = false;
 	}

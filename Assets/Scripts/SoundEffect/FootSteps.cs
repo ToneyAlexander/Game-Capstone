@@ -6,7 +6,12 @@ using UnityEngine;
 public class FootSteps : MonoBehaviour
 {
     private AudioSource audiodata;
-    public AudioClip[] footSteps;
+
+    [SerializeField]
+    private AudioClip[] footStepsOnGrass;
+
+    [SerializeField]
+    private AudioClip[] footStepsOnSnow;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,17 @@ public class FootSteps : MonoBehaviour
 
     AudioClip RandomClip()
     {
-        return footSteps[Random.Range(0, footSteps.Length)];
+        if (Environment.themeID == 0 || Environment.themeID == 3)
+        {
+            return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
+        }
+        if (Environment.themeID == 2)
+        {
+            return footStepsOnSnow[Random.Range(0, footStepsOnGrass.Length)];
+        }
+        else
+        {
+            return footStepsOnGrass[Random.Range(0, footStepsOnGrass.Length)];
+        }
     }
 }
