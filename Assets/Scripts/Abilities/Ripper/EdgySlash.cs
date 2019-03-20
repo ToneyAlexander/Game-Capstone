@@ -39,8 +39,10 @@ public class EdgySlash : AbilityBase
     protected override void Activate()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0f, 2f,0f), new Quaternion());
+
         HorizontalSwipe pbh = obj.GetComponent<HorizontalSwipe>();
         obj.transform.LookAt(mpd.CalculateWorldPosition());
+        //obj.transform.LocalPosition()
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
