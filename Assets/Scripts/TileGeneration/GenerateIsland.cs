@@ -402,7 +402,7 @@ public class GenerateIsland : MonoBehaviour
 
         placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize);
 
-        surroundBeetleArena();
+        //surroundBeetleArena();
 
         foreach (Vector2Int v in path)
         {
