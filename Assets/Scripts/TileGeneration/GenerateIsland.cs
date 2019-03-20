@@ -76,7 +76,10 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
 	private ThemeList enemySpawner;
 
-	[SerializeField]
+    [SerializeField]
+    private EnvironmentData chestSpawner;
+
+    [SerializeField]
     private ThemeDictionary themeDictionary;
 
 	private int themeCount;
@@ -462,6 +465,7 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(specialObjects.themeList[themeID].spawnChance, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
             replaceObjects(vegetationSpawner.themeList[themeID].spawnChance, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
             replaceObjects(enemySpawner.themeList[themeID].spawnChance, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(chestSpawner.spawnChance, chestSpawner.EnvironmentList, "ChestObject");
         }
         else
         {
@@ -472,6 +476,7 @@ public class GenerateIsland : MonoBehaviour
             replaceObjects(0, specialObjects.themeList[themeID].EnvironmentList, "SpecialObject");
             replaceObjects(0, vegetationSpawner.themeList[themeID].EnvironmentList, "Vegetation");
             replaceObjects(0, enemySpawner.themeList[themeID].EnvironmentList, "EnemySpawner");
+            replaceObjects(0, chestSpawner.EnvironmentList, "ChestObject");
         }
     }
 
@@ -635,7 +640,7 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon"};
+        string[] possibleBosses = { /*"BossBeetle/Boss Beetle",*/ "BossDragon/BossDragon"};
         string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;

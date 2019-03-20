@@ -25,11 +25,18 @@ public class BeeController : EnemyController
         movable = true;
 
         // Default vision
-        visionAngle = 120f;
-        visionDistance = 10f;
-        attackDistance = 5f;
+        visionAngle = 180f;
+        visionDistance = 5f;
+        attackDistance = 3f;
 
         inAttackCoroutine = false;
+
+		// Initial animation
+		animator.SetBool("Fly Forward", true);
+		animator.SetBool("Fly Backward", false);
+		animator.SetBool("Fly Left", false);
+		animator.SetBool("Fly Right", false);
+		animator.SetBool("Defend", false);
     }
     
     protected override void UniqueUpdate()
@@ -46,6 +53,7 @@ public class BeeController : EnemyController
 			(playerPos - transform.position).z));
 
         // Stop and attack target (player character)
+		animator.SetBool("Fly Forward", false);
         agent.isStopped = true;
 
         // Play attack animation and cause damage
@@ -56,13 +64,25 @@ public class BeeController : EnemyController
     }
     
     private IEnumerator Attack()
-	{
-		inAttackCoroutine = true;
+	{		
+        inAttackCoroutine = true;
 
-        animator.SetTrigger("meleeAttack");
-        attackController.ProjectileAttack(projectile, 0.5f);
-		yield return new WaitForSeconds(1.0f);
-        
+        // Change to a random attack animation
+		float attackMode = Random.value;
+
+		if (attackMode < 0.5f) 
+		{
+			animator.SetTrigger("Claw Attack");
+			attackController.ProjectileAttack(projectile, 1.5f);
+			yield return new WaitForSeconds(1.5f);
+		}
+		else if (attackMode >= 0.5f && attackMode < 1.0f)
+		{
+			animator.SetTrigger("Sting Attack");
+			attackController.ProjectileAttack(projectile, 1.5f);
+			yield return new WaitForSeconds(1.5f);
+		}
+
 		inAttackCoroutine = false;
 	}
 
@@ -77,7 +97,7 @@ public class BeeController : EnemyController
         
     protected override IEnumerator Die()
     {
-        animator.SetTrigger("death");
+        animator.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
     }
