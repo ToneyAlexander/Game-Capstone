@@ -10,14 +10,19 @@ public class positionText : MonoBehaviour
     public GameObject camera;
     public GameObject maritimeController;
     public GameObject info;
+    public ThemeDictionary themeDictionary;
     private string n;
     private int islandSize = 20;
     private int islandHeight = 5;
+    private int themeID = 0;
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);
     void Start()
     {
+        islandSize = (int)Random.Range(15, 22);
+        islandHeight = (int)Random.Range(3, 6);
+        themeID = (int)Random.Range(0, themeDictionary.themeDictionary.Count);
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         player = players[0];
         for (int i = 0; i < transform.childCount; i++)
@@ -36,10 +41,13 @@ public class positionText : MonoBehaviour
     void Update()
     {
         transform.LookAt(player.transform);
-        
-        TextMeshPro g = textObj.GetComponent<TextMeshPro>();
-       // Debug.Log(g);
-        g.text = n;
+        if (textObj != null)
+        {
+            TextMeshPro g = textObj.GetComponent<TextMeshPro>();
+            // Debug.Log(g);
+            g.text = n;
+        }
+
        // g.size = 24;
  
 
@@ -54,7 +62,7 @@ public class positionText : MonoBehaviour
     {
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.red;
-        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  " \n\n\n A mysterious presence haunts this island...";
+        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  "\n Biome: " + themeDictionary.themeDictionary[themeID] + " \n\n\n A mysterious presence haunts this island...";
     }
     void OnMouseDown()
     {
