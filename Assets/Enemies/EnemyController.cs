@@ -158,7 +158,7 @@ public abstract class EnemyController : MonoBehaviour
         }
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
-        if (!InAttackRange(targetPos))
+        while (!InAttackRange(targetPos) && !agent.isStopped)
         {
             Vector3 destination = targetPos;
             ICommand command = new MoveToCommand(destinationMover, transform.position, destination);
