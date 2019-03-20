@@ -438,9 +438,9 @@ MonoBehaviour:
   themeDictionary: {fileID: 11400000, guid: ed0d7e5527842a4409611350e9b0bb4e, type: 2}
   startingLocation: {x: 0, y: 0, z: 0}
   drawTileSet: 0
-  forestChance: 100
+  forestChance: 40
   snowChance: 20
-  swampChance: 20
+  swampChance: 3000
   desertChance: 30
   LAYERS_ABOVE_BEACH: 5
   LESS_THAN_LAND_REGEN_COUNT: 0
@@ -13751,8 +13751,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4115091098990835315}
   m_HandleRect: {fileID: 4115091098990835314}
   m_Direction: 0
-  m_Value: 0.00000007398201
-  m_Size: 0.3125
+  m_Value: 0.000000073981994
+  m_Size: 0.31249997
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
