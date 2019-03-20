@@ -73,7 +73,7 @@ public class RemyMovement : MonoBehaviour
     void Move()
     {
         Vector3 differ = transform.position - destination;
-        if((differ.x > EPSSION || differ.x < -EPSSION) && (differ.z < -EPSSION || differ.z > EPSSION)) {
+        if((differ.x > EPSSION || differ.x < -EPSSION) || (differ.z < -EPSSION || differ.z > EPSSION)) {
             //if (transform.position != destination) {
 
             animator.SetBool("isIdleToMelee", false);

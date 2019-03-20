@@ -41,6 +41,7 @@ public class CarnivorousPlantController : EnemyController
 
 	protected override void UniqueUpdate()
     {
+		animator.SetBool("Walk Forward", false);
 		agent.isStopped = true;
 		movable = false;
 		
@@ -63,8 +64,7 @@ public class CarnivorousPlantController : EnemyController
 			}
 		}
 		else
-		{		
-			animator.SetBool("Walk Forward", false);
+		{
 			animator.SetBool("Sleeping", true);
 			awake = false;
 		}

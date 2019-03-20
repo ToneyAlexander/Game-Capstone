@@ -17,7 +17,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         ttl -= Time.deltaTime;
@@ -25,7 +25,13 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
         {
             // Debug.Log("Destoryed due to ttl");
             Destroy(gameObject);
+            OnDeath();
         }
+    }
+
+    public void OnDeath()
+    {
+        //override if you need effects on death of proj
     }
 
     public void PlayAnim(Collider col)
@@ -54,6 +60,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
                     if(destroyable)
                     {
                         PlayAnim(col);
+                        OnDeath();
                         Destroy(gameObject);
                     }
                 }
@@ -63,6 +70,7 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
                 if (destroyable)
                 {
                     PlayAnim(col);
+                    OnDeath();
                     Destroy(gameObject);
                 }
             }
