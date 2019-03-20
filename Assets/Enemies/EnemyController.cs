@@ -152,6 +152,8 @@ public abstract class EnemyController : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 Debug.Log(gameObject.name + " is disabled.");
+                inCoroutine = false;
+                yield return null;
             }
         }
         // Enemy moves until it reaches closely enough to targetPos 
