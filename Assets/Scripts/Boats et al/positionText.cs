@@ -40,6 +40,7 @@ public class positionText : MonoBehaviour
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
        // Debug.Log(g);
         g.text = n;
+       // g.size = 24;
  
 
         
