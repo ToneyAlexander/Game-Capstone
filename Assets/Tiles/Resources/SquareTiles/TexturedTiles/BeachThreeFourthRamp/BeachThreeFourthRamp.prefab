@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7334413816565413334}
   - component: {fileID: 8355425867570076687}
+  - component: {fileID: 4472329384296976181}
+  - component: {fileID: 9028524748940653092}
   m_Layer: 9
   m_Name: BeachThreeFourthRamp
   m_TagString: Untagged
@@ -46,6 +48,32 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 4300000, guid: 8f6a0e645fa7aa847a345c1fa2cb3d6b, type: 3}
+--- !u!65 &4472329384296976181
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606139114727561540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 4, z: 3}
+  m_Center: {x: -5, y: 2, z: 6.5}
+--- !u!65 &9028524748940653092
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606139114727561540}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 4, z: 0.5}
+  m_Center: {x: -6.5, y: 2, z: 5}
 --- !u!1 &5669047352368479343
 GameObject:
   m_ObjectHideFlags: 0

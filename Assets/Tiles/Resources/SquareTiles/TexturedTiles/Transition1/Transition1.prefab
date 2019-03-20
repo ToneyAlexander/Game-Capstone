@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7348645932919424458}
   - component: {fileID: 2466471691065557714}
   - component: {fileID: 3151892699943690707}
+  - component: {fileID: 9029595662276631678}
   m_Layer: 9
   m_Name: Transition1
   m_TagString: Untagged
@@ -60,6 +61,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 4}
   m_Center: {x: -1.5, y: 1, z: 2}
+--- !u!65 &9029595662276631678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4373748651946806201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 2, z: 0.5}
+  m_Center: {x: -2, y: 3, z: 4}
 --- !u!1 &6544315173287476031
 GameObject:
   m_ObjectHideFlags: 0
