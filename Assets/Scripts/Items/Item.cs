@@ -14,8 +14,8 @@ namespace CCC.Items
         /// The null Item that is used when no other Item makes sense.
         /// </summary>
         public static Item Null = new Item(
-            "Null Item", 
-            "You probably shouldn't have this.",
+            " ", 
+            "--",
             true,
             1,
             EquipmentSlot.Null,

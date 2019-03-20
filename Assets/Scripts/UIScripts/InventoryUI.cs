@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
 
     Image image;
     Text descriptionText;
+    Text longNameText;
     GameObject statsBlock;
     Vector3 visibleLoc = new Vector3(-275, 0, 0);
     Vector3 hiddenLoc = new Vector3(-110, 0, 0);
@@ -53,6 +54,10 @@ public class InventoryUI : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("StatsBlock"))
             {
                 statsBlock = gameObject.transform.GetChild(i).gameObject;
+            }
+            else if (transform.GetChild(i).name.Equals("LongName"))
+            {
+                longNameText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
             }
         }
         for (int i = 0; i < 6; i++)
@@ -174,7 +179,8 @@ public class InventoryUI : MonoBehaviour
     {
        //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
-       image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+        longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
+        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
         statsShown = true;
         Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
         Text tooltext = statsBlock.GetComponentInChildren<Text>();
@@ -193,6 +199,7 @@ public class InventoryUI : MonoBehaviour
     {
         //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText);
         descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText;
+        longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.LongName;
         image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
         statsShown = true;
         Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
