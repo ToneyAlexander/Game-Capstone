@@ -139,12 +139,20 @@ public abstract class EnemyController : MonoBehaviour
         // Find a random destination if the player character is not the target
         if (!targetFound)
         {
+            int i = 0;
             // Make sure the path is valid
             do
             {
                 targetPos = GetRandomPosition();
+                i += 1;
             } 
-            while (!agent.CalculatePath(targetPos, path));
+            while (!agent.CalculatePath(targetPos, path) && i < 30);
+
+            if (i >= 30)
+            {
+                gameObject.SetActive(false);
+                Debug.Log(gameObject.name + " is disabled.");
+            }
         }
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
