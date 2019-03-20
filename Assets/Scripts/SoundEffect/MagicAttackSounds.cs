@@ -16,6 +16,9 @@ public class MagicAttackSounds : MonoBehaviour
     [SerializeField]
     private AudioClip MagicAOE;
 
+    [SerializeField]
+    private AudioClip[] FireballHit;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +42,18 @@ public class MagicAttackSounds : MonoBehaviour
     {
         audiodata.clip = MagicAOE;
         audiodata.Play();
+    }
+
+    void PlayFireballHit()
+    {
+        audiodata.clip = RandomClip();
+        audiodata.Play();
+    }
+
+    AudioClip RandomClip()
+    {
+        return FireballHit[Random.Range(0, FireballHit.Length)];
+
     }
 
 
