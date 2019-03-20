@@ -13,6 +13,7 @@ public class ClassUI : MonoBehaviour
     PerkPrototype mousedOver;
     bool selected = false;
     GameObject statsBlock;
+    Text perkPointsText;
     Vector3 visibleLoc = new Vector3(-275, 0, 0);
     Vector3 hiddenLoc = new Vector3(-110, 0, 0);
     Text descText;
@@ -174,6 +175,10 @@ public class ClassUI : MonoBehaviour
             {
                 statsBlock = gameObject.transform.GetChild(i).gameObject;
             }
+            else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
+            {
+                perkPointsText =gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
+            }
 
         }
         descText = statsBlock.GetComponentInChildren<Text>();
@@ -191,6 +196,7 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
+            perkPointsText.text = "PERK POINTS: " + playerClass.PerkPoints;
             if (test)
             {
                 if (!selected)
