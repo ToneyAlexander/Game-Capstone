@@ -145,13 +145,13 @@ public abstract class EnemyController : MonoBehaviour
             {
                 targetPos = GetRandomPosition();
                 i += 1;
-            } 
-            while (!agent.CalculatePath(targetPos, path) && i < 30);
+            }
+            while (!agent.CalculatePath(targetPos, path) && i < 50);
 
-            if (i >= 30)
+            if (i >= 50)
             {
                 gameObject.SetActive(false);
-                Debug.Log(gameObject.name + " is disabled.");
+                Debug.Log(gameObject.name + " is deactivated.");
                 inCoroutine = false;
                 yield return null;
             }
@@ -245,5 +245,5 @@ public abstract class EnemyController : MonoBehaviour
 
     protected abstract void UnderAttack();
 
-    public abstract IEnumerator Die();
+    protected abstract IEnumerator Die();
 }

@@ -75,7 +75,7 @@ public class MeleeBatController : EnemyController
         // }
     }
         
-    public override IEnumerator Die()
+    protected override IEnumerator Die()
     {
         animator.SetTrigger("death");
         yield return new WaitForSeconds(1.5f);
