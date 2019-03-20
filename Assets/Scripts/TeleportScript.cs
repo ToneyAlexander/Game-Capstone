@@ -7,14 +7,15 @@ public class TeleportScript : MonoBehaviour
     public float TargetX, TargetY, TargetZ;
     private Environment enviro;
     private float timeAlive;
-    public bool exitingFight;
+    public bool exitingFight = false;
 
     // Start is called before the first frame update
     void Awake()
     {
-        enviro = GameObject.Find("EnvironmentSound").GetComponent<Environment>();
+        GameObject tmp = GameObject.FindGameObjectWithTag("Generator");
+        if(tmp != null)
+            enviro = tmp.GetComponent<Environment>();
         timeAlive = 0f;
-        exitingFight = false;
     }
 
     // Update is called once per frame
@@ -38,8 +39,8 @@ public class TeleportScript : MonoBehaviour
 
                 if(!exitingFight)
                 {
-
-                    enviro.InBossFight = true;
+                    if(enviro != null)
+                        enviro.InBossFight = true;
 
                     GameObject[] bosses = GameObject.FindGameObjectsWithTag("BossEnemy");
                     foreach (GameObject boss in bosses)
@@ -50,7 +51,8 @@ public class TeleportScript : MonoBehaviour
                     }
                 } else
                 {
-                    enviro.InBossFight = false;
+                    if(enviro != null)
+                        enviro.InBossFight = false;
                 }
             }
         }

@@ -20,7 +20,14 @@ public class GenerateIsland : MonoBehaviour
 
 	private PostProcessVolume volume;
 
-	[SerializeField]
+    [SerializeField]
+    private bool useIngameIslandStats = true;
+
+    [SerializeField]
+    private IslandStorage islandStorage;
+
+
+    [SerializeField]
 	private ProfilesList profileList; 
 
 	[SerializeField]
@@ -125,6 +132,11 @@ public class GenerateIsland : MonoBehaviour
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
+        if (useIngameIslandStats)
+        {
+            LinkIslandStat();
+        }
+
 		themeCount = themeDictionary.themeDictionary.Count;
 		volume = Camera.main.GetComponent<PostProcessVolume>();
 
@@ -149,7 +161,11 @@ public class GenerateIsland : MonoBehaviour
         {
             surface.BuildNavMesh();
         }
-		string islandName = nameGenerator.generateName();
+		string islandName = islandStorage.name;
+        if (!useIngameIslandStats)
+        {
+            islandName = nameGenerator.generateName();
+        }
 		islandNameDisplay.DisplayName(islandName);
         done = true;
 
@@ -253,7 +269,15 @@ public class GenerateIsland : MonoBehaviour
             }
         }
     }
+    #region Menu Connection
 
+    private string LinkIslandStat()
+    {
+        ISLE_WIDE_HIGH = islandStorage.size;
+        LAYERS_ABOVE_BEACH = islandStorage.height;
+        return islandStorage.name;
+    }
+    #endregion
     #region Setup Methods
     private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, int tileCount, List<Vector2Int> updated)
     {
@@ -421,8 +445,10 @@ public class GenerateIsland : MonoBehaviour
             observe(island, updated, tileCount);
             propagate(island, updated, index);
         }
-
-        themePicker(); //pick theme before generation 
+        
+            themePicker();
+        
+         //pick theme before generation 
         generatedMap = drawMap(island, startingLocation, tileSize);
         textureAllTiles();
         terrain = new GameObject();
@@ -609,18 +635,22 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        GameObject boss = Instantiate(Resources.Load<GameObject>("BossBeetle/Boss Beetle"));
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon"};
+        string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
+        GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
         boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);
-        boss.transform.localScale = new Vector3(2, 2, 2);
-        boss.GetComponent<TrackingBehave>().Target = this.remy;
+        //boss.transform.localScale = new Vector3(2, 2, 2);
+        TrackingBehave tb = boss.GetComponent<TrackingBehave>();
+        if(tb != null)
+            tb.Target = remy;
         teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height+1, x * tileSize);
 
         teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
         teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
-        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z;
+        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z + 8;
 
-        AlienBeetle b = boss.GetComponent<AlienBeetle>();
+        BaseBoss b = boss.GetComponent<BaseBoss>();
         b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);
         b.arenaStart = new Vector3(arenaPosition.x - 32, arenaPosition.y, arenaPosition.z - 16);
     }
@@ -660,25 +690,34 @@ public class GenerateIsland : MonoBehaviour
     #region Terrain Methods
     private void themePicker()
 	{
-		RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
-		byte[] randomNumber = new byte[100];
-		rngCsp.GetBytes(randomNumber); 
-	    int rnd = (randomNumber[0] % (forestChance + desertChance + snowChance + swampChance));
+        themeID = islandStorage.theme;
+        if (!useIngameIslandStats)
+        {
+            RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+            byte[] randomNumber = new byte[100];
+            rngCsp.GetBytes(randomNumber);
+            int rnd = (randomNumber[0] % (forestChance + desertChance + snowChance + swampChance));
 
-        if(rnd <= forestChance)
-        {
-            themeID = 0; //forest
-		}
-		else if(rnd > forestChance && rnd <= forestChance + desertChance)
-        {
-            themeID = 1;
-        }else if(rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
-        {
-            themeID = 2;
-        }else if(rnd > forestChance + desertChance + snowChance && rnd <= forestChance + desertChance + snowChance + swampChance)
-        {
-            themeID = 3;
+            if (rnd <= forestChance)
+            {
+                themeID = 0; //forest
+            }
+            else if (rnd > forestChance && rnd <= forestChance + desertChance)
+            {
+                themeID = 1;
+            }
+            else if (rnd > forestChance + desertChance && rnd < forestChance + desertChance + snowChance)
+            {
+                themeID = 2;
+            }
+            else if (rnd > forestChance + desertChance + snowChance && rnd <= forestChance + desertChance + snowChance + swampChance)
+            {
+                themeID = 3;
+            }
+
         }
+
+
 		volume.profile = profileList.profiles[themeID];
 	}
 

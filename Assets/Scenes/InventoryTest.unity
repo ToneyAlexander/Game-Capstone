@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Friendly: 0
+  commandProcessor: {fileID: 0}
 --- !u!136 &1788230099
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -575,6 +576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
+  BControl: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
+  useClassSelection: 1
 --- !u!114 &1788230104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,8 +592,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   takenPerks: []
+  onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  bloodlineController: {fileID: 0}
 --- !u!114 &1788230105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,16 +730,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5930947933053049379, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -746,6 +741,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5930947933053049379, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930947933508065222, guid: 4c255937a95562a44adca004445c95b2,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

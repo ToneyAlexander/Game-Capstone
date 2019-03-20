@@ -12,7 +12,6 @@ public class DashAbility : AbilityBase
     private readonly string AbilName = "Dash";
 
     private List<Stat> abilStats;
-    private StatBlock stats;
     private ControlStatBlock controlStats;
 
     private float duration;

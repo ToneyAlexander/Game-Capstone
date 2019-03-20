@@ -84,7 +84,7 @@ public class ProcedeButton : MonoBehaviour
             }
             else
             {
-                //GO TO MAIN MENU/CLASS SELECT
+                //TODO: GO TO MAIN MENU/CLASS SELECT?
                 remy.GetComponent<MainMenuGameStateChanger>().ChangeGameState();
             }
         }

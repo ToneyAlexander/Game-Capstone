@@ -69,6 +69,8 @@ public class ClassSelection : MonoBehaviour
             }
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
+            bc.currentClass = bc.ClassList[index];
+           // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -79,11 +81,13 @@ public class ClassSelection : MonoBehaviour
             }
             titleText.text = bc.ClassList[index].name;
             descText.text = bc.ClassList[index].description;
+            bc.currentClass = bc.ClassList[index];
+           // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            bc.currentClass = bc.ClassList[index];
-            Debug.Log("class selected: " + bc.ClassList[index].name);
+           // bc.currentClass = bc.ClassList[index];
+            Debug.Log("class selected: " + bc.currentClass.name);
             playIslandGameStateChanger.ChangeGameState();
         }
         for (int i = 0; i < count; i++)
@@ -115,7 +119,7 @@ public class ClassSelection : MonoBehaviour
         float x = -4* Mathf.Sin(pos);
         float y = (z + 1) / 2.0f * 2.25f + 3.75f;
       //  Debug.Log(i +" shifted to "+shiftedindex + " with a position at " + pos);
-        Debug.Log((z + 3) / 2.0f);
+      //  Debug.Log((z + 3) / 2.0f);
         return new Vector3(x, y, z);
     }
 }

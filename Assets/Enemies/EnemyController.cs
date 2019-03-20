@@ -5,14 +5,9 @@ using UnityEngine.AI;
 
 public abstract class EnemyController : MonoBehaviour
 {   
-
     // NavMesh stuff
     protected NavMeshAgent agent;
     protected NavMeshPath path;
-    
-    protected bool inCoroutine;
-
-    private bool isAlive;
 
     // Each enemy moves within a circle centered at spawnPos with a radius of movingRange.
     protected Vector3 spawnPos;
@@ -27,11 +22,8 @@ public abstract class EnemyController : MonoBehaviour
 
     // Attack controller
     protected EnemyAttackController attackController;
-
-    /* Note: attackDistance <= visionDistance <= movingRange */
     
     protected GameObject player;
-
     protected Vector3 targetPos;
     protected bool targetFound;
 
@@ -52,7 +44,10 @@ public abstract class EnemyController : MonoBehaviour
     private PlayerClass enemyClass;
     protected float expValue;
 
-    private void Awake()
+    private bool inCoroutine;
+    private bool isAlive;
+
+    protected void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
         expValue = 40;//default override for various enemies
@@ -64,7 +59,7 @@ public abstract class EnemyController : MonoBehaviour
         }
     }
 
-    void Start()
+    protected void Start()
     {
         gameObject.tag = "Enemy";
 
@@ -85,11 +80,9 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
         enemyClass.TakePerk(initialStats);
-
-        Initialize();
     }
 
-    void Update()
+    protected void Update()
     {
         if (isAlive)
         {
@@ -146,12 +139,22 @@ public abstract class EnemyController : MonoBehaviour
         // Find a random destination if the player character is not the target
         if (!targetFound)
         {
+            int i = 0;
             // Make sure the path is valid
             do
             {
                 targetPos = GetRandomPosition();
-            } 
-            while (!agent.CalculatePath(targetPos, path));
+                i += 1;
+            }
+            while (!agent.CalculatePath(targetPos, path) && i < 50);
+
+            if (i >= 50)
+            {
+                gameObject.SetActive(false);
+                Debug.Log(gameObject.name + " is deactivated.");
+                inCoroutine = false;
+                yield return null;
+            }
         }
         // Enemy moves until it reaches closely enough to targetPos 
         // (until the player target is within enemy's attacking distance)
@@ -236,13 +239,11 @@ public abstract class EnemyController : MonoBehaviour
 
     /* Abstract methods */
 
-    protected abstract void Initialize();
-
     protected abstract void UniqueUpdate();
 
     protected abstract void Attack(Vector3 pos);
 
     protected abstract void UnderAttack();
 
-    public abstract IEnumerator Die();
+    protected abstract IEnumerator Die();
 }
