@@ -105,10 +105,6 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private int desertChance = 20;
 
-
-
-
-
     //max 3 right now
     //fix csv/code to be able to work with arbitaray number more
     [SerializeField]
@@ -406,6 +402,8 @@ public class GenerateIsland : MonoBehaviour
 
         placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize);
 
+        surroundBeetleArena();
+
         foreach (Vector2Int v in path)
         {
             placeMarkerOnTileCentered(v.x, v.y, TILE_HEIGHT, tileSize);
@@ -626,6 +624,32 @@ public class GenerateIsland : MonoBehaviour
         b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);
         b.arenaStart = new Vector3(arenaPosition.x - 32, arenaPosition.y, arenaPosition.z - 16);
     }
+
+    private void surroundBeetleArena()
+    {
+        //Build trees around boss arena
+        TilePiece flatland = tiles[33];
+        int startI = 26;
+        int startJ = 34;
+        int sizeI = 9;
+        int sizeJ = 8;
+        int tileSize = 16;
+
+        int innerI = 5;
+        int innerJ = 4;
+
+        for (int i = 0; i < sizeI; i++)
+        {
+            for (int j = 0; j < sizeJ; j++)
+            {
+                if (i < 2 || i >= innerI + 2 || j < 2 || j >= innerJ + 2)
+                {
+                    Instantiate(flatland.prefab, new Vector3(startI - i * tileSize, 54, startJ - j * tileSize), Quaternion.identity);
+                }
+            }
+        }
+    }
+
     private void placeMarkerOnTileCentered(int x, int y, int height, int tileSize)
     {
         GameObject marker = Instantiate(Resources.Load<GameObject>("Marker"));
