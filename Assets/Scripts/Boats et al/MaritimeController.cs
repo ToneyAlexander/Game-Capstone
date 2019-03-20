@@ -15,6 +15,7 @@ public class MaritimeController : MonoBehaviour
     public NameGenerator nameGen;
     private PlayIslandGameStateChanger playIslandGameStateChanger;
     public GameObject info;
+    public IslandStorage islandStorage;
     Vector3 hiddenPos = new Vector3(-520, 0, 0);
     Vector3 visiblePos = new Vector3(-300, 0, 0);
     bool shown= false;

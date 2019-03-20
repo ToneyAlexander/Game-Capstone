@@ -10,7 +10,9 @@ public class positionText : MonoBehaviour
     public GameObject camera;
     public GameObject maritimeController;
     public GameObject info;
-    string n;
+    private string n;
+    private int islandSize = 20;
+    private int islandHeight = 5;
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);
@@ -36,7 +38,7 @@ public class positionText : MonoBehaviour
         transform.LookAt(player.transform);
         
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
-        Debug.Log(g);
+       // Debug.Log(g);
         g.text = n;
  
 
@@ -51,7 +53,15 @@ public class positionText : MonoBehaviour
     {
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.red;
-        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Terrain Type: ??? \n\n\n A mysterious presence haunts this island...";
+        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  " \n\n\n A mysterious presence haunts this island...";
+    }
+    void OnMouseDown()
+    {
+        maritimeController.GetComponent<MaritimeController>().islandStorage.name = n;
+        maritimeController.GetComponent<MaritimeController>().islandStorage.size = islandSize;
+        maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
+
+
     }
     void OnMouseExit()
     {

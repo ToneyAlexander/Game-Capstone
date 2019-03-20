@@ -115,7 +115,7 @@ public class ClassSelection : MonoBehaviour
         float x = -4* Mathf.Sin(pos);
         float y = (z + 1) / 2.0f * 2.25f + 3.75f;
       //  Debug.Log(i +" shifted to "+shiftedindex + " with a position at " + pos);
-        Debug.Log((z + 3) / 2.0f);
+      //  Debug.Log((z + 3) / 2.0f);
         return new Vector3(x, y, z);
     }
 }
