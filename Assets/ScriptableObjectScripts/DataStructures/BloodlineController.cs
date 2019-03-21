@@ -11,7 +11,7 @@ public sealed class BloodlineController : ScriptableObject
     public int Age { get; private set; }
 
     [SerializeField]
-    private string playerName = "Remy";
+    public string playerName = "Remy Remmington";
 
     [SerializeField]
     public ClassPrototype currentClass;

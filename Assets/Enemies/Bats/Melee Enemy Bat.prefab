@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 5215939200856656837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4806984326580452547}
   - {fileID: 1313300835473154647}
@@ -318,7 +318,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5215939200856656837}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.25
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -429,6 +429,7 @@ MonoBehaviour:
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
+  bloodlineController: {fileID: 0}
 --- !u!114 &3849161408232630925
 MonoBehaviour:
   m_ObjectHideFlags: 0
