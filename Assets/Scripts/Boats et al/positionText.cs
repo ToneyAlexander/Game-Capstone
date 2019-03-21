@@ -62,7 +62,7 @@ public class positionText : MonoBehaviour
     {
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.red;
-        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  "\n Biome: " + themeDictionary.themeDictionary[themeID] + " \n\n\n A mysterious presence haunts this island...";
+        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  "\n Biome: " + themeDictionary.themeDictionary[themeID] + " \n\n\n A dragon has been spotted on this island!";
     }
     void OnMouseDown()
     {
