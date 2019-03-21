@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -58,6 +59,10 @@ public class CameraController : MonoBehaviour
                
             }
    
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene("BOAT");
         }
         Vector3 position = player.transform.position;
         position += cameras[direction];
