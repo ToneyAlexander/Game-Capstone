@@ -6,13 +6,15 @@ public class DragonBoss : BaseBoss
 {
     private readonly float AbilityZeroCd = 2f;
     private readonly float AbilityOneCd = 2f;
-    private readonly float AbilityTwoCd = 1f;
+    private readonly float AbilityTwoCd = 2f;
+    private readonly float AbilityBallCd = 6.5f;
 
     private TrackingBehave playerTracker;
     private Animator animator;
     public GameObject LargeFlamePrefab;
     public GameObject WarningPrefab;
     public GameObject TrackerPrefab;
+    public GameObject BulletHellPrefab;
     private float timeSinceUse;
     private float cooldown;
     private int nextAttack;
@@ -63,9 +65,13 @@ public class DragonBoss : BaseBoss
         playerTracker.pause = false;
         inUse = false;
         float choice = Random.Range(0f, 1f);
-        if (choice < 0.2)
+        if (choice < 0.4)
         {
             nextAttack = 0;
+        }
+        else if (choice < 0.65)
+        {
+            nextAttack = 2;
         }
         else
         {
@@ -84,11 +90,11 @@ public class DragonBoss : BaseBoss
     {
         yield return new WaitForSeconds(0.25f);
         flyUp = true;
-        int expectedCount = 30;
+        int expectedCount = 25;
         for (int i = 0; i < expectedCount; ++i)
         {
             StartCoroutine(RainFire(Random.Range(0f,1f) > 0.6f));
-            yield return new WaitForSeconds(6f/expectedCount);
+            yield return new WaitForSeconds(4f/expectedCount);
         }
         flyUp = false;
         yield return new WaitForSeconds(0.8f);
@@ -98,11 +104,11 @@ public class DragonBoss : BaseBoss
         float choice = Random.Range(0f, 1f);
         if (choice < 0.8)
         {
-            nextAttack = 0;
+            nextAttack = 2;
         }
         else
         {
-            nextAttack = 1;
+            nextAttack = 0;
         }
     }
 
@@ -112,10 +118,10 @@ public class DragonBoss : BaseBoss
         Vector3 target;
         if(aim)
         {
-            target = player.transform.position + new Vector3(Random.Range(-range, range), 0.3f, Random.Range(-range, range));
+            target = player.transform.position + new Vector3(Random.Range(-range, range), 0.5f, Random.Range(-range, range));
         } else
         {
-            target = new Vector3(Random.Range(arenaStart.x + 2, arenaEnd.x - 2), 0.3f, Random.Range(arenaStart.z + 2, arenaEnd.z - 2));
+            target = new Vector3(Random.Range(arenaStart.x + 2, arenaEnd.x - 2), arenaStart.y + 0.5f, Random.Range(arenaStart.z + 2, arenaEnd.z - 2));
         }
         GameObject o = Instantiate(WarningPrefab, target, Quaternion.Euler(90, 0, 0));
         yield return new WaitForSeconds(2.25f);
@@ -129,6 +135,43 @@ public class DragonBoss : BaseBoss
         pbh.dmg = stats.RealDamage(dmg);
         pbh.ttl = 0.2f;
         Destroy(o);
+    }
+
+    void AbilityTwo()
+    {
+        cooldown = AbilityTwoCd;
+        animator.SetTrigger("fireball");
+        StartCoroutine(AbilTwoAsync());
+    }
+
+    IEnumerator AbilTwoAsync()
+    {
+        yield return new WaitForSeconds(0.15f);
+        GameObject obj = Instantiate(BulletHellPrefab, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
+        DragonBulletHell pbh = obj.GetComponent<DragonBulletHell>();
+        obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        obj.transform.rotation = transform.rotation;
+        obj.transform.Translate(Vector3.forward * 2);
+        pbh.speed = 8f;
+        Damage dmg = new Damage(0f, Random.Range(20f * Level, 40f * Level), true, false, false);
+        pbh.dmg = stats.RealDamage(dmg);
+        pbh.ttl = 2.5f;
+        Damage dmgChild = new Damage(0f, Random.Range(50f * Level, 75f * Level), true, false, true);
+        pbh.childDamage = stats.RealDamage(dmgChild);
+        yield return new WaitForSeconds(1.75f);
+        inUse = false;
+        float choice = Random.Range(0f, 1f);
+        if (choice < 0.6)
+        {
+            nextAttack = 0;
+        }
+        else if(choice < 0.9)
+        {
+            nextAttack = 2;
+        } else
+        {
+            nextAttack = 1;
+        }
     }
 
     void SpawnBall()
@@ -154,11 +197,11 @@ public class DragonBoss : BaseBoss
         GameObject obj = Instantiate(TrackerPrefab, target, new Quaternion());
         DragonTracking pbh = obj.GetComponent<DragonTracking>();
         obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-        pbh.speed = 9f;
+        pbh.speed = 8.5f;
         Damage dmg = new Damage(0f, 0f, true, false, true);
         pbh.realIgniteDmg = stats.RealDotDamage(-25f, 0.5f * Level, false, true, false, false, true);
         pbh.dmg = stats.RealDamage(dmg);
-        pbh.ttl = 5f /*+ Level/2f*/;//had to remove scaling due to fixed duration of projectile particle system.
+        pbh.ttl = 29f;
         TrackingBehave tbh = obj.GetComponent<TrackingBehave>();
         tbh.Target = player;
     }
@@ -215,9 +258,9 @@ public class DragonBoss : BaseBoss
             }
 
             ballTimer += Time.deltaTime;
-            while(ballTimer > 5f)
+            while(ballTimer > AbilityBallCd)
             {
-                ballTimer -= 5f;
+                ballTimer -= AbilityBallCd;
                 SpawnBall();
             }
 
@@ -240,10 +283,10 @@ public class DragonBoss : BaseBoss
                         AbilityOne();
                         break;
                     case 2:
-                        //AbilityTwo();
+                        AbilityTwo();
                         break;
                     default:
-                        AbilityOne();
+                        AbilityZero();
                         break;
                 }
             }

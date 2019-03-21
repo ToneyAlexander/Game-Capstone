@@ -28,7 +28,10 @@ public class GenerateIsland : MonoBehaviour
 
 
     [SerializeField]
-	private ProfilesList profileList; 
+	private ProfilesList profileList;
+
+    [SerializeField]
+    private int heuristicType = 0;
 
 	[SerializeField]
     private NameGenerator nameGenerator;
@@ -176,6 +179,7 @@ public class GenerateIsland : MonoBehaviour
 
     void Update()
     {
+        return;
         if (makeNavmesh)
         {
             // It takes some time for the navMesh to update based on the new island.
@@ -276,6 +280,9 @@ public class GenerateIsland : MonoBehaviour
 
     private string LinkIslandStat()
     {
+        //TODO: PASS THIS IN
+        heuristicType = Random.Range(0, 6);
+
         ISLE_WIDE_HIGH = islandStorage.size;
         LAYERS_ABOVE_BEACH = islandStorage.height;
         return islandStorage.name;
@@ -300,7 +307,28 @@ public class GenerateIsland : MonoBehaviour
         Texture[] templates = Resources.LoadAll<Texture2D>("IslandTemplateImages");
         Texture template = templates[Random.Range(0, templates.Length)];
 
+        //TODO: INVESTIGATE - COMPOSE MORE THAN 2?
+        int MAX_COMPOSED_TEMPLATES = 2;
+        int tempCount = Random.Range(1, MAX_COMPOSED_TEMPLATES+1);
+
         bool[,][] island = IslandTemplateUtilities.initializeIslandFromTemplate(template, width_height, tileCount, WATER_INDEX, updated);
+
+        if (tempCount == 2)
+        {
+            Texture template2 = templates[Random.Range(0, templates.Length)];
+            bool[,][] island2 = IslandTemplateUtilities.initializeIslandFromTemplate(template2, width_height, tileCount, WATER_INDEX, updated);
+            for (int m = 0; m < island.GetLength(0); m++)
+            {
+                for (int n = 0; n < island.GetLength(1); n++)
+                {
+                    for (int o = 0; o < island[m, n].Length; o++)
+                    {
+                        island[m, n][o] = island[m, n][o] || island2[m, n][o];
+                    }
+                }
+            }
+        }
+
         ISLAND_REPRESENTATION = island;
         propagate(island, updated, index);
 
@@ -399,7 +427,7 @@ public class GenerateIsland : MonoBehaviour
         {
             Vector3 a = new Vector3(p.Key.y * tileSize + tileSize / 2, 30, p.Key.x * tileSize);
             Vector3 b = new Vector3(p.Value.y * tileSize + tileSize / 2, 30, p.Value.x * tileSize);
-            Debug.DrawRay(a, b - a, Color.magenta, 300);
+            Debug.DrawRay(a, b - a, Color.black, 300);
         }*/
 
         //Decide on end point and collapse it TODO: (lighthouse, boss tile)
@@ -425,17 +453,46 @@ public class GenerateIsland : MonoBehaviour
             path.Insert(0, prev);
             prev = fullTreeBackpointers[prev];
         }
+        float incSize = 1.0f / path.Count;
+        Color c = new Color(0, 0, 0);
+        for(int i = 0; i < path.Count-1; i++)
+        {
+            Vector3 a = new Vector3(path[i].y * tileSize + tileSize / 2, 10, path[i].x * tileSize);
+            Vector3 b = new Vector3(path[i+1].y * tileSize + tileSize / 2, 10, path[i+1].x * tileSize);
+
+            GameObject line = new GameObject();
+            line.transform.position = a;
+            line.AddComponent<LineRenderer>();
+            LineRenderer lr = line.GetComponent<LineRenderer>();
+            lr.material.color = c;//new Material(Resources.Load<Material>("Matte Black"));
+            //lr.startColor = c;
+            //lr.endColor = c;
+            lr.startWidth = .4f;
+            lr.endWidth = .01f;
+            lr.SetPosition(0, a);
+            lr.SetPosition(1, b);
+
+            /*Vector3 aL = new Vector3(.1f + path[i].y * tileSize + tileSize / 2, 10, .1f + path[i].x * tileSize);
+            Vector3 bL = new Vector3(.1f + path[i + 1].y * tileSize + tileSize / 2, 10, .1f + path[i + 1].x * tileSize);
+            Debug.DrawRay(aL, bL - aL, c, 300);
+
+            Vector3 aR = new Vector3(-.1f + path[i].y * tileSize + tileSize / 2, 10, -.1f + path[i].x * tileSize);
+            Vector3 bR = new Vector3(-.1f + path[i + 1].y * tileSize + tileSize / 2, 10, -.1f + path[i + 1].x * tileSize);
+            Debug.DrawRay(aR, bR - aR, c, 300);*/
+
+            c = new Color(c.r + incSize, c.g + incSize, c.b + incSize);
+        }
+
         propagate(island, updated, index);
 
         placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize);
 
         //surroundBeetleArena();
 
-        foreach (Vector2Int v in path)
-        {
-            placeMarkerOnTileCentered(v.x, v.y, TILE_HEIGHT, tileSize);
-        }
-        //TODO: given a set of tiles and weights, normalize and pick one
+        //foreach (Vector2Int v in path)
+        //{
+        //    placeMarkerOnTileCentered(v.x, v.y, TILE_HEIGHT, tileSize);
+        //}
         //TODO: give tiles weights
 
         if (drawTileSet)
@@ -948,8 +1005,30 @@ public class GenerateIsland : MonoBehaviour
         List<List<float>> heuristics = new List<List<float>>();
         List<float> combinedDistribution = new List<float>();
         heuristics.Add(evenDistribution(unchosenIndices));
-        heuristics.Add(plateauDistribution(unchosenIndices));
-        //heuristics.Add(increasingDistribution(unchosenIndices));
+        switch (heuristicType)
+        {
+            //Tall
+            case 1:
+                heuristics.Add(increasingDistribution(unchosenIndices));
+                break;
+            //Flat
+            case 2:
+                heuristics.Add(plateauDistribution(unchosenIndices));
+                break;
+            //Hilly
+            case 3:
+                heuristics.Add(hillyDistribution(unchosenIndices));
+                break;
+            //Pure Flat
+            case 4:
+                heuristics.Add(pureFlatDistribution(unchosenIndices));
+                break;
+            //Hilly Flat
+            case 5:
+                heuristics.Add(hillyDistribution(unchosenIndices));
+                heuristics.Add(pureFlatDistribution(unchosenIndices));
+                break;
+        }
         for (int i = 0; i < unchosenIndices.Count; i++)
         {
             combinedDistribution.Add(1.0f);
@@ -972,7 +1051,7 @@ public class GenerateIsland : MonoBehaviour
     }
     private List<float> increasingDistribution(List<int> unchosenIndices)
     {
-        float increaseAmount = 2f;
+        float increaseAmount = 3f;
         List<float> probabilities = new List<float>();
         float prob = 1.0f;
         foreach (int TileID in unchosenIndices)
@@ -980,10 +1059,6 @@ public class GenerateIsland : MonoBehaviour
             probabilities.Add(prob + increaseAmount * (TileID/33));
         }
         return probabilities;
-    }
-    private List<float> lowFlatlandsDistribution(List<int> unchosenIndicies)
-    {
-        return null;
     }
     private List<float> plateauDistribution(List<int> unchosenIndices)
     {
@@ -993,11 +1068,45 @@ public class GenerateIsland : MonoBehaviour
         {
             if (TileID > 0 && TileID % 33 == 0)
             {
-                probabilities.Add(unchosenIndices.Count * prob);
+                probabilities.Add(10 * prob);
             }
             else
             {
                 probabilities.Add(prob);
+            }
+        }
+        return probabilities;
+    }
+    private List<float> hillyDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        float prob = 1.0f;
+        foreach (int TileID in unchosenIndices)
+        {
+            if (TileID % 33 >= 13 && TileID % 33 <= 24)
+            {
+                probabilities.Add(10 * prob);
+            }
+            else
+            {
+                probabilities.Add(prob);
+            }
+        }
+        return probabilities;
+    }
+    private List<float> pureFlatDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        float prob = 1.0f;
+        foreach (int TileID in unchosenIndices)
+        {
+            if (TileID > 0 && TileID % 33 == 0)
+            {
+                probabilities.Add(100*prob);
+            }
+            else
+            {
+                probabilities.Add(1);
             }
         }
         return probabilities;

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//TODO: this is bad code, dont duplicate the code from projectile behave if I ever change it, it wont propogate here
+//either dont extend projectile behave at all or use the code that exists in it.
 public class HorizontalSwipe : ProjectileBehave
 {
     /*

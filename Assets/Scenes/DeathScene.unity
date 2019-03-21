@@ -4133,7 +4133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290162671}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a58c7dcc02a745ce9121305f3e90425, type: 3}
   m_Name: 
@@ -4233,7 +4233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
 --- !u!114 &1290162667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4266,6 +4266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
+  BControl: {fileID: 0}
+  useClassSelection: 1
 --- !u!114 &1290162669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5850,9 +5852,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Legacy
 
-    Shitty Gear
+    No Gear
 
-    No Skills
+    Low Skill
 
     Bad Knees'
 --- !u!222 &1897095732

@@ -37,7 +37,7 @@ public class RemyDead : MonoBehaviour
     IEnumerator DeathProcess()
     {
         //Wait for the FadeIn.cs to finish
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(7.5f);
         GetComponent<SceneChanger>().ChangeToScene(deathScene);
         //Destroy(gameObject);
         //gameStateChanger.ChangeGameState();
