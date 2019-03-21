@@ -459,15 +459,26 @@ public class GenerateIsland : MonoBehaviour
         {
             Vector3 a = new Vector3(path[i].y * tileSize + tileSize / 2, 10, path[i].x * tileSize);
             Vector3 b = new Vector3(path[i+1].y * tileSize + tileSize / 2, 10, path[i+1].x * tileSize);
-            Debug.DrawRay(a, b - a, c, 300);
 
-            Vector3 aL = new Vector3(.1f + path[i].y * tileSize + tileSize / 2, 10, .1f + path[i].x * tileSize);
+            GameObject line = new GameObject();
+            line.transform.position = a;
+            line.AddComponent<LineRenderer>();
+            LineRenderer lr = line.GetComponent<LineRenderer>();
+            lr.material.color = c;//new Material(Resources.Load<Material>("Matte Black"));
+            //lr.startColor = c;
+            //lr.endColor = c;
+            lr.startWidth = .4f;
+            lr.endWidth = .01f;
+            lr.SetPosition(0, a);
+            lr.SetPosition(1, b);
+
+            /*Vector3 aL = new Vector3(.1f + path[i].y * tileSize + tileSize / 2, 10, .1f + path[i].x * tileSize);
             Vector3 bL = new Vector3(.1f + path[i + 1].y * tileSize + tileSize / 2, 10, .1f + path[i + 1].x * tileSize);
             Debug.DrawRay(aL, bL - aL, c, 300);
 
             Vector3 aR = new Vector3(-.1f + path[i].y * tileSize + tileSize / 2, 10, -.1f + path[i].x * tileSize);
             Vector3 bR = new Vector3(-.1f + path[i + 1].y * tileSize + tileSize / 2, 10, -.1f + path[i + 1].x * tileSize);
-            Debug.DrawRay(aR, bR - aR, c, 300);
+            Debug.DrawRay(aR, bR - aR, c, 300);*/
 
             c = new Color(c.r + incSize, c.g + incSize, c.b + incSize);
         }
