@@ -10,7 +10,7 @@ public class LineDash : AbilityBase
     private List<Stat> abilStats;
     private StatBlock stats;
     private MousePositionDetector mpd;
-
+    private bool fasttimes = true;
     private float cdBase;
     private float speed;
     private float fastness = 0;
@@ -32,7 +32,16 @@ public class LineDash : AbilityBase
     {
         fastness = speed;
         ttl = duration;
-        abil.cdRemain = 2f;
+        if (fasttimes)
+        {
+            abil.cdRemain = 0.1f;
+        }
+        else
+        {
+            abil.cdRemain = 2.8f;
+        }
+        fasttimes = !fasttimes;
+
         destination = mpd.CalculateWorldPosition();
         RemyMovement.destination = destination;
     }
