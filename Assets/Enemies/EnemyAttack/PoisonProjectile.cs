@@ -29,9 +29,8 @@ public class PoisonProjectile : ProjectileBehave
         }
     }
 
-    new void PlayAnim(Collider col)
+    override public void PlayAnim(Collider col)
     {
-        Debug.Log("Playing animation");
         Vector3 pos = col.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
         if (hit != null)

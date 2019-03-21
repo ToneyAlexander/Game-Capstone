@@ -10,16 +10,16 @@ public class DragonTracking : MagicFairBall
     public TimedBuffPrototype Ignite;
     public float realIgniteDmg;
 
-    new void Update()
+    new protected void Update()
     {
         base.Update();
-        speed += Time.deltaTime * 2.5f;
+
+        speed += Time.deltaTime * 0.2f;
     }
 
-    new void OnDeath()
+    override public void OnDeath()
     {
         GameObject obj = Instantiate(aoeObj, transform.position - new Vector3(0, 1.2f, 0), new Quaternion());
-        Debug.Log("spawn tracker at " + (transform.position - new Vector3(0, 1.2f, 0)));
         obj.transform.localScale = new Vector3(5.5f, 1f, 5.5f);
         AoeBehave ab = obj.GetComponent<AoeBehave>();
         ab.friendly = false;

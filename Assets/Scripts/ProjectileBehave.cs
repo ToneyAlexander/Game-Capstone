@@ -23,18 +23,17 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
         ttl -= Time.deltaTime;
         if(ttl < 0)
         {
-            // Debug.Log("Destoryed due to ttl");
-            Destroy(gameObject);
             OnDeath();
+            Destroy(gameObject);
         }
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         //override if you need effects on death of proj
     }
 
-    public void PlayAnim(Collider col)
+    public virtual void PlayAnim(Collider col)
     {
         //override if you need particle effects on hit
     }
@@ -59,8 +58,8 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
                     }
                     if(destroyable)
                     {
-                        PlayAnim(col);
                         OnDeath();
+                        PlayAnim(col);
                         Destroy(gameObject);
                     }
                 }
@@ -69,8 +68,8 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
             {
                 if (destroyable)
                 {
-                    PlayAnim(col);
                     OnDeath();
+                    PlayAnim(col);
                     Destroy(gameObject);
                 }
             }
