@@ -32,6 +32,7 @@ public class LineDash : AbilityBase
     {
         fastness = speed;
         ttl = duration;
+        abil.cdRemain = 2f;
         destination = mpd.CalculateWorldPosition();
         RemyMovement.destination = destination;
     }
@@ -50,8 +51,33 @@ public class LineDash : AbilityBase
     }
 
     // Update is called once per frame
-    void LateUpdate()
+     void Update()
     {
+
+            if (abil.cdRemain > 0f)
+            {
+                float mult = 1;
+                if (stats != null)
+                {
+                    mult += StatBlock.CalcMult(stats.Cdr, stats.CdrMult);
+                    if (abil.isAttack)
+                    {
+                        mult += StatBlock.CalcMult(stats.AttackSpeed, stats.AttackSpeedMult);
+                    }
+                }
+                abil.cdRemain -= Time.deltaTime * mult;
+            }
+            if (abil.use)
+            {
+                abil.use = false;
+                Use();
+            }
+            if (abil.update)
+            {
+                abil.update = false;
+                UpdateStats();
+            }
+        
         if (ttl > 0)
         {
            // Debug.Log("big if true");
