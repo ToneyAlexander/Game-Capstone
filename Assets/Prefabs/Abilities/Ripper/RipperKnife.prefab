@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2848618598601640736}
   - component: {fileID: 2786114295883187316}
   - component: {fileID: 4267946610504190001}
+  - component: {fileID: 5481961359167287550}
   m_Layer: 0
   m_Name: RipperKnife
   m_TagString: Untagged
@@ -4784,8 +4785,8 @@ CapsuleCollider:
   m_GameObject: {fileID: 2832531226357082016}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.2
+  m_Enabled: 0
+  m_Radius: 0.3
   m_Height: 1.3
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.3}
@@ -4806,3 +4807,16 @@ MonoBehaviour:
   friendly: 1
   destroyable: 1
   player: {fileID: 0}
+--- !u!65 &5481961359167287550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832531226357082016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28400004, y: 0.8, z: 1.2841002}
+  m_Center: {x: 0, y: 0, z: -0.49993008}
