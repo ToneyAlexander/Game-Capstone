@@ -25,7 +25,7 @@ public class SpiderController : EnemyController
         movable = true;
 
         // Default vision
-        visionAngle = 90f;
+        visionAngle = 120f;
         visionDistance = 10f;
         attackDistance = 3f;
 
@@ -43,8 +43,6 @@ public class SpiderController : EnemyController
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
-
-        DisplayVisionAndRange();
     }
 
     protected override void Attack(Vector3 playerPos)

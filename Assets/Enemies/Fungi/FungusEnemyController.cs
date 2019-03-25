@@ -56,6 +56,8 @@ public class FungusEnemyController : EnemyController
 			animator.SetFloat("v", 0.0f);
 			awake = false;
 		}
+
+		DisplayVisionAndRange();
 	}
 
 	protected override bool InVision(Vector3 pos)

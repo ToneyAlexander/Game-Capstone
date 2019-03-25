@@ -2055,6 +2055,7 @@ GameObject:
   - component: {fileID: 493611239753083031}
   - component: {fileID: 2571127008804114088}
   - component: {fileID: 6508400563094900200}
+  - component: {fileID: 5049534959497755566}
   m_Layer: 0
   m_Name: Spiderling Venom-Purple
   m_TagString: Untagged
@@ -2071,7 +2072,7 @@ Transform:
   m_GameObject: {fileID: 8477892602183789003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 3283567673138747208}
   - {fileID: 5709384264807898693}
@@ -2226,7 +2227,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
+  m_Radius: 0.75
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
@@ -2242,7 +2243,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2258,6 +2259,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aadf477610e44e87bfa64d161b66ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5049534959497755566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477892602183789003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84233be1f9e18384c92cc9481a98f1c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allPerks: []
+  takenPerks: []
+  onLevelUp: {fileID: 0}
+  abilities: {fileID: 0}
+  abilDict: {fileID: 0}
+  bloodlineController: {fileID: 0}
 --- !u!1 &8587634297042013237
 GameObject:
   m_ObjectHideFlags: 0
