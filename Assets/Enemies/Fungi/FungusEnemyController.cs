@@ -33,12 +33,15 @@ public class FungusEnemyController : EnemyController
 
 	protected override void UniqueUpdate()
     {
+		animator.SetFloat("h", 0.0f);
+		animator.SetFloat("v", 0.0f);
+		agent.isStopped = true;
+		movable = false;
+
 		// The fungus moves only when it sees the player
 		if (InRange(player.transform.position)) 
 		{
-			agent.isStopped = false;
-			movable = true;
-			animator.SetTrigger("AnyKey");
+			animator.SetBool("Mimic", false);
 			// Wait for seconds so the enemy does not attack immediately
 			// Wakeup animation plays only when it is in Mimic state
 			if (!awake && !inAttackCoroutine)
@@ -46,14 +49,16 @@ public class FungusEnemyController : EnemyController
 				StartCoroutine(NotAttack());
 			}
 			awake = true;
+			// The fungus moves only when it sees the player
+			if (InVision(player.transform.position)) 
+			{
+				agent.isStopped = false;
+				movable = true;
+			}
 		}
 		else
 		{
-			agent.isStopped = true;
-			movable = false;
-			animator.SetTrigger("Mimic");
-			animator.SetFloat("h", 0.0f);
-			animator.SetFloat("v", 0.0f);
+			animator.SetBool("Mimic", true);
 			awake = false;
 		}
 
