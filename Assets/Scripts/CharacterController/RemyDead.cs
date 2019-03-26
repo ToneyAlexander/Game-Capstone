@@ -1,22 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CCC.GameManagement.GameStates;
-using CCC.GameManagement;
 
-[RequireComponent(typeof(MainMenuGameStateChanger))]
+[RequireComponent(typeof(DeathScreenGameStateChanger))]
 public class RemyDead : MonoBehaviour
 {
     Animator animator;
-    private IGameStateChanger gameStateChanger;
-    // Start is called before the first frame update
+    private IGameStateChanger deathScreenGameStateChanger;
 
-    [SerializeField]
-    private SceneReference deathScene;
+    private bool isDead = false;
 
     private void Awake()
     {
-        gameStateChanger = GetComponent<MainMenuGameStateChanger>();
+        deathScreenGameStateChanger = GetComponent<DeathScreenGameStateChanger>();
     }
 
     void Start()
@@ -28,17 +24,22 @@ public class RemyDead : MonoBehaviour
     void Update()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Died") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !isDead)
         {
-            StartCoroutine(DeathProcess());
+            //StartCoroutine(DeathProcess());
+            isDead = true;
+            Debug.Log("RemyDead killing player");
+            deathScreenGameStateChanger.ChangeGameState();
         }
 
     }
+
     IEnumerator DeathProcess()
     {
         //Wait for the FadeIn.cs to finish
         yield return new WaitForSeconds(7.5f);
-        GetComponent<SceneChanger>().ChangeToScene(deathScene);
+        //GetComponent<SceneChanger>().ChangeToScene(deathScene);
+
         //Destroy(gameObject);
         //gameStateChanger.ChangeGameState();
     }

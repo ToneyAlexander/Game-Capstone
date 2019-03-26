@@ -1,7 +1,6 @@
 ﻿using CCC.GameManagement.GameStates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 namespace CCC.GameManagement
 {
@@ -17,17 +16,25 @@ namespace CCC.GameManagement
         /// </summary>
         private Scene currentScene;
 
-        private IGameState currentState = NullGameState.Instance;
+        public IGameState currentState = NullGameState.Instance;
 
-        public IGameState CurrentState
+        /// <summary>
+        /// The SceneChanger to use to change scenes.
+        /// </summary>
+        private SceneChanger sceneChanger;
+
+        public void TransitionTo(IGameState nextState)
         {
-            get { return currentState; }
-            set
+            Time.timeScale = 0;
+            currentState.OnExit(this);
+            Debug.Log(currentState + " => " + nextState);
+            currentState = nextState;
+            if (sceneChanger == null)
             {
-                currentState.Exit(this);
-                currentState = value;
-                currentState.Enter(this);
+                sceneChanger = SceneChanger.Instance.GetComponent<SceneChanger>();
             }
+            Debug.Log("nextState = " + nextState);
+            sceneChanger.ChangeToScene(this, nextState.SceneReference, nextState.OnEnter);
         }
 
         /// <summary>
@@ -41,22 +48,5 @@ namespace CCC.GameManagement
             Application.Quit();
 #endif
         }
-
-        IEnumerator LoadSceneAsync(string path)
-        {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(path);
-
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-        }
-
-#region ScriptableObject Messages
-        private void OnEnable()
-        {
-            currentScene = SceneManager.GetActiveScene();
-        }
-#endregion
     }
 }

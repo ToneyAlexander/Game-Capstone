@@ -23,11 +23,15 @@ public class ClassSelection : MonoBehaviour
     #region MonoBehaviour Messages
     private void Awake()
     {
+        Debug.Log("ClassSelection Awake");
+        Debug.Log(gameObject.name);
         playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
+        Debug.Log("ClassSelection End of Awake");
     }
 
-    void Start()
+    private void Start()
     {
+        Debug.Log("ClassSelection Start");
          count = bc.ClassList.Count;
         //count = 2;
         titleText = title.GetComponent<TextMeshPro>();
@@ -58,7 +62,7 @@ public class ClassSelection : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {

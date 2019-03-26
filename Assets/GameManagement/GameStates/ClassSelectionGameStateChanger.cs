@@ -6,7 +6,6 @@ namespace CCC.GameManagement.GameStates
     /// Represents a Component that allows a GameObject to change the current 
     /// state of a Game.
     /// </summary>
-    [RequireComponent(typeof(SceneChanger))]
     public sealed class ClassSelectionGameStateChanger : MonoBehaviour, 
         IGameStateChanger
     {
@@ -15,11 +14,6 @@ namespace CCC.GameManagement.GameStates
         /// </summary>
         [SerializeField]
         private Game game;
-
-        /// <summary>
-        /// The SceneChanger to use to change the current Scene of a Game.
-        /// </summary>
-        private SceneChanger sceneChanger;
 
         /// <summary>
         /// The SceneReference that represents the Scene used for class 
@@ -31,15 +25,8 @@ namespace CCC.GameManagement.GameStates
         #region IGameStateChanger
         public void ChangeGameState()
         {
-            game.CurrentState = new ClassSelectionGameState(sceneChanger, 
-                classSelectionSceneReference);
-        }
-        #endregion
-
-        #region MonoBehaviour Messages
-        private void Awake()
-        {
-            sceneChanger = GetComponent<SceneChanger>();
+            Debug.Log("Calling game.TransitionTo ClassSelectionScene");
+            game.TransitionTo(new ClassSelectionGameState(classSelectionSceneReference));
         }
         #endregion
     }

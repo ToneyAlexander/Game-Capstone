@@ -1,38 +1,37 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCC.GameManagement.GameStates;
-using CCC.GameManagement;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class HubGameState : IGameState
+namespace CCC.GameManagement.GameStates
 {
-    private readonly SceneChanger sceneChanger;
-    private readonly SceneReference playIslandSceneReference;
+    public class HubGameState : IGameState
+    {
+        private readonly SceneReference hubSceneReference;
 
-    public HubGameState(SceneChanger sceneChanger,
-            SceneReference playIslandSceneReference)
-    {
-        this.sceneChanger = sceneChanger;
-        this.playIslandSceneReference = playIslandSceneReference;
-    }
-    public void Enter(Game game)
-    {
-        sceneChanger.ChangeToScene(playIslandSceneReference);
-    }
+        public HubGameState(SceneReference hubSceneReference)
+        {
+            this.hubSceneReference = hubSceneReference;
+        }
 
-    public void Exit(Game game)
-    {
-        // No-op
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        #region IGameState
+        public UnityAction<Game> OnEnter
+        {
+            get { return Enter; }
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public UnityAction<Game> OnExit
+        {
+            get { return (Game game) => { }; }
+        }
+
+        public SceneReference SceneReference
+        {
+            get { return hubSceneReference; }
+        }
+        #endregion
+
+        public void Enter(Game game)
+        {
+            Debug.Log("Entering HubGameState");
+        }
     }
 }

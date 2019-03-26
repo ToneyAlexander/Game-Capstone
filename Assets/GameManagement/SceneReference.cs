@@ -9,6 +9,7 @@ namespace CCC.GameManagement
         menuName = "GameManagement/SceneReference")]
     public sealed class SceneReference : ScriptableObject
     {
+
         /// <summary>
         /// Gets the path to the Scene that this SceneReference represents.
         /// </summary>
@@ -20,5 +21,6 @@ namespace CCC.GameManagement
 
         [SerializeField]
         private string path = "Scenes/";
+
     }
 }

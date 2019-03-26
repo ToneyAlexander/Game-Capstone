@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using CCC.GameManagement.GameStates;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(MainMenuGameStateChanger))]
 public class LoadingScript : MonoBehaviour
 {
+    private MainMenuGameStateChanger mainMenuGameStateChanger;
+
     [SerializeField]
     private Image imageFlipper;
 
@@ -18,6 +21,11 @@ public class LoadingScript : MonoBehaviour
     private float nextLoad;
     private int imageIndex;
     private int imageCount;
+
+    private void Awake()
+    {
+        mainMenuGameStateChanger = GetComponent<MainMenuGameStateChanger>();
+    }
 
     void Start()
     {
@@ -59,15 +67,12 @@ public class LoadingScript : MonoBehaviour
     IEnumerator LoadMainMenu()
     {
         //Waits for 8 seconds before executing to show the logoState off
-        //yield return new WaitForSeconds(8);
+        yield return new WaitForSeconds(8);
 
         //Asynchronous operation to load SampleScene
-        AsyncOperation async = SceneManager.LoadSceneAsync("ProcGen");
+        //AsyncOperation async = SceneManager.LoadSceneAsync("ProcGen");
 
         //Wait until the scene's done loading
-        while (!async.isDone)
-        {
-            yield return null;
-        }
+        mainMenuGameStateChanger.ChangeGameState();
     }
 }

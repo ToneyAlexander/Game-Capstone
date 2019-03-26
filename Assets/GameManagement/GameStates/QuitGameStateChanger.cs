@@ -8,17 +8,17 @@ namespace CCC.GameManagement.GameStates
     /// </summary>
     public sealed class QuitGameStateChanger : MonoBehaviour, IGameStateChanger
     {
-        #region IGameStateChanger
-        public void ChangeGameState()
-        {
-            game.CurrentState = new QuitGameState();
-        }
-        #endregion
-
         /// <summary>
         /// The Game to put in a QuitGameState.
         /// </summary>
         [SerializeField]
         private Game game;
+
+        #region IGameStateChanger
+        public void ChangeGameState()
+        {
+            game.TransitionTo(new QuitGameState());
+        }
+        #endregion
     }
 }

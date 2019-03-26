@@ -21,6 +21,8 @@ public class MaritimeController : MonoBehaviour
     bool shown= false;
     public string guideText = "Press H to show/hide";
 
+    // To make sure that the game state is only changed one time.
+    private bool pressedButton = false;
 
     //  public List<Vector3> islandpos = new List<>
     // Start is called before the first frame update\
@@ -72,7 +74,12 @@ public class MaritimeController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            playIslandGameStateChanger.ChangeGameState();
+            if (!pressedButton)
+            {
+                pressedButton = true;
+                playIslandGameStateChanger.ChangeGameState();
+                Debug.Log("MaritimeController Changed to PlayIslandGameState");
+            }
 
         }
     }
