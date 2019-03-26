@@ -59,6 +59,10 @@ public class StatBlock : MonoBehaviour
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
 
+    //rarely used/niche stuff for specific classes
+    public float PhantomHpMult { get; set; }
+    public float BloodDamage { get; set; }
+
     public bool Friendly;
     private IKillable killable;
 
@@ -130,7 +134,10 @@ public class StatBlock : MonoBehaviour
 
     void Update()
     {
-        HealthCur += CalcMult(HealthRegen,HealthRegenMult) * Time.deltaTime;
+        if(HealthRegen > 0f)
+            HealthCur += CalcMult(HealthRegen,HealthRegenMult) * Time.deltaTime;
+        else
+            HealthCur += HealthRegen * Time.deltaTime;
 
         HealthMax = CalcMult(HealthBase, HealthMult);
         if (HealthCur > HealthMax)

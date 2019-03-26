@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: HemoPowerBlood2
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 124a332eb0370904bb496f4fe2584dde, type: 2}
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 41f8867bc841e554eb1d636b5972b6f3, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 2493d5e1bc08ad2469e19f00ea3a24a2, type: 2}
+    statValue: 0.0000833333
+  Name: Masochism
+  Desc: Gain 100% increased damage per each 3,000 hp you are missing
+  grants: []
+  Changes: []
+  uiCoords: {x: 125, y: 125}
+  sprite: {fileID: 21300000, guid: e81737023d7a52b4d9dadb14ab171019, type: 3}
