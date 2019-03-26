@@ -36,6 +36,10 @@ public class CrewMember : ScriptableObject
     {
 
     }
+    public void grantHeadBonus()
+    {
+
+    }
 
     
 }

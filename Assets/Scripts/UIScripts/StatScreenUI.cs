@@ -51,14 +51,15 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Text statlist = gameObject.GetComponentInChildren<Text>();
+        // Text statlist = gameObject.GetComponentInChildren<Text>();
         //Debug.Log(statlist);
-        
-        statlist.text = "Strength: " + stats.Str + "\nDexterity: " + stats.Dex + "\nMysticism: " + stats.Myst + "\nFortitude: " + stats.Fort;
-        StatBlock detailedStats = stats.getStats();
-        column1.text = "Health:"+ detailedStats.HealthBase + "\nHealth Regen: " + detailedStats.HealthRegen + "\nMelee Attack: " + detailedStats.MeleeAttack + "\n\nMove Speed: " + detailedStats.MoveSpeed + "\nAttack Speed" + detailedStats.MoveSpeed + "\nRanged Attack: " + detailedStats.RangedAttack;
-        column2.text = "Cooldown Reduction Mult: " + detailedStats.CdrMult + "\nSpell: " + detailedStats.Spell + "\n\nMagic Resistance" + detailedStats.MagicRes + "\nStatus Recovery" + detailedStats.StatusRec + "\nAffliction Resistance: " + +detailedStats.AfflictRes;
+        //StatBlock.CalcMult(base,mult)
 
-        column3.text = "Armour: " + detailedStats.Armor + "\nDamage: " + detailedStats.Damage + "\nCrit Damage: " + detailedStats.CritDamage + "\nCrit Chance: " + detailedStats.CritChance;
+        statlist.text = "Strength: " + StatBlock.CalcMult(stats.Str,stats.StrMult) + "\nDexterity: " + StatBlock.CalcMult(stats.Dex, stats.DexMult) + "\nMysticism: " + StatBlock.CalcMult(stats.Myst,stats.MystMult) + "\nFortitude: " + StatBlock.CalcMult(stats.Fort,stats.FortMult);
+        StatBlock detailedStats = stats.getStats();
+        column1.text = "Health:"+ detailedStats.HealthMax + "\nHealth Regen: " + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult) + "\nMelee Attack: " + StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult) + "\n\nMove Speed: " + StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult) + "\nAttack Speed" + StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult) + "\nRanged Attack: " + StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult);
+        column2.text = "Cooldown Reduction Mult: " + StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) + "\nSpell: " + StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult) + "\n\nMagic Resistance" + StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult) + "\nStatus Recovery" + StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) + "\nAffliction Resistance: " + StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult);
+
+        column3.text = "Armour: " + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult) + "\nDamage: " + StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult) + "\nCrit Damage: " + StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult) + "\nCrit Chance: " + StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult);
     }
 }
