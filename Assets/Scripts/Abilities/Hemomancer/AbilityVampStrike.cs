@@ -26,12 +26,22 @@ public class AbilityVampStrike : AbilityBase
 
     protected override void Activate()
     {
-
+        GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
+        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+        var lookPos = mpd.CalculateWorldPosition() - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+        obj.transform.Translate(Vector3.forward * 0.8f);
+        obj.transform.localScale = new Vector3(2.3f, 1f, 2.3f);
+        Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), Random.Range(dmgMin, dmgMax), true, false, false);
+        pbh.dmg = stats.RealDamage(dmg);
+        pbh.dmg.callback = this;
     }
 
-    public override void Callback()
+    public override void Callback(Damage dmg)
     {
-
+        stats.HealthCur += dmg.magicDmgReal / 2f + stats.HealthCur / 2f;
     }
 
     // Start is called before the first frame update

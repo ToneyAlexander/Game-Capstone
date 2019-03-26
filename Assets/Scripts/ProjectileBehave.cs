@@ -56,6 +56,10 @@ public class ProjectileBehave : MonoBehaviour, IAttackIgnored
                     {
                         enemyControl.OnHit(dmg);
                     }
+                    if(dmg.callback != null)
+                    {
+                        dmg.callback.Callback(dmg);
+                    }
                     if(destroyable)
                     {
                         OnDeath();
