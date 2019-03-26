@@ -56,7 +56,7 @@ public class CarnivorousPlantController : EnemyController
 				StartCoroutine(NotAttack());
 			}
 			awake = true;
-			// The carnivorous flower moves only when it sees the player
+			// The carnivorous plant moves only when it sees the player
 			if (InVision(player.transform.position)) 
 			{
 				agent.isStopped = false;

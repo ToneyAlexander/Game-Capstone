@@ -180,8 +180,8 @@ public class GenerateIsland : MonoBehaviour
 
     void Update()
     {
-        return;
-        if (makeNavmesh)
+        //return;
+        /*if (makeNavmesh)
         {
             // It takes some time for the navMesh to update based on the new island.
             // if (updateNavMeshTimer > 0)
@@ -190,10 +190,14 @@ public class GenerateIsland : MonoBehaviour
             //     updateNavMeshTimer--;
             // }
             surface.UpdateNavMesh(surface.navMeshData);
-        }
+        }*/
 
         if (Input.GetButtonDown("Regenerate"))
         {
+            //Respawn
+            remy.transform.position = this.PlayerStart;
+            remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
+            /*
             deleteIsland();
             if (layersChanged)
             {
@@ -209,7 +213,7 @@ public class GenerateIsland : MonoBehaviour
             updateNavMeshTimer = 500;
             string islandName = nameGenerator.generateName();
 		    Debug.Log(islandName);
-		    islandNameDisplay.DisplayName(islandName);
+		    islandNameDisplay.DisplayName(islandName);*/
         }
         else if (Input.GetButtonDown("Terrain"))
         {
@@ -322,7 +326,6 @@ public class GenerateIsland : MonoBehaviour
                 //Bottom to top then left to right
                 for (int i = width_height - 2; i >= 1; i--)
                 {
-                    Debug.Log(i);
                     for (int j = 1; j < width_height - 1; j++)
                     {
                         if (createStartBeachAttempt(island, updated, ref start, ref firstFlat, ref rowboatOffset, i, j))
@@ -474,7 +477,7 @@ public class GenerateIsland : MonoBehaviour
         SetPlayerStart(start.x, start.y, 1.6f, rowboatOffset.x, rowboatOffset.y, tileSize);
 
         //PAVAN
-        if (this.Done())
+        if (true || this.Done())
         {
             Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), this.GetBoatStart(), Quaternion.identity);
             //WESLEY REMOVE THESE LINES

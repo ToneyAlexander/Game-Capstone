@@ -13,9 +13,9 @@ public class RemyAttacking : MonoBehaviour
 
     private Animator animator;
     private Vector3 lookAtEnemy;
-    private float EPSSION;
+    private readonly float EPSSION;
     private Vector3 lastDestination;
-    private bool isHoldingSword;
+
     private float timeLeft;
     private Vector3 dynamicAttackDirection;
 
@@ -34,7 +34,6 @@ public class RemyAttacking : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         startMagicAttack = false;
-        isHoldingSword = false;
         timeLeft = 5;
         dynamicAttackDirection = mousePositionDetector.CalculateWorldPosition();
     }
@@ -86,10 +85,8 @@ public class RemyAttacking : MonoBehaviour
 
         if (swordOnBack.activeSelf)
         {
-
             animator.SetBool("isEquip", true);
             animator.SetBool("isEquipToMelee", true);
-            isHoldingSword = true;
         }
         else
         {
@@ -226,6 +223,7 @@ public class RemyAttacking : MonoBehaviour
 
     void EquipWeapon()
     {
+        //Debug.Log("拿剑");
         swordOnHand.SetActive(true);
         swordOnBack.SetActive(false);
     }
@@ -256,32 +254,12 @@ public class RemyAttacking : MonoBehaviour
         }
     }
 
-
-    //void UnEquipSword()
-    //{
-    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.UnEquip"))
-    //    {
-    //        RemyMovement.destination = this.transform.position;
-    //        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6)
-    //        {
-    //            swordOnHand.SetActive(false);
-    //            swordOnBack.SetActive(true);
-    //            isHoldingSword = false;
-    //            //Debug.Log("真的收剑");
-    //        }
-
-    //        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.8)
-    //        {
-    //            animator.SetBool("isUnEquip", false);
-    //        }
-    //    }
-
-    //}
-
     void UnEquipWeapon()
     {
+        //Debug.Log("收剑");
         swordOnHand.SetActive(false);
         swordOnBack.SetActive(true);
+        animator.SetBool("isUnEquip", false);
     }
 
 
