@@ -22,6 +22,12 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
         return false;
     }
 
+    public virtual void Callback()
+    {
+        //override if your ability needs a callback at some point
+        Debug.LogError("Ability with no callback function specified recieved a callback.");
+    }
+
     protected abstract void Activate();
 
     void Update()

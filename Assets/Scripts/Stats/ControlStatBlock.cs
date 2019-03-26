@@ -95,6 +95,8 @@ public class ControlStatBlock : MonoBehaviour
         stats.MoveSpeedMult = 0f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
+        stats.PhantomHpMult = 0f;
+        stats.BloodDamage = 0f;
         stats.AttackSpeed = 0f;
         stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
@@ -103,7 +105,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.AfflictRes = 0f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
-        stats.CritDamage = 1.5f;
+        stats.CritDamage = 1f;
         stats.CritDamageMult = 0f;
         stats.Damage = 0f;
         stats.DamageMult = 0f;
@@ -180,6 +182,12 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.HEALTH_MULT:
                 stats.HealthMult += stat.Value;
+                break;
+            case Stat.HEMO_PHANTOM_HP_MULT:
+                stats.PhantomHpMult += stat.Value;
+                break;
+            case Stat.HEMO_BLOOD_POWER:
+                stats.BloodDamage += stat.Value;
                 break;
             case Stat.HEALTH_REGEN:
                 stats.HealthRegen += stat.Value;

@@ -57,7 +57,11 @@ namespace CCC.Stats
         public const string CRIT_CHANCE = "critchan";
         public const string CRIT_CHANCE_MULT = "critchanx";
 
+        //Weird special stats
+        public const string HEMO_PHANTOM_HP_MULT = "hemohpx";
+        public const string HEMO_BLOOD_POWER = "hemobloodx";
 
+        //ability stats
         public const string AS_DMG_MIN = "as_dmgmin";
         public const string AS_DMG_MAX = "as_dmgmax";
         public const string AS_CD = "as_cd";

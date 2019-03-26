@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
-  m_Name: AbilityMending
+  m_Name: HemoVampireStrike
   m_EditorClassIdentifier: 
-  abilityName: Empowered Mending
-  abilityType: 3
-  typeString: MendingAbility
-  icon: {fileID: 21300000, guid: 978f6b423841f53479da9e3566de9d64, type: 3}
+  abilityName: Vampire Strike
+  abilityType: 1
+  typeString: AbilityVampStrike
+  icon: {fileID: 21300000, guid: 6faf95e8fc8310c4e8e2764abb960145, type: 3}
   prefab: {fileID: 0}
+  isAttack: 1
   statSlots:
   - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
-    value: 10
+    value: 1.3
+  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+    value: 20
+  - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+    value: 25
