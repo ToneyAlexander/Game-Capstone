@@ -30,10 +30,10 @@ public class EnemyAttackController : MonoBehaviour
         dmgMax = max;
     }
 
-    public void ProjectileAttack(GameObject projectile, float ttl)
+    public void ProjectileAttack(GameObject projectile, float ttl, float height = 0f)
     {
         // Generate a projectile instance and get its behave script
-        GameObject projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject projectileInstance = Instantiate(projectile, transform.position + new Vector3(0f, height, 0f), transform.rotation);
         ProjectileBehave projectileBehave = projectileInstance.GetComponent<ProjectileBehave>();
         projectileBehave.ttl = ttl;
 

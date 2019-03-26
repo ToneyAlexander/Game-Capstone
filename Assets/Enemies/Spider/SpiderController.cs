@@ -74,13 +74,13 @@ public class SpiderController : EnemyController
 		if (attackMode < 0.5f) 
 		{
 			animator.SetTrigger("Claw Attack");
-			attackController.ProjectileAttack(projectile, 1.5f);
+			attackController.ProjectileAttack(projectile, 1.5f, 2.5f);
 			yield return new WaitForSeconds(2.5f);
 		}
 		else if (attackMode >= 0.5f && attackMode < 1.0f)
 		{
 			animator.SetTrigger("Bite Attack");
-			attackController.ProjectileAttack(projectile, 1.5f);
+			attackController.ProjectileAttack(projectile, 1.5f, 2.5f);
 			yield return new WaitForSeconds(2.5f);
 		}
 
