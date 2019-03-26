@@ -7625,7 +7625,17 @@ PrefabInstance:
     - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
         type: 3}
       propertyPath: makeEnvironment
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
+        type: 3}
+      propertyPath: ISLE_WIDE_HIGH
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
+        type: 3}
+      propertyPath: makeNavmesh
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22444b60e102c114eafaa6ee43711491, type: 3}

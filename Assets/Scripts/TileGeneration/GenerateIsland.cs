@@ -16,6 +16,7 @@ public class GenerateIsland : MonoBehaviour
     private static int TILES_PER_LAYER = 33;
 
     private Vector3 PlayerStart;
+    private Vector3 BoatStart;
     private bool done = false;
 
 	private PostProcessVolume volume;
@@ -281,7 +282,7 @@ public class GenerateIsland : MonoBehaviour
     private string LinkIslandStat()
     {
         //TODO: PASS THIS IN
-        heuristicType = Random.Range(0, 6);
+        heuristicType = Random.Range(0, 7);
 
         ISLE_WIDE_HIGH = islandStorage.size;
         LAYERS_ABOVE_BEACH = islandStorage.height;
@@ -289,15 +290,140 @@ public class GenerateIsland : MonoBehaviour
     }
     #endregion
     #region Setup Methods
-    private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, int tileCount, List<Vector2Int> updated)
+    private void collapseStartLocation(Vector2Int beach, int beachID, Vector2Int land, bool[,][] island, List<Vector2Int> updated)
     {
-        island[beach.x, beach.y] = IslandTemplateUtilities.makeTile(beachID, tileCount);
+        island[beach.x, beach.y] = IslandTemplateUtilities.makeTile(beachID, island[0, 0].Length);
         updated.Add(beach);
-        island[land.x, land.y] = IslandTemplateUtilities.makeTile(33, tileCount);
+        island[land.x, land.y] = IslandTemplateUtilities.makeTile(33, island[0, 0].Length);
         updated.Add(land);
         propagate(island, updated, index);
     }
     #endregion
+
+    private void createStartBeach(bool[,][] island, int width_height, List<Vector2Int> updated, ref Vector2Int start, ref Vector2Int firstFlat, ref Vector2 rowboatOffset)
+    {
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                //Top to bottom then left to right
+                for (int i = 1; i < width_height - 1; i++)
+                {
+                    for (int j = 1; j < width_height - 1; j++)
+                    {
+                        if (createStartBeachAttempt(island, updated, ref start, ref firstFlat, ref rowboatOffset, i, j))
+                        {
+                            j = width_height;
+                            i = width_height;
+                        }
+                    }
+                }
+                break;
+            case 1:
+                //Bottom to top then left to right
+                for (int i = width_height - 2; i >= 1; i--)
+                {
+                    Debug.Log(i);
+                    for (int j = 1; j < width_height - 1; j++)
+                    {
+                        if (createStartBeachAttempt(island, updated, ref start, ref firstFlat, ref rowboatOffset, i, j))
+                        {
+                            j = width_height;
+                            i = 0;
+                        }
+                    }
+                }
+                break;
+            case 2:
+                //left to right then Top to bottom
+                for (int i = 1; i < width_height - 1; i++)
+                {
+                    for (int j = 1; j < width_height - 1; j++)
+                    {
+                        if (createStartBeachAttempt(island, updated, ref start, ref firstFlat, ref rowboatOffset, j, i))
+                        {
+                            j = width_height;
+                            i = width_height;
+                        }
+                    }
+                }
+                break;
+            case 3:
+                //right to left then Top to bottom
+                for (int i = width_height - 2; i > 0; i--)
+                {
+                    for (int j = 1; j < width_height - 1; j++)
+                    {
+                        if (createStartBeachAttempt(island, updated, ref start, ref firstFlat, ref rowboatOffset, j, i))
+                        {
+                            j = width_height;
+                            i = 0;
+                        }
+                    }
+                }
+                break;
+        }
+
+        //TODO:
+        //right to left then Bottom to top
+        //left to right then Bottom to top
+        //Bottom to top then right to left
+        //Top to bottom then right to left
+
+    }
+    private bool createStartBeachAttempt(bool[,][] island, List<Vector2Int> updated, ref Vector2Int start, ref Vector2Int firstFlat, ref Vector2 rowboatOffset, int i, int j)
+    {
+        start.x = i;
+        start.y = j;
+        //land on left
+        if (island[i, j][17] && island[i - 1, j][33])
+        {
+            firstFlat.x = i - 1;
+            firstFlat.y = j;
+
+            rowboatOffset.x = 0;
+            rowboatOffset.y = -8;
+
+            collapseStartLocation(start, 17, firstFlat, island, updated);
+        }
+        //land on top
+        else if (island[i, j][18] && island[i, j - 1][33])
+        {
+            firstFlat.x = i;
+            firstFlat.y = j - 1;
+
+            rowboatOffset.x = -8;
+            rowboatOffset.y = 0;
+
+            collapseStartLocation(start, 18, firstFlat, island, updated);
+        }
+        //land on right
+        else if (island[i, j][19] && island[i + 1, j][33])
+        {
+            firstFlat.x = i + 1;
+            firstFlat.y = j;
+
+            rowboatOffset.x = 0;
+            rowboatOffset.y = 8;
+
+            collapseStartLocation(start, 19, firstFlat, island, updated);
+        }
+        //land on bottom
+        else if (island[i, j][20] && island[i, j + 1][33])
+        {
+            firstFlat.x = i;
+            firstFlat.y = j+1;
+
+            rowboatOffset.x = 8;
+            rowboatOffset.y = 0;
+
+            collapseStartLocation(start, 20, firstFlat, island, updated);
+        }
+        else
+        {
+            return false;
+        }
+        return true;
+    }
 
     #region Make and Draw the Island
     private void createIsland(int tileSize, int tileCount, int layersAboveBeach, int width_height)
@@ -333,67 +459,29 @@ public class GenerateIsland : MonoBehaviour
         propagate(island, updated, index);
 
         //Guarantee that he'll have a beach
-        //TODO: Places it at the top left - put other places later
-        Vector2Int start = new Vector2Int();
-        Vector2Int firstFlat = new Vector2Int();
+        Vector2Int start = new Vector2Int(-1, -1);
+        Vector2Int firstFlat = new Vector2Int(-1, -1);
+        Vector2 rowboatOffset = new Vector2(0, 0);
         //Don't look at edges - guaranteed to be water
 
-        //TODO: REFACTOR INTO METHOD
-        //setupStart(start, firstFlat, island, tileCount, updated, width);
+        createStartBeach(island, width_height, updated, ref start, ref firstFlat, ref rowboatOffset);
 
-        for (int i = 1; i < width_height-1; i++)
-        {
-            for (int j = 1; j < width_height - 1; j++)
-            {
-                start.x = i;
-                start.y = j;
-                if(island[i, j][17] && island[i - 1, j][33])
-                {
-                    firstFlat = new Vector2Int(i - 1, j);
 
-                    collapseStartLocation(start, 17, firstFlat, island, tileCount, updated);
-
-                    j = width_height;
-                    i = width_height;
-                }
-                else if (island[i, j][18] && island[i, j-1][33])
-                {
-                    firstFlat = new Vector2Int(i, j - 1);
-
-                    collapseStartLocation(start, 18, firstFlat, island, tileCount, updated);
-
-                    j = width_height;
-                    i = width_height;
-                }
-                else if (island[i, j][19] && island[i+1, j][33])
-                {
-                    firstFlat = new Vector2Int(i + 1, j);
-
-                    collapseStartLocation(start, 19, firstFlat, island, tileCount, updated);
-
-                    j = width_height;
-                    i = width_height;
-                }
-                else if (island[i, j][20] && island[i, j + 1][33])
-                {
-                    firstFlat = new Vector2Int(i, j + 1);
-
-                    collapseStartLocation(start, 20, firstFlat, island, tileCount, updated);
-
-                    j = width_height;
-                    i = width_height;
-                }
-            }
-        }
         if(start.x == 0 && start.y == 0)
         {
            //TODO: ERROR - NO BEACH TILE
         }
-        SetPlayerStart(start.x, start.y, TILE_HEIGHT, tileSize);
-        //WESLEY REMOVE THESE LINES
-        remy.transform.position = this.PlayerStart;
-        remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
-        //WESLEY REMOVE THESE LINES
+        SetPlayerStart(start.x, start.y, 1.6f, rowboatOffset.x, rowboatOffset.y, tileSize);
+
+        //PAVAN
+        if (this.Done())
+        {
+            Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), this.GetBoatStart(), Quaternion.identity);
+            //WESLEY REMOVE THESE LINES
+            remy.transform.position = this.PlayerStart;
+            remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
+            //WESLEY REMOVE THESE LINES
+        }
 
         HashSet<int> fourWayTiles = new HashSet<int>();
         for(int i = 0; i < tiles.Count; i++)
@@ -675,9 +763,10 @@ public class GenerateIsland : MonoBehaviour
         return generatedMap;
     }
 
-    private void SetPlayerStart(int x, int y, int height, int tileSize)
+    private void SetPlayerStart(int x, int y, float height, float boatdx, float boatdy, int tileSize)
     {
         this.PlayerStart = new Vector3(y * tileSize + tileSize / 2, height, x * tileSize);
+        this.BoatStart = new Vector3(y * tileSize + tileSize / 2 + boatdy, height, x * tileSize + boatdx);
     }
 
     public bool Done()
@@ -688,6 +777,10 @@ public class GenerateIsland : MonoBehaviour
     public Vector3 GetPlayerStart()
     {
         return this.PlayerStart;
+    }
+    public Vector3 GetBoatStart()
+    {
+        return this.BoatStart;
     }
 
     private void placePortalOnTileCentered(int x, int y, int height, int tileSize)
@@ -1019,12 +1112,16 @@ public class GenerateIsland : MonoBehaviour
             case 3:
                 heuristics.Add(hillyDistribution(unchosenIndices));
                 break;
-            //Pure Flat
+            //Cliffy
             case 4:
+                heuristics.Add(cliffyDistribution(unchosenIndices));
+                break;
+            //Pure Flat
+            case 5:
                 heuristics.Add(pureFlatDistribution(unchosenIndices));
                 break;
             //Hilly Flat
-            case 5:
+            case 6:
                 heuristics.Add(hillyDistribution(unchosenIndices));
                 heuristics.Add(pureFlatDistribution(unchosenIndices));
                 break;
@@ -1084,6 +1181,23 @@ public class GenerateIsland : MonoBehaviour
         foreach (int TileID in unchosenIndices)
         {
             if (TileID % 33 >= 13 && TileID % 33 <= 24)
+            {
+                probabilities.Add(10 * prob);
+            }
+            else
+            {
+                probabilities.Add(prob);
+            }
+        }
+        return probabilities;
+    }
+    private List<float> cliffyDistribution(List<int> unchosenIndices)
+    {
+        List<float> probabilities = new List<float>();
+        float prob = 1.0f;
+        foreach (int TileID in unchosenIndices)
+        {
+            if ((TileID % 33 >= 1 && TileID % 33 <= 12) || (TileID % 33 >= 25 && TileID % 33 <= 32))
             {
                 probabilities.Add(10 * prob);
             }
