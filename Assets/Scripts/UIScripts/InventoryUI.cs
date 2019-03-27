@@ -25,8 +25,8 @@ public class InventoryUI : MonoBehaviour
     Text descriptionText;
     Text longNameText;
     GameObject statsBlock;
-    Vector3 visibleLoc = new Vector3(-275, 0, 0);
-    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    Vector3 visibleLoc = new Vector3(-1133, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-783, 0, 0);
     bool statsShown = false;
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,8 @@ public class InventoryUI : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("StatsBlock"))
             {
                 statsBlock = gameObject.transform.GetChild(i).gameObject;
+                Vector3 test = statsBlock.transform.localPosition;
+                int k = 5;
             }
             else if (transform.GetChild(i).name.Equals("LongName"))
             {
@@ -180,7 +182,7 @@ public class InventoryUI : MonoBehaviour
     void OnMouseOverEquipment(PointerEventData data)
     {
        //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
-       descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
+        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
         longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
         image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
         statsShown = true;
