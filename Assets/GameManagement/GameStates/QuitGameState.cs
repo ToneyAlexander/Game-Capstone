@@ -1,33 +1,23 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace CCC.GameManagement.GameStates
 {
     /// <summary>
-    /// Represents an IGameState where a Game is quit.
+    /// Represents the state of the game where the player has quit.
     /// </summary>
-    public sealed class QuitGameState : IGameState
+    [CreateAssetMenu]
+    public class QuitGameState : GameState
     {
-        #region IGameState
-        public UnityAction<Game> OnEnter
+        public override void Enter()
         {
-            get { return (Game game) => { 
-                Debug.Log("QuitGameState OnEnter");
-                game.Quit();
-            }; }
+            Debug.Log("In QuitState.Enter");
+            GameManager.Instance.Quit();
         }
 
-        public UnityAction<Game> OnExit
+        public override void Exit()
         {
-            get { return (Game game) => {
-                Debug.Log("QuitGameState OnExit");
-            }; }
+            Debug.Log("In QuitState.Exit");
+            // No-op
         }
-
-        public SceneReference SceneReference
-        {
-            get { return null; }
-        }
-        #endregion
     }
 }

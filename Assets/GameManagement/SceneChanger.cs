@@ -13,58 +13,75 @@ namespace CCC.GameManagement
     {
         private static SceneChanger instance;
 
+        private bool isAvailable = true;
+
+        private bool isDone = false;
+
         public static SceneChanger Instance
         {
             get { return instance; }
         }
 
-        /// <summary>
-        /// Change to the Scene represented by the given SceneReference.
-        /// </summary>
-        /// <param name="sceneReference">
-        /// The SceneReference that represents the Scene to change to.
-        /// </param>
-        public void ChangeToScene(Game game, SceneReference sceneReference)
+        public bool IsDone
         {
-            if (sceneReference != null)
-            {
-                StartCoroutine(CreateAsyncLoad(game, sceneReference.Path,
-                    (Game g) => { }));
-            }
+            get { return isDone; }
         }
 
-        public void ChangeToScene(Game game, SceneReference sceneReference, 
-            UnityAction<Game> actionAfterLoad)
+        public void ChangeToScene(SceneReference sceneReference, 
+            UnityAction actionAfterLoad)
         {
-            if (sceneReference == null)
+            if (true)
             {
-                actionAfterLoad(game);
+                //isAvailable = false;
+                //isDone = false;
+                //if (sceneReference == null)
+                //{
+                //    actionAfterLoad();
+                //}
+                //else
+                //{
+                    StartCoroutine(CreateAsyncLoad(sceneReference.Path,
+                        actionAfterLoad));
+                //}
             }
             else
             {
-                StartCoroutine(CreateAsyncLoad(game, sceneReference.Path,
-                    actionAfterLoad));
+                Debug.Log("SceneChanger is unavailable");
             }
         }
 
-        private IEnumerator CreateAsyncLoad(Game game, string scenePath, UnityAction<Game> onEnter)
+        private UnityAction<Scene, Scene> lastUsedAction = 
+            (Scene current, Scene next) => { };
+
+        private IEnumerator CreateAsyncLoad(string scenePath, 
+            UnityAction onEnter)
         {
             yield return null;  // Wait one frame
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scenePath);
             asyncLoad.allowSceneActivation = false;
-            SceneManager.activeSceneChanged += (Scene current, Scene next) => {
-                onEnter(game);
-                Time.timeScale = 1.0f;
+            lastUsedAction = (Scene current, Scene next) => {
+                onEnter();
             };
+            //SceneManager.activeSceneChanged += (Scene current, Scene next) => {
+            //    onEnter(game);
+            //    Time.timeScale = 1.0f;
+            //    isAvailable = true;
+            //    isDone = true;
+            //};
+            SceneManager.activeSceneChanged += lastUsedAction;
 
             while (!asyncLoad.isDone)
             { 
                 if (asyncLoad.progress >= 0.9f)
                 {
                     asyncLoad.allowSceneActivation = true;
+
+                    // Unsubscribe the last used UnityAction so that the next 
+                    // one doesn't call all the previously called ones.
+                    SceneManager.activeSceneChanged -= lastUsedAction;
                 }
-                yield return null;
+                yield return null;  // Wait one frame
             }
         }
 

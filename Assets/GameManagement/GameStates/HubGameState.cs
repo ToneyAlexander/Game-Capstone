@@ -1,37 +1,22 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace CCC.GameManagement.GameStates
 {
-    public class HubGameState : IGameState
+    /// <summary>
+    /// Represents the state when the game is at the hub scene and waiting for 
+    /// the player to select an island to go to.
+    /// </summary>
+    [CreateAssetMenu]
+    public sealed class HubGameState : GameState
     {
-        private readonly SceneReference hubSceneReference;
-
-        public HubGameState(SceneReference hubSceneReference)
+        public override void Enter()
         {
-            this.hubSceneReference = hubSceneReference;
+            Debug.Log("In HubState.Enter");
         }
 
-        #region IGameState
-        public UnityAction<Game> OnEnter
+        public override void Exit()
         {
-            get { return Enter; }
-        }
-
-        public UnityAction<Game> OnExit
-        {
-            get { return (Game game) => { }; }
-        }
-
-        public SceneReference SceneReference
-        {
-            get { return hubSceneReference; }
-        }
-        #endregion
-
-        public void Enter(Game game)
-        {
-            Debug.Log("Entering HubGameState");
+            Debug.Log("In HubState.Exit");
         }
     }
 }

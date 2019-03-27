@@ -3,10 +3,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(MainMenuGameStateChanger))]
+[RequireComponent(typeof(GameStateChanger))]
 public class LoadingScript : MonoBehaviour
 {
-    private MainMenuGameStateChanger mainMenuGameStateChanger;
+    /// <summary>
+    /// The GameStateChanger that will be used to change the game's state.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
 
     [SerializeField]
     private Image imageFlipper;
@@ -22,12 +25,13 @@ public class LoadingScript : MonoBehaviour
     private int imageIndex;
     private int imageCount;
 
+    #region MonoBehaviour Messages
     private void Awake()
     {
-        mainMenuGameStateChanger = GetComponent<MainMenuGameStateChanger>();
+        gameStateChanger = GetComponent<GameStateChanger>();
     }
 
-    void Start()
+    private void Start()
     {
         //CAN I JUST DO COROUTINE HERE
         StartCoroutine(LoadMainMenu());
@@ -37,6 +41,22 @@ public class LoadingScript : MonoBehaviour
         nextLoad = Time.time + .033f;
         displayNextImage();
     }
+
+    private void Update()
+    {
+        if (Time.time > nextImage)
+        {
+            nextImage = Time.time + .9f;
+            displayNextImage();
+            imageIndex = (imageIndex + 1) % imageCount;
+        }
+        if (Time.time > nextLoad)
+        {
+            loadingSlider.value += .005f;
+            nextLoad = Time.time + .033f;
+        }
+    }
+    #endregion
 
     void displayNextImage()
     {
@@ -48,22 +68,6 @@ public class LoadingScript : MonoBehaviour
         imageFlipper.color = nextSpriteObject.GetComponent<SpriteRenderer>().color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Time.time > nextImage)
-        {
-            nextImage = Time.time + .9f;
-            displayNextImage();
-            imageIndex = (imageIndex + 1) % imageCount;
-        }
-        if(Time.time > nextLoad)
-        {
-            loadingSlider.value += .005f;
-            nextLoad = Time.time + .033f;
-        }
-    }
-
     IEnumerator LoadMainMenu()
     {
         //Waits for 8 seconds before executing to show the logoState off
@@ -73,6 +77,6 @@ public class LoadingScript : MonoBehaviour
         //AsyncOperation async = SceneManager.LoadSceneAsync("ProcGen");
 
         //Wait until the scene's done loading
-        mainMenuGameStateChanger.ChangeGameState();
+        gameStateChanger.ChangeState();
     }
 }

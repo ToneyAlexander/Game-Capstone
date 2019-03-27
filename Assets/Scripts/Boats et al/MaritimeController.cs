@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CCC.GameManagement.GameStates;
-using CCC.GameManagement;
 
 public class MaritimeController : MonoBehaviour
 {
@@ -13,16 +10,14 @@ public class MaritimeController : MonoBehaviour
     public GameObject prefab;
     public ThemeDictionary themes;
     public NameGenerator nameGen;
-    private PlayIslandGameStateChanger playIslandGameStateChanger;
+
+    //private GameStateChanger gameStateChanger;
     public GameObject info;
     public IslandStorage islandStorage;
     Vector3 hiddenPos = new Vector3(-520, 0, 0);
     Vector3 visiblePos = new Vector3(-300, 0, 0);
     bool shown= false;
     public string guideText = "Press H to show/hide";
-
-    // To make sure that the game state is only changed one time.
-    private bool pressedButton = false;
 
     //  public List<Vector3> islandpos = new List<>
     // Start is called before the first frame update\
@@ -31,11 +26,9 @@ public class MaritimeController : MonoBehaviour
     int nums;
     float tolerance = 15.0f;
     public List<IslandData.Island> islands = new List<IslandData.Island>();
-    private void Awake()
-    {
-        playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
-    }
-    void Start()
+
+    #region MonoBehaviour Messages
+    private void Start()
     {
        float nums = Mathf.Floor(Random.Range(minnum, maxnum));
         for (int i = 0; i < nums; i++)
@@ -56,8 +49,7 @@ public class MaritimeController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         info.transform.GetChild(0).gameObject.GetComponent<Text>().text = guideText;
         if (Input.GetKeyDown(KeyCode.H))
@@ -72,15 +64,6 @@ public class MaritimeController : MonoBehaviour
         {
             info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, hiddenPos, 100 * Time.deltaTime);
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!pressedButton)
-            {
-                pressedButton = true;
-                playIslandGameStateChanger.ChangeGameState();
-                Debug.Log("MaritimeController Changed to PlayIslandGameState");
-            }
-
-        }
     }
+    #endregion
 }

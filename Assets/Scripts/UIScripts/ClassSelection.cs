@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(GameStateChanger))]
 public class ClassSelection : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -10,10 +11,16 @@ public class ClassSelection : MonoBehaviour
     public GameObject title;
     public GameObject desc;
 
-    private PlayIslandGameStateChanger playIslandGameStateChanger;
+    /// <summary>
+    /// The GameStateChanger that will be used to change the game state.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
+
     private int index = 0;
     private int count;
     private List<GameObject> classIcons = new List<GameObject>() ;
+
+    private bool selectedClass = false;
 
     TextMeshPro titleText;
     TextMeshPro descText;
@@ -23,15 +30,11 @@ public class ClassSelection : MonoBehaviour
     #region MonoBehaviour Messages
     private void Awake()
     {
-        Debug.Log("ClassSelection Awake");
-        Debug.Log(gameObject.name);
-        playIslandGameStateChanger = GetComponent<PlayIslandGameStateChanger>();
-        Debug.Log("ClassSelection End of Awake");
+        gameStateChanger = GetComponent<GameStateChanger>();
     }
 
     private void Start()
     {
-        Debug.Log("ClassSelection Start");
          count = bc.ClassList.Count;
         //count = 2;
         titleText = title.GetComponent<TextMeshPro>();
@@ -90,9 +93,13 @@ public class ClassSelection : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-           // bc.currentClass = bc.ClassList[index];
-            Debug.Log("class selected: " + bc.currentClass.name);
-            playIslandGameStateChanger.ChangeGameState();
+            if (!selectedClass)
+            {
+                selectedClass = true;
+                // bc.currentClass = bc.ClassList[index];
+                Debug.Log("class selected: " + bc.currentClass.name);
+                gameStateChanger.ChangeState();
+            }
         }
         for (int i = 0; i < count; i++)
         {

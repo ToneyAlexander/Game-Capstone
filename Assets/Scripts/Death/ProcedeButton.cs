@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(GameStateChanger))]
 public class ProcedeButton : MonoBehaviour
 {
     [SerializeField]
@@ -26,7 +27,10 @@ public class ProcedeButton : MonoBehaviour
 
     private bool isChangingState = false;
 
-    private MainMenuGameStateChanger mainMenuGameStateChanger;
+    /// <summary>
+    /// The GameStateChanger that will be used to change the game state.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
 
     private bool clicked = false;
 
@@ -48,7 +52,7 @@ public class ProcedeButton : MonoBehaviour
         }
 
         bloom = camera.GetComponent<PostProcessVolume>().profile.GetSetting<Bloom>();
-        mainMenuGameStateChanger = GetComponent<MainMenuGameStateChanger>();
+        gameStateChanger = GetComponent<GameStateChanger>();
     }
 
     void Start()
@@ -104,12 +108,10 @@ public class ProcedeButton : MonoBehaviour
             else
             {
                 //TODO: GO TO MAIN MENU/CLASS SELECT?
-                //remy.GetComponent<MainMenuGameStateChanger>().ChangeGameState();
                 if (!isChangingState)
                 {
                     isChangingState = true;
-                    mainMenuGameStateChanger.ChangeGameState();
-                    Debug.Log("Changed game state to MainMenuGameState");
+                    gameStateChanger.ChangeState();
                 }
             }
         }

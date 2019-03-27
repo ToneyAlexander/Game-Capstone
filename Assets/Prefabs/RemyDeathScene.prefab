@@ -1999,8 +1999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cded9829877114fb8bb8ad9720bff293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStepsOnGrass: []
-  footStepsOnSnow: []
+  footStepsOnGrass:
+  - {fileID: 8300000, guid: 1b1eb769805484c7287546a991171806, type: 3}
+  footStepsOnSnow:
+  - {fileID: 8300000, guid: 836c964cc95f84d098412a95e4128887, type: 3}
 --- !u!114 &1085289695537922234
 MonoBehaviour:
   m_ObjectHideFlags: 0

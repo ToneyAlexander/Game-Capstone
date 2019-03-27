@@ -1,36 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace CCC.GameManagement.GameStates
 {
-    public sealed class DeathScreenGameState : IGameState
+    /// <summary>
+    /// Represents the state when the game is showing the player death screen.
+    /// </summary>
+    [CreateAssetMenu]
+    public sealed class DeathScreenGameState : GameState
     {
-        private readonly SceneReference deathScreenSceneReference;
-
-        public DeathScreenGameState(SceneReference deathScreenSceneReference)
+        public override void Enter()
         {
-            this.deathScreenSceneReference = deathScreenSceneReference;
+            Debug.Log("In DeathScreenState.Enter");
         }
 
-        #region IGameState
-        public UnityAction<Game> OnEnter
+        public override void Exit()
         {
-            get { return (Game game) => {
-                Debug.Log("DeathScreenGameState OnEnter");
-            }; }
+            Debug.Log("In DeathScreenState.Exit");
         }
-
-        public UnityAction<Game> OnExit
-        {
-            get { return (Game game) => {
-                Debug.Log("DeathScreenGameState OnExit");
-            }; }
-        }
-
-        public SceneReference SceneReference
-        {
-            get { return deathScreenSceneReference; }
-        }
-        #endregion
     }
 }

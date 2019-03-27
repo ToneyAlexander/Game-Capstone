@@ -2,26 +2,31 @@
 using UnityEngine;
 using CCC.GameManagement.GameStates;
 
-[RequireComponent(typeof(DeathScreenGameStateChanger))]
+[RequireComponent(typeof(GameStateChanger))]
 public class RemyDead : MonoBehaviour
 {
     Animator animator;
-    private IGameStateChanger deathScreenGameStateChanger;
+
+    /// <summary>
+    /// The GameStateChanger that will be used to change the state of the game.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
 
     private bool isDead = false;
 
+    #region MonoBehaviour Messages
     private void Awake()
     {
-        deathScreenGameStateChanger = GetComponent<DeathScreenGameStateChanger>();
+        gameStateChanger = GetComponent<GameStateChanger>();
     }
 
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Died") &&
                 animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !isDead)
@@ -29,10 +34,11 @@ public class RemyDead : MonoBehaviour
             //StartCoroutine(DeathProcess());
             isDead = true;
             Debug.Log("RemyDead killing player");
-            deathScreenGameStateChanger.ChangeGameState();
+            gameStateChanger.ChangeState();
         }
 
     }
+    #endregion
 
     IEnumerator DeathProcess()
     {

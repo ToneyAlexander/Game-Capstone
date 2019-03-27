@@ -1,52 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 namespace CCC.GameManagement.GameStates
 {
     /// <summary>
-    /// Represents an IGameState where a given Game displays the main menu 
-    /// Scene.
+    /// Represents the state of the game when the main menu is showed.
     /// </summary>
-    public sealed class MainMenuGameState : IGameState
+    [CreateAssetMenu]
+    public sealed class MainMenuGameState : GameState
     {
-        /// <summary>
-        /// The SceneReference that represents the Scene that contains the main 
-        /// menu for a Game.
-        /// </summary>
-        private readonly SceneReference mainMenuSceneReference;
-
-        /// <summary>
-        /// Initializes a new instance of the 
-        /// <see cref="T:CCC.GameManagement.GameStates.MainMenuGameState"/> 
-        /// class.
-        /// </summary>
-        /// <param name="mainMenuSceneReference">
-        /// The SceneReference that represents the Scene to change a Game to.
-        /// </param>
-        public MainMenuGameState(SceneReference mainMenuSceneReference)
+        public override void Enter()
         {
-            this.mainMenuSceneReference = mainMenuSceneReference;
+            Debug.Log("In MainMenuState.Enter");
         }
 
-        #region IGameState
-        public UnityAction<Game> OnEnter
+        public override void Exit()
         {
-            get { return (Game game) => {
-                Debug.Log("MainMenuGameState OnEnter");
-            }; }
+            Debug.Log("In MainMenuState.Exit");
         }
-
-        public UnityAction<Game> OnExit
-        {
-            get { return (Game game) => {
-                Debug.Log("MainMenuState OnExit");
-            }; }
-        }
-
-        public SceneReference SceneReference
-        {
-            get { return mainMenuSceneReference; }
-        }
-        #endregion
     }
 }
