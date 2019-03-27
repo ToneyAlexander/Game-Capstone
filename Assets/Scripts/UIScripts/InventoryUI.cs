@@ -115,6 +115,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < storedButtons.Length; i++)
         {
             InventoryButton inventoryButtonScript = storedButtons[i].GetComponent<InventoryButton>();
+            Image buttonImage = storedButtons[i].transform.GetChild(1).GetComponent<Image>();
 
             if (user.Items.Count > i)
             {
@@ -129,6 +130,7 @@ public class InventoryUI : MonoBehaviour
 
                 textfield.color = Color.black;
                 inventoryButtonScript.item = go;
+                buttonImage.sprite = inventoryButtonScript.item.Sprite;
 
 
             }
