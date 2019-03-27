@@ -304,6 +304,7 @@ public class ControlStatBlock : MonoBehaviour
             foreach (Stat s in tb.Stats)
             {
                 ApplyStat(s);
+                //Debug.Log(s.Name + ": " + s.Value);
             }
         }
 

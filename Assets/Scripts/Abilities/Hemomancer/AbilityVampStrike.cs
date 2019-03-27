@@ -13,8 +13,8 @@ public class AbilityVampStrike : AbilityBase
     
     private float dmgMin;
     private float dmgMax;
-
-    public static TimedBuffPrototype ignite;
+    private float vampRate;
+    private float cost;
 
 
     public override void UpdateStats()
@@ -22,6 +22,8 @@ public class AbilityVampStrike : AbilityBase
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
         dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
         dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        vampRate = abilStats.Find(item => item.Name == Stat.AS_VAMP).Value;
+        cost = abilStats.Find(item => item.Name == Stat.AS_COST).Value;
     }
 
     protected override void Activate()
@@ -32,16 +34,27 @@ public class AbilityVampStrike : AbilityBase
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
-        obj.transform.Translate(Vector3.forward * 0.8f);
-        obj.transform.localScale = new Vector3(2.3f, 1f, 2.3f);
-        Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), Random.Range(dmgMin, dmgMax), true, false, false);
+        obj.transform.Translate(Vector3.forward * 1.3f);
+        obj.transform.localScale = new Vector3(3.3f, 1f, 3.3f);
+        Damage dmg;
+        if (cost < 0.00001)
+        {
+            dmg = new Damage(Random.Range(dmgMin, dmgMax), 0, true, false, false);
+        } else
+        {
+            float hplost = StatBlock.CalcMult(stats.HealthCur, stats.PhantomHpMult) * cost;
+            stats.HealthCur -= hplost;
+            Debug.Log("Cost player " + hplost + " hp.");
+            dmg = new Damage(Random.Range(dmgMin, dmgMax), hplost / 2f, true, false, true);
+        }
         pbh.dmg = stats.RealDamage(dmg);
         pbh.dmg.callback = this;
     }
 
-    public override void Callback(Damage dmg)
+    public override void Callback(float dmgTaken)
     {
-        stats.HealthCur += dmg.magicDmgReal / 2f + stats.HealthCur / 2f;
+        Debug.Log("Heal: " + dmgTaken * vampRate + " from " + dmgTaken);
+        stats.HealthCur += dmgTaken * vampRate;
     }
 
     // Start is called before the first frame update

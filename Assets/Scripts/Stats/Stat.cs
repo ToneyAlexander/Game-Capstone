@@ -75,6 +75,8 @@ namespace CCC.Stats
         public const string AS_DASH_MULT = "as_dashx";
         public const string AS_BUFFS = "as_buffs";
         public const string AS_DEBUFFS = "as_debuffs";
+        public const string AS_VAMP = "as_vamp";
+        public const string AS_COST = "as_cost";
 
         /// <summary>
         /// Gets the name of this Stat.

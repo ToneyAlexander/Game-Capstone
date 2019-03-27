@@ -22,7 +22,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
         return false;
     }
 
-    public virtual void Callback(Damage dmg)
+    public virtual void Callback(float dmgTaken)
     {
         //override if your ability needs a callback at some point
         Debug.LogError("Ability with no callback function specified recieved a callback.");

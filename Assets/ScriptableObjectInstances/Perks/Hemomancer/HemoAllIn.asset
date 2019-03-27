@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: HemoVampStrike
+  m_Name: HemoAllIn
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
-  Children:
-  - {fileID: 11400000, guid: e04bc7e83d7936d44aa2502cf166a8b1, type: 2}
-  - {fileID: 11400000, guid: e6c56deab213229468cd91db798ac528, type: 2}
+  Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Vampire Strike
-  Desc: Grants the vampire strike ability that allows you to life leech on hit.
+  Name: Blood Ritual
+  Desc: Long cooldown. Sets your hp to 1 and then grants health regen equal to 100%
+    of your max life over 3 seconds.
   grants:
-  - {fileID: 11400000, guid: af33b2dffcc88024fbe87d40dc4673c6, type: 2}
+  - {fileID: 11400000, guid: 1f17613df4e7d7b40a54c609f7c4f26e, type: 2}
   Changes: []
-  uiCoords: {x: 50, y: 250}
-  sprite: {fileID: 21300000, guid: 6faf95e8fc8310c4e8e2764abb960145, type: 3}
+  uiCoords: {x: 50, y: 325}
+  sprite: {fileID: 21300000, guid: 76e42008ac35ed24f839c6882e9d9d51, type: 3}

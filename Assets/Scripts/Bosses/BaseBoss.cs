@@ -84,7 +84,7 @@ public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
             dmgTimer += Time.deltaTime;
     }
 
-    void OnTriggerStay(Collider col)
+    void OnCollisonStay(Collision col)
     {
         if (dmgTimer > 0.5f && !inUse)
         {

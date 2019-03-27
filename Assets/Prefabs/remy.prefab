@@ -2473,7 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aeb3cf415311c4387ed60fcabc1bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
+  ClassL: {fileID: 11400000, guid: 988346165e03014419733c16afcb52c9, type: 2}
   BControl: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
   useClassSelection: 1
 --- !u!114 &1578934642
@@ -2491,6 +2491,7 @@ MonoBehaviour:
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
   dash: {fileID: 11400000, guid: a628ad4ffafda154b9869dbf0c1eaa75, type: 2}
   mending: {fileID: 11400000, guid: 60a3912452ad31848a8013abf2013bbd, type: 2}
+  hemoMend: {fileID: 11400000, guid: cc5ccbd3936697041a3ab8acf844cff5, type: 2}
   ablazeOff: {fileID: 11400000, guid: 878850fb8c0123249ae78833d22daa1b, type: 2}
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
@@ -2712,6 +2713,7 @@ MonoBehaviour:
   MagicVolley: {fileID: 8300000, guid: 1940de51d4757445f89d0a947bb09966, type: 3}
   MagicIgnite: {fileID: 8300000, guid: bd00f3e4bc83046618b1e768c9e8f951, type: 3}
   MagicAOE: {fileID: 0}
+  FireballHit: []
 --- !u!114 &6878096198929839801
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -231,6 +231,11 @@ public class StatBlock : MonoBehaviour
         physMult += PhysicalDamageMult;
         magicMult += DamageMult;
         magicMult += MagicDamageMult;
+        if(BloodDamage > 0f && HealthCur < HealthMax)
+        {
+            physMult += BloodDamage * (HealthMax - HealthCur);
+            magicMult += BloodDamage * (HealthMax - HealthCur);
+        }
 
         dmg.physicalDmgReal = CalcMult(phys, physMult);
         dmg.magicDmgReal = CalcMult(magic, magicMult);
