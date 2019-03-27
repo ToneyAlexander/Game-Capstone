@@ -149,15 +149,17 @@ public class InventoryUI : MonoBehaviour
                 Item go = euser.Equipment[slots[i]];
                 Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
                 EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
+                Image equipmentButton = equipmentButtons[i].transform.GetChild(1).GetComponent<Image>();
                 equipmentButtonScript.item = go;
                  string name = go.Name;
                  if (name.Length > strLength)
                 {
                 name = name.Substring(0, strLength) + "...";
                 }
-            textfield.text = name;
+                textfield.text = name;
                 textfield.color = Color.black;
-                
+                equipmentButton.sprite = equipmentButtonScript.item.Sprite;
+
         }
         if (statsShown)
         {
