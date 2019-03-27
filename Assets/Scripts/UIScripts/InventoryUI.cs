@@ -138,7 +138,7 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 Text textfield = storedButtons[i].GetComponentInChildren<Text>();
-                textfield.text = "--";
+                textfield.text = "";
                 textfield.color = Color.black;
                 inventoryButtonScript.item = Item.Null;
             }
@@ -190,7 +190,8 @@ public class InventoryUI : MonoBehaviour
         tooltext.text = "";
         foreach (Stat stat in item.Stats)
         {
-            tooltext.text += stat.Name + ": " + stat.Value + "\n";
+            int value = (int)stat.Value;
+            tooltext.text += stat.Name + ": " + value + "\n";
 
         }
     }
@@ -211,7 +212,9 @@ public class InventoryUI : MonoBehaviour
         tooltext.text = "";
         foreach (Stat stat in item.Stats)
         {
-            tooltext.text += stat.Name + ": " + stat.Value + "\n";
+
+            int value = (int)stat.Value;
+            tooltext.text += stat.Name + ": " + value + "\n";
 
         }
     }
