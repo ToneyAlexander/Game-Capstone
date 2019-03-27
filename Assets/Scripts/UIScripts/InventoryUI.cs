@@ -53,12 +53,11 @@ public class InventoryUI : MonoBehaviour
                     }
                     else if (statsBlock.transform.GetChild(j).name.Equals("SpriteImage")){
                         image = statsBlock.transform.GetChild(j).gameObject.GetComponent<Image>();
+                    }else if(statsBlock.transform.GetChild(j).name.Equals("LongName"))
+                    {
+                        longNameText = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
                     }
                 }
-            }
-            else if (transform.GetChild(i).name.Equals("LongName"))
-            {
-                longNameText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
             }
         }
         for (int i = 0; i < 6; i++)
@@ -132,6 +131,7 @@ public class InventoryUI : MonoBehaviour
                 textfield.color = Color.black;
                 inventoryButtonScript.item = go;
                 buttonImage.sprite = inventoryButtonScript.item.Sprite;
+                buttonImage.color = new Color(1, 1, 1, 1);
 
 
             }
@@ -145,20 +145,26 @@ public class InventoryUI : MonoBehaviour
         }
         for (int i = 0; i < 6; i++)
         {
-                EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
-                Item go = euser.Equipment[slots[i]];
-                Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
-                EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
-                Image equipmentButton = equipmentButtons[i].transform.GetChild(1).GetComponent<Image>();
+            EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
+            Item go = euser.Equipment[slots[i]];
+            Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
+            EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
+            Image equipmentButtonImage = equipmentButtons[i].transform.GetChild(1).GetComponent<Image>();
+
+            if(go.EquipmentSlot != EquipmentSlot.Null)
+            {
                 equipmentButtonScript.item = go;
-                 string name = go.Name;
-                 if (name.Length > strLength)
+                string name = go.Name;
+                if (name.Length > strLength)
                 {
-                name = name.Substring(0, strLength) + "...";
+                    name = name.Substring(0, strLength) + "...";
                 }
+
                 textfield.text = name;
                 textfield.color = Color.black;
-                equipmentButton.sprite = equipmentButtonScript.item.Sprite;
+                equipmentButtonImage.sprite = equipmentButtonScript.item.Sprite;
+                equipmentButtonImage.color = new Color(1, 1, 1, 1);
+            }
 
         }
         if (statsShown)
@@ -186,6 +192,7 @@ public class InventoryUI : MonoBehaviour
         descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
         longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
         image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+        image.color = new Color(1, 1, 1, 1);
         statsShown = true;
         Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
         Text tooltext = statsBlock.GetComponentInChildren<Text>();
@@ -205,29 +212,35 @@ public class InventoryUI : MonoBehaviour
     {
         //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText);
         InventoryButton but = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>();
-        descriptionText.text  = but.item.FlavorText;
-        longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.LongName;
-        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
-        statsShown = true;
-        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
-        Text tooltext = statsBlock.GetComponentInChildren<Text>();
-        tooltext.text = "";
-        foreach (Stat stat in item.Stats)
+        if (but.item.EquipmentSlot != EquipmentSlot.Null)
         {
 
-            int value = (int)stat.Value;
-            tooltext.text += stat.Name + ": " + value + "\n";
+            descriptionText.text = but.item.FlavorText;
+            longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.LongName;
+            image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
+            image.color = new Color(1, 1, 1, 1);
+            statsShown = true;
+            Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
+            Text tooltext = statsBlock.GetComponentInChildren<Text>();
+            tooltext.text = "";
+            foreach (Stat stat in item.Stats)
+            {
+                int value = (int)stat.Value;
+                tooltext.text += stat.Name + ": " + value + "\n";
 
+            }
         }
     }
     void OnMouseExitEquipment(PointerEventData data)
     {
         statsShown = false;
+        image.color = new Color(34, 32, 32, 0);
 
     }
     void OnMouseExitInventory(PointerEventData data)
     {
         statsShown = false;
+        image.color = new Color(34, 32, 32, 0);
     }
 
 }
