@@ -7,7 +7,6 @@ using CCC.Abilities;
 
 public class AbilityUI : MonoBehaviour
 {
-    GameObject holder;
     GameObject slotsHolder;
     GameObject storedAbils;
     GameObject[] statSlots = new GameObject[5];
@@ -17,14 +16,13 @@ public class AbilityUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        holder = transform.GetChild(0).gameObject;
-        for (int i = 0; i < holder.transform.childCount; i++)
+        for (int i = 0; i < this.transform.childCount; i++)
         {
             
-            if (holder.transform.GetChild(i).name.Equals("Slots"))
+            if (this.transform.GetChild(i).name.Equals("Slots"))
             {
                 
-                slotsHolder = holder.transform.GetChild(i).gameObject;
+                slotsHolder = this.transform.GetChild(i).gameObject;
                 
                 for (int j = 0; j < slotsHolder.transform.childCount; j++)
                 {
@@ -54,9 +52,9 @@ public class AbilityUI : MonoBehaviour
                 }
 
             }
-            if (holder.transform.GetChild(i).name.Equals("Abilities"))
+            if (this.transform.GetChild(i).name.Equals("Abilities"))
             {
-                storedAbils = holder.transform.GetChild(i).gameObject;
+                storedAbils = this.transform.GetChild(i).gameObject;
 
             }
 
