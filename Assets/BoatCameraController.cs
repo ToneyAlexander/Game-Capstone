@@ -27,8 +27,8 @@ public class BoatCameraController : MonoBehaviour
         direction += (h * Time.deltaTime + 360);
          direction = direction % 360;
         
-        Debug.Log(transform.position - player.transform.position);
-        Debug.Log("Direction: "+ direction);
+        //Debug.Log(transform.position - player.transform.position);
+        //Debug.Log("Direction: "+ direction);
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 direction = player.transform.position - transform.position;

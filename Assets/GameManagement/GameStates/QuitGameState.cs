@@ -1,20 +1,23 @@
-﻿namespace CCC.GameManagement.GameStates
+﻿using UnityEngine;
+
+namespace CCC.GameManagement.GameStates
 {
     /// <summary>
-    /// Represents an IGameState where a Game is quit.
+    /// Represents the state of the game where the player has quit.
     /// </summary>
-    public sealed class QuitGameState : IGameState
+    [CreateAssetMenu]
+    public class QuitGameState : GameState
     {
-        #region IGameState
-        public void Enter(Game game)
+        public override void Enter()
         {
-            game.Quit();
+            Debug.Log("In QuitState.Enter");
+            GameManager.Instance.Quit();
         }
 
-        public void Exit(Game game)
+        public override void Exit()
         {
+            Debug.Log("In QuitState.Exit");
             // No-op
         }
-        #endregion
     }
 }

@@ -2168,7 +2168,6 @@ GameObject:
   - component: {fileID: 1578934642}
   - component: {fileID: 1578934641}
   - component: {fileID: 1318119832}
-  - component: {fileID: 1318119833}
   - component: {fileID: 6486006169379577781}
   - component: {fileID: 2350382289057844394}
   - component: {fileID: 5522042545886213516}
@@ -2513,7 +2512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  infoMenu: {fileID: 0}
+  infoMenu: {fileID: 5930947933114172131, guid: 4c255937a95562a44adca004445c95b2,
+    type: 3}
   classInfoTabButton: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395, type: 2}
   inventoryTabButton: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48, type: 2}
   statsTabButton: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597, type: 2}
@@ -2532,18 +2532,6 @@ MonoBehaviour:
   game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
   mainMenuSceneReference: {fileID: 11400000, guid: 827587ddca0544b1f95d318c0a18cace,
     type: 2}
---- !u!114 &1318119833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578934640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6486006169379577781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2712,6 +2700,7 @@ MonoBehaviour:
   MagicVolley: {fileID: 8300000, guid: 1940de51d4757445f89d0a947bb09966, type: 3}
   MagicIgnite: {fileID: 8300000, guid: bd00f3e4bc83046618b1e768c9e8f951, type: 3}
   MagicAOE: {fileID: 0}
+  FireballHit: []
 --- !u!114 &6878096198929839801
 MonoBehaviour:
   m_ObjectHideFlags: 0
