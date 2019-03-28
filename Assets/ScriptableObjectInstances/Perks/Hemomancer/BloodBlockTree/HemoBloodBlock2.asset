@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: HemoBloodBlock2
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 38abdb02188d24f409746b8426b1971b, type: 2}
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Perfect Protection
+  Desc: Increases gain per 1,000 consumed to 8%
+  grants: []
+  Changes:
+  - Value: 0.015
+    abilityName: Ego Sanguine
+    statName: {fileID: 11400000, guid: c5656505025b4af4199f2f9ef0cd867a, type: 2}
+  uiCoords: {x: 200, y: 475}
+  sprite: {fileID: 21300000, guid: 5dac148b4aecedb4d928a33c70bbaed8, type: 3}

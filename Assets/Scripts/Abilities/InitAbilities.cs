@@ -15,6 +15,7 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ooze;
     public TimedBuffPrototype crippled;
     public TimedBuffPrototype ripperFrenzy;
+    public TimedBuffPrototype bloodBlock;
     public PerkPrototype Young;
     public PerkPrototype Middle;
     public PerkPrototype Old;
@@ -33,5 +34,6 @@ public class InitAbilities : MonoBehaviour
         EdgySlash.slowdown = crippled;
         RageMode.RipperFrenzy = ripperFrenzy;
         AbilityBloodRitual.Mend = hemoMend;
+        AbilityBloodBlock.Block = bloodBlock;
     }
 }
