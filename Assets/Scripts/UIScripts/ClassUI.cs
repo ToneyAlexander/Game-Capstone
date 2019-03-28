@@ -14,8 +14,8 @@ public class ClassUI : MonoBehaviour
     bool selected = false;
     GameObject statsBlock;
     Text perkPointsText;
-    Vector3 visibleLoc = new Vector3(-275, 0, 0);
-    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    Vector3 visibleLoc = new Vector3(-480, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-130, 0, 0);
     Text descText;
     bool loaded = false;
     // Start is called before the first frame update
@@ -174,6 +174,7 @@ public class ClassUI : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("StatsBlock"))
             {
                 statsBlock = gameObject.transform.GetChild(i).gameObject;
+                Vector3 locationtemp = statsBlock.transform.localPosition;
             }
             else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
             {
