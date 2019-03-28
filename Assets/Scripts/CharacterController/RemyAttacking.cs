@@ -25,6 +25,8 @@ public class RemyAttacking : MonoBehaviour
 
     public bool startMagicAttack;
 
+    private string thisMeleeBool;
+
     private void Awake()
     {
         mousePositionDetector = GetComponent<MousePositionDetector>();
@@ -44,21 +46,13 @@ public class RemyAttacking : MonoBehaviour
         RotateToEnemy();
         RotateToEnemyDynamic();
 
-        //if (Input.GetButtonDown("MeleeAttackTest"))
+        //if (StopMeleeAttack())
         //{
-        //    MeleeAttack();
+        //    animator.SetBool("isIdleToMelee", false);
+        //    animator.SetBool("isEquip", false);
         //}
 
-        //EquipSword();
-
-        if (StopMeleeAttack())
-        {
-            animator.SetBool("isIdleToMelee", false);
-            animator.SetBool("isEquip", false);
-        }
-
         UnEquipNow();
-        //UnEquipSword();
 
 
         if (StopMagicAttack())
@@ -82,15 +76,15 @@ public class RemyAttacking : MonoBehaviour
     public void MeleeAttack()
     {
         RemyMovement.destination = this.transform.position;
-
+        thisMeleeBool = "is" + ability.AbilityName;
         if (swordOnBack.activeSelf)
         {
             animator.SetBool("isEquip", true);
-            animator.SetBool("isEquipToMelee", true);
+            animator.SetBool(thisMeleeBool, true);
         }
         else
         {
-           animator.SetBool("isIdleToMelee", true);
+           animator.SetBool(thisMeleeBool, true);
         }
 
     }
@@ -154,6 +148,7 @@ public class RemyAttacking : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Ablaze")
+            || animator.GetBool(thisMeleeBool)
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 04")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 05")
             )
@@ -177,15 +172,21 @@ public class RemyAttacking : MonoBehaviour
 
 
     //stop actural melee attack and unequip sword
-    bool StopMeleeAttack()
+    //bool StopMeleeAttack()
+    //{
+    //    bool result = false;
+    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3") &&
+    //            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75)
+    //    {
+    //        result = true;
+    //    }
+    //    return result;
+    //}
+
+    void StopThisMelee()
     {
-        bool result = false;
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3") &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75)
-        {
-            result = true;
-        }
-        return result;
+        animator.SetBool(thisMeleeBool, false);
+        animator.SetBool("isEquip", false);
     }
 
 
@@ -204,22 +205,6 @@ public class RemyAttacking : MonoBehaviour
         
         return result;
     }
-
-
-
-    //void EquipSword()
-    //{
-    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")){
-
-    //        //RemyMovement.destination = this.transform.position;
-    //        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.6) {
-
-    //            swordOnHand.SetActive(true);
-    //            swordOnBack.SetActive(false);
-    //            //Debug.Log("拿剑");
-    //        }
-    //    }
-    //}
 
     void EquipWeapon()
     {
