@@ -17,6 +17,8 @@ public class ClassUI : MonoBehaviour
     Vector3 visibleLoc = new Vector3(-480, 0, 0);
     Vector3 hiddenLoc = new Vector3(-130, 0, 0);
     Text descText;
+	Image spriteImage;
+	Text skillTitle;
     bool loaded = false;
     // Start is called before the first frame update
     public void updatePlayerClass()
@@ -164,23 +166,36 @@ public class ClassUI : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).name.Equals("ScrollBox"))
-            {
-                box = gameObject.transform.GetChild(i).gameObject;
-                content = box.transform.GetChild(0).GetChild(0).gameObject;
-            }
-            else if (transform.GetChild(i).name.Equals("StatsBlock"))
-            {
-                statsBlock = gameObject.transform.GetChild(i).gameObject;
-                Vector3 locationtemp = statsBlock.transform.localPosition;
-            }
-            else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
-            {
-                perkPointsText =gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
-            }
+			if (transform.GetChild(i).name.Equals("ScrollBox"))
+			{
+				box = gameObject.transform.GetChild(i).gameObject;
+				content = box.transform.GetChild(0).GetChild(0).gameObject;
+			}
+			else if (transform.GetChild(i).name.Equals("StatsBlock"))
+			{
+				statsBlock = gameObject.transform.GetChild(i).gameObject;
+				for (int j = 0; j < statsBlock.transform.childCount; j++)
+				{
+					if (statsBlock.transform.GetChild(j).name.Equals("DescText"))
+					{
+						descText = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+					}
+					else if (statsBlock.transform.GetChild(j).name.Equals("Sprite"))
+					{
+						spriteImage = statsBlock.transform.GetChild(j).gameObject.GetComponent<Image>();
+					}
+					else if (statsBlock.transform.GetChild(j).name.Equals("SkillTitle"))
+					{
+						skillTitle = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+					}
+				}
+			}
+			else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
+			{
+				perkPointsText = gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
+			}
 
         }
-        descText = statsBlock.GetComponentInChildren<Text>();
         //  allPerks = playerClass.allPerks;
         //  takenPerks = playerClass.takenPerks;
      //   Debug.Log(playerClass.allPerks);
@@ -201,8 +216,7 @@ public class ClassUI : MonoBehaviour
                 if (!selected)
                 {
                     statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
-
-                    
+            
                     if (test.taken)
                     {
                         colorEdit.color = Color.green;
@@ -269,8 +283,10 @@ public class ClassUI : MonoBehaviour
       //  Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         mousedOver = clickedEvent.perkInfo;
-        descText.text = mousedOver.Name + "\n" + mousedOver.Desc + "\n\n";
-        foreach (PerkStatEntry stat in mousedOver.Stats)
+		descText.text = mousedOver.Desc + "\n\n";
+		skillTitle.text = mousedOver.Name;
+		spriteImage.sprite = mousedOver.sprite;
+		foreach (PerkStatEntry stat in mousedOver.Stats)
         {
             descText.text = descText.text + stat.StatInst.Name + ": " + stat.StatInst.Value + "\n";
         }

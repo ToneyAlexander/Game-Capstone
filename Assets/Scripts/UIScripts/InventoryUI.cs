@@ -181,28 +181,37 @@ public class InventoryUI : MonoBehaviour
 
     void OnClickEquipment(BaseEventData data)
     {
+		
         EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
-        Debug.Log(data.selectedObject.GetComponent<EquipmentButton>().item.Name);
-        euser.DisequipItem(data.selectedObject.GetComponent<EquipmentButton>().item);
+		EquipmentButton equipBut = data.selectedObject.GetComponent<EquipmentButton>();
+		if (equipBut.item != null)
+		{
+			Debug.Log(equipBut.item.Name);
+			euser.DisequipItem(equipBut.item);
+		}
         
     } 
     void OnMouseOverEquipment(PointerEventData data)
     {
-       //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
-        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
-        longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
-        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
-        image.color = new Color(1, 1, 1, 1);
-        statsShown = true;
-        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
-        Text tooltext = statsBlock.GetComponentInChildren<Text>();
-        tooltext.text = "";
-        foreach (Stat stat in item.Stats)
-        {
-            int value = (int)stat.Value;
-            tooltext.text += stat.Name + ": " + value + "\n";
+		//Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
+		EquipmentButton equipBut = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>();
+		if (equipBut.item != null)
+		{
+			descriptionText.text = equipBut.item.FlavorText;
+			longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
+			image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+			image.color = new Color(1, 1, 1, 1);
+			statsShown = true;
+			Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
+			Text tooltext = statsBlock.GetComponentInChildren<Text>();
+			tooltext.text = "";
+			foreach (Stat stat in item.Stats)
+			{
+				int value = (int)stat.Value;
+				tooltext.text += stat.Name + ": " + value + "\n";
 
-        }
+			}
+		}
     }
     void OnClickInventory(BaseEventData data)
     {
