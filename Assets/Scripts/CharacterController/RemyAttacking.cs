@@ -142,7 +142,7 @@ public class RemyAttacking : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Ablaze")
-            || animator.GetBool(thisMeleeBool)
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Slash")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 04")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 05")
             )
