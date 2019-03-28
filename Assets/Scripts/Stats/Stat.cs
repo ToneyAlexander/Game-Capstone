@@ -56,6 +56,8 @@ namespace CCC.Stats
         public const string CRIT_DMG_MULT = "critdmgx";
         public const string CRIT_CHANCE = "critchan";
         public const string CRIT_CHANCE_MULT = "critchanx";
+        public const string FLAT_DMG_REDUCTION = "flatred";
+        public const string FLAT_DMG_REDUCTION_MULT = "flatredx";
 
         //Weird special stats
         public const string HEMO_PHANTOM_HP_MULT = "hemohpx";
