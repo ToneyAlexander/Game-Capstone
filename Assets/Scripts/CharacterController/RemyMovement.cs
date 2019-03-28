@@ -86,6 +86,8 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isEquip", false);
 
+            animator.SetBool("isUnEquip", false);
+
             animator.SetBool("isSlash", false);
 
             animator.SetBool("isRunning", true);
