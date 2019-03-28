@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4526,7 +4526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &708530580
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6390,7 +6390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1120083125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7765,7 +7765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1436365228
 GameObject:
   m_ObjectHideFlags: 0
@@ -9798,7 +9798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &1669663658
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13647,7 +13647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &5930947932216070581
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14926,8 +14926,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    m_HighlightedColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -14945,8 +14945,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947932800071303}
   m_HandleRect: {fileID: 5930947932800071296}
   m_Direction: 2
-  m_Value: 0.99999917
-  m_Size: 0.92700005
+  m_Value: 1
+  m_Size: 0.46350002
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15258,8 +15258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00005258191, y: 0.000077753146}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchoredPosition: {x: -0.00004927306, y: 0.000025013678}
+  m_SizeDelta: {x: 2000, y: 2000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5930947933207128463
 GameObject:
@@ -15756,8 +15756,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
+    m_HighlightedColor: {r: 0.5372549, g: 0.5372549, b: 0.5372549, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -15775,8 +15775,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947933255088996}
   m_HandleRect: {fileID: 5930947933255088997}
   m_Direction: 0
-  m_Value: 0.0000003814703
-  m_Size: 0.92000014
+  m_Value: 0.00000005651404
+  m_Size: 0.46000004
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15897,8 +15897,8 @@ MonoBehaviour:
   m_Viewport: {fileID: 5930947933889254622}
   m_HorizontalScrollbar: {fileID: 5930947933525675244}
   m_VerticalScrollbar: {fileID: 5930947932985557711}
-  m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
+  m_HorizontalScrollbarVisibility: 1
+  m_VerticalScrollbarVisibility: 1
   m_HorizontalScrollbarSpacing: -3
   m_VerticalScrollbarSpacing: -3
   m_OnValueChanged:
@@ -20501,7 +20501,7 @@ PrefabInstance:
     - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
         type: 3}
       propertyPath: makeEnvironment
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
         type: 3}
@@ -20511,7 +20511,7 @@ PrefabInstance:
     - target: {fileID: 9130917454426140432, guid: 22444b60e102c114eafaa6ee43711491,
         type: 3}
       propertyPath: makeNavmesh
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22444b60e102c114eafaa6ee43711491, type: 3}
