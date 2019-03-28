@@ -11,7 +11,7 @@ namespace CCC.Behaviors
     {
         [SerializeField]
         private CommandProcessor commandProcessor;
-
+        private AudioSource audio;
         /// <summary>
         /// The IInteractable that will be interacted with.
         /// </summary>
@@ -21,6 +21,7 @@ namespace CCC.Behaviors
         private void Awake()
         {
             interactable = GetComponent<IInteractable>();
+            audio = GetComponent<AudioSource>();
 
             if (interactable == null)
             {
@@ -34,6 +35,7 @@ namespace CCC.Behaviors
         {
             if (interactable != null)
             {
+                audio.Play();
                 ICommand interactCommand = new InteractCommand(interactable);
                 commandProcessor.ProcessCommand(interactCommand);
             }
