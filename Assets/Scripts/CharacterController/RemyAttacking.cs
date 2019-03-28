@@ -46,12 +46,6 @@ public class RemyAttacking : MonoBehaviour
         RotateToEnemy();
         RotateToEnemyDynamic();
 
-        //if (StopMeleeAttack())
-        //{
-        //    animator.SetBool("isIdleToMelee", false);
-        //    animator.SetBool("isEquip", false);
-        //}
-
         UnEquipNow();
 
 
@@ -170,18 +164,6 @@ public class RemyAttacking : MonoBehaviour
     }
 
 
-
-    //stop actural melee attack and unequip sword
-    //bool StopMeleeAttack()
-    //{
-    //    bool result = false;
-    //    if (animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Standing Melee Attack Combo3") &&
-    //            animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.75)
-    //    {
-    //        result = true;
-    //    }
-    //    return result;
-    //}
 
     void StopThisMelee()
     {
