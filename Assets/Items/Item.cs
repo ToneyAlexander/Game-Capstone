@@ -1,15 +1,20 @@
-﻿using UnityEngine;
+﻿using CCC.Stats;
+using UnityEngine;
 using System.Collections.Generic;
-
-using CCC.Stats;
 
 namespace CCC.Items
 {
     /// <summary>
     /// Represents an item in the game.
     /// </summary>
-    public class Item
+    [System.Serializable]
+    public sealed class Item
     {
+        public static Item FromData()
+        {
+            return null;
+        }
+
         /// <summary>
         /// The null Item that is used when no other Item makes sense.
         /// </summary>
@@ -124,15 +129,17 @@ namespace CCC.Items
         /// <summary>
         /// The name of this Item.
         /// </summary>
+        [SerializeField]
         private string name;
 
-
+        [SerializeField]
         private string longName;
 
         /// <summary>
         /// The flavor text of this Item.
         /// </summary>
-        private readonly string flavorText;
+        [SerializeField]
+        private string flavorText;
 
         /// <summary>
         /// Whether or not this Item is unique.
@@ -141,28 +148,34 @@ namespace CCC.Items
         /// This can be used, for example, to not randomize the names of unique
         /// Items that should always have the same name.
         /// </remarks>
+        [SerializeField]
         private bool isUnique;
 
+        [SerializeField]
         private int tier;
 
         /// <summary>
         /// The Sprite of this Item.
         /// </summary>
-        private readonly Sprite sprite;
+        [SerializeField]
+        private Sprite sprite;
 
         /// <summary>
         /// The prefab to use when this Item is placed in the world.
         /// </summary>
-        private readonly GameObject worldDropPrefab;
+        [SerializeField]
+        private GameObject worldDropPrefab;
 
         /// <summary>
         /// The EquipmentSlot that this Item occupies.
         /// </summary>
-        private readonly EquipmentSlot equipmentSlot;
+        [SerializeField]
+        private EquipmentSlot equipmentSlot;
 
         /// <summary>
         /// The list of Stat that this Item has.
         /// </summary>
+        [SerializeField]
         private List<Stat> stats;
     }
 }

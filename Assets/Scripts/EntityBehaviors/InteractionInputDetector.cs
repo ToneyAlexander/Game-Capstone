@@ -9,9 +9,13 @@ namespace CCC.Behaviors
     /// </summary>
     public sealed class InteractionInputDetector : MonoBehaviour
     {
+        /// <summary>
+        /// The CommandProcessor that this InteractionInputDetector will send 
+        /// InteractCommands to.
+        /// </summary>
         [SerializeField]
         private CommandProcessor commandProcessor;
-        private AudioSource audio;
+
         /// <summary>
         /// The IInteractable that will be interacted with.
         /// </summary>
@@ -21,13 +25,11 @@ namespace CCC.Behaviors
         private void Awake()
         {
             interactable = GetComponent<IInteractable>();
-            audio = GetComponent<AudioSource>();
-
             if (interactable == null)
             {
-                Debug.LogError("[" + gameObject.name +
-                    ".InteractionInputDetector]" + gameObject.name + " has no" +
-                    " IInteractable Component!");
+                Debug.LogError("[" + gameObject.name + 
+                    ".InteractionInputDetector.Awake] " + 
+                    "interactable is null");
             }
         }
 
@@ -35,7 +37,6 @@ namespace CCC.Behaviors
         {
             if (interactable != null)
             {
-                audio.Play();
                 ICommand interactCommand = new InteractCommand(interactable);
                 commandProcessor.ProcessCommand(interactCommand);
             }

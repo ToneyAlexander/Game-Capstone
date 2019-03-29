@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 3957421001011436628}
   - component: {fileID: 4404504494912410062}
   m_Layer: 0
-  m_Name: Transfer
+  m_Name: Island Transfer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5206281210ad4d24cbd2382377dbfb74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 101312, guid: c9d893483e2e743918039b09a7f8689c, type: 3}
   camera: {fileID: 0}
   maritimeController: {fileID: 7826111301928589181, guid: 3df9daed3c44c48fa8593ba2310666c7,
     type: 3}

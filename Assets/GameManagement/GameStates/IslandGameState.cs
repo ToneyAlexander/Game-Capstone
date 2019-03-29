@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.Items;
+using UnityEngine;
 
 namespace CCC.GameManagement.GameStates
 {
@@ -9,14 +10,19 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class IslandGameState : GameState
     {
+        [SerializeField]
+        private Inventory playerInventory;
+
         public override void Enter()
         {
             Debug.Log("In IslandState.Enter");
+            playerInventory.Load();
         }
 
         public override void Exit()
         {
             Debug.Log("In IslandState.Exit");
+            playerInventory.Save();
         }
     }
 }

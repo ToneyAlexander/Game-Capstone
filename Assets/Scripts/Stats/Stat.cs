@@ -1,11 +1,13 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 
 namespace CCC.Stats
 {
     /// <summary>
     /// Represents a stat in the game.
     /// </summary>
-    public class Stat : IComparable<Stat>, IEquatable<Stat>
+    [System.Serializable]
+    public sealed class Stat : IComparable<Stat>, IEquatable<Stat>
     {
         
         public const string STR = "str";
@@ -121,11 +123,13 @@ namespace CCC.Stats
         /// <summary>
         /// The name of this Stat.
         /// </summary>
-        private readonly string name;
+        [SerializeField]
+        private string name;
 
         /// <summary>
         /// The value of this Stat.
         /// </summary>
+        [SerializeField]
         private float value;
 
         public int CompareTo(Stat other)
