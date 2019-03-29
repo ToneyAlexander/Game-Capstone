@@ -65,8 +65,15 @@ namespace CCC.GameManagement
             {
                 instance = this;
 
-                // We can call Enter on the very first state since GameManager will 
-                // only ever have one instance that has Awake called on it.
+                // The Game Manager prefab instance that is in the first Scene 
+                // that the game starts in will become the Game Manager 
+                // singleton.Therefore, we need to call Enter on the GameState 
+                // of that Game Manager prefab instance's GameManager Component 
+                // as that will be the initial game state that the game starts 
+                // in. If we didn't call it here, that initial game state's 
+                // Enter method would never be called because the game was 
+                // never "transitioned" into it that game state but rather just 
+                // started already in that game state.
                 currentState.Enter();
             }
             else
