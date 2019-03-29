@@ -11,13 +11,17 @@ namespace CCC.GameManagement
     /// </summary>
     public sealed class SceneChanger : MonoBehaviour
     {
+        /// <summary>
+        /// Gets the singleton SceneChanger instance.
+        /// </summary>
+        /// <value>The instance.</value>
         public static SceneChanger Instance
         {
             get { return instance; }
         }
 
         /// <summary>
-        /// The singleton instance of SceneChanger.
+        /// The singleton SceneChanger instance.
         /// </summary>
         private static SceneChanger instance;
 
@@ -30,7 +34,8 @@ namespace CCC.GameManagement
         /// </param>
         /// <param name="actionAfterLoad">
         /// The UnityAction that should be called after the new Scene is 
-        /// loaded. This UnityAction will be executed before any 
+        /// loaded. This UnityAction will be executed before the Start method 
+        /// of any Component in the Scene that is loaded.
         /// </param>
         public void ChangeToScene(SceneReference sceneReference, 
             UnityAction actionAfterLoad)
