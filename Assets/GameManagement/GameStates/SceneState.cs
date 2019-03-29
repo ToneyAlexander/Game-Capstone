@@ -30,6 +30,7 @@ namespace CCC.GameManagement.GameStates
         public override void Exit()
         {
             Debug.Log("Exiting SceneState " + name);
+            gameState.Exit();
         }
     }
 }

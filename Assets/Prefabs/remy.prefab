@@ -2167,13 +2167,14 @@ GameObject:
   - component: {fileID: 1578934643}
   - component: {fileID: 1578934642}
   - component: {fileID: 1578934641}
-  - component: {fileID: 1318119832}
+  - component: {fileID: 4676414605621251161}
   - component: {fileID: 6486006169379577781}
   - component: {fileID: 2350382289057844394}
   - component: {fileID: 5522042545886213516}
   - component: {fileID: 7761238341761423436}
   - component: {fileID: 7319138017440866043}
   - component: {fileID: 6878096198929839801}
+  - component: {fileID: 1212432554513744453}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2189,7 +2190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578934640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalPosition: {x: 152, y: 1.6, z: 48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543120061}
@@ -2517,7 +2518,7 @@ MonoBehaviour:
   classInfoTabButton: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395, type: 2}
   inventoryTabButton: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48, type: 2}
   statsTabButton: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597, type: 2}
---- !u!114 &1318119832
+--- !u!114 &4676414605621251161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2526,12 +2527,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1578934640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04934ba8ad37246adbe831c14cce4d24, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd90795c81c640aa9845091e7f7f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
-  mainMenuSceneReference: {fileID: 11400000, guid: 827587ddca0544b1f95d318c0a18cace,
-    type: 2}
 --- !u!114 &6486006169379577781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2716,6 +2714,19 @@ MonoBehaviour:
   MeleeA1: {fileID: 8300000, guid: ee7a920474f954c49aae94e672e7ddb9, type: 3}
   MeleeA2: {fileID: 8300000, guid: d7bb9c0afaa2c4debac64c2aa05c4574, type: 3}
   MeleeA3: {fileID: 8300000, guid: fa4a621dd19a3490e9652baab23f2f45, type: 3}
+--- !u!114 &1212432554513744453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6caf71fd14649f292b8444a4029482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: {fileID: 0}
 --- !u!1 &1582235922
 GameObject:
   m_ObjectHideFlags: 0
