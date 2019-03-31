@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using CCC.Items;
+using CCC.ItemManagement;
+using CCC.Stats;
 using System.Collections.Generic;
 using UnityEngine;
-using CCC.Items;
-using CCC.Stats;
 
 [RequireComponent(typeof(StatBlock))]
 public class ControlStatBlock : MonoBehaviour
