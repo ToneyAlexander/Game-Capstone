@@ -51,10 +51,10 @@ public class ClassUI : MonoBehaviour
             loaded = true;
             foreach (PerkPrototype proto in playerClass.allPerks)
             {
-                Vector3 position = new Vector3(proto.uiCoords.x*4, -proto.uiCoords.y*4, 0);
+                Vector3 position = new Vector3(proto.uiCoords.x*3, -proto.uiCoords.y*3, 0);
                 foreach (PerkPrototype req in proto.Require)
                 {
-                    Vector3 other = new Vector3(req.uiCoords.x*4, -req.uiCoords.y*4, 0);
+                    Vector3 other = new Vector3(req.uiCoords.x*3, -req.uiCoords.y*3, 0);
                     Vector3 direction = other - position;
                     GameObject line = new GameObject();
                     Image l = line.AddComponent<Image>();
@@ -64,7 +64,7 @@ public class ClassUI : MonoBehaviour
                     rect.pivot = new Vector2(0, 0.5f);
                     line.transform.localPosition = position;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    rect.sizeDelta = new Vector3(direction.magnitude, 2, 1);
+                    rect.sizeDelta = new Vector3(direction.magnitude, 2f, 1);
                     rect.Rotate(new Vector3(0, 0, angle));
                     line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
 
@@ -80,7 +80,7 @@ public class ClassUI : MonoBehaviour
                 }
                 foreach (PerkPrototype req in proto.BlockedBy)
                 {
-                    Vector3 other = new Vector3(req.uiCoords.x*4, -req.uiCoords.y*4, 0);
+                    Vector3 other = new Vector3(req.uiCoords.x*3, -req.uiCoords.y*3, 0);
                     Vector3 direction = other - position;
                     GameObject line = new GameObject();
                     Image l = line.AddComponent<Image>();
@@ -91,7 +91,7 @@ public class ClassUI : MonoBehaviour
                     rect.pivot = new Vector2(0, 0.5f);
                     line.transform.localPosition = position;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    rect.sizeDelta = new Vector3(direction.magnitude, 2, 1);
+                    rect.sizeDelta = new Vector3(direction.magnitude, 2.0f, 1);
                     line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
                     rect.Rotate(new Vector3(0, 0, angle));
                     l.color = Color.red;
@@ -113,11 +113,11 @@ public class ClassUI : MonoBehaviour
                 image.transform.parent = content.transform;
                 image.name = proto.Name;
                 //RectTransform rect = image.GetComponent<RectTransform>();
-                image.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                image.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
                 Image spr = image.AddComponent<Image>();
                 spr.sprite = proto.sprite;
                 //image.GetComponent<Image>.sprite = proto.sprite;
-                image.transform.localPosition = new Vector3(proto.uiCoords.x*4, -proto.uiCoords.y*4, 0);
+                image.transform.localPosition = new Vector3(proto.uiCoords.x*3, -proto.uiCoords.y*3, 0);
                 EventTrigger ev = image.AddComponent<EventTrigger>();
 
                 EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -210,7 +210,7 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
-            perkPointsText.text = "PERK POINTS: " + playerClass.PerkPoints;
+            perkPointsText.text = playerClass.PerkPoints.ToString();
             if (test)
             {
                 if (!selected)
@@ -270,6 +270,7 @@ public class ClassUI : MonoBehaviour
         }
 
        // foreach(Ga)
+
 
 
 
