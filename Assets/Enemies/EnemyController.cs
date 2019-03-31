@@ -41,6 +41,9 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField]
     private PerkPrototype initialStats;
 
+    [SerializeField]
+    protected GameObject healthBar;
+
     private PlayerClass enemyClass;
     protected float expValue;
 
@@ -72,6 +75,9 @@ public abstract class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 5f;
         path = new NavMeshPath();
+
+        // Add health bar
+        GameObject hpBar = Instantiate(healthBar, transform);
 
         // Set up attack controller
         attackController = GetComponent<EnemyAttackController>();
