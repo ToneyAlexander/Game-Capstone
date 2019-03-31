@@ -78,6 +78,12 @@ public abstract class EnemyController : MonoBehaviour
 
         // Add health bar
         GameObject hpBar = Instantiate(healthBar, transform);
+        Vector3 barScale = hpBar.GetComponent<RectTransform>().localScale;
+        hpBar.GetComponent<RectTransform>().localScale = new Vector3(
+            (1.0f / transform.localScale.x) * barScale.x,
+            (1.0f / transform.localScale.y) * barScale.y,
+            (1.0f / transform.localScale.z) * barScale.z
+        );
 
         // Set up attack controller
         attackController = GetComponent<EnemyAttackController>();
