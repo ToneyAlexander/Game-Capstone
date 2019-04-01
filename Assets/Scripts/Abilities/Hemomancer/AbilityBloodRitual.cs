@@ -12,16 +12,19 @@ public class AbilityBloodRitual : AbilityBase
 
     public static TimedBuffPrototype Mend;
 
+    private float ratio;
+
     public override void UpdateStats()
     {
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        ratio = abilStats.Find(item => item.Name == Stat.AS_BUFFS).Value;
     }
 
     protected override void Activate()
     {
         TimedBuff tb = Mend.Instance;
         Stat stat = tb.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
-        stat.Value = StatBlock.CalcMult(stats.HealthMax * 1.01f, stats.PhantomHpMult) / tb.Duration;
+        stat.Value = StatBlock.CalcMult(stats.HealthMax * 1.01f, stats.PhantomHpMult) * ratio / tb.Duration;
         controlStats.ApplyBuff(tb);
         stats.HealthCur = 1f;
     }

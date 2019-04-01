@@ -183,7 +183,7 @@ public class AlienBeetle : BaseBoss
             if (!inUse)
             {
                 timeSinceUse += Time.deltaTime;
-                if (Vector3.Distance(transform.position, player.transform.position) > 5)
+                if (Vector3.Distance(transform.position, player.transform.position) > 6)
                 {
                     transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
 
