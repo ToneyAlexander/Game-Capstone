@@ -13,7 +13,7 @@ public class CrewMember : ScriptableObject
         Explorer
     }
     
-
+    
 
 
     [SerializeField]
@@ -40,6 +40,9 @@ public class CrewMember : ScriptableObject
     [SerializeField]
     private int typeID = 0;
     public int Type { get { return typeID; } }
+
+    private bool active= false;
+    public bool Active { get { return active; } set { active = value; } }
 
 
     public void grantBonus()
