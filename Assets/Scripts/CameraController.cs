@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     }
     public static void dolly()
     {
-        dollyAmount = 10.0f;
+        dollyAmount = 5.0f;
         dollyDuration = 1.0f;
     }
     public static void dolly(float amount, float duration)
@@ -70,11 +70,16 @@ public class CameraController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             direction = (direction + 1) % cameras.Length;
-            CameraController.shake();
+            
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             direction = (direction - 1 + 4) % cameras.Length;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Semicolon))
+        {
+            CameraController.shake();
             CameraController.dolly();
         }
         
