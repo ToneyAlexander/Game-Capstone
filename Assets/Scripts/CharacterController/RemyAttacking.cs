@@ -70,12 +70,14 @@ public class RemyAttacking : MonoBehaviour
     public void MeleeAttack()
     {
         RemyMovement.destination = this.transform.position;
-        thisMeleeBool = "is" + ability.AbilityName;
-        if (swordOnBack.activeSelf)
+        thisMeleeBool = "is" + ability.TypeString;
+
+        if (swordOnBack.activeSelf && thisMeleeBool != "isThrowingDagger")
         {
             animator.SetBool("isEquip", true);
             animator.SetBool(thisMeleeBool, true);
         }
+
         else
         {
            animator.SetBool(thisMeleeBool, true);
@@ -87,8 +89,6 @@ public class RemyAttacking : MonoBehaviour
 
     public void MagicAttack(Ability ability)
     {
-
-        if (true) {
 
             if (ability.AbilityName.Equals("Fireball Ignite")) {
                 RemyMovement.destination = this.transform.position;
@@ -112,7 +112,6 @@ public class RemyAttacking : MonoBehaviour
             {
                 //animator.SetBool("isMagic5", true);
             }
-        }
 
     }
 
@@ -143,6 +142,8 @@ public class RemyAttacking : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Ablaze")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Slash")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.WhirlwindSlash")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.RainOfDeath")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 04")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 05")
             )

@@ -43,6 +43,16 @@ public class CameraController : MonoBehaviour
         dollyAmount = amount;
         dollyDuration = duration;
     }
+    public static void addDolly()
+    {
+        dollyAmount += 1.0f;
+        dollyDuration = 1.0f;
+    }
+    public static void addDolly(float amount, float duration)
+    {
+        dollyAmount += amount;
+        dollyDuration = duration;
+    }
 
 
     void Start()
@@ -80,7 +90,7 @@ public class CameraController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Semicolon))
         {
             CameraController.shake();
-            CameraController.dolly();
+            CameraController.addDolly();
         }
         
         RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
