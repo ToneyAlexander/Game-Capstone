@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899863, g: 0.5223832, b: 0.5390437, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4661,6 +4661,8 @@ MonoBehaviour:
   MeleeA1: {fileID: 8300000, guid: ee7a920474f954c49aae94e672e7ddb9, type: 3}
   MeleeA2: {fileID: 8300000, guid: d7bb9c0afaa2c4debac64c2aa05c4574, type: 3}
   MeleeA3: {fileID: 8300000, guid: fa4a621dd19a3490e9652baab23f2f45, type: 3}
+  RainOfDeath: {fileID: 8300000, guid: 6c89999d9616f4eecbb441f384c68e50, type: 3}
+  DaggerThrow: {fileID: 8300000, guid: 6b9ae1668763546e5ba4f4392dac64fe, type: 3}
 --- !u!114 &594619846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11103,6 +11105,8 @@ MonoBehaviour:
   MeleeA1: {fileID: 0}
   MeleeA2: {fileID: 0}
   MeleeA3: {fileID: 0}
+  RainOfDeath: {fileID: 0}
+  DaggerThrow: {fileID: 0}
 --- !u!82 &1512329781
 AudioSource:
   m_ObjectHideFlags: 0
