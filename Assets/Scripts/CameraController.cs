@@ -16,6 +16,22 @@ public class CameraController : MonoBehaviour
 
     int direction = 0;
 
+    private static float shakeAmount = 0;
+    private static float shakeDuration = 0;
+    private static float freezeDuration = 0;
+    private static float flashDuration = 0;
+    public static void shake()
+    {
+        shakeAmount = 1.0f;
+        shakeDuration = 1.0f;
+    }
+    public static void shake(float amount, float duration)
+    {
+        shakeAmount = amount;
+        shakeDuration = duration;
+    }
+
+
     void Start()
     {
         cameras = new Vector3[4];
@@ -60,14 +76,21 @@ public class CameraController : MonoBehaviour
             }
    
         }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SceneManager.LoadScene("BOAT");
-        }
         Vector3 position = player.transform.position;
         position += cameras[direction];
         transform.position = Vector3.MoveTowards(transform.position, position, 60 * Time.deltaTime) ;
+        
         transform.LookAt(player.transform);
+        transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+        if (shakeDuration > 0)
+        {
+            shakeDuration -= Time.deltaTime;
+        }
+       
+        if (shakeDuration <= 0)
+        {
+            shakeAmount = 0;
+        }
         Vector3 offset = new Vector3();
         Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);
 //        Debug.Log(mousePositionRelativetoCenter);

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63845f604d5829b42892be037c0915ba, type: 3}
-  m_Name: CrawfisProto
+  m_Name: Crawfis
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  description: 
+  image: {fileID: 21300000, guid: 45e13a8ad8bf4464881ff693855e9cf3, type: 3}
+  description: The Ultimate Lifeform
   Perks: []
-  Defaults: []
+  Defaults:
+  - {fileID: 11400000, guid: 5abe8578b8df1474dbf1499195a10317, type: 2}
   OnLevel: {fileID: 0}
