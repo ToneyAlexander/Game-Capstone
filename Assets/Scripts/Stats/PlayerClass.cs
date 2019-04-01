@@ -21,11 +21,9 @@ public class PlayerClass : MonoBehaviour
     private ControlStatBlock stats;
     private InitAbilities init;
 
-    public float Exp { get; private set; }
-    public float ExpToLevel { get; private set; }
+    public LevelExpStore PlayerLevelExp;
+    
     private readonly float expToLevelInc = 1.25f;
-    public int PerkPoints { get; private set; }
-    public int Level { get; private set; }
 
     public static bool CheckPrereq(PerkPrototype p, List<PerkPrototype> taken)
     {
@@ -68,14 +66,13 @@ public class PlayerClass : MonoBehaviour
         takenPerks = new List<PerkPrototype>();
         stats = GetComponent<ControlStatBlock>();
         init = GetComponent<InitAbilities>();
-        ExpToLevel = 100;
-        PerkPoints = 1;
-        Level = 1;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        
+        if(PlayerLevelExp != null && PlayerLevelExp.Level < 1)
+        {
+            PlayerLevelExp.ExpToLevel = 100;
+            PlayerLevelExp.PerkPoints = 1;
+            PlayerLevelExp.Level = 1;
+        }
     }
 
     public void IncreaseAge()
@@ -99,20 +96,23 @@ public class PlayerClass : MonoBehaviour
     public void ApplyExp(float toAdd)
     {
         //Debug.Log("Gained " + toAdd + " exp.");
-        Exp += toAdd;
-        while (Exp > ExpToLevel)
+        PlayerLevelExp.Exp += toAdd;
+        while (PlayerLevelExp.Exp > PlayerLevelExp.ExpToLevel)
         {
             LevelUp();
-            Exp -= ExpToLevel;
-            ExpToLevel *= expToLevelInc;
+            PlayerLevelExp.Exp -= PlayerLevelExp.ExpToLevel;
+            PlayerLevelExp.ExpToLevel *= expToLevelInc;
         }
     }
 
     public void LevelUp()
     {
         //Debug.Log("Leveled Up!");
-        ++PerkPoints;
-        ++Level;
+        if (PlayerLevelExp != null)
+        {
+            ++PlayerLevelExp.PerkPoints;
+            ++PlayerLevelExp.Level;
+        }
         if (onLevelUp != null)
         {
             takenPerks.Add(onLevelUp);
@@ -134,13 +134,13 @@ public class PlayerClass : MonoBehaviour
 
     public bool TakePerk(PerkPrototype p, bool needsPerkPoint = true)
     {
-        if (!needsPerkPoint || PerkPoints > 0)
+        if (!needsPerkPoint || (PlayerLevelExp != null && PlayerLevelExp.PerkPoints > 0))
         {
             if (CheckPrereq(p, takenPerks))
             {
                 if(needsPerkPoint)
                 {
-                    --PerkPoints;
+                    --PlayerLevelExp.PerkPoints;
                 }
                 takenPerks.Add(p);
                 stats.StatsChanged();

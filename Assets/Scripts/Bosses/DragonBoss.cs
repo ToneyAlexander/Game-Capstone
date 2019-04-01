@@ -42,7 +42,7 @@ public class DragonBoss : BaseBoss
             obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             obj.transform.rotation = transform.rotation;
             obj.transform.Rotate(rotateOffset);
-            obj.transform.Translate(Vector3.forward * 5);
+            obj.transform.Translate(Vector3.forward * 2);
             pbh.speed = 11f + Level / 2;
             Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, false, false);
             pbh.dmg = stats.RealDamage(dmg);
@@ -249,12 +249,24 @@ public class DragonBoss : BaseBoss
             if (!inUse)
             {
                 timeSinceUse += Time.deltaTime;
-                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                if (Vector3.Distance(transform.position, player.transform.position) > 5)
                 {
-                    //Debug.Log("set walk");
-                    animator.SetTrigger("walk");
+                    transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
+
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                    {
+                        //Debug.Log("set walk");
+                        animator.SetTrigger("walk");
+                    }
                 }
-                transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
+                else
+                {
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        //Debug.Log("set walk");
+                        animator.SetTrigger("idle");
+                    }
+                }
             }
 
             ballTimer += Time.deltaTime;

@@ -69,7 +69,7 @@ public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
     {
 
         dmgTimer = 1f;
-        bossClass.TakePerk(StatPerk);
+        bossClass.TakePerk(StatPerk, false);
         bossClass.onLevelUp = LevelPerk;
         for (int i = 0; i < Level; ++i)
         {
@@ -84,7 +84,7 @@ public abstract class BaseBoss : MonoBehaviour, IActivatableBoss
             dmgTimer += Time.deltaTime;
     }
 
-    void OnTriggerStay(Collider col)
+    void OnCollisonStay(Collision col)
     {
         if (dmgTimer > 0.5f && !inUse)
         {

@@ -91,7 +91,7 @@ public class StatScreenUI : MonoBehaviour
         column1.text = detailedStats.HealthMax + "\n" + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult) + "\n" + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult) + "\n" + StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult) + "\n" + StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult);
         column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) + "\n" + StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult) + "\n" + StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult) + "\n" + StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) + "\n" + StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult);
         column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult);
-        levelText.text = player.Level.ToString();
+        levelText.text = player.PlayerLevelExp.Level.ToString();
         nameText.text = player.name.ToString();
         classText.text = textPlayerClass.ClassL.name;
     }

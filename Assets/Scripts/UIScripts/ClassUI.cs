@@ -210,7 +210,7 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
-            perkPointsText.text = playerClass.PerkPoints.ToString();
+            perkPointsText.text = playerClass.PlayerLevelExp.PerkPoints.ToString();
             if (test)
             {
                 if (!selected)

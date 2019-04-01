@@ -20,13 +20,6 @@ public class HealthUpdater : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("max = " + stats.HealthMax);
-            Debug.Log("cur = " + stats.HealthCur);
-            Debug.Log("bas = " + stats.HealthBase);
-        }
-
-        healthBar.UpdateBar(stats.HealthBase, stats.HealthMax);
+        healthBar.UpdateBar(stats.HealthCur, stats.HealthMax);
     }
 }

@@ -14,14 +14,17 @@ public class CrewController : ScriptableObject
 
     }
     public int maxCrew = 3;
+    public int totalCrew = 8;
     public List<CrewMember> selectedCrew;
     public List<CrewMember> fullCrew;
-    public List<CrewMember> Sacrifices;
+
+    public List<CrewMember> AllCrewMembers;
     public int[] themeChances = { 255, 255, 255, 255 };
     public int[] bossChances = { 255, 255 };
     public int areaBonus = 0;
     public int levelBonus = 0;
     private int selectedSlot = 999;
+
 
 
     // Start is called before the first frame update
@@ -46,6 +49,18 @@ public class CrewController : ScriptableObject
                     break;
             }
         }
+    }
+   public void fillCrew()
+    {
+        for (int i = 0; i < totalCrew; i++)
+        {
+
+        }
+    }
+    public void dismiss(int i)
+    {
+        selectedCrew[i].Active = false;
+        selectedCrew.RemoveAt(i);
     }
    public int selectTheme()
     {

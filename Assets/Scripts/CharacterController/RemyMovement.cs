@@ -13,7 +13,6 @@ public class RemyMovement : MonoBehaviour
     public float movingSpeed;
     private Quaternion playerRot;
     private Animator animator;
-    private float timer;
     private float EPSSION;
     private float reLocateDelay;
     private Vector3 lookAtTarget;
@@ -25,7 +24,6 @@ public class RemyMovement : MonoBehaviour
         //initialPosition = new Vector3(5, 5, 5);
         EPSSION = 0.0001f;
         reLocateDelay = 0.15f;
-        timer = 0;
         rotationSpeed = 20;
 
         statBlock = GetComponent<StatBlock>();
@@ -88,7 +86,13 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isUnEquip", false);
 
-            animator.SetBool("isSlash", false);
+            animator.SetBool("isEdgySlash", false);
+
+            animator.SetBool("isWhirlwindSlash", false);
+
+            animator.SetBool("isRainOfDeath", false);
+
+            animator.SetBool("isThrowingDagger",false);
 
             animator.SetBool("isRunning", true);
 

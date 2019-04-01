@@ -27,15 +27,15 @@ public class ExperienceBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.Exp >= player.ExpToLevel)
+        if(player.PlayerLevelExp.Exp >= player.PlayerLevelExp.ExpToLevel)
         {
 			expBar.fillAmount = 0;
 		}
 		else
 		{
-			expBar.fillAmount = player.Exp / player.ExpToLevel;
+			expBar.fillAmount = player.PlayerLevelExp.Exp / player.PlayerLevelExp.ExpToLevel;
 		}
-		string newText = "EXP: " + player.Exp.ToString() + " / " + player.ExpToLevel.ToString();
+		string newText = "EXP: " + player.PlayerLevelExp.Exp.ToString() + " / " + player.PlayerLevelExp.ExpToLevel.ToString();
 		EXPLevelText.text = newText;
     }
 }

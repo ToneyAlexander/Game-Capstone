@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
+  m_Name: HemoSiphon
+  m_EditorClassIdentifier: 
+  abilityName: Soul Siphon
+  abilityType: 2
+  typeString: AbilityBloodSiphon
+  icon: {fileID: 21300000, guid: fae0fe09990c2a34e96957ed86dd782a, type: 3}
+  prefab: {fileID: 8847134197239784626, guid: 5c7fbb4d4b248f44db8cae3b899454ce, type: 3}
+  isAttack: 0
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 5
+  - statIdentifier: {fileID: 11400000, guid: 4c03a2c1d175302458d2ccca6d787f41, type: 2}
+    value: 0.05
+  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+    value: 0.2
