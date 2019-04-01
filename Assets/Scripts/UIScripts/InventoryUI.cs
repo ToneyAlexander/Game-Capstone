@@ -21,6 +21,9 @@ public class InventoryUI : MonoBehaviour
     GameObject equipment;
     Button[] equipmentButtons;
 
+    [SerializeField]
+    private Color baseColor;
+
     Image image;
     Text descriptionText;
     Text longNameText;
@@ -120,15 +123,11 @@ public class InventoryUI : MonoBehaviour
             if (user.Items.Count > i)
             {
                 Item go = user.Items[i];
-                Text textfield = storedButtons[i].GetComponentInChildren<Text>();
                 string name = go.Name;
                 if (name.Length > strLength)
                 {
                     name = name.Substring(0, strLength) + "...";
                 }
-                textfield.text = name;
-
-                textfield.color = Color.black;
                 inventoryButtonScript.item = go;
                 buttonImage.sprite = inventoryButtonScript.item.Sprite;
                 buttonImage.color = new Color(1, 1, 1, 1);
@@ -147,9 +146,8 @@ public class InventoryUI : MonoBehaviour
         {
             EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
             Item go = euser.Equipment[slots[i]];
-            Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
             EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
-            Image equipmentButtonImage = equipmentButtons[i].transform.GetChild(1).GetComponent<Image>();
+            Image equipmentButtonImage = equipmentButtons[i].transform.GetChild(0).GetComponent<Image>();
 
             if(go.EquipmentSlot != EquipmentSlot.Null)
             {
@@ -159,22 +157,24 @@ public class InventoryUI : MonoBehaviour
                 {
                     name = name.Substring(0, strLength) + "...";
                 }
-
-                textfield.text = name;
-                textfield.color = Color.black;
                 equipmentButtonImage.sprite = equipmentButtonScript.item.Sprite;
                 equipmentButtonImage.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                equipmentButtonImage.sprite = null;
+                equipmentButtonImage.color = baseColor;
             }
 
         }
         if (statsShown)
         {
-            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 900 * Time.deltaTime);
 
         }
         else
         {
-            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 900 * Time.deltaTime);
         }
 
     }
@@ -184,7 +184,7 @@ public class InventoryUI : MonoBehaviour
 		
         EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
 		EquipmentButton equipBut = data.selectedObject.GetComponent<EquipmentButton>();
-		if (equipBut.item != null)
+		if (equipBut != null && equipBut.item != null)
 		{
 			Debug.Log(equipBut.item.Name);
 			euser.DisequipItem(equipBut.item);
@@ -195,7 +195,7 @@ public class InventoryUI : MonoBehaviour
     {
 		//Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
 		EquipmentButton equipBut = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>();
-		if (equipBut.item != null)
+		if (equipBut != null && equipBut.item != null)
 		{
 			descriptionText.text = equipBut.item.FlavorText;
 			longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
@@ -243,13 +243,13 @@ public class InventoryUI : MonoBehaviour
     void OnMouseExitEquipment(PointerEventData data)
     {
         statsShown = false;
-        image.color = new Color(34, 32, 32, 0);
+        image.color = baseColor;
 
     }
     void OnMouseExitInventory(PointerEventData data)
     {
         statsShown = false;
-        image.color = new Color(34, 32, 32, 0);
+        image.color = baseColor;
     }
 
 }
