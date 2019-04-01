@@ -327,7 +327,6 @@ public class ControlStatBlock : MonoBehaviour
         stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
-        Debug.Log(stats.HealthMax);
     }
 
     // Update is called once per frame
