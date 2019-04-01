@@ -10,7 +10,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
 
     public abstract void UpdateStats();
 
-    public bool Use()
+    public virtual bool Use()
     {
         if (abil.cdRemain <= 0.0001f)
         {
