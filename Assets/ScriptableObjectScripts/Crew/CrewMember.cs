@@ -5,19 +5,17 @@ using UnityEngine;
 public class CrewMember : ScriptableObject
 {
     // Start is called before the first frame update
-    enum crewType
+    public enum crewType
     {
+        Navigator,
+        Hunter,
+        Naturalist,
+        Explorer
+    }
+    
 
-    }
-    enum crewAttribute
-    {
-        Daring,
-        Wise,
-        Playful,
-        Suave,
-        Sophisticated,
-        Clever
-    }
+
+
     [SerializeField]
     private Sprite image;
 
@@ -29,15 +27,24 @@ public class CrewMember : ScriptableObject
     public int StarRating{get{ return starRating; }}
 
     [SerializeField]
+    private int power;
+    public int Power{get{ return power; }}
+
+    [SerializeField]
     private string _name;
     public string name { get { return _name; } }
 
+    [SerializeField]
+    private crewType cType;
+    public crewType CType { get { return cType; } }
+    [SerializeField]
+    private int typeID = 0;
+    public int Type { get { return typeID; } }
+
+
     public void grantBonus()
     {
-
-    }
-    public void grantHeadBonus()
-    {
+        
 
     }
 

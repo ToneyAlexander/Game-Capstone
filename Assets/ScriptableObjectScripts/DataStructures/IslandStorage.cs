@@ -10,6 +10,7 @@ public class IslandStorage : ScriptableObject
     public int theme = 0;
     public int size = 20;
     public int height = 5;
+    public int level = 1;
     // Start is called before the first frame update
     void Start()
     {

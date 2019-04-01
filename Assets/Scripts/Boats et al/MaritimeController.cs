@@ -10,7 +10,7 @@ public class MaritimeController : MonoBehaviour
     public GameObject prefab;
     public ThemeDictionary themes;
     public NameGenerator nameGen;
-
+    
     //private GameStateChanger gameStateChanger;
     public GameObject info;
     public IslandStorage islandStorage;

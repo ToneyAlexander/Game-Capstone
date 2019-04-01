@@ -23,6 +23,7 @@ public class positionText : MonoBehaviour
         islandSize = (int)Random.Range(15, 22);
         islandHeight = (int)Random.Range(3, 6);
         themeID = (int)Random.Range(0, themeDictionary.themeDictionary.Count);
+       // level = 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         player = players[0];
         for (int i = 0; i < transform.childCount; i++)

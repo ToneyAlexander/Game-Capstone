@@ -65,16 +65,24 @@ public class CameraController : MonoBehaviour
 //        Debug.Log(hits.Length);
         foreach(RaycastHit h in hits)
         {
-            Renderer rend = h.transform.GetComponent<Renderer>();
+            Renderer rend = h.transform.gameObject.GetComponent<Renderer>();
+            Debug.Log(h.transform.gameObject);
 //            Debug.Log(h.transform.position);
             if (rend)
             {
-                Color col = rend.material.color;
+                /*
+                 Color col = rend.material.color;
                 col.a = 0.3f;
-                rend.material.color = col;
+                rend.material.transparency = 0.3f;
                
+                 
+    */
+                rend.material.SetFloat("_Transparency",0.3f);
+              //  Debug.Log("Hit!");
+
+
             }
-   
+
         }
         Vector3 position = player.transform.position;
         position += cameras[direction];

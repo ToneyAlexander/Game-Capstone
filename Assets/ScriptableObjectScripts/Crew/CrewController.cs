@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class CrewController : ScriptableObject
@@ -11,17 +13,88 @@ public class CrewController : ScriptableObject
         public int level;
 
     }
+    public int maxCrew = 3;
     public List<CrewMember> selectedCrew;
     public List<CrewMember> fullCrew;
     public List<CrewMember> Sacrifices;
+    public int[] themeChances = { 255, 255, 255, 255 };
+    public int[] bossChances = { 255, 255 };
+    public int areaBonus = 0;
+    public int levelBonus = 0;
+    private int selectedSlot = 999;
+
+
     // Start is called before the first frame update
     public void grantCrewBonuses()
     {
-        selectedCrew[0].grantHeadBonus();
+        
         foreach (CrewMember member in selectedCrew)
         {
-            member.grantBonus();
+            switch (member.CType)
+            {
+                case CrewMember.crewType.Navigator:
+                    themeChances[member.Type] += member.Power;
+                    break;
+                case CrewMember.crewType.Hunter:
+                    bossChances[member.Type] += member.Power;
+                    break;
+                case CrewMember.crewType.Naturalist:
+                    areaBonus += member.Power / 100;
+                    break;
+                case CrewMember.crewType.Explorer:
+                    levelBonus += member.Power / 100;
+                    break;
+            }
         }
+    }
+   public int selectTheme()
+    {
+        RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+        byte[] randomNumber = new byte[100];
+        rngCsp.GetBytes(randomNumber);
+        int rnd = (randomNumber[0] % themeChances.Sum());
+
+        for (int i = 0; i < themeChances.Length; i++)
+        {
+            if (rnd < themeChances[i])
+            {
+                return i;
+            }
+            rnd -= themeChances[i];
+        }
+        return 0;
+    }
+    public int selectBoss()
+    {
+        RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+        byte[] randomNumber = new byte[100];
+        rngCsp.GetBytes(randomNumber);
+        int rnd = (randomNumber[0] % themeChances.Sum());
+
+        for (int i = 0; i < bossChances.Length; i++)
+        {
+            if (rnd < bossChances[i])
+            {
+                return i;
+            }
+            rnd -= bossChances[i];
+        }
+        return 0;
+    }
+    public void setSelectedSlot(int i)
+    {
+        selectedSlot =  i;
+    }
+    public void selectCrew(CrewMember cMember)
+    {
+        if (selectedSlot < maxCrew)
+        {
+            selectedCrew[selectedSlot] = cMember;
+        }
+        selectedSlot = 999;
+
+
+
     }
     public void levelUp()
     {
