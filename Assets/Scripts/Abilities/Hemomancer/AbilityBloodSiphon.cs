@@ -38,7 +38,7 @@ public class AbilityBloodSiphon : AbilityBase
     protected override void Activate()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
-        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+        ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
         obj.transform.localScale = new Vector3(10.3f, 1f, 10.3f);
         Damage dmg;
         float hplost = StatBlock.CalcMult(stats.HealthMax, stats.PhantomHpMult) * cost;

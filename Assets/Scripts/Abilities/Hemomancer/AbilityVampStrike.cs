@@ -29,7 +29,7 @@ public class AbilityVampStrike : AbilityBase
     protected override void Activate()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
-        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+        ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
@@ -39,13 +39,13 @@ public class AbilityVampStrike : AbilityBase
         Damage dmg;
         if (cost < 0.00001)
         {
-            dmg = new Damage(Random.Range(dmgMin, dmgMax), 0, true, false, false);
+            dmg = new Damage(Random.Range(dmgMin, dmgMax), 0, false, true, false);
         } else
         {
             float hplost = StatBlock.CalcMult(stats.HealthCur, stats.PhantomHpMult) * cost;
             stats.HealthCur -= hplost;
             Debug.Log("Cost player " + hplost + " hp.");
-            dmg = new Damage(Random.Range(dmgMin, dmgMax), hplost / 2f, true, false, true);
+            dmg = new Damage(Random.Range(dmgMin, dmgMax), hplost / 2f, false, true, true);
         }
         pbh.dmg = stats.RealDamage(dmg);
         pbh.dmg.callback = this;
