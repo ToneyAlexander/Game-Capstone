@@ -6305,6 +6305,7 @@ GameObject:
   - component: {fileID: 788124930}
   - component: {fileID: 788124929}
   - component: {fileID: 788124931}
+  - component: {fileID: 788124932}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -6382,6 +6383,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
+--- !u!114 &788124932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788124927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70d59ffa89692d48874a166f9b4e744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &796301953
 GameObject:
   m_ObjectHideFlags: 0
@@ -18917,6 +18930,7 @@ GameObject:
   - component: {fileID: 5930947933233262951}
   - component: {fileID: 5930947933233262950}
   - component: {fileID: 5930947933233262949}
+  - component: {fileID: 5930947933233262945}
   m_Layer: 5
   m_Name: StatsScreen
   m_TagString: Untagged
@@ -18924,6 +18938,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5930947933233262945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5930947933233262944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 930bb560a7d68044e816a6f071ddc1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &5930947933233262949
 CanvasRenderer:
   m_ObjectHideFlags: 0

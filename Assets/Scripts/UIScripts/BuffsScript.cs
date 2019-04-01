@@ -22,18 +22,22 @@ public class BuffsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		toolTip.SetActive(false);
 		for (int i = 0; i < transform.childCount; i++)
 		{
 			if (transform.GetChild(i).name.Equals("Column4"))
 			{
 				column4 = transform.GetChild(i).gameObject;
 			}
-			else if (transform.GetChild(i).name.Equals("Tooltip"))
+			else if (transform.GetChild(i).name.Equals("ToolTip"))
 			{
 				toolTip = transform.GetChild(i).gameObject;
 			}
 		}
+		toolTip.SetActive(false);
+		storedBuffs = new Dictionary<string, TimedBuff>();
+		buffs = new List<TimedBuff>();
+		int count = column4.transform.childCount;
+		storedBuffsObjects = new GameObject[count];
 
 		GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
         if (gameObjects.Length > 0)
@@ -49,6 +53,11 @@ public class BuffsScript : MonoBehaviour
 			entry.eventID = EventTriggerType.PointerEnter;
 			entry.callback.AddListener((eventData) => { OnHoverBuff((PointerEventData)eventData); });
 			ev.triggers.Add(entry);
+
+			EventTrigger.Entry leave = new EventTrigger.Entry();
+			leave.eventID = EventTriggerType.PointerExit;
+			leave.callback.AddListener((eventData) => { OnLeaveBuff((PointerEventData)eventData); });
+			ev.triggers.Add(leave);
 		}
 	}
 
@@ -91,5 +100,11 @@ public class BuffsScript : MonoBehaviour
 		toolTip.SetActive(true);
 		Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
 		txt.text = item.buff.BuffName;
+	}
+	private void OnLeaveBuff(PointerEventData data)
+	{
+		toolTip.SetActive(false);
+		Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
+		txt.text = "";
 	}
 }
