@@ -1,5 +1,6 @@
 ﻿namespace CCC.Items
 {
+    [System.Serializable]
     public enum EquipmentSlot
     {
         Null,

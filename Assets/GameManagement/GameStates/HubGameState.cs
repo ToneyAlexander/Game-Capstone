@@ -1,38 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCC.GameManagement.GameStates;
-using CCC.GameManagement;
+﻿using UnityEngine;
 
-public class HubGameState : IGameState
+namespace CCC.GameManagement.GameStates
 {
-    private readonly SceneChanger sceneChanger;
-    private readonly SceneReference playIslandSceneReference;
+    /// <summary>
+    /// Represents the state when the game is at the hub scene and waiting for 
+    /// the player to select an island to go to.
+    /// </summary>
+    [CreateAssetMenu]
+    public sealed class HubGameState : GameState
+    {
+        public override void Enter()
+        {
+            Debug.Log("In HubState.Enter");
+        }
 
-    public HubGameState(SceneChanger sceneChanger,
-            SceneReference playIslandSceneReference)
-    {
-        this.sceneChanger = sceneChanger;
-        this.playIslandSceneReference = playIslandSceneReference;
-    }
-    public void Enter(Game game)
-    {
-        sceneChanger.ChangeToScene(playIslandSceneReference);
-    }
-
-    public void Exit(Game game)
-    {
-        // No-op
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Exit()
+        {
+            Debug.Log("In HubState.Exit");
+        }
     }
 }

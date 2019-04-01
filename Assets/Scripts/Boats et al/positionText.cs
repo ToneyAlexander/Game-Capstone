@@ -27,11 +27,11 @@ public class positionText : MonoBehaviour
         player = players[0];
         for (int i = 0; i < transform.childCount; i++)
         {
-            Debug.Log(transform.GetChild(i).name);
+            //Debug.Log(transform.GetChild(i).name);
             if (transform.GetChild(i).name.Equals("TextMeshPro"))
             {
                
-                Debug.Log(transform.name +":" +transform.GetChild(i).name);
+                //Debug.Log(transform.name +":" +transform.GetChild(i).name);
                 textObj = transform.GetChild(i).gameObject;
             }
         }
