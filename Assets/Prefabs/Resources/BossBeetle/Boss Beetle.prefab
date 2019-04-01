@@ -243,7 +243,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74118576}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 2.3
   m_Height: 6
@@ -261,17 +261,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25794a1746df2fa4eb5412cb105d64c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  Level: 1
   StatPerk: {fileID: 11400000, guid: 1136e1b3838dcc04196d6c725498ce1a, type: 2}
   LevelPerk: {fileID: 11400000, guid: de75126e841c4a24abad26a72deb1c33, type: 2}
+  arenaStart: {x: 0, y: 0, z: 0}
+  arenaEnd: {x: 0, y: 0, z: 0}
   EggPrefab: {fileID: 4683793525412170550, guid: a99a3f150afb634469b28e0a21cdffcf,
     type: 3}
   VolleyPrefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c,
     type: 3}
   TrackerPrefab: {fileID: 3284506581622335269, guid: ddbd21f30cb1ecc49aa768dec5ae5c89,
     type: 3}
-  Level: 1
-  arenaStart: {x: 0, y: 0, z: 0}
-  arenaEnd: {x: 0, y: 0, z: 0}
 --- !u!114 &74118581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +290,7 @@ MonoBehaviour:
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
+  bloodlineController: {fileID: 0}
 --- !u!114 &74118582
 MonoBehaviour:
   m_ObjectHideFlags: 0

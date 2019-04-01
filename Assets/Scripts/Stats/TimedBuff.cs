@@ -11,6 +11,7 @@ public class TimedBuff : IEquatable<TimedBuff>
     public float Duration;
     public float DurationLeft;
     public bool IsUnique;
+    public Sprite icon;
     
     public TimedBuff(TimedBuffPrototype tbp)
     {
@@ -20,6 +21,7 @@ public class TimedBuff : IEquatable<TimedBuff>
         {
             Stats.Add(new Stat(s.Name, s.Value));
         }
+        icon = tbp.Icon;
         IsUnique = tbp.IsUnique;
         Duration = tbp.Duration;
         DurationLeft = Duration;

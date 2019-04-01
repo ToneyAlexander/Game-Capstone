@@ -10,7 +10,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
 
     public abstract void UpdateStats();
 
-    public bool Use()
+    public virtual bool Use()
     {
         if (abil.cdRemain <= 0.0001f)
         {
@@ -22,7 +22,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
         return false;
     }
 
-    public virtual void Callback()
+    public virtual void Callback(float dmgTaken)
     {
         //override if your ability needs a callback at some point
         Debug.LogError("Ability with no callback function specified recieved a callback.");

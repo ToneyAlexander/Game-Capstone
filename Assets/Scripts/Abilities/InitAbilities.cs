@@ -8,12 +8,14 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ignite;
     public TimedBuffPrototype dash;
     public TimedBuffPrototype mending;
+    public TimedBuffPrototype hemoMend;
     public TimedBuffPrototype ablazeOff;
     public TimedBuffPrototype ablazeDef;
     public TimedBuffPrototype ablazeIgnite;
     public TimedBuffPrototype ooze;
     public TimedBuffPrototype crippled;
     public TimedBuffPrototype ripperFrenzy;
+    public TimedBuffPrototype bloodBlock;
     public PerkPrototype Young;
     public PerkPrototype Middle;
     public PerkPrototype Old;
@@ -31,5 +33,7 @@ public class InitAbilities : MonoBehaviour
         WhirlwindSlash.slowdown = crippled;
         EdgySlash.slowdown = crippled;
         RageMode.RipperFrenzy = ripperFrenzy;
+        AbilityBloodRitual.Mend = hemoMend;
+        AbilityBloodBlock.Block = bloodBlock;
     }
 }

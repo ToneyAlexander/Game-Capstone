@@ -35,10 +35,12 @@ public class ControlStatBlock : MonoBehaviour
         if(!buffsToAdd.Contains(tb))
             buffsToAdd.Add(tb);
     }
+
     public StatBlock getStats()
     {
         return stats;
     }
+
     void Awake()
     {
         applyTestStats = false;
@@ -117,6 +119,8 @@ public class ControlStatBlock : MonoBehaviour
         stats.MagicResMult = 0f;
         stats.StatusRec = 0f;
         stats.StatusRecMult = 0f;
+        stats.FlatDmgReduction = 0f;
+        stats.FlatDmgReductionMult = 0f;
     }
 
     void ApplyStat(Stat stat)
@@ -225,6 +229,12 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
                 break;
+            case Stat.FLAT_DMG_REDUCTION:
+                stats.FlatDmgReduction += stat.Value;
+                break;
+            case Stat.FLAT_DMG_REDUCTION_MULT:
+                stats.FlatDmgReductionMult += stat.Value;
+                break;
             case Stat.PHYS_DMG:
                 stats.PhysicalDamage += stat.Value;
                 break;
@@ -304,6 +314,7 @@ public class ControlStatBlock : MonoBehaviour
             foreach (Stat s in tb.Stats)
             {
                 ApplyStat(s);
+                //Debug.Log(s.Name + ": " + s.Value);
             }
         }
 
@@ -351,7 +362,7 @@ public class ControlStatBlock : MonoBehaviour
             if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
-                //Debug.Log(tb.BuffName + " expired.");
+                Debug.Log(tb.BuffName + " expired.");
                 needsUpdate = true;
 
             }
