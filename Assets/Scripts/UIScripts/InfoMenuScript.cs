@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InfoMenuScript : MonoBehaviour
 {
@@ -8,6 +9,17 @@ public class InfoMenuScript : MonoBehaviour
     GameObject stats;
     GameObject classinfo;
     GameObject abilities;
+
+    private Image InventoryTab;
+    private Image StatsTab;
+    private Image ClassTab;
+    private Image AbilityTab;
+
+    [SerializeField]
+    private Color hoverColor;
+
+    [SerializeField]
+    private Color baseColor;
 
 
     #region Toggle Tab Methods
@@ -76,6 +88,25 @@ public class InfoMenuScript : MonoBehaviour
             else if (transform.GetChild(i).name.Equals("Tabs"))
             {
                 tabs = gameObject.transform.GetChild(i).gameObject;
+                for(int j = 0; j < tabs.transform.childCount; j++)
+                {
+                    if (tabs.transform.GetChild(j).name.Equals("StatsSheet"))
+                    {
+                        StatsTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("ClassSheet"))
+                    {
+                        ClassTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("Inventory"))
+                    {
+                        InventoryTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("AbilitySheet"))
+                    {
+                        AbilityTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                }
                 
             }
         }
@@ -86,37 +117,70 @@ public class InfoMenuScript : MonoBehaviour
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickInventory(); });
+                hover.callback.AddListener((eventData) => { OnHover(InventoryTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(InventoryTab); });
                 ev.triggers.Add(entry);
-                
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
             }
             if (tabs.transform.GetChild(i).name.Equals("StatsSheet"))
             {
               //  Debug.Log("tesrad");
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickStats(); });
+                hover.callback.AddListener((eventData) => { OnHover(StatsTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(StatsTab); });
                 ev.triggers.Add(entry);
-               
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
+
             }
             if (tabs.transform.GetChild(i).name.Equals("ClassSheet"))
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickClass(); });
+                hover.callback.AddListener((eventData) => { OnHover(ClassTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(ClassTab); });
                 ev.triggers.Add(entry);
-                
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
             }
             if (tabs.transform.GetChild(i).name.Equals("AbilitySheet"))
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickAbility(); });
+                hover.callback.AddListener((eventData) => { OnHover(AbilityTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(AbilityTab); });
                 ev.triggers.Add(entry);
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
 
             }
 
@@ -165,5 +229,15 @@ public class InfoMenuScript : MonoBehaviour
         classinfo.SetActive(false);
         inventory.SetActive(false);
         abilities.SetActive(true);
+    }
+
+    void OnHover(Image img)
+    {
+        img.color = hoverColor;
+    }
+
+    void OnLeave(Image img)
+    {
+        img.color = baseColor;
     }
 }

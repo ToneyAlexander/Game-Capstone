@@ -14,9 +14,11 @@ public class ClassUI : MonoBehaviour
     bool selected = false;
     GameObject statsBlock;
     Text perkPointsText;
-    Vector3 visibleLoc = new Vector3(-275, 0, 0);
-    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    Vector3 visibleLoc = new Vector3(-480, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-130, 0, 0);
     Text descText;
+	Image spriteImage;
+	Text skillTitle;
     bool loaded = false;
     // Start is called before the first frame update
     public void updatePlayerClass()
@@ -49,10 +51,10 @@ public class ClassUI : MonoBehaviour
             loaded = true;
             foreach (PerkPrototype proto in playerClass.allPerks)
             {
-                Vector3 position = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
+                Vector3 position = new Vector3(proto.uiCoords.x*3, -proto.uiCoords.y*3, 0);
                 foreach (PerkPrototype req in proto.Require)
                 {
-                    Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                    Vector3 other = new Vector3(req.uiCoords.x*3, -req.uiCoords.y*3, 0);
                     Vector3 direction = other - position;
                     GameObject line = new GameObject();
                     Image l = line.AddComponent<Image>();
@@ -62,7 +64,7 @@ public class ClassUI : MonoBehaviour
                     rect.pivot = new Vector2(0, 0.5f);
                     line.transform.localPosition = position;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                    rect.sizeDelta = new Vector3(direction.magnitude, 2f, 1);
                     rect.Rotate(new Vector3(0, 0, angle));
                     line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
 
@@ -78,7 +80,7 @@ public class ClassUI : MonoBehaviour
                 }
                 foreach (PerkPrototype req in proto.BlockedBy)
                 {
-                    Vector3 other = new Vector3(req.uiCoords.x, -req.uiCoords.y, 0);
+                    Vector3 other = new Vector3(req.uiCoords.x*3, -req.uiCoords.y*3, 0);
                     Vector3 direction = other - position;
                     GameObject line = new GameObject();
                     Image l = line.AddComponent<Image>();
@@ -89,7 +91,7 @@ public class ClassUI : MonoBehaviour
                     rect.pivot = new Vector2(0, 0.5f);
                     line.transform.localPosition = position;
                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    rect.sizeDelta = new Vector3(direction.magnitude, 1, 1);
+                    rect.sizeDelta = new Vector3(direction.magnitude, 2.0f, 1);
                     line.transform.localScale = new Vector3(1.0f, line.transform.localScale.y, line.transform.localScale.z);
                     rect.Rotate(new Vector3(0, 0, angle));
                     l.color = Color.red;
@@ -111,13 +113,11 @@ public class ClassUI : MonoBehaviour
                 image.transform.parent = content.transform;
                 image.name = proto.Name;
                 //RectTransform rect = image.GetComponent<RectTransform>();
-                image.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-                // image.width = 30;
-                //image.height = 30;
+                image.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
                 Image spr = image.AddComponent<Image>();
                 spr.sprite = proto.sprite;
                 //image.GetComponent<Image>.sprite = proto.sprite;
-                image.transform.localPosition = new Vector3(proto.uiCoords.x, -proto.uiCoords.y, 0);
+                image.transform.localPosition = new Vector3(proto.uiCoords.x*3, -proto.uiCoords.y*3, 0);
                 EventTrigger ev = image.AddComponent<EventTrigger>();
 
                 EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -166,22 +166,36 @@ public class ClassUI : MonoBehaviour
 
         for (int i = 0; i < transform.childCount; i++)
         {
-            if (transform.GetChild(i).name.Equals("ScrollBox"))
-            {
-                box = gameObject.transform.GetChild(i).gameObject;
-                content = box.transform.GetChild(0).GetChild(0).gameObject;
-            }
-            else if (transform.GetChild(i).name.Equals("StatsBlock"))
-            {
-                statsBlock = gameObject.transform.GetChild(i).gameObject;
-            }
-            else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
-            {
-                perkPointsText =gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
-            }
+			if (transform.GetChild(i).name.Equals("ScrollBox"))
+			{
+				box = gameObject.transform.GetChild(i).gameObject;
+				content = box.transform.GetChild(0).GetChild(0).gameObject;
+			}
+			else if (transform.GetChild(i).name.Equals("StatsBlock"))
+			{
+				statsBlock = gameObject.transform.GetChild(i).gameObject;
+				for (int j = 0; j < statsBlock.transform.childCount; j++)
+				{
+					if (statsBlock.transform.GetChild(j).name.Equals("DescText"))
+					{
+						descText = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+					}
+					else if (statsBlock.transform.GetChild(j).name.Equals("Sprite"))
+					{
+						spriteImage = statsBlock.transform.GetChild(j).gameObject.GetComponent<Image>();
+					}
+					else if (statsBlock.transform.GetChild(j).name.Equals("SkillTitle"))
+					{
+						skillTitle = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+					}
+				}
+			}
+			else if (transform.GetChild(i).name.Equals("PerkPointsHolder"))
+			{
+				perkPointsText = gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
+			}
 
         }
-        descText = statsBlock.GetComponentInChildren<Text>();
         //  allPerks = playerClass.allPerks;
         //  takenPerks = playerClass.takenPerks;
      //   Debug.Log(playerClass.allPerks);
@@ -196,14 +210,13 @@ public class ClassUI : MonoBehaviour
         {
             PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
             Image colorEdit = content.transform.GetChild(i).gameObject.GetComponent<Image>();
-            perkPointsText.text = "PERK POINTS: " + playerClass.PerkPoints;
+            perkPointsText.text = playerClass.PerkPoints.ToString();
             if (test)
             {
                 if (!selected)
                 {
                     statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
-
-                    
+            
                     if (test.taken)
                     {
                         colorEdit.color = Color.green;
@@ -230,7 +243,6 @@ public class ClassUI : MonoBehaviour
                 }
             }
             
-
         }
         
     }
@@ -264,6 +276,7 @@ public class ClassUI : MonoBehaviour
 
 
 
+
     }
     void OnPerkEnter(PointerEventData data)
     {
@@ -271,8 +284,10 @@ public class ClassUI : MonoBehaviour
       //  Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         mousedOver = clickedEvent.perkInfo;
-        descText.text = mousedOver.Name + "\n" + mousedOver.Desc + "\n\n";
-        foreach (PerkStatEntry stat in mousedOver.Stats)
+		descText.text = mousedOver.Desc + "\n\n";
+		skillTitle.text = mousedOver.Name;
+		spriteImage.sprite = mousedOver.sprite;
+		foreach (PerkStatEntry stat in mousedOver.Stats)
         {
             descText.text = descText.text + stat.StatInst.Name + ": " + stat.StatInst.Value + "\n";
         }
