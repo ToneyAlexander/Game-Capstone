@@ -263,7 +263,7 @@ public class ControlStatBlock : MonoBehaviour
 
     public void StatsChanged()
     {
-        if (oldHpPrecent >= -1000f)
+        if (oldHpPrecent >= -1000f && stats.HealthMax != 0.0f)
             oldHpPrecent = stats.HealthCur / stats.HealthMax;
         else
             oldHpPrecent = 1f;
@@ -327,6 +327,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);
+        Debug.Log(stats.HealthMax);
     }
 
     // Update is called once per frame
