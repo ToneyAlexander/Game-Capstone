@@ -130,10 +130,6 @@ public class StatBlock : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         if(HealthRegen > 0f)

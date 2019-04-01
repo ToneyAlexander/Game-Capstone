@@ -82,7 +82,7 @@ public abstract class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         targetPos = Vector3.zero;
         targetFound = false;
-        enemyClass.TakePerk(initialStats);
+        enemyClass.TakePerk(initialStats, false);
 
         maxTimes = 100;
     }
