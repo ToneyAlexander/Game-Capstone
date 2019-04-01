@@ -134,7 +134,7 @@ public class StatBlock : MonoBehaviour
 
     void Update()
     {
-        if(HealthRegen > 0f)
+        if (HealthRegen > 0f)
             HealthCur += CalcMult(HealthRegen,HealthRegenMult) * Time.deltaTime;
         else
             HealthCur += HealthRegen * Time.deltaTime;
@@ -145,6 +145,7 @@ public class StatBlock : MonoBehaviour
 
         if(HealthCur <= 0.00001f)
         {
+            
             if (killable != null && !isDead)
             {
                 ICommand com = new DieCommand(killable);

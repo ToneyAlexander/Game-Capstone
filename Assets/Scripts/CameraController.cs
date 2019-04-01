@@ -66,7 +66,7 @@ public class CameraController : MonoBehaviour
         foreach(RaycastHit h in hits)
         {
             Renderer rend = h.transform.gameObject.GetComponent<Renderer>();
-            Debug.Log(h.transform.gameObject);
+           // Debug.Log(h.transform.gameObject);
 //            Debug.Log(h.transform.position);
             if (rend)
             {
