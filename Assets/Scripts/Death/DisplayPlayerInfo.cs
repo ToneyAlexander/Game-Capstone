@@ -16,7 +16,7 @@ public class DisplayPlayerInfo : MonoBehaviour
             remy.GetComponent<PlayerClass>().bloodlineController.playerName + "\n" +
             remy.GetComponent<PlayerClass>().bloodlineController.Age + " Years Old\n" +
             remy.GetComponent<TestPlayerClass>().ClassL.name + "\n" +
-            "Level " + remy.GetComponent<PlayerClass>().Level + "\n";
+            "Level " + remy.GetComponent<PlayerClass>().PlayerLevelExp.Level + "\n";
     }
 
     // Update is called once per frame

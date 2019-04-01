@@ -58,6 +58,8 @@ public class StatBlock : MonoBehaviour
     public float CritDamageMult { get; set; }
     public float CritChance { get; set; }
     public float CritChanceMult { get; set; }
+    public float FlatDmgReduction { get; set; }
+    public float FlatDmgReductionMult { get; set; }
 
     //rarely used/niche stuff for specific classes
     public float PhantomHpMult { get; set; }
@@ -111,7 +113,7 @@ public class StatBlock : MonoBehaviour
             Reducer = -1.5f * ToReduce;
         }
         //Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
-        return (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce);
+        return ( (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce) ) * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
     }
 
     void Awake()
@@ -126,10 +128,6 @@ public class StatBlock : MonoBehaviour
                 break;
             }
         }
-    }
-
-    void Start()
-    {
     }
 
     void Update()
@@ -232,6 +230,11 @@ public class StatBlock : MonoBehaviour
         physMult += PhysicalDamageMult;
         magicMult += DamageMult;
         magicMult += MagicDamageMult;
+        if(BloodDamage > 0f && HealthCur < HealthMax)
+        {
+            physMult += BloodDamage * (HealthMax - HealthCur);
+            magicMult += BloodDamage * (HealthMax - HealthCur);
+        }
 
         dmg.physicalDmgReal = CalcMult(phys, physMult);
         dmg.magicDmgReal = CalcMult(magic, magicMult);

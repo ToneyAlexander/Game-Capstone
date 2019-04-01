@@ -4375,12 +4375,14 @@ MonoBehaviour:
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
   dash: {fileID: 11400000, guid: a628ad4ffafda154b9869dbf0c1eaa75, type: 2}
   mending: {fileID: 11400000, guid: 60a3912452ad31848a8013abf2013bbd, type: 2}
+  hemoMend: {fileID: 11400000, guid: cc5ccbd3936697041a3ab8acf844cff5, type: 2}
   ablazeOff: {fileID: 11400000, guid: 878850fb8c0123249ae78833d22daa1b, type: 2}
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
   ooze: {fileID: 11400000, guid: 64f7d07c15773514da22fe3e9a47c1e7, type: 2}
   crippled: {fileID: 11400000, guid: d5b1a127ba5ef2640936e3425e023cc5, type: 2}
   ripperFrenzy: {fileID: 11400000, guid: d4c4ae70b6dda4e4188730da5ed07256, type: 2}
+  bloodBlock: {fileID: 11400000, guid: 620b49b7cfbfd5c4ab403af47638db83, type: 2}
   Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
   Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
   Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
@@ -4508,6 +4510,7 @@ MonoBehaviour:
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
   bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
     type: 2}
+  PlayerLevelExp: {fileID: 11400000, guid: b7812365dbea3c2428329e3285bf38af, type: 2}
 --- !u!114 &594619832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4650,6 +4653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd90795c81c640aa9845091e7f7f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathScene: {fileID: 0}
 --- !u!114 &594619842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18056,8 +18060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c336688d9e07124694204d73eb28a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 1, g: 0.56958115, b: 0.2028302, a: 1}
-  baseColor: {r: 0.36078432, g: 0.36078432, b: 0.36078432, a: 1}
 --- !u!224 &5930947932861754951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19725,7 +19727,6 @@ MonoBehaviour:
   user: {fileID: 11400000, guid: 145915052229949d0992116c0ad2ea0e, type: 2}
   euser: {fileID: 11400000, guid: d63e3d1f33ea04602a94660242ecfd0d, type: 2}
   strLength: 30
-  baseColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!222 &5930947933888633488
 CanvasRenderer:
   m_ObjectHideFlags: 0

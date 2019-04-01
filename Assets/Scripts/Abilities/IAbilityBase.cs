@@ -6,5 +6,5 @@ public interface IAbilityBase
 {
     bool Use();
     void UpdateStats();
-    void Callback();
+    void Callback(float dmgTaken);
 }
