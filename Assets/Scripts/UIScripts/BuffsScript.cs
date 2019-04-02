@@ -18,6 +18,10 @@ public class BuffsScript : MonoBehaviour
 	private GameObject column4;
 
 	private GameObject toolTip;
+
+	private int previousSize;
+
+	private int currentSize;
     
     // Start is called before the first frame update
     void Start()
@@ -59,6 +63,8 @@ public class BuffsScript : MonoBehaviour
 			leave.callback.AddListener((eventData) => { OnLeaveBuff((PointerEventData)eventData); });
 			ev.triggers.Add(leave);
 		}
+		previousSize = 0;
+		currentSize = 0;
 	}
 
     // Update is called once per frame
@@ -66,6 +72,7 @@ public class BuffsScript : MonoBehaviour
     {
 		// trimming to reduced list
 		buffs = player.buffs;
+		currentSize = buffs.Count;
 		storedBuffs.Clear();
 		for (int i = 0; i < buffs.Count; i++)
 		{
@@ -82,24 +89,36 @@ public class BuffsScript : MonoBehaviour
 		}
 		// storedBuffs => objects
 		int l = 0;
+		if(currentSize != previousSize){ //clear list
+			foreach(GameObject obj in storedBuffsObjects){
+			Image img = storedBuffsObjects[l].GetComponent<Image>();
+			BuffItem bi = storedBuffsObjects[l].GetComponent<BuffItem>(); 
+			bi.buff = null;
+			img.sprite = null;
+			img.color = new Color(0,0,0,0);
+			l++;
+			}
+		}
+		l = 0;
 		foreach(KeyValuePair<string, TimedBuff> pair in storedBuffs)
 		{
 			BuffItem bi = storedBuffsObjects[l].GetComponent<BuffItem>(); 
 			bi.buff = pair.Value;
 			Image img = storedBuffsObjects[l].GetComponent<Image>();
-			//img = inst.buff.Icon;
-			img.color = Color.red;
-			//update cooldown
+			img.color = Color.white;
 			l++;
 		}
+		previousSize = currentSize;
 	}
 
 	private void OnHoverBuff(PointerEventData data)
 	{
 		BuffItem item = data.pointerCurrentRaycast.gameObject.GetComponent<BuffItem>();
-		toolTip.SetActive(true);
-		Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
-		txt.text = item.buff.BuffName;
+		if(item.buff != null){
+			toolTip.SetActive(true);
+			Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
+			txt.text = item.buff.BuffName;
+		}
 	}
 	private void OnLeaveBuff(PointerEventData data)
 	{
