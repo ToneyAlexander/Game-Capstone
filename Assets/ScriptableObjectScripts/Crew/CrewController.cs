@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "CrewController")]
 public class CrewController : ScriptableObject
 {
     public struct CrewMemberInstance

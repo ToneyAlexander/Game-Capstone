@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 3076634862688296645}
   - component: {fileID: 3076634862688296650}
   - component: {fileID: 3076634862688296651}
+  - component: {fileID: 7108910753719504478}
   m_Layer: 5
   m_Name: CrewIcon
   m_TagString: Untagged
@@ -169,6 +170,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cMember: {fileID: 11400000, guid: f8c8ead8959790b4599eabd937613963, type: 2}
+--- !u!114 &7108910753719504478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076634862688296649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []
+  delegates: []
 --- !u!1 &3076634863019393340
 GameObject:
   m_ObjectHideFlags: 0

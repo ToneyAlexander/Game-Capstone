@@ -70,7 +70,7 @@ public class positionText : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
            {
-            Debug.Log("working");
+            
             maritimeController.GetComponent<MaritimeController>().islandStorage.name = n;
             maritimeController.GetComponent<MaritimeController>().islandStorage.size = islandSize;
             maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
