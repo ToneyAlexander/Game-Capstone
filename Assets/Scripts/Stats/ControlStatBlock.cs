@@ -22,7 +22,7 @@ public class ControlStatBlock : MonoBehaviour
     public float Fort { get; set; }
     public float FortMult { get; set; }
 
-    private List<TimedBuff> buffs;
+    public List<TimedBuff> buffs;
     private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
     private float oldHpPrecent;
