@@ -110,10 +110,8 @@ namespace CCC.Items
         #region IJsonSavable
         public void Load()
         {
-            Debug.Log("Loading Inventory");
             path = System.IO.Path.Combine(Application.persistentDataPath, 
                 filename);
-            Debug.Log(name + ".dataPath = " + path);
 
             // Load save data from disk
             if (File.Exists(path))
@@ -121,7 +119,6 @@ namespace CCC.Items
                 using (StreamReader streamReader = File.OpenText(path))
                 {
                     string jsonString = streamReader.ReadToEnd();
-                    Debug.Log("jsonString = " + jsonString);
                     InventoryData data = 
                         JsonUtility.FromJson<InventoryData>(jsonString);
                     items = data.Items;
@@ -131,18 +128,12 @@ namespace CCC.Items
 
         public void Save()
         {
-            Debug.Log("Saving Inventory");
             string jsonString = 
-                JsonUtility.ToJson(InventoryData.ForItems(items));
-            Debug.Log("Save jsonString = " + jsonString);
+                JsonUtility.ToJson(InventoryData.ForItems(items), true);
 
             // dataPath will have already been set by Awake
             using (StreamWriter streamWriter = File.CreateText(path))
             {
-                foreach (Item item in items)
-                {
-                    Debug.Log(item.Name);
-                }
                 streamWriter.Write(jsonString);
             }
         }

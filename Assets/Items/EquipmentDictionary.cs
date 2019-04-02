@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace CCC.Items
 {
@@ -20,6 +21,38 @@ namespace CCC.Items
         }
 
         /// <summary>
+        /// The internal Dictionary that is modified at run-time.
+        /// </summary>
+        private Dictionary<EquipmentSlot, Item> equipment =
+            new Dictionary<EquipmentSlot, Item>
+        {
+            {EquipmentSlot.Head, Item.Null},
+            {EquipmentSlot.Body, Item.Null},
+            {EquipmentSlot.Weapon, Item.Null},
+            {EquipmentSlot.Offhand, Item.Null},
+            {EquipmentSlot.Ring, Item.Null},
+            {EquipmentSlot.Amulet, Item.Null}
+        };
+
+        /// <summary>
+        /// The name of the file to save the EquipmentData created from this 
+        /// EquipmentDitionary's equipment.
+        /// </summary>
+        [SerializeField]
+        private string filename;
+
+        /// <summary>
+        /// The path to the file on disk that this EquipmentDictionary 
+        /// references.
+        /// </summary>
+        private string path;
+
+        /// <summary>
+        /// The actual data on disk that this EquipmentDictionary references.
+        /// </summary>
+        private EquipmentData data;
+
+        /// <summary>
         /// Equip the given Item.
         /// </summary>
         /// <param name="item">Item.</param>
@@ -36,15 +69,45 @@ namespace CCC.Items
             equipment[item.EquipmentSlot] = Item.Null;
         }
 
-        private readonly Dictionary<EquipmentSlot, Item> equipment = 
-            new Dictionary<EquipmentSlot, Item>
+        #region IJsonSavable
+        public void Load()
+        {
+            if (File.Exists(path))
             {
-                {EquipmentSlot.Head, Item.Null},
-                {EquipmentSlot.Body, Item.Null},
-                {EquipmentSlot.Weapon, Item.Null},
-                {EquipmentSlot.Offhand, Item.Null},
-                {EquipmentSlot.Ring, Item.Null},
-                {EquipmentSlot.Amulet, Item.Null}
-            };
+                using (StreamReader streamReader = File.OpenText(path))
+                {
+                    string jsonString = streamReader.ReadToEnd();
+                    EquipmentData loadedData = 
+                        JsonUtility.FromJson<EquipmentData>(jsonString);
+                    data = loadedData;
+
+                    // Load the actual equipment
+                    foreach (EquipmentEntry entry in loadedData.Entries)
+                    {
+                        equipment[entry.Slot] = entry.Item;
+                    }
+                }
+            }
+        }
+
+        public void Save()
+        {
+            string jsonString = 
+                JsonUtility.ToJson(EquipmentData.ForEquipment(equipment), true);
+
+            using (StreamWriter streamWriter = File.CreateText(path))
+            {
+                streamWriter.Write(jsonString);
+            }
+        }
+        #endregion
+
+        #region ScriptableObject Messages
+        private void OnEnable()
+        {
+            path = Path.Combine(Application.persistentDataPath, 
+                filename);
+        }
+        #endregion
     }
 }
