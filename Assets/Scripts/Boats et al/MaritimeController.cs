@@ -43,7 +43,8 @@ public class MaritimeController : MonoBehaviour
             string name = nameGen.generateName();
             Debug.Log(name);
             x.GetComponent<positionText>().setName(name);
-            
+            x.GetComponent<positionText>().maritimeController = gameObject;
+
             IslandData.Island isle = new IslandData.Island(1, new Vector3(sin * 200, 0, cos * 200),name,x);
         }
 
@@ -51,6 +52,7 @@ public class MaritimeController : MonoBehaviour
 
     private void Update()
     {
+       // Debug.Log(info.transform.GetChild(0).gameObject.GetComponent<Text>().text);
         info.transform.GetChild(0).gameObject.GetComponent<Text>().text = guideText;
         if (Input.GetKeyDown(KeyCode.H))
         {

@@ -29,7 +29,7 @@ public class BoatCameraController : MonoBehaviour
         
         //Debug.Log(transform.position - player.transform.position);
         //Debug.Log("Direction: "+ direction);
-        if (Input.GetMouseButtonDown(0))
+        if (false)//(Input.GetMouseButtonDown(0))
         {
             Vector3 direction = player.transform.position - transform.position;
             Vector3 speed = new Vector3(direction.x, 0, direction.z);

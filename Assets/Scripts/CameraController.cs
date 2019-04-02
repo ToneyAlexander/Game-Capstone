@@ -107,8 +107,9 @@ public class CameraController : MonoBehaviour
                 col.a = 0.3f;
                 rend.material.transparency = 0.3f;
                
-                 
+               
     */
+                Debug.Log("Current Tree: " + h.transform.gameObject);
                 rend.material.SetFloat("_Transparency",0.3f);
               //  Debug.Log("Hit!");
 
