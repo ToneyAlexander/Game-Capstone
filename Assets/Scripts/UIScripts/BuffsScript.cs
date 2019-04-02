@@ -66,6 +66,7 @@ public class BuffsScript : MonoBehaviour
     {
 		// trimming to reduced list
 		buffs = player.buffs;
+		storedBuffs.Clear();
 		for (int i = 0; i < buffs.Count; i++)
 		{
 			string name = buffs[i].BuffName;
@@ -79,16 +80,15 @@ public class BuffsScript : MonoBehaviour
 				storedBuffs.Add(name, buffs[i]);
 			}
 		}
-
 		// storedBuffs => objects
 		int l = 0;
 		foreach(KeyValuePair<string, TimedBuff> pair in storedBuffs)
 		{
-			BuffItem inst = storedBuffsObjects[l].GetComponent<BuffItem>();
-			inst.buff = pair.Value;
+			BuffItem bi = storedBuffsObjects[l].GetComponent<BuffItem>(); 
+			bi.buff = pair.Value;
 			Image img = storedBuffsObjects[l].GetComponent<Image>();
 			//img = inst.buff.Icon;
-
+			img.color = Color.red;
 			//update cooldown
 			l++;
 		}
@@ -103,8 +103,8 @@ public class BuffsScript : MonoBehaviour
 	}
 	private void OnLeaveBuff(PointerEventData data)
 	{
-		toolTip.SetActive(false);
 		Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
 		txt.text = "";
+		toolTip.SetActive(false);
 	}
 }
