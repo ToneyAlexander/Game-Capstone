@@ -1,5 +1,4 @@
-﻿using CCC.GameManagement;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,7 +8,7 @@ namespace CCC.Items
     /// Represents a collection of Items owned by a GameObject.
     /// </summary>
     [CreateAssetMenu(menuName = "Items/Inventory")]
-    public sealed class Inventory : ScriptableObject, IJsonSavable
+    public sealed class Inventory : ScriptableObject
     {
         /// <summary>
         /// The list of Item that this Inventory has in it.
@@ -22,6 +21,9 @@ namespace CCC.Items
         [SerializeField]
         private int maxCapacity = 15;
 
+        /// <summary>
+        /// The name of the JSON file that this Inventory references.
+        /// </summary>
         [SerializeField]
         private string filename;
 
@@ -107,13 +109,14 @@ namespace CCC.Items
             return removedItem;
         }
 
-        #region IJsonSavable
+        /// <summary>
+        /// Load the inventory data from the JSON file that this Inventory 
+        /// references.
+        /// </summary>
         public void Load()
         {
-            Debug.Log("Loading Inventory");
             path = System.IO.Path.Combine(Application.persistentDataPath, 
                 filename);
-            Debug.Log(name + ".dataPath = " + path);
 
             // Load save data from disk
             if (File.Exists(path))
@@ -121,7 +124,6 @@ namespace CCC.Items
                 using (StreamReader streamReader = File.OpenText(path))
                 {
                     string jsonString = streamReader.ReadToEnd();
-                    Debug.Log("jsonString = " + jsonString);
                     InventoryData data = 
                         JsonUtility.FromJson<InventoryData>(jsonString);
                     items = data.Items;
@@ -129,36 +131,20 @@ namespace CCC.Items
             }
         }
 
+        /// <summary>
+        /// Save the inventory data to the JSON file that this Inventory 
+        /// references.
+        /// </summary>
         public void Save()
         {
-            Debug.Log("Saving Inventory");
             string jsonString = 
-                JsonUtility.ToJson(InventoryData.ForItems(items));
-            Debug.Log("Save jsonString = " + jsonString);
+                JsonUtility.ToJson(InventoryData.ForItems(items), true);
 
             // dataPath will have already been set by Awake
             using (StreamWriter streamWriter = File.CreateText(path))
             {
-                foreach (Item item in items)
-                {
-                    Debug.Log(item.Name);
-                }
                 streamWriter.Write(jsonString);
             }
         }
-        #endregion
-
-        #region ScriptableObject Messages
-        //private void OnDisable()
-        //{
-        //    Save();
-        //}
-
-        private void OnEnable()
-        {
-            Debug.Log("In Inventory.OnEnable");
-            items = new List<Item>();
-        }
-        #endregion
     }
 }
