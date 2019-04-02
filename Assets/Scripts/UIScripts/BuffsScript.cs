@@ -106,6 +106,7 @@ public class BuffsScript : MonoBehaviour
 			bi.buff = pair.Value;
 			Image img = storedBuffsObjects[l].GetComponent<Image>();
 			img.color = Color.white;
+			img.sprite = bi.buff.icon;
 			l++;
 		}
 		previousSize = currentSize;

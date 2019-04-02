@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2429,7 +2429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &357197213
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,7 +5061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd90795c81c640aa9845091e7f7f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathScene: {fileID: 0}
 --- !u!114 &594619842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20680,8 +20679,8 @@ RectTransform:
   m_Father: {fileID: 5930947932716167570}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5365}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20769,6 +20768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c336688d9e07124694204d73eb28a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverColor: {r: 1, g: 0.41291898, b: 0, a: 1}
+  baseColor: {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 1}
 --- !u!224 &5930947932861754951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21175,7 +21176,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5930947932800071296}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.4635
+  m_Size: 0.46349996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21560,8 +21561,8 @@ RectTransform:
   m_Father: {fileID: 5930947933657149258}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.000000091552735, y: 0}
-  m_AnchorMax: {x: 0.46000013, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21799,7 +21800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &5930947933525675154
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22451,6 +22452,7 @@ MonoBehaviour:
   user: {fileID: 11400000, guid: 145915052229949d0992116c0ad2ea0e, type: 2}
   euser: {fileID: 11400000, guid: d63e3d1f33ea04602a94660242ecfd0d, type: 2}
   strLength: 30
+  baseColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
 --- !u!222 &5930947933888633488
 CanvasRenderer:
   m_ObjectHideFlags: 0
