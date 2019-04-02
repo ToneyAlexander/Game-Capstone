@@ -69,7 +69,10 @@ namespace CCC.Items
             equipment[item.EquipmentSlot] = Item.Null;
         }
 
-        #region IJsonSavable
+        /// <summary>
+        /// Load the equipment data from the JSON file that this 
+        /// EquipmentDictionary references.
+        /// </summary>
         public void Load()
         {
             if (File.Exists(path))
@@ -90,6 +93,10 @@ namespace CCC.Items
             }
         }
 
+        /// <summary>
+        /// Save the equipment data to the JSON file that this 
+        /// EquipmentDictionary references.
+        /// </summary>
         public void Save()
         {
             string jsonString = 
@@ -100,7 +107,6 @@ namespace CCC.Items
                 streamWriter.Write(jsonString);
             }
         }
-        #endregion
 
         #region ScriptableObject Messages
         private void OnEnable()

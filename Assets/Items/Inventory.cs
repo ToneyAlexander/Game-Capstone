@@ -1,5 +1,4 @@
-﻿using CCC.GameManagement;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
@@ -9,7 +8,7 @@ namespace CCC.Items
     /// Represents a collection of Items owned by a GameObject.
     /// </summary>
     [CreateAssetMenu(menuName = "Items/Inventory")]
-    public sealed class Inventory : ScriptableObject, IJsonSavable
+    public sealed class Inventory : ScriptableObject
     {
         /// <summary>
         /// The list of Item that this Inventory has in it.
@@ -22,6 +21,9 @@ namespace CCC.Items
         [SerializeField]
         private int maxCapacity = 15;
 
+        /// <summary>
+        /// The name of the JSON file that this Inventory references.
+        /// </summary>
         [SerializeField]
         private string filename;
 
@@ -107,7 +109,10 @@ namespace CCC.Items
             return removedItem;
         }
 
-        #region IJsonSavable
+        /// <summary>
+        /// Load the inventory data from the JSON file that this Inventory 
+        /// references.
+        /// </summary>
         public void Load()
         {
             path = System.IO.Path.Combine(Application.persistentDataPath, 
@@ -126,6 +131,10 @@ namespace CCC.Items
             }
         }
 
+        /// <summary>
+        /// Save the inventory data to the JSON file that this Inventory 
+        /// references.
+        /// </summary>
         public void Save()
         {
             string jsonString = 
@@ -137,19 +146,5 @@ namespace CCC.Items
                 streamWriter.Write(jsonString);
             }
         }
-        #endregion
-
-        #region ScriptableObject Messages
-        //private void OnDisable()
-        //{
-        //    Save();
-        //}
-
-        private void OnEnable()
-        {
-            Debug.Log("In Inventory.OnEnable");
-            items = new List<Item>();
-        }
-        #endregion
     }
 }
