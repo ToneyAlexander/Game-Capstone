@@ -1,5 +1,6 @@
 ﻿using CCC.GameManagement.GameStates;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace CCC.Behaviors.Props
 {
@@ -12,8 +13,16 @@ namespace CCC.Behaviors.Props
 
         public void RespondToInteraction()
         {
-            Debug.Log(gameObject.name + " changing state!");
-            gameStateChanger.ChangeState();
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                clicked = false;
+            }
+            else
+            {
+                Debug.Log(gameObject.name + " changing state!");
+                gameStateChanger.ChangeState();
+            }
+
         }
 
         #region MonoBehaviour Messages

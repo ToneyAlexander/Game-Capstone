@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class positionText : MonoBehaviour
@@ -67,10 +68,15 @@ public class positionText : MonoBehaviour
     }
     void OnMouseDown()
     {
-        maritimeController.GetComponent<MaritimeController>().islandStorage.name = n;
-        maritimeController.GetComponent<MaritimeController>().islandStorage.size = islandSize;
-        maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
-        maritimeController.GetComponent<MaritimeController>().islandStorage.theme = themeID;
+        if (!EventSystem.current.IsPointerOverGameObject())
+           {
+            
+            maritimeController.GetComponent<MaritimeController>().islandStorage.name = n;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.size = islandSize;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.theme = themeID;
+           }
+
 
 
     }

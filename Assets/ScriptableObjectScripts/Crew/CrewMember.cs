@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrewMember : ScriptableObject
+[CreateAssetMenu(menuName = "CrewMember")]
+public sealed class CrewMember : ScriptableObject
 {
     // Start is called before the first frame update
     public enum crewType
@@ -44,7 +45,28 @@ public class CrewMember : ScriptableObject
     private bool active= false;
     public bool Active { get { return active; } set { active = value; } }
 
-
+    public string addendum()
+    {
+        string str = "";
+        switch (cType)
+        {
+            case crewType.Naturalist:
+                str = ":  " + power;
+                break;
+            case crewType.Hunter:
+                string[] bosses = { "Beetle", "Dragon"};
+                str = ": " + bosses[Type] + "  " + power;
+                break;
+            case crewType.Explorer:
+                str = ":  " + power;
+                break;
+            case crewType.Navigator:
+                string[] themes = { "Grass", "Desert", "Snow", "Swamp" };
+                str = ": " + themes[Type] + "  " + power;
+                break;
+        }
+        return str;
+    }
     public void grantBonus()
     {
         
