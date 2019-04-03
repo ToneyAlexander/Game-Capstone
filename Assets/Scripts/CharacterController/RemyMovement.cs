@@ -94,6 +94,8 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isThrowingDagger",false);
 
+            animator.SetBool("isAbilityVampStrike", false);
+
             animator.SetBool("isRunning", true);
 
             movingSpeed = StatBlock.CalcMult(statBlock.MoveSpeed, statBlock.MoveSpeedMult);
