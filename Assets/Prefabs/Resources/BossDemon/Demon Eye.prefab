@@ -289,6 +289,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8535982578887711189}
   - component: {fileID: 8157060924649790924}
+  - component: {fileID: 899749257068080456}
+  - component: {fileID: 847480746100260568}
   m_Layer: 0
   m_Name: Demon Eye
   m_TagString: Untagged
@@ -331,6 +333,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &899749257068080456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778701296466229865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416de96e040caaa4d8aad688a53e8d73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletHellPrefab: {fileID: 1853709783273344728, guid: 91345fce33a8ced40937c253410fc832,
+    type: 3}
+--- !u!114 &847480746100260568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778701296466229865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cae1c3a02e4ebb44a33e0ca076d38be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  RotSpeed: 10
+  pause: 0
 --- !u!1 &809572432538333567
 GameObject:
   m_ObjectHideFlags: 0

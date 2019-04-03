@@ -10,6 +10,15 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class IslandGameState : GameState
     {
+        /// <summary>
+        /// The player's equipment.
+        /// </summary>
+        [SerializeField]
+        private EquipmentDictionary playerEquipment;
+
+        /// <summary>
+        /// The player's Inventory.
+        /// </summary>
         [SerializeField]
         private Inventory playerInventory;
 
@@ -17,12 +26,14 @@ namespace CCC.GameManagement.GameStates
         {
             Debug.Log("In IslandState.Enter");
             playerInventory.Load();
+            playerEquipment.Load();
         }
 
         public override void Exit()
         {
             Debug.Log("In IslandState.Exit");
             playerInventory.Save();
+            playerEquipment.Save();
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using CCC.Items;
+using UnityEngine;
 
-namespace CCC.Items
+namespace CCC.ItemManagement
 {
     /// <summary>
     /// Represents a Component that allows a GameObject to have an Inventory.
