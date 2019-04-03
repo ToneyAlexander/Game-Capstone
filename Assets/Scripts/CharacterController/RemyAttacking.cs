@@ -104,9 +104,9 @@ public class RemyAttacking : MonoBehaviour
                 RemyMovement.destination = this.transform.position;
                 animator.SetBool("isAblaze", true);
             }
-            if (ability.AbilityName.Equals("Dash"))
+            if (ability.AbilityName.Equals("Soul Siphon"))
             {
-                //animator.SetBool("isMagic4", true);
+                animator.SetBool("isMagic4", true);
             }
             if (ability.AbilityName.Equals("Empowered Mending"))
             {
@@ -141,6 +141,7 @@ public class RemyAttacking : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Equip")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Fireball Ignite")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Ablaze")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Blade Siphon")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Slash")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.WhirlwindSlash")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.RainOfDeath")
