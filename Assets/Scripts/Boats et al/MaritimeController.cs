@@ -10,6 +10,7 @@ public class MaritimeController : MonoBehaviour
     public GameObject prefab;
     public ThemeDictionary themes;
     public NameGenerator nameGen;
+    public CrewController crewController;
     
     //private GameStateChanger gameStateChanger;
     public GameObject info;
@@ -39,6 +40,7 @@ public class MaritimeController : MonoBehaviour
             
             x.GetComponent<positionText>().player = player;
             x.GetComponent<positionText>().themeDictionary = themes;
+            x.GetComponent<positionText>().crewController = crewController;
             //  x
             string name = nameGen.generateName();
             Debug.Log(name);
