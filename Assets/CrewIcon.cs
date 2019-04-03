@@ -100,7 +100,6 @@ public class CrewIcon : MonoBehaviour
                     image.color = new Color(0.1f, 0.4f,0.1f,1.0f);
                     cController.selectedCrew.Add(cMember);
                 }
-                
             }
             Debug.Log(cController.selectedCrew.Count);
 

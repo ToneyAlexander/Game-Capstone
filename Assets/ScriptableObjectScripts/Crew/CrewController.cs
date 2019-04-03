@@ -72,7 +72,7 @@ public class CrewController : ScriptableObject
        // selectedCrew[i].Active = false;
         fullCrew[i] = empty;
        // fullCrew[i].Active = false;
-      //  fullCrew.RemoveAt(i);
+      // fullCrew.RemoveAt(i);
     }
    public int selectTheme()
     {
