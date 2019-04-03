@@ -82,6 +82,8 @@ public class RemyMovement : MonoBehaviour
 
             animator.SetBool("isAblaze", false);
 
+            animator.SetBool("isMagic4", false);
+
             animator.SetBool("isEquip", false);
 
             animator.SetBool("isUnEquip", false);
