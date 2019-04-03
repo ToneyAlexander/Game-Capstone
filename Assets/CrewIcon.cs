@@ -18,8 +18,12 @@ public class CrewIcon : MonoBehaviour
     [SerializeField]
     private bool active = false;
 
+    private int index = 0;
+
     void Start()
     {
+        index = transform.GetSiblingIndex();
+        cMember = cController.fullCrew[index];
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
@@ -57,6 +61,7 @@ public class CrewIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cMember = cController.fullCrew[index];
         string stars = new String('☆', cMember.StarRating);
         name.text = cMember.name + "    " + stars;
         skill.text = cMember.CType + cMember.addendum();
@@ -70,7 +75,9 @@ public class CrewIcon : MonoBehaviour
         
         if (data.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("Dismiss");
+            cController.dismiss(index);
+            active = false;
+            cController.selectedCrew.Remove(cMember);
         }
         if (data.button == PointerEventData.InputButton.Left)
         {
