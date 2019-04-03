@@ -212,6 +212,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eed0027852c93a479d7a84f62611cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item:
+    name: 
+    longName: 
+    flavorText: 
+    isUnique: 0
+    tier: 0
+    sprite: {fileID: 0}
+    worldDropPrefab: {fileID: 0}
+    equipmentSlot: 0
+    stats: []
   inventory: {fileID: 11400000, guid: 145915052229949d0992116c0ad2ea0e, type: 2}
 --- !u!114 &8750255097621364240
 MonoBehaviour:
