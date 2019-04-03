@@ -18,10 +18,13 @@ public class CrewController : ScriptableObject
     public int totalCrew = 8;
     public List<CrewMember> selectedCrew;
     public List<CrewMember> fullCrew;
+    public LevelExpStore lvl;
 
     public List<CrewMember> AllCrewMembers;
-    public int[] themeChances = { 255, 255, 255, 255 };
-    public int[] bossChances = { 255, 255 };
+    public int[] themeChancesDefault = { 255, 255, 255, 255 };
+    private int[] themeChances;
+    public int[] bossChancesDefault = { 255, 255 };
+    private int[] bossChances;
     public int areaBonus = 0;
     public int levelBonus = 0;
     private int selectedSlot = 999;
@@ -65,11 +68,14 @@ public class CrewController : ScriptableObject
     }
    public int selectTheme()
     {
+        themeChances = themeChancesDefault;
         RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         byte[] randomNumber = new byte[100];
         rngCsp.GetBytes(randomNumber);
         int rnd = (randomNumber[0] % themeChances.Sum());
-
+        
+        rnd = (int)Random.Range(0, themeChances.Sum());
+        Debug.Log("Big Level: " + rnd);
         for (int i = 0; i < themeChances.Length; i++)
         {
             if (rnd < themeChances[i])
@@ -82,11 +88,13 @@ public class CrewController : ScriptableObject
     }
     public int selectBoss()
     {
+        bossChances = bossChancesDefault;
         RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
         byte[] randomNumber = new byte[100];
         rngCsp.GetBytes(randomNumber);
-        int rnd = (randomNumber[0] % themeChances.Sum());
-
+        int rnd = (randomNumber[0] % bossChances.Sum());
+        rnd = (int)Random.Range(0, bossChances.Sum());
+        Debug.Log("Big Boss: " + rnd);
         for (int i = 0; i < bossChances.Length; i++)
         {
             if (rnd < bossChances[i])
@@ -111,6 +119,24 @@ public class CrewController : ScriptableObject
 
 
 
+    }
+    public int selectLevel(int level)
+    {
+        level = lvl.Level;
+        float levelmult = Random.Range(-0.75f, 1.0f);
+        levelmult = levelmult * levelmult * levelmult;
+        levelmult += 1;
+        int ret = (int)Mathf.Max(1, Mathf.Round( (level + levelBonus) * levelmult));
+        return ret;
+    }
+    public int selectArea(int area)
+    {
+        float areamult = Random.Range(-0.3f, 0.25f);
+        areamult = 10* areamult * areamult * areamult;
+        areamult += 1;
+        int ret = (int)Mathf.Max(1, Mathf.Round((area + areaBonus) * areamult));
+        
+        return ret;
     }
     public void levelUp()
     {
