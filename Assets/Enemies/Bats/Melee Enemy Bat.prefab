@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   batAttack: {fileID: 8300000, guid: 81ce97b68b8b34cf3bed969796e07ff1, type: 3}
+  mushroomAttack: {fileID: 0}
 --- !u!82 &7937524137773064323
 AudioSource:
   m_ObjectHideFlags: 0
@@ -501,7 +502,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
