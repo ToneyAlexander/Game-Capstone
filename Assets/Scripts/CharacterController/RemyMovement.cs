@@ -74,7 +74,7 @@ public class RemyMovement : MonoBehaviour
         if((differ.x > EPSSION || differ.x < -EPSSION) || (differ.z < -EPSSION || differ.z > EPSSION)) {
             //if (transform.position != destination) {
 
-            animator.SetBool("isIdleToMelee", false);
+            animator.SetBool("isMelee", false);
 
             animator.SetBool("isFireballIgnite", false);
 
