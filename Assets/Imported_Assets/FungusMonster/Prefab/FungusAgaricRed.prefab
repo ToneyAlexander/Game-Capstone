@@ -5253,7 +5253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd7b3f28369041f3ae7ac4dee45d836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  batAttack: {fileID: 0}
+  batAttack: {fileID: 8300000, guid: 81ce97b68b8b34cf3bed969796e07ff1, type: 3}
   mushroomAttack: {fileID: 8300000, guid: b231cf14b1e1042489d38d8de67e6ed9, type: 3}
 --- !u!82 &4739803467934619550
 AudioSource:
@@ -5266,7 +5266,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
