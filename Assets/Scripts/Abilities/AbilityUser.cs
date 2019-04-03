@@ -46,7 +46,9 @@ namespace CCC.Abilities
 
             if (ability.abilityType == AbilityType.Melee)
             {
-                remyAttacking.MeleeAttack();
+                if (ability.cdRemain <= 0) {
+                    remyAttacking.MeleeAttack();
+                }
             }
 
             else
