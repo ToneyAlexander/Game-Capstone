@@ -16,7 +16,7 @@ public class DragonBulletHell : MagicFairBall
             GameObject obj = Instantiate(smallProj, transform.position, Quaternion.Euler(0, 360 / expected * i, 0));
             ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
             obj.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
-            obj.transform.Translate(Vector3.forward * 1.5f);
+            obj.transform.Translate(Vector3.forward * 0.5f);
             pbh.dmg = childDamage;
             pbh.ttl = 5f;
         }
