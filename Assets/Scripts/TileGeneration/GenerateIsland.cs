@@ -482,7 +482,7 @@ public class GenerateIsland : MonoBehaviour
         //PAVAN
         if (true || this.Done())
         {
-            Instantiate(BackToHub, this.GetBoatStart(), Quaternion.identity);
+            Instantiate(BackToHub, this.GetBoatStart() + new Vector3(0.0f,2.0f,0.0f), Quaternion.identity);
             //WESLEY REMOVE THESE LINES
             remy.transform.position = this.PlayerStart;
             remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
