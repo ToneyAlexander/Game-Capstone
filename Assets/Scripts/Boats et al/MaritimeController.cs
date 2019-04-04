@@ -15,8 +15,8 @@ public class MaritimeController : MonoBehaviour
     //private GameStateChanger gameStateChanger;
     public GameObject info;
     public IslandStorage islandStorage;
-    Vector3 hiddenPos = new Vector3(-520, 0, 0);
-    Vector3 visiblePos = new Vector3(-300, 0, 0);
+    Vector3 hiddenPos = new Vector3(-960, 0, 0);
+    Vector3 visiblePos = new Vector3(-1360, 0, 0);
     bool shown= false;
     public string guideText = "Press H to show/hide";
 
@@ -27,6 +27,10 @@ public class MaritimeController : MonoBehaviour
     int nums;
     float tolerance = 15.0f;
     public List<IslandData.Island> islands = new List<IslandData.Island>();
+
+    public Text islandName;
+    public Text infoText;
+    public Text descText;
 
     #region MonoBehaviour Messages
     private void Start()
@@ -50,23 +54,37 @@ public class MaritimeController : MonoBehaviour
             IslandData.Island isle = new IslandData.Island(1, new Vector3(sin * 200, 0, cos * 200),name,x);
         }
 
+        for(int j = 0; j < info.transform.childCount; j++)
+        {
+            if(info.transform.GetChild(j).name.Equals("DynText"))
+            {
+                infoText = info.transform.GetChild(j).GetComponent<Text>();
+            }
+            else if(info.transform.GetChild(j).name.Equals("IslandName"))
+            {
+                islandName = info.transform.GetChild(j).GetComponent<Text>();
+            }
+            else if (info.transform.GetChild(j).name.Equals("Desc"))
+            {
+                descText = info.transform.GetChild(j).GetComponent<Text>();
+            }
+        }
+
     }
 
     private void Update()
     {
-       // Debug.Log(info.transform.GetChild(0).gameObject.GetComponent<Text>().text);
-        info.transform.GetChild(0).gameObject.GetComponent<Text>().text = guideText;
         if (Input.GetKeyDown(KeyCode.H))
         {
             shown = !shown;
         }
         if (shown)
         {
-            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, visiblePos, 100 * Time.deltaTime);
+            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, visiblePos, 800 * Time.deltaTime);
         }
         else
         {
-            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, hiddenPos, 100 * Time.deltaTime);
+            info.transform.localPosition = Vector3.MoveTowards(info.transform.localPosition, hiddenPos, 800 * Time.deltaTime);
         }
     }
     #endregion

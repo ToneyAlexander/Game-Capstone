@@ -18,12 +18,12 @@ public class AbilityUI : MonoBehaviour
     {
         for (int i = 0; i < this.transform.childCount; i++)
         {
-            
+
             if (this.transform.GetChild(i).name.Equals("Slots"))
             {
-                
+
                 slotsHolder = this.transform.GetChild(i).gameObject;
-                
+
                 for (int j = 0; j < slotsHolder.transform.childCount; j++)
                 {
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot1"))
@@ -82,37 +82,48 @@ public class AbilityUI : MonoBehaviour
         {
             statSlots[i].GetComponent<Image>().color = Color.white;
             Image img = statSlots[i].GetComponent<Image>();
-            if(i == 0){
+            if (i == 0)
+            {
                 setIcon(img, AbilitySlot.One);
-            }else if(i == 1){
+            }
+            else if (i == 1)
+            {
                 setIcon(img, AbilitySlot.Two);
-            }else if(i == 2){
+            }
+            else if (i == 2)
+            {
                 setIcon(img, AbilitySlot.Three);
-            }else if(i == 3){
+            }
+            else if (i == 3)
+            {
                 setIcon(img, AbilitySlot.Four);
-            }else if(i == 4){
+            }
+            else if (i == 4)
+            {
                 setIcon(img, AbilitySlot.Five);
             }
         }
         if (selected >= 1)
         {
-           statSlots[selected - 1].GetComponent<Image>().color = Color.red;
+            statSlots[selected - 1].GetComponent<Image>().color = Color.red;
         }
         int count = 0;
-        foreach(KeyValuePair<string, Ability> abil in fullSet.Set)
+        foreach (KeyValuePair<string, Ability> abil in fullSet.Set)
         {
             GameObject store = storedAbils.transform.GetChild(count).gameObject;
             store.GetComponent<Image>().sprite = abil.Value.Icon;
             AbilityHolder x = store.GetComponent<AbilityHolder>();
             x.ability = abil.Value;
-           // x = 
+            // x = 
             count++;
         }
     }
 
-    private void setIcon(Image img, AbilitySlot slot){
+    private void setIcon(Image img, AbilitySlot slot)
+    {
         Ability abil = dict.GetAbility(slot);
-        if(abil != Ability.nullAbility){
+        if (abil != Ability.nullAbility)
+        {
             img.sprite = abil.Icon;
         }
     }
@@ -120,33 +131,31 @@ public class AbilityUI : MonoBehaviour
     {
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
         Ability ability = clicked.GetComponent<AbilityHolder>().ability;
-        if (selected >= 1 && ability.AbilityName != "Null Ability") {
+        if (selected >= 1 && ability.AbilityName != "Null Ability")
+        {
 
-            
+
             if (selected == 1)
             {
-                    dict.SetSlotAbility(AbilitySlot.One, ability);
-                    Image img =  statSlots[selected - 1].GetComponent<Image>();
-                    Sprite temp = dict.GetAbility(AbilitySlot.One).Icon;  
-                    img.sprite = temp;        
+                dict.SetSlotAbility(AbilitySlot.One, ability);
             }
             else if (selected == 2)
             {
-                    dict.SetSlotAbility(AbilitySlot.Two, ability);
-                }
+                dict.SetSlotAbility(AbilitySlot.Two, ability);
+            }
             else if (selected == 3)
             {
-                    dict.SetSlotAbility(AbilitySlot.Four, ability);
-                }
+                dict.SetSlotAbility(AbilitySlot.Three, ability);
+            }
             else if (selected == 4)
             {
-                    dict.SetSlotAbility(AbilitySlot.Three, ability);
-                }
+                dict.SetSlotAbility(AbilitySlot.Four, ability);
+            }
             else if (selected == 5)
             {
-                    dict.SetSlotAbility(AbilitySlot.Five, ability);
+                dict.SetSlotAbility(AbilitySlot.Five, ability);
             }
-                
+
         }
         selected = -1;
     }
