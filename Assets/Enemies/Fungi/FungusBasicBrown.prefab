@@ -6031,7 +6031,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 120d6102c2cc7534b98d6a7822a7c823, type: 3}
   m_Controller: {fileID: 9100000, guid: c4f317bcec7b10040bd3a40f11352332, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -6190,6 +6190,7 @@ MonoBehaviour:
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
   bloodlineController: {fileID: 0}
+  PlayerLevelExp: {fileID: 0}
 --- !u!54 &1053076024250392281
 Rigidbody:
   m_ObjectHideFlags: 0

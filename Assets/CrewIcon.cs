@@ -18,8 +18,12 @@ public class CrewIcon : MonoBehaviour
     [SerializeField]
     private bool active = false;
 
+    private int index = 0;
+
     void Start()
     {
+        index = transform.GetSiblingIndex();
+        cMember = cController.fullCrew[index];
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerClick;
@@ -57,6 +61,7 @@ public class CrewIcon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cMember = cController.fullCrew[index];
         string stars = new String('☆', cMember.StarRating);
         name.text = cMember.name + "    " + stars;
         skill.text = cMember.CType + cMember.addendum();
@@ -70,7 +75,9 @@ public class CrewIcon : MonoBehaviour
         
         if (data.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("Dismiss");
+            cController.dismiss(index);
+            active = false;
+            cController.selectedCrew.Remove(cMember);
         }
         if (data.button == PointerEventData.InputButton.Left)
         {
@@ -80,7 +87,7 @@ public class CrewIcon : MonoBehaviour
                 active = !active;
                 CrewIcon.count -= 1;
                 Color x = new Color();
-                ColorUtility.TryParseHtmlString("#D4D0AB", out x);
+                ColorUtility.TryParseHtmlString("#373737", out x);
                 image.color = x;
                 cController.selectedCrew.Remove(cMember);
             }
@@ -90,10 +97,11 @@ public class CrewIcon : MonoBehaviour
                 {
                     CrewIcon.count += 1;
                     active = !active;
-                    image.color = new Color(0.1f, 0.4f,0.1f,1.0f);
+                    Color newColor = new Color();
+                    ColorUtility.TryParseHtmlString("#FFBC7C", out newColor);
+                    image.color = newColor;
                     cController.selectedCrew.Add(cMember);
                 }
-                
             }
             Debug.Log(cController.selectedCrew.Count);
 

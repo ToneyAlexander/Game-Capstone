@@ -22,11 +22,18 @@ namespace CCC.GameManagement.GameStates
         [SerializeField]
         private Inventory playerInventory;
 
+        /// <summary>
+        /// The player's current level and experience.
+        /// </summary>
+        [SerializeField]
+        private LevelExpStore playerLevelExpStore;
+
         public override void Enter()
         {
             Debug.Log("In IslandState.Enter");
             playerInventory.Load();
             playerEquipment.Load();
+            playerLevelExpStore.Load();
         }
 
         public override void Exit()
@@ -34,6 +41,7 @@ namespace CCC.GameManagement.GameStates
             Debug.Log("In IslandState.Exit");
             playerInventory.Save();
             playerEquipment.Save();
+            playerLevelExpStore.Save();
         }
     }
 }

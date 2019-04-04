@@ -5,7 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(GameStateChanger))]
-public class ProcedeButton : MonoBehaviour
+public class RetireProceedButton : MonoBehaviour
 {
     [SerializeField]
     private Button button;
@@ -40,6 +40,8 @@ public class ProcedeButton : MonoBehaviour
 
     private float exposure = 2.21f;
 
+    private float oof = 10;
+
     private void Awake()
     {
         for (int i = 0; i < remy.transform.childCount; i++)
@@ -47,7 +49,6 @@ public class ProcedeButton : MonoBehaviour
             if (remy.transform.GetChild(i).name.Equals("Main Camera"))
             {
                 camera = remy.transform.GetChild(i).gameObject;
-                camera.transform.parent = null;
             }
         }
 
@@ -59,7 +60,7 @@ public class ProcedeButton : MonoBehaviour
     {
         button.onClick.AddListener(ProcedeClicked);
 
-        RenderSettings.skybox.SetFloat("_Exposure", exposure);
+        //RenderSettings.skybox.SetFloat("_Exposure", exposure);
 
         //How to slow remy down at start?
         //How to make remy running to somewhere
@@ -72,11 +73,6 @@ public class ProcedeButton : MonoBehaviour
 
     private void Update()
     {
-        if (!ended)
-        {
-            remy.GetComponent<Animator>().SetBool("isRunning", true);
-        }
-
         if (clicked)
         {
             if (display.GetComponent<CanvasGroup>().alpha > .001)
@@ -85,7 +81,6 @@ public class ProcedeButton : MonoBehaviour
             }
             else if (alpha > .001)
             {
-                processor.ProcessCommand(new MoveToCommand(remy.GetComponent<IDestinationMover>(), remy.transform.position, new Vector3(136f, 4f, 83f)));
                 for (int i = 0; i < BlackBox.transform.childCount; i++)
                 {
                     Color c = BlackBox.transform.GetChild(i).GetComponent<Renderer>().material.color;
@@ -98,12 +93,13 @@ public class ProcedeButton : MonoBehaviour
             {
                 ended = true;
                 Destroy(BlackBox);
-
-                StartCoroutine(RunToDistance());
+                processor.ProcessCommand(new MoveToCommand(remy.GetComponent<IDestinationMover>(), remy.transform.position, new Vector3(136f, 4f, 76f)));
+                StartCoroutine(FadeOut());
             }
-            else if(bloom.intensity.value < 100)
+            else if(oof < 75)
             {
-                bloom.intensity.value += .1f;
+                oof += .1f;
+                //bloom.intensity.value += .1f;
             }
             else
             {
@@ -117,13 +113,12 @@ public class ProcedeButton : MonoBehaviour
         }
     }
 
-    IEnumerator RunToDistance()
+    IEnumerator FadeOut()
     {
         //Wait for a time
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(5);
 
-        //Make remy run into distance
-        processor.ProcessCommand(new MoveToCommand(remy.GetComponent<IDestinationMover>(), remy.transform.position, new Vector3(136f, 2.5f, 700f)));
+        GameObject.Find("Wind Sounder").GetComponent<AudioFadeOut>().start = true;
 
         //Fade to white
         Instantiate(Resources.Load<GameObject>("White Screen"));

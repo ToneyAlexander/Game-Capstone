@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.Items;
+using UnityEngine;
 
 namespace CCC.GameManagement.GameStates
 {
@@ -8,14 +9,24 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class DeathScreenGameState : GameState
     {
+        [SerializeField]
+        private Inventory inventory;
+
+        [SerializeField]
+        private EquipmentDictionary playerEquipment;
+
         public override void Enter()
         {
             Debug.Log("In DeathScreenState.Enter");
+            inventory.Load();
+            playerEquipment.Load();
         }
 
         public override void Exit()
         {
             Debug.Log("In DeathScreenState.Exit");
+            inventory.Save();
+            playerEquipment.Save();
         }
     }
 }

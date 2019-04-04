@@ -26,6 +26,15 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
         //gameStateChanger.ChangeGameState();
     }
 
+    //TODO: REMOVE
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Period))
+        {
+            Die();
+        }
+    }
+
     #region MonoBehaviour Messages
     private void Awake()
     {
@@ -33,4 +42,5 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
         remyDead = GetComponent<RemyDead>();
     }
     #endregion
+
 }

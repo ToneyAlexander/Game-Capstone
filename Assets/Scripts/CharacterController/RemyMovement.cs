@@ -74,13 +74,15 @@ public class RemyMovement : MonoBehaviour
         if((differ.x > EPSSION || differ.x < -EPSSION) || (differ.z < -EPSSION || differ.z > EPSSION)) {
             //if (transform.position != destination) {
 
-            animator.SetBool("isIdleToMelee", false);
+            animator.SetBool("isMelee", false);
 
             animator.SetBool("isFireballIgnite", false);
 
             animator.SetBool("isFireballVolley", false);
 
             animator.SetBool("isAblaze", false);
+
+            animator.SetBool("isMagic4", false);
 
             animator.SetBool("isEquip", false);
 
@@ -93,6 +95,8 @@ public class RemyMovement : MonoBehaviour
             animator.SetBool("isRainOfDeath", false);
 
             animator.SetBool("isThrowingDagger",false);
+
+            animator.SetBool("isAbilityVampStrike", false);
 
             animator.SetBool("isRunning", true);
 

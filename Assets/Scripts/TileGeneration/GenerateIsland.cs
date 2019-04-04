@@ -142,6 +142,8 @@ public class GenerateIsland : MonoBehaviour
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
+        Debug.Log(Application.persistentDataPath);
+
         if (useIngameIslandStats)
         {
             LinkIslandStat();
@@ -658,6 +660,7 @@ public class GenerateIsland : MonoBehaviour
                     int ind = Random.Range(0, neighbors.Count);
                     Vector2Int n = neighbors[ind];
                     neighbors.RemoveAt(ind);
+
                     if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
                     {
                         tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
@@ -796,8 +799,8 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { /*"BossBeetle/Boss Beetle", "BossDragon/BossDragon",*/ "BossDemon/BossDemon" };
-        string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon" };
+        string toLoad = possibleBosses[islandStorage.boss];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
         boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);
