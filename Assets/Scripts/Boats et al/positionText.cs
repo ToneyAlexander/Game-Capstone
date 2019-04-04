@@ -19,7 +19,7 @@ public class positionText : MonoBehaviour
     private int themeID = 0;
     private int level = 0;
     private int bossIndex = 0;
-    private string[] bosses = { "Beetle", "Dragon" };
+    private string[] bosses = { "Beetle", "Dragon" , "Demon"};
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);
@@ -71,7 +71,10 @@ public class positionText : MonoBehaviour
     {
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.red;
-        maritimeController.GetComponent<MaritimeController>().guideText = n + "\n Area: "+ islandSize + "\n Elevation: "+ islandHeight+  "\n Biome: " + themeDictionary.themeDictionary[themeID] + "\nLevel: "+ level + " \n\n\n A "+ bosses[bossIndex] +" has been spotted on this island!";
+        maritimeController.GetComponent<MaritimeController>().islandName.text = n;
+        maritimeController.GetComponent<MaritimeController>().descText.text = "A " + bosses[bossIndex] + " has been spotted on this island!";
+        maritimeController.GetComponent<MaritimeController>().infoText.text = islandSize + "\n" + islandHeight + "\n" + themeDictionary.themeDictionary[themeID] + "\n" + level;
+  
     }
     void OnMouseDown()
     {
@@ -92,7 +95,8 @@ public class positionText : MonoBehaviour
     {
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.black;
-        maritimeController.GetComponent<MaritimeController>().guideText = "Press H to hide/show";
-        // info.transform.GetChild(0).gameObject.GetComponent<Text>().text = "Press H to hide/show";
+        maritimeController.GetComponent<MaritimeController>().descText.text = "Press H to hide/show";
+        maritimeController.GetComponent<MaritimeController>().islandName.text = "";
+        maritimeController.GetComponent<MaritimeController>().infoText.text = "";
     }
 }

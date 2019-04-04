@@ -150,7 +150,7 @@ public abstract class EnemyController : MonoBehaviour
         Vector3 randomPos = spawnPos + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
 
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(randomPos, out hit, 5, 1)) 
+        if (NavMesh.SamplePosition(randomPos, out hit, 5f, 1)) 
         {
             randomPos = hit.position;            
         }

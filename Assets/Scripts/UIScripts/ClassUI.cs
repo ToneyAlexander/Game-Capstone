@@ -105,7 +105,9 @@ public class ClassUI : MonoBehaviour
                 GameObject image = new GameObject();
                 PerkHolder perkHolder = image.AddComponent<PerkHolder>();
                 perkHolder.perkInfo = proto;
+                
                 perkHolder.playerClass = playerClass;
+                perkHolder.recheck();
                 if (proto.Require.Count == 0)
                 {
                     perkHolder.available = true;

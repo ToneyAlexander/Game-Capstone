@@ -14,6 +14,7 @@ public class CrewController : ScriptableObject
         public int level;
 
     }
+
     public int maxCrew = 3;
     public int totalCrew = 8;
     public List<CrewMember> selectedCrew;
@@ -23,12 +24,13 @@ public class CrewController : ScriptableObject
     public List<CrewMember> AllCrewMembers;
     public int[] themeChancesDefault = { 255, 255, 255, 255 };
     private int[] themeChances;
-    public int[] bossChancesDefault = { 255, 255 };
+    public int[] bossChancesDefault = { 255, 255, 255 };
     private int[] bossChances;
     public int areaBonus = 0;
     public int levelBonus = 0;
     private int selectedSlot = 999;
-
+    public bool recruited = false;
+    public CrewMember empty;
 
 
     // Start is called before the first frame update
@@ -56,15 +58,21 @@ public class CrewController : ScriptableObject
     }
    public void fillCrew()
     {
+        recruited = true;
         for (int i = 0; i < totalCrew; i++)
         {
-
+            if (fullCrew[i] == empty)
+            {
+                fullCrew[i] = AllCrewMembers[(int)Random.Range(0, AllCrewMembers.Count)];
+            }
         }
     }
     public void dismiss(int i)
     {
-        selectedCrew[i].Active = false;
-        selectedCrew.RemoveAt(i);
+       // selectedCrew[i].Active = false;
+        fullCrew[i] = empty;
+       // fullCrew[i].Active = false;
+      // fullCrew.RemoveAt(i);
     }
    public int selectTheme()
     {

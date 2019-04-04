@@ -24,7 +24,7 @@ public class GenerateEnemies : MonoBehaviour
         
         // Random number of enemies
         // enemiesNumber = Random.Range(5, 10);
-        enemiesNumber = 1;
+        enemiesNumber = 3;
         enemies = new GameObject[enemiesNumber];
         
         for (int i = 0; i < enemiesNumber; i++)
@@ -54,7 +54,7 @@ public class GenerateEnemies : MonoBehaviour
             randomPos = transform.position + new Vector3(randomPoint.x, 0.0f, randomPoint.y);
             i++;
         }
-        while (!NavMesh.SamplePosition(randomPos, out hit, 5f, 1) && i < maxTimes);
+        while (!NavMesh.SamplePosition(randomPos, out hit, 3f, 1) && i < maxTimes);
 
         if (i < maxTimes)
         {

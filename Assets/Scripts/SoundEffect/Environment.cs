@@ -63,6 +63,8 @@ public class Environment : MonoBehaviour
 
                     audiodata.clip = boss_fight;
 
+                    audiodata.volume = 0.4f;
+
                     audiodata.Play();
 
                     isPlayArena = true;
