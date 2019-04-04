@@ -1,22 +1,18 @@
 ﻿using CCC.Behaviors;
-using CCC.GameManagement;
 using CCC.GameManagement.GameStates;
 using UnityEngine;
 
-[RequireComponent(typeof(MainMenuGameStateChanger))]
+[RequireComponent(typeof(GameStateChanger))]
 [RequireComponent(typeof(RemyDead))]
 public sealed class KillablePlayer : MonoBehaviour, IKillable
 {
-    private IGameStateChanger gameStateChanger;
+    /// <summary>
+    /// The GameStateChanger that will be used to change the game state.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
 
     [SerializeField]
     private RemyDead remyDead;
-
-    private void Awake()
-    {
-        gameStateChanger = GetComponent<MainMenuGameStateChanger>();
-        remyDead = GetComponent<RemyDead>();
-    }
 
     public void Die()
     {
@@ -38,4 +34,13 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
             Die();
         }
     }
+
+    #region MonoBehaviour Messages
+    private void Awake()
+    {
+        gameStateChanger = GetComponent<GameStateChanger>();
+        remyDead = GetComponent<RemyDead>();
+    }
+    #endregion
+
 }

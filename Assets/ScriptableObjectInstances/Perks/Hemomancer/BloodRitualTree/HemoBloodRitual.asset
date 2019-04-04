@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: HemoBloodRitual
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 5e12c4a4eb6d49a43a23a603f03d50fa, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Blood Ritual
+  Desc: Long cooldown. Sets your hp to 1 and then grants health regen equal to 100%
+    of your max life over 3 seconds.
+  grants:
+  - {fileID: 11400000, guid: 1f17613df4e7d7b40a54c609f7c4f26e, type: 2}
+  Changes: []
+  uiCoords: {x: 50, y: 325}
+  sprite: {fileID: 21300000, guid: 76e42008ac35ed24f839c6882e9d9d51, type: 3}

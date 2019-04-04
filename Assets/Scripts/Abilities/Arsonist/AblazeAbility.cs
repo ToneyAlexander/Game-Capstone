@@ -11,7 +11,6 @@ public class AblazeAbility : AbilityBase
     private readonly string AbilName = "Ablaze";
 
     private List<Stat> abilStats;
-    private StatBlock stats;
     private MousePositionDetector mpd;
     private GameObject aoeObj;
 

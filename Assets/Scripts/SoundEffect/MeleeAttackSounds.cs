@@ -16,6 +16,11 @@ public class MeleeAttackSounds : MonoBehaviour
     [SerializeField]
     private AudioClip MeleeA3;
 
+    [SerializeField]
+    private AudioClip RainOfDeath;
+
+    [SerializeField]
+    private AudioClip DaggerThrow;
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +46,15 @@ public class MeleeAttackSounds : MonoBehaviour
         audiodata.Play();
     }
 
+    void PlayRainOfDeath()
+    {
+        audiodata.clip = RainOfDeath;
+        audiodata.Play();
+    }
 
+    void PlayDaggerThrow()
+    {
+        audiodata.clip = DaggerThrow;
+        audiodata.Play();
+    }
 }

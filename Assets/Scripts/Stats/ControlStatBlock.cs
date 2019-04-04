@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using CCC.Items;
+using CCC.ItemManagement;
+using CCC.Stats;
 using System.Collections.Generic;
 using UnityEngine;
-using CCC.Items;
-using CCC.Stats;
 
 [RequireComponent(typeof(StatBlock))]
 public class ControlStatBlock : MonoBehaviour
@@ -22,7 +22,7 @@ public class ControlStatBlock : MonoBehaviour
     public float Fort { get; set; }
     public float FortMult { get; set; }
 
-    private List<TimedBuff> buffs;
+    public List<TimedBuff> buffs;
     private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
     private float oldHpPrecent;
@@ -35,10 +35,12 @@ public class ControlStatBlock : MonoBehaviour
         if(!buffsToAdd.Contains(tb))
             buffsToAdd.Add(tb);
     }
+
     public StatBlock getStats()
     {
         return stats;
     }
+
     void Awake()
     {
         applyTestStats = false;
@@ -95,6 +97,8 @@ public class ControlStatBlock : MonoBehaviour
         stats.MoveSpeedMult = 0f;
         stats.HealthRegenMult = 0f;
         stats.HealthMult = 0f;
+        stats.PhantomHpMult = 0f;
+        stats.BloodDamage = 0f;
         stats.AttackSpeed = 0f;
         stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
@@ -103,7 +107,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.AfflictRes = 0f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
-        stats.CritDamage = 1.5f;
+        stats.CritDamage = 1f;
         stats.CritDamageMult = 0f;
         stats.Damage = 0f;
         stats.DamageMult = 0f;
@@ -115,6 +119,8 @@ public class ControlStatBlock : MonoBehaviour
         stats.MagicResMult = 0f;
         stats.StatusRec = 0f;
         stats.StatusRecMult = 0f;
+        stats.FlatDmgReduction = 0f;
+        stats.FlatDmgReductionMult = 0f;
     }
 
     void ApplyStat(Stat stat)
@@ -181,6 +187,12 @@ public class ControlStatBlock : MonoBehaviour
             case Stat.HEALTH_MULT:
                 stats.HealthMult += stat.Value;
                 break;
+            case Stat.HEMO_PHANTOM_HP_MULT:
+                stats.PhantomHpMult += stat.Value;
+                break;
+            case Stat.HEMO_BLOOD_POWER:
+                stats.BloodDamage += stat.Value;
+                break;
             case Stat.HEALTH_REGEN:
                 stats.HealthRegen += stat.Value;
                 break;
@@ -216,6 +228,12 @@ public class ControlStatBlock : MonoBehaviour
                 break;
             case Stat.MYST_MULT:
                 MystMult += stat.Value;
+                break;
+            case Stat.FLAT_DMG_REDUCTION:
+                stats.FlatDmgReduction += stat.Value;
+                break;
+            case Stat.FLAT_DMG_REDUCTION_MULT:
+                stats.FlatDmgReductionMult += stat.Value;
                 break;
             case Stat.PHYS_DMG:
                 stats.PhysicalDamage += stat.Value;
@@ -255,7 +273,7 @@ public class ControlStatBlock : MonoBehaviour
 
     public void StatsChanged()
     {
-        if (oldHpPrecent >= -1000f)
+        if (oldHpPrecent >= -1000f && stats.HealthMax != 0.0f)
             oldHpPrecent = stats.HealthCur / stats.HealthMax;
         else
             oldHpPrecent = 1f;
@@ -296,6 +314,7 @@ public class ControlStatBlock : MonoBehaviour
             foreach (Stat s in tb.Stats)
             {
                 ApplyStat(s);
+                //Debug.Log(s.Name + ": " + s.Value);
             }
         }
 
@@ -343,7 +362,7 @@ public class ControlStatBlock : MonoBehaviour
             if (tb.DurationLeft <= 0f)
             {
                 buffs.RemoveAt(i);
-                //Debug.Log(tb.BuffName + " expired.");
+                Debug.Log(tb.BuffName + " expired.");
                 needsUpdate = true;
 
             }

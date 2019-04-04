@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(GameStateChanger))]
 public class ProcedeButton : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +25,13 @@ public class ProcedeButton : MonoBehaviour
     private GameObject camera;
     private Bloom bloom;
 
+    private bool isChangingState = false;
+
+    /// <summary>
+    /// The GameStateChanger that will be used to change the game state.
+    /// </summary>
+    private GameStateChanger gameStateChanger;
+
     private bool clicked = false;
 
     private bool ended = false;
@@ -31,6 +39,20 @@ public class ProcedeButton : MonoBehaviour
     private float alpha = 1f;
 
     private float exposure = 2.21f;
+
+    private void Awake()
+    {
+        for (int i = 0; i < remy.transform.childCount; i++)
+        {
+            if (remy.transform.GetChild(i).name.Equals("Main Camera"))
+            {
+                camera = remy.transform.GetChild(i).gameObject;
+            }
+        }
+
+        bloom = camera.GetComponent<PostProcessVolume>().profile.GetSetting<Bloom>();
+        gameStateChanger = GetComponent<GameStateChanger>();
+    }
 
     void Start()
     {
@@ -75,17 +97,21 @@ public class ProcedeButton : MonoBehaviour
             {
                 ended = true;
                 Destroy(BlackBox);
-
+                
                 StartCoroutine(RunToDistance());
             }
-            else if(bloom.intensity.value < 100)
+            else if(bloom.intensity.value < 75)
             {
                 bloom.intensity.value += .1f;
             }
             else
             {
                 //TODO: GO TO MAIN MENU/CLASS SELECT?
-                remy.GetComponent<MainMenuGameStateChanger>().ChangeGameState();
+                if (!isChangingState)
+                {
+                    isChangingState = true;
+                    gameStateChanger.ChangeState();
+                }
             }
         }
     }
@@ -95,19 +121,12 @@ public class ProcedeButton : MonoBehaviour
         //Wait for a time
         yield return new WaitForSeconds(4);
 
-        for (int i = 0; i < remy.transform.childCount; i++)
-        {
-            if (remy.transform.GetChild(i).name.Equals("Main Camera"))
-            {
-                camera = remy.transform.GetChild(i).gameObject;
-                camera.transform.parent = null;
-            }
-        }
+        camera.transform.parent = null;
+        GameObject.Find("Wind Sounder").GetComponent<AudioFadeOut>().start = true;
         //Make remy run into distance
         processor.ProcessCommand(new MoveToCommand(remy.GetComponent<IDestinationMover>(), remy.transform.position, new Vector3(136f, 2.5f, 700f)));
 
         //Fade to white
         Instantiate(Resources.Load<GameObject>("White Screen"));
-        bloom = camera.GetComponent<PostProcessVolume>().profile.GetSetting<Bloom>();
     }
 }

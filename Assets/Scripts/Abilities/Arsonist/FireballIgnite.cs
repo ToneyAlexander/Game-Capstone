@@ -12,7 +12,6 @@ public class FireballIgnite : AbilityBase
     private readonly string AbilName = "Fireball Ignite";
 
     private List<Stat> abilStats;
-    private StatBlock stats;
     private MousePositionDetector mpd;
     private GameObject projectile;
     
@@ -62,7 +61,6 @@ public class FireballIgnite : AbilityBase
     // Start is called before the first frame update
     void Start()
     {
-        //TODO: Detect ability stat changes
         mpd = GetComponent<MousePositionDetector>();
         stats = GetComponent<StatBlock>();
         PlayerClass pc = GetComponent<PlayerClass>();

@@ -2167,14 +2167,14 @@ GameObject:
   - component: {fileID: 1578934643}
   - component: {fileID: 1578934642}
   - component: {fileID: 1578934641}
-  - component: {fileID: 1318119832}
-  - component: {fileID: 1318119833}
+  - component: {fileID: 4676414605621251161}
   - component: {fileID: 6486006169379577781}
   - component: {fileID: 2350382289057844394}
   - component: {fileID: 5522042545886213516}
   - component: {fileID: 7761238341761423436}
   - component: {fileID: 7319138017440866043}
   - component: {fileID: 6878096198929839801}
+  - component: {fileID: 1212432554513744453}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2190,7 +2190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578934640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalPosition: {x: 152, y: 1.6, z: 48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 543120061}
@@ -2461,6 +2461,7 @@ MonoBehaviour:
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
   bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
     type: 2}
+  PlayerLevelExp: {fileID: 11400000, guid: b7812365dbea3c2428329e3285bf38af, type: 2}
 --- !u!114 &1578934643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2473,7 +2474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aeb3cf415311c4387ed60fcabc1bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClassL: {fileID: 11400000, guid: caed4288e7ea52e4e82d170b39bad64b, type: 2}
+  ClassL: {fileID: 11400000, guid: 988346165e03014419733c16afcb52c9, type: 2}
   BControl: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
   useClassSelection: 1
 --- !u!114 &1578934642
@@ -2491,12 +2492,14 @@ MonoBehaviour:
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
   dash: {fileID: 11400000, guid: a628ad4ffafda154b9869dbf0c1eaa75, type: 2}
   mending: {fileID: 11400000, guid: 60a3912452ad31848a8013abf2013bbd, type: 2}
+  hemoMend: {fileID: 11400000, guid: cc5ccbd3936697041a3ab8acf844cff5, type: 2}
   ablazeOff: {fileID: 11400000, guid: 878850fb8c0123249ae78833d22daa1b, type: 2}
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
   ablazeIgnite: {fileID: 11400000, guid: f63469089ae6da244af1ae31fbced36d, type: 2}
   ooze: {fileID: 11400000, guid: 64f7d07c15773514da22fe3e9a47c1e7, type: 2}
   crippled: {fileID: 11400000, guid: d5b1a127ba5ef2640936e3425e023cc5, type: 2}
   ripperFrenzy: {fileID: 11400000, guid: d4c4ae70b6dda4e4188730da5ed07256, type: 2}
+  bloodBlock: {fileID: 11400000, guid: 620b49b7cfbfd5c4ab403af47638db83, type: 2}
   Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
   Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
   Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
@@ -2513,11 +2516,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  infoMenu: {fileID: 0}
+  infoMenu: {fileID: 5930947933114172131, guid: 4c255937a95562a44adca004445c95b2,
+    type: 3}
   classInfoTabButton: {fileID: 11400000, guid: 5cbe2a93ff65940ff97bca7f1d330395, type: 2}
   inventoryTabButton: {fileID: 11400000, guid: eeb8cea1fc3334982925e61ea49bec48, type: 2}
   statsTabButton: {fileID: 11400000, guid: b0efef9cca1da4d73a8c6ee13451c597, type: 2}
---- !u!114 &1318119832
+--- !u!114 &4676414605621251161
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2526,22 +2530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1578934640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04934ba8ad37246adbe831c14cce4d24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
-  mainMenuSceneReference: {fileID: 11400000, guid: 827587ddca0544b1f95d318c0a18cace,
-    type: 2}
---- !u!114 &1318119833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578934640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee95ac7c445704235b68d6c2bf1b734a, type: 3}
+  m_Script: {fileID: 11500000, guid: ffd90795c81c640aa9845091e7f7f555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6486006169379577781
@@ -2712,6 +2701,7 @@ MonoBehaviour:
   MagicVolley: {fileID: 8300000, guid: 1940de51d4757445f89d0a947bb09966, type: 3}
   MagicIgnite: {fileID: 8300000, guid: bd00f3e4bc83046618b1e768c9e8f951, type: 3}
   MagicAOE: {fileID: 0}
+  FireballHit: []
 --- !u!114 &6878096198929839801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2727,6 +2717,19 @@ MonoBehaviour:
   MeleeA1: {fileID: 8300000, guid: ee7a920474f954c49aae94e672e7ddb9, type: 3}
   MeleeA2: {fileID: 8300000, guid: d7bb9c0afaa2c4debac64c2aa05c4574, type: 3}
   MeleeA3: {fileID: 8300000, guid: fa4a621dd19a3490e9652baab23f2f45, type: 3}
+--- !u!114 &1212432554513744453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6caf71fd14649f292b8444a4029482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: {fileID: 0}
 --- !u!1 &1582235922
 GameObject:
   m_ObjectHideFlags: 0

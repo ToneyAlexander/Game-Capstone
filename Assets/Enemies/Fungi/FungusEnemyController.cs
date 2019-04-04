@@ -61,8 +61,6 @@ public class FungusEnemyController : EnemyController
 			animator.SetBool("Mimic", true);
 			awake = false;
 		}
-
-		DisplayVisionAndRange();
 	}
 
 	protected override bool InVision(Vector3 pos)
@@ -106,19 +104,19 @@ public class FungusEnemyController : EnemyController
 		if (attackMode < 0.2f) 
 		{
 			animator.SetTrigger("AttackRightTentacle1");
-			attackController.ProjectileAttack(projectile, 0.5f);
+			attackController.ProjectileAttack(projectile, 0.5f, 2f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.2f && attackMode < 0.4f)
 		{
 			animator.SetTrigger("AttackLeftTentacle2");
-			attackController.ProjectileAttack(projectile, 0.5f);
+			attackController.ProjectileAttack(projectile, 0.5f, 2f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.4f && attackMode < 0.6f)
 		{
 			animator.SetTrigger("AttackFourTentacle");
-			attackController.ProjectileAttack(projectile, 0.5f);
+			attackController.ProjectileAttack(projectile, 0.5f, 2f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.6f && attackMode < 0.8f)

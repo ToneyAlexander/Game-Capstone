@@ -112,19 +112,19 @@ public class CarnivorousPlantController : EnemyController
 		if (attackMode < 0.33f) 
 		{
 			animator.SetTrigger("Breath Attack");
-			attackController.ProjectileAttack(projectile, 1.5f);
+			attackController.ProjectileAttack(projectile, 1.5f, 2f);
 			yield return new WaitForSeconds(2.5f);
 		}
 		else if (attackMode >= 0.33f && attackMode < 0.67f)
 		{
 			animator.SetTrigger("Bite");
-			attackController.ProjectileAttack(projectile, 0.5f);
+			attackController.ProjectileAttack(projectile, 0.5f, 2f);
 			yield return new WaitForSeconds(1.5f);
 		}
 		else if (attackMode >= 0.67f && attackMode < 1.0f)
 		{
 			animator.SetTrigger("Breath Attack Surround");
-			attackController.ProjectileAttack(projectile, 2.0f);
+			attackController.ProjectileAttack(projectile, 2.0f, 2f);
 			yield return new WaitForSeconds(2.5f);
 		}
 

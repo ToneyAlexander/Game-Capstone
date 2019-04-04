@@ -7,7 +7,6 @@ using CCC.Abilities;
 
 public class AbilityUI : MonoBehaviour
 {
-    GameObject holder;
     GameObject slotsHolder;
     GameObject storedAbils;
     GameObject[] statSlots = new GameObject[5];
@@ -17,21 +16,19 @@ public class AbilityUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        holder = transform.GetChild(0).gameObject;
-        for (int i = 0; i < holder.transform.childCount; i++)
+        for (int i = 0; i < this.transform.childCount; i++)
         {
             
-            if (holder.transform.GetChild(i).name.Equals("Slots"))
+            if (this.transform.GetChild(i).name.Equals("Slots"))
             {
                 
-                slotsHolder = holder.transform.GetChild(i).gameObject;
+                slotsHolder = this.transform.GetChild(i).gameObject;
                 
                 for (int j = 0; j < slotsHolder.transform.childCount; j++)
                 {
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot1"))
                     {
                         statSlots[0] = slotsHolder.transform.GetChild(j).gameObject;
-
                     }
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot2"))
                     {
@@ -54,9 +51,9 @@ public class AbilityUI : MonoBehaviour
                 }
 
             }
-            if (holder.transform.GetChild(i).name.Equals("Abilities"))
+            if (this.transform.GetChild(i).name.Equals("Abilities"))
             {
-                storedAbils = holder.transform.GetChild(i).gameObject;
+                storedAbils = this.transform.GetChild(i).gameObject;
 
             }
 
@@ -83,7 +80,19 @@ public class AbilityUI : MonoBehaviour
     {
         for (int i = 0; i < statSlots.Length; i++)
         {
-            statSlots[i].GetComponent<Image>().color = Color.grey;
+            statSlots[i].GetComponent<Image>().color = Color.white;
+            Image img = statSlots[i].GetComponent<Image>();
+            if(i == 0){
+                setIcon(img, AbilitySlot.One);
+            }else if(i == 1){
+                setIcon(img, AbilitySlot.Two);
+            }else if(i == 2){
+                setIcon(img, AbilitySlot.Three);
+            }else if(i == 3){
+                setIcon(img, AbilitySlot.Four);
+            }else if(i == 4){
+                setIcon(img, AbilitySlot.Five);
+            }
         }
         if (selected >= 1)
         {
@@ -100,6 +109,13 @@ public class AbilityUI : MonoBehaviour
             count++;
         }
     }
+
+    private void setIcon(Image img, AbilitySlot slot){
+        Ability abil = dict.GetAbility(slot);
+        if(abil != Ability.nullAbility){
+            img.sprite = abil.Icon;
+        }
+    }
     void AbilityOnClick(PointerEventData data)
     {
         GameObject clicked = data.pointerCurrentRaycast.gameObject;
@@ -110,6 +126,9 @@ public class AbilityUI : MonoBehaviour
             if (selected == 1)
             {
                     dict.SetSlotAbility(AbilitySlot.One, ability);
+                    Image img =  statSlots[selected - 1].GetComponent<Image>();
+                    Sprite temp = dict.GetAbility(AbilitySlot.One).Icon;  
+                    img.sprite = temp;        
             }
             else if (selected == 2)
             {

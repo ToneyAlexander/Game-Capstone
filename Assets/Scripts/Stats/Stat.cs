@@ -1,11 +1,13 @@
-﻿using System;
+﻿using UnityEngine;
+using System;
 
 namespace CCC.Stats
 {
     /// <summary>
     /// Represents a stat in the game.
     /// </summary>
-    public class Stat : IComparable<Stat>, IEquatable<Stat>
+    [System.Serializable]
+    public sealed class Stat : IComparable<Stat>, IEquatable<Stat>
     {
         
         public const string STR = "str";
@@ -56,8 +58,14 @@ namespace CCC.Stats
         public const string CRIT_DMG_MULT = "critdmgx";
         public const string CRIT_CHANCE = "critchan";
         public const string CRIT_CHANCE_MULT = "critchanx";
+        public const string FLAT_DMG_REDUCTION = "flatred";
+        public const string FLAT_DMG_REDUCTION_MULT = "flatredx";
 
+        //Weird special stats
+        public const string HEMO_PHANTOM_HP_MULT = "hemohpx";
+        public const string HEMO_BLOOD_POWER = "hemobloodx";
 
+        //ability stats
         public const string AS_DMG_MIN = "as_dmgmin";
         public const string AS_DMG_MAX = "as_dmgmax";
         public const string AS_CD = "as_cd";
@@ -71,6 +79,8 @@ namespace CCC.Stats
         public const string AS_DASH_MULT = "as_dashx";
         public const string AS_BUFFS = "as_buffs";
         public const string AS_DEBUFFS = "as_debuffs";
+        public const string AS_VAMP = "as_vamp";
+        public const string AS_COST = "as_cost";
 
         /// <summary>
         /// Gets the name of this Stat.
@@ -117,11 +127,13 @@ namespace CCC.Stats
         /// <summary>
         /// The name of this Stat.
         /// </summary>
-        private readonly string name;
+        [SerializeField]
+        private string name;
 
         /// <summary>
         /// The value of this Stat.
         /// </summary>
+        [SerializeField]
         private float value;
 
         public int CompareTo(Stat other)

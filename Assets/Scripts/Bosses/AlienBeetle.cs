@@ -183,12 +183,23 @@ public class AlienBeetle : BaseBoss
             if (!inUse)
             {
                 timeSinceUse += Time.deltaTime;
-                if(!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                if (Vector3.Distance(transform.position, player.transform.position) > 6)
                 {
-                    Debug.Log("set walk");
-                    animator.SetTrigger("walk");
+                    transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
+
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("walk"))
+                    {
+                        //Debug.Log("set walk");
+                        animator.SetTrigger("walk");
+                    }
+                } else
+                {
+                    if (!animator.GetCurrentAnimatorStateInfo(0).IsName("idle"))
+                    {
+                        //Debug.Log("set walk");
+                        animator.SetTrigger("idle");
+                    }
                 }
-                transform.Translate(Vector3.forward * Time.deltaTime * StatBlock.CalcMult(stats.MoveSpeed, stats.MoveSpeedMult));
             }
 
             if (timeSinceUse > cooldown)

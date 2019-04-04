@@ -86,6 +86,9 @@ public class GenerateIsland : MonoBehaviour
     [SerializeField]
     private ThemeDictionary themeDictionary;
 
+    [SerializeField]
+    private GameObject BackToHub;
+
 	private int themeCount;
 
 	[SerializeField]
@@ -479,7 +482,7 @@ public class GenerateIsland : MonoBehaviour
         //PAVAN
         if (true || this.Done())
         {
-            Instantiate(GameObject.CreatePrimitive(PrimitiveType.Cube), this.GetBoatStart(), Quaternion.identity);
+            Instantiate(BackToHub, this.GetBoatStart() + new Vector3(0.0f,2.0f,0.0f), Quaternion.identity);
             //WESLEY REMOVE THESE LINES
             remy.transform.position = this.PlayerStart;
             remy.GetComponent<RemyMovement>().setDetination(this.PlayerStart);
@@ -655,6 +658,7 @@ public class GenerateIsland : MonoBehaviour
                     int ind = Random.Range(0, neighbors.Count);
                     Vector2Int n = neighbors[ind];
                     neighbors.RemoveAt(ind);
+
                     if (!visited.Contains(n) && IslandTemplateUtilities.canBeTile(island[n.x, n.y], fourWayTiles))
                     {
                         tempBackpointers.Enqueue(new KeyValuePair<Vector2Int, Vector2Int>(n, firstFlat));
@@ -793,7 +797,7 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { /*"BossBeetle/Boss Beetle",*/ "BossDragon/BossDragon"};
+        string[] possibleBosses = { /*"BossBeetle/Boss Beetle", "BossDragon/BossDragon",*/ "BossDemon/BossDemon" };
         string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
@@ -806,7 +810,7 @@ public class GenerateIsland : MonoBehaviour
 
         teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
         teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
-        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z + 8;
+        teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z + 12;
 
         BaseBoss b = boss.GetComponent<BaseBoss>();
         b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);

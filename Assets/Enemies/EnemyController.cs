@@ -41,6 +41,9 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField]
     private PerkPrototype initialStats;
 
+    [SerializeField]
+    protected GameObject healthBar;
+
     private PlayerClass enemyClass;
     protected float expValue;
 
@@ -73,6 +76,15 @@ public abstract class EnemyController : MonoBehaviour
         agent.speed = 5f;
         path = new NavMeshPath();
 
+        // Add health bar
+        GameObject hpBar = Instantiate(healthBar, transform);
+        Vector3 barScale = hpBar.GetComponent<RectTransform>().localScale;
+        hpBar.GetComponent<RectTransform>().localScale = new Vector3(
+            (1.0f / transform.localScale.x) * barScale.x,
+            (1.0f / transform.localScale.y) * barScale.y,
+            (1.0f / transform.localScale.z) * barScale.z
+        );
+
         // Set up attack controller
         attackController = GetComponent<EnemyAttackController>();
 
@@ -82,7 +94,7 @@ public abstract class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         targetPos = Vector3.zero;
         targetFound = false;
-        enemyClass.TakePerk(initialStats);
+        enemyClass.TakePerk(initialStats, false);
 
         maxTimes = 100;
     }

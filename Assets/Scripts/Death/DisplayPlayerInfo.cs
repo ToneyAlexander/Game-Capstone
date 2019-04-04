@@ -7,16 +7,19 @@ public class DisplayPlayerInfo : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject remy;
+    private BloodlineController blood;
+
+    [SerializeField]
+    private LevelExpStore info;
 
     // Start is called before the first frame update
     void Start()
     {
         this.GetComponent<Text>().text =
-            remy.GetComponent<PlayerClass>().bloodlineController.playerName + "\n" +
-            remy.GetComponent<PlayerClass>().bloodlineController.Age + " Years Old\n" +
-            remy.GetComponent<TestPlayerClass>().ClassL.name + "\n" +
-            "Level " + remy.GetComponent<PlayerClass>().Level + "\n";
+            blood.playerName + "\n" +
+            blood.Age + " Years Old\n" +
+            blood.currentClass.name + "\n" +
+            "Level " + info.Level + "\n";
     }
 
     // Update is called once per frame

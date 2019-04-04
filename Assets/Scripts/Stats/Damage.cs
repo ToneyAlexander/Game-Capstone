@@ -11,8 +11,9 @@ public class Damage
     public bool meleeAttack;
     public bool spell;
     public List<TimedBuff> buffs;
+    public IAbilityBase callback;
 
-    public Damage(float pD, float mD, bool ranged, bool melee, bool spl)
+    public Damage(float pD, float mD, bool ranged, bool melee, bool spl, IAbilityBase callback = null)
     {
         physicalDmg = physicalDmgReal = pD;
         magicDmg = magicDmgReal = mD;
@@ -20,5 +21,6 @@ public class Damage
         meleeAttack = melee;
         spell = spl;
         buffs = new List<TimedBuff>();
+        this.callback = callback;
     }
 }

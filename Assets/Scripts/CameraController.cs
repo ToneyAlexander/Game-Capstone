@@ -16,6 +16,45 @@ public class CameraController : MonoBehaviour
 
     int direction = 0;
 
+    private static float shakeAmount = 0;
+    private static float shakeDuration = 0;
+    private static float dollyAmount = 0;
+    private static float dollyDuration = 0;
+    //private static float dollySpeed = 1;
+    private static float freezeDuration = 0;
+    private static float flashDuration = 0;
+    public static void shake()
+    {
+        shakeAmount = 1.0f;
+        shakeDuration = 1.0f;
+    }
+    public static void shake(float amount, float duration)
+    {
+        shakeAmount = amount;
+        shakeDuration = duration;
+    }
+    public static void dolly()
+    {
+        dollyAmount = 5.0f;
+        dollyDuration = 1.0f;
+    }
+    public static void dolly(float amount, float duration)
+    {
+        dollyAmount = amount;
+        dollyDuration = duration;
+    }
+    public static void addDolly()
+    {
+        dollyAmount += 1.0f;
+        dollyDuration = 1.0f;
+    }
+    public static void addDolly(float amount, float duration)
+    {
+        dollyAmount += amount;
+        dollyDuration = duration;
+    }
+
+
     void Start()
     {
         cameras = new Vector3[4];
@@ -37,37 +76,74 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        //CameraController.shake();
         if (Input.GetKeyDown(KeyCode.Q))
         {
             direction = (direction + 1) % cameras.Length;
+            
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
             direction = (direction - 1 + 4) % cameras.Length;
+            
         }
+        if (Input.GetKeyDown(KeyCode.Semicolon))
+        {
+            CameraController.shake();
+            CameraController.addDolly();
+        }
+        
         RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
 //        Debug.Log(hits.Length);
         foreach(RaycastHit h in hits)
         {
-            Renderer rend = h.transform.GetComponent<Renderer>();
+            Renderer rend = h.transform.gameObject.GetComponent<Renderer>();
+           // Debug.Log(h.transform.gameObject);
 //            Debug.Log(h.transform.position);
             if (rend)
             {
-                Color col = rend.material.color;
+                /*
+                 Color col = rend.material.color;
                 col.a = 0.3f;
-                rend.material.color = col;
+                rend.material.transparency = 0.3f;
                
+               
+    */
+                Debug.Log("Current Tree: " + h.transform.gameObject);
+                rend.material.SetFloat("_Transparency",0.3f);
+              //  Debug.Log("Hit!");
+
+
             }
-   
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            SceneManager.LoadScene("BOAT");
+
         }
         Vector3 position = player.transform.position;
-        position += cameras[direction];
+        Vector3 orientation = cameras[direction];
+        position += orientation * (orientation.magnitude-dollyAmount)/ orientation.magnitude;
         transform.position = Vector3.MoveTowards(transform.position, position, 60 * Time.deltaTime) ;
+        
         transform.LookAt(player.transform);
+        
+        transform.position = transform.position + Random.insideUnitSphere * shakeAmount;
+
+        if (shakeDuration > 0)
+        {
+            shakeDuration -= Time.deltaTime;
+        }
+       
+        if (shakeDuration <= 0)
+        {
+            shakeAmount = 0;
+        }
+        if (dollyDuration > 0)
+        {
+            dollyDuration -= Time.deltaTime;
+        }
+
+        if (dollyDuration <= 0)
+        {
+            dollyAmount = 0;
+        }
         Vector3 offset = new Vector3();
         Vector3 mousePositionRelativetoCenter = new Vector3((Input.mousePosition.x - Screen.width / 2)/(Screen.width / 2), (Input.mousePosition.y - Screen.height / 2)/ (Screen.height / 2), Input.mousePosition.z);
 //        Debug.Log(mousePositionRelativetoCenter);
