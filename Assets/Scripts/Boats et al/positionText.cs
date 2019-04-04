@@ -29,7 +29,7 @@ public class positionText : MonoBehaviour
         islandHeight = (int)Random.Range(3, 6);
         themeID = crewController.selectTheme();
         bossIndex = crewController.selectBoss();
-        level = crewController.selectLevel(3);
+        level = crewController.selectLevel(2);
 
         // level = 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
