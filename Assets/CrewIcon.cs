@@ -87,7 +87,7 @@ public class CrewIcon : MonoBehaviour
                 active = !active;
                 CrewIcon.count -= 1;
                 Color x = new Color();
-                ColorUtility.TryParseHtmlString("#D4D0AB", out x);
+                ColorUtility.TryParseHtmlString("#373737", out x);
                 image.color = x;
                 cController.selectedCrew.Remove(cMember);
             }
@@ -97,7 +97,9 @@ public class CrewIcon : MonoBehaviour
                 {
                     CrewIcon.count += 1;
                     active = !active;
-                    image.color = new Color(0.1f, 0.4f,0.1f,1.0f);
+                    Color newColor = new Color();
+                    ColorUtility.TryParseHtmlString("#FFBC7C", out newColor);
+                    image.color = newColor;
                     cController.selectedCrew.Add(cMember);
                 }
             }

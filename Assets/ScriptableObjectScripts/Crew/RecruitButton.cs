@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class RecruitButton : MonoBehaviour
 {
     public CrewController crewController;
+
+    private Image img;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +17,7 @@ public class RecruitButton : MonoBehaviour
         entry.eventID = EventTriggerType.PointerClick;
         entry.callback.AddListener((eventData) => { OnMouseClick((PointerEventData)eventData); });
         ev.triggers.Add(entry);
+        img = this.transform.gameObject.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -36,7 +39,6 @@ public class RecruitButton : MonoBehaviour
         {
             crewController.fillCrew();
         }
-        
     }
 
 }
