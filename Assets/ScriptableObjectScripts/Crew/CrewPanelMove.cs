@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CrewPanelMove : MonoBehaviour
 {
-    Vector3 visiblePos = new Vector3(159,0,0);
-    Vector3 hiddenPos = new Vector3(615, 0, 0);
+    Vector3 visiblePos = new Vector3(693, 0,0);
+    Vector3 hiddenPos = new Vector3(1250, 0, 0);
     bool shown = false;
     // Start is called before the first frame update
     void Start()

@@ -796,8 +796,8 @@ public class GenerateIsland : MonoBehaviour
         //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { /*"BossBeetle/Boss Beetle", "BossDragon/BossDragon",*/ "BossDemon/BossDemon" };
-        string toLoad = possibleBosses[Random.Range(0,possibleBosses.Length)];
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon" };
+        string toLoad = possibleBosses[islandStorage.boss];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
         boss.transform.position = new Vector3(arenaPosition.x, arenaPosition.y, arenaPosition.z - 8);

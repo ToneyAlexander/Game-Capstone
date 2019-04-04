@@ -24,7 +24,7 @@ public class CrewController : ScriptableObject
     public List<CrewMember> AllCrewMembers;
     public int[] themeChancesDefault = { 255, 255, 255, 255 };
     private int[] themeChances;
-    public int[] bossChancesDefault = { 255, 255 };
+    public int[] bossChancesDefault = { 255, 255, 255 };
     private int[] bossChances;
     public int areaBonus = 0;
     public int levelBonus = 0;

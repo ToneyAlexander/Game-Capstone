@@ -54,7 +54,7 @@ public sealed class CrewMember : ScriptableObject
                 str = ":  " + power;
                 break;
             case crewType.Hunter:
-                string[] bosses = { "Beetle", "Dragon"};
+                string[] bosses = { "Beetle", "Dragon", "Demon"};
                 str = ": " + bosses[Type] + "  " + power;
                 break;
             case crewType.Explorer:
