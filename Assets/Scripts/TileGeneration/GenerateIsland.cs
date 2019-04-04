@@ -142,6 +142,8 @@ public class GenerateIsland : MonoBehaviour
     // This code is so incredibly ugly rn. Planning on cleaning it up. 
     void Start()
     {
+        Debug.Log(Application.persistentDataPath);
+
         if (useIngameIslandStats)
         {
             LinkIslandStat();
