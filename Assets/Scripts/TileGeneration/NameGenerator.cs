@@ -67,5 +67,4 @@ public class NameGenerator : ScriptableObject
         usedNames.Add(final);
         return final;
     }
-
 }

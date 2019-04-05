@@ -92,7 +92,7 @@ public class StatScreenUI : MonoBehaviour
         column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) + "\n" + StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult) + "\n" + StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult) + "\n" + StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) + "\n" + StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult);
         column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult);
         levelText.text = player.PlayerLevelExp.Level.ToString();
-        nameText.text = player.name.ToString();
+        nameText.text = player.bloodlineController.playerName;
         classText.text = textPlayerClass.ClassL.name;
     }
 }
