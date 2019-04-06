@@ -7,9 +7,13 @@ namespace CCC.Items
     /// The that represents an Inventory. This class is needed so that an 
     /// Inventory can be serialized to JSON.
     /// </summary>
-    [System.Serializable]
-    public sealed class InventoryData
+    sealed class InventoryData
     {
+        /// <summary>
+        /// An instance of InventoryData that contains an empty list of items.
+        /// </summary>
+        public static InventoryData Null = new InventoryData(new List<Item>());
+
         /// <summary>
         /// Create a new InventoryData for a given list of Items.
         /// </summary>
