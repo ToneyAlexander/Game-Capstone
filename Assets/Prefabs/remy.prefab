@@ -2175,6 +2175,7 @@ GameObject:
   - component: {fileID: 7319138017440866043}
   - component: {fileID: 6878096198929839801}
   - component: {fileID: 1212432554513744453}
+  - component: {fileID: 785003356322698622}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -2265,6 +2266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afflictions: []
 --- !u!114 &1578934655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2503,6 +2505,8 @@ MonoBehaviour:
   Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
   Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
   Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
+  GoodAffList: {fileID: 11400000, guid: 7782624dfe110d44292f0362ae40c7e3, type: 2}
+  BadAffList: {fileID: 11400000, guid: a21ad0326d3cd4b4aa181cf575c36ef1, type: 2}
 --- !u!114 &1578934641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,6 +2721,8 @@ MonoBehaviour:
   MeleeA1: {fileID: 8300000, guid: ee7a920474f954c49aae94e672e7ddb9, type: 3}
   MeleeA2: {fileID: 8300000, guid: d7bb9c0afaa2c4debac64c2aa05c4574, type: 3}
   MeleeA3: {fileID: 8300000, guid: fa4a621dd19a3490e9652baab23f2f45, type: 3}
+  RainOfDeath: {fileID: 0}
+  DaggerThrow: {fileID: 0}
 --- !u!114 &1212432554513744453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2730,6 +2736,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: {fileID: 0}
+--- !u!114 &785003356322698622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578934640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d934821382a442e8b7daab8f744b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1582235922
 GameObject:
   m_ObjectHideFlags: 0

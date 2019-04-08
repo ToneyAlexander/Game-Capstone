@@ -39,9 +39,25 @@ namespace CCC.GameManagement.GameStates
         public override void Exit()
         {
             Debug.Log("In IslandState.Exit");
+            AgePlayer();
             playerInventory.Save();
             playerEquipment.Save();
             playerLevelExpStore.Save();
+        }
+
+        private void AgePlayer()
+        {
+            var playerClass = 
+                GameObject.FindWithTag("Player").GetComponent<PlayerClass>();
+            if (playerClass)
+            {
+                playerClass.IncreaseAge();
+            }
+            else
+            {
+                Debug.LogError("[IslandGameState.AgePlayer] No GameObject" +
+                    " with tag 'Player' found!");
+            }
         }
     }
 }

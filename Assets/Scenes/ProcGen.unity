@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5089566, g: 0.5223688, b: 0.53930414, a: 1}
+  m_IndirectSpecularColor: {r: 0.50899416, g: 0.5223619, b: 0.5390353, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4875,6 +4875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afflictions: []
 --- !u!4 &594619719
 Transform:
   m_ObjectHideFlags: 0
@@ -4939,6 +4940,8 @@ MonoBehaviour:
   Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
   Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
   Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
+  GoodAffList: {fileID: 11400000, guid: 7782624dfe110d44292f0362ae40c7e3, type: 2}
+  BadAffList: {fileID: 11400000, guid: a21ad0326d3cd4b4aa181cf575c36ef1, type: 2}
 --- !u!114 &594619826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4994,6 +4997,7 @@ GameObject:
   - component: {fileID: 594619845}
   - component: {fileID: 594619846}
   - component: {fileID: 594619847}
+  - component: {fileID: 594619848}
   m_Layer: 0
   m_Name: remy
   m_TagString: Player
@@ -5404,6 +5408,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Equip: {fileID: 8300000, guid: 2746e771055e54ae8bf46263dcff1af2, type: 3}
   UnEquip: {fileID: 8300000, guid: 2746e771055e54ae8bf46263dcff1af2, type: 3}
+--- !u!114 &594619848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 594619827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d934821382a442e8b7daab8f744b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
 --- !u!1 &602027135
 GameObject:
   m_ObjectHideFlags: 0
@@ -21695,7 +21712,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947932800071303}
   m_HandleRect: {fileID: 5930947932800071296}
   m_Direction: 2
-  m_Value: 0.9999999
+  m_Value: 1
   m_Size: 0.46349996
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22397,7 +22414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947933255088996}
   m_HandleRect: {fileID: 5930947933255088997}
   m_Direction: 0
-  m_Value: 0.00000022605613
+  m_Value: 0.0000001695421
   m_Size: 0.46
   m_NumberOfSteps: 0
   m_OnValueChanged:
