@@ -78,6 +78,7 @@ public class PlayerClass : MonoBehaviour
     public void IncreaseAge()
     {
         bloodlineController.ageUp();
+
         if (bloodlineController.Age < 3)
         {
             takenPerks.Add(init.Young);
@@ -90,6 +91,9 @@ public class PlayerClass : MonoBehaviour
         {
             takenPerks.Add(init.Old);
         }
+
+        stats.AgeUp();
+
         stats.StatsChanged();
     }
 

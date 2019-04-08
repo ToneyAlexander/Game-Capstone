@@ -19,6 +19,8 @@ public class InitAbilities : MonoBehaviour
     public PerkPrototype Young;
     public PerkPrototype Middle;
     public PerkPrototype Old;
+    public AfflictionList GoodAffList;
+    public AfflictionList BadAffList;
 
     // Start is called before the first frame update
     void Start()

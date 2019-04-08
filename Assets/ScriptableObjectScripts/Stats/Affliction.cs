@@ -1,48 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using CCC.Stats;
 
-[CreateAssetMenu(menuName = "Buffs/TimedBuffPrototype")]
-public class TimedBuffPrototype : ScriptableObject
+[CreateAssetMenu(menuName = "Buffs/Affliction")]
+public class Affliction : ScriptableObject
 {
+    // Start is called before the first frame update
     public Sprite Icon
     {
         get { return icon; }
     }
 
-    public string BuffName
+    public string AfflictionName
     {
-        get { return buffName; }
+        get { return afflictionName; }
     }
 
     public List<Stat> Stats
     {
         get { return stats; }
     }
-    public float Duration
-    {
-        get { return duration; }
-    }
-
-    public TimedBuff Instance
-    {
-        get { return new TimedBuff(this); }
-    }
-
-    public bool IsUnique
-    {
-        get { return isUnique; }
-    }
 
     [SerializeField]
     private List<StatSlotEntry> statSlots;
     [SerializeField]
-    private string buffName;
-    [SerializeField]
-    private float duration;
-    [SerializeField]
-    private bool isUnique;
+    private string afflictionName;
     [SerializeField]
     private Sprite icon;
     private List<Stat> stats;

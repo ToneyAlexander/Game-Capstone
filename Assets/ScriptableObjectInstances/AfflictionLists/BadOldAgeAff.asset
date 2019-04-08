@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883bc12675d93be4baaf7b0e00a80d5c, type: 3}
+  m_Name: BadOldAgeAff
+  m_EditorClassIdentifier: 
+  listName: Old age debuffs
+  listDescription: Negative afflictions that can come with old age
+  afflictions:
+  - {fileID: 11400000, guid: f00293e61c51272418c7a1926b572212, type: 2}
+  - {fileID: 11400000, guid: f55d8ed2bff0462409c110e88e885050, type: 2}
+  - {fileID: 11400000, guid: 1e0ddf11e5af2bf4089471c6b67ad974, type: 2}
+  - {fileID: 11400000, guid: 17305de877868ed4ba112017273285a4, type: 2}

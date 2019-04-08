@@ -4843,6 +4843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afflictions: []
 --- !u!4 &594619719
 Transform:
   m_ObjectHideFlags: 0
@@ -4907,6 +4908,8 @@ MonoBehaviour:
   Young: {fileID: 11400000, guid: 9bde74a7bb160d14195e4a1342520519, type: 2}
   Middle: {fileID: 11400000, guid: cce3bb967d937e441b54f55c065b20a7, type: 2}
   Old: {fileID: 11400000, guid: 7d9b4ec8912db534b9a43b4911e6d925, type: 2}
+  GoodAffList: {fileID: 11400000, guid: 7782624dfe110d44292f0362ae40c7e3, type: 2}
+  BadAffList: {fileID: 11400000, guid: a21ad0326d3cd4b4aa181cf575c36ef1, type: 2}
 --- !u!114 &594619826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21527,7 +21530,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5930947932800071296}
   m_Direction: 2
   m_Value: 0.9999999
-  m_Size: 0.46349993
+  m_Size: 0.46349996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -22228,8 +22231,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947933255088996}
   m_HandleRect: {fileID: 5930947933255088997}
   m_Direction: 0
-  m_Value: 0.00000016954206
-  m_Size: 0.45999995
+  m_Value: 0.00000016954208
+  m_Size: 0.45999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
