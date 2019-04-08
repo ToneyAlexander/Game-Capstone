@@ -101,4 +101,16 @@ public sealed class BloodlineController : ScriptableObject
         }
         return lastName;
     }
+    public void GenerateNewFamilyName()
+    {
+        string path = System.IO.Path.Combine(Application.persistentDataPath,
+            "FamilyName.txt");
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+
+        GetOrCreateFamilyName();
+    }
 }

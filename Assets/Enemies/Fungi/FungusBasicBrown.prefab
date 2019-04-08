@@ -5087,6 +5087,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112354163168430329}
   - component: {fileID: 734678747921395208}
+  - component: {fileID: 1420770689381137440}
   m_Layer: 0
   m_Name: FungusMeshHead
   m_TagString: Untagged
@@ -5190,6 +5191,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.010789615, y: -0.000020899344, z: 0.00034052716}
     m_Extent: {x: 0.0052917833, y: 0.0046912003, z: 0.005291315}
   m_DirtyAABB: 0
+--- !u!114 &1420770689381137440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065528406021457421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &4082399803743837810
 GameObject:
   m_ObjectHideFlags: 0
@@ -5360,6 +5377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7703406440042289291}
   - component: {fileID: 7808121862304821039}
+  - component: {fileID: 5262714681503291335}
   m_Layer: 0
   m_Name: FungusMeshBody
   m_TagString: Untagged
@@ -5463,6 +5481,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00077424175, y: -0.000041402178, z: -0.00022151251}
     m_Extent: {x: 0.0059687635, y: 0.007065288, z: 0.0052550603}
   m_DirtyAABB: 0
+--- !u!114 &5262714681503291335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558209636300280283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &4811579381234395458
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,6 +5813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7778181397485930461}
   - component: {fileID: 247472773484119496}
+  - component: {fileID: 6994155936829971045}
   m_Layer: 0
   m_Name: FungusMeshTentacle
   m_TagString: Untagged
@@ -5882,6 +5917,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0031635233, y: 0.0033234134, z: -0.00016702618}
     m_Extent: {x: 0.0070120348, y: 0.014028225, z: 0.011467495}
   m_DirtyAABB: 0
+--- !u!114 &6994155936829971045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6348983734465346539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &6405957105161304607
 GameObject:
   m_ObjectHideFlags: 0

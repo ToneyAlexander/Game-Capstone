@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using cakeslice;
 
 public class ItemHover : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class ItemHover : MonoBehaviour
 
     private Text description;
 
-    private Text stats; 
+    private Text stats;
+
+    private cakeslice.Outline line;
 
     void Start()
     {
@@ -36,6 +39,7 @@ public class ItemHover : MonoBehaviour
                 }
             }
         }
+        line = GetComponentInChildren<cakeslice.Outline>();
         WIScript = this.transform.GetComponent<WorldItemScript>();
         ItemDisplay.SetActive(false);
     }
@@ -52,6 +56,7 @@ public class ItemHover : MonoBehaviour
             stats.text += stat.Name + ": " + value + "\n";
 
         }
+        line.color = 0;
     }
 
     private void OnMouseExit()
@@ -60,6 +65,7 @@ public class ItemHover : MonoBehaviour
         itemName.text = "";
         stats.text = "";
         description.text = "";
+        line.color = 1;
     }
 
     private void OnMouseDown()
@@ -68,5 +74,6 @@ public class ItemHover : MonoBehaviour
         itemName.text = "";
         stats.text = "";
         description.text = "";
+        line.color = 1;
     }
 }

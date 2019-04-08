@@ -621,6 +621,7 @@ MonoBehaviour:
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
   bloodlineController: {fileID: 0}
+  PlayerLevelExp: {fileID: 0}
 --- !u!136 &3543595500899867325
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1097,6 +1098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027091380276896384}
   - component: {fileID: 1511226688896744295}
+  - component: {fileID: 9167544533373942601}
   m_Layer: 0
   m_Name: Monster Bee
   m_TagString: Untagged
@@ -1214,6 +1216,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.01407437, y: 0.09521292, z: -0.00000011920929}
     m_Extent: {x: 0.47174412, y: 0.39672792, z: 0.7502525}
   m_DirtyAABB: 0
+--- !u!114 &9167544533373942601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025771006713993370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &4063016648198609746
 GameObject:
   m_ObjectHideFlags: 0

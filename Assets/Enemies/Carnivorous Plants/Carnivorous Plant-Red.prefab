@@ -780,6 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3316403900464471531}
   - component: {fileID: 7707125750783507873}
+  - component: {fileID: 8258221884376355565}
   m_Layer: 0
   m_Name: Carnivorous Plant
   m_TagString: Untagged
@@ -950,6 +951,22 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.5962481, y: 0.03584361, z: 0.000039935112}
     m_Extent: {x: 0.99406105, y: 2.3890026, z: 2.389141}
   m_DirtyAABB: 0
+--- !u!114 &8258221884376355565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528885999842154718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 0
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &1539691795499513082
 GameObject:
   m_ObjectHideFlags: 0
