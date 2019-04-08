@@ -7,6 +7,7 @@ public class EnemiesList : ScriptableObject
 {
 	public enum Theme
 	{
+		All,
 		Grass,
 		Swamp,
 		Snow,

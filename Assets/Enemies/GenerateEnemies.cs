@@ -93,6 +93,10 @@ public class GenerateEnemies : MonoBehaviour
                 selectNum = 3;
             }
         }
+        else if (enemiesTypes.theme == EnemiesList.Theme.All)
+        {
+            selectNum = Random.Range(0, enemiesTypes.enemeisList.Count - 1);
+        }
         return selectNum;
     }
 
