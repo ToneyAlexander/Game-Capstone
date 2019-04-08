@@ -26,7 +26,7 @@ public class BeeController : EnemyController
 
         // Default vision
         visionAngle = 180f;
-        visionDistance = 5f;
+        visionDistance = 15f;
         attackDistance = 3f;
 
         inAttackCoroutine = false;
