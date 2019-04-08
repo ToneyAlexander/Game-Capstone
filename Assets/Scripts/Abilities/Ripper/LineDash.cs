@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using CCC.Inputs;
 using CCC.Stats;
-using CCC.Abilities;
-
+using UnityEngine;
+using System.Collections.Generic;
 
 public class LineDash : AbilityBase
 {

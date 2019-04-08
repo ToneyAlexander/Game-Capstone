@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Inputs;
 using UnityEngine;
-using CCC.Stats;
 
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]

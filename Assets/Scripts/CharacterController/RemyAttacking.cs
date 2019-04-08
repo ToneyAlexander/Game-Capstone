@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Inputs;
 using UnityEngine;
 
 [RequireComponent(typeof(MousePositionDetector))]

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.Movement;
+using UnityEngine;
 
 /// <summary>
 /// Represents a Component that causes its GameObject to move towards a given
@@ -18,4 +19,4 @@ public sealed class AnimatedDestinationMover : MonoBehaviour, IDestinationMover
         RemyMovement.destination = destination;
     }
     #endregion
-}
+    }
