@@ -5,6 +5,17 @@ using UnityEngine;
 [CreateAssetMenu]
 public class EnemiesList : ScriptableObject
 {
+	public enum Theme
+	{
+		Grass,
+		Swamp,
+		Snow,
+		Desert
+	} 
+	
+	[SerializeField]
+	public Theme theme;
+
 	[SerializeField]
 	public List<GameObject> enemeisList; 
 

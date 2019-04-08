@@ -30,7 +30,7 @@ public class GenerateEnemies : MonoBehaviour
         for (int i = 0; i < enemiesNumber; i++)
         {
             active = true;
-            int type = Random.Range(0, enemiesTypes.enemeisList.Count - 1);
+            int type = SelectByChance();
             enemies[i] = Instantiate(enemiesTypes.enemeisList[type], RandomPos(), Quaternion.identity, transform);
             enemies[i].name = "Enemy - " + enemiesTypes.enemeisList[type].name;
             if (!active)
@@ -39,6 +39,61 @@ public class GenerateEnemies : MonoBehaviour
                 Debug.Log(enemies[i] + " is deactivated because its NavMeshAgent is not placed on a NavMesh.");
             }
         }
+    }
+
+    private int SelectByChance()
+    {   
+        float randomNum = 0;
+        int selectNum = 0;
+        if (enemiesTypes.theme == EnemiesList.Theme.Grass)
+        {
+            // Grass theme has higher chance to spawn bees
+            randomNum = Random.value;
+            if (randomNum <= 0.6f)
+            {
+                selectNum = Random.Range(0, 2);
+            }
+            else
+            {
+                selectNum = Random.Range(2, 5);
+            }
+        }
+        else if (enemiesTypes.theme == EnemiesList.Theme.Swamp)
+        {
+            // Swamp theme has higher chance to spawn bats and plants
+            randomNum = Random.value;
+            if (randomNum < 0.75f)
+            {
+                selectNum = Random.Range(0, 2);
+            }
+            else
+            {
+                selectNum = Random.Range(2, 5);
+            }
+        }
+        else if (enemiesTypes.theme == EnemiesList.Theme.Snow)
+        {
+            // Snow theme has higher chance to spawn fungi
+            selectNum = Random.Range(0, 5);
+        }
+        else if (enemiesTypes.theme == EnemiesList.Theme.Desert)
+        {
+            // Desert theme has higher chance to spawn bats and spiders and low chance to spawn fungi
+            randomNum = Random.value;
+            if (randomNum < 0.7f)
+            {
+                selectNum = Random.Range(0, 2);
+            }
+            else if (randomNum >= 0.7f && randomNum < 0.9f)
+            {
+                selectNum = 2;
+            } 
+            else
+            {
+                selectNum = 3;
+            }
+        }
+        return selectNum;
     }
 
     private Vector3 RandomPos()
