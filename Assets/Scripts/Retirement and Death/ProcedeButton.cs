@@ -23,6 +23,9 @@ public class ProcedeButton : MonoBehaviour
     [SerializeField]
     private CommandProcessor processor;
 
+    [SerializeField]
+    private BloodlineController bloodline;
+
     private GameObject camera;
     private Bloom bloom;
 
@@ -98,7 +101,7 @@ public class ProcedeButton : MonoBehaviour
             {
                 ended = true;
                 Destroy(BlackBox);
-                
+                bloodline.GenerateNewFamilyName();
                 StartCoroutine(RunToDistance());
             }
             else if(bloom.intensity.value < 75)
