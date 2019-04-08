@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCC.Abilities;
+﻿using CCC.Inputs;
 using CCC.Stats;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]
