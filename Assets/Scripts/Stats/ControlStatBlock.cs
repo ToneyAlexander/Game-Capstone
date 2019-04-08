@@ -22,12 +22,16 @@ public class ControlStatBlock : MonoBehaviour
     public float Fort { get; set; }
     public float FortMult { get; set; }
 
+    [HideInInspector]
     public List<TimedBuff> buffs;
+    [HideInInspector]
+    public List<Affliction> afflictions;
     private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
     private float oldHpPrecent;
     private EquipmentUser inv;
     private PlayerClass pClass;
+    private InitAbilities init;
     private bool applyTestStats;
 
     public void ApplyBuff(TimedBuff tb)
@@ -41,9 +45,31 @@ public class ControlStatBlock : MonoBehaviour
         return stats;
     }
 
+    public void AgeUp()
+    {
+        float rand = Random.Range(0f, pClass.bloodlineController.Age/2);
+
+        Debug.Log("Age: " + pClass.bloodlineController.Age + " Rand: " + rand + " Fort: " + StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult));
+        if (rand > StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
+        {
+            Affliction aff = init.BadAffList.afflictions[Random.Range(0, init.BadAffList.afflictions.Count)];
+            Debug.Log("Gained affliction: " + aff.AfflictionName);
+            afflictions.Add(aff);
+        }
+        else if (rand + 1f < StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
+        {
+            Affliction aff = init.GoodAffList.afflictions[Random.Range(0, init.GoodAffList.afflictions.Count)];
+            Debug.Log("Gained affliction: " + aff.AfflictionName);
+            afflictions.Add(aff);
+        }
+    }
+
     void Awake()
     {
         applyTestStats = false;
+        if (afflictions == null)
+            afflictions = new List<Affliction>();
+        init = GetComponent<InitAbilities>();
         stats = GetComponent<StatBlock>();
         inv = GetComponent<EquipmentUser>();
         pClass = GetComponent<PlayerClass>();
@@ -104,7 +130,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.Armor = 0f;
         stats.ArmorMult = 0f;
         stats.AfflictResMult = 0f;
-        stats.AfflictRes = 0f;
+        stats.AfflictRes = 2f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1f;
@@ -314,7 +340,14 @@ public class ControlStatBlock : MonoBehaviour
             foreach (Stat s in tb.Stats)
             {
                 ApplyStat(s);
-                //Debug.Log(s.Name + ": " + s.Value);
+            }
+        }
+
+        foreach (Affliction aff in afflictions)
+        {
+            foreach (Stat s in aff.Stats)
+            {
+                ApplyStat(s);
             }
         }
 
@@ -334,7 +367,7 @@ public class ControlStatBlock : MonoBehaviour
 
         float fortReal = StatBlock.CalcMult(Fort, FortMult);
         stats.MagicRes += fortReal / 5f;
-        stats.AfflictRes += fortReal / 5f;
+        stats.AfflictRes += fortReal / 250f;
         stats.StatusRec += fortReal / 2000f;
 
         stats.HealthCur = oldHpPrecent * StatBlock.CalcMult(stats.HealthBase, stats.HealthMult);

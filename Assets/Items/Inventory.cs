@@ -5,16 +5,11 @@ using System.IO;
 namespace CCC.Items
 {
     /// <summary>
-    /// Represents a collection of Items owned by a GameObject.
+    /// A run-time only reference to inventory data that is stored on disk.
     /// </summary>
     [CreateAssetMenu(menuName = "Items/Inventory")]
     public sealed class Inventory : ScriptableObject
     {
-        /// <summary>
-        /// The list of Item that this Inventory has in it.
-        /// </summary>
-        private List<Item> items = new List<Item>();
-
         /// <summary>
         /// The maximum number of Item that this Inventory can have in it.
         /// </summary>
@@ -26,6 +21,11 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private string filename;
+
+        /// <summary>
+        /// The actual inventory data that this Inventory references.
+        /// </summary>
+        private InventoryData data = InventoryData.Null;
 
         /// <summary>
         /// Gets the path to the file that this Inventory should be saved in.
@@ -47,7 +47,7 @@ namespace CCC.Items
         /// <value>The current capacity.</value>
         public int CurrentCapacity
         {
-            get { return items.Count; }
+            get { return data.Items.Count; }
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace CCC.Items
         /// <value>The list of Item.</value>
         public List<Item> Items
         {
-            get { return items; }
+            get { return data.Items; }
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace CCC.Items
 
             if (CurrentCapacity < maxCapacity)
             {
-                items.Add(item);
+                data.Items.Add(item);
                 wasAdded = true;
             }
 
@@ -100,9 +100,9 @@ namespace CCC.Items
         {
             Item removedItem = Item.Null;
 
-            if (items.Contains(item))
+            if (data.Items.Contains(item))
             {
-                items.Remove(item);
+                data.Items.Remove(item);
                 removedItem = item;
             }
 
@@ -124,10 +124,14 @@ namespace CCC.Items
                 using (StreamReader streamReader = File.OpenText(path))
                 {
                     string jsonString = streamReader.ReadToEnd();
-                    InventoryData data = 
+                    InventoryData loadedData = 
                         JsonUtility.FromJson<InventoryData>(jsonString);
-                    items = data.Items;
+                    data = loadedData;
                 }
+            }
+            else
+            {
+                data = InventoryData.Null;
             }
         }
 
@@ -137,14 +141,14 @@ namespace CCC.Items
         /// </summary>
         public void Save()
         {
-            string jsonString = 
-                JsonUtility.ToJson(InventoryData.ForItems(items), true);
+            string jsonString = JsonUtility.ToJson(data, true);
 
-            // dataPath will have already been set by Awake
             using (StreamWriter streamWriter = File.CreateText(path))
             {
                 streamWriter.Write(jsonString);
             }
+
+            data = InventoryData.Null;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CCC.Stats;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Buffs/TimedBuffPrototype")]
 public class TimedBuffPrototype : ScriptableObject
 {
     public Sprite Icon

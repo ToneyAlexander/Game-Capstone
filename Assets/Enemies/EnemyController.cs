@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Movement;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public abstract class EnemyController : MonoBehaviour
 {   

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.Movement;
+using UnityEngine;
 
 namespace CCC.Inputs
 {

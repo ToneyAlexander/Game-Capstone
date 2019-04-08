@@ -14,19 +14,25 @@ public class RetireButton : MonoBehaviour
     [SerializeField]
     private GameState retire;
 
-    [SerializeField]
-    private SceneChanger changer;
-
-    [SerializeField]
-    private SceneReference retireScene;
+    private float timing;
 
     void Start()
     {
         this.GetComponent<Button>().onClick.AddListener(RetireClicked);
+        timing = 5f;
     }
 
     void RetireClicked()
     {
+        GameObject screen = Resources.Load<GameObject>("Black Screen");
+        screen.GetComponentInChildren<FadeIn>().time = timing;
+        Instantiate(screen);
+        StartCoroutine(ChangeScene());
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        yield return new WaitForSeconds(timing + .1f);
         manager.TransitionTo(retire);
     }
 }

@@ -20,13 +20,13 @@ public class SpiderController : EnemyController
 
         // Default spawnPos and movingRange
         spawnPos = transform.position;
-        movingRange = 10f;
+        movingRange = 30f;
         chaseSpeed = 10f;
         movable = true;
 
         // Default vision
         visionAngle = 120f;
-        visionDistance = 10f;
+        visionDistance = 15f;
         attackDistance = 3f;
 
         inAttackCoroutine = false;
