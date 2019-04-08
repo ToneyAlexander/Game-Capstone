@@ -28,8 +28,6 @@ namespace CCC.GameManagement.GameStates
         [SerializeField]
         private LevelExpStore playerLevelExpStore;
 
-
-
         public override void Enter()
         {
             Debug.Log("In IslandState.Enter");
