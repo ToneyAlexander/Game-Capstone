@@ -82,11 +82,13 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Text statlist = gameObject.GetComponentInChildren<Text>();
-        //Debug.Log(statlist);
-        //StatBlock.CalcMult(base,mult)
-
-        statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult) + "\n" + StatBlock.CalcMult(stats.Dex, stats.DexMult) + "\n" + StatBlock.CalcMult(stats.Myst,stats.MystMult) + "\n" + StatBlock.CalcMult(stats.Fort,stats.FortMult);
+		// Text statlist = gameObject.GetComponentInChildren<Text>();
+		//Debug.Log(statlist);
+		//StatBlock.CalcMult(base,mult)
+		statlist.text = (float)Mathf.Round(StatBlock.CalcMult(stats.Str, stats.StrMult) * 100f) / 100f + "\n" +
+			(float)Mathf.Round(StatBlock.CalcMult(stats.Dex, stats.DexMult) * 100f) / 100f + "\n" +
+			(float)Mathf.Round(StatBlock.CalcMult(stats.Myst, stats.MystMult) * 100f) / 100f + "\n" +
+			(float)Mathf.Round(StatBlock.CalcMult(stats.Fort, stats.FortMult) * 100f) / 100f;
         StatBlock detailedStats = stats.getStats();
         column1.text = detailedStats.HealthMax + "\n" + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult) + "\n" + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult) + "\n" + StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult) + "\n" + StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult);
         column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) + "\n" + StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult) + "\n" + StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult) + "\n" + StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) + "\n" + StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult);
