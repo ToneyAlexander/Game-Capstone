@@ -31,7 +31,7 @@ public class GenerateEnemies : MonoBehaviour
         {
             active = true;
             int type = SelectByChance();
-            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], RandomPos(), Quaternion.identity, transform);
+            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], transform.position, Quaternion.identity, transform);
             enemies[i].name = "Enemy - " + enemiesTypes.enemeisList[type].name;
             if (!active)
             {

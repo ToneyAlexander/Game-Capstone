@@ -5,9 +5,13 @@ using UnityEngine.AI;
 
 public class BeeController : EnemyController
 {
+    // Static variables which control the stats of all bees
+    public static bool Attacking = false;
+
     public GameObject projectile;
     
     private Animator animator;
+    private StatBlock stats;
 
     private bool inAttackCoroutine;
 
@@ -15,18 +19,23 @@ public class BeeController : EnemyController
     {
         base.Start();
 
+        attack = false;
+
         // Set up animator
         animator = GetComponent<Animator>();
 
+        // Set up statblock
+        stats = GetComponent<StatBlock>();
+
         // Default spawnPos and movingRange
         spawnPos = transform.position;
-        movingRange = 20f;
-        chaseSpeed = 15f;
+        movingRange = 50f;
+        chaseSpeed = 25f;
         movable = true;
 
         // Default vision
-        visionAngle = 180f;
-        visionDistance = 15f;
+        visionAngle = 360f;
+        visionDistance = 100f;
         attackDistance = 3f;
 
         inAttackCoroutine = false;
@@ -42,6 +51,13 @@ public class BeeController : EnemyController
     protected override void UniqueUpdate()
     {
         agent.isStopped = false;
+
+        attack = Attacking;
+
+        if (stats.HealthCur / stats.HealthMax <= 0.9f)
+        {
+            attack = true;
+        }
     }
 
     protected override void Attack(Vector3 playerPos)
@@ -97,6 +113,9 @@ public class BeeController : EnemyController
         
     protected override IEnumerator Die()
     {
+        // If one bee dies, all bees come to attack player
+        Attacking = true;
+
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
         Destroy(gameObject);
