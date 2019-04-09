@@ -18,9 +18,10 @@ MonoBehaviour:
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: 
-  Desc: 
-  grants: []
+  Name: Infused Blade
+  Desc: Infuse your blade for 10 seconds. Grants a 1.5x physical attack boost.
+  grants:
+  - {fileID: 11400000, guid: 389ff50d2f481b54395b42182a5b6078, type: 2}
   Changes: []
   uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3b4f579a0b141dc4fa15abe80041676c, type: 3}

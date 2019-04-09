@@ -1,4 +1,5 @@
 ﻿using CCC.Inputs;
+using CCC.Stats;
 using UnityEngine;
 
 [RequireComponent(typeof(StatBlock))]
@@ -6,14 +7,24 @@ using UnityEngine;
 [RequireComponent(typeof(MousePositionDetector))]
 public class InfusedBlade : AbilityBase
 {
+    private readonly string AbilName = "Infused Blade";
+
+    private ControlStatBlock controlStats;
+
+    public static TimedBuffPrototype Infusion;
+
+    private GameObject effect;
+
     public override void UpdateStats()
     {
-        throw new System.NotImplementedException();
+        cdBase = abil.Stats.Find(item => item.Name == Stat.AS_CD).Value;
     }
 
     protected override void Activate()
     {
-        throw new System.NotImplementedException();
+        GameObject obj = Instantiate(effect, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
+        TimedBuff tb = Infusion.Instance;
+        controlStats.ApplyBuff(tb);
     }
 
     // infuse your daggers with poison - giving a boost to your damage for XX seconds
@@ -21,12 +32,12 @@ public class InfusedBlade : AbilityBase
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        stats = GetComponent<StatBlock>();
+        controlStats = GetComponent<ControlStatBlock>();
+        PlayerClass pc = GetComponent<PlayerClass>();
+        abil = pc.abilities.Set[AbilName];
+        abil.cdRemain = 0f;
+        effect = abil.Prefab;
+        UpdateStats();
     }
 }

@@ -24,9 +24,6 @@ public class FanOfKnives : AbilityBase
     private float dmgMin;
     private float dmgMax;
 
-    private float direction;
-
-
     protected override void Activate()
     {
         StartCoroutine(FireProjectile());
@@ -34,16 +31,18 @@ public class FanOfKnives : AbilityBase
 
 	IEnumerator FireProjectile()
     {
-		int currRot = (int)size;
+		int currRot = -(int)size; //30
 		int currCast = 0;
 		while (currCast < projCount)
 		{
 			//needs to file projectile along cone shape
 			GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
-			ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
-			obj.transform.rotation = this.transform.rotation;
-			obj.transform.Translate(Vector3.forward * 3);
-			obj.transform.Rotate(new Vector3(0, currRot, 0));
+            var lookPos = mpd.CalculateWorldPosition() - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+			obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
+            obj.transform.Rotate(new Vector3(0, currRot, 0));
 			currRot += (int)((2*size) / projCount);
 			obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			pbh.speed = 10f;
