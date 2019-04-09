@@ -42,9 +42,10 @@ public class FanOfKnives : AbilityBase
 			GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
 			ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
 			obj.transform.rotation = this.transform.rotation;
+			obj.transform.Translate(Vector3.forward * 3);
 			obj.transform.Rotate(new Vector3(0, currRot, 0));
 			currRot += (int)((2*size) / projCount);
-			obj.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			pbh.speed = 10f;
 			Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
 			pbh.dmg = stats.RealDamage(dmg);
