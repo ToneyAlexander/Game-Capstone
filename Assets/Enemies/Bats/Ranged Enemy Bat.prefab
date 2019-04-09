@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+  itemGenerator: {fileID: 11400000, guid: 214f4c06de4812149ba378366646cfcc, type: 2}
 --- !u!136 &3791241321857881171
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -690,6 +690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afflictions: []
 --- !u!114 &9220979219647105041
 MonoBehaviour:
   m_ObjectHideFlags: 0
