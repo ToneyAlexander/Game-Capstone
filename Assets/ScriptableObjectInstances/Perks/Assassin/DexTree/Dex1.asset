@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: ThrowingDagger
+  m_Name: Dex1
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
   Children:
-  - {fileID: 11400000, guid: 2f864ed5c8dabd34c84767437b8f8991, type: 2}
-  - {fileID: 11400000, guid: ccae45fee1e49cb408d124c654d3900e, type: 2}
+  - {fileID: 0}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: Throwing Dagger
-  Desc: Throw a dagger in the direction of the mouse.
-  grants:
-  - {fileID: 11400000, guid: 9bfd643d62e65ae4e8f30cd6db6074f2, type: 2}
+  Stats:
+  - statName: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    statValue: 10
+  Name: Dexterous
+  Desc: 
+  grants: []
   Changes: []
-  uiCoords: {x: 50, y: 285}
-  sprite: {fileID: 21300000, guid: 6faf95e8fc8310c4e8e2764abb960145, type: 3}
+  uiCoords: {x: 50, y: 25}
+  sprite: {fileID: 21300000, guid: 78df9b0da45e0ba41925fd3355d81d78, type: 3}

@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: InfusedBlade
+  m_Name: Dex3
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 360489cafcd29434aa17a5483cb94420, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: d5adb3e291559384cbf32e8fd55015d0, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: Infused Blade
-  Desc: Infuse your blade for 10 seconds. Grants a 1.5x physical attack boost.
-  grants:
-  - {fileID: 11400000, guid: 389ff50d2f481b54395b42182a5b6078, type: 2}
+  Stats:
+  - statName: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    statValue: 30
+  Name: Decimator
+  Desc: 
+  grants: []
   Changes: []
-  uiCoords: {x: 50, y: 335}
-  sprite: {fileID: 21300000, guid: 3b4f579a0b141dc4fa15abe80041676c, type: 3}
+  uiCoords: {x: 200, y: 25}
+  sprite: {fileID: 21300000, guid: 78df9b0da45e0ba41925fd3355d81d78, type: 3}

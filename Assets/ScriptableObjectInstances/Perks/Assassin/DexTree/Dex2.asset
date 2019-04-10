@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: DoubleDaggers
+  m_Name: Dex2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 8dff6a34e4471d341a8ce0220105aea2, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: d4d00fea58e49f840b3721131dff0c5e, type: 2}
   Blocks: []
   RequireAll: 0
-  Stats: []
-  Name: Double Daggers
-  Desc: 'Doubles the damage per dagger. '
+  Stats:
+  - statName: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    statValue: 20
+  Name: Defiant
+  Desc: 
   grants: []
-  Changes:
-  - Value: 0
-    abilityName: 
-    statName: {fileID: 0}
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  Changes: []
+  uiCoords: {x: 125, y: 25}
+  sprite: {fileID: 21300000, guid: 78df9b0da45e0ba41925fd3355d81d78, type: 3}

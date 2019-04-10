@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: DoubleDaggers
+  m_Name: FoKCount2
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 76f2bb63627d6af45a373db3d5a82789, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Double Daggers
-  Desc: 'Doubles the damage per dagger. '
+  Name: Enhanced Conal Sweep
+  Desc: Adds 4 more daggers to your flick.
   grants: []
   Changes:
-  - Value: 0
-    abilityName: 
-    statName: {fileID: 0}
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  - Value: 12
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: 265cf1df9128b9d44adc5a721c161e5d, type: 2}
+  uiCoords: {x: 180, y: 130}
+  sprite: {fileID: 21300000, guid: cf42282e57ab30b4b85534be8b2a2e71, type: 3}
