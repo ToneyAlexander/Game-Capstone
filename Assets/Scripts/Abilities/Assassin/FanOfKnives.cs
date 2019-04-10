@@ -36,16 +36,16 @@ public class FanOfKnives : AbilityBase
 		while (currCast < projCount)
 		{
 			//needs to file projectile along cone shape
-			GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
+			GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0f, 2f, 0f), new Quaternion());
             var lookPos = mpd.CalculateWorldPosition() - transform.position;
             lookPos.y = 0;
             var rotation = Quaternion.LookRotation(lookPos);
             ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
 			obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
-            obj.transform.Rotate(new Vector3(0, currRot, 0));
+            obj.transform.Rotate(new Vector3(Random.Range(0, 10), currRot, 0));
 			currRot += (int)((2*size) / projCount);
 			obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-			pbh.speed = 10f;
+			pbh.speed = 15f;
 			Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
 			pbh.dmg = stats.RealDamage(dmg);
 			pbh.ttl = 2f;
