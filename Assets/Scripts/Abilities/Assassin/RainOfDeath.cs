@@ -10,7 +10,7 @@ using UnityEngine;
 public class RainOfDeath : AbilityBase
 {
 
-    private readonly string AbilName = "Fan Of Knives";
+    private readonly string AbilName = "Rain Of Death";
 
     private List<Stat> abilStats;
     private StatBlock stats;
@@ -47,14 +47,37 @@ public class RainOfDeath : AbilityBase
     {
         abilStats = abil.Stats;
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
-        projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
-        size = abilStats.Find(item => item.Name == Stat.AS_SIZE).Value;
         dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
         dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
     }
 
     IEnumerator FireProjectile()
     {
+        Vector3 posMod = Vector3.zero;
+        int rotMod = 0;
+        int tempCount = 1;
+        int currCount = 0;
+        while(currCount < 19){
+            GameObject obj = Instantiate(projectile, mpd.CalculateWorldPosition() + new Vector3(0,6,0), new Quaternion()); //at mouse position, 6m up.
+            ProjectileBehave phb = obj.GetComponent<ProjectileBehave>();
+            obj.transform.Rotate(90, rotMod, 0); //rotate around pivot
+            obj.transform.Translate(posMod); //adjust forward
+            obj.transform.localScale = new Vector3(2f, 2f, 2f);
+            currCount++;
+            rotMod = rotMod + (360 / tempCount);
+            if(currCount == 1){
+                posMod = new Vector3(2,0,0);
+                tempCount =  6;
+            }else if(currCount == 7){
+                posMod = new Vector3(4,0,0);
+                tempCount =  12;
+            }
+            phb.friendly = true;
+            phb.speed = 10;
+            Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
+			phb.dmg = stats.RealDamage(dmg);
+			phb.ttl = 2f;
+        }
         yield return null;
     }
 }
