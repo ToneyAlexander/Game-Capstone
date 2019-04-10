@@ -54,7 +54,7 @@ public class ThrowingDagger : AbilityBase
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
         obj.transform.rotation = this.transform.rotation;
-        obj.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
         pbh.dmg = stats.RealDamage(dmg);
