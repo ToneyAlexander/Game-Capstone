@@ -22,9 +22,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 570454004823b3049b60d2e7a737a279, type: 2}
   RequireAll: 0
   Stats: []
-  Name: RoD Damage Increase Tier 2
+  Name: Rain Of Death Damage II
   Desc: Increases damage of RoD even more
   grants: []
-  Changes: []
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  Changes:
+  - Value: 30
+    abilityName: Rain Of Death
+    statName: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+  - Value: 45
+    abilityName: Rain Of Death
+    statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+  uiCoords: {x: 215, y: 235}
+  sprite: {fileID: 21300000, guid: 81a053c2fcceb954ea33f9f810241a8d, type: 3}

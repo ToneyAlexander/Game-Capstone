@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: Dex2
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 8dff6a34e4471d341a8ce0220105aea2, type: 2}
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: d4d00fea58e49f840b3721131dff0c5e, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 194ab51a767564573b6b0ce65871621c, type: 2}
+    statValue: 20
+  Name: Defiant
+  Desc: 
+  grants: []
+  Changes: []
+  uiCoords: {x: 125, y: 25}
+  sprite: {fileID: 21300000, guid: 78df9b0da45e0ba41925fd3355d81d78, type: 3}

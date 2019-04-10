@@ -19,8 +19,11 @@ MonoBehaviour:
   RequireAll: 0
   Stats: []
   Name: Double Daggers
-  Desc: Doubles the amount of daggers that fall
+  Desc: 'Doubles the damage per dagger. '
   grants: []
-  Changes: []
+  Changes:
+  - Value: 0
+    abilityName: 
+    statName: {fileID: 0}
   uiCoords: {x: 0, y: 0}
   sprite: {fileID: 0}

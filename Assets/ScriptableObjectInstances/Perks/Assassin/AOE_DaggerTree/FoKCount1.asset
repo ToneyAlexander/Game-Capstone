@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: FoKCount1
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 144d18acd18ca874c9cdaa7166e090a3, type: 2}
+  BlockedBy:
+  - {fileID: 11400000, guid: d246b2125e380c045a39a9f28dcae827, type: 2}
+  Children:
+  - {fileID: 11400000, guid: a5f8789b796cfd441b1498d036b174df, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Conal Sweep
+  Desc: 'By adding more daggers, you''re now able to cover more area before you. Adds
+    2 daggers to your flick. '
+  grants: []
+  Changes:
+  - Value: 8
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: 265cf1df9128b9d44adc5a721c161e5d, type: 2}
+  uiCoords: {x: 105, y: 130}
+  sprite: {fileID: 21300000, guid: cf42282e57ab30b4b85534be8b2a2e71, type: 3}

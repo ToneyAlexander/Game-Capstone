@@ -9,7 +9,7 @@ namespace CCC.Items
     /// An ItemGenerator that always creates a perfect Item (one with the
     /// maximum values for every Stat.
     /// </summary>
-    [CreateAssetMenu(menuName = "Items/PerfectItemGenerator")]
+    [CreateAssetMenu(menuName = "Items/RegularItemGenerator")]
     public sealed class RegularItemGenerator : ItemGenerator
     {
         [SerializeField]

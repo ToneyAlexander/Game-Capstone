@@ -19,6 +19,7 @@ public abstract class EnemyController : MonoBehaviour
     protected float visionAngle;
     protected float visionDistance;
     protected float attackDistance;
+    protected bool attack;
 
     // Attack controller
     protected EnemyAttackController attackController;
@@ -87,6 +88,7 @@ public abstract class EnemyController : MonoBehaviour
 
         // Set up attack controller
         attackController = GetComponent<EnemyAttackController>();
+        attack = true;
 
         inCoroutine = false;
         isAlive = true;
@@ -112,7 +114,7 @@ public abstract class EnemyController : MonoBehaviour
             {
                 // If the player character is within the enemy's moving area and is within 
                 // enemy's field of view, the enemy chases player character
-                if (InRange(playerPos) && InVision(playerPos)) 
+                if (attack && InRange(playerPos) && InVision(playerPos)) 
                 {
                     targetFound = true;
                     targetPos = playerPos;

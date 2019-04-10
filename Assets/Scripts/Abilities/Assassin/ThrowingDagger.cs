@@ -26,7 +26,6 @@ public class ThrowingDagger : AbilityBase
     public override void UpdateStats()
     {
         abilStats = abil.Stats;
-        Debug.Log("updating stats");
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
         projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
         projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
@@ -36,12 +35,11 @@ public class ThrowingDagger : AbilityBase
 
     protected override void Activate()
     {
-        //StartCoroutine(FireAsync());
+        StartCoroutine(FireAsync());
     }
 
     IEnumerator FireAsync()
     {
-        Debug.Log("Min: " + dmgMin + "; Max: " + dmgMax);
         int projCast = 0;
         while (projCast < projCount)
         {
@@ -55,16 +53,13 @@ public class ThrowingDagger : AbilityBase
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
-        var lookPos = mpd.CalculateWorldPosition() - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
-        obj.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        obj.transform.rotation = this.transform.rotation;
+        obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         pbh.speed = projSpeed;
-        Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), false, false, true);
+        Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
         pbh.dmg = stats.RealDamage(dmg);
+        pbh.ttl = 2f;
         pbh.friendly = true;
-        pbh.ttl = 1f;
     }
 
         // Start is called before the first frame update
@@ -78,11 +73,5 @@ public class ThrowingDagger : AbilityBase
         abilStats = abil.Stats;
         abil.cdRemain = 0f;
         UpdateStats();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

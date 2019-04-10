@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Plate Helm
+  m_EditorClassIdentifier: 
+  itemName: Plate Helm
+  sprite: {fileID: 21300000, guid: 2243b391706aa4149bef5d834eaaab29, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 1
+  flavorText: May cause neck pains...
+  internalDescription: 
+  baseItemTier: 3
+  maxNumberAffixes: 2
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: b2775bcec8e333f4391e3984c8de163b, type: 2}
+    minValue: 40
+    maxValue: 65
+  - statIdentifier: {fileID: 11400000, guid: 1e4f666d125b24538b6ea01a50a1a565, type: 2}
+    minValue: 0.03
+    maxValue: 0.06

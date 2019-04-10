@@ -86,11 +86,22 @@ public class StatScreenUI : MonoBehaviour
         //Debug.Log(statlist);
         //StatBlock.CalcMult(base,mult)
 
-        statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult) + "\n" + StatBlock.CalcMult(stats.Dex, stats.DexMult) + "\n" + StatBlock.CalcMult(stats.Myst,stats.MystMult) + "\n" + StatBlock.CalcMult(stats.Fort,stats.FortMult);
-        StatBlock detailedStats = stats.getStats();
-        column1.text = detailedStats.HealthMax + "\n" + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult) + "\n" + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult) + "\n" + StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult) + "\n" + StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult);
-        column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) + "\n" + StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult) + "\n" + StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult) + "\n" + StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) + "\n" + StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult);
-        column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult) + "\n" + StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult) + "\n" + StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult);
+        statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Dex, stats.DexMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Myst,stats.MystMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Fort,stats.FortMult).ToString("n2");
+		StatBlock detailedStats = stats.getStats();
+        column1.text = detailedStats.HealthMax.ToString("n2") + "\n" + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult).ToString("n2") 
+			+ "\n" + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult).ToString("n2");
+        column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult).ToString("n2") + "\n" +
+			StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult).ToString("n2");
+        column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult).ToString("n2") + "\n" + 
+			StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult).ToString("n2") + "\n" +
+			StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult).ToString("n2");
         levelText.text = player.PlayerLevelExp.Level.ToString();
         nameText.text = player.bloodlineController.playerName;
         classText.text = textPlayerClass.ClassL.name;

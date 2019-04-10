@@ -20,9 +20,15 @@ MonoBehaviour:
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: FoK Damage Increase Tier 1
+  Name: Fan Of Knives Damage I
   Desc: Increases damage of FoK
   grants: []
-  Changes: []
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  Changes:
+  - Value: 45
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+  - Value: 30
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+  uiCoords: {x: 135, y: 75}
+  sprite: {fileID: 21300000, guid: c073940c3770a3c4a89b1ada9c07ab8a, type: 3}

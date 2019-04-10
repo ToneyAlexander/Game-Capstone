@@ -16,15 +16,16 @@ MonoBehaviour:
   abilityType: 1
   typeString: ThrowingDagger
   icon: {fileID: 21300000, guid: 6faf95e8fc8310c4e8e2764abb960145, type: 3}
-  prefab: {fileID: 1531814124222292, guid: 26c16004c1bdc4c7280db31bc4db2e5c, type: 3}
+  prefab: {fileID: 2040912044689668967, guid: 08bf59bf2e1a2be41b6d2b741eaf555d, type: 3}
+  isAttack: 0
   statSlots:
   - statIdentifier: {fileID: 11400000, guid: 3c9effc3661081340b193ea123758eb1, type: 2}
-    value: 30
+    value: 20
   - statIdentifier: {fileID: 11400000, guid: 265cf1df9128b9d44adc5a721c161e5d, type: 2}
-    value: 2
-  - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
-    value: 65
-  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
-    value: 55
-  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
     value: 1
+  - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+    value: 35
+  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+    value: 25
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 2
