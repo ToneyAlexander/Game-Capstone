@@ -10,7 +10,7 @@ public class FadeOut : MonoBehaviour
 
     void Start()
     {
-        GetComponent<Image>().canvasRenderer.SetAlpha(1f);
+        //GetComponent<Image>().canvasRenderer.SetAlpha(1f);
         GetComponent<Image>().CrossFadeAlpha(0f, time, false);
     }
 
