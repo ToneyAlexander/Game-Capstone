@@ -41,6 +41,6 @@ public class LevelHUD_Manager : MonoBehaviour
 	void LevelUpdater()
 	{
 		textField.text = player.PlayerLevelExp.Level.ToString();
-        nameField.text = player.name;
+        nameField.text = player.bloodlineController.playerName;
 	}
 }
