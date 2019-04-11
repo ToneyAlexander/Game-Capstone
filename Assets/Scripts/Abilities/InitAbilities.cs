@@ -8,6 +8,8 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype ignite;
     public TimedBuffPrototype dash;
     public TimedBuffPrototype mending;
+    public TimedBuffPrototype infusion;
+    public TimedBuffPrototype corrupt;
     public TimedBuffPrototype hemoMend;
     public TimedBuffPrototype ablazeOff;
     public TimedBuffPrototype ablazeDef;
@@ -28,6 +30,8 @@ public class InitAbilities : MonoBehaviour
         FireballIgnite.ignite = ignite;
         DashAbility.Dash = dash;
         MendingAbility.Mending = mending;
+        InfusedBlade.Infusion = infusion;
+        CorruptedEarth.Corruption = corrupt;
         AblazeAbility.Enemy = ablazeOff;
         AblazeAbility.Ignite = ablazeIgnite;
         AblazeAbility.Friendly = ablazeDef;

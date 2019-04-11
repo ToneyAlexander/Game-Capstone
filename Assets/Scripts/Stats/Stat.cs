@@ -81,6 +81,8 @@ namespace CCC.Stats
         public const string AS_DEBUFFS = "as_debuffs";
         public const string AS_VAMP = "as_vamp";
         public const string AS_COST = "as_cost";
+        public const string AS_CORRUPT = "as_corrupt";
+
 
         /// <summary>
         /// Gets the name of this Stat.
