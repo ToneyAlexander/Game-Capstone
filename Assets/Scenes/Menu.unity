@@ -799,7 +799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
-  takenPerks: []
+  TakenPerks: []
+  takenPerks: {fileID: 0}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
@@ -3076,7 +3077,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1536031356
 Transform:
   m_ObjectHideFlags: 0
