@@ -324,7 +324,7 @@ public class ControlStatBlock : MonoBehaviour
 
         if (pClass != null)
         {
-            foreach (PerkPrototype perk in pClass.takenPerks)
+            foreach (PerkPrototype perk in pClass.TakenPerks)
             {
 
                 foreach (PerkStatEntry sp in perk.Stats)

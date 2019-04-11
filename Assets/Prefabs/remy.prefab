@@ -2457,7 +2457,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
-  takenPerks: []
+  TakenPerks: []
+  takenPerks: {fileID: 11400000, guid: 2b76ab84f549f4f04a22dde43b7eb071, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
@@ -3707,15 +3708,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 128f20fd9fec12b4e9587d7fd19322b7, type: 3}
---- !u!4 &4000011155641524 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4000011191723762, guid: 128f20fd9fec12b4e9587d7fd19322b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 36287046}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000011366503406 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000011335475624, guid: 128f20fd9fec12b4e9587d7fd19322b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 36287046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4000011155641524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000011191723762, guid: 128f20fd9fec12b4e9587d7fd19322b7,
     type: 3}
   m_PrefabInstance: {fileID: 36287046}
   m_PrefabAsset: {fileID: 0}
