@@ -11,7 +11,8 @@ public sealed class CrewMember : ScriptableObject
         Navigator,
         Hunter,
         Naturalist,
-        Explorer
+        Explorer,
+        Crawfis
     }
     
     
@@ -63,6 +64,9 @@ public sealed class CrewMember : ScriptableObject
             case crewType.Navigator:
                 string[] themes = { "Grass", "Desert", "Snow", "Swamp" };
                 str = ": " + themes[Type] + "  " + power;
+                break;
+            case crewType.Crawfis:
+                str = ": Infinity";
                 break;
         }
         return str;
