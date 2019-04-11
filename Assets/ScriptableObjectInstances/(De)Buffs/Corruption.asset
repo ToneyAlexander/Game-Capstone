@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287ffe4f9046e1b4f882635e1444fd6d, type: 3}
   m_Name: Corruption
   m_EditorClassIdentifier: 
-  statSlots: []
-  buffName: 
-  duration: 0
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: 54cfd71de344d4a80abdb3605347fa59, type: 2}
+    value: -1
+  buffName: Corruption
+  duration: 0.5
   isUnique: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: a6c8c6e09e8c2bf4089578ebcaa78505, type: 3}

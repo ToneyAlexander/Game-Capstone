@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCC.Abilities;
+﻿using CCC.Abilities;
+using CCC.Combat.Perks;
 using CCC.Stats;
+using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(ControlStatBlock))]
 public class PlayerClass : MonoBehaviour
 {
     [HideInInspector]
     public List<PerkPrototype> allPerks;
-    [HideInInspector]
-    public List<PerkPrototype> takenPerks;
+
+    public List<PerkPrototype> TakenPerks;
+
+    //public IList<PerkPrototype> TakenPerks
+    //{
+    //    get { return takenPerks.Perks; }
+    //}
+
+    /// <summary>
+    /// The perks that the player currently has taken.
+    /// </summary>
+    [SerializeField]
+    private PerkList takenPerks;
+
     [HideInInspector]
     public PerkPrototype onLevelUp;
     public AbilitySet abilities;
@@ -25,7 +37,7 @@ public class PlayerClass : MonoBehaviour
     
     private readonly float expToLevelInc = 1.25f;
 
-    public static bool CheckPrereq(PerkPrototype p, List<PerkPrototype> taken)
+    public static bool CheckPrereq(PerkPrototype p, IList<PerkPrototype> taken)
     {
         if(taken.Contains(p))
         {
@@ -61,9 +73,48 @@ public class PlayerClass : MonoBehaviour
         Component fv = o.AddComponent(type);
     }
 
-    void Awake()
+    private void Awake()
     {
-        takenPerks = new List<PerkPrototype>();
+        // NOTE: This Component's TakenPerks field gets its value from the 
+        // takenPerks field. That field must be loaded (the Load method must 
+        // have been called on it) before its Perks property will have a 
+        // non-null value in it. Therefore, the Load method of that PerkList is 
+        // called right here. This will work so long as no other Component in 
+        // the same scene as this Component requires the same PerkList to be 
+        // loaded for its Awake method. Normally, this PerkList would be 
+        // loaded in a GameState's Enter method but because a GameState's 
+        // Enter method is only guaranteed to run before any Component's Start 
+        // method, we must load it here. If any other Component's Awake method 
+        // in the same scene as this Component required this PerkList to be 
+        // loaded, it must have its Load method called on it in the GameState 
+        // just before the GameState that all those Components exist in. For 
+        // example, it would probably be loaded in HubGameState's Enter method.
+        // If this logic (besides the takenPerks.Load() which could go in a 
+        // GameState's Enter method) was moved to Start, it may possibly work 
+        // but I don't know enough about the other Components that may rely on 
+        // PlayerClass's Awake method doing some set up that they need for 
+        // their own Start methods.
+        // - Wesley
+        takenPerks.Load();
+
+        // If takenPerks is empty, it means that we're either looking at the 
+        // null perk list or a new player perk list that is empy.
+        if (takenPerks.Perks.Count <= 0)
+        {
+            // We have to make an entirely new list otherwise the null perk 
+            // list's list would be overwritten.
+            TakenPerks = new List<PerkPrototype>();
+        }
+        else
+        {
+            // Not a null perk list
+            TakenPerks = takenPerks.Perks;
+            foreach (var perk in TakenPerks)
+            {
+                Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] loaded perk = " + perk);
+            }
+        }
+
         stats = GetComponent<ControlStatBlock>();
         init = GetComponent<InitAbilities>();
         
@@ -73,6 +124,14 @@ public class PlayerClass : MonoBehaviour
             PlayerLevelExp.PerkPoints = 1;
             PlayerLevelExp.Level = 1;
         }
+
+        Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.name = " + takenPerks.name);
+        Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.Perks.Count = " + takenPerks.Perks.Count);
+
+        foreach (var perk in TakenPerks)
+        {
+            Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] perk = " + perk);
+        }
     }
 
     public void IncreaseAge()
@@ -81,15 +140,21 @@ public class PlayerClass : MonoBehaviour
 
         if (bloodlineController.Age < 3)
         {
-            takenPerks.Add(init.Young);
+            TakenPerks.Add(init.Young);
+            //takenPerks.AddPerk(init.Young);
+            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Young + "'");
         }
         else if (bloodlineController.Age < 5)
         {
-            takenPerks.Add(init.Middle);
+            TakenPerks.Add(init.Middle);
+            //takenPerks.AddPerk(init.Middle);
+            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Middle + "'");
         }
         else
         {
-            takenPerks.Add(init.Old);
+            TakenPerks.Add(init.Old);
+            //takenPerks.AddPerk(init.Old);
+            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Old + "'");
         }
 
         stats.AgeUp();
@@ -119,7 +184,9 @@ public class PlayerClass : MonoBehaviour
         }
         if (onLevelUp != null)
         {
-            takenPerks.Add(onLevelUp);
+            TakenPerks.Add(onLevelUp);
+            //takenPerks.AddPerk(onLevelUp);
+            Debug.Log("[" + gameObject.name + ".PlayerClass.LevelUp] added perk '" + onLevelUp + "'");
             stats.StatsChanged();
         }
     }
@@ -129,6 +196,7 @@ public class PlayerClass : MonoBehaviour
         foreach(PerkPrototype p in perks)
         {
             bool succ = TakePerk(p, false);
+            Debug.Log("[" + gameObject.name + ".PlayerClass.TakeDefaults] took perk '" + p + "'");
             if (!succ)
             {
                 Debug.LogError("Class Defaults Configured Incorrectly");
@@ -140,13 +208,15 @@ public class PlayerClass : MonoBehaviour
     {
         if (!needsPerkPoint || (PlayerLevelExp != null && PlayerLevelExp.PerkPoints > 0))
         {
-            if (CheckPrereq(p, takenPerks))
+            if (CheckPrereq(p, TakenPerks))
             {
                 if(needsPerkPoint)
                 {
                     --PlayerLevelExp.PerkPoints;
                 }
-                takenPerks.Add(p);
+                TakenPerks.Add(p);
+                //takenPerks.AddPerk(p);
+                Debug.Log("[" + gameObject.name + ".PlayerClass.TakePerk] added perk '" + p + "'");
                 stats.StatsChanged();
                 if (abilities != null && abilDict != null)
                 {
@@ -198,6 +268,7 @@ public class PlayerClass : MonoBehaviour
                 return true;
             }
         }
+        Debug.Log("[" + gameObject.name + ".PlayerClass.TakePerk] end");
         return false;
     }
 }

@@ -4897,6 +4897,8 @@ MonoBehaviour:
   ignite: {fileID: 11400000, guid: 14ee6f763ed8b1d44bdacf409221f1c3, type: 2}
   dash: {fileID: 11400000, guid: a628ad4ffafda154b9869dbf0c1eaa75, type: 2}
   mending: {fileID: 11400000, guid: 60a3912452ad31848a8013abf2013bbd, type: 2}
+  infusion: {fileID: 11400000, guid: 139c491ece6bf914e88042b49944d655, type: 2}
+  corrupt: {fileID: 11400000, guid: ff176ece557dbc8448fdbabe91e31cf6, type: 2}
   hemoMend: {fileID: 11400000, guid: cc5ccbd3936697041a3ab8acf844cff5, type: 2}
   ablazeOff: {fileID: 11400000, guid: 878850fb8c0123249ae78833d22daa1b, type: 2}
   ablazeDef: {fileID: 11400000, guid: 56bcc296bd0a8544c9195689c2604c92, type: 2}
@@ -5029,7 +5031,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
-  takenPerks: []
+  TakenPerks: []
+  takenPerks: {fileID: 11400000, guid: 2b76ab84f549f4f04a22dde43b7eb071, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   abilDict: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
@@ -12305,7 +12308,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1894323720}
+  m_TargetTexture: {fileID: 2097911020}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -13172,6 +13175,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1497037030}
   m_CullTransparentMesh: 0
+--- !u!84 &1500388422
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1504657154
 GameObject:
   m_ObjectHideFlags: 0
@@ -13774,38 +13809,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538044729}
   m_CullTransparentMesh: 0
---- !u!84 &1551992560
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 958
-  m_Height: 539
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &1556114920
 Transform:
   m_ObjectHideFlags: 0
@@ -16735,8 +16738,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1825723150}
   outlineCamera: {fileID: 1410676886}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1894323720}
-  extraRenderTexture: {fileID: 1551992560}
+  renderTexture: {fileID: 2097911020}
+  extraRenderTexture: {fileID: 1500388422}
 --- !u!1 &1826143235
 GameObject:
   m_ObjectHideFlags: 0
@@ -17547,38 +17550,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1310, y: 1080}
   m_Pivot: {x: 1, y: 0.5}
---- !u!84 &1894323720
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 958
-  m_Height: 539
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1895224385
 GameObject:
   m_ObjectHideFlags: 0
@@ -19063,6 +19034,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!84 &2097911020
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2102313453
 GameObject:
   m_ObjectHideFlags: 0
@@ -21712,7 +21715,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5930947932800071296}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.46350002
+  m_Size: 0.23174998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21944,8 +21947,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.00017127761, y: 0.000025013678}
-  m_SizeDelta: {x: 2000, y: 2000}
+  m_AnchoredPosition: {x: -0.0000023466712, y: 0.000025013678}
+  m_SizeDelta: {x: 3000, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5930947933207128463
 GameObject:
@@ -22413,8 +22416,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947933255088996}
   m_HandleRect: {fileID: 5930947933255088997}
   m_Direction: 0
-  m_Value: 0.00000011302809
-  m_Size: 0.46000007
+  m_Value: 0
+  m_Size: 0.30666664
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
