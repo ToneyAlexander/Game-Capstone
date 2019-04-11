@@ -3987,7 +3987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
-  takenPerks: []
+  takenPerks: {fileID: 11400000, guid: 23abaa28271f14e239549bd61337192f, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
@@ -4005,6 +4005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afflictions: []
 --- !u!136 &6877821308398980132
 CapsuleCollider:
   m_ObjectHideFlags: 0
