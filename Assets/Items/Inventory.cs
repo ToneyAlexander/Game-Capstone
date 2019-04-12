@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.AssetManagement;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
@@ -26,6 +27,16 @@ namespace CCC.Items
         /// The actual inventory data that this Inventory references.
         /// </summary>
         private InventoryData data = InventoryData.Null;
+
+        [SerializeField]
+        private string assetBundlePath = "Assets/AssetBundles/";
+
+        public AssetBundle LoadedAssetBundle
+        {
+            get { return loadedAssetBundle; }
+        }
+
+        private AssetBundle loadedAssetBundle;
 
         /// <summary>
         /// Gets the path to the file that this Inventory should be saved in.
@@ -115,6 +126,15 @@ namespace CCC.Items
         /// </summary>
         public void Load()
         {
+            loadedAssetBundle = 
+                AssetBundleManager.LoadAssetBundleAtPath(assetBundlePath);
+
+            if (!loadedAssetBundle)
+            {
+                Debug.LogError("[Inventory.Load] Failed to load asset bundle" + 
+                    " at path '" + assetBundlePath + "'");
+            }
+
             path = System.IO.Path.Combine(Application.persistentDataPath, 
                 filename);
 
@@ -148,6 +168,8 @@ namespace CCC.Items
                 streamWriter.Write(jsonString);
             }
 
+            AssetBundleManager.UnloadAssetBundleAtPath(assetBundlePath);
+            loadedAssetBundle = null;
             data = InventoryData.Null;
         }
     }

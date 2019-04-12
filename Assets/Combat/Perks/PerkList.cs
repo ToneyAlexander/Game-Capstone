@@ -55,6 +55,7 @@ namespace CCC.Combat.Perks
                     using (StreamReader streamReader = File.OpenText(path))
                     {
                         var jsonString = streamReader.ReadToEnd();
+                        Debug.Log(jsonString);
                         var loadedData =
                             JsonUtility.FromJson<PerkListData>(jsonString);
                         Debug.Log(loadedData.Perks.Count);

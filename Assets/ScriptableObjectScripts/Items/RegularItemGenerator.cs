@@ -29,7 +29,8 @@ namespace CCC.Items
             }
 
             Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier,
-                proto.EquipmentSlot, proto.Sprite, stats, proto.WorldDropPrefab);
+                proto.EquipmentSlot, proto.Sprite.name, stats, proto.WorldDropPrefab);
+            Debug.Log(proto.Sprite.name);
 
             ApplyAffixes(affixSets, this, item, proto);
 
