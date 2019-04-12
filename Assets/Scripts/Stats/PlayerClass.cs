@@ -10,6 +10,7 @@ public class PlayerClass : MonoBehaviour
     [HideInInspector]
     public List<PerkPrototype> allPerks;
 
+    [HideInInspector]
     public List<PerkPrototype> TakenPerks;
 
     //public IList<PerkPrototype> TakenPerks

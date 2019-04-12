@@ -55,15 +55,6 @@ namespace CCC.Items
         }
 
         /// <summary>
-        /// Gets the Sprite of this Item.
-        /// </summary>
-        /// <value>The Sprite.</value>
-        public Sprite Sprite
-        {
-            get { return sprite; }
-        }
-
-        /// <summary>
         /// Gets the prefab to use when placing the Item in the world.
         /// </summary>
         /// <value>The world drop prefab.</value>
@@ -95,6 +86,11 @@ namespace CCC.Items
             get { return tier; }
         }
 
+        public string SpriteName
+        {
+            get { return spriteName; }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:CCC.Items.Item"/> 
         /// struct.
@@ -112,7 +108,7 @@ namespace CCC.Items
         /// The list of Stat that the new Item will have.
         /// </param>
         public Item(string name, string flavorText, bool isUnique, int tier,
-            EquipmentSlot equipmentSlot, Sprite sprite, List<Stat> stats, 
+            EquipmentSlot equipmentSlot, string spriteName, List<Stat> stats, 
             GameObject worldDropPrefab)
         {
             this.name = name;
@@ -121,9 +117,9 @@ namespace CCC.Items
             this.isUnique = isUnique;
             this.tier = tier;
             this.equipmentSlot = equipmentSlot;
-            this.sprite = sprite;
             this.stats = stats;
             this.worldDropPrefab = worldDropPrefab;
+            this.spriteName = spriteName;
         }
 
         /// <summary>
@@ -155,12 +151,6 @@ namespace CCC.Items
         private int tier;
 
         /// <summary>
-        /// The Sprite of this Item.
-        /// </summary>
-        [SerializeField]
-        private Sprite sprite;
-
-        /// <summary>
         /// The prefab to use when this Item is placed in the world.
         /// </summary>
         [SerializeField]
@@ -177,5 +167,8 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private List<Stat> stats;
+
+        [SerializeField]
+        private string spriteName;
     }
 }
