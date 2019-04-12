@@ -25,7 +25,7 @@ public class Adrenaline : AbilityBase
 
     protected override void Activate()
     {
-        //GameObject obj = Instantiate(effect, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
+        GameObject obj = Instantiate(effect, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         TimedBuff tb = AdrenalineBoost.Instance;
         controlStats.ApplyBuff(tb);
     }
