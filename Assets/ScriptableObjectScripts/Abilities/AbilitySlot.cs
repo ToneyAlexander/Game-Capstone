@@ -9,6 +9,7 @@
         Two,
         Three,
         Four,
-        Five
+        Five,
+        Six
     }
 }

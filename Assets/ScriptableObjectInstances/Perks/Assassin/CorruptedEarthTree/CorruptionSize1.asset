@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: CorruptedEarth
+  m_Name: CorruptionSize1
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: dff021acc14acba429da4ac0fcb81d46, type: 2}
   BlockedBy: []
-  Children:
-  - {fileID: 11400000, guid: 1c5812fc31b036f4984a771b32a1325c, type: 2}
+  Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Corrupted Earth
-  Desc: Corrupt the earth beneath your feet. Deals damage to enemies.
-  grants:
-  - {fileID: 11400000, guid: 8ea9b6a787865024f81d57a3378ad8e4, type: 2}
-  Changes: []
+  Name: Corruption Size I
+  Desc: 'Increases the size of the AOE. '
+  grants: []
+  Changes:
+  - Value: 11
+    abilityName: Corrupted Earth
+    statName: {fileID: 11400000, guid: aac305d870476f444945e58b19de0e84, type: 2}
   uiCoords: {x: 0, y: 0}
   sprite: {fileID: 0}

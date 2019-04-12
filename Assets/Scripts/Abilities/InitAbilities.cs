@@ -18,6 +18,7 @@ public class InitAbilities : MonoBehaviour
     public TimedBuffPrototype crippled;
     public TimedBuffPrototype ripperFrenzy;
     public TimedBuffPrototype bloodBlock;
+    public TimedBuffPrototype adrenaline;
     public PerkPrototype Young;
     public PerkPrototype Middle;
     public PerkPrototype Old;
@@ -30,6 +31,7 @@ public class InitAbilities : MonoBehaviour
         FireballIgnite.ignite = ignite;
         DashAbility.Dash = dash;
         MendingAbility.Mending = mending;
+        Adrenaline.AdrenalineBoost = adrenaline;
         InfusedBlade.Infusion = infusion;
         CorruptedEarth.Corruption = corrupt;
         AblazeAbility.Enemy = ablazeOff;

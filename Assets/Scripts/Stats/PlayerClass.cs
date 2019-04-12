@@ -251,6 +251,11 @@ public class PlayerClass : MonoBehaviour
                             abilDict.SetSlotAbility(AbilitySlot.Five, instA);
                             AddAbilityToParent(gameObject, instA.TypeString);
                         }
+                        else if (abilDict.GetAbility(AbilitySlot.Six).Equals(Ability.nullAbility))
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Six, instA);
+                            AddAbilityToParent(gameObject, instA.TypeString);
+                        }
                     }
                     foreach (AbilityModifier aMod in p.Changes)
                     {

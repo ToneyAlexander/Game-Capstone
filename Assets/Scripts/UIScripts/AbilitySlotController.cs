@@ -73,7 +73,7 @@ public class AbilitySlotController : MonoBehaviour
 	 */ 
 	private void SetSlots()
 	{
-		int slotAmount = 4;
+		int slotAmount = 5;
 	
 		for(int i = 0; i <= slotAmount; i++)
 		{

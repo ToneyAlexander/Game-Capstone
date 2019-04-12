@@ -9,7 +9,7 @@ public class AbilityUI : MonoBehaviour
 {
     GameObject slotsHolder;
     GameObject storedAbils;
-    GameObject[] statSlots = new GameObject[5];
+    GameObject[] statSlots = new GameObject[6];
     int selected = -1;
     public AbilitySlotDictionary dict;
     public AbilitySet fullSet;
@@ -45,6 +45,10 @@ public class AbilityUI : MonoBehaviour
                     if (slotsHolder.transform.GetChild(j).name.Equals("Slot5"))
                     {
                         statSlots[4] = slotsHolder.transform.GetChild(j).gameObject;
+                    }
+                    if (slotsHolder.transform.GetChild(j).name.Equals("Slot6"))
+                    {
+                        statSlots[5] = slotsHolder.transform.GetChild(j).gameObject;
                     }
 
 
@@ -102,6 +106,10 @@ public class AbilityUI : MonoBehaviour
             {
                 setIcon(img, AbilitySlot.Five);
             }
+            else if (i == 5)
+            {
+                setIcon(img, AbilitySlot.Six);
+            }
         }
         if (selected >= 1)
         {
@@ -154,6 +162,10 @@ public class AbilityUI : MonoBehaviour
             else if (selected == 5)
             {
                 dict.SetSlotAbility(AbilitySlot.Five, ability);
+            }
+            else if (selected == 6)
+            {
+                dict.SetSlotAbility(AbilitySlot.Six, ability);
             }
 
         }
@@ -215,6 +227,17 @@ public class AbilityUI : MonoBehaviour
             else
             {
                 selected = 5;
+            }
+        }
+        if (clicked.name == "Slot6")
+        {
+            if (selected == 6)
+            {
+                selected = -1;
+            }
+            else
+            {
+                selected = 6;
             }
         }
 

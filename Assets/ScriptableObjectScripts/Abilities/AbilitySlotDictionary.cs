@@ -25,7 +25,8 @@ namespace CCC.Abilities
                 { AbilitySlot.Two, Ability.nullAbility},
                 { AbilitySlot.Three, Ability.nullAbility },
                 { AbilitySlot.Four, Ability.nullAbility },
-                { AbilitySlot.Five, Ability.nullAbility }
+                { AbilitySlot.Five, Ability.nullAbility },
+                { AbilitySlot.Six, Ability.nullAbility }
             };
         }
     }
