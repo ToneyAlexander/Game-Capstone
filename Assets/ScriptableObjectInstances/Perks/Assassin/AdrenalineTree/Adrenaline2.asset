@@ -10,22 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: ArsonMending3
+  m_Name: Adrenaline2
   m_EditorClassIdentifier: 
   Require:
-  - {fileID: 11400000, guid: b98aef683d0bc414db0ef72dfb8f8436, type: 2}
+  - {fileID: 11400000, guid: a18e0bfc164ba9d4da7ca93cbc68ad60, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Empowered Mend
-  Desc: Learn how to increase your regen for a brief moment
+  Name: Adrenaline III
+  Desc: Instantly restore health.
   grants:
-  - {fileID: 11400000, guid: 86012c7645df6844196bef37bc37710a, type: 2}
-  Changes:
-  - Value: 0
-    abilityName: 
-    statName: {fileID: 0}
-  uiCoords: {x: 200, y: 175}
-  sprite: {fileID: 21300000, guid: 978f6b423841f53479da9e3566de9d64, type: 3}
+  - {fileID: 11400000, guid: 404b3d236e95b2b46826ad79dda37c91, type: 2}
+  Changes: []
+  uiCoords: {x: 200, y: 440}
+  sprite: {fileID: 21300000, guid: 48df9b04634e11841b5eb4d73f5fa881, type: 3}

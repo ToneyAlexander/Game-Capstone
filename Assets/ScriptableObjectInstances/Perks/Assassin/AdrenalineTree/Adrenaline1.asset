@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: Adrenaline
+  m_Name: Adrenaline1
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 26f1ba338ff08f240bd59d880d3dbbca, type: 2}
   BlockedBy: []
   Children:
-  - {fileID: 11400000, guid: a18e0bfc164ba9d4da7ca93cbc68ad60, type: 2}
+  - {fileID: 11400000, guid: dfd81dc8cf21b9b478fd0acf5e484fd1, type: 2}
   Blocks: []
   RequireAll: 0
   Stats:
-  - statName: {fileID: 11400000, guid: bd023e469609628438ae4db950a2c0cb, type: 2}
-    statValue: 5
-  Name: Adrenaline I
-  Desc: Gives a boost in health regen.
+  - statName: {fileID: 11400000, guid: 54cfd71de344d4a80abdb3605347fa59, type: 2}
+    statValue: 7.5
+  Name: Adrenaline II
+  Desc: 'Gives an additional boost in health regen. '
   grants: []
   Changes: []
-  uiCoords: {x: 50, y: 440}
+  uiCoords: {x: 125, y: 440}
   sprite: {fileID: 21300000, guid: 48df9b04634e11841b5eb4d73f5fa881, type: 3}
