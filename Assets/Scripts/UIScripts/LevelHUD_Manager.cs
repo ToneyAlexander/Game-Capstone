@@ -1,24 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelHUD_Manager : MonoBehaviour
 {
-	private PlayerClass player;
+    /// <summary>
+    /// For the player's name.
+    /// </summary>
+    [SerializeField]
+    private BloodlineController bloodlineController = null;
 
-	private Text textField;
+    /// <summary>
+    /// For the player's level.
+    /// </summary>
+    [SerializeField]
+    private LevelExpStore levelExpStore = null;
+
+    private Text textField;
 
     private Text nameField;
 
-    // Start is called before the first frame update
-    void Start()
+    #region MonoBehavior Messages
+    private void Awake()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
-        if (gameObjects.Length > 0)
-        {
-            player = gameObjects[0].GetComponent<PlayerClass>();
-        }
         for (int i = 0; i < this.transform.childCount; i++)
         {
             if (transform.GetChild(i).name.Equals("Level"))
@@ -32,15 +35,15 @@ public class LevelHUD_Manager : MonoBehaviour
         }
 	}
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
 		LevelUpdater();
     }
+    #endregion
 
-	void LevelUpdater()
+    private void LevelUpdater()
 	{
-		textField.text = player.PlayerLevelExp.Level.ToString();
-        nameField.text = player.bloodlineController.playerName;
+		textField.text = levelExpStore.Level.ToString();
+        nameField.text = bloodlineController.playerName;
 	}
 }

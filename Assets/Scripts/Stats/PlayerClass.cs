@@ -118,13 +118,6 @@ public class PlayerClass : MonoBehaviour
 
         stats = GetComponent<ControlStatBlock>();
         init = GetComponent<InitAbilities>();
-        
-        if(PlayerLevelExp != null && PlayerLevelExp.Level < 1)
-        {
-            PlayerLevelExp.ExpToLevel = 100;
-            PlayerLevelExp.PerkPoints = 1;
-            PlayerLevelExp.Level = 1;
-        }
 
         Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.name = " + takenPerks.name);
         Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.Perks.Count = " + takenPerks.Perks.Count);

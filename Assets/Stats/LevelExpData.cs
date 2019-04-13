@@ -56,6 +56,16 @@ namespace CCC.Stats
         [SerializeField]
         private int perkPoints;
 
+        public static LevelExpData CreateLevelOne()
+        {
+            return new LevelExpData(0.0f, 100.0f, 1, 1);
+        }
+
+        public static LevelExpData CreateEmpty()
+        {
+            return new LevelExpData(0.0f, 0.0f, 0, 0);
+        }
+
         public LevelExpData(float exp, float expToLevel, int level, 
             int perkPoints)
         {
