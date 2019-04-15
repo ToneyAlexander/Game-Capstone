@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72e5cce53fb549018713bb8a0f1aae9, type: 3}
+  m_Name: RingAndNeck
+  m_EditorClassIdentifier: 
+  affixSets:
+  - {fileID: 11400000, guid: d0e3b01a581995e478867e3c971a348a, type: 2}
+  - {fileID: 11400000, guid: c885d7e1d2167f64f8d2eaf8456ab3ee, type: 2}
+  - {fileID: 11400000, guid: d017674b7a742b84b815ad0ee3b56dc6, type: 2}
+  - {fileID: 11400000, guid: 9fb89b20e70cfe947b15da76a7b71d24, type: 2}
+  itemPrototypes:
+  - item: {fileID: 11400000, guid: a9e8d48f5593c684599c2fdd413ae80c, type: 2}
+    rarity: 100
+  - item: {fileID: 11400000, guid: cfceb4ba69ad9164b9c790f3fe800715, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: 614da78ae65cc30449a6dd5e3ff609ea, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: e5fa9f42d16d54448b2b17eadae37e4f, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: 52911d6fb7c68cb43897d8e21ec12d06, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: ab8c7de6784e28d41a52ac20b2740227, type: 2}
+    rarity: 100
+  - item: {fileID: 11400000, guid: a322b94d233268b498ba8c8a58417245, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: edd24675e5a696646a6503665a4af14c, type: 2}
+    rarity: 50
+  - item: {fileID: 11400000, guid: 97272b7fe2e1af446bd7636c57ca3fa8, type: 2}
+    rarity: 10

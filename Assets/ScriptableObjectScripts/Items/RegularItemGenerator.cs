@@ -18,8 +18,9 @@ namespace CCC.Items
         public override Item GenerateItem()
         {
             // Pick a random ItemPrototype
+            // TODO use rarity here
             int rand = Random.Range(0, itemPrototypes.Count);
-            ItemPrototype proto = itemPrototypes[rand];
+            ItemPrototype proto = itemPrototypes[rand].Item;
 
             // Always use its maximum values because we're very lucky
             List<Stat> stats = new List<Stat>();
@@ -44,6 +45,6 @@ namespace CCC.Items
         }
 
         [SerializeField]
-        private List<ItemPrototype> itemPrototypes;
+        private List<ItemRarity> itemPrototypes;
     }
 }
