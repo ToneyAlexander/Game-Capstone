@@ -222,15 +222,19 @@ public class InventoryUI : MonoBehaviour
     }
     void OnClickInventory(PointerEventData data)
     {
-        
+        //.GetComponent<Image>();
+
         if (data.button == PointerEventData.InputButton.Left)
         {
             euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
         }
         else if (data.button == PointerEventData.InputButton.Right)
         {
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
             user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
             euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+
         }
         Debug.Log(user.CurrentCapacity);
 
