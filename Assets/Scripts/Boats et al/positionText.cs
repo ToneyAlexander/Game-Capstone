@@ -25,7 +25,7 @@ public class positionText : MonoBehaviour
     Vector3 visiblePos = new Vector3(-300, 0,0);
     void Start()
     {
-        islandSize = crewController.selectArea(20);
+        islandSize = crewController.selectArea(30);
         islandHeight = (int)Random.Range(3, 6);
         themeID = crewController.selectTheme();
         bossIndex = crewController.selectBoss();
