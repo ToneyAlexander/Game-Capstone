@@ -46,7 +46,7 @@ public class CorruptedEarth : AbilityBase
         ab.Enemy = new List<TimedBuff>();
         TimedBuff corrupt = Corruption.Instance;
         Stat stat = corrupt.Stats.Find(item => item.Name == Stat.HEALTH_REGEN);
-        stat.Value = stats.RealDotDamage(stat.Value, corruption, true, false, true, false, false);
+        stat.Value = stats.RealDotDamage(stat.Value, corruption, true, false, false, false, true);
         ab.Enemy.Add(corrupt);
     }
 

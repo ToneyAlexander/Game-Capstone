@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: InfusedBlade
+  m_Name: IB_DamageI
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: 3dd46be18b5e529478eafb63cc11c657, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 3a8e1de2cbb61774abb3420dccc3e73b, type: 2}
   Blocks: []
   RequireAll: 0
   Stats: []
-  Name: Infused Blade
-  Desc: Infuse your blade for 10 seconds. Grants a 1.5x physical attack boost.
-  grants:
-  - {fileID: 11400000, guid: 389ff50d2f481b54395b42182a5b6078, type: 2}
-  Changes: []
-  uiCoords: {x: 50, y: 335}
+  Name: Infused Blade Damage I
+  Desc: Increases critical damage by 10%.
+  grants: []
+  Changes:
+  - Value: 0.1
+    abilityName: Infused Blade
+    statName: {fileID: 11400000, guid: cd4eab39bdf5c6644a01197740efe2c5, type: 2}
+  uiCoords: {x: 125, y: 540}
   sprite: {fileID: 21300000, guid: 3b4f579a0b141dc4fa15abe80041676c, type: 3}

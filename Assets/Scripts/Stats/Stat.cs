@@ -82,6 +82,7 @@ namespace CCC.Stats
         public const string AS_VAMP = "as_vamp";
         public const string AS_COST = "as_cost";
         public const string AS_CORRUPT = "as_corrupt";
+        public const string AS_CRITDAM = "as_critdam";
 
 
         /// <summary>
