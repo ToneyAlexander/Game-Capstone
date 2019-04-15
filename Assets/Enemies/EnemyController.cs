@@ -41,11 +41,11 @@ public abstract class EnemyController : MonoBehaviour
 
     [SerializeField]
     private PerkPrototype initialStats;
+    [SerializeField]
+    private PerkPrototype onLevelUpPerk;
 
     [SerializeField]
     protected GameObject healthBar;
-
-    private IslandData island;
 
     private PlayerClass enemyClass;
     protected float expValue;
@@ -98,12 +98,17 @@ public abstract class EnemyController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         targetPos = Vector3.zero;
         targetFound = false;
+
+        // Get enemy perk
+        int level = GameObject.Find("remy").GetComponent<PlayerClass>().PlayerLevelExp.Level;
         enemyClass.TakePerk(initialStats, false);
+        enemyClass.onLevelUp = onLevelUpPerk;
+        for (int i = 0; i < level; ++i)
+        {
+            enemyClass.LevelUp();
+        }
 
         maxTimes = 100;
-
-        // Island info
-        // island = 
     }
 
     protected void Update()
