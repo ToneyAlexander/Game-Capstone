@@ -89,7 +89,7 @@ public class InventoryUI : MonoBehaviour
             EventTrigger ev = storedButtons[i].GetComponent<EventTrigger>();
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => { OnClickInventory(eventData); });
+            entry.callback.AddListener((eventData) => { OnClickInventory((PointerEventData)eventData); });
             ev.triggers.Add(entry);
 
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
@@ -220,9 +220,20 @@ public class InventoryUI : MonoBehaviour
 			}
 		}
     }
-    void OnClickInventory(BaseEventData data)
+    void OnClickInventory(PointerEventData data)
     {
-        euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        
+        if (data.button == PointerEventData.InputButton.Left)
+        {
+            euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        }
+        else if (data.button == PointerEventData.InputButton.Right)
+        {
+            user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
+            euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        }
+        Debug.Log(user.CurrentCapacity);
+
     }
     void OnMouseOverInventory(PointerEventData data)
     {

@@ -68,6 +68,13 @@ namespace CCC.Items
         {
             equipment[item.EquipmentSlot] = Item.Null;
         }
+        public void CheckAndDisequipItem(Item item)
+        {
+            if (equipment[item.EquipmentSlot] == item)
+            {
+                equipment[item.EquipmentSlot] = Item.Null;
+            }
+        }
 
         /// <summary>
         /// Load the equipment data from the JSON file that this 
