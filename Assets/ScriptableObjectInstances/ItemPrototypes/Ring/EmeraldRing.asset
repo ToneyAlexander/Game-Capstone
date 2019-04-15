@@ -10,14 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
-  m_Name: Tier500TestItem
+  m_Name: EmeraldRing
   m_EditorClassIdentifier: 
-  itemName: Test Giga Offhand
-  sprite: {fileID: 21300000, guid: 8aa199c213196a44ea7b39d09f7845d1, type: 3}
+  itemName: Emerald Ring
+  sprite: {fileID: 21300000, guid: ce749fc77cd0f254bb0ee9e411070def, type: 3}
   worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
-  equipmentSlot: 4
-  flavorText: Entirely Random, High tier Item
-  internalDescription: tier 500, 6 affix, no innate
-  baseItemTier: 500
-  maxNumberAffixes: 6
-  statPrototypeList: []
+  equipmentSlot: 5
+  flavorText: Imbued with the power of the forest
+  internalDescription: A battalion is lost in Argonne
+  baseItemTier: 3
+  maxNumberAffixes: 3
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 24b66cdbdc488f04d8601a3038d031e0, type: 2}
+    minValue: 0.05
+    maxValue: 0.15

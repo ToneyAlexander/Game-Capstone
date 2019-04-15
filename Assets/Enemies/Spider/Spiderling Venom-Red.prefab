@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+  itemGenerator: {fileID: 11400000, guid: 73939f2dc5c1d1f4b9718eab2f4251bf, type: 2}
 --- !u!114 &5080583816700013313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
+  TakenPerks: []
   takenPerks: {fileID: 11400000, guid: 23abaa28271f14e239549bd61337192f, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
