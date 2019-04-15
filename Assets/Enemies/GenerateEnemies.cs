@@ -20,18 +20,18 @@ public class GenerateEnemies : MonoBehaviour
     {
         maxTimes = 50;
 
-        spawnRange = 20f;
+        spawnRange = 5f;
         
         // Random number of enemies
-        // enemiesNumber = Random.Range(5, 10);
-        enemiesNumber = 3;
+        enemiesNumber = Random.Range(3, 8);
         enemies = new GameObject[enemiesNumber];
         
         for (int i = 0; i < enemiesNumber; i++)
         {
             active = true;
             int type = SelectByChance();
-            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], transform.position, Quaternion.identity, transform);
+            // enemies[i] = Instantiate(enemiesTypes.enemeisList[type], transform.position, Quaternion.identity, transform);
+            enemies[i] = Instantiate(enemiesTypes.enemeisList[type], RandomPos(), Quaternion.identity, transform);
             enemies[i].name = "Enemy - " + enemiesTypes.enemeisList[type].name;
             if (!active)
             {
