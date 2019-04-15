@@ -19,7 +19,7 @@ public class positionText : MonoBehaviour
     private int themeID = 0;
     private int level = 0;
     private int bossIndex = 0;
-    private string[] bosses = { "Beetle", "Dragon" , "Demon", "Ghoul"};
+    private string[] bosses = { "Beetle", "Dragon" , "Demon", "Ghoul","Wyvern"};
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);

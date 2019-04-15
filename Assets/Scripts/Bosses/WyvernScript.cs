@@ -131,6 +131,8 @@ public class WyvernScript : BaseBoss
     void closeTeleportMove()
     {
         lastPlayerLocation = player.transform.position;
+        float rad = Random.Range(0,2*Mathf.PI);
+        transform.position = new Vector3(Mathf.Sin(rad)*closeTeleportDist + player.transform.position.x,0, Mathf.Cos(rad) * closeTeleportDist + player.transform.position.z);
        // transform.position = 
         
     }

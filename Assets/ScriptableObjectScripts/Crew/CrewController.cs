@@ -24,7 +24,7 @@ public class CrewController : ScriptableObject
     public List<CrewMember> AllCrewMembers;
     public int[] themeChancesDefault = { 255, 255, 255, 255 };
     private int[] themeChances;
-    public int[] bossChancesDefault = { 255, 255, 255 };
+    public int[] bossChancesDefault = { 255, 255, 255, 255 };
     private int[] bossChances;
     public int areaBonus = 0;
     public int levelBonus = 0;
@@ -102,6 +102,7 @@ public class CrewController : ScriptableObject
         rngCsp.GetBytes(randomNumber);
         int rnd = (randomNumber[0] % bossChances.Sum());
         rnd = (int)Random.Range(0, bossChances.Sum());
+        
         Debug.Log("Big Boss: " + rnd);
         for (int i = 0; i < bossChances.Length; i++)
         {
