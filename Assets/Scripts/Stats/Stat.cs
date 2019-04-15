@@ -83,6 +83,44 @@ namespace CCC.Stats
         public const string AS_COST = "as_cost";
         public const string AS_CORRUPT = "as_corrupt";
 
+        public static string GetStatString(Stat stat)
+        {
+
+            string value = stat.Value.ToString("n1");
+            if (stat.Name == Stat.AFFLICT_RES_MULT ||
+                stat.Name == Stat.ARMOR_MULT ||
+                stat.Name == Stat.ATTACK_SPEED_MULT ||
+                stat.Name == Stat.CDR ||
+                stat.Name == Stat.CDR_MULT ||
+                stat.Name == Stat.CRIT_CHANCE ||
+                stat.Name == Stat.CRIT_CHANCE_MULT ||
+                stat.Name == Stat.CRIT_DMG ||
+                stat.Name == Stat.CRIT_DMG_MULT ||
+                stat.Name == Stat.DEX_MULT ||
+                stat.Name == Stat.DMG_MULT ||
+                stat.Name == Stat.FLAT_DMG_REDUCTION ||
+                stat.Name == Stat.FLAT_DMG_REDUCTION_MULT ||
+                stat.Name == Stat.FORT_MULT ||
+                stat.Name == Stat.HEALTH_MULT ||
+                stat.Name == Stat.HEALTH_REGEN_MULT ||
+                stat.Name == Stat.MAGIC_DMG_MULT ||
+                stat.Name == Stat.MAGIC_RES_MULT ||
+                stat.Name == Stat.MELEE_ATTACK_MULT ||
+                stat.Name == Stat.MOVE_SPEED_MULT ||
+                stat.Name == Stat.MYST_MULT ||
+                stat.Name == Stat.PHYS_DMG_MULT ||
+                stat.Name == Stat.RANGED_ATTACK_MULT ||
+                stat.Name == Stat.SPELL_MULT ||
+                stat.Name == Stat.STATUS_REC ||
+                stat.Name == Stat.STATUS_REC_MULT ||
+                stat.Name == Stat.STR_MULT
+                )
+            {
+                value = (stat.Value * 100).ToString("n1") + "%";
+            }
+            return value;
+        }
+
 
         /// <summary>
         /// Gets the name of this Stat.
