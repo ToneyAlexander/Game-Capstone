@@ -86,6 +86,7 @@ public class positionText : MonoBehaviour
             maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
             maritimeController.GetComponent<MaritimeController>().islandStorage.theme = themeID;
             maritimeController.GetComponent<MaritimeController>().islandStorage.boss = bossIndex;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.level = level;
            }
 
 
