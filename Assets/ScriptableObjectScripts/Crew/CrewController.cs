@@ -149,7 +149,6 @@ public class CrewController : ScriptableObject
     public void levelUp()
     {
         int exp = 0;
-
     }
 
 }
