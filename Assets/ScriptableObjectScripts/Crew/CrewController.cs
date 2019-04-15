@@ -130,7 +130,7 @@ public class CrewController : ScriptableObject
     }
     public int selectLevel(int level)
     {
-        //level = lvl.Level;
+        level = lvl.Level;
         float levelmult = Random.Range(-0.75f, 1.0f);
         levelmult = levelmult * levelmult * levelmult;
         levelmult += 1;
@@ -149,7 +149,6 @@ public class CrewController : ScriptableObject
     public void levelUp()
     {
         int exp = 0;
-
     }
 
 }

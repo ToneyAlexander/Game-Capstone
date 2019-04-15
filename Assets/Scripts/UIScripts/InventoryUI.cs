@@ -89,7 +89,7 @@ public class InventoryUI : MonoBehaviour
             EventTrigger ev = storedButtons[i].GetComponent<EventTrigger>();
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => { OnClickInventory(eventData); });
+            entry.callback.AddListener((eventData) => { OnClickInventory((PointerEventData)eventData); });
             ev.triggers.Add(entry);
 
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
@@ -220,9 +220,28 @@ public class InventoryUI : MonoBehaviour
 			}
 		}
     }
-    void OnClickInventory(BaseEventData data)
+    void OnClickInventory(PointerEventData data)
     {
-        euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        //.GetComponent<Image>();
+
+        if (data.button == PointerEventData.InputButton.Left)
+        {
+            euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        }
+        else if (data.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("AAAAAAA");
+            
+            Debug.Log("Spicy: " + user.Items[0].Name);
+            Debug.Log("Butts: " + data.selectedObject.GetComponent<InventoryButton>().item);
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
+            user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
+            euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+
+        }
+        Debug.Log(user.CurrentCapacity);
+
     }
     void OnMouseOverInventory(PointerEventData data)
     {

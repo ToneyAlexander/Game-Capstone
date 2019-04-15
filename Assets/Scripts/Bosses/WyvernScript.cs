@@ -35,6 +35,10 @@ public class WyvernScript : BaseBoss
     private float projectileSize = 3.0f;
     private bool closeTeleportOn = false;
     private float closeTeleportSpeed = 3.0f;
+    private float closeDistanceMoved = 0.0f;
+
+    public Vector3 lastPlayerLocation = new Vector3();
+  //  private GameObject player;
   
     private enum WyvernAttack
     {
@@ -70,7 +74,8 @@ public class WyvernScript : BaseBoss
         base.Start();
         playerTracker.Target = GameObject.FindGameObjectWithTag("Player");
         expValue = 330 * Level;
-       // collideDmg = new Damage(7.5f * Level, 7.5f * Level, false, true, false);
+        player = GameObject.FindGameObjectWithTag("Player");
+        // collideDmg = new Damage(7.5f * Level, 7.5f * Level, false, true, false);
     }
 
     // Update is called once per frame
@@ -99,7 +104,12 @@ public class WyvernScript : BaseBoss
             }
             else if (closeTeleportOn)
             {
-                
+                Vector3.MoveTowards(transform.position, lastPlayerLocation, closeTeleportSpeed*Time.deltaTime);
+                closeDistanceMoved += closeTeleportSpeed * Time.deltaTime;
+                if (closeDistanceMoved > closeTeleportDist)
+                {
+                    closeTeleportMove();
+                }
             }
             
             
@@ -117,6 +127,12 @@ public class WyvernScript : BaseBoss
     {
         cooldown = closeTeleportCooldown;
         StartCoroutine(AbilCloseTeleport());
+    }
+    void closeTeleportMove()
+    {
+        lastPlayerLocation = player.transform.position;
+       // transform.position = 
+        
     }
     void Burst()
     {

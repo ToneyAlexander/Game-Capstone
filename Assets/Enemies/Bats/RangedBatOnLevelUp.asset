@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
-  m_Name: FungusStats
+  m_Name: RangedBatOnLevelUp
   m_EditorClassIdentifier: 
   Require: []
   BlockedBy: []
@@ -19,9 +19,9 @@ MonoBehaviour:
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: 99526659c34c448f08210191f6275f0d, type: 2}
-    statValue: 500
+    statValue: 15
   - statName: {fileID: 11400000, guid: c1f8657bf7cd7a040930bf728db0e1e9, type: 2}
-    statValue: 10
+    statValue: 5
   Name: 
   Desc: 
   grants: []
