@@ -262,7 +262,7 @@ public class InventoryUI : MonoBehaviour
             tooltext.text = "";
             foreach (Stat stat in item.Stats)
             {
-                int value = (int)stat.Value;
+                string value = Stat.GetStatString(stat);
                 tooltext.text += stat.Name + ": " + value + "\n";
 
             }

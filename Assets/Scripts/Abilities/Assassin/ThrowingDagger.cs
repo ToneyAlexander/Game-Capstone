@@ -52,8 +52,11 @@ public class ThrowingDagger : AbilityBase
     void FireProjectile()
     {
         GameObject obj = Instantiate(projectile, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
+        var lookPos = mpd.CalculateWorldPosition() - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
-        obj.transform.rotation = this.transform.rotation;
+        obj.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
         obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);

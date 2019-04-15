@@ -82,26 +82,28 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Text statlist = gameObject.GetComponentInChildren<Text>();
-        //Debug.Log(statlist);
-        //StatBlock.CalcMult(base,mult)
+        //TODO show percentages
 
-        statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Dex, stats.DexMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Myst,stats.MystMult).ToString("n2") + "\n" + StatBlock.CalcMult(stats.Fort,stats.FortMult).ToString("n2");
+        statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult).ToString("n1") + "\n" +
+            StatBlock.CalcMult(stats.Dex, stats.DexMult).ToString("n1") + "\n" + 
+            StatBlock.CalcMult(stats.Myst,stats.MystMult).ToString("n1") + "\n" + 
+            StatBlock.CalcMult(stats.Fort,stats.FortMult).ToString("n1");
 		StatBlock detailedStats = stats.getStats();
-        column1.text = detailedStats.HealthMax.ToString("n2") + "\n" + StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult).ToString("n2") 
-			+ "\n" + StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult).ToString("n2");
-        column2.text = StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult).ToString("n2") + "\n" +
-			StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult).ToString("n2");
-        column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult).ToString("n2") + "\n" + 
-			StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult).ToString("n2") + "\n" +
-			StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult).ToString("n2");
+        column1.text = detailedStats.HealthMax.ToString("n1") + "\n" + 
+            StatBlock.CalcMult(detailedStats.HealthRegen, detailedStats.HealthRegenMult).ToString("n1") + "\n" + 
+            StatBlock.CalcMult(detailedStats.Armor, detailedStats.ArmorMult).ToString("n1") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MoveSpeed, detailedStats.MoveSpeedMult).ToString("n1") + "\n" + 
+			StatBlock.CalcMult(detailedStats.AttackSpeed, detailedStats.AttackSpeedMult).ToString("n1");
+        column2.text = (StatBlock.CalcMult(detailedStats.Cdr,detailedStats.CdrMult) * 100).ToString("n1") + "%\n" + 
+			StatBlock.CalcMult(detailedStats.Spell, detailedStats.SpellMult).ToString("n1") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MagicRes, detailedStats.MagicResMult).ToString("n1") + "\n" +
+			(StatBlock.CalcMult(detailedStats.StatusRec, detailedStats.StatusRecMult) * 100).ToString("n1") + "%\n" + 
+			(StatBlock.CalcMult(detailedStats.AfflictRes, detailedStats.AfflictResMult) * 100).ToString("n1") + "%";
+        column3.text = StatBlock.CalcMult(detailedStats.RangedAttack, detailedStats.RangedAttackMult).ToString("n1") + "\n" + 
+			StatBlock.CalcMult(detailedStats.MeleeAttack, detailedStats.MeleeAttackMult).ToString("n1") + "\n" + 
+			StatBlock.CalcMult(detailedStats.Damage, detailedStats.DamageMult).ToString("n1") + "\n" + 
+			(StatBlock.CalcMult(detailedStats.CritDamage,detailedStats.CritDamageMult) * 100).ToString("n1") + "%\n" +
+			(StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult) * 100).ToString("n1") + "%";
         levelText.text = player.PlayerLevelExp.Level.ToString();
         nameText.text = player.bloodlineController.playerName;
         classText.text = textPlayerClass.ClassL.name;

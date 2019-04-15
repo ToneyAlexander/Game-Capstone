@@ -110,27 +110,28 @@ public class ControlStatBlock : MonoBehaviour
         FortMult = 0;
         Myst = 0;
         MystMult = 0;
+        stats.Cdr = 0f;
         stats.CdrMult = 0f;
         stats.Spell = 0f;
         stats.SpellMult = 0f;
         stats.RangedAttack = 0f;
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
+        stats.HealthMult = 0f;
         stats.HealthRegen = 0f;
+        stats.HealthRegenMult = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
         stats.MoveSpeed = 6.5f;
         stats.MoveSpeedMult = 0f;
-        stats.HealthRegenMult = 0f;
-        stats.HealthMult = 0f;
         stats.PhantomHpMult = 0f;
         stats.BloodDamage = 0f;
         stats.AttackSpeed = 0f;
         stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
         stats.ArmorMult = 0f;
-        stats.AfflictResMult = 0f;
         stats.AfflictRes = 2f;
+        stats.AfflictResMult = 0f;
         stats.CritChance = 0.05f;
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1f;
@@ -362,7 +363,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.RangedAttackMult += dexReal / 1000f;
 
         float mystReal = StatBlock.CalcMult(Myst, MystMult);
-        stats.CdrMult += mystReal / 2000f;
+        stats.Cdr += mystReal / 2000f;
         stats.SpellMult += mystReal / 1000f;
 
         float fortReal = StatBlock.CalcMult(Fort, FortMult);

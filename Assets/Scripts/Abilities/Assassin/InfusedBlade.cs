@@ -15,15 +15,25 @@ public class InfusedBlade : AbilityBase
 
     private GameObject effect;
 
+    private float critDam;
+
+    private float critChance;
+
     public override void UpdateStats()
     {
         cdBase = abil.Stats.Find(item => item.Name == Stat.AS_CD).Value;
+        critDam = abil.Stats.Find(item => item.Name == Stat.AS_CRITDAM).Value;
+        critChance = abil.Stats.Find(item => item.Name == Stat.AS_BUFFS).Value;
     }
 
     protected override void Activate()
     {
         GameObject obj = Instantiate(effect, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
         TimedBuff tb = Infusion.Instance;
+        Stat stat = tb.Stats.Find(item => item.Name == Stat.CRIT_CHANCE);
+        stat.Value = critDam;
+        stat = tb.Stats.Find(item => item.Name == Stat.CRIT_DMG);
+        stat.Value = critChance;
         controlStats.ApplyBuff(tb);
     }
 
