@@ -9,7 +9,7 @@ public class AbilityHolder : MonoBehaviour
     public AbilityPrototype defaultAbility;
     void Start()
     {
-        ability = new Ability(defaultAbility);
+        ability = Ability.FromPrototype(defaultAbility);
     }
   
 }

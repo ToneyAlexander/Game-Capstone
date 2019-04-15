@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Abilities;
 using UnityEngine;
 
 public abstract class AbilityBase : MonoBehaviour, IAbilityBase
@@ -9,6 +8,12 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
     protected StatBlock stats;
 
     public abstract void UpdateStats();
+
+    public Ability Ability
+    {
+        get { return abil; }
+        set { abil = value; }
+    }
 
     public virtual bool Use()
     {
