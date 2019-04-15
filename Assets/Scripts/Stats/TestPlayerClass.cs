@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerClass))]
 public class TestPlayerClass : MonoBehaviour
@@ -11,10 +9,9 @@ public class TestPlayerClass : MonoBehaviour
     public BloodlineController BControl;
     public bool useClassSelection = true;
 
-    // Start is called before the first frame update
-    void Start()
+    #region MonoBehaviour Messages
+    private void Start()
     {
-
         pClass = GetComponent<PlayerClass>();
         if (useClassSelection)
         {
@@ -26,8 +23,7 @@ public class TestPlayerClass : MonoBehaviour
         pClass.TakeDefaults(ClassL.Defaults);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
@@ -58,6 +54,8 @@ public class TestPlayerClass : MonoBehaviour
             pClass.IncreaseAge();
         }
     }
+    #endregion
+
     public PlayerClass GetClass()
     {
         return pClass;

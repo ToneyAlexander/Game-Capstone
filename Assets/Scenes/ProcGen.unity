@@ -914,6 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 149241540}
   - component: {fileID: 149241542}
+  - component: {fileID: 149241541}
   m_Layer: 5
   m_Name: Slot4
   m_TagString: Untagged
@@ -941,6 +942,20 @@ RectTransform:
   m_AnchoredPosition: {x: 304.7, y: -39.4}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &149241541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149241539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 555073561}
 --- !u!222 &149241542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1266,6 +1281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!1 &175321937
 GameObject:
@@ -1484,6 +1510,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &190240099
 RectTransform:
@@ -1776,38 +1813,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0, y: 0}
---- !u!84 &207122536
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 478
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &210408864
 Transform:
   m_ObjectHideFlags: 0
@@ -2859,6 +2864,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!1 &394614924
 GameObject:
@@ -2901,6 +2917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398501692}
   - component: {fileID: 398501694}
+  - component: {fileID: 398501693}
   m_Layer: 5
   m_Name: Slot3
   m_TagString: Untagged
@@ -2928,6 +2945,20 @@ RectTransform:
   m_AnchoredPosition: {x: -308.5, y: -39.4}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &398501693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398501691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 657784493}
 --- !u!222 &398501694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3084,6 +3115,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &420517022
 RectTransform:
@@ -3922,39 +3964,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
---- !u!84 &486999394
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 478
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &487400788
 GameObject:
   m_ObjectHideFlags: 0
@@ -4354,6 +4375,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &514299479
 RectTransform:
@@ -4388,6 +4420,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
+--- !u!84 &540288216
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &541907659
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,6 +5876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 628641037}
   - component: {fileID: 628641039}
+  - component: {fileID: 628641038}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -5839,6 +5904,20 @@ RectTransform:
   m_AnchoredPosition: {x: -496, y: -39.4}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &628641038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628641036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 1796997469}
 --- !u!222 &628641039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5931,6 +6010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636589851}
   - component: {fileID: 636589853}
+  - component: {fileID: 636589852}
   m_Layer: 5
   m_Name: Slot5
   m_TagString: Untagged
@@ -5958,6 +6038,20 @@ RectTransform:
   m_AnchoredPosition: {x: 492, y: -39.4}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &636589852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636589850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 1257285599}
 --- !u!222 &636589853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5975,7 +6069,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 647094742}
-  - component: {fileID: 647094743}
   m_Layer: 5
   m_Name: Slots
   m_TagString: Untagged
@@ -6008,19 +6101,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &647094743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 647094741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 163530cccfc4b5a429a45cedae58fc78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilitiyDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
 --- !u!1 &653738420
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,6 +6614,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &702473337
 RectTransform:
@@ -7018,6 +7109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732117209}
+  - component: {fileID: 732117211}
   m_Layer: 5
   m_Name: SkillBar
   m_TagString: Untagged
@@ -7048,6 +7140,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 100, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &732117211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732117208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e1fe9da26994c93a40107eea55e885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  slotControllers:
+  - {fileID: 2427186443079889451}
+  - {fileID: 628641038}
+  - {fileID: 398501693}
+  - {fileID: 149241541}
+  - {fileID: 636589852}
+  - {fileID: 1117104976}
 --- !u!1 &734902286
 GameObject:
   m_ObjectHideFlags: 0
@@ -8273,6 +8385,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &843202899
 RectTransform:
@@ -9269,6 +9392,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &997940421
 RectTransform:
@@ -9985,6 +10119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1117104975}
   - component: {fileID: 1117104977}
+  - component: {fileID: 1117104976}
   m_Layer: 5
   m_Name: Slot6
   m_TagString: Untagged
@@ -10012,6 +10147,20 @@ RectTransform:
   m_AnchoredPosition: {x: 680.9, y: -39.4}
   m_SizeDelta: {x: 190, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1117104976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117104974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 492290338}
 --- !u!222 &1117104977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10358,6 +10507,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!1 &1142221428
 GameObject:
@@ -10445,6 +10605,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1161082969
 RectTransform:
@@ -12375,7 +12546,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 486999394}
+  m_TargetTexture: {fileID: 540288216}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -12634,6 +12805,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1436365235
 RectTransform:
@@ -14168,6 +14350,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1572650990
 RectTransform:
@@ -16773,8 +16966,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1825723150}
   outlineCamera: {fileID: 1410676886}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 486999394}
-  extraRenderTexture: {fileID: 207122536}
+  renderTexture: {fileID: 540288216}
+  extraRenderTexture: {fileID: 2005338795}
 --- !u!1 &1826143235
 GameObject:
   m_ObjectHideFlags: 0
@@ -17515,6 +17708,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1859556179
 RectTransform:
@@ -18002,6 +18206,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1936162827
 RectTransform:
@@ -18385,6 +18600,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &1999216997
 RectTransform:
@@ -18545,6 +18771,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!224 &2003221755
 RectTransform:
@@ -18579,6 +18816,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
+--- !u!84 &2005338795
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2015543510
 GameObject:
   m_ObjectHideFlags: 0
@@ -19320,6 +19589,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e69c89094a9154d805f1b767b4e47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ability:
+    AbilityName: 
+    abilityType: 0
+    TypeString: 
+    use: 0
+    update: 0
+    isAttack: 0
+    cdRemain: 0
+    SpriteFilename: 
+    Prefab: {fileID: 0}
+    Stats: []
   defaultAbility: {fileID: 11400000, guid: b72e0ff2c70ec483189355fc526ba2e7, type: 2}
 --- !u!1 &2127039157
 GameObject:
@@ -20047,6 +20327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2427186443079889449}
   - component: {fileID: 2427186443079889430}
+  - component: {fileID: 2427186443079889451}
   m_Layer: 5
   m_Name: Slot1
   m_TagString: Untagged
@@ -20054,6 +20335,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2427186443079889451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427186443079889450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b46213dd642a4d9ca18d81af51956ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
+  image: {fileID: 2427186442637109071}
 --- !u!224 &4117054905073449012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21953,7 +22248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.0000023466712, y: 0.000025013678}
+  m_AnchoredPosition: {x: -0.00024638494, y: 0.000025013678}
   m_SizeDelta: {x: 3000, y: 4000}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5930947933207128463
@@ -22422,7 +22717,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5930947933255088996}
   m_HandleRect: {fileID: 5930947933255088997}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 0.000000117375286
   m_Size: 0.30666664
   m_NumberOfSteps: 0
   m_OnValueChanged:

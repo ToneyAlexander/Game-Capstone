@@ -5,6 +5,7 @@
     /// </summary>
     public enum AbilitySlot
     {
+        Null,
         One,
         Two,
         Three,

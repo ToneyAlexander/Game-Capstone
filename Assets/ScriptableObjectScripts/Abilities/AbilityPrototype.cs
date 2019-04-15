@@ -44,7 +44,20 @@ namespace CCC.Abilities
             get { return isAttack; }
         }
 
-        public Ability Instance { get { return new Ability(this); }}
+        public Ability Instance
+        {
+            get
+            {
+                var ability = Ability.Null;
+
+                if (abilityName != Ability.Null.AbilityName)
+                {
+                    ability = Ability.FromPrototype(this);
+                }
+
+                return ability;
+            }
+        }
 
         /// <summary>
         /// The name of this Ability.

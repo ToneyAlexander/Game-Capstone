@@ -1,4 +1,5 @@
-﻿using CCC.Combat.Perks;
+﻿using CCC.Abilities;
+using CCC.Combat.Perks;
 using CCC.Items;
 using UnityEngine;
 
@@ -15,25 +16,25 @@ namespace CCC.GameManagement.GameStates
         /// The player's equipment.
         /// </summary>
         [SerializeField]
-        private EquipmentDictionary playerEquipment;
+        private EquipmentDictionary playerEquipment = null;
 
         /// <summary>
         /// The player's Inventory.
         /// </summary>
         [SerializeField]
-        private Inventory playerInventory;
+        private Inventory playerInventory = null;
 
         /// <summary>
         /// The player's current level and experience.
         /// </summary>
         [SerializeField]
-        private LevelExpStore playerLevelExpStore;
+        private LevelExpStore playerLevelExpStore = null;
 
         /// <summary>
         /// The player's currently taken perks.
         /// </summary>
         [SerializeField]
-        private PerkList playerTakenPerks;
+        private PerkList playerTakenPerks = null;
 
         /// <summary>
         /// The PlayerClass Component of the player.
@@ -42,12 +43,20 @@ namespace CCC.GameManagement.GameStates
         /// </summary>
         private PlayerClass playerPlayerClass;
 
+        [SerializeField]
+        private AbilitySlotDictionary playerAbilitySlots = null;
+
+        [SerializeField]
+        private AbilitySet playerAbilitySet = null;
+
         public override void Enter()
         {
             Debug.Log("In IslandState.Enter");
             playerInventory.Load();
             playerEquipment.Load();
             playerLevelExpStore.Load();
+            playerAbilitySet.Load();
+            playerAbilitySlots.Load();
         }
 
         public override void Exit()
@@ -58,6 +67,8 @@ namespace CCC.GameManagement.GameStates
             playerEquipment.Save();
             playerLevelExpStore.Save();
             SavePlayerPerks();
+            playerAbilitySet.Save();
+            playerAbilitySlots.Save();
         }
 
         private void AgePlayer()

@@ -41,6 +41,18 @@ namespace CCC.Abilities
         /// </param>
         public void Use(Ability ability, Vector3 mouseWorldPosition)
         {
+            // We must go through all the instances of AbilityBase because a 
+            // single GameObject may have more than one if it has multiple 
+            // abilities.
+            var abilityComponents = GetComponents<AbilityBase>();
+            foreach (var abilityComponent in abilityComponents)
+            {
+                if (abilityComponent.Ability.AbilityName == ability.AbilityName)
+                {
+                    abilityComponent.Ability = ability;
+                }
+            }
+
             RemyAttacking.ability = ability;
             RemyAttacking.attackDirection = mouseWorldPosition;
 
@@ -61,7 +73,6 @@ namespace CCC.Abilities
             if (usableAbilities.Set.ContainsKey(ability.AbilityName))
             {
                 ability.use = true;
-                Debug.Log(gameObject.name + " used Ability " + ability.AbilityName);
             }
             else
             {
@@ -74,14 +85,6 @@ namespace CCC.Abilities
         private void Awake()
         {
             remyAttacking = GetComponent <RemyAttacking>();
-        }
-
-        private void Start()
-        {
-            foreach (Ability ability in usableAbilities.Set.Values)
-            {
-                Debug.Log(ability.AbilityName);
-            }
         }
         #endregion
     }

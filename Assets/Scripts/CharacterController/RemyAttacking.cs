@@ -1,4 +1,5 @@
-﻿using CCC.Inputs;
+﻿using CCC.Abilities;
+using CCC.Inputs;
 using UnityEngine;
 
 [RequireComponent(typeof(MousePositionDetector))]
