@@ -49,13 +49,7 @@ public class BeeController : EnemyController
     }
     
     protected override void UniqueUpdate()
-    { 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("Health = " + GetComponent<StatBlock>().HealthCur);
-            Debug.Log("Attack = " + GetComponent<StatBlock>().MeleeAttack);
-        }
-
+    {
         agent.isStopped = false;
 
         attack = Attacking;

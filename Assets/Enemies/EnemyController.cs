@@ -100,7 +100,7 @@ public abstract class EnemyController : MonoBehaviour
         targetFound = false;
 
         // Get enemy perk
-        int level = GameObject.Find("remy").GetComponent<PlayerClass>().PlayerLevelExp.Level;
+        int level = GameObject.Find("Generator").GetComponent<GenerateIsland>().islandStorage.level;
         enemyClass.TakePerk(initialStats, false);
         enemyClass.onLevelUp = onLevelUpPerk;
         for (int i = 0; i < level; ++i)

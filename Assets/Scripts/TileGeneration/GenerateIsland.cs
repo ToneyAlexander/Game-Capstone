@@ -25,7 +25,7 @@ public class GenerateIsland : MonoBehaviour
     private bool useIngameIslandStats = true;
 
     [SerializeField]
-    private IslandStorage islandStorage;
+    public IslandStorage islandStorage;
 
 
     [SerializeField]
