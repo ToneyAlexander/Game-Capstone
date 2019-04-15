@@ -29,13 +29,13 @@ public class BeeController : EnemyController
 
         // Default spawnPos and movingRange
         spawnPos = transform.position;
-        movingRange = 50f;
-        chaseSpeed = 25f;
+        movingRange = 500f;
+        chaseSpeed = 50f;
         movable = true;
 
         // Default vision
         visionAngle = 360f;
-        visionDistance = 100f;
+        visionDistance = 1000f;
         attackDistance = 3f;
 
         inAttackCoroutine = false;
@@ -49,7 +49,13 @@ public class BeeController : EnemyController
     }
     
     protected override void UniqueUpdate()
-    {
+    { 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Health = " + GetComponent<StatBlock>().HealthCur);
+            Debug.Log("Attack = " + GetComponent<StatBlock>().MeleeAttack);
+        }
+
         agent.isStopped = false;
 
         attack = Attacking;

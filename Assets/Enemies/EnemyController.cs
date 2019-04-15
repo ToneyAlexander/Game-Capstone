@@ -97,6 +97,7 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
         enemyClass.TakePerk(initialStats, false);
+        enemyClass.TakePerk(initialStats, false);
 
         maxTimes = 100;
     }
