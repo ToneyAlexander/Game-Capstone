@@ -45,6 +45,8 @@ public abstract class EnemyController : MonoBehaviour
     [SerializeField]
     protected GameObject healthBar;
 
+    private IslandData island;
+
     private PlayerClass enemyClass;
     protected float expValue;
 
@@ -97,9 +99,11 @@ public abstract class EnemyController : MonoBehaviour
         targetPos = Vector3.zero;
         targetFound = false;
         enemyClass.TakePerk(initialStats, false);
-        enemyClass.TakePerk(initialStats, false);
 
         maxTimes = 100;
+
+        // Island info
+        // island = 
     }
 
     protected void Update()
