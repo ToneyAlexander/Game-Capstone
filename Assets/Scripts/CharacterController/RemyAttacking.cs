@@ -145,6 +145,7 @@ public class RemyAttacking : MonoBehaviour
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.WhirlwindSlash")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.RainOfDeath")
             || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.VampireStrike")
+            || animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.DaggerThrow")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 04")
             //|| animator.GetCurrentAnimatorStateInfo(0).IsName("Base Layer.Magic Attack 05")
             )
