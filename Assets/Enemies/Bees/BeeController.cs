@@ -19,6 +19,7 @@ public class BeeController : EnemyController
     {
         base.Start();
 
+        Attacking = false;
         attack = false;
 
         // Set up animator
