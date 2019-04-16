@@ -955,7 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 555073561}
+  abilityIcon: {fileID: 555073563}
+  coolDownImage: {fileID: 1655781341}
 --- !u!222 &149241542
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2147,6 +2148,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 259420179}
   m_CullTransparentMesh: 0
+--- !u!84 &269780496
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &276430957
 Transform:
   m_ObjectHideFlags: 0
@@ -3106,7 +3139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 657784493}
+  abilityIcon: {fileID: 657784495}
+  coolDownImage: {fileID: 2015543512}
 --- !u!222 &398501694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6033,7 +6067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 1796997469}
+  abilityIcon: {fileID: 1796997471}
+  coolDownImage: {fileID: 1630792688}
 --- !u!222 &628641039
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6167,7 +6202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 1257285599}
+  abilityIcon: {fileID: 1257285601}
+  coolDownImage: {fileID: 89823030}
 --- !u!222 &636589853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10142,38 +10178,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1073648884}
   m_CullTransparentMesh: 0
---- !u!84 &1077697213
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 478
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1099863777
 GameObject:
   m_ObjectHideFlags: 0
@@ -10358,7 +10362,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 492290338}
+  abilityIcon: {fileID: 492290340}
+  coolDownImage: {fileID: 175321939}
 --- !u!222 &1117104977
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12784,7 +12789,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1077697213}
+  m_TargetTexture: {fileID: 2009309245}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -16209,38 +16214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b8ff1b0a412ba44b40d545b28b3b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!84 &1716303922
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 849
-  m_Height: 478
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!224 &1737416784
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17310,8 +17283,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1825723150}
   outlineCamera: {fileID: 1410676886}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1077697213}
-  extraRenderTexture: {fileID: 1716303922}
+  renderTexture: {fileID: 2009309245}
+  extraRenderTexture: {fileID: 269780496}
 --- !u!1 &1826143235
 GameObject:
   m_ObjectHideFlags: 0
@@ -19239,6 +19212,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Delegates: []
   delegates: []
+--- !u!84 &2009309245
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 849
+  m_Height: 478
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &2015543510
 GameObject:
   m_ObjectHideFlags: 0
@@ -20814,7 +20819,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d, type: 2}
-  image: {fileID: 2427186442637109071}
+  abilityIcon: {fileID: 2427186442637109069}
+  coolDownImage: {fileID: 2427186442779435292}
 --- !u!224 &4117054905073449012
 RectTransform:
   m_ObjectHideFlags: 0

@@ -24,6 +24,16 @@ public sealed class SkillBarController : MonoBehaviour
                 //Debug.Log("Binded ability for slotController " + slotControllers[i].name);
             }
         }
+
+        UpdateCooldowns();
     }
     #endregion
+
+    private void UpdateCooldowns()
+    {
+        foreach (var slotController in slotControllers)
+        {
+            slotController.UpdateCooldown();
+        }
+    }
 }

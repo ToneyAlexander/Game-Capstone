@@ -1,28 +1,31 @@
 ﻿using CCC.Abilities;
+using CCC.Stats;
 using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class SkillBarSlotController : MonoBehaviour
 {
+    private Ability ability;
+
     [SerializeField]
     private AbilitySlotDictionary abilityDictionary = null;
 
     [SerializeField]
-    private GameObject image = null;
+    private Image abilityIcon = null;
 
-    private Image abilityImage;
+    [SerializeField]
+    private Image coolDownImage = null;
 
     public void BindAbility(Ability ability)
     {
+        this.ability = ability;
         if (ability != Ability.Null)
         {
-            Debug.Log("[SkillBarSlotController.BindAbility] Binding ability = " + ability.AbilityName);
-            Debug.Log(ability.AbilityName);
             var sprite = abilityDictionary.AbilityIconsAssetBundle.LoadAsset<Sprite>(ability.SpriteFilename);
             if (sprite)
             {
-                abilityImage.sprite = sprite;
-                abilityImage.color = new Color(255, 255, 255, 255);
+                abilityIcon.sprite = sprite;
+                abilityIcon.color = new Color(255, 255, 255, 255);
             }
             else
             {
@@ -33,10 +36,14 @@ public sealed class SkillBarSlotController : MonoBehaviour
         }
     }
 
-    #region MonoBehavior Messages
-    private void Awake()
+    public void UpdateCooldown()
     {
-        abilityImage = image.GetComponent<Image>();
+        if ((ability != null) && 
+            (ability.AbilityName != Ability.Null.AbilityName))
+        {
+            var remain = ability.cdRemain;
+            var max = ability.Stats.Find(item => item.Name == Stat.AS_CD).Value;
+            coolDownImage.fillAmount = remain / max;
+        }
     }
-    #endregion
 }
