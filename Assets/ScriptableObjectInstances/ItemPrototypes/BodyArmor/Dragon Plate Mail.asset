@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Dragon Plate Mail
+  m_EditorClassIdentifier: 
+  itemName: Dragon Plate Mail
+  sprite: {fileID: 21300000, guid: eb82e6dfafbb73c41a49077275acab01, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 2
+  flavorText: Unbreakable ... ish
+  internalDescription: 
+  baseItemTier: 5
+  maxNumberAffixes: 3
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: b2775bcec8e333f4391e3984c8de163b, type: 2}
+    minValue: 300
+    maxValue: 400
+  - statIdentifier: {fileID: 11400000, guid: 9f7ca13b26d54d74dbe783c6011aaf48, type: 2}
+    minValue: 300
+    maxValue: 400
+  - statIdentifier: {fileID: 11400000, guid: e40122d757506bd43be8a660eed0edea, type: 2}
+    minValue: -0.2
+    maxValue: -0.1
