@@ -23,12 +23,12 @@ public class DisplayLegacy : MonoBehaviour
         Display = GetComponent<Text>();
         Display.text = "Legacy\n";
 
-        //TODO: clear player equipment! or debuff it?
+        //TODO: clear player equipment?
         if (died)
         {
             bool none = true;
 
-            Display.text = Display.text + "Items (50% Less Effective):\n";
+            Display.text = Display.text + "Items (50% Effective):\n";
             foreach (Item i in inventory.Items)
             {
                 none = false;
@@ -44,13 +44,14 @@ public class DisplayLegacy : MonoBehaviour
             }
 
             Display.text = Display.text + "\n";
-            Display.text = Display.text + "Equipment (40% Less Effective):\n";
+            Display.text = Display.text + "Equipment (40% Effective):\n";
             foreach (Item i in playerEquipment.Equipment.Values)
             {
                 if (!i.Name.Equals(" "))
                 {
                     none = false;
-                    WeakenItemDeath(i, 4f, Display);
+                    WeakenItemDeath(i, .4f/.5f, Display);
+                    //playerEquipment.DisequipItem(i);
                 }
             }
             if (none)
@@ -63,7 +64,7 @@ public class DisplayLegacy : MonoBehaviour
         {
             bool none = true;
 
-            Display.text = Display.text + "Items (85% Less Effective):\n";
+            Display.text = Display.text + "Items (85% Effective):\n";
             foreach (Item i in inventory.Items)
             {
                 //"heirloom"; "secondhand"; "recycled";
@@ -79,19 +80,9 @@ public class DisplayLegacy : MonoBehaviour
                 none = true;
             }
 
-            Display.text = Display.text + "\n";
-            Display.text = Display.text + "Equipment (85% Less Effective):\n";
             foreach (Item i in playerEquipment.Equipment.Values)
             {
-                if (!i.Name.Equals(" "))
-                {
-                    none = false;
-                    WeakenItemRetire(i, .85f, Display);
-                }
-            }
-            if (none)
-            {
-                Display.text = Display.text + "No Items Equipped\n";
+                //playerEquipment.DisequipItem(i);
             }
             //TODO: Passing on buffs
             //this.GetComponent<Text>().text += "Inherited Buff: ";
@@ -109,7 +100,7 @@ public class DisplayLegacy : MonoBehaviour
             i.Name = "☠️ " + i.Name;
         }
 
-        //for each non negative multiply by .5
+        //for each non negative multiply by Rate
         DisplayList.text += i.LongName + "\n";
         foreach (Stat s in i.Stats)
         {
@@ -119,7 +110,6 @@ public class DisplayLegacy : MonoBehaviour
             }
         }
     }
-
 
     private void WeakenItemRetire(Item i, float Rate, Text DisplayList)
     {
@@ -131,7 +121,7 @@ public class DisplayLegacy : MonoBehaviour
             i.Name = "☥ " + i.Name;
         }
 
-        //for each non negative multiply by .5
+        //for each non negative multiply by Rate
         DisplayList.text += i.LongName + "\n";
         foreach (Stat s in i.Stats)
         {

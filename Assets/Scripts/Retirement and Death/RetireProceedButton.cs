@@ -104,7 +104,6 @@ public class RetireProceedButton : MonoBehaviour
             }
             else
             {
-                //TODO: GO TO MAIN MENU/CLASS SELECT?
                 if (!isChangingState)
                 {
                     isChangingState = true;
@@ -122,6 +121,6 @@ public class RetireProceedButton : MonoBehaviour
         GameObject.Find("Wind Sounder").GetComponent<AudioFadeOut>().start = true;
 
         //Fade to white
-        Instantiate(Resources.Load<GameObject>("White Screen"));
+        Instantiate(Resources.Load<GameObject>("Screen Fade In"));
     }
 }

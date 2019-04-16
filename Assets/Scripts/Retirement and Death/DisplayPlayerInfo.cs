@@ -17,7 +17,7 @@ public class DisplayPlayerInfo : MonoBehaviour
     {
         this.GetComponent<Text>().text =
             blood.playerName + "\n" +
-            (16 + blood.Age * 5) + " Cycles Old\n" +
+            (16 + blood.Age * 5) + " Years Old\n" +
             blood.currentClass.name + "\n" +
             "Level " + info.Level + "\n";
     }

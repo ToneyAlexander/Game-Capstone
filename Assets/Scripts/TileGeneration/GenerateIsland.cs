@@ -580,8 +580,17 @@ public class GenerateIsland : MonoBehaviour
         }
 
         propagate(island, updated, index);
+        int teleportTileID = 0;
 
-        placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize);
+        for(int i = 0; i < island[end.x, end.y].Length; i++)
+        {
+            if(island[end.x, end.y][i])
+            {
+                teleportTileID = i;
+            }
+        }
+
+        placePortalOnTileCentered(end.x, end.y, TILE_HEIGHT, tileSize, teleportTileID);
 
         //surroundBeetleArena();
 
@@ -736,7 +745,6 @@ public class GenerateIsland : MonoBehaviour
                         int tileId = index.indexToTile(o);
                         TilePiece currentPiece = tiles[o];
                         GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-                        //TODO: REFLECTION
                         //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
 
                         newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);
@@ -792,11 +800,9 @@ public class GenerateIsland : MonoBehaviour
         return this.BoatStart;
     }
 
-    private void placePortalOnTileCentered(int x, int y, int height, int tileSize)
+    private void placePortalOnTileCentered(int x, int y, int height, int tileSize, int TeleportTileID)
     {
         Vector3 arenaPosition = new Vector3(-30, 50, -30);
-        //TODO: make it the right height for right level, pass in id
-        //TODO: make an dactual tile, not hacky
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
         string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon","BossGhoul/BossGhoul","BossWyvern/BossWyvern" };
@@ -808,7 +814,7 @@ public class GenerateIsland : MonoBehaviour
         TrackingBehave tb = boss.GetComponent<TrackingBehave>();
         if(tb != null)
             tb.Target = remy;
-        teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height+1, x * tileSize);
+        teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height*(1+TeleportTileID/33), x * tileSize);
 
         teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
         teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
@@ -1107,6 +1113,7 @@ public class GenerateIsland : MonoBehaviour
         List<List<float>> heuristics = new List<List<float>>();
         List<float> combinedDistribution = new List<float>();
         heuristics.Add(evenDistribution(unchosenIndices));
+        //0 is Normal
         switch (heuristicType)
         {
             //Tall
@@ -1366,7 +1373,6 @@ public class GenerateIsland : MonoBehaviour
                     int tileId = index.indexToTile(o);
                     TilePiece currentPiece = tiles[o];
                     GameObject newlyCreatedTile = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
-                    //TODO: REFLECTION
                     //GameObject reflection = Instantiate(currentPiece.prefab, startingLocation + currentPiece.modifier, Quaternion.identity);
 
                     newlyCreatedTile.transform.Rotate(Vector3.up, currentPiece.rotation);

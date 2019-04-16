@@ -8,12 +8,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class RetireButton : MonoBehaviour
 {
-    [SerializeField]
-    private GameManager manager;
-
-    [SerializeField]
-    private GameState retire;
-
     private float timing;
 
     void Start()
@@ -33,6 +27,6 @@ public class RetireButton : MonoBehaviour
     private IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(timing + .1f);
-        manager.TransitionTo(retire);
+        this.GetComponent<GameStateChanger>().ChangeState();
     }
 }
