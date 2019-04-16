@@ -37,9 +37,11 @@ public class TeleportScript : MonoBehaviour
 
                 GameObject.Find("Main Camera").transform.position = new Vector3(TargetX, TargetY + 16, TargetZ);
 
-                if(!exitingFight)
+
+
+                if (!exitingFight)
                 {
-                    if(enviro != null)
+                    if (enviro != null)
                         enviro.InBossFight = true;
 
                     GameObject[] bosses = GameObject.FindGameObjectsWithTag("BossEnemy");
@@ -49,10 +51,12 @@ public class TeleportScript : MonoBehaviour
                         if (scrpt != null)
                             scrpt.Activate();
                     }
+                    GameObject.FindGameObjectWithTag("CompassCamera").transform.GetChild(0).gameObject.SetActive(false);
                 } else
                 {
-                    if(enviro != null)
+                    if (enviro != null)
                         enviro.InBossFight = false;
+                    GameObject.FindGameObjectWithTag("CompassCamera").transform.GetChild(0).gameObject.SetActive(true);
                 }
             }
         }

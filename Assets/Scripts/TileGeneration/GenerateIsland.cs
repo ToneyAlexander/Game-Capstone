@@ -549,6 +549,8 @@ public class GenerateIsland : MonoBehaviour
             path.Insert(0, prev);
             prev = fullTreeBackpointers[prev];
         }
+        //Draw lines to path
+        /*
         float incSize = 1.0f / path.Count;
         Color c = new Color(0, 0, 0);
         for(int i = 0; i < path.Count-1; i++)
@@ -566,7 +568,7 @@ public class GenerateIsland : MonoBehaviour
             lr.startWidth = .4f;
             lr.endWidth = .01f;
             lr.SetPosition(0, a);
-            lr.SetPosition(1, b);
+            lr.SetPosition(1, b);*/
 
             /*Vector3 aL = new Vector3(.1f + path[i].y * tileSize + tileSize / 2, 10, .1f + path[i].x * tileSize);
             Vector3 bL = new Vector3(.1f + path[i + 1].y * tileSize + tileSize / 2, 10, .1f + path[i + 1].x * tileSize);
@@ -575,9 +577,9 @@ public class GenerateIsland : MonoBehaviour
             Vector3 aR = new Vector3(-.1f + path[i].y * tileSize + tileSize / 2, 10, -.1f + path[i].x * tileSize);
             Vector3 bR = new Vector3(-.1f + path[i + 1].y * tileSize + tileSize / 2, 10, -.1f + path[i + 1].x * tileSize);
             Debug.DrawRay(aR, bR - aR, c, 300);*/
-
+            /*
             c = new Color(c.r + incSize, c.g + incSize, c.b + incSize);
-        }
+        }*/
 
         propagate(island, updated, index);
         int teleportTileID = 0;
@@ -804,6 +806,7 @@ public class GenerateIsland : MonoBehaviour
     {
         Vector3 arenaPosition = new Vector3(-30, 50, -30);
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
+        teleporter.tag = "BossTeleporter";
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
         string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon","BossGhoul/BossGhoul","BossWyvern/BossWyvern" };
         string toLoad = possibleBosses[islandStorage.boss];
@@ -814,7 +817,7 @@ public class GenerateIsland : MonoBehaviour
         TrackingBehave tb = boss.GetComponent<TrackingBehave>();
         if(tb != null)
             tb.Target = remy;
-        teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height*(1+TeleportTileID/33), x * tileSize);
+        teleporter.transform.position = new Vector3(y * tileSize + tileSize / 2, height*(TeleportTileID/33), x * tileSize);
 
         teleporter.GetComponent<TeleportScript>().TargetX = arenaPosition.x;
         teleporter.GetComponent<TeleportScript>().TargetY = arenaPosition.y;
