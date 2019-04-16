@@ -110,7 +110,6 @@ public class ProcedeButton : MonoBehaviour
             }
             else
             {
-                //TODO: GO TO MAIN MENU/CLASS SELECT?
                 if (!isChangingState)
                 {
                     isChangingState = true;
@@ -131,6 +130,6 @@ public class ProcedeButton : MonoBehaviour
         processor.ProcessCommand(new MoveToCommand(remy.GetComponent<IDestinationMover>(), remy.transform.position, new Vector3(136f, 2.5f, 700f)));
 
         //Fade to white
-        Instantiate(Resources.Load<GameObject>("White Screen"));
+        Instantiate(Resources.Load<GameObject>("Screen Fade In"));
     }
 }

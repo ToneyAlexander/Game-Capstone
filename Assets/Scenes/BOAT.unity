@@ -830,6 +830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 535760902}
   retire: {fileID: 11400000, guid: 1082b9dbf3dd0904ebb06de36d635a74, type: 2}
+  changer: {fileID: 0}
 --- !u!1001 &671013395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3851,20 +3852,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a0a729872132d54fafd53fa2bdeb3a5, type: 3}
---- !u!114 &5233279727237656853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9136793020692353127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bfd9f83659d12746b848882598848a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  retire: {fileID: 0}
 --- !u!1001 &7826111301586938650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4140,8 +4127,8 @@ GameObject:
   - component: {fileID: 9136793020692353123}
   - component: {fileID: 9136793020692353120}
   - component: {fileID: 9136793020692353121}
-  - component: {fileID: 5233279727237656853}
   - component: {fileID: 644621370}
+  - component: {fileID: 9136793020692353128}
   m_Layer: 5
   m_Name: RetireButton
   m_TagString: Untagged
@@ -4149,3 +4136,16 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9136793020692353128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136793020692353127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d6caf71fd14649f292b8444a4029482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameState: {fileID: 11400000, guid: 1082b9dbf3dd0904ebb06de36d635a74, type: 2}
