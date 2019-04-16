@@ -132,7 +132,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.ArmorMult = 0f;
         stats.AfflictRes = 2f;
         stats.AfflictResMult = 0f;
-        stats.CritChance = 0.05f;
+        stats.CritChance = 0f;
         stats.CritChanceMult = 0f;
         stats.CritDamage = 1f;
         stats.CritDamageMult = 0f;

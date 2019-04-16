@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Bone Flail
+  m_EditorClassIdentifier: 
+  itemName: Bone Flail
+  sprite: {fileID: 21300000, guid: 0965d3308218fb14d9a4c6229400e151, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 4
+  flavorText: You're basically just holding someone's spine...
+  internalDescription: 
+  baseItemTier: 5
+  maxNumberAffixes: 3
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 03cb56f92f0d86f4d824620423c952e6, type: 2}
+    minValue: 0.3
+    maxValue: 0.4
+  - statIdentifier: {fileID: 11400000, guid: c13512a77709a154c86e5ad1e3abf603, type: 2}
+    minValue: -0.2
+    maxValue: -0.3
+  - statIdentifier: {fileID: 11400000, guid: 4ed5d953163cc42b4a20ab5c5fa81d92, type: 2}
+    minValue: 0.05
+    maxValue: 0.1
