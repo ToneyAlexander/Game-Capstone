@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
-  m_Name: Greatsword
+  m_Name: Demons Edge
   m_EditorClassIdentifier: 
-  itemName: Greatsword
-  sprite: {fileID: 21300000, guid: 91ead2a1affa26f4ba9e8f2c39330584, type: 3}
-  worldDropPrefab: {fileID: 3313536914568022366, guid: 7b8c14ea3118b1a468bda5aa7fffc61a,
-    type: 3}
+  itemName: Demon's Edge
+  sprite: {fileID: 21300000, guid: 671c815ef7e0bd6439bb9801cb79e9a7, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
   equipmentSlot: 3
-  flavorText: No clue how you are holding this with one hand...
-  internalDescription: asdas
-  baseItemTier: 3
-  maxNumberAffixes: 2
+  flavorText: A particularly evil little dagger
+  internalDescription: 
+  baseItemTier: 5
+  maxNumberAffixes: 3
   statPrototypeList:
   - statIdentifier: {fileID: 11400000, guid: 4128bf8e336d9bc408dc01c44520586c, type: 2}
     minValue: 10
     maxValue: 20
   - statIdentifier: {fileID: 11400000, guid: db579f37bb6e3da40b9f8333d5ca40af, type: 2}
-    minValue: 0.03
-    maxValue: 0.03
-  - statIdentifier: {fileID: 11400000, guid: 1e4f666d125b24538b6ea01a50a1a565, type: 2}
-    minValue: 0.07
-    maxValue: 0.12
+    minValue: 0.1
+    maxValue: 0.15
+  - statIdentifier: {fileID: 11400000, guid: c2470fadeda35b945928980dd0eb9e29, type: 2}
+    minValue: 0.35
+    maxValue: 0.55
