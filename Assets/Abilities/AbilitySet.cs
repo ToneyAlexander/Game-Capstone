@@ -14,6 +14,9 @@ namespace CCC.Abilities
         [SerializeField]
         private string filename = "NewAbilitySet.json";
 
+        [SerializeField]
+        private string folderName = "Player";
+
         private string path;
 
         /// <summary>
@@ -33,7 +36,8 @@ namespace CCC.Abilities
         public void Load()
         {
             Reset();
-            path = Path.Combine(Application.persistentDataPath, filename);
+            path = Path.Combine(Application.persistentDataPath, folderName);
+            path = Path.Combine(path, filename);
             var abilityList = AbilityList.CreateEmpty();
 
             if (File.Exists(path))
@@ -64,6 +68,14 @@ namespace CCC.Abilities
             }
             var saveData = AbilityList.FromList(abilities);
             var jsonString = JsonUtility.ToJson(saveData, true);
+
+            var directoryPath =
+                Path.Combine(Application.persistentDataPath, folderName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
 
             using (StreamWriter streamWriter = File.CreateText(path))
             {

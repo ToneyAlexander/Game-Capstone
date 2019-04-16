@@ -23,6 +23,9 @@ namespace CCC.Items
         [SerializeField]
         private string filename;
 
+        [SerializeField]
+        private string folderName = "Player";
+
         /// <summary>
         /// The actual inventory data that this Inventory references.
         /// </summary>
@@ -136,7 +139,8 @@ namespace CCC.Items
             }
 
             path = System.IO.Path.Combine(Application.persistentDataPath, 
-                filename);
+                folderName);
+            path = System.IO.Path.Combine(path, filename);
 
             // Load save data from disk
             if (File.Exists(path))
@@ -162,6 +166,13 @@ namespace CCC.Items
         public void Save()
         {
             string jsonString = JsonUtility.ToJson(data, true);
+            var directoryPath = 
+                System.IO.Path.Combine(Application.persistentDataPath, folderName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
 
             using (StreamWriter streamWriter = File.CreateText(path))
             {

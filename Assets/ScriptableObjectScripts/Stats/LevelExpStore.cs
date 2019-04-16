@@ -63,6 +63,9 @@ public sealed class LevelExpStore : ScriptableObject
     [SerializeField]
     private string filename = "NewLevelExpStore.json";
 
+    [SerializeField]
+    private string folderName = "Player";
+
     /// <summary>
     /// The path to the JSON file this LevelExpStore will load from and save 
     /// to.
@@ -74,7 +77,8 @@ public sealed class LevelExpStore : ScriptableObject
     /// </summary>
     public void Load()
     {
-        path = Path.Combine(Application.persistentDataPath, filename);
+        path = Path.Combine(Application.persistentDataPath, folderName);
+        path = Path.Combine(path, filename);
 
         if (File.Exists(path))
         {
@@ -102,6 +106,14 @@ public sealed class LevelExpStore : ScriptableObject
         string jsonString = JsonUtility.ToJson(new LevelExpData(data.Exp, 
             data.ExpToLevel, data.Level, data.PerkPoints));
         Debug.Log(jsonString);
+
+        var directoryPath =
+            Path.Combine(Application.persistentDataPath, folderName);
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
 
         using (StreamWriter streamWriter = File.CreateText(path))
         {

@@ -33,6 +33,9 @@ namespace CCC.Combat.Perks
         [SerializeField]
         private string filename;
 
+        [SerializeField]
+        private string folderName = "Player";
+
         private string path;
 
         public void AddPerk(PerkPrototype p)
@@ -48,7 +51,8 @@ namespace CCC.Combat.Perks
             Debug.Log("Loading");
             if (filename != "")
             {
-                path = Path.Combine(Application.persistentDataPath, filename);
+                path = Path.Combine(Application.persistentDataPath, folderName);
+                path = Path.Combine(path, filename);
 
                 if (File.Exists(path))
                 {
@@ -87,6 +91,14 @@ namespace CCC.Combat.Perks
                 }
 
                 var jsonString = JsonUtility.ToJson(newData, true);
+
+                var directoryPath =
+                    Path.Combine(Application.persistentDataPath, folderName);
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
 
                 using (StreamWriter streamWriter = File.CreateText(path))
                 {

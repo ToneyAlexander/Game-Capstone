@@ -17,6 +17,9 @@ namespace CCC.Abilities
         private Ability[] abilities;
 
         [SerializeField]
+        private string folderName = "Player";
+
+        [SerializeField]
         private string abilityIconAssetBundlePath = "Assets/AssetBundles/";
 
         public Ability[] Abilities
@@ -43,7 +46,8 @@ namespace CCC.Abilities
 
         public void Load()
         {
-            path = Path.Combine(Application.persistentDataPath, filename);
+            path = Path.Combine(Application.persistentDataPath, folderName);
+            path = Path.Combine(path, filename);
             Reset();
             abilityIconsAssetBundle = 
                 AssetBundleManager.LoadAssetBundleAtPath(abilityIconAssetBundlePath);
@@ -71,6 +75,14 @@ namespace CCC.Abilities
             var saveData = AbilityList.FromArray(abilities);
 
             var jsonString = JsonUtility.ToJson(saveData, true);
+            var directoryPath =
+                Path.Combine(Application.persistentDataPath, folderName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
             Debug.Log(jsonString);
             using (StreamWriter streamWriter = File.CreateText(path))
             {
