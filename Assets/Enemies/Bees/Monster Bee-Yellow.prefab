@@ -512,6 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   initialStats: {fileID: 11400000, guid: fa33abfddd69948289d5f4f12c9c2087, type: 2}
+  onLevelUpPerk: {fileID: 11400000, guid: 20ac58fcd0ccb415ca3374f2835a248e, type: 2}
   healthBar: {fileID: 6983912459516386574, guid: ec973a637b950495cae149c58098c0f3,
     type: 3}
   projectile: {fileID: 3846490786656072996, guid: 1855bf27bd5b247039eb96f41a9dc55b,
@@ -576,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+  itemGenerator: {fileID: 11400000, guid: b1f5c666a3efc68489877b23ec14398c, type: 2}
 --- !u!114 &754794682030819315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
+  TakenPerks: []
   takenPerks: {fileID: 11400000, guid: 23abaa28271f14e239549bd61337192f, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
@@ -645,7 +647,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936245962703202153}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1

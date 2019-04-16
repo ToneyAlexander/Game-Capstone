@@ -20,7 +20,7 @@ public class CarnivorousPlantController : EnemyController
 		// Default spawnPos and movingRange
         spawnPos = transform.position;
         movingRange = 15f;
-		chaseSpeed = 1f;
+		chaseSpeed = 2.5f;
 		movable = false;
 
 		// Default vision

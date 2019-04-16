@@ -1,4 +1,5 @@
-﻿using CCC.Inputs;
+﻿using CCC.Abilities;
+using CCC.Inputs;
 using CCC.Stats;
 using UnityEngine;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ public class AbilityVampStrike : AbilityBase
     private float dmgMax;
     private float vampRate;
     private float cost;
-
 
     public override void UpdateStats()
     {
@@ -57,17 +57,22 @@ public class AbilityVampStrike : AbilityBase
         stats.HealthCur += dmgTaken * vampRate;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    #region MonoBehaviour Messages
+    private void Awake()
     {
         mpd = GetComponent<MousePositionDetector>();
         stats = GetComponent<StatBlock>();
-        PlayerClass pc = GetComponent<PlayerClass>();
+    }
 
+    // Start is called before the first frame update
+    private void Start()
+    {
+        var pc = GetComponent<PlayerClass>();
         abil = pc.abilities.Set[AbilName];
         projectile = abil.Prefab;
         abilStats = abil.Stats;
         abil.cdRemain = 0f;
         UpdateStats();
     }
+    #endregion
 }

@@ -25,7 +25,7 @@ public class GenerateIsland : MonoBehaviour
     private bool useIngameIslandStats = true;
 
     [SerializeField]
-    private IslandStorage islandStorage;
+    public IslandStorage islandStorage;
 
 
     [SerializeField]
@@ -805,7 +805,7 @@ public class GenerateIsland : MonoBehaviour
         Vector3 arenaPosition = new Vector3(-30, 50, -30);
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon" };
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon","BossGhoul/BossGhoul","BossWyvern/BossWyvern" };
         string toLoad = possibleBosses[islandStorage.boss];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;

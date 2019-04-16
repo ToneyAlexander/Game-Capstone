@@ -76,6 +76,12 @@ namespace CCC.Inputs
         /// </summary>
         [SerializeField]
         private InputButton abilitySlotFiveButton;
+
+        /// <summary>
+        /// The InputButton for AbilitySlot.Six.
+        /// </summary>
+        [SerializeField]
+        private InputButton abilitySlotSixButton;
         #endregion
 
         #region MonoBehaviour Messages
@@ -92,7 +98,8 @@ namespace CCC.Inputs
             {abilitySlotTwoButton, AbilitySlot.Two},
             {abilitySlotThreeButton, AbilitySlot.Three},
             {abilitySlotFourButton, AbilitySlot.Four},
-            {abilitySlotFiveButton, AbilitySlot.Five}
+            {abilitySlotFiveButton, AbilitySlot.Five},
+            {abilitySlotSixButton, AbilitySlot.Six}
         };
         }
 

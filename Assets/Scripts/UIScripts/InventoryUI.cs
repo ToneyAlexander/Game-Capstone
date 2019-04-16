@@ -31,8 +31,8 @@ public class InventoryUI : MonoBehaviour
     Vector3 visibleLoc = new Vector3(-1133, 0, 0);
     Vector3 hiddenLoc = new Vector3(-783, 0, 0);
     bool statsShown = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -89,7 +89,7 @@ public class InventoryUI : MonoBehaviour
             EventTrigger ev = storedButtons[i].GetComponent<EventTrigger>();
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => { OnClickInventory(eventData); });
+            entry.callback.AddListener((eventData) => { OnClickInventory((PointerEventData)eventData); });
             ev.triggers.Add(entry);
 
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
@@ -112,8 +112,7 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         for (int i = 0; i < storedButtons.Length; i++)
         {
@@ -129,7 +128,12 @@ public class InventoryUI : MonoBehaviour
                     name = name.Substring(0, strLength) + "...";
                 }
                 inventoryButtonScript.item = go;
-                buttonImage.sprite = inventoryButtonScript.item.Sprite;
+                //Debug.Log("[InventoryUI.Update] user = " + user);
+                //Debug.Log("[InventoryUI.Update] user.LoadedAssetBundle = " + user.LoadedAssetBundle);
+                //Debug.Log("[InventoryUI.Update] inventoryButtonScript = " + inventoryButtonScript);
+                //Debug.Log("[InventoryUI.Update] inventoryButtonScript.item = " + inventoryButtonScript.item);
+                var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(inventoryButtonScript.item.SpriteName);
+                buttonImage.sprite = sprite;
                 buttonImage.color = new Color(1, 1, 1, 1);
 
 
@@ -157,7 +161,8 @@ public class InventoryUI : MonoBehaviour
                 {
                     name = name.Substring(0, strLength) + "...";
                 }
-                equipmentButtonImage.sprite = equipmentButtonScript.item.Sprite;
+                var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(equipmentButtonScript.item.SpriteName);
+                equipmentButtonImage.sprite = sprite;
                 equipmentButtonImage.color = new Color(1, 1, 1, 1);
             }
             else
@@ -199,8 +204,10 @@ public class InventoryUI : MonoBehaviour
 		{
 			descriptionText.text = equipBut.item.FlavorText;
 			longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
-			image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
-			image.color = new Color(1, 1, 1, 1);
+            //image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+            var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.SpriteName);
+            image.sprite = sprite;
+            image.color = new Color(1, 1, 1, 1);
 			statsShown = true;
 			Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
 			Text tooltext = statsBlock.GetComponentInChildren<Text>();
@@ -213,9 +220,28 @@ public class InventoryUI : MonoBehaviour
 			}
 		}
     }
-    void OnClickInventory(BaseEventData data)
+    void OnClickInventory(PointerEventData data)
     {
-        euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        //.GetComponent<Image>();
+
+        if (data.button == PointerEventData.InputButton.Left)
+        {
+            euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        }
+        else if (data.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("AAAAAAA");
+            
+            Debug.Log("Spicy: " + user.Items[0].Name);
+            Debug.Log("Butts: " + data.selectedObject.GetComponent<InventoryButton>().item);
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
+            user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
+            euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+
+        }
+        Debug.Log(user.CurrentCapacity);
+
     }
     void OnMouseOverInventory(PointerEventData data)
     {
@@ -226,7 +252,9 @@ public class InventoryUI : MonoBehaviour
 
             descriptionText.text = but.item.FlavorText;
             longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.LongName;
-            image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
+            //image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
+            var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.SpriteName);
+            image.sprite = sprite;
             image.color = new Color(1, 1, 1, 1);
             statsShown = true;
             Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
@@ -234,7 +262,7 @@ public class InventoryUI : MonoBehaviour
             tooltext.text = "";
             foreach (Stat stat in item.Stats)
             {
-                int value = (int)stat.Value;
+                string value = Stat.GetStatString(stat);
                 tooltext.text += stat.Name + ": " + value + "\n";
 
             }

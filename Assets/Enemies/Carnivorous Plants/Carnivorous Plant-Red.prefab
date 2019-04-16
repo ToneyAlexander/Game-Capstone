@@ -3917,6 +3917,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
   initialStats: {fileID: 11400000, guid: 372def4d8b4b64f2d81539d59f2825c2, type: 2}
+  onLevelUpPerk: {fileID: 11400000, guid: 05750197571e04a82b0182adba0baf20, type: 2}
   healthBar: {fileID: 6983912459516386574, guid: ec973a637b950495cae149c58098c0f3,
     type: 3}
   projectile: {fileID: 3846490786656072996, guid: 1855bf27bd5b247039eb96f41a9dc55b,
@@ -3959,7 +3960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  itemGenerator: {fileID: 11400000, guid: 60c1eabfb9cd64380a9a4fe0792f0ca5, type: 2}
+  itemGenerator: {fileID: 11400000, guid: b1f5c666a3efc68489877b23ec14398c, type: 2}
 --- !u!114 &6001540395222935348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3987,6 +3988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPerks: []
+  TakenPerks: []
   takenPerks: {fileID: 11400000, guid: 23abaa28271f14e239549bd61337192f, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}

@@ -41,6 +41,9 @@ namespace CCC.Items
         [SerializeField]
         private string filename;
 
+        [SerializeField]
+        private string folderName = "Player";
+
         /// <summary>
         /// The path to the file on disk that this EquipmentDictionary 
         /// references.
@@ -67,6 +70,13 @@ namespace CCC.Items
         public void DisequipItem(Item item)
         {
             equipment[item.EquipmentSlot] = Item.Null;
+        }
+        public void CheckAndDisequipItem(Item item)
+        {
+            if (equipment[item.EquipmentSlot] == item)
+            {
+                equipment[item.EquipmentSlot] = Item.Null;
+            }
         }
 
         /// <summary>
@@ -101,6 +111,13 @@ namespace CCC.Items
         {
             string jsonString = 
                 JsonUtility.ToJson(EquipmentData.ForEquipment(equipment), true);
+            var directoryPath =
+                Path.Combine(Application.persistentDataPath, folderName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
 
             using (StreamWriter streamWriter = File.CreateText(path))
             {
@@ -112,7 +129,8 @@ namespace CCC.Items
         private void OnEnable()
         {
             path = Path.Combine(Application.persistentDataPath, 
-                filename);
+                folderName);
+            path = Path.Combine(path, filename);
         }
         #endregion
     }

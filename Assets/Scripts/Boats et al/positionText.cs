@@ -19,13 +19,13 @@ public class positionText : MonoBehaviour
     private int themeID = 0;
     private int level = 0;
     private int bossIndex = 0;
-    private string[] bosses = { "Beetle", "Dragon" , "Demon"};
+    private string[] bosses = { "Beetle", "Dragon" , "Demon", "Ghoul","Wyvern"};
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);
     void Start()
     {
-        islandSize = crewController.selectArea(20);
+        islandSize = crewController.selectArea(30);
         islandHeight = (int)Random.Range(3, 6);
         themeID = crewController.selectTheme();
         bossIndex = crewController.selectBoss();
@@ -86,6 +86,7 @@ public class positionText : MonoBehaviour
             maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
             maritimeController.GetComponent<MaritimeController>().islandStorage.theme = themeID;
             maritimeController.GetComponent<MaritimeController>().islandStorage.boss = bossIndex;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.level = level;
            }
 
 

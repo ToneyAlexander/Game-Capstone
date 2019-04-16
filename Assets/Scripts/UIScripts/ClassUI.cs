@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Abilities;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -20,6 +19,10 @@ public class ClassUI : MonoBehaviour
 	Image spriteImage;
 	Text skillTitle;
     bool loaded = false;
+
+    [SerializeField]
+    private AbilitySet playerAbilitySet;
+
     // Start is called before the first frame update
     public void updatePlayerClass()
     {
@@ -42,12 +45,11 @@ public class ClassUI : MonoBehaviour
             }
         }
     }
+
     public void reloadGraph()
     {
-        
         if (!loaded)
         {
-         //   Debug.Log("aljd;adjk;adj;ad");
             loaded = true;
             foreach (PerkPrototype proto in playerClass.allPerks)
             {
@@ -145,7 +147,9 @@ public class ClassUI : MonoBehaviour
         }
 
     }
-    void Awake()
+
+    #region MonoBehaviour Messages
+    private void Awake()
     {
         GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Player");
         if (gameObjects.Length > 0)
@@ -196,17 +200,10 @@ public class ClassUI : MonoBehaviour
 			{
 				perkPointsText = gameObject.transform.GetChild(i).gameObject.GetComponentInChildren<Text>();
 			}
-
         }
-        //  allPerks = playerClass.allPerks;
-        //  takenPerks = playerClass.takenPerks;
-     //   Debug.Log(playerClass.allPerks);
-   
-     
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
        for (int i = 0; i <  content.transform.childCount; i++)
         {
@@ -244,21 +241,17 @@ public class ClassUI : MonoBehaviour
                     statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
                 }
             }
-            
         }
-        
     }
+    #endregion
 
     void OnPerkClick(PointerEventData data)
     {
-   
-        PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
-        // if (Perk)
+        PerkHolder clickedEvent = 
+            data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         bool taken = playerClass.TakePerk(clickedEvent.perkInfo);
         if (taken)
         {
-           // Debug.Log(clickedEvent.perkInfo.Name);
-            
             for (int i = 0; i < content.transform.childCount; i++)
             {
                 PerkHolder test = content.transform.GetChild(i).gameObject.GetComponent<PerkHolder>();
@@ -266,24 +259,12 @@ public class ClassUI : MonoBehaviour
                 {
                     test.recheck(clickedEvent.perkInfo);
                 }
-                
-                
             }
         }
-
-       // foreach(Ga)
-
-
-
-
-
-
-
     }
+
     void OnPerkEnter(PointerEventData data)
     {
-        
-      //  Debug.Log(data.pointerCurrentRaycast.gameObject);
         PerkHolder clickedEvent = data.pointerCurrentRaycast.gameObject.GetComponent<PerkHolder>();
         mousedOver = clickedEvent.perkInfo;
 		descText.text = mousedOver.Desc + "\n\n";
@@ -294,14 +275,10 @@ public class ClassUI : MonoBehaviour
             descText.text = descText.text + stat.StatInst.Name + ": " + stat.StatInst.Value + "\n";
         }
         selected = true;
-
-
     }
+
     void OnPerkExit(PointerEventData data)
     {
-       // Debug.Log("goodbye");
         selected = false;
-       // Debug.Log("HERE WE GOOOOOOOO");
-       // Debug.Log(data.pointerCurrentRaycast.gameObject);
     }
 }

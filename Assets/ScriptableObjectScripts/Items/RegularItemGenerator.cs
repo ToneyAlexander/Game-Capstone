@@ -18,8 +18,9 @@ namespace CCC.Items
         public override Item GenerateItem()
         {
             // Pick a random ItemPrototype
+            // TODO use rarity here
             int rand = Random.Range(0, itemPrototypes.Count);
-            ItemPrototype proto = itemPrototypes[rand];
+            ItemPrototype proto = itemPrototypes[rand].Item;
 
             // Always use its maximum values because we're very lucky
             List<Stat> stats = new List<Stat>();
@@ -29,7 +30,8 @@ namespace CCC.Items
             }
 
             Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier,
-                proto.EquipmentSlot, proto.Sprite, stats, proto.WorldDropPrefab);
+                proto.EquipmentSlot, proto.Sprite.name, stats, proto.WorldDropPrefab);
+            Debug.Log(proto.Sprite.name);
 
             ApplyAffixes(affixSets, this, item, proto);
 
@@ -43,6 +45,6 @@ namespace CCC.Items
         }
 
         [SerializeField]
-        private List<ItemPrototype> itemPrototypes;
+        private List<ItemRarity> itemPrototypes;
     }
 }

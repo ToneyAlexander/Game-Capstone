@@ -10,6 +10,7 @@ public class PlayerClass : MonoBehaviour
     [HideInInspector]
     public List<PerkPrototype> allPerks;
 
+    [HideInInspector]
     public List<PerkPrototype> TakenPerks;
 
     //public IList<PerkPrototype> TakenPerks
@@ -21,7 +22,7 @@ public class PlayerClass : MonoBehaviour
     /// The perks that the player currently has taken.
     /// </summary>
     [SerializeField]
-    private PerkList takenPerks;
+    private PerkList takenPerks = null;
 
     [HideInInspector]
     public PerkPrototype onLevelUp;
@@ -70,7 +71,10 @@ public class PlayerClass : MonoBehaviour
     public static void AddAbilityToParent(GameObject o, string typeString)
     {
         System.Type type = System.Type.GetType(typeString);
-        Component fv = o.AddComponent(type);
+        if (o.GetComponent(type) == null)
+        {
+            Component fv = o.AddComponent(type);
+        }
     }
 
     private void Awake()
@@ -109,29 +113,10 @@ public class PlayerClass : MonoBehaviour
         {
             // Not a null perk list
             TakenPerks = takenPerks.Perks;
-            foreach (var perk in TakenPerks)
-            {
-                Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] loaded perk = " + perk);
-            }
         }
 
         stats = GetComponent<ControlStatBlock>();
         init = GetComponent<InitAbilities>();
-        
-        if(PlayerLevelExp != null && PlayerLevelExp.Level < 1)
-        {
-            PlayerLevelExp.ExpToLevel = 100;
-            PlayerLevelExp.PerkPoints = 1;
-            PlayerLevelExp.Level = 1;
-        }
-
-        Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.name = " + takenPerks.name);
-        Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] takenPerks.Perks.Count = " + takenPerks.Perks.Count);
-
-        foreach (var perk in TakenPerks)
-        {
-            Debug.Log("[" + gameObject.name + ".PlayerClass.Awake] perk = " + perk);
-        }
     }
 
     public void IncreaseAge()
@@ -141,20 +126,14 @@ public class PlayerClass : MonoBehaviour
         if (bloodlineController.Age < 3)
         {
             TakenPerks.Add(init.Young);
-            //takenPerks.AddPerk(init.Young);
-            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Young + "'");
         }
         else if (bloodlineController.Age < 5)
         {
             TakenPerks.Add(init.Middle);
-            //takenPerks.AddPerk(init.Middle);
-            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Middle + "'");
         }
         else
         {
             TakenPerks.Add(init.Old);
-            //takenPerks.AddPerk(init.Old);
-            Debug.Log("[" + gameObject.name + ".PlayerClass.IncreaseAge] added perk '" + init.Old + "'");
         }
 
         stats.AgeUp();
@@ -176,7 +155,6 @@ public class PlayerClass : MonoBehaviour
 
     public void LevelUp()
     {
-        //Debug.Log("Leveled Up!");
         if (PlayerLevelExp != null)
         {
             ++PlayerLevelExp.PerkPoints;
@@ -185,8 +163,6 @@ public class PlayerClass : MonoBehaviour
         if (onLevelUp != null)
         {
             TakenPerks.Add(onLevelUp);
-            //takenPerks.AddPerk(onLevelUp);
-            Debug.Log("[" + gameObject.name + ".PlayerClass.LevelUp] added perk '" + onLevelUp + "'");
             stats.StatsChanged();
         }
     }
@@ -195,12 +171,12 @@ public class PlayerClass : MonoBehaviour
     {
         foreach(PerkPrototype p in perks)
         {
-            bool succ = TakePerk(p, false);
-            Debug.Log("[" + gameObject.name + ".PlayerClass.TakeDefaults] took perk '" + p + "'");
-            if (!succ)
+            if (!takenPerks.Perks.Contains(p))
             {
-                Debug.LogError("Class Defaults Configured Incorrectly");
+                bool succ = TakePerk(p, false);
             }
+
+            GrantLoadedAbilities();
         }
     }
 
@@ -215,41 +191,44 @@ public class PlayerClass : MonoBehaviour
                     --PlayerLevelExp.PerkPoints;
                 }
                 TakenPerks.Add(p);
-                //takenPerks.AddPerk(p);
-                Debug.Log("[" + gameObject.name + ".PlayerClass.TakePerk] added perk '" + p + "'");
                 stats.StatsChanged();
                 if (abilities != null && abilDict != null)
                 {
                     foreach (AbilityPrototype a in p.grants)
                     {
-                        Ability instA = a.Instance;
-                        abilities.Set.Add(instA.AbilityName, instA);
-                        //Debug.Log("Abil set len: " + abilities.Set.Count);
+                        var ability = Ability.FromPrototype(a);
+                        abilities.Set.Add(ability.AbilityName, ability);
+
                         //TODO: repalce with ui thing
-                        if (abilDict.GetAbility(AbilitySlot.One).Equals(Ability.nullAbility))
+                        if (abilDict.GetAbility(AbilitySlot.One).AbilityName == Ability.Null.AbilityName)
                         {
-                            abilDict.SetSlotAbility(AbilitySlot.One, instA);
-                            AddAbilityToParent(gameObject, instA.TypeString);
+                            abilDict.SetSlotAbility(AbilitySlot.One, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
                         }
-                        else if (abilDict.GetAbility(AbilitySlot.Two).Equals(Ability.nullAbility))
+                        else if (abilDict.GetAbility(AbilitySlot.Two).AbilityName == Ability.Null.AbilityName)
                         {
-                            abilDict.SetSlotAbility(AbilitySlot.Two, instA);
-                            AddAbilityToParent(gameObject, instA.TypeString);
+                            abilDict.SetSlotAbility(AbilitySlot.Two, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
                         }
-                        else if (abilDict.GetAbility(AbilitySlot.Three).Equals(Ability.nullAbility))
+                        else if (abilDict.GetAbility(AbilitySlot.Three).AbilityName == Ability.Null.AbilityName)
                         {
-                            abilDict.SetSlotAbility(AbilitySlot.Three, instA);
-                            AddAbilityToParent(gameObject, instA.TypeString);
+                            abilDict.SetSlotAbility(AbilitySlot.Three, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
                         }
-                        else if (abilDict.GetAbility(AbilitySlot.Four).Equals(Ability.nullAbility))
+                        else if (abilDict.GetAbility(AbilitySlot.Four).AbilityName == Ability.Null.AbilityName)
                         {
-                            abilDict.SetSlotAbility(AbilitySlot.Four, instA);
-                            AddAbilityToParent(gameObject, instA.TypeString);
+                            abilDict.SetSlotAbility(AbilitySlot.Four, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
                         }
-                        else if (abilDict.GetAbility(AbilitySlot.Five).Equals(Ability.nullAbility))
+                        else if (abilDict.GetAbility(AbilitySlot.Five).AbilityName == Ability.Null.AbilityName)
                         {
-                            abilDict.SetSlotAbility(AbilitySlot.Five, instA);
-                            AddAbilityToParent(gameObject, instA.TypeString);
+                            abilDict.SetSlotAbility(AbilitySlot.Five, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
+                        }
+                        else if (abilDict.GetAbility(AbilitySlot.Six).AbilityName == Ability.Null.AbilityName)
+                        {
+                            abilDict.SetSlotAbility(AbilitySlot.Six, ability);
+                            AddAbilityToParent(gameObject, ability.TypeString);
                         }
                     }
                     foreach (AbilityModifier aMod in p.Changes)
@@ -259,7 +238,6 @@ public class PlayerClass : MonoBehaviour
                             Ability abil = abilities.Set[aMod.AbilityName];
                             Stat stat = abil.Stats.Find(item => item.Name == aMod.StatName.InternalStatName);
                             stat.Value += aMod.Value;
-                            //Debug.Log("Ability Being changed: " + abil.AbilityName + " new: " + stat.Value);
                             abil.update = true;
                         }
 
@@ -268,7 +246,17 @@ public class PlayerClass : MonoBehaviour
                 return true;
             }
         }
-        Debug.Log("[" + gameObject.name + ".PlayerClass.TakePerk] end");
         return false;
+    }
+
+    private void GrantLoadedAbilities()
+    {
+        foreach (var ability in abilDict.Abilities)
+        {
+            if (ability.AbilityName != Ability.Null.AbilityName)
+            {
+                AddAbilityToParent(gameObject, ability.TypeString);
+            }
+        }
     }
 }

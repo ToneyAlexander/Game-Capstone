@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: RunedBand
+  m_EditorClassIdentifier: 
+  itemName: Runic Band
+  sprite: {fileID: 21300000, guid: 29e75e2784408f54a8791e33ed29bc66, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 5
+  flavorText: Probably used in some old ritual
+  internalDescription: There's no way, they can get a message through
+  baseItemTier: 4
+  maxNumberAffixes: 2
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 44d642503b03642958c4880db7ed0eac, type: 2}
+    minValue: 0.05
+    maxValue: 0.1
+  - statIdentifier: {fileID: 11400000, guid: c2470fadeda35b945928980dd0eb9e29, type: 2}
+    minValue: 0.2
+    maxValue: 0.4

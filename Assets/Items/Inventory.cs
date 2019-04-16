@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.AssetManagement;
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 
@@ -22,10 +23,23 @@ namespace CCC.Items
         [SerializeField]
         private string filename;
 
+        [SerializeField]
+        private string folderName = "Player";
+
         /// <summary>
         /// The actual inventory data that this Inventory references.
         /// </summary>
         private InventoryData data = InventoryData.Null;
+
+        [SerializeField]
+        private string assetBundlePath = "Assets/AssetBundles/";
+
+        public AssetBundle LoadedAssetBundle
+        {
+            get { return loadedAssetBundle; }
+        }
+
+        private AssetBundle loadedAssetBundle;
 
         /// <summary>
         /// Gets the path to the file that this Inventory should be saved in.
@@ -115,8 +129,18 @@ namespace CCC.Items
         /// </summary>
         public void Load()
         {
+            loadedAssetBundle = 
+                AssetBundleManager.LoadAssetBundleAtPath(assetBundlePath);
+
+            if (!loadedAssetBundle)
+            {
+                Debug.LogError("[Inventory.Load] Failed to load asset bundle" + 
+                    " at path '" + assetBundlePath + "'");
+            }
+
             path = System.IO.Path.Combine(Application.persistentDataPath, 
-                filename);
+                folderName);
+            path = System.IO.Path.Combine(path, filename);
 
             // Load save data from disk
             if (File.Exists(path))
@@ -142,12 +166,21 @@ namespace CCC.Items
         public void Save()
         {
             string jsonString = JsonUtility.ToJson(data, true);
+            var directoryPath = 
+                System.IO.Path.Combine(Application.persistentDataPath, folderName);
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
 
             using (StreamWriter streamWriter = File.CreateText(path))
             {
                 streamWriter.Write(jsonString);
             }
 
+            AssetBundleManager.UnloadAssetBundleAtPath(assetBundlePath);
+            loadedAssetBundle = null;
             data = InventoryData.Null;
         }
     }

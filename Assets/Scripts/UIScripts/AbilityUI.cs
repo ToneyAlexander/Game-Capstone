@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using CCC.Abilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using CCC.Abilities;
+using System.Collections.Generic;
 
 public class AbilityUI : MonoBehaviour
 {
     GameObject slotsHolder;
     GameObject storedAbils;
-    GameObject[] statSlots = new GameObject[5];
+    GameObject[] statSlots = new GameObject[6];
     int selected = -1;
     public AbilitySlotDictionary dict;
     public AbilitySet fullSet;
-    // Start is called before the first frame update
-    void Start()
+
+    #region MonoBehaviour Messages
+    private void Start()
     {
         for (int i = 0; i < this.transform.childCount; i++)
         {
@@ -46,6 +46,10 @@ public class AbilityUI : MonoBehaviour
                     {
                         statSlots[4] = slotsHolder.transform.GetChild(j).gameObject;
                     }
+                    if (slotsHolder.transform.GetChild(j).name.Equals("Slot6"))
+                    {
+                        statSlots[5] = slotsHolder.transform.GetChild(j).gameObject;
+                    }
 
 
                 }
@@ -75,8 +79,8 @@ public class AbilityUI : MonoBehaviour
             ev.triggers.Add(entry);
         }
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         for (int i = 0; i < statSlots.Length; i++)
         {
@@ -102,6 +106,10 @@ public class AbilityUI : MonoBehaviour
             {
                 setIcon(img, AbilitySlot.Five);
             }
+            else if (i == 5)
+            {
+                setIcon(img, AbilitySlot.Six);
+            }
         }
         if (selected >= 1)
         {
@@ -111,20 +119,20 @@ public class AbilityUI : MonoBehaviour
         foreach (KeyValuePair<string, Ability> abil in fullSet.Set)
         {
             GameObject store = storedAbils.transform.GetChild(count).gameObject;
-            store.GetComponent<Image>().sprite = abil.Value.Icon;
+            store.GetComponent<Image>().sprite = dict.AbilityIconsAssetBundle.LoadAsset<Sprite>(abil.Value.SpriteFilename);
             AbilityHolder x = store.GetComponent<AbilityHolder>();
             x.ability = abil.Value;
-            // x = 
             count++;
         }
     }
+    #endregion MonoBehaviour Messages
 
     private void setIcon(Image img, AbilitySlot slot)
     {
         Ability abil = dict.GetAbility(slot);
         if (abil != Ability.nullAbility)
         {
-            img.sprite = abil.Icon;
+            img.sprite = dict.AbilityIconsAssetBundle.LoadAsset<Sprite>(abil.SpriteFilename);
         }
     }
     void AbilityOnClick(PointerEventData data)
@@ -154,6 +162,10 @@ public class AbilityUI : MonoBehaviour
             else if (selected == 5)
             {
                 dict.SetSlotAbility(AbilitySlot.Five, ability);
+            }
+            else if (selected == 6)
+            {
+                dict.SetSlotAbility(AbilitySlot.Six, ability);
             }
 
         }
@@ -215,6 +227,17 @@ public class AbilityUI : MonoBehaviour
             else
             {
                 selected = 5;
+            }
+        }
+        if (clicked.name == "Slot6")
+        {
+            if (selected == 6)
+            {
+                selected = -1;
+            }
+            else
+            {
+                selected = 6;
             }
         }
 

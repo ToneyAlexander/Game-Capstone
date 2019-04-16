@@ -43,7 +43,7 @@ public class EnemyAttackController : MonoBehaviour
         projectileInstance.transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 1f);
 
         // Cause damage
-        Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), 0f, true, false, false);
+        Damage dmg = new Damage(Random.Range(dmgMin, dmgMax), 0f, false, true, false);
         projectileBehave.dmg = statBlock.RealDamage(dmg);
     }
 

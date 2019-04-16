@@ -52,9 +52,8 @@ public class ItemHover : MonoBehaviour
         stats.text = "";
         foreach (Stat stat in WIScript.item.Stats)
         {
-            int value = (int)stat.Value;
+            string value = Stat.GetStatString(stat);
             stats.text += stat.Name + ": " + value + "\n";
-
         }
         line.color = 0;
     }
