@@ -8,21 +8,29 @@ public sealed class BloodlineController : ScriptableObject
 {
     [SerializeField]
     private int generationint = 0;
-    [SerializeField]
-    public int Age { get; private set; }
+
+    public int Age
+    {
+        get { return age; }
+    }
+
+    public ClassPrototype CurrentClass
+    {
+        get { return currentClass; }
+        set { currentClass = value; }
+    }
+
+    private int age;
 
     [SerializeField]
     public string playerName = "Remy Remmington";
 
     [SerializeField]
-    public ClassPrototype currentClass;
+    private ClassPrototype currentClass;
 
     [SerializeField]
     private List<ClassPrototype> classList = new List<ClassPrototype>();
 
-   // private List<ClassPrototype> pastGenerations = new List<ClassPrototype>();
-
-    
     private List<string> pastNames = new List<string>();
 
     public void addGeneration()
@@ -39,11 +47,13 @@ public sealed class BloodlineController : ScriptableObject
         {
             pastNames[pastNames.Count - 1] = playerName + " the " + currentClass.name + "\n" + "Died at" + Age;
         }
-        Age = 0;
+
+        age = 0;
     }
+
     public void ageUp()
     {
-        Age++;
+        age++;
     }
 
     public List<ClassPrototype> ClassList
@@ -112,5 +122,15 @@ public sealed class BloodlineController : ScriptableObject
         }
 
         GetOrCreateFamilyName();
+    }
+
+    public void Load()
+    {
+
+    }
+
+    public void Save()
+    {
+
     }
 }
