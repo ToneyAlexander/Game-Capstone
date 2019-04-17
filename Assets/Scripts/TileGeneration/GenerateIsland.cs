@@ -1118,6 +1118,10 @@ public class GenerateIsland : MonoBehaviour
         List<float> combinedDistribution = new List<float>();
         heuristics.Add(evenDistribution(unchosenIndices));
         //0 is Normal
+        if (useIngameIslandStats)
+        {
+            heuristicType = islandStorage.terraintype+1;
+        }
         switch (heuristicType)
         {
             //Tall

@@ -12,6 +12,7 @@ public class IslandStorage : ScriptableObject
     public int height = 5;
     public int level = 1;
     public int boss = 0;
+    public int terraintype = 0;
     // Start is called before the first frame update
     void Start()
     {

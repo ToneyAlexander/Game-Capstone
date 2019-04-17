@@ -1226,10 +1226,11 @@ GameObject:
   - component: {fileID: 6706769760530143463}
   - component: {fileID: 3255604859337550461}
   - component: {fileID: 5158399714779589827}
-  - component: {fileID: 845988555899212367}
   - component: {fileID: 1693396391226368433}
-  - component: {fileID: 1665723258334607169}
   - component: {fileID: 3353591828463432271}
+  - component: {fileID: 1665723258334607169}
+  - component: {fileID: 845988555899212367}
+  - component: {fileID: 4530544835153852821}
   m_Layer: 0
   m_Name: BossWyvern
   m_TagString: Untagged
@@ -1319,6 +1320,52 @@ MonoBehaviour:
   abilDict: {fileID: 0}
   bloodlineController: {fileID: 0}
   PlayerLevelExp: {fileID: 0}
+--- !u!136 &1693396391226368433
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 10
+  m_Direction: 2
+  m_Center: {x: 0, y: 1, z: 0.8}
+--- !u!114 &3353591828463432271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01be9435c2b150049b0cc10c28e11bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  itemGenerator: {fileID: 11400000, guid: a4cd7c852fe0c214db993708bbb0c1e6, type: 2}
+  maxItemsToDrop: 5
+  baseporb: 1
+--- !u!54 &1665723258334607169
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144692}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &845988555899212367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1339,37 +1386,8 @@ MonoBehaviour:
   arenaEnd: {x: 0, y: 0, z: 0}
   FireballPrefab: {fileID: 1853709783273344728, guid: 33b02163b4d8db04f84193d701555cd8,
     type: 3}
---- !u!136 &1693396391226368433
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144692}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 2
-  m_Height: 10
-  m_Direction: 2
-  m_Center: {x: 0, y: 1, z: 0.8}
---- !u!54 &1665723258334607169
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 144692}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &3353591828463432271
+  lastPlayerLocation: {x: 0, y: 0, z: 0}
+--- !u!114 &4530544835153852821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1378,13 +1396,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 144692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01be9435c2b150049b0cc10c28e11bac, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cae1c3a02e4ebb44a33e0ca076d38be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
-  itemGenerator: {fileID: 11400000, guid: a4cd7c852fe0c214db993708bbb0c1e6, type: 2}
-  maxItemsToDrop: 5
-  baseporb: 1
+  Target: {fileID: 0}
+  RotSpeed: 0
+  pause: 0
 --- !u!1 &146438
 GameObject:
   m_ObjectHideFlags: 0

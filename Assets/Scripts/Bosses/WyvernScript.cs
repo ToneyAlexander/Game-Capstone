@@ -61,9 +61,9 @@ public class WyvernScript : BaseBoss
     }
     protected override IEnumerator Die()
     {
-        playerTracker.pause = true;
+       // playerTracker.pause = true;
         isDead = true;
-        animator.SetTrigger("death");
+       // animator.SetTrigger("death");
         yield return new WaitForSeconds(4.5f);
         Destroy(gameObject);
         SpawnTeleportOut();
@@ -72,7 +72,7 @@ public class WyvernScript : BaseBoss
     void Start()
     {
         base.Start();
-        playerTracker.Target = GameObject.FindGameObjectWithTag("Player");
+      //  playerTracker.Target = GameObject.FindGameObjectWithTag("Player");
         expValue = 330 * Level;
         player = GameObject.FindGameObjectWithTag("Player");
         // collideDmg = new Damage(7.5f * Level, 7.5f * Level, false, true, false);
@@ -84,8 +84,11 @@ public class WyvernScript : BaseBoss
         base.Update();
         if (active)
         {
-            if (cooldown < 0)
+           // Debug.Log(cooldown);
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0)
             {
+                Debug.Log("Ability Used!");
                 nextAttack = (WyvernAttack)Random.Range(0, 2);
                 switch (nextAttack)
                 {
@@ -100,8 +103,9 @@ public class WyvernScript : BaseBoss
                         break;
                 }
                 
-                cooldown -= Time.deltaTime;
+                
             }
+            
             else if (closeTeleportOn)
             {
                 Vector3.MoveTowards(transform.position, lastPlayerLocation, closeTeleportSpeed*Time.deltaTime);
@@ -132,7 +136,7 @@ public class WyvernScript : BaseBoss
     {
         lastPlayerLocation = player.transform.position;
         float rad = Random.Range(0,2*Mathf.PI);
-        transform.position = new Vector3(Mathf.Sin(rad)*closeTeleportDist + player.transform.position.x,0, Mathf.Cos(rad) * closeTeleportDist + player.transform.position.z);
+        transform.position = new Vector3(Mathf.Sin(rad)*closeTeleportDist + player.transform.position.x, player.transform.position.y, Mathf.Cos(rad) * closeTeleportDist + player.transform.position.z);
        // transform.position = 
         
     }

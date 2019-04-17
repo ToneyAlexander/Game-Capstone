@@ -16,10 +16,27 @@ public class positionText : MonoBehaviour
     private string n;
     private int islandSize = 20;
     private int islandHeight = 5;
+    private int islandTerrainType = 1;
     private int themeID = 0;
     private int level = 0;
     private int bossIndex = 0;
     private string[] bosses = { "Beetle", "Dragon" , "Demon", "Ghoul","Wyvern"};
+    private string[] terrains = {"Tall", "Flat" ,"Hilly","Cliffy","Pure Flat", "Hilly Flat" };
+    private string[] biomeInfos =
+    {
+        "Grassy Islands contain basic, low-tier body, head, weapon and off-hand items",
+        "Deserts contain rings and amulets",
+        "Snowy islands contain body and head armor",
+        "Swamps contain weapons and off-hands"
+    };
+    private string[] bossInfos =
+    {
+        "Dragons typically drop body armor, and may drop unique armors",
+        "Beetles typically drop rings and amulets, and may drop unique items",
+        "Demons typically drop weapons and offhands, and may drop a unique of either",
+        "Ghouls typically drop head armor, and may drop a unique head armor",
+        "Wyverns are non-functional"
+    };
     // Start is called before the first frame update
     Vector3 hiddenPos = new Vector3(-520,0,0);
     Vector3 visiblePos = new Vector3(-300, 0,0);
@@ -30,6 +47,7 @@ public class positionText : MonoBehaviour
         themeID = crewController.selectTheme();
         bossIndex = crewController.selectBoss();
         level = crewController.selectLevel(2);
+        islandTerrainType = (int)Random.Range(0, 6);
 
         // level = 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -72,8 +90,8 @@ public class positionText : MonoBehaviour
         TextMeshPro g = textObj.GetComponent<TextMeshPro>();
         g.color = Color.red;
         maritimeController.GetComponent<MaritimeController>().islandName.text = n;
-        maritimeController.GetComponent<MaritimeController>().descText.text = "A " + bosses[bossIndex] + " has been spotted on this island!";
-        maritimeController.GetComponent<MaritimeController>().infoText.text = islandSize + "\n" + islandHeight + "\n" + themeDictionary.themeDictionary[themeID] + "\n" + level;
+        maritimeController.GetComponent<MaritimeController>().descText.text = "A " + bosses[bossIndex] + " has been spotted on this island!\n" + biomeInfos[themeID] + "\n" + bossInfos[bossIndex] ;
+        maritimeController.GetComponent<MaritimeController>().infoText.text = islandSize + "\n" + islandHeight + "\n" + themeDictionary.themeDictionary[themeID] + "\n" + terrains[islandTerrainType] +"\n\n" + level;
   
     }
     void OnMouseDown()
@@ -87,6 +105,7 @@ public class positionText : MonoBehaviour
             maritimeController.GetComponent<MaritimeController>().islandStorage.theme = themeID;
             maritimeController.GetComponent<MaritimeController>().islandStorage.boss = bossIndex;
             maritimeController.GetComponent<MaritimeController>().islandStorage.level = level;
+            maritimeController.GetComponent<MaritimeController>().islandStorage.terraintype = islandTerrainType;
            }
 
 
