@@ -40,10 +40,10 @@ public sealed class ClassSelectionController : MonoBehaviour
         count = bloodlineController.ClassList.Count;
         titleText.SetText(bloodlineController.ClassList[index].name);
         titleText.ForceMeshUpdate();
-        //titleText.SetText("PLEASE WORK");
         Debug.Log(titleText.text);
         Debug.Log(bloodlineController.ClassList[index].name);
         descText.text = bloodlineController.ClassList[index].description;
+
         for (int i = 0; i < count; i++)
         {
             GameObject classIcon = new GameObject();
