@@ -36,7 +36,7 @@ namespace CCC.GameManagement.GameStates
             playerBloodlineController.Save();
             inventory.Save();
             playerEquipment.Save();
-            playerLevelExp.Save();
+            playerLevelExp.DeleteSaveFile();
         }
     }
 }
