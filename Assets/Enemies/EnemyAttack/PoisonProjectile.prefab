@@ -9499,7 +9499,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2889116744576704397}
   serializedVersion: 6
-  lengthInSec: 1
+  lengthInSec: 2.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -14168,6 +14168,7 @@ MonoBehaviour:
   speed: 20
   ttl: 5
   friendly: 0
+  destroyable: 1
   UseFirePointRotation: 0
   hit: {fileID: 1438542530079480, guid: 21710859533a00746ad2bdd323061a2d, type: 3}
   flash: {fileID: 1437680763721510, guid: a311f5de96916bf44bcb1dae61840939, type: 3}

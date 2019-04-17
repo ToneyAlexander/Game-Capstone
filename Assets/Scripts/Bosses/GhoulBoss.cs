@@ -6,11 +6,12 @@ public class GhoulBoss : BaseBoss
 {
     private readonly float AbilityZeroCd = 2f;
     private readonly float AbilityOneCd = 4f;
-    private readonly float SpawnCd = 10f;
+    private float spawnCd;
 
     private TrackingBehave playerTracker;
     private Animator animator;
     public GameObject MeleeAttackPrefab;
+    public GameObject RangedAttackPrefab;
     public GameObject AddPrefab;
     public TimedBuffPrototype poison;
 
@@ -36,6 +37,7 @@ public class GhoulBoss : BaseBoss
         cooldown = AbilityZeroCd;
         nextAttack = 0;
         bonusDmg = 0;
+        spawnCd = 9f;
         inUse = false;
         isDead = false;
     }
@@ -106,7 +108,8 @@ public class GhoulBoss : BaseBoss
         int index = -1;
         for(int i = adds.Length - 1; i >= 0; --i)
         {
-            if (Vector3.Distance(transform.position, adds[i].transform.position) < 50)
+            DummyAddKillable killable = adds[i].GetComponent<DummyAddKillable>();
+            if (killable != null && !killable.IsDead)
             {
                 index = i;
                 break;
@@ -130,7 +133,23 @@ public class GhoulBoss : BaseBoss
         playerTracker.pause = true;
         transform.rotation = new Quaternion();
         transform.position = target.transform.position + new Vector3(0f, 0f, -2f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+        for(int i = 0; i < 5; ++i)
+        {
+            for(int j = 0; j < 5; ++j)
+            {
+                GameObject obj = Instantiate(RangedAttackPrefab, target.transform.position, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+                ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
+                obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+                obj.transform.Translate(Vector3.forward * 0.5f);
+                Damage dmg = new Damage(0f, bonusDmg / 3 + Random.Range(20 * Level, 30 * Level), true, false, true);
+                dmg.buffs.Add(poison.Instance);
+                pbh.dmg = stats.RealDamage(dmg);
+                pbh.ttl = 2.5f;
+                pbh.speed = 16f;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
         transform.localScale = transform.localScale + new Vector3(0.3f, 0.3f, 0.3f);
         stats.HealthCur += 800 * Level;
         if (!isDead)
@@ -177,10 +196,11 @@ public class GhoulBoss : BaseBoss
 
             timeSinceSpawn += Time.deltaTime;
 
-            if(!inUse && !isDead && timeSinceSpawn > SpawnCd)
+            if(!inUse && !isDead && timeSinceSpawn > spawnCd)
             {
                 timeSinceSpawn = 0;
                 cooldown += 3f;
+                spawnCd += 1.5f;
                 nextAttack = 1;
                 SpawnAdd();
             }
