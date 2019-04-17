@@ -14,15 +14,20 @@ namespace CCC.GameManagement.GameStates
         [SerializeField]
         private CrewController crewController;
 
+        [SerializeField]
+        private LevelExpStore playerLevelExp;
+
         public override void Enter()
         {
             Debug.Log("In HubState.Enter");
+            playerLevelExp.Load();
             crewController.recruited = false;
         }
 
         public override void Exit()
         {
             Debug.Log("In HubState.Exit");
+            playerLevelExp.Save();
         }
     }
 }
