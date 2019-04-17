@@ -22,6 +22,9 @@ public sealed class BloodlineController : ScriptableObject
 
     private int age;
 
+    private string folderPath;
+    private string filePath;
+
     [SerializeField]
     public string playerName = "Remy Remmington";
 
@@ -130,13 +133,20 @@ public sealed class BloodlineController : ScriptableObject
         GetOrCreateFamilyName();
     }
 
+    /// <summary>
+    /// Delete the JSON file that this BloodlineController saves to.
+    /// </summary>
+    public void DeleteSaveFile()
+    {
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+        }
+    }
+
     public void Load()
     {
         Reset();
-
-        var folderPath = 
-            Path.Combine(Application.persistentDataPath, folderName);
-        var filePath = Path.Combine(folderPath, filename);
 
         if (File.Exists(filePath))
         {
@@ -153,14 +163,10 @@ public sealed class BloodlineController : ScriptableObject
     {
         var data = BloodlineData.ForAge(age);
         var jsonString = JsonUtility.ToJson(data, true);
-        Debug.Log(jsonString);
-        var directoryPath = 
-            Path.Combine(Application.persistentDataPath, folderName);
-        var filePath = Path.Combine(directoryPath, filename);
 
-        if (!Directory.Exists(directoryPath))
+        if (!Directory.Exists(folderPath))
         {
-            Directory.CreateDirectory(directoryPath);
+            Directory.CreateDirectory(folderPath);
         }
 
         using (var streamWriter = File.CreateText(filePath))
@@ -173,6 +179,9 @@ public sealed class BloodlineController : ScriptableObject
 
     private void Reset()
     {
+        folderPath =
+            Path.Combine(Application.persistentDataPath, folderName);
+        filePath = Path.Combine(folderPath, filename);
         age = 0;
     }
 }

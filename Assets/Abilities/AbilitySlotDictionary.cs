@@ -67,6 +67,17 @@ namespace CCC.Abilities
             Debug.Log(abilities);
         }
 
+        /// <summary>
+        /// Delete the JSON file that this AbilitySlotDictionary saves to.
+        /// </summary>
+        public void DeleteSaveFile()
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+
         public void Save()
         {
             foreach (var ability in abilities)

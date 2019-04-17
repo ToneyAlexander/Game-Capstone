@@ -1,4 +1,6 @@
-﻿using CCC.Items;
+﻿using CCC.Abilities;
+using CCC.Combat.Perks;
+using CCC.Items;
 using UnityEngine;
 
 namespace CCC.GameManagement.GameStates
@@ -10,6 +12,12 @@ namespace CCC.GameManagement.GameStates
     public sealed class DeathScreenGameState : GameState
     {
         [SerializeField]
+        private AbilitySlotDictionary playerAbilityDictionary;
+
+        [SerializeField]
+        private AbilitySet playerAbilitySet;
+
+        [SerializeField]
         private BloodlineController playerBloodlineController;
 
         [SerializeField]
@@ -20,6 +28,9 @@ namespace CCC.GameManagement.GameStates
 
         [SerializeField]
         private LevelExpStore playerLevelExp;
+
+        [SerializeField]
+        private PerkList playerTakenPerks;
 
         public override void Enter()
         {
@@ -33,10 +44,14 @@ namespace CCC.GameManagement.GameStates
         public override void Exit()
         {
             Debug.Log("In DeathScreenState.Exit");
-            playerBloodlineController.Save();
             inventory.Save();
             playerEquipment.Save();
-            playerLevelExp.Save();
+
+            playerBloodlineController.DeleteSaveFile();
+            playerAbilitySet.DeleteSaveFile();
+            playerTakenPerks.DeleteSaveFile();
+            playerAbilityDictionary.DeleteSaveFile();
+            playerLevelExp.DeleteSaveFile();
         }
     }
 }
