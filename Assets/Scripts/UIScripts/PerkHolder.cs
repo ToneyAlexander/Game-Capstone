@@ -15,7 +15,8 @@ public class PerkHolder : MonoBehaviour
         taken = false;
         available = false;
         blocked = false;
-}
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -29,12 +30,13 @@ public class PerkHolder : MonoBehaviour
             available = true;
         }
     }
-    void recheck()
+    public void recheck()
     {
        if (!taken && !blocked)
         {
-            if (playerClass.takenPerks.Contains(perkInfo))
+            if (playerClass.TakenPerks.Contains(perkInfo))
             {
+                Debug.Log("working");
                 taken = true;
             }
             
@@ -72,7 +74,7 @@ public class PerkHolder : MonoBehaviour
             bool req = true;
             foreach (PerkPrototype p in perkInfo.Require)
             {
-                if (!(p == other || playerClass.takenPerks.Contains(p)))
+                if (!(p == other || playerClass.TakenPerks.Contains(p)))
                 {
                     req = false;
                 }
@@ -107,7 +109,7 @@ public class PerkHolder : MonoBehaviour
             bool req = true;
             foreach (PerkPrototype p in perkInfo.Require)
             {
-                if (!(p == other || playerClass.takenPerks.Contains(p)))
+                if (!(p == other || playerClass.TakenPerks.Contains(p)))
                 {
                     req = false;
                 }

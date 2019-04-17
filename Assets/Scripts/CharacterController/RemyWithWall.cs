@@ -16,5 +16,9 @@ public class RemyWithWall : MonoBehaviour
             RemyMovement.destination = transform.position;
 
         }
+        else if (collision.gameObject.CompareTag("Prop"))
+        {
+            RemyMovement.destination = transform.position;
+        }
     }
 }

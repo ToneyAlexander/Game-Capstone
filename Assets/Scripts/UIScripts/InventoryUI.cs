@@ -14,19 +14,25 @@ public class InventoryUI : MonoBehaviour
     [SerializeField]
     public EquipmentDictionary euser;
 
+    public int strLength = 30;
+
     GameObject stored;
     Button[] storedButtons;
     GameObject equipment;
     Button[] equipmentButtons;
 
+    [SerializeField]
+    private Color baseColor;
+
     Image image;
     Text descriptionText;
+    Text longNameText;
     GameObject statsBlock;
-    Vector3 visibleLoc = new Vector3(-275, 0, 0);
-    Vector3 hiddenLoc = new Vector3(-110, 0, 0);
+    Vector3 visibleLoc = new Vector3(-1133, 0, 0);
+    Vector3 hiddenLoc = new Vector3(-783, 0, 0);
     bool statsShown = false;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -40,17 +46,21 @@ public class InventoryUI : MonoBehaviour
                 equipment = gameObject.transform.GetChild(i).gameObject;
                 equipmentButtons = equipment.GetComponentsInChildren<Button>();
             }
-            else if (transform.GetChild(i).name.Equals("SpriteImage"))
-            {
-                image = gameObject.transform.GetChild(i).gameObject.GetComponent<Image>();
-            }
-            else if (transform.GetChild(i).name.Equals("DescText"))
-            {
-                descriptionText = gameObject.transform.GetChild(i).gameObject.GetComponent<Text>();
-            }
             else if (transform.GetChild(i).name.Equals("StatsBlock"))
             {
                 statsBlock = gameObject.transform.GetChild(i).gameObject;
+                for (int j = 0; j < statsBlock.transform.childCount; j++)
+                {
+                    if (statsBlock.transform.GetChild(j).name.Equals("DescText")){
+                        descriptionText = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+                    }
+                    else if (statsBlock.transform.GetChild(j).name.Equals("SpriteImage")){
+                        image = statsBlock.transform.GetChild(j).gameObject.GetComponent<Image>();
+                    }else if(statsBlock.transform.GetChild(j).name.Equals("LongName"))
+                    {
+                        longNameText = statsBlock.transform.GetChild(j).gameObject.GetComponent<Text>();
+                    }
+                }
             }
         }
         for (int i = 0; i < 6; i++)
@@ -79,7 +89,7 @@ public class InventoryUI : MonoBehaviour
             EventTrigger ev = storedButtons[i].GetComponent<EventTrigger>();
             EventTrigger.Entry entry = new EventTrigger.Entry();
             entry.eventID = EventTriggerType.PointerClick;
-            entry.callback.AddListener((eventData) => { OnClickInventory(eventData); });
+            entry.callback.AddListener((eventData) => { OnClickInventory((PointerEventData)eventData); });
             ev.triggers.Add(entry);
 
             EventTrigger.Entry entry2 = new EventTrigger.Entry();
@@ -102,103 +112,172 @@ public class InventoryUI : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         for (int i = 0; i < storedButtons.Length; i++)
         {
             InventoryButton inventoryButtonScript = storedButtons[i].GetComponent<InventoryButton>();
+            Image buttonImage = storedButtons[i].transform.GetChild(1).GetComponent<Image>();
 
             if (user.Items.Count > i)
             {
                 Item go = user.Items[i];
-                Text textfield = storedButtons[i].GetComponentInChildren<Text>();
-                textfield.text = go.Name;
-                textfield.color = Color.black;
+                string name = go.Name;
+                if (name.Length > strLength)
+                {
+                    name = name.Substring(0, strLength) + "...";
+                }
                 inventoryButtonScript.item = go;
+                //Debug.Log("[InventoryUI.Update] user = " + user);
+                //Debug.Log("[InventoryUI.Update] user.LoadedAssetBundle = " + user.LoadedAssetBundle);
+                //Debug.Log("[InventoryUI.Update] inventoryButtonScript = " + inventoryButtonScript);
+                //Debug.Log("[InventoryUI.Update] inventoryButtonScript.item = " + inventoryButtonScript.item);
+                var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(inventoryButtonScript.item.SpriteName);
+                buttonImage.sprite = sprite;
+                buttonImage.color = new Color(1, 1, 1, 1);
 
 
             }
             else
             {
                 Text textfield = storedButtons[i].GetComponentInChildren<Text>();
-                textfield.text = "--";
+                textfield.text = "";
                 textfield.color = Color.black;
                 inventoryButtonScript.item = Item.Null;
             }
         }
         for (int i = 0; i < 6; i++)
         {
-                EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
-                Item go = euser.Equipment[slots[i]];
-                Text textfield = equipmentButtons[i].GetComponentInChildren<Text>();
-                EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
+            EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
+            Item go = euser.Equipment[slots[i]];
+            EquipmentButton equipmentButtonScript = equipmentButtons[i].GetComponent<EquipmentButton>();
+            Image equipmentButtonImage = equipmentButtons[i].transform.GetChild(0).GetComponent<Image>();
+
+            if(go.EquipmentSlot != EquipmentSlot.Null)
+            {
                 equipmentButtonScript.item = go;
-                textfield.text = go.Name;
-                textfield.color = Color.black;
-                
+                string name = go.Name;
+                if (name.Length > strLength)
+                {
+                    name = name.Substring(0, strLength) + "...";
+                }
+                var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(equipmentButtonScript.item.SpriteName);
+                equipmentButtonImage.sprite = sprite;
+                equipmentButtonImage.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                equipmentButtonImage.sprite = null;
+                equipmentButtonImage.color = baseColor;
+            }
+
         }
         if (statsShown)
         {
-            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 350 * Time.deltaTime);
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, visibleLoc, 900 * Time.deltaTime);
 
         }
         else
         {
-            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 350 * Time.deltaTime);
+            statsBlock.transform.localPosition = Vector3.MoveTowards(statsBlock.transform.localPosition, hiddenLoc, 900 * Time.deltaTime);
         }
 
     }
 
     void OnClickEquipment(BaseEventData data)
     {
+		
         EquipmentSlot[] slots = { EquipmentSlot.Ring, EquipmentSlot.Amulet, EquipmentSlot.Offhand, EquipmentSlot.Weapon, EquipmentSlot.Body, EquipmentSlot.Head };
-        Debug.Log(data.selectedObject.GetComponent<EquipmentButton>().item.Name);
-        euser.DisequipItem(data.selectedObject.GetComponent<EquipmentButton>().item);
+		EquipmentButton equipBut = data.selectedObject.GetComponent<EquipmentButton>();
+		if (equipBut != null && equipBut.item != null)
+		{
+			Debug.Log(equipBut.item.Name);
+			euser.DisequipItem(equipBut.item);
+		}
         
     } 
     void OnMouseOverEquipment(PointerEventData data)
     {
-       Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
-       descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText;
-       image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
-        statsShown = true;
-        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
-        Text tooltext = statsBlock.GetComponentInChildren<Text>();
-        tooltext.text = "";
-        foreach (Stat stat in item.Stats)
+		//Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.FlavorText);
+		EquipmentButton equipBut = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>();
+		if (equipBut != null && equipBut.item != null)
+		{
+			descriptionText.text = equipBut.item.FlavorText;
+			longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.LongName;
+            //image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.Sprite;
+            var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item.SpriteName);
+            image.sprite = sprite;
+            image.color = new Color(1, 1, 1, 1);
+			statsShown = true;
+			Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<EquipmentButton>().item;
+			Text tooltext = statsBlock.GetComponentInChildren<Text>();
+			tooltext.text = "";
+			foreach (Stat stat in item.Stats)
+			{
+				int value = (int)stat.Value;
+				tooltext.text += stat.Name + ": " + value + "\n";
+
+			}
+		}
+    }
+    void OnClickInventory(PointerEventData data)
+    {
+        //.GetComponent<Image>();
+
+        if (data.button == PointerEventData.InputButton.Left)
         {
-            tooltext.text += stat.Name + ": " + stat.Value + "\n";
+            euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        }
+        else if (data.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("AAAAAAA");
+            
+            Debug.Log("Spicy: " + user.Items[0].Name);
+            Debug.Log("Butts: " + data.selectedObject.GetComponent<InventoryButton>().item);
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
+            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
+            user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
+            euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
 
         }
-    }
-    void OnClickInventory(BaseEventData data)
-    {
-        euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+        Debug.Log(user.CurrentCapacity);
+
     }
     void OnMouseOverInventory(PointerEventData data)
     {
-        Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText);
-        descriptionText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText;
-        image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
-        statsShown = true;
-        Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
-        Text tooltext = statsBlock.GetComponentInChildren<Text>();
-        tooltext.text = "";
-        foreach (Stat stat in item.Stats)
+        //Debug.Log(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.FlavorText);
+        InventoryButton but = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>();
+        if (but.item.EquipmentSlot != EquipmentSlot.Null)
         {
-            tooltext.text += stat.Name + ": " + stat.Value + "\n";
 
+            descriptionText.text = but.item.FlavorText;
+            longNameText.text = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.LongName;
+            //image.sprite = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.Sprite;
+            var sprite = user.LoadedAssetBundle.LoadAsset<Sprite>(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item.SpriteName);
+            image.sprite = sprite;
+            image.color = new Color(1, 1, 1, 1);
+            statsShown = true;
+            Item item = data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item;
+            Text tooltext = statsBlock.GetComponentInChildren<Text>();
+            tooltext.text = "";
+            foreach (Stat stat in item.Stats)
+            {
+                string value = Stat.GetStatString(stat);
+                tooltext.text += stat.Name + ": " + value + "\n";
+
+            }
         }
     }
     void OnMouseExitEquipment(PointerEventData data)
     {
         statsShown = false;
+        image.color = baseColor;
 
     }
     void OnMouseExitInventory(PointerEventData data)
     {
         statsShown = false;
+        image.color = baseColor;
     }
 
 }

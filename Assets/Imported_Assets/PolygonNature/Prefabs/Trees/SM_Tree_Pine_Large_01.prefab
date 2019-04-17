@@ -88,6 +88,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4320883887219790}
   - component: {fileID: 205816532301938180}
+  - component: {fileID: 2511984932573149869}
+  - component: {fileID: 8522285572225381242}
+  - component: {fileID: 5758357313514659450}
   m_Layer: 0
   m_Name: SM_Tree_Pine_Large_01
   m_TagString: Untagged
@@ -104,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 1858709007138160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 4433853144909754}
   - {fileID: 4330190805953166}
@@ -134,6 +137,49 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23137049528668130}
   m_Enabled: 1
+--- !u!136 &2511984932573149869
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858709007138160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 5
+  m_Direction: 1
+  m_Center: {x: 0, y: 5, z: 0}
+--- !u!65 &8522285572225381242
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858709007138160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 6, z: 0.3}
+  m_Center: {x: 0, y: 3, z: 0}
+--- !u!208 &5758357313514659450
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858709007138160}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 3.75, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 3.5, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1891816287853304
 GameObject:
   m_ObjectHideFlags: 0

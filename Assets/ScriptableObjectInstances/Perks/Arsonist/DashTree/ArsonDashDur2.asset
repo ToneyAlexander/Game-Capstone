@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonDashDur2
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 1b26ba329be2ea848958705b375af886, type: 2}
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Dash Duration 2
+  Desc: Increases dash duration.
+  grants: []
+  Changes:
+  - Value: 0.6
+    abilityName: Dash
+    statName: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+  uiCoords: {x: 200, y: 500}
+  sprite: {fileID: 21300000, guid: a5df65622af48bf4999bf38f5083bb17, type: 3}

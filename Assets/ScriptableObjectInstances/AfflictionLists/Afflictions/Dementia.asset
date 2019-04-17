@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16cf87123be57ce4c9949033947761bb, type: 3}
+  m_Name: Dementia
+  m_EditorClassIdentifier: 
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: c488d8d74d03ad942ac0f6d29924e7c7, type: 2}
+    value: -0.2
+  - statIdentifier: {fileID: 11400000, guid: 44d642503b03642958c4880db7ed0eac, type: 2}
+    value: -0.2
+  afflictionName: Dementia
+  icon: {fileID: 21300000, guid: 14a91c94d97953742964d83e1987e314, type: 3}

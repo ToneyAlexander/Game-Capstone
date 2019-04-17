@@ -45,7 +45,7 @@ public class ProjectileMover : MonoBehaviour
             StatBlock enemy = col.gameObject.GetComponent<StatBlock>();
             if (enemy != null)
             {
-                enemy.TakeDamage(dmg);
+                enemy.TakeDamage(dmg, col.gameObject);
             }
         }
         

@@ -5,7 +5,7 @@ using CCC.Stats;
 
 namespace CCC.Abilities
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Abilities/AbilityPrototype")]
     public sealed class AbilityPrototype : ScriptableObject
     {
 
@@ -39,7 +39,25 @@ namespace CCC.Abilities
             get { return stats; }
         }
 
-        public Ability Instance { get { return new Ability(this); }}
+        public bool IsAttack
+        {
+            get { return isAttack; }
+        }
+
+        public Ability Instance
+        {
+            get
+            {
+                var ability = Ability.Null;
+
+                if (abilityName != Ability.Null.AbilityName)
+                {
+                    ability = Ability.FromPrototype(this);
+                }
+
+                return ability;
+            }
+        }
 
         /// <summary>
         /// The name of this Ability.
@@ -61,6 +79,10 @@ namespace CCC.Abilities
         /// </summary>
         [SerializeField]
         private GameObject prefab;
+
+
+        [SerializeField]
+        private bool isAttack;
 
         [SerializeField]
         private List<AbilityStatSlotEntry> statSlots;

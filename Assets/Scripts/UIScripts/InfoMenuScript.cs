@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -10,9 +8,64 @@ public class InfoMenuScript : MonoBehaviour
     GameObject inventory;
     GameObject stats;
     GameObject classinfo;
-    // Start is called before the first frame update
+    GameObject abilities;
 
-    void Start()
+    private Image InventoryTab;
+    private Image StatsTab;
+    private Image ClassTab;
+    private Image AbilityTab;
+
+    [SerializeField]
+    private Color hoverColor;
+
+    [SerializeField]
+    private Color baseColor;
+
+
+    #region Toggle Tab Methods
+    /// <summary>
+    /// Toggles the class info tab on and off.
+    /// </summary>
+    public void ToggleClassInfoTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(false);
+        abilities.SetActive(false);
+
+        classinfo.SetActive(!tabs.activeSelf);
+        tabs.SetActive(!tabs.activeSelf);
+        ClassUI classui = classinfo.GetComponent<ClassUI>();
+        classui.updatePlayerClass();
+        classui.reloadGraph();
+    }
+
+    /// <summary>
+    /// Toggles the inventory tab on and off.
+    /// </summary>
+    public void ToggleInventoryTab()
+    {
+        inventory.SetActive(!tabs.activeSelf);
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        abilities.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
+
+    /// <summary>
+    /// Toggles the stats tab on and off.
+    /// </summary>
+    public void ToggleStatsTab()
+    {
+        inventory.SetActive(false);
+        stats.SetActive(!tabs.activeSelf);
+        classinfo.SetActive(false);
+        abilities.SetActive(false);
+        tabs.SetActive(!tabs.activeSelf);
+    }
+    #endregion
+
+    #region MonoBehaviour Messages
+    private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -28,9 +81,32 @@ public class InfoMenuScript : MonoBehaviour
             {
                classinfo = gameObject.transform.GetChild(i).gameObject;
             }
+            else if (transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                abilities = gameObject.transform.GetChild(i).gameObject;
+            }
             else if (transform.GetChild(i).name.Equals("Tabs"))
             {
                 tabs = gameObject.transform.GetChild(i).gameObject;
+                for(int j = 0; j < tabs.transform.childCount; j++)
+                {
+                    if (tabs.transform.GetChild(j).name.Equals("StatsSheet"))
+                    {
+                        StatsTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("ClassSheet"))
+                    {
+                        ClassTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("Inventory"))
+                    {
+                        InventoryTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                    else if (tabs.transform.GetChild(j).name.Equals("AbilitySheet"))
+                    {
+                        AbilityTab = tabs.transform.GetChild(j).GetComponent<Image>();
+                    }
+                }
                 
             }
         }
@@ -41,55 +117,89 @@ public class InfoMenuScript : MonoBehaviour
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickInventory(); });
+                hover.callback.AddListener((eventData) => { OnHover(InventoryTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(InventoryTab); });
                 ev.triggers.Add(entry);
-                
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
             }
             if (tabs.transform.GetChild(i).name.Equals("StatsSheet"))
             {
               //  Debug.Log("tesrad");
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickStats(); });
+                hover.callback.AddListener((eventData) => { OnHover(StatsTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(StatsTab); });
                 ev.triggers.Add(entry);
-               
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
+
             }
             if (tabs.transform.GetChild(i).name.Equals("ClassSheet"))
             {
                 EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
                 EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
                 entry.eventID = EventTriggerType.PointerClick;
                 entry.callback.AddListener((eventData) => { OnClickClass(); });
+                hover.callback.AddListener((eventData) => { OnHover(ClassTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(ClassTab); });
                 ev.triggers.Add(entry);
-                
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
             }
-           
+            if (tabs.transform.GetChild(i).name.Equals("AbilitySheet"))
+            {
+                EventTrigger ev = tabs.transform.GetChild(i).gameObject.GetComponent<EventTrigger>();
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                EventTrigger.Entry hover = new EventTrigger.Entry();
+                EventTrigger.Entry leave = new EventTrigger.Entry();
+                hover.eventID = EventTriggerType.PointerEnter;
+                leave.eventID = EventTriggerType.PointerExit;
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((eventData) => { OnClickAbility(); });
+                hover.callback.AddListener((eventData) => { OnHover(AbilityTab); });
+                leave.callback.AddListener((eventData) => { OnLeave(AbilityTab); });
+                ev.triggers.Add(entry);
+                ev.triggers.Add(hover);
+                ev.triggers.Add(leave);
+
+            }
+
         }
         tabs.SetActive(false);
         stats.SetActive(false);
         inventory.SetActive(false);
         classinfo.SetActive(false);
+        abilities.SetActive(false);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            
-            inventory.SetActive(!tabs.activeSelf);
-            stats.SetActive(false);
-            classinfo.SetActive(false);
-            tabs.SetActive(!tabs.activeSelf);
-        }
-    }
+    #endregion
+
     void OnClickInventory()
     {
         Debug.Log("showing Inventory");
         stats.SetActive(false);
         classinfo.SetActive(false);
         inventory.SetActive(true);
+        abilities.SetActive(false);
     }
     void OnClickClass()
     {
@@ -97,6 +207,7 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(false);
         classinfo.SetActive(true);
         inventory.SetActive(false);
+        abilities.SetActive(false);
         ClassUI classui =  classinfo.GetComponent<ClassUI>();
         classui.updatePlayerClass();
         classui.reloadGraph();
@@ -109,5 +220,24 @@ public class InfoMenuScript : MonoBehaviour
         stats.SetActive(true);
         classinfo.SetActive(false);
         inventory.SetActive(false);
+        abilities.SetActive(false);
+    }
+    void OnClickAbility()
+    {
+        Debug.Log("showing Inventory");
+        stats.SetActive(false);
+        classinfo.SetActive(false);
+        inventory.SetActive(false);
+        abilities.SetActive(true);
+    }
+
+    void OnHover(Image img)
+    {
+        img.color = hoverColor;
+    }
+
+    void OnLeave(Image img)
+    {
+        img.color = baseColor;
     }
 }

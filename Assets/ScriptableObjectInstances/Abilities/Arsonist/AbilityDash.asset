@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
+  m_Name: AbilityDash
+  m_EditorClassIdentifier: 
+  abilityName: Dash
+  abilityType: 2
+  typeString: DashAbility
+  icon: {fileID: 21300000, guid: e6240549370b41e4890a03a7ebed7ca6, type: 3}
+  prefab: {fileID: 0}
+  isAttack: 0
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 4.5
+  - statIdentifier: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+    value: 0
+  - statIdentifier: {fileID: 11400000, guid: 6de6c03f2de7ef4498562688b3b5a92b, type: 2}
+    value: 0

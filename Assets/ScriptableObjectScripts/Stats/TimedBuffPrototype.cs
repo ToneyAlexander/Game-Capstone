@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using CCC.Stats;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Buffs/TimedBuffPrototype")]
 public class TimedBuffPrototype : ScriptableObject
 {
+    public Sprite Icon
+    {
+        get { return icon; }
+    }
+
     public string BuffName
     {
         get { return buffName; }
@@ -38,6 +43,8 @@ public class TimedBuffPrototype : ScriptableObject
     private float duration;
     [SerializeField]
     private bool isUnique;
+    [SerializeField]
+    private Sprite icon;
     private List<Stat> stats;
 
     private void OnEnable()

@@ -87,6 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4210439320850706}
   - component: {fileID: 205034402677776096}
+  - component: {fileID: 8917344272188100947}
   m_Layer: 0
   m_Name: SM_Tree_Birch_Dead_01
   m_TagString: Untagged
@@ -103,7 +104,7 @@ Transform:
   m_GameObject: {fileID: 1832163050889860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 4132193444902282}
   - {fileID: 4466910275372214}
@@ -133,6 +134,22 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23459189188711506}
   m_Enabled: 1
+--- !u!208 &8917344272188100947
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832163050889860}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.2, y: 2.25, z: 0.2}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 2.3, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1880860532132952
 GameObject:
   m_ObjectHideFlags: 0

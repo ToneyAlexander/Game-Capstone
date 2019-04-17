@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434f2bbfade9742d8846c8a6b02f0336, type: 3}
+  m_Name: WhirlwindSlash
+  m_EditorClassIdentifier: 
+  abilityName: Whirlwind Slash
+  abilityType: 1
+  typeString: WhirlwindSlash
+  icon: {fileID: 21300000, guid: 50d66d1094815954fa49fb830fb2d2a2, type: 3}
+  prefab: {fileID: 2832531226357082016, guid: 8cabe7fecdfd4cc4fa8ab348d3d7260f, type: 3}
+  isAttack: 1
+  statSlots:
+  - statIdentifier: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+    value: 2
+  - statIdentifier: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+    value: 4
+  - statIdentifier: {fileID: 11400000, guid: afbd8b75e2906ff47afccaf26f6d5875, type: 2}
+    value: 10
+  - statIdentifier: {fileID: 11400000, guid: 3c9effc3661081340b193ea123758eb1, type: 2}
+    value: 1800
+  - statIdentifier: {fileID: 11400000, guid: 0d0faa8f581ee7447b05d9f20fcf3372, type: 2}
+    value: 0.7
+  - statIdentifier: {fileID: 11400000, guid: 146f1a1a8594d5145ba5de0a1fe6765f, type: 2}
+    value: 0.1
+  - statIdentifier: {fileID: 11400000, guid: 6a180265df9f0fc43838b21798736f66, type: 2}
+    value: 1

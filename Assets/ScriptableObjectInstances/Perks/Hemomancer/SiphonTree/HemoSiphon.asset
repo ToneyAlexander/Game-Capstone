@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: HemoSiphon
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: aeaae52eb1a44b746a8b5d2927e45704, type: 2}
+  - {fileID: 11400000, guid: 07212aaf18d7ca9439cc60b9ef7e6ae5, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Soul Siphon
+  Desc: Costs 5% of your max hp to deal 20% of that value as magic damage to all enemies
+    around you.
+  grants:
+  - {fileID: 11400000, guid: fdaa8085c743aaa45b200bfe8b729cc8, type: 2}
+  Changes: []
+  uiCoords: {x: 50, y: 400}
+  sprite: {fileID: 21300000, guid: 14a91c94d97953742964d83e1987e314, type: 3}

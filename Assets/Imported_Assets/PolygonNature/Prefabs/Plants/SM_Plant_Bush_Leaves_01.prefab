@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 33524924415564492}
   - component: {fileID: 23012245396262936}
   - component: {fileID: 205996693802748982}
+  - component: {fileID: 3390835918389995317}
   m_Layer: 0
   m_Name: SM_Plant_Bush_Leaves_01
   m_TagString: Untagged
@@ -105,7 +106,7 @@ Transform:
   m_GameObject: {fileID: 1937847600842644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4594778536735630}
   m_Father: {fileID: 0}
@@ -179,3 +180,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23502563833339186}
   m_Enabled: 1
+--- !u!208 &3390835918389995317
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937847600842644}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.574, y: 0.58400005, z: 0.574}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.10700001, y: 0.51000005, z: -0.012}
+  m_TimeToStationary: 0.5

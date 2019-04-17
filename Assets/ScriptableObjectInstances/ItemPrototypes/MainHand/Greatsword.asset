@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Greatsword
+  m_EditorClassIdentifier: 
+  itemName: Greatsword
+  sprite: {fileID: 21300000, guid: 91ead2a1affa26f4ba9e8f2c39330584, type: 3}
+  worldDropPrefab: {fileID: 3313536914568022366, guid: 7b8c14ea3118b1a468bda5aa7fffc61a,
+    type: 3}
+  equipmentSlot: 3
+  flavorText: No clue how you are holding this with one hand...
+  internalDescription: asdas
+  baseItemTier: 3
+  maxNumberAffixes: 2
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 4128bf8e336d9bc408dc01c44520586c, type: 2}
+    minValue: 10
+    maxValue: 20
+  - statIdentifier: {fileID: 11400000, guid: 1e4f666d125b24538b6ea01a50a1a565, type: 2}
+    minValue: 0.07
+    maxValue: 0.12

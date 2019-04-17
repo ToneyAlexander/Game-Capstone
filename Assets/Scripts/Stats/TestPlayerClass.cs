@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(PlayerClass))]
 public class TestPlayerClass : MonoBehaviour
@@ -8,34 +6,24 @@ public class TestPlayerClass : MonoBehaviour
     PlayerClass pClass;
     int index;
     public ClassPrototype ClassL;
-    List<PerkPrototype> perks;
+    public BloodlineController BControl;
+    public bool useClassSelection = true;
 
-    // Start is called before the first frame update
-    void Start()
+    #region MonoBehaviour Messages
+    private void Start()
     {
         pClass = GetComponent<PlayerClass>();
-        perks = ClassL.Perks;
-
-        pClass.allPerks = perks;
-        //List<Perk> testPerkSet = new List<Perk>
-        //{
-        //    new Perk(),
-        //    new Perk()
-        //};
-        //Perk p = new Perk();
-        //List<Perk> up = new List<Perk>
-        //{
-        //    p
-        //};
-        //testPerkSet.Add(new Perk(up));
-
-        //pClass.allPerks = testPerkSet;
-        index = 0;
-        Debug.Log("Init: " + index + ", " + pClass.allPerks.Count);
+        if (useClassSelection)
+        {
+            Debug.Log(BControl.currentClass);
+            ClassL = BControl.currentClass;
+        }
+        pClass.allPerks = ClassL.Perks;
+        pClass.onLevelUp = ClassL.OnLevel;
+        pClass.TakeDefaults(ClassL.Defaults);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))
         {
@@ -53,7 +41,21 @@ public class TestPlayerClass : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            Debug.Log("Pressed Page UP, applying 300 exp");
+            pClass.ApplyExp(300);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            Debug.Log("Pressed Page DOWN, Increasing Age");
+            pClass.IncreaseAge();
+        }
     }
+    #endregion
+
     public PlayerClass GetClass()
     {
         return pClass;

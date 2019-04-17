@@ -1,134 +1,67 @@
 Name,ID,X,Y,Z,Rotation,Top,Right,Bottom,Left,Prefab0
 Water,0,0,0,0,0,0,0,0,0,TriangularTiles/None
-Cliff Fourth Top Left,1,0,0,0,90,1,0,0,1,SquareTiles/Fourth
-Cliff Fourth Top Right,2,0,0,0,180,1,1,0,0,SquareTiles/Fourth
-Cliff Fourth Bottom Right,3,0,0,0,270,0,1,1,0,SquareTiles/Fourth
-Cliff Fourth Bottom Left,4,0,0,0,0,0,0,1,1,SquareTiles/Fourth
-Cliff Half Left,5,0,0,0,0,1,0,1,0,SquareTiles/Half
-Cliff Half Top,6,0,0,0,90,0,1,0,1,SquareTiles/Half
-Cliff Half Right,7,0,0,0,180,1,0,1,0,SquareTiles/Half
-Cliff Half Bottom,8,0,0,0,270,0,1,0,1,SquareTiles/Half
-Cliff Eighth Top Left,9,0,0,0,90,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Top Right,10,0,0,0,180,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Right,1,0,0,0,270,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Left,12,0,0,0,0,1,1,1,1,SquareTiles/ThreeFourth
-Ramp Fourth Top Left,13,0,0,0,90,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Top Right,14,0,0,0,180,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Right,15,0,0,0,270,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Left,16,0,0,0,0,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Half Left,17,0,0,0,0,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Top,18,0,0,0,90,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Right,19,0,0,0,180,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Bottom,20,0,0,0,270,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Eighth Top Left,21,0,0,0,90,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Top Right,22,0,0,0,180,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Right,23,0,0,0,270,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Left,24,0,0,0,0,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Transition Land Left Cliff Top,25,0,0,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Top Cliff Right,26,0,0,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Right Cliff Bottom,27,0,0,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Bottom Cliff Left,28,0,0,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Left Cliff Bottom,29,0,0,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Top Cliff Left,30,0,0,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Right Cliff Top,31,0,0,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Bottom Cliff Right,32,0,0,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece
+Cliff Fourth Top Left,1,0,0,0,90,1,0,0,1,SquareTiles/Beach_Fourth
+Cliff Fourth Top Right,2,0,0,0,180,1,1,0,0,SquareTiles/Beach_Fourth
+Cliff Fourth Bottom Right,3,0,0,0,270,0,1,1,0,SquareTiles/Beach_Fourth
+Cliff Fourth Bottom Left,4,0,0,0,0,0,0,1,1,SquareTiles/Beach_Fourth
+Cliff Half Left,5,0,0,0,0,1,0,1,1,SquareTiles/Beach_Half
+Cliff Half Top,6,0,0,0,90,1,1,0,1,SquareTiles/Beach_Half
+Cliff Half Right,7,0,0,0,180,1,1,1,0,SquareTiles/Beach_Half
+Cliff Half Bottom,8,0,0,0,270,0,1,1,1,SquareTiles/Beach_Half
+Cliff Eighth Top Left,9,0,0,0,90,0,0,0,0,SquareTiles/Beach_ThreeFourth
+Cliff Eighth Top Right,10,0,0,0,180,0,0,0,0,SquareTiles/Beach_ThreeFourth
+Cliff Eighth Bottom Right,11,0,0,0,270,0,0,0,0,SquareTiles/Beach_ThreeFourth
+Cliff Eighth Bottom Left,12,0,0,0,0,0,0,0,0,SquareTiles/Beach_ThreeFourth
+Ramp Fourth Top Left,13,0,0,0,90,1,0,0,1,SquareTiles/Beach_CornerRamp
+Ramp Fourth Top Right,14,0,0,0,180,1,1,0,0,SquareTiles/Beach_CornerRamp
+Ramp Fourth Bottom Right,15,0,0,0,270,0,1,1,0,SquareTiles/Beach_CornerRamp
+Ramp Fourth Bottom Left,16,0,0,0,0,0,0,1,1,SquareTiles/Beach_CornerRamp
+Ramp Half Left,17,0,0,0,0,1,0,1,1,SquareTiles/Beach_HalfRamp
+Ramp Half Top,18,0,0,0,90,1,1,0,1,SquareTiles/Beach_HalfRamp
+Ramp Half Right,19,0,0,0,180,1,1,1,0,SquareTiles/Beach_HalfRamp
+Ramp Half Bottom,20,0,0,0,270,0,1,1,1,SquareTiles/Beach_HalfRamp
+Ramp Eighth Top Left,21,0,0,0,90,1,0,0,1,SquareTiles/Beach_ThreeFourthRamp
+Ramp Eighth Top Right,22,0,0,0,180,1,1,0,0,SquareTiles/Beach_ThreeFourthRamp
+Ramp Eighth Bottom Right,23,0,0,0,270,0,1,1,0,SquareTiles/Beach_ThreeFourthRamp
+Ramp Eighth Bottom Left,24,0,0,0,0,0,0,1,1,SquareTiles/Beach_ThreeFourthRamp
+Transition Land Left Cliff Top,25,0,0,0,0,1,0,1,1,SquareTiles/Beach_TransitionPiece2
+Transition Land Top Cliff Right,26,0,0,0,90,1,1,0,1,SquareTiles/Beach_TransitionPiece2
+Transition Land Right Cliff Bottom,27,0,0,0,180,1,1,1,0,SquareTiles/Beach_TransitionPiece2
+Transition Land Bottom Cliff Left,28,0,0,0,270,0,1,1,1,SquareTiles/Beach_TransitionPiece2
+Transition Land Left Cliff Bottom,29,0,0,0,0,1,0,1,1,SquareTiles/Beach_TransitionPiece
+Transition Land Top Cliff Left,30,0,0,0,90,1,1,0,1,SquareTiles/Beach_TransitionPiece
+Transition Land Right Cliff Top,31,0,0,0,180,1,1,1,0,SquareTiles/Beach_TransitionPiece
+Transition Land Bottom Cliff Right,32,0,0,0,270,0,1,1,1,SquareTiles/Beach_TransitionPiece
 HighNone,33,0,4,0,0,1,1,1,1,SquareTiles/Flat
 Cliff Fourth Top Left,34,0,4,0,90,1,0,0,1,SquareTiles/Fourth
 Cliff Fourth Top Right,35,0,4,0,180,1,1,0,0,SquareTiles/Fourth
 Cliff Fourth Bottom Right,36,0,4,0,270,0,1,1,0,SquareTiles/Fourth
 Cliff Fourth Bottom Left,37,0,4,0,0,0,0,1,1,SquareTiles/Fourth
-Cliff Half Left,38,0,4,0,0,1,0,1,0,SquareTiles/Half
-Cliff Half Top,39,0,4,0,90,0,1,0,1,SquareTiles/Half
-Cliff Half Right,40,0,4,0,180,1,0,1,0,SquareTiles/Half
-Cliff Half Bottom,41,0,4,0,270,0,1,0,1,SquareTiles/Half
-Cliff Eighth Top Left,42,0,4,0,90,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Top Right,43,0,4,0,180,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Right,44,0,4,0,270,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Left,45,0,4,0,0,1,1,1,1,SquareTiles/ThreeFourth
-Ramp Fourth Top Left,46,0,4,0,90,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Top Right,47,0,4,0,180,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Right,48,0,4,0,270,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Left,49,0,4,0,0,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Half Left,50,0,4,0,0,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Top,51,0,4,0,90,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Right,52,0,4,0,180,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Bottom,53,0,4,0,270,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Eighth Top Left,54,0,4,0,90,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Top Right,55,0,4,0,180,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Right,56,0,4,0,270,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Left,57,0,4,0,0,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Transition Land Left Cliff Top,58,0,4,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Top Cliff Right,59,0,4,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Right Cliff Bottom,60,0,4,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Bottom Cliff Left,61,0,4,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Left Cliff Bottom,62,0,4,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Top Cliff Left,63,0,4,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Right Cliff Top,64,0,4,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Bottom Cliff Right,65,0,4,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece
-HighNone,66,0,8,0,0,1,1,1,1,SquareTiles/Flat
-Cliff Fourth Top Left,67,0,8,0,90,1,0,0,1,SquareTiles/Fourth
-Cliff Fourth Top Right,68,0,8,0,180,1,1,0,0,SquareTiles/Fourth
-Cliff Fourth Bottom Right,69,0,8,0,270,0,1,1,0,SquareTiles/Fourth
-Cliff Fourth Bottom Left,70,0,8,0,0,0,0,1,1,SquareTiles/Fourth
-Cliff Half Left,71,0,8,0,0,1,0,1,0,SquareTiles/Half
-Cliff Half Top,72,0,8,0,90,0,1,0,1,SquareTiles/Half
-Cliff Half Right,73,0,8,0,180,1,0,1,0,SquareTiles/Half
-Cliff Half Bottom,74,0,8,0,270,0,1,0,1,SquareTiles/Half
-Cliff Eighth Top Left,75,0,8,0,90,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Top Right,76,0,8,0,180,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Right,77,0,8,0,270,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Left,78,0,8,0,0,1,1,1,1,SquareTiles/ThreeFourth
-Ramp Fourth Top Left,79,0,8,0,90,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Top Right,80,0,8,0,180,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Right,81,0,8,0,270,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Left,82,0,8,0,0,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Half Left,83,0,8,0,0,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Top,84,0,8,0,90,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Right,85,0,8,0,180,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Bottom,86,0,8,0,270,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Eighth Top Left,87,0,8,0,90,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Top Right,88,0,8,0,180,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Right,89,0,8,0,270,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Left,90,0,8,0,0,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Transition Land Left Cliff Top,91,0,8,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Top Cliff Right,92,0,8,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Right Cliff Bottom,93,0,8,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Bottom Cliff Left,94,0,8,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Left Cliff Bottom,95,0,8,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Top Cliff Left,96,0,8,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Right Cliff Top,97,0,8,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Bottom Cliff Right,98,0,8,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece
-HighNone,99,0,12,0,0,1,1,1,1,SquareTiles/Flat
-Cliff Fourth Top Left,100,0,12,0,90,1,0,0,1,SquareTiles/Fourth
-Cliff Fourth Top Right,101,0,12,0,180,1,1,0,0,SquareTiles/Fourth
-Cliff Fourth Bottom Right,102,0,12,0,270,0,1,1,0,SquareTiles/Fourth
-Cliff Fourth Bottom Left,103,0,12,0,0,0,0,1,1,SquareTiles/Fourth
-Cliff Half Left,104,0,12,0,0,1,0,1,0,SquareTiles/Half
-Cliff Half Top,105,0,12,0,90,0,1,0,1,SquareTiles/Half
-Cliff Half Right,106,0,12,0,180,1,0,1,0,SquareTiles/Half
-Cliff Half Bottom,107,0,12,0,270,0,1,0,1,SquareTiles/Half
-Cliff Eighth Top Left,108,0,12,0,90,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Top Right,109,0,12,0,180,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Right,110,0,12,0,270,1,1,1,1,SquareTiles/ThreeFourth
-Cliff Eighth Bottom Left,111,0,12,0,0,1,1,1,1,SquareTiles/ThreeFourth
-Ramp Fourth Top Left,112,0,12,0,90,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Top Right,113,0,12,0,180,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Right,114,0,12,0,270,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Fourth Bottom Left,115,0,12,0,0,-1,-1,-1,-1,SquareTiles/CornerRamp
-Ramp Half Left,116,0,12,0,0,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Top,117,0,12,0,90,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Right,118,0,12,0,180,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Half Bottom,119,0,12,0,270,-1,-1,-1,-1,SquareTiles/HalfRamp
-Ramp Eighth Top Left,120,0,12,0,90,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Top Right,121,0,12,0,180,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Right,122,0,12,0,270,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Ramp Eighth Bottom Left,123,0,12,0,0,-1,-1,-1,-1,SquareTiles/ThreeFourthRamp
-Transition Land Left Cliff Top,124,0,12,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Top Cliff Right,125,0,12,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Right Cliff Bottom,126,0,12,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Bottom Cliff Left,127,0,12,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece2
-Transition Land Left Cliff Bottom,128,0,12,0,0,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Top Cliff Left,129,0,12,0,90,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Right Cliff Top,130,0,12,0,180,-1,-1,-1,-1,SquareTiles/TransitionPiece
-Transition Land Bottom Cliff Right,131,0,12,0,270,-1,-1,-1,-1,SquareTiles/TransitionPiece
-HighNone,132,0,16,0,0,1,1,1,1,SquareTiles/Flat
+Cliff Half Left,38,0,4,0,0,1,0,1,1,SquareTiles/Half
+Cliff Half Top,39,0,4,0,90,1,1,0,1,SquareTiles/Half
+Cliff Half Right,40,0,4,0,180,1,1,1,0,SquareTiles/Half
+Cliff Half Bottom,41,0,4,0,270,0,1,1,1,SquareTiles/Half
+Cliff Eighth Top Left,42,0,4,0,90,0,0,0,0,SquareTiles/ThreeFourth
+Cliff Eighth Top Right,43,0,4,0,180,0,0,0,0,SquareTiles/ThreeFourth
+Cliff Eighth Bottom Right,44,0,4,0,270,0,0,0,0,SquareTiles/ThreeFourth
+Cliff Eighth Bottom Left,45,0,4,0,0,0,0,0,0,SquareTiles/ThreeFourth
+Ramp Fourth Top Left,46,0,4,0,90,1,1,1,1,SquareTiles/CornerRamp
+Ramp Fourth Top Right,47,0,4,0,180,1,1,1,1,SquareTiles/CornerRamp
+Ramp Fourth Bottom Right,48,0,4,0,270,1,1,1,1,SquareTiles/CornerRamp
+Ramp Fourth Bottom Left,49,0,4,0,0,1,1,1,1,SquareTiles/CornerRamp
+Ramp Half Left,50,0,4,0,0,1,1,1,1,SquareTiles/HalfRamp
+Ramp Half Top,51,0,4,0,90,1,1,1,1,SquareTiles/HalfRamp
+Ramp Half Right,52,0,4,0,180,1,1,1,1,SquareTiles/HalfRamp
+Ramp Half Bottom,53,0,4,0,270,1,1,1,1,SquareTiles/HalfRamp
+Ramp Eighth Top Left,54,0,4,0,90,1,1,1,1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Top Right,55,0,4,0,180,1,1,1,1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Bottom Right,56,0,4,0,270,1,1,1,1,SquareTiles/ThreeFourthRamp
+Ramp Eighth Bottom Left,57,0,4,0,0,1,1,1,1,SquareTiles/ThreeFourthRamp
+Transition Land Left Cliff Top,58,0,4,0,0,1,1,1,1,SquareTiles/TransitionPiece2
+Transition Land Top Cliff Right,59,0,4,0,90,1,1,1,1,SquareTiles/TransitionPiece2
+Transition Land Right Cliff Bottom,60,0,4,0,180,1,1,1,1,SquareTiles/TransitionPiece2
+Transition Land Bottom Cliff Left,61,0,4,0,270,1,1,1,1,SquareTiles/TransitionPiece2
+Transition Land Left Cliff Bottom,62,0,4,0,0,1,1,1,1,SquareTiles/TransitionPiece
+Transition Land Top Cliff Left,63,0,4,0,90,1,1,1,1,SquareTiles/TransitionPiece
+Transition Land Right Cliff Top,64,0,4,0,180,1,1,1,1,SquareTiles/TransitionPiece
+Transition Land Bottom Cliff Right,65,0,4,0,270,1,1,1,1,SquareTiles/TransitionPiece

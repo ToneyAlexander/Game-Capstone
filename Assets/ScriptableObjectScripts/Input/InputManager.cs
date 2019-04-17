@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CCC.Movement;
+using UnityEngine;
 
 namespace CCC.Inputs
 {
@@ -15,7 +16,7 @@ namespace CCC.Inputs
     /// game.
     /// </para>
     /// </remarks>
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Inputs/InputManager")]
     public sealed class InputManager : ScriptableObject
     {
         [SerializeField]

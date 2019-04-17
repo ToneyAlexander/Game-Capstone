@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: KnivesDmg1
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 144d18acd18ca874c9cdaa7166e090a3, type: 2}
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 570454004823b3049b60d2e7a737a279, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Fan Of Knives Damage I
+  Desc: Increases damage of FoK
+  grants: []
+  Changes:
+  - Value: 45
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: 238fd103bb278fc42a2279ca4596628f, type: 2}
+  - Value: 30
+    abilityName: Fan Of Knives
+    statName: {fileID: 11400000, guid: d49a55d24db6fbc47a67317f67150309, type: 2}
+  uiCoords: {x: 135, y: 75}
+  sprite: {fileID: 21300000, guid: c073940c3770a3c4a89b1ada9c07ab8a, type: 3}

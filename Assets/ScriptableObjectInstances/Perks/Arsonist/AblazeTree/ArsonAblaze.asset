@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: ArsonAblaze
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 3cf9c93bc38f78143a9bcbb856762345, type: 2}
+  - {fileID: 11400000, guid: 90647efe51007304fbab932e124cc094, type: 2}
+  - {fileID: 11400000, guid: 5b23f533e43995c41afa685c0ac6d7b2, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Ablaze
+  Desc: Lights an area ablaze dealing burning damage to enemies inside
+  grants:
+  - {fileID: 11400000, guid: b5230df630cf55743a34fe7134560bff, type: 2}
+  Changes: []
+  uiCoords: {x: 50, y: 700}
+  sprite: {fileID: 21300000, guid: 6f7830e05fdd1574f8e5726f8b20c26c, type: 3}

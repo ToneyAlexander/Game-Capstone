@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Runic Stone
+  m_EditorClassIdentifier: 
+  itemName: Runic Stone
+  sprite: {fileID: 21300000, guid: 975553c414e84b141bf2a8a156edfcfc, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 4
+  flavorText: Hopefully does not explode
+  internalDescription: stuck in the trench with no way out
+  baseItemTier: 5
+  maxNumberAffixes: 2
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 59e5759d6829fdf43b83ecb4a01a303d, type: 2}
+    minValue: 0.25
+    maxValue: 0.35
+  - statIdentifier: {fileID: 11400000, guid: db579f37bb6e3da40b9f8333d5ca40af, type: 2}
+    minValue: 0.05
+    maxValue: 0.12

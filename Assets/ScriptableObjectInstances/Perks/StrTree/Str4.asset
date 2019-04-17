@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: Str4
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: edd0ad37342968c4fae508fe34695e86, type: 2}
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: 090a17cdb7d49b64e9df4f47effd4a8a, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 764d698c8ee9b4a1794001850e2ab16a, type: 2}
+    statValue: 25
+  Name: Even Bigger Strength
+  Desc: 
+  grants: []
+  Changes: []
+  uiCoords: {x: 275, y: 25}
+  sprite: {fileID: 21300000, guid: 5243000d7dc8cb049bae104e6e1d69bf, type: 3}

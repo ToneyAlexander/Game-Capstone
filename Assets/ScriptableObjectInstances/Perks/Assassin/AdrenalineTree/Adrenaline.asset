@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: Adrenaline
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children:
+  - {fileID: 11400000, guid: a18e0bfc164ba9d4da7ca93cbc68ad60, type: 2}
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: bd023e469609628438ae4db950a2c0cb, type: 2}
+    statValue: 2
+  Name: Adrenaline I
+  Desc: Gives a boost in health regen.
+  grants: []
+  Changes: []
+  uiCoords: {x: 50, y: 440}
+  sprite: {fileID: 21300000, guid: 48df9b04634e11841b5eb4d73f5fa881, type: 3}

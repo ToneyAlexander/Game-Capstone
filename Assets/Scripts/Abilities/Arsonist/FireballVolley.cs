@@ -1,48 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using CCC.Abilities;
+﻿using CCC.Inputs;
 using CCC.Stats;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(StatBlock))]
 [RequireComponent(typeof(PlayerClass))]
 [RequireComponent(typeof(MousePositionDetector))]
-public class FireballVolley : MonoBehaviour, IAbilityBase
+public class FireballVolley : AbilityBase
 {
+    private readonly string AbilName = "Fireball Volley";
+
     private List<Stat> abilStats;
     private StatBlock stats;
-    private Ability abil;
     private MousePositionDetector mpd;
     private GameObject projectile;
-
-    private float cdRemain;
-
-    private float cdBase;
+    
     private float projCount;
     private float projSpread;
     private float projSpeed;
     private float dmgMin;
     private float dmgMax;
-
-    public float CooldownLeft()
+    
+    public override void UpdateStats()
     {
-        return cdRemain;
+        abilStats = abil.Stats;
+        Debug.Log("updating stats");
+        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
+        projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
+        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
+        projSpread = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPREAD).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
     }
 
-    public bool Use()
+    protected override void Activate()
     {
-        if(cdRemain <= 0.0001f)
-        {
-            cdRemain = cdBase;
-            StartCoroutine(FireAsync());
-            return true;
-        }
-        //else
-        return false;
+        StartCoroutine(FireAsync());
     }
 
     IEnumerator FireAsync()
     {
+        Debug.Log("Min: " + dmgMin + "; Max: " + dmgMax);
         int projCast = 0;
         while (projCast < projCount)
         {
@@ -80,29 +79,11 @@ public class FireballVolley : MonoBehaviour, IAbilityBase
         mpd = GetComponent<MousePositionDetector>();
         stats = GetComponent<StatBlock>();
         PlayerClass pc = GetComponent<PlayerClass>();
-        abil = pc.abilDict.GetAbility(AbilitySlot.One);//TODO find by name not hardcoded slot.
+        abil = pc.abilities.Set[AbilName];
         projectile = abil.Prefab;
         abilStats = abil.Stats;
-        cdRemain = 0;
-        cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
-        projCount = abilStats.Find(item => item.Name == Stat.AS_PROJ_COUNT).Value;
-        projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
-        projSpread = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPREAD).Value;
-        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
-        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        abil.cdRemain = 0f;
+        UpdateStats();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(cdRemain > 0f)
-        {
-            cdRemain -= Time.deltaTime;
-        }
-        if(abil.use)
-        {
-            abil.use = false;
-            Use();
-        }
-    }
+    
 }

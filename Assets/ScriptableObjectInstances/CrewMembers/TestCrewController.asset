@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb3767efe9d4105449512516d51c5ea3, type: 3}
+  m_Name: TestCrewController
+  m_EditorClassIdentifier: 
+  maxCrew: 3
+  totalCrew: 8
+  selectedCrew:
+  - {fileID: 11400000, guid: 80348b1fb803f6c49ae0919c1f07c36b, type: 2}
+  - {fileID: 11400000, guid: 9b63cecc82c66b44ebc9646fe8b48367, type: 2}
+  fullCrew:
+  - {fileID: 11400000, guid: f8c8ead8959790b4599eabd937613963, type: 2}
+  - {fileID: 11400000, guid: 170d1a2d23ce1174d8bb5c75688dbc3c, type: 2}
+  - {fileID: 11400000, guid: 80348b1fb803f6c49ae0919c1f07c36b, type: 2}
+  - {fileID: 11400000, guid: 9b63cecc82c66b44ebc9646fe8b48367, type: 2}
+  - {fileID: 11400000, guid: 80348b1fb803f6c49ae0919c1f07c36b, type: 2}
+  - {fileID: 11400000, guid: f8c8ead8959790b4599eabd937613963, type: 2}
+  - {fileID: 11400000, guid: 538022e43f84d9240b25eddca98571b8, type: 2}
+  - {fileID: 11400000, guid: 80348b1fb803f6c49ae0919c1f07c36b, type: 2}
+  - {fileID: 11400000, guid: 0652d175c39f9e8448f4ec9cb2245800, type: 2}
+  - {fileID: 11400000, guid: be92ae3812b9c92488f3bd6d7e47492b, type: 2}
+  - {fileID: 11400000, guid: 072b087351cc71d4fb450086ec30ba50, type: 2}
+  - {fileID: 11400000, guid: 22accbe8d12adce4480aba49107b030f, type: 2}
+  lvl: {fileID: 11400000, guid: b7812365dbea3c2428329e3285bf38af, type: 2}
+  AllCrewMembers:
+  - {fileID: 11400000, guid: 170d1a2d23ce1174d8bb5c75688dbc3c, type: 2}
+  - {fileID: 11400000, guid: 22accbe8d12adce4480aba49107b030f, type: 2}
+  - {fileID: 11400000, guid: be92ae3812b9c92488f3bd6d7e47492b, type: 2}
+  - {fileID: 11400000, guid: 80348b1fb803f6c49ae0919c1f07c36b, type: 2}
+  - {fileID: 11400000, guid: 072b087351cc71d4fb450086ec30ba50, type: 2}
+  - {fileID: 11400000, guid: 538022e43f84d9240b25eddca98571b8, type: 2}
+  - {fileID: 11400000, guid: f8c8ead8959790b4599eabd937613963, type: 2}
+  - {fileID: 11400000, guid: a92fbc36d2c892344b87a6c19fc9fba3, type: 2}
+  themeChancesDefault: ff000000ff000000ff000000ff000000
+  bossChancesDefault: ff000000ff000000ff000000ff000000ff000000
+  areaBonus: 0
+  levelBonus: 0
+  recruited: 0
+  empty: {fileID: 11400000, guid: 4588ca097d0496e49826a0f062de5434, type: 2}

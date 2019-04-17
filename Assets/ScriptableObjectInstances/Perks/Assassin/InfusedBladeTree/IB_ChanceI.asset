@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: IB_ChanceI
+  m_EditorClassIdentifier: 
+  Require:
+  - {fileID: 11400000, guid: 00838cea499c79443906c39fe777b908, type: 2}
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats: []
+  Name: Infused Blade Boosted
+  Desc: Increases critical chance by 10%.
+  grants: []
+  Changes:
+  - Value: 0.1
+    abilityName: Infused Blade
+    statName: {fileID: 11400000, guid: c5656505025b4af4199f2f9ef0cd867a, type: 2}
+  uiCoords: {x: 125, y: 490}
+  sprite: {fileID: 21300000, guid: 3b4f579a0b141dc4fa15abe80041676c, type: 3}

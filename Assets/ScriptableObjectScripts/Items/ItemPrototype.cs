@@ -9,8 +9,8 @@ namespace CCC.Items
     /// Represents the information that an Item can base its randomly generated
     /// values on.
     /// </summary>
-    [CreateAssetMenu(menuName = "Prototypes/Item Prototype")]
-    sealed class ItemPrototype : ScriptableObject
+    [CreateAssetMenu(menuName = "Items/ItemPrototype")]
+    public sealed class ItemPrototype : ScriptableObject
     {
         /// <summary>
         /// Gets the EquipmentSlot that Items based off of this ItemPrototype
@@ -52,6 +52,21 @@ namespace CCC.Items
         }
 
         /// <summary>
+        /// Gets the prefab that Items created from this ItemPrototype will 
+        /// have when placed in the world.
+        /// </summary>
+        /// <value>The world drop prefab.</value>
+        public GameObject WorldDropPrefab
+        {
+            get { return worldDropPrefab; }
+        }
+
+        public int BaseItemTier
+        {
+            get { return baseItemTier; }
+        }
+
+        /// <summary>
         /// Gets the maximum number of affixes that an Item based off of this 
         /// ItemPrototype can have.
         /// </summary>
@@ -84,6 +99,13 @@ namespace CCC.Items
         private Sprite sprite;
 
         /// <summary>
+        /// The prefab that Items created from this ItemPrototypes will have 
+        /// when placed in the world.
+        /// </summary>
+        [SerializeField]
+        private GameObject worldDropPrefab;
+
+        /// <summary>
         /// The EquipmentSlot that Items based off of this ItemPrototype will
         /// have.
         /// </summary>
@@ -104,6 +126,10 @@ namespace CCC.Items
         /// </summary>
         [SerializeField]
         private string internalDescription = "";
+
+
+        [SerializeField]
+        private int baseItemTier;
 
         /// <summary>
         /// The maximum number of affixes that Items generated from this 
