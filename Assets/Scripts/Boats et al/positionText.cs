@@ -31,8 +31,9 @@ public class positionText : MonoBehaviour
     };
     private string[] bossInfos =
     {
-        "Dragons typically drop body armor, and may drop unique armors",
         "Beetles typically drop rings and amulets, and may drop unique items",
+        "Dragons typically drop body armor, and may drop unique armors",
+     
         "Demons typically drop weapons and offhands, and may drop a unique of either",
         "Ghouls typically drop head armor, and may drop a unique head armor",
         "Wyverns are non-functional"
@@ -106,6 +107,7 @@ public class positionText : MonoBehaviour
             maritimeController.GetComponent<MaritimeController>().islandStorage.boss = bossIndex;
             maritimeController.GetComponent<MaritimeController>().islandStorage.level = level;
             maritimeController.GetComponent<MaritimeController>().islandStorage.terraintype = islandTerrainType;
+            BoatCameraController.moving = true;
            }
 
 
