@@ -20,7 +20,9 @@ namespace CCC.Abilities
         private string folderName = "Player";
 
         [SerializeField]
-        private string abilityIconAssetBundlePath = "Assets/AssetBundles/";
+        private string assetBundleName = "ability_icons";
+
+        private string assetBundlePath;
 
         public Ability[] Abilities
         {
@@ -48,9 +50,10 @@ namespace CCC.Abilities
         {
             path = Path.Combine(Application.persistentDataPath, folderName);
             path = Path.Combine(path, filename);
+
             Reset();
             abilityIconsAssetBundle = 
-                AssetBundleManager.LoadAssetBundleAtPath(abilityIconAssetBundlePath);
+                AssetBundleManager.LoadAssetBundleAtPath(assetBundlePath);
 
             if (File.Exists(path))
             {
@@ -100,7 +103,11 @@ namespace CCC.Abilities
             {
                 abilities[i] = Ability.Null;
             }
-            AssetBundleManager.UnloadAssetBundleAtPath(abilityIconAssetBundlePath);
+
+            assetBundlePath = Path.Combine(Application.persistentDataPath, "AssetBundles");
+            assetBundlePath = Path.Combine(assetBundlePath, assetBundleName);
+
+            AssetBundleManager.UnloadAssetBundleAtPath(assetBundlePath);
             abilityIconsAssetBundle = null;
         }
     }

@@ -32,7 +32,7 @@ namespace CCC.Items
         private InventoryData data = InventoryData.Null;
 
         [SerializeField]
-        private string assetBundlePath = "Assets/AssetBundles/";
+        private string assetBundleName = "items";
 
         public AssetBundle LoadedAssetBundle
         {
@@ -40,6 +40,8 @@ namespace CCC.Items
         }
 
         private AssetBundle loadedAssetBundle;
+
+        private string assetBundlePath;
 
         /// <summary>
         /// Gets the path to the file that this Inventory should be saved in.
@@ -129,6 +131,10 @@ namespace CCC.Items
         /// </summary>
         public void Load()
         {
+            assetBundlePath = System.IO.Path.Combine(Application.persistentDataPath, "AssetBundles");
+            assetBundlePath = System.IO.Path.Combine(assetBundlePath, assetBundleName);
+            Debug.Log("[Inventory.Load] assetBundlePath = " + assetBundlePath);
+
             loadedAssetBundle = 
                 AssetBundleManager.LoadAssetBundleAtPath(assetBundlePath);
 
