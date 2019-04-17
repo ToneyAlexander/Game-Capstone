@@ -93,7 +93,7 @@ public class CameraController : MonoBehaviour
             CameraController.addDolly();
         }
         
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, player.transform.position, 100f);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.position - player.transform.position, 100f);
 //        Debug.Log(hits.Length);
         foreach(RaycastHit h in hits)
         {
