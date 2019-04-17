@@ -214,8 +214,8 @@ public class InventoryUI : MonoBehaviour
 			tooltext.text = "";
 			foreach (Stat stat in item.Stats)
 			{
-				int value = (int)stat.Value;
-				tooltext.text += stat.Name + ": " + value + "\n";
+                string value = Stat.GetStatString(stat);
+                tooltext.text += stat.Name + ": " + value + "\n";
 
 			}
 		}
@@ -230,10 +230,6 @@ public class InventoryUI : MonoBehaviour
         }
         else if (data.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log("AAAAAAA");
-            
-            Debug.Log("Spicy: " + user.Items[0].Name);
-            Debug.Log("Butts: " + data.selectedObject.GetComponent<InventoryButton>().item);
             data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
             data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
             user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);

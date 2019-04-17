@@ -62,7 +62,7 @@ public class RainOfDeath : AbilityBase
             ProjectileBehave phb = obj.GetComponent<ProjectileBehave>();
             obj.transform.Rotate(90, rotMod, 0); //rotate around pivot
             obj.transform.Translate(posMod); //adjust forward
-            obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            obj.transform.localScale = new Vector3(2f, 2f, 2f);
             currCount++;
             rotMod = rotMod + (360 / tempCount);
             if(currCount == 1){
@@ -78,7 +78,7 @@ public class RainOfDeath : AbilityBase
                 rotMod = 0;
             }
             phb.friendly = true;
-            phb.speed = 10;
+            phb.speed = 15;
             Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
 			phb.dmg = stats.RealDamage(dmg);
 			phb.ttl = 2f;

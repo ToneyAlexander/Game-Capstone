@@ -12,6 +12,9 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class IslandGameState : GameState
     {
+        [SerializeField]
+        private BloodlineController playerBloodlineController;
+
         /// <summary>
         /// The player's equipment.
         /// </summary>
@@ -52,6 +55,7 @@ namespace CCC.GameManagement.GameStates
         public override void Enter()
         {
             Debug.Log("In IslandState.Enter");
+            playerBloodlineController.Load();
             playerInventory.Load();
             playerEquipment.Load();
             playerLevelExpStore.Load();
@@ -63,6 +67,7 @@ namespace CCC.GameManagement.GameStates
         {
             Debug.Log("In IslandState.Exit");
             AgePlayer();
+            playerBloodlineController.Save();
             playerInventory.Save();
             playerEquipment.Save();
             playerLevelExpStore.Save();
