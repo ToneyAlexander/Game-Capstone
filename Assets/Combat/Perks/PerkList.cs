@@ -46,6 +46,18 @@ namespace CCC.Combat.Perks
             }
         }
 
+        /// <summary>
+        /// Delete the JSON file that this PerkList saves to.
+        /// </summary>
+        public void DeleteSaveFile()
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                Debug.Log("[PerkList.DeleteSaveFile] Deleted save file");
+            }
+        }
+
         public void Load()
         {
             Debug.Log("Loading");

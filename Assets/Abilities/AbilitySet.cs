@@ -36,8 +36,6 @@ namespace CCC.Abilities
         public void Load()
         {
             Reset();
-            path = Path.Combine(Application.persistentDataPath, folderName);
-            path = Path.Combine(path, filename);
             var abilityList = AbilityList.CreateEmpty();
 
             if (File.Exists(path))
@@ -52,6 +50,18 @@ namespace CCC.Abilities
             foreach (var ability in abilityList.Abilities)
             {
                 set.Add(ability.AbilityName, ability);
+            }
+        }
+
+        /// <summary>
+        /// Delete the JSON file that this AbilitySet saves to.
+        /// </summary>
+        public void DeleteSaveFile()
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+                Debug.Log("[AbilitySet.DeleteSaveFile] Deleted save file");
             }
         }
 
@@ -87,7 +97,8 @@ namespace CCC.Abilities
 
         private void Reset()
         {
-            path = "";
+            path = Path.Combine(Application.persistentDataPath, folderName);
+            path = Path.Combine(path, filename);
             set = new Dictionary<string, Ability>();
         }
     }
