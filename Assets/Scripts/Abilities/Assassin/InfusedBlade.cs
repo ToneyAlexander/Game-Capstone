@@ -31,9 +31,9 @@ public class InfusedBlade : AbilityBase
         GameObject obj = Instantiate(effect, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
         TimedBuff tb = Infusion.Instance;
         Stat stat = tb.Stats.Find(item => item.Name == Stat.CRIT_CHANCE);
-        stat.Value = critDam;
+        stat.Value += critDam;
         stat = tb.Stats.Find(item => item.Name == Stat.CRIT_DMG);
-        stat.Value = critChance;
+        stat.Value += critChance;
         controlStats.ApplyBuff(tb);
     }
 
