@@ -37,7 +37,7 @@ public class CorruptedEarth : AbilityBase
 
     protected override void Activate()
     {
-        GameObject obj = Instantiate(aoeEffect, gameObject.transform.position, new Quaternion());
+        GameObject obj = Instantiate(aoeEffect, gameObject.transform.position + new Vector3(0f, .50f, 0f), new Quaternion());
         obj.transform.localScale = new Vector3(size, 1f, size);
         AoeBehave ab = obj.GetComponent<AoeBehave>();
         ab.friendly = true;
