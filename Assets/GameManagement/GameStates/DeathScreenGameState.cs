@@ -44,13 +44,11 @@ namespace CCC.GameManagement.GameStates
         public override void Exit()
         {
             Debug.Log("In DeathScreenState.Exit");
-            playerBloodlineController.Save();
             inventory.Save();
             playerEquipment.Save();
 
-            Debug.Log("[DeathScreenGameState.Exit] Before delete AbilitySet");
+            playerBloodlineController.DeleteSaveFile();
             playerAbilitySet.DeleteSaveFile();
-            Debug.Log("[DeathScreenGameState.Exit] After delete AbilitySet");
             playerTakenPerks.DeleteSaveFile();
             playerAbilityDictionary.DeleteSaveFile();
             playerLevelExp.DeleteSaveFile();

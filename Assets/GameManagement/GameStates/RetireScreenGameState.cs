@@ -44,10 +44,10 @@ namespace CCC.GameManagement.GameStates
         public override void Exit()
         {
             Debug.Log("In RetireScreenState.Exit");
-            playerBloodlineController.Save();
             inventory.Save();
             playerEquipment.Save();
 
+            playerBloodlineController.DeleteSaveFile();
             playerAbilitySet.DeleteSaveFile();
             playerTakenPerks.DeleteSaveFile();
             playerAbilityDictionary.DeleteSaveFile();
