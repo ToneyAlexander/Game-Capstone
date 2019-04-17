@@ -73,6 +73,17 @@ public sealed class LevelExpStore : ScriptableObject
     private string path;
 
     /// <summary>
+    /// Delete the JSON file that this LevelExpStore saves to.
+    /// </summary>
+    public void DeleteSaveFile()
+    {
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
+
+    /// <summary>
     /// Load this LevelExpStore from a JSON file on disk.
     /// </summary>
     public void Load()

@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb1319c5283c42529d037ff5d274b4a, type: 3}
   m_Name: DeathScreenGameState
   m_EditorClassIdentifier: 
+  playerAbilityDictionary: {fileID: 11400000, guid: 0e3ec9f9f8cd240948d51cbfd084357d,
+    type: 2}
+  playerAbilitySet: {fileID: 11400000, guid: e6acb6af32b2a4dc68b4e6296ed9a907, type: 2}
   playerBloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
     type: 2}
   inventory: {fileID: 11400000, guid: 145915052229949d0992116c0ad2ea0e, type: 2}
   playerEquipment: {fileID: 11400000, guid: d63e3d1f33ea04602a94660242ecfd0d, type: 2}
   playerLevelExp: {fileID: 11400000, guid: b7812365dbea3c2428329e3285bf38af, type: 2}
+  playerTakenPerks: {fileID: 11400000, guid: 2b76ab84f549f4f04a22dde43b7eb071, type: 2}
