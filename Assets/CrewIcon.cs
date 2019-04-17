@@ -15,6 +15,7 @@ public class CrewIcon : MonoBehaviour
     private Image image;
     private static int maxCount = 3;
     private static int count = 0;
+    private static int check = 0;
     [SerializeField]
     private bool active = false;
 
@@ -22,7 +23,9 @@ public class CrewIcon : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("CrewMember: " + CrewIcon.count);
         index = transform.GetSiblingIndex();
+        Debug.Log("Index: " + index);
         cMember = cController.fullCrew[index];
         EventTrigger ev = gameObject.GetComponent<EventTrigger>();
         EventTrigger.Entry entry = new EventTrigger.Entry();
@@ -54,6 +57,23 @@ public class CrewIcon : MonoBehaviour
             {
                 skill = transform.GetChild(i).GetComponent<Text>();
             }
+        }
+        CrewIcon.count = cController.selectedCrew.Count;
+        CrewIcon.check = 0;
+        foreach (CrewMember c in cController.selectedCrew) 
+        {
+            if (c == cMember && CrewIcon.check < CrewIcon.count)
+            {
+                CrewIcon.check++;
+                Debug.Log(c + " : "+cMember);
+                active = !active;
+                Color newColor = new Color();
+                ColorUtility.TryParseHtmlString("#FFBC7C", out newColor);
+                image.color = newColor;
+                //cController.selectedCrew.Add(cMember);
+            }
+
+            
         }
 
     }
