@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884a4a4d5392f40ce9ba7a0fdef911dd, type: 3}
+  m_Name: Inquisitors Hood
+  m_EditorClassIdentifier: 
+  itemName: Inquisitor's Hood
+  sprite: {fileID: 21300000, guid: a309b963d973079439d005baa5eb748e, type: 3}
+  worldDropPrefab: {fileID: 162040, guid: 092ae17ef10fe5a41a76f5f4549496de, type: 3}
+  equipmentSlot: 1
+  flavorText: Nobody expects the Spanish inquisition!
+  internalDescription: 
+  baseItemTier: 5
+  maxNumberAffixes: 3
+  statPrototypeList:
+  - statIdentifier: {fileID: 11400000, guid: 857078c3dd4b17c4fb9005ff74798a7a, type: 2}
+    minValue: 0.03
+    maxValue: 0.05
+  - statIdentifier: {fileID: 11400000, guid: dd9fbb836d8d8904fa1d6e1ce7977d09, type: 2}
+    minValue: 10
+    maxValue: 15

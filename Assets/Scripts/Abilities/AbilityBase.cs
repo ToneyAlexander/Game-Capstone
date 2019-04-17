@@ -42,7 +42,7 @@ public abstract class AbilityBase : MonoBehaviour, IAbilityBase
             float mult = 1;
             if (stats != null)
             {
-                mult += StatBlock.CalcMult(stats.Cdr, stats.CdrMult);
+                mult += 1 + StatBlock.CalcMult(stats.Cdr, stats.CdrMult);
                 if (abil.isAttack)
                 {
                     mult += StatBlock.CalcMult(stats.AttackSpeed,stats.AttackSpeedMult);

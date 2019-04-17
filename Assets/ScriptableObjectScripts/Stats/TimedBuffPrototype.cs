@@ -35,6 +35,11 @@ public class TimedBuffPrototype : ScriptableObject
         get { return isUnique; }
     }
 
+    public bool IsNegative
+    {
+        get { return isNegative; }
+    }
+
     [SerializeField]
     private List<StatSlotEntry> statSlots;
     [SerializeField]
@@ -43,6 +48,8 @@ public class TimedBuffPrototype : ScriptableObject
     private float duration;
     [SerializeField]
     private bool isUnique;
+    [SerializeField]
+    private bool isNegative;
     [SerializeField]
     private Sprite icon;
     private List<Stat> stats;

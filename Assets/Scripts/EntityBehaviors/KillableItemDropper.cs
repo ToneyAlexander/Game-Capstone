@@ -10,7 +10,8 @@ namespace CCC.Behaviors
     {
         [SerializeField]
         private CommandProcessor commandProcessor;
-
+        [SerializeField]
+        bool dontDropItem;
         private IItemDropper itemDropper;
 
         [SerializeField]
@@ -18,11 +19,14 @@ namespace CCC.Behaviors
 
         public void Die()
         {
-            Item item = itemGenerator.GenerateItem();
-            Debug.Log(gameObject.name + " died and dropped an item '" +
-                item.Name + "'!");
-            ICommand dropItemCommand = new DropItemCommand(itemDropper, item, transform.position);
-            commandProcessor.ProcessCommand(dropItemCommand);
+            if(!dontDropItem)
+            {
+                Item item = itemGenerator.GenerateItem();
+                Debug.Log(gameObject.name + " died and dropped an item '" +
+                    item.Name + "'!");
+                ICommand dropItemCommand = new DropItemCommand(itemDropper, item, transform.position);
+                commandProcessor.ProcessCommand(dropItemCommand);
+            }
             GetComponent<EnemyController>().isKilled();
         }
 

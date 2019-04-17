@@ -11,6 +11,7 @@ public class TimedBuff : IEquatable<TimedBuff>
     public float Duration;
     public float DurationLeft;
     public bool IsUnique;
+    public bool IsNegative;
     public Sprite icon;
     
     public TimedBuff(TimedBuffPrototype tbp)
@@ -23,6 +24,7 @@ public class TimedBuff : IEquatable<TimedBuff>
         }
         icon = tbp.Icon;
         IsUnique = tbp.IsUnique;
+        IsNegative = tbp.IsNegative;
         Duration = tbp.Duration;
         DurationLeft = Duration;
     }
@@ -40,6 +42,7 @@ public class TimedBuff : IEquatable<TimedBuff>
             Duration = Duration,
             DurationLeft = DurationLeft,
             IsUnique = IsUnique,
+            IsNegative = IsNegative,
             Stats = Stats
         };
 

@@ -104,6 +104,10 @@ public class StatBlock : MonoBehaviour
 
     public float ApplyReduction(float ToReduce, float Reducer)
     {
+        if(ToReduce < 200)
+        {
+            Reducer *= 0.4f;
+        }
         if(ToReduce <= 0)
         {
             return 0f;

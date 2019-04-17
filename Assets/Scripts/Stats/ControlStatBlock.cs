@@ -391,7 +391,14 @@ public class ControlStatBlock : MonoBehaviour
         for (int i = buffs.Count - 1; i > -1; --i)
         {
             TimedBuff tb = buffs[i];
-            tb.DurationLeft -= Time.deltaTime * ( 1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
+            if(tb.IsNegative)
+            {
+                tb.DurationLeft -= Time.deltaTime * (1 + StatBlock.CalcMult(stats.StatusRec, stats.StatusRecMult));
+            } else
+            {
+                tb.DurationLeft -= Time.deltaTime;
+            }
+            
             //Debug.Log(tb.BuffName + " at " + i + " has " + tb.DurationLeft + " left.");
             if (tb.DurationLeft <= 0f)
             {

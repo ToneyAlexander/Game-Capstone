@@ -808,7 +808,7 @@ public class GenerateIsland : MonoBehaviour
         GameObject teleporter = Instantiate(Resources.Load<GameObject>("Teleporter"));
         teleporter.tag = "BossTeleporter";
         GameObject arena = Instantiate(Resources.Load<GameObject>("BossBeetle/Arena"));
-        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon","BossGhoul/BossGhoul","BossWyvern/BossWyvern" };
+        string[] possibleBosses = { "BossBeetle/Boss Beetle", "BossDragon/BossDragon", "BossDemon/BossDemon", "BossGhoul/BossGhoul", "BossWyvern/BossWyvern" };
         string toLoad = possibleBosses[islandStorage.boss];
         GameObject boss = Instantiate(Resources.Load<GameObject>(toLoad));
         arena.transform.position = arenaPosition;
@@ -824,6 +824,7 @@ public class GenerateIsland : MonoBehaviour
         teleporter.GetComponent<TeleportScript>().TargetZ = arenaPosition.z + 12;
 
         BaseBoss b = boss.GetComponent<BaseBoss>();
+        b.Level = islandStorage.level / 3 > 0 ? islandStorage.level / 3 : 1;
         b.arenaEnd = new Vector3(arenaPosition.x + 32, arenaPosition.y, arenaPosition.z + 32);
         b.arenaStart = new Vector3(arenaPosition.x - 32, arenaPosition.y, arenaPosition.z - 16);
     }

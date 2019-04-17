@@ -7,12 +7,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c72e5cce53fb549018713bb8a0f1aae9, type: 3}
-  m_Name: MiscItems
+  m_Name: GhoulGroup1
   m_EditorClassIdentifier: 
   affixSets:
+  - {fileID: 11400000, guid: 86d4e8c4dd393b643a4213d69b305138, type: 2}
+  - {fileID: 11400000, guid: a80db6f4e163ee04495c3803ed931c72, type: 2}
   - {fileID: 11400000, guid: 6546bb57622c75a4698bf42ea70e3223, type: 2}
   - {fileID: 11400000, guid: d0e3b01a581995e478867e3c971a348a, type: 2}
   - {fileID: 11400000, guid: 97063ca11f063594fa4a98a1f13ca41d, type: 2}
@@ -22,27 +24,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 79f39a32673f6fc4680fbfb5a833d1b8, type: 2}
   - {fileID: 11400000, guid: 9fb89b20e70cfe947b15da76a7b71d24, type: 2}
   itemPrototypes:
-  - item: {fileID: 11400000, guid: 898ed7e62f1744343a274184de7d1ba4, type: 2}
-    rarity: 75
-  - item: {fileID: 11400000, guid: 69e7cb3b0ddd2a94381cc7b074d311a7, type: 2}
-    rarity: 50
-  - item: {fileID: 11400000, guid: 39ae1779e10a9dd408bf63fb15bf0964, type: 2}
+  - item: {fileID: 11400000, guid: 61f94fa918b50134d8fd9d25e8411faa, type: 2}
+    rarity: 35
+  - item: {fileID: 11400000, guid: 49269b1ea821c2d46b12ed6a9bf206e0, type: 2}
+    rarity: 35
+  - item: {fileID: 11400000, guid: 95f04a25a0925ce46a60b061737d6dc9, type: 2}
     rarity: 25
-  - item: {fileID: 11400000, guid: dc12a650da629e34a80a7861a91806eb, type: 2}
-    rarity: 100
   - item: {fileID: 11400000, guid: 58d561fdd79409543a99518cee96a48f, type: 2}
-    rarity: 50
-  - item: {fileID: 11400000, guid: 35c35de312e504530b612721aabdd057, type: 2}
     rarity: 60
-  - item: {fileID: 11400000, guid: 60d6b030a7e35a34a98d0ac7b10af3b1, type: 2}
-    rarity: 60
-  - item: {fileID: 11400000, guid: 3f9ff6b604e39484aa8af03707be892a, type: 2}
-    rarity: 30
-  - item: {fileID: 11400000, guid: b6345269df0a9994da4e3e99a288fdfa, type: 2}
-    rarity: 30
-  - item: {fileID: 11400000, guid: db69e95bb3a83b04bb756572cc745bd0, type: 2}
-    rarity: 30
-  - item: {fileID: 11400000, guid: bb2124db162c55c48bb07677a4a1259a, type: 2}
-    rarity: 60
-  - item: {fileID: 11400000, guid: 15eac37b3f171f1419a0261f9ea333d9, type: 2}
-    rarity: 40

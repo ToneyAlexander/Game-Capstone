@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
+  m_Name: GhoulBossLevel
+  m_EditorClassIdentifier: 
+  Require: []
+  BlockedBy: []
+  Children: []
+  Blocks: []
+  RequireAll: 0
+  Stats:
+  - statName: {fileID: 11400000, guid: 99526659c34c448f08210191f6275f0d, type: 2}
+    statValue: 600
+  - statName: {fileID: 11400000, guid: b2775bcec8e333f4391e3984c8de163b, type: 2}
+    statValue: 50
+  - statName: {fileID: 11400000, guid: 9f7ca13b26d54d74dbe783c6011aaf48, type: 2}
+    statValue: 50
+  - statName: {fileID: 11400000, guid: db579f37bb6e3da40b9f8333d5ca40af, type: 2}
+    statValue: 0.01
+  Name: levle ghoul
+  Desc: leafle
+  grants: []
+  Changes: []
+  uiCoords: {x: 0, y: 0}
+  sprite: {fileID: 0}
