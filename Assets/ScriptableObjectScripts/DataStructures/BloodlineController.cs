@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using CCC.Stats;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,21 +8,35 @@ public sealed class BloodlineController : ScriptableObject
 {
     [SerializeField]
     private int generationint = 0;
-    [SerializeField]
-    public int Age { get; private set; }
+
+    public int Age
+    {
+        get { return age; }
+    }
+
+    public ClassPrototype CurrentClass
+    {
+        get { return currentClass; }
+        set { currentClass = value; }
+    }
+
+    private int age;
 
     [SerializeField]
     public string playerName = "Remy Remmington";
 
     [SerializeField]
-    public ClassPrototype currentClass;
+    private ClassPrototype currentClass;
+
+    [SerializeField]
+    private string filename = "NewBloodlineController.json";
+
+    [SerializeField]
+    private string folderName = "Player";
 
     [SerializeField]
     private List<ClassPrototype> classList = new List<ClassPrototype>();
 
-   // private List<ClassPrototype> pastGenerations = new List<ClassPrototype>();
-
-    
     private List<string> pastNames = new List<string>();
 
     public void addGeneration()
@@ -39,11 +53,13 @@ public sealed class BloodlineController : ScriptableObject
         {
             pastNames[pastNames.Count - 1] = playerName + " the " + currentClass.name + "\n" + "Died at" + Age;
         }
-        Age = 0;
+
+        age = 0;
     }
+
     public void ageUp()
     {
-        Age++;
+        age++;
     }
 
     public List<ClassPrototype> ClassList
@@ -103,8 +119,8 @@ public sealed class BloodlineController : ScriptableObject
     }
     public void GenerateNewFamilyName()
     {
-        string path = System.IO.Path.Combine(Application.persistentDataPath,
-            "FamilyName.txt");
+        string path = 
+            Path.Combine(Application.persistentDataPath, "FamilyName.txt");
 
         if (File.Exists(path))
         {
@@ -112,5 +128,51 @@ public sealed class BloodlineController : ScriptableObject
         }
 
         GetOrCreateFamilyName();
+    }
+
+    public void Load()
+    {
+        Reset();
+
+        var folderPath = 
+            Path.Combine(Application.persistentDataPath, folderName);
+        var filePath = Path.Combine(folderPath, filename);
+
+        if (File.Exists(filePath))
+        {
+            using (var streamReader = File.OpenText(filePath))
+            {
+                var jsonString = streamReader.ReadToEnd();
+                var data = JsonUtility.FromJson<BloodlineData>(jsonString);
+                age = data.Age;
+            }
+        }
+    }
+
+    public void Save()
+    {
+        var data = BloodlineData.ForAge(age);
+        var jsonString = JsonUtility.ToJson(data, true);
+        Debug.Log(jsonString);
+        var directoryPath = 
+            Path.Combine(Application.persistentDataPath, folderName);
+        var filePath = Path.Combine(directoryPath, filename);
+
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+
+        using (var streamWriter = File.CreateText(filePath))
+        {
+            streamWriter.Write(jsonString);
+        }
+
+        Reset();
+    }
+
+    private void Reset()
+    {
+        age = 0;
     }
 }

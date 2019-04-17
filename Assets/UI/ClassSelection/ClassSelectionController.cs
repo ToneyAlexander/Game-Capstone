@@ -1,15 +1,19 @@
 ﻿using CCC.GameManagement.GameStates;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 [RequireComponent(typeof(GameStateChanger))]
-public class ClassSelection : MonoBehaviour
+public sealed class ClassSelectionController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public BloodlineController bc;
-    public GameObject title;
-    public GameObject desc;
+    [SerializeField]
+    private BloodlineController bloodlineController;
+
+    [SerializeField]
+    private TextMeshPro descText;
+
+    [SerializeField]
+    private TextMeshPro titleText;
 
     /// <summary>
     /// The GameStateChanger that will be used to change the game state.
@@ -22,8 +26,6 @@ public class ClassSelection : MonoBehaviour
 
     private bool selectedClass = false;
 
-    TextMeshPro titleText;
-    TextMeshPro descText;
     Color darkenedColor = new Color(0.29f, 0.29f, 0.29f, 1.0f);
     Color backdropColor = new Color(0.7f, 0.7f, 0.7f);
 
@@ -35,22 +37,23 @@ public class ClassSelection : MonoBehaviour
 
     private void Start()
     {
-         count = bc.ClassList.Count;
-        //count = 2;
-        titleText = title.GetComponent<TextMeshPro>();
-        descText = desc.GetComponent<TextMeshPro>();
-        titleText.text = bc.ClassList[index].name;
-        descText.text = bc.ClassList[index].description;
+        count = bloodlineController.ClassList.Count;
+        titleText.SetText(bloodlineController.ClassList[index].name);
+        titleText.ForceMeshUpdate();
+        Debug.Log(titleText.text);
+        Debug.Log(bloodlineController.ClassList[index].name);
+        descText.text = bloodlineController.ClassList[index].description;
+
         for (int i = 0; i < count; i++)
         {
             GameObject classIcon = new GameObject();
-            classIcon.name = bc.ClassList[i].name;
+            classIcon.name = bloodlineController.ClassList[i].name;
             classIcons.Add(classIcon);
             Vector3 v = computePos(i); 
             classIcon.transform.position = v;
             
             SpriteRenderer sprite = classIcon.AddComponent<SpriteRenderer>();
-            sprite.sprite = bc.ClassList[i].image;
+            sprite.sprite = bloodlineController.ClassList[i].image;
             if (index == i)
             {
                 sprite.color = Color.white;
@@ -64,7 +67,6 @@ public class ClassSelection : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -74,9 +76,9 @@ public class ClassSelection : MonoBehaviour
             {
                 index = count - 1;
             }
-            titleText.text = bc.ClassList[index].name;
-            descText.text = bc.ClassList[index].description;
-            bc.currentClass = bc.ClassList[index];
+            titleText.text = bloodlineController.ClassList[index].name;
+            descText.text = bloodlineController.ClassList[index].description;
+            bloodlineController.CurrentClass = bloodlineController.ClassList[index];
            // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -86,9 +88,9 @@ public class ClassSelection : MonoBehaviour
             {
                 index = 0;
             }
-            titleText.text = bc.ClassList[index].name;
-            descText.text = bc.ClassList[index].description;
-            bc.currentClass = bc.ClassList[index];
+            titleText.text = bloodlineController.ClassList[index].name;
+            descText.text = bloodlineController.ClassList[index].description;
+            bloodlineController.CurrentClass = bloodlineController.ClassList[index];
            // Debug.Log("class selected: " + bc.currentClass.name);
         }
         else if (Input.GetKeyDown(KeyCode.E))
@@ -97,7 +99,7 @@ public class ClassSelection : MonoBehaviour
             {
                 selectedClass = true;
                 // bc.currentClass = bc.ClassList[index];
-                Debug.Log("class selected: " + bc.currentClass.name);
+                Debug.Log("class selected: " + bloodlineController.CurrentClass.name);
                 gameStateChanger.ChangeState();
             }
         }

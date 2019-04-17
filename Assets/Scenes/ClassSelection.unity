@@ -572,9 +572,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095845e76f11a4d498bd26897c4d903b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590, type: 2}
-  title: {fileID: 1469868945}
-  desc: {fileID: 202265102}
+  bloodlineController: {fileID: 11400000, guid: 83ecc5dcecba3e44b8f042da50bff590,
+    type: 2}
+  descText: {fileID: 202265103}
+  titleText: {fileID: 1469868946}
 --- !u!4 &1301390495
 Transform:
   m_ObjectHideFlags: 0
@@ -601,7 +602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d6caf71fd14649f292b8444a4029482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 11400000, guid: e10a978a89d674b8ca333b58c5296549, type: 2}
   gameState: {fileID: 11400000, guid: f6f306f75ed664d608d76acfcd2535eb, type: 2}
 --- !u!1 &1469868945
 GameObject:
