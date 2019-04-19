@@ -97,9 +97,8 @@ public class positionText : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() && !BoatCameraController.moving)
            {
-            
             maritimeController.GetComponent<MaritimeController>().islandStorage.name = n;
             maritimeController.GetComponent<MaritimeController>().islandStorage.size = islandSize;
             maritimeController.GetComponent<MaritimeController>().islandStorage.height = islandHeight;
