@@ -28,8 +28,8 @@ public class EdgySlash : AbilityBase
     {
         cdBase = abilStats.Find(item => item.Name == Stat.AS_CD).Value;
         projSpeed = abilStats.Find(item => item.Name == Stat.AS_PROJ_SPEED).Value;
-        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value;
-        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value;
+        dmgMin = abilStats.Find(item => item.Name == Stat.AS_DMG_MIN).Value/3;
+        dmgMax = abilStats.Find(item => item.Name == Stat.AS_DMG_MAX).Value/3;
         slowdownMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
         slowdownDur = abilStats.Find(item => item.Name == Stat.AS_DUR).Value;
         slowdownStack = abilStats.Find(item => item.Name == Stat.AS_IGNITE_STACK).Value > 1f;
