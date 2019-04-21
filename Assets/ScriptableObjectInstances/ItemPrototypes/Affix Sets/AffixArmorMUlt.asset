@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixArmorMUlt
+  m_EditorClassIdentifier: 
+  setName: Sentinel
+  setNameShort: Armor Mult
+  tiers:
+  - {fileID: 11400000, guid: b924297146cbc724d9f89f772872e83a, type: 2}
+  - {fileID: 11400000, guid: b924297146cbc724d9f89f772872e83a, type: 2}
+  - {fileID: 11400000, guid: c1596303725d791449170877b3ce4899, type: 2}
+  - {fileID: 11400000, guid: c1596303725d791449170877b3ce4899, type: 2}
+  - {fileID: 11400000, guid: f8845569bf39fe947a46c3d86528e564, type: 2}
