@@ -33,7 +33,7 @@ public class WhirlwindSlash : AbilityBase
         slowdownMult = abilStats.Find(item => item.Name == Stat.AS_IGNITE_MULT).Value;
         slowdownDur = abilStats.Find(item => item.Name == Stat.AS_DUR).Value;
         slowdownStack = abilStats.Find(item => item.Name == Stat.AS_IGNITE_STACK).Value > 1f;
-    }
+    } 
 
     protected override void Activate()
     {

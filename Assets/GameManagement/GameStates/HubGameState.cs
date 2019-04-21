@@ -22,6 +22,7 @@ namespace CCC.GameManagement.GameStates
             Debug.Log("In HubState.Enter");
             playerLevelExp.Load();
             crewController.recruited = false;
+            BoatCameraController.moving = false;
         }
 
         public override void Exit()

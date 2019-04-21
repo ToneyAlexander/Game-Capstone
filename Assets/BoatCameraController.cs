@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BoatCameraController : MonoBehaviour
 {
     public float horizontalSpeed = 2.0F;
     public GameObject player;
     public Vector3 position;
-    public float boatfastness = 1.0f;
+    public float boatfastness = 0.25f;
     private Vector3 boatSpeed;
     public float direction = 0.0f;
-
+    public static bool moving = false;
+    public GameObject whiteScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +31,15 @@ public class BoatCameraController : MonoBehaviour
         
         //Debug.Log(transform.position - player.transform.position);
         //Debug.Log("Direction: "+ direction);
-        if (false)//(Input.GetMouseButtonDown(0))
+        if (moving)//(Input.GetMouseButtonDown(0))
         {
             Vector3 direction = player.transform.position - transform.position;
             Vector3 speed = new Vector3(direction.x, 0, direction.z);
             boatSpeed = speed.normalized * boatfastness;
             player.transform.eulerAngles = new Vector3(player.transform.eulerAngles.x, transform.eulerAngles.y-90, player.transform.eulerAngles.z);
+           // whiteScreen.GetComponent<Image>().color.a
+         //  float a = whiteScreen.GetComponent<SpriteRenderer>().color.a + Time.deltaTime;
+           // whiteScreen.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, a);
         }
         player.transform.position += boatSpeed;
         transform.position += boatSpeed;

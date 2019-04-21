@@ -13,12 +13,9 @@ namespace CCC.Behaviors.Props
 
         public void RespondToInteraction()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (!EventSystem.current.IsPointerOverGameObject() && !clicked)
             {
-                clicked = false;
-            }
-            else
-            {
+                clicked = true;
                 Debug.Log(gameObject.name + " changing state!");
                 gameStateChanger.ChangeState();
             }
@@ -30,7 +27,7 @@ namespace CCC.Behaviors.Props
         {
             if (!clicked)
             {
-                clicked = true;
+               // clicked = true;
                 gameStateChanger = GetComponent<GameStateChanger>();
             }
         }
