@@ -59,7 +59,6 @@ public abstract class EnemyController : MonoBehaviour
     protected void Awake()
     {
         destinationMover = GetComponent<IDestinationMover>();
-        expValue = 40;//default override for various enemies
 
         if (destinationMover == null)
         {
@@ -101,6 +100,8 @@ public abstract class EnemyController : MonoBehaviour
 
         // Get enemy perk
         int level = GameObject.Find("Generator").GetComponent<GenerateIsland>().islandStorage.level;
+        level = ((level) > 1 ? (level) : 1);
+        expValue = Random.Range(35, 45) * (1 + (0.248f - ((0.002f * level) < 0.124f ? (0.002f * level) : 0.124f)) * (level < 62 ? level : 62));
         enemyClass.TakePerk(initialStats, false);
         enemyClass.onLevelUp = onLevelUpPerk;
         for (int i = 0; i < level; ++i)

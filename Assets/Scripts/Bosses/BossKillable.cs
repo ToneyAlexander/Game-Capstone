@@ -12,10 +12,12 @@ namespace CCC.Behaviors
         private ItemGenerator itemGenerator;
         public int maxItemsToDrop = 5;
         public float baseporb = 1f;
+        private int levelToAdd;
 
         void Awake()
         {
             itemDropper = GetComponent<IItemDropper>();
+            levelToAdd = GameObject.Find("Generator").GetComponent<GenerateIsland>().islandStorage.level / 3;
         }
 
         public void Die()
@@ -25,9 +27,9 @@ namespace CCC.Behaviors
                 if (Random.Range(0f, 1f) < baseporb)
                 {
                     baseporb -= 0.1f;
-                    Item item = itemGenerator.GenerateItem();
-                    Debug.Log(gameObject.name + " died and dropped an item'" +
-                        item.Name + "'!");
+                    Item item = itemGenerator.GenerateItem(levelToAdd);
+                    Debug.Log(gameObject.name + " died and dropped an item '" +
+                        item.Name + "'! Tier Increased by: " + levelToAdd);
                     ICommand dropItemCommand = new DropItemCommand(itemDropper, item, transform.position + new Vector3(Random.Range(-0.75f, 0.75f), 0, Random.Range(-0.75f, 0.75f)));
                     commandProcessor.ProcessCommand(dropItemCommand);
                 }

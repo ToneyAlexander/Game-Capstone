@@ -11,8 +11,9 @@ namespace CCC.Behaviors
         [SerializeField]
         private CommandProcessor commandProcessor;
         [SerializeField]
-        bool dontDropItem;
+        private bool dontDropItem;
         private IItemDropper itemDropper;
+        private int levelToAdd;
 
         [SerializeField]
         private ItemGenerator itemGenerator;
@@ -21,9 +22,9 @@ namespace CCC.Behaviors
         {
             if(!dontDropItem)
             {
-                Item item = itemGenerator.GenerateItem();
+                Item item = itemGenerator.GenerateItem(levelToAdd);
                 Debug.Log(gameObject.name + " died and dropped an item '" +
-                    item.Name + "'!");
+                    item.Name + "'! Tier Increased by: " + levelToAdd);
                 ICommand dropItemCommand = new DropItemCommand(itemDropper, item, transform.position);
                 commandProcessor.ProcessCommand(dropItemCommand);
             }
@@ -34,6 +35,7 @@ namespace CCC.Behaviors
         private void Awake()
         {
             itemDropper = GetComponent<IItemDropper>();
+            levelToAdd = GameObject.Find("Generator").GetComponent<GenerateIsland>().islandStorage.level / 4;
         }
 
         // TODO: Just for testing. Remove after enemies are able to be killed.

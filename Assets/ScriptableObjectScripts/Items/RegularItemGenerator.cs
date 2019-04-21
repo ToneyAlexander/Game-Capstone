@@ -15,14 +15,14 @@ namespace CCC.Items
         private List<AffixSetPrototype> affixSets;
         private float raritySum;
 
-        public override Item GenerateItem()
+        public override Item GenerateItem(int levelToAdd = 0)
         {
             if (raritySum == 0)
                 CalcRaritySum();
 
             // Pick a random ItemPrototype
             float rand = Random.Range(0, raritySum);
-            Debug.Log("Picked " + rand + " between 0 and " + raritySum);
+            //Debug.Log("Picked " + rand + " between 0 and " + raritySum);
             int index = 0;
             float sumTry = 0;
             for(int i = 0; i < itemPrototypes.Count; ++i)
@@ -42,9 +42,9 @@ namespace CCC.Items
                 ApplyStat(stats, statPrototype);
             }
 
-            Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier,
+            Item item = new Item(proto.ItemName, proto.FlavorText, false, proto.BaseItemTier + levelToAdd,
                 proto.EquipmentSlot, proto.Sprite.name, stats, proto.WorldDropPrefab);
-            Debug.Log(proto.Sprite.name);
+            //Debug.Log(proto.Sprite.name);
 
             ApplyAffixes(affixSets, this, item, proto);
 

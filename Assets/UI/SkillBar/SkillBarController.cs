@@ -13,13 +13,13 @@ public sealed class SkillBarController : MonoBehaviour
     #region MonoBehaviour Messages
     private void Update()
     {
-        Debug.Log(slotControllers.Count);
+        //Debug.Log(slotControllers.Count);
         var abilities = abilityDictionary.Abilities;
         for (var i = 0; i < slotControllers.Count; i++)
         {
             if (abilities[i].AbilityName != Ability.Null.AbilityName)
             {
-                Debug.Log(abilities[i].AbilityName);
+                //Debug.Log(abilities[i].AbilityName);
                 slotControllers[i].BindAbility(abilities[i]);
                 //Debug.Log("Binded ability for slotController " + slotControllers[i].name);
             }

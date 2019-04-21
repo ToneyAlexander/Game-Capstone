@@ -95,6 +95,6 @@ namespace CCC.Items
         /// Generate new Item.
         /// </summary>
         /// <returns>A newly generated Item.</returns>
-        public abstract Item GenerateItem();
+        public abstract Item GenerateItem(int levelToAdd = 0);
     }
 }
