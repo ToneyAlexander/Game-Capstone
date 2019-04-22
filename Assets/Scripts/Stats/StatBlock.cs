@@ -117,7 +117,7 @@ public class StatBlock : MonoBehaviour
         return ((2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce)) * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
     }
 
-    private static readonly float[] dmgThresholds = { 10,      25,    50,   100,   250,   1000,  2500, Mathf.Infinity};
+    private static readonly float[] dmgThresholds = { 10,      25,    50,   100,   250,  1000, 2500,  Mathf.Infinity};
     private static readonly float[] dmgReductions = { 0.0001f, 0.01f, 0.1f, 0.15f, 0.2f, 0.3f, 0.45f, 0.65f};
     private static readonly float dmgReductionCap = 0.9f;
 
