@@ -107,7 +107,6 @@ namespace CCC.GameManagement.GameStates
             {
                 playerAfflictionStorage.Afflictions = 
                     controlStatBlock.afflictions;
-                Debug.Log("[IslandGameState.AfflictPlayer] controlStatBlock.afflictions = " + controlStatBlock.afflictions);
             }
             else
             {

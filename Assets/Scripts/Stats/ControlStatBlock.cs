@@ -89,6 +89,8 @@ public class ControlStatBlock : MonoBehaviour
         if (afflictionStorage == null)
         {
             afflictions = new List<Affliction>();
+            Debug.LogWarning("[" + gameObject.name + ".ControlStatBlock" + 
+                ".Start] No AfflictionListStorage reference.");
         }
         else
         {

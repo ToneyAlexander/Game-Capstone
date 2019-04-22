@@ -12,7 +12,13 @@ namespace CCC.StatManagement
         fileName = "NewAfflictionListStroage")]
     sealed class AfflictionListStorage : ScriptableObject
     {
-        public List<Affliction> Afflictions;
+        public List<Affliction> Afflictions
+        {
+            get { return afflictions; }
+            set { afflictions = value; }
+        }
+
+        private List<Affliction> afflictions;
 
         /// <summary>
         /// The name of the JSON file that contains the data for this 
@@ -68,9 +74,8 @@ namespace CCC.StatManagement
                 using (var streamReader = File.OpenText(filePath))
                 {
                     var jsonString = streamReader.ReadToEnd();
-                    var afflictionListData = JsonUtility.FromJson<AfflictionListData>(jsonString);
-                    Afflictions = 
-                        new List<Affliction>(afflictionListData.Afflictions);
+                    var data = JsonUtility.FromJson<AfflictionListData>(jsonString);
+                    afflictions = new List<Affliction>(data.Afflictions);
                 }
             }
         }
@@ -85,7 +90,7 @@ namespace CCC.StatManagement
                 Directory.CreateDirectory(folderPath);
             }
 
-            var data = AfflictionListData.FromList(Afflictions);
+            var data = AfflictionListData.FromList(afflictions);
             var jsonString = JsonUtility.ToJson(data);
             using (var streamWriter = File.CreateText(filePath))
             {
@@ -97,7 +102,7 @@ namespace CCC.StatManagement
 
         private void Reset()
         {
-            Afflictions = new List<Affliction>();
+            afflictions = new List<Affliction>();
         }
 
         #region ScriptableObject Messages
