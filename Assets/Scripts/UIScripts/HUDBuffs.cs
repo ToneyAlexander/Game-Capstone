@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using CCC.Stats;
 
-public class BuffsScript : MonoBehaviour
+public class HUDBuffs : MonoBehaviour
 {
 
 	private Dictionary<string, TimedBuff> storedBuffs;
@@ -117,14 +118,24 @@ public class BuffsScript : MonoBehaviour
 		BuffItem item = data.pointerCurrentRaycast.gameObject.GetComponent<BuffItem>();
 		if(item.buff != null){
 			toolTip.SetActive(true);
+            toolTip.transform.position = data.pointerCurrentRaycast.gameObject.transform.position;
 			Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
 			txt.text = item.buff.BuffName;
-		}
+            Text txt2 = toolTip.transform.GetChild(1).GetComponent<Text>();
+            foreach (Stat stat in item.buff.Stats)
+            {
+                string value = Stat.GetStatString(stat);
+                txt2.text += stat.Name + ": " + value + "\n";
+       
+            }
+        }
 	}
 	private void OnLeaveBuff(PointerEventData data)
 	{
 		Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
-		txt.text = "";
+        Text txt2 = toolTip.transform.GetChild(1).GetComponent<Text>();
+        txt.text = "";
+        txt2.text = "";
 		toolTip.SetActive(false);
 	}
 }

@@ -15,7 +15,7 @@ public class StatScreenUI : MonoBehaviour
 
     private Text staticMainStats;
 
-    private Text classText;
+    private Text classAgeText;
 
     private Text nameText;
 
@@ -54,9 +54,9 @@ public class StatScreenUI : MonoBehaviour
                 levelText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
             }
-            else if (transform.GetChild(j).name.Equals("ClassText"))
+            else if (transform.GetChild(j).name.Equals("ClassAge"))
             {
-                classText = transform.GetChild(j).gameObject.GetComponent<Text>();
+                classAgeText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
             }
             else if (transform.GetChild(j).name.Equals("NameText"))
@@ -106,6 +106,6 @@ public class StatScreenUI : MonoBehaviour
 			(StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult) * 100).ToString("n1") + "%";
         levelText.text = player.PlayerLevelExp.Level.ToString();
         nameText.text = player.bloodlineController.playerName;
-        classText.text = textPlayerClass.ClassL.name;
+        classAgeText.text = textPlayerClass.ClassL.name + "\n" + player.bloodlineController.Age + " cycles";
     }
 }
