@@ -102,22 +102,55 @@ public class StatBlock : MonoBehaviour
         }
     }
 
-    public float ApplyReduction(float ToReduce, float Reducer)
+    [System.Obsolete("ApplyFrontEndReduction is deprecated, please use ApplyReduction instead.")]
+    public float ApplyFrontEndReduction(float ToReduce, float Reducer)
     {
-        if(ToReduce < 200)
-        {
-            Reducer *= 0.4f;
-        }
-        if(ToReduce <= 0)
+        if (ToReduce <= 0)
         {
             return 0f;
         }
-        if(Reducer < -1.5f*ToReduce)
+        if (Reducer < -1.5f * ToReduce)
         {
             Reducer = -1.5f * ToReduce;
         }
         //Debug.Log(ToReduce + " " + Reducer + " " + (2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce));
-        return ( (2*Mathf.Pow(ToReduce,2))/(Reducer + 2*ToReduce) ) * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+        return ((2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce)) * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+    }
+
+    private static readonly float[] dmgThresholds = { 10,      25,    50,   100,   250,   1000,  2500, Mathf.Infinity};
+    private static readonly float[] dmgReductions = { 0.0001f, 0.01f, 0.1f, 0.15f, 0.2f, 0.3f, 0.45f, 0.65f};
+    private static readonly float dmgReductionCap = 0.9f;
+
+    public float ApplyReduction(float ToReduce, float Reducer)
+    {
+        if (ToReduce <= 0)
+            return 0;
+        if (Reducer < 0)
+        {
+            return ToReduce * (1 - Reducer / 2000f);
+        }
+        float dmg = 0;
+
+        float reducerRatio = Reducer / 5000f;
+        float prevThresh = 0;
+
+        for (int i = 0; i < dmgThresholds.Length; ++i)
+        {
+            float reduction = 1 - reducerRatio * dmgReductions[i];
+            reduction = reduction < dmgReductionCap ? reduction : dmgReductionCap;
+            if(ToReduce > dmgThresholds[i])
+            {
+                dmg += (dmgThresholds[i] - prevThresh) * reduction;
+                prevThresh = dmgThresholds[i];
+            } else
+            {
+                dmg += (ToReduce - prevThresh) * reduction;
+                break;
+            }
+        }
+
+        Debug.Log("Original dmg: " + ToReduce + " Actual dmg: " + dmg);
+        return dmg * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
     }
 
     void Awake()
