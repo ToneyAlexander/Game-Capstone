@@ -369,7 +369,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.SpellMult += mystReal / 1000f;
 
         float fortReal = StatBlock.CalcMult(Fort, FortMult);
-        stats.MagicRes += fortReal / 5f;
+        stats.MagicRes += fortReal / 3f;
         stats.AfflictRes += fortReal / 250f;
         stats.StatusRec += fortReal / 2000f;
 

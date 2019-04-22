@@ -82,8 +82,7 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO show percentages
-
+        //Debug.Log(stats.Fort + " mult: " + stats.FortMult);
         statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult).ToString("n1") + "\n" +
             StatBlock.CalcMult(stats.Dex, stats.DexMult).ToString("n1") + "\n" + 
             StatBlock.CalcMult(stats.Myst,stats.MystMult).ToString("n1") + "\n" + 

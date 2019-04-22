@@ -131,26 +131,30 @@ public class StatBlock : MonoBehaviour
         }
         float dmg = 0;
 
-        float reducerRatio = Reducer / 5000f;
+        float reducerRatio = Reducer / 4000f;
         float prevThresh = 0;
 
         for (int i = 0; i < dmgThresholds.Length; ++i)
         {
-            float reduction = 1 - reducerRatio * dmgReductions[i];
+            float reduction = reducerRatio * dmgReductions[i];
             reduction = reduction < dmgReductionCap ? reduction : dmgReductionCap;
-            if(ToReduce > dmgThresholds[i])
+            reduction = 1 - reduction;
+            Debug.Log("Reduction: " + reduction);
+            if (ToReduce > dmgThresholds[i])
             {
                 dmg += (dmgThresholds[i] - prevThresh) * reduction;
+                Debug.Log("Step Dmg: " + (dmgThresholds[i] - prevThresh) * reduction + " orig dmg: " + (dmgThresholds[i] - prevThresh));
                 prevThresh = dmgThresholds[i];
             } else
             {
                 dmg += (ToReduce - prevThresh) * reduction;
+                Debug.Log("Step Dmg: " + (ToReduce - prevThresh) * reduction + " orig dmg: " + (ToReduce - prevThresh));
                 break;
             }
         }
-
-        Debug.Log("Original dmg: " + ToReduce + " Actual dmg: " + dmg);
-        return dmg * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+        dmg = dmg * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+        Debug.Log("Original dmg: " + ToReduce + " Reducer: " + Reducer + " Actual dmg: " + dmg);
+        return dmg;
     }
 
     void Awake()
