@@ -117,7 +117,7 @@ public class StatBlock : MonoBehaviour
         return ((2 * Mathf.Pow(ToReduce, 2)) / (Reducer + 2 * ToReduce)) * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
     }
 
-    private static readonly float[] dmgThresholds = { 10,      25,    50,   100,   250,   1000,  2500, Mathf.Infinity};
+    private static readonly float[] dmgThresholds = { 10,      25,    50,   100,   250,  1000, 2500,  Mathf.Infinity};
     private static readonly float[] dmgReductions = { 0.0001f, 0.01f, 0.1f, 0.15f, 0.2f, 0.3f, 0.45f, 0.65f};
     private static readonly float dmgReductionCap = 0.9f;
 
@@ -127,18 +127,20 @@ public class StatBlock : MonoBehaviour
             return 0;
         if (Reducer < 0)
         {
+            Debug.Log("Original dmg: " + ToReduce + " Reducer: " + Reducer + " Actual dmg: " + ToReduce * (1 - Reducer / 2000f));
             return ToReduce * (1 - Reducer / 2000f);
         }
         float dmg = 0;
 
-        float reducerRatio = Reducer / 5000f;
+        float reducerRatio = Reducer / 4000f;
         float prevThresh = 0;
 
         for (int i = 0; i < dmgThresholds.Length; ++i)
         {
-            float reduction = 1 - reducerRatio * dmgReductions[i];
+            float reduction = reducerRatio * dmgReductions[i];
             reduction = reduction < dmgReductionCap ? reduction : dmgReductionCap;
-            if(ToReduce > dmgThresholds[i])
+            reduction = 1 - reduction;
+            if (ToReduce > dmgThresholds[i])
             {
                 dmg += (dmgThresholds[i] - prevThresh) * reduction;
                 prevThresh = dmgThresholds[i];
@@ -148,9 +150,9 @@ public class StatBlock : MonoBehaviour
                 break;
             }
         }
-
-        Debug.Log("Original dmg: " + ToReduce + " Actual dmg: " + dmg);
-        return dmg * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+        dmg = dmg * (1 - CalcMult(FlatDmgReduction, FlatDmgReductionMult));
+        Debug.Log("Original dmg: " + ToReduce + " Reducer: " + Reducer + " Actual dmg: " + dmg);
+        return dmg;
     }
 
     void Awake()

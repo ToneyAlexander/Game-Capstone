@@ -15,7 +15,7 @@ public class StatScreenUI : MonoBehaviour
 
     private Text staticMainStats;
 
-    private Text classText;
+    private Text classAgeText;
 
     private Text nameText;
 
@@ -54,9 +54,9 @@ public class StatScreenUI : MonoBehaviour
                 levelText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
             }
-            else if (transform.GetChild(j).name.Equals("ClassText"))
+            else if (transform.GetChild(j).name.Equals("ClassAge"))
             {
-                classText = transform.GetChild(j).gameObject.GetComponent<Text>();
+                classAgeText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
             }
             else if (transform.GetChild(j).name.Equals("NameText"))
@@ -82,8 +82,7 @@ public class StatScreenUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO show percentages
-
+        //Debug.Log(stats.Fort + " mult: " + stats.FortMult);
         statlist.text = StatBlock.CalcMult(stats.Str,stats.StrMult).ToString("n1") + "\n" +
             StatBlock.CalcMult(stats.Dex, stats.DexMult).ToString("n1") + "\n" + 
             StatBlock.CalcMult(stats.Myst,stats.MystMult).ToString("n1") + "\n" + 
@@ -106,6 +105,6 @@ public class StatScreenUI : MonoBehaviour
 			(StatBlock.CalcMult(detailedStats.CritChance,detailedStats.CritChanceMult) * 100).ToString("n1") + "%";
         levelText.text = player.PlayerLevelExp.Level.ToString();
         nameText.text = player.bloodlineController.playerName;
-        classText.text = textPlayerClass.ClassL.name;
+        classAgeText.text = textPlayerClass.ClassL.name + "\n" + player.bloodlineController.Age + " cycles";
     }
 }

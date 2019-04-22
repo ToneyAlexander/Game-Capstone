@@ -4,7 +4,7 @@ using UnityEngine;
 
 using CCC.Items;
 
-public class WorldItemScript : MonoBehaviour
+public class WorldItemScript : MonoBehaviour, IAttackIgnored
 {
     public Item item;
 

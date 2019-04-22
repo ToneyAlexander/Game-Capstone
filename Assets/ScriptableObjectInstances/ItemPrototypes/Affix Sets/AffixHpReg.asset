@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixHpReg
+  m_EditorClassIdentifier: 
+  setName: Regen
+  setNameShort: Hp Regen
+  tiers:
+  - {fileID: 11400000, guid: 2105e445c384faf43b03a17a6e3f6dcd, type: 2}
+  - {fileID: 11400000, guid: 831771fc7a19893418d6b2190bde4867, type: 2}
+  - {fileID: 11400000, guid: 2f6799a61ddefa8498da098a38f675f2, type: 2}
+  - {fileID: 11400000, guid: 83229487ec0c9424a855196a61ea5a19, type: 2}
+  - {fileID: 11400000, guid: 2424cc7296cd86648930ab7f740cc131, type: 2}

@@ -48,7 +48,7 @@ namespace CCC.Items
 
             ApplyAffixes(affixSets, this, item, proto);
 
-            Debug.Log(proto.WorldDropPrefab);
+            //Debug.Log(proto.WorldDropPrefab);
             return item;
         }
 
