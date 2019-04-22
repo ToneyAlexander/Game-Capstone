@@ -3,6 +3,7 @@ using UnityEngine;
 using CCC.Stats;
 
 [CreateAssetMenu(menuName = "Buffs/Affliction")]
+[System.Serializable]
 public class Affliction : ScriptableObject
 {
     // Start is called before the first frame update

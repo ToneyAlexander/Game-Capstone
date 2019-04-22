@@ -1,6 +1,7 @@
 ﻿using CCC.Abilities;
 using CCC.Combat.Perks;
 using CCC.Items;
+using CCC.StatManagement;
 using UnityEngine;
 
 namespace CCC.GameManagement.GameStates
@@ -11,6 +12,9 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class RetireScreenGameState : GameState
     {
+        [SerializeField]
+        private AfflictionListStorage playerAfflictionStorage;
+
         [SerializeField]
         private AbilitySlotDictionary playerAbilityDictionary;
 
@@ -39,6 +43,7 @@ namespace CCC.GameManagement.GameStates
             inventory.Load();
             playerEquipment.Load();
             playerLevelExp.Load();
+            playerAfflictionStorage.Load();
         }
 
         public override void Exit()
@@ -52,6 +57,7 @@ namespace CCC.GameManagement.GameStates
             playerTakenPerks.DeleteSaveFile();
             playerAbilityDictionary.DeleteSaveFile();
             playerLevelExp.DeleteSaveFile();
+            playerAfflictionStorage.DeleteSaveFile();
         }
     }
 }

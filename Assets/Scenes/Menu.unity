@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6710389, g: 0.61412436, b: 0.5593067, a: 1}
+  m_IndirectSpecularColor: {r: 0.6710365, g: 0.6141213, b: 0.55930555, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allPerks: []
   TakenPerks: []
-  takenPerks: {fileID: 0}
+  takenPerks: {fileID: 11400000, guid: 23abaa28271f14e239549bd61337192f, type: 2}
   onLevelUp: {fileID: 0}
   abilities: {fileID: 0}
   abilDict: {fileID: 0}
@@ -872,7 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bddb2bec5a12f45b470bd0c3be19d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afflictions: []
+  afflictions_old: []
+  afflictionStorage: {fileID: 0}
 --- !u!114 &329729887
 MonoBehaviour:
   m_ObjectHideFlags: 0
