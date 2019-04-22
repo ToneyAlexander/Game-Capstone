@@ -127,6 +127,7 @@ public class StatBlock : MonoBehaviour
             return 0;
         if (Reducer < 0)
         {
+            Debug.Log("Original dmg: " + ToReduce + " Reducer: " + Reducer + " Actual dmg: " + ToReduce * (1 - Reducer / 2000f));
             return ToReduce * (1 - Reducer / 2000f);
         }
         float dmg = 0;
@@ -139,16 +140,13 @@ public class StatBlock : MonoBehaviour
             float reduction = reducerRatio * dmgReductions[i];
             reduction = reduction < dmgReductionCap ? reduction : dmgReductionCap;
             reduction = 1 - reduction;
-            Debug.Log("Reduction: " + reduction);
             if (ToReduce > dmgThresholds[i])
             {
                 dmg += (dmgThresholds[i] - prevThresh) * reduction;
-                Debug.Log("Step Dmg: " + (dmgThresholds[i] - prevThresh) * reduction + " orig dmg: " + (dmgThresholds[i] - prevThresh));
                 prevThresh = dmgThresholds[i];
             } else
             {
                 dmg += (ToReduce - prevThresh) * reduction;
-                Debug.Log("Step Dmg: " + (ToReduce - prevThresh) * reduction + " orig dmg: " + (ToReduce - prevThresh));
                 break;
             }
         }
