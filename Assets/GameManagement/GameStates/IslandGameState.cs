@@ -1,6 +1,7 @@
 ﻿using CCC.Abilities;
 using CCC.Combat.Perks;
 using CCC.Items;
+using CCC.StatManagement;
 using UnityEngine;
 
 namespace CCC.GameManagement.GameStates
@@ -12,6 +13,9 @@ namespace CCC.GameManagement.GameStates
     [CreateAssetMenu]
     public sealed class IslandGameState : GameState
     {
+        [SerializeField]
+        private AfflictionListStorage playerAfflictionStorage;
+
         [SerializeField]
         private BloodlineController playerBloodlineController;
 
@@ -61,6 +65,7 @@ namespace CCC.GameManagement.GameStates
             playerLevelExpStore.Load();
             playerAbilitySet.Load();
             playerAbilitySlots.Load();
+            playerAfflictionStorage.Load();
         }
 
         public override void Exit()
@@ -74,6 +79,9 @@ namespace CCC.GameManagement.GameStates
             SavePlayerPerks();
             playerAbilitySet.Save();
             playerAbilitySlots.Save();
+
+            AfflictPlayer();
+            playerAfflictionStorage.Save();
         }
 
         private void AgePlayer()
@@ -91,9 +99,31 @@ namespace CCC.GameManagement.GameStates
             }
         }
 
+        private void AfflictPlayer()
+        {
+            var controlStatBlock = FindPlayerControlStatBlock();
+
+            if (controlStatBlock)
+            {
+                playerAfflictionStorage.Afflictions = 
+                    controlStatBlock.afflictions;
+                Debug.Log("[IslandGameState.AfflictPlayer] controlStatBlock.afflictions = " + controlStatBlock.afflictions);
+            }
+            else
+            {
+                Debug.LogError("[IslandGameState.Exit.AfflictPlayer] No " +
+                    "GameObject with tag 'Player' found!");
+            }
+        }
+
         private PlayerClass FindPlayerPlayerClass()
         {
             return GameObject.FindWithTag("Player").GetComponent<PlayerClass>();
+        }
+
+        private ControlStatBlock FindPlayerControlStatBlock()
+        {
+            return GameObject.FindWithTag("Player").GetComponent<ControlStatBlock>();
         }
 
         /// <summary>

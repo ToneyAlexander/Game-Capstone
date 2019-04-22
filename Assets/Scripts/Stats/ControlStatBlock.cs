@@ -1,6 +1,7 @@
 ﻿using CCC.Items;
 using CCC.ItemManagement;
 using CCC.Stats;
+using CCC.StatManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,6 +27,10 @@ public class ControlStatBlock : MonoBehaviour
     public List<TimedBuff> buffs;
     [HideInInspector]
     public List<Affliction> afflictions;
+
+    [SerializeField]
+    private AfflictionListStorage afflictionStorage;
+
     private List<TimedBuff> buffsToAdd;
     private StatBlock stats;
     private float oldHpPrecent;
@@ -67,8 +72,7 @@ public class ControlStatBlock : MonoBehaviour
     void Awake()
     {
         applyTestStats = false;
-        if (afflictions == null)
-            afflictions = new List<Affliction>();
+
         init = GetComponent<InitAbilities>();
         stats = GetComponent<StatBlock>();
         inv = GetComponent<EquipmentUser>();
@@ -82,7 +86,15 @@ public class ControlStatBlock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (afflictionStorage == null)
+        {
+            afflictions = new List<Affliction>();
+        }
+        else
+        {
+            afflictions = afflictionStorage.Afflictions;
+        }
+
         if (stats != null && stats.Friendly)
         {
             //applyTestStats = true;
