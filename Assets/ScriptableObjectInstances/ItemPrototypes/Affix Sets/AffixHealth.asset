@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixHealth
+  m_EditorClassIdentifier: 
+  setName: Health
+  setNameShort: Health
+  tiers:
+  - {fileID: 11400000, guid: 0d45b7185d9a962449ce965c482ec27e, type: 2}
+  - {fileID: 11400000, guid: 89d3b0a149387b9478d1530c0ea8df6f, type: 2}
+  - {fileID: 11400000, guid: 852a9e9a4031d55458d8e90575872768, type: 2}
+  - {fileID: 11400000, guid: 94762bcb319cde044bce2e327d2007bd, type: 2}
+  - {fileID: 11400000, guid: 5682cb84e0823324b8bcee66965b6ceb, type: 2}

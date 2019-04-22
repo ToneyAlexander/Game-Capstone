@@ -69,7 +69,7 @@ namespace CCC.Items
                     tierTry += itemTierOdds[j];
                     if(tier <= tierTry)
                     {
-                        Debug.Log(tier + " actual affix: " + j + " item tier: " + item.Tier);
+                        //Debug.Log(tier + " actual affix: " + j + " item tier: " + item.Tier);
                         longNames.Add(item.Name + " of " + toApply.Tiers[j].affixName + " " + toApply.SetName);
                         shortNames.Add(item.Name + " of " + toApply.SetNameShort);
 

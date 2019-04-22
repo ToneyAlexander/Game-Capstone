@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixCritDmg
+  m_EditorClassIdentifier: 
+  setName: Wounds
+  setNameShort: Crit Dmg
+  tiers:
+  - {fileID: 11400000, guid: eb7ad68925c4b0c45a2c2b5231ef6089, type: 2}
+  - {fileID: 11400000, guid: 577a842e72e7dae4884514ef4070d52a, type: 2}
+  - {fileID: 11400000, guid: b2b555d525831064baaba9ce35bb7f54, type: 2}
+  - {fileID: 11400000, guid: 0c63abdab6b74e04891ed900ee3df90e, type: 2}
+  - {fileID: 11400000, guid: 23c794fcf9f2a794fad9efae77a43b5f, type: 2}

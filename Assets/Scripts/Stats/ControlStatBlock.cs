@@ -110,6 +110,7 @@ public class ControlStatBlock : MonoBehaviour
         FortMult = 0;
         Myst = 0;
         MystMult = 0;
+
         stats.Cdr = 0f;
         stats.CdrMult = 0f;
         stats.Spell = 0f;
@@ -118,14 +119,12 @@ public class ControlStatBlock : MonoBehaviour
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
         stats.HealthMult = 0f;
-        stats.HealthRegen = 0f;
+        stats.HealthRegen = 15f;
         stats.HealthRegenMult = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
         stats.MoveSpeed = 6.5f;
         stats.MoveSpeedMult = 0f;
-        stats.PhantomHpMult = 0f;
-        stats.BloodDamage = 0f;
         stats.AttackSpeed = 0f;
         stats.AttackSpeedMult = 0f;
         stats.Armor = 0f;
@@ -148,6 +147,9 @@ public class ControlStatBlock : MonoBehaviour
         stats.StatusRecMult = 0f;
         stats.FlatDmgReduction = 0f;
         stats.FlatDmgReductionMult = 0f;
+
+        stats.PhantomHpMult = 0f;
+        stats.BloodDamage = 0f;
     }
 
     void ApplyStat(Stat stat)
@@ -354,7 +356,7 @@ public class ControlStatBlock : MonoBehaviour
 
         float strReal = StatBlock.CalcMult(Str, StrMult);
         stats.HealthBase += strReal * 10f;
-        stats.HealthRegen += strReal / 20f;
+        stats.HealthRegen += strReal / 15f;
         stats.MeleeAttackMult += strReal / 1000f;
 
         float dexReal = StatBlock.CalcMult(Dex, DexMult);
