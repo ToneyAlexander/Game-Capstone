@@ -54,7 +54,7 @@ public class StatScreenUI : MonoBehaviour
                 levelText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
             }
-            else if (transform.GetChild(j).name.Equals("ClassAge"))
+            else if (transform.GetChild(j).name.Equals("ClassText"))
             {
                 classAgeText = transform.GetChild(j).gameObject.GetComponent<Text>();
 
