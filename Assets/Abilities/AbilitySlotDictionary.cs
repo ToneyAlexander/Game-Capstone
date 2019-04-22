@@ -12,12 +12,14 @@ namespace CCC.Abilities
         [SerializeField]
         private string filename = "NewAbilitySlotDictionary.json";
 
-        private string path;
-
         private Ability[] abilities;
 
         [SerializeField]
         private string folderName = "Player";
+
+        private string filePath;
+
+        private string folderPath;
 
         [SerializeField]
         private string assetBundleName = "ability_icons";
@@ -48,23 +50,19 @@ namespace CCC.Abilities
 
         public void Load()
         {
-            path = Path.Combine(Application.persistentDataPath, folderName);
-            path = Path.Combine(path, filename);
-
             Reset();
+
             abilityIconsAssetBundle = 
                 AssetBundleManager.LoadAssetBundleAtPath(assetBundlePath);
 
-            if (File.Exists(path))
+            if (File.Exists(filePath))
             {
-                using (StreamReader streamReader = File.OpenText(path))
+                using (StreamReader streamReader = File.OpenText(filePath))
                 {
                     var jsonString = streamReader.ReadToEnd();
                     abilities = JsonUtility.FromJson<AbilityList>(jsonString).Abilities;
                 }
             }
-
-            Debug.Log(abilities);
         }
 
         /// <summary>
@@ -72,9 +70,9 @@ namespace CCC.Abilities
         /// </summary>
         public void DeleteSaveFile()
         {
-            if (File.Exists(path))
+            if (File.Exists(filePath))
             {
-                File.Delete(path);
+                File.Delete(filePath);
             }
         }
 
@@ -98,11 +96,11 @@ namespace CCC.Abilities
             }
 
             Debug.Log(jsonString);
-            using (StreamWriter streamWriter = File.CreateText(path))
+            using (StreamWriter streamWriter = File.CreateText(filePath))
             {
                 streamWriter.Write(jsonString);
             }
-            Debug.Log("[AbilitySlotDictionary.Save] saved to JSON file '" + path + "'");
+            Debug.Log("[AbilitySlotDictionary.Save] saved to JSON file '" + filePath + "'");
 
             Reset();
         }
@@ -121,5 +119,15 @@ namespace CCC.Abilities
             AssetBundleManager.UnloadAssetBundleAtPath(assetBundlePath);
             abilityIconsAssetBundle = null;
         }
+
+        #region ScriptableObject Messages
+        private void OnEnable()
+        {
+            Reset();
+            folderPath = 
+                Path.Combine(Application.persistentDataPath, folderName);
+            filePath = Path.Combine(folderPath, filename);
+        }
+        #endregion
     }
 }

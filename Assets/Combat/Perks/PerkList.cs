@@ -36,7 +36,9 @@ namespace CCC.Combat.Perks
         [SerializeField]
         private string folderName = "Player";
 
-        private string path;
+        private string filePath;
+
+        private string folderPath;
 
         public void AddPerk(PerkPrototype p)
         {
@@ -51,9 +53,9 @@ namespace CCC.Combat.Perks
         /// </summary>
         public void DeleteSaveFile()
         {
-            if (File.Exists(path))
+            if (File.Exists(filePath))
             {
-                File.Delete(path);
+                File.Delete(filePath);
                 Debug.Log("[PerkList.DeleteSaveFile] Deleted save file");
             }
         }
@@ -63,18 +65,13 @@ namespace CCC.Combat.Perks
             Debug.Log("Loading");
             if (filename != "")
             {
-                path = Path.Combine(Application.persistentDataPath, folderName);
-                path = Path.Combine(path, filename);
-
-                if (File.Exists(path))
+                if (File.Exists(filePath))
                 {
-                    using (StreamReader streamReader = File.OpenText(path))
+                    using (StreamReader streamReader = File.OpenText(filePath))
                     {
                         var jsonString = streamReader.ReadToEnd();
-                        Debug.Log(jsonString);
                         var loadedData =
                             JsonUtility.FromJson<PerkListData>(jsonString);
-                        Debug.Log(loadedData.Perks.Count);
                         data = loadedData;
 
                         foreach (var perk in loadedData.Perks)
@@ -104,15 +101,12 @@ namespace CCC.Combat.Perks
 
                 var jsonString = JsonUtility.ToJson(newData, true);
 
-                var directoryPath =
-                    Path.Combine(Application.persistentDataPath, folderName);
-
-                if (!Directory.Exists(directoryPath))
+                if (!Directory.Exists(folderPath))
                 {
-                    Directory.CreateDirectory(directoryPath);
+                    Directory.CreateDirectory(folderPath);
                 }
 
-                using (StreamWriter streamWriter = File.CreateText(path))
+                using (StreamWriter streamWriter = File.CreateText(filePath))
                 {
                     streamWriter.Write(jsonString);
                 }
@@ -120,5 +114,19 @@ namespace CCC.Combat.Perks
 
             data = PerkListData.Null;
         }
+
+        private void Reset()
+        {
+            data = PerkListData.Null;
+        }
+
+        #region ScriptableObject Messages
+        private void OnEnable()
+        {
+            Reset();
+            folderPath = Path.Combine(Application.persistentDataPath, folderName);
+            filePath = Path.Combine(folderPath, filename);
+        }
+        #endregion
     }
 }

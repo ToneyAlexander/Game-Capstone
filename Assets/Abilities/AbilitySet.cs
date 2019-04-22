@@ -17,7 +17,9 @@ namespace CCC.Abilities
         [SerializeField]
         private string folderName = "Player";
 
-        private string path;
+        private string filePath;
+
+        private string folderPath;
 
         /// <summary>
         /// Get the HashSet of Ability that this AbilitySet is a wrapper for.
@@ -33,14 +35,26 @@ namespace CCC.Abilities
         /// </summary>
         private Dictionary<string, Ability> set = new Dictionary<string, Ability>();
 
+        /// <summary>
+        /// Delete the JSON file that this AbilitySet saves to.
+        /// </summary>
+        public void DeleteSaveFile()
+        {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+                Debug.Log("[AbilitySet.DeleteSaveFile] Deleted save file");
+            }
+        }
+
         public void Load()
         {
             Reset();
             var abilityList = AbilityList.CreateEmpty();
 
-            if (File.Exists(path))
+            if (File.Exists(filePath))
             {
-                using (StreamReader streamReader = File.OpenText(path))
+                using (StreamReader streamReader = File.OpenText(filePath))
                 {
                     var jsonString = streamReader.ReadToEnd();
                     abilityList = JsonUtility.FromJson<AbilityList>(jsonString);
@@ -50,18 +64,6 @@ namespace CCC.Abilities
             foreach (var ability in abilityList.Abilities)
             {
                 set.Add(ability.AbilityName, ability);
-            }
-        }
-
-        /// <summary>
-        /// Delete the JSON file that this AbilitySet saves to.
-        /// </summary>
-        public void DeleteSaveFile()
-        {
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-                Debug.Log("[AbilitySet.DeleteSaveFile] Deleted save file");
             }
         }
 
@@ -79,15 +81,12 @@ namespace CCC.Abilities
             var saveData = AbilityList.FromList(abilities);
             var jsonString = JsonUtility.ToJson(saveData, true);
 
-            var directoryPath =
-                Path.Combine(Application.persistentDataPath, folderName);
-
-            if (!Directory.Exists(directoryPath))
+            if (!Directory.Exists(folderPath))
             {
-                Directory.CreateDirectory(directoryPath);
+                Directory.CreateDirectory(folderPath);
             }
 
-            using (StreamWriter streamWriter = File.CreateText(path))
+            using (StreamWriter streamWriter = File.CreateText(filePath))
             {
                 streamWriter.Write(jsonString);
             }
@@ -97,9 +96,17 @@ namespace CCC.Abilities
 
         private void Reset()
         {
-            path = Path.Combine(Application.persistentDataPath, folderName);
-            path = Path.Combine(path, filename);
             set = new Dictionary<string, Ability>();
         }
+
+        #region ScriptableObject Messages
+        private void OnEnable()
+        {
+            Reset();
+            folderPath = 
+                Path.Combine(Application.persistentDataPath, folderName);
+            filePath = Path.Combine(folderPath, filename);
+        }
+        #endregion
     }
 }

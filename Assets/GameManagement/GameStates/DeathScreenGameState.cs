@@ -43,7 +43,6 @@ namespace CCC.GameManagement.GameStates
             inventory.Load();
             playerEquipment.Load();
             playerLevelExp.Load();
-            playerAfflictionStorage.Load();
         }
 
         public override void Exit()
