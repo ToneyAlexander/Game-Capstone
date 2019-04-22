@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e8c7982d4a444044b57952a85ce9bcd, type: 3}
+  m_Name: AffixCritChan
+  m_EditorClassIdentifier: 
+  setName: Cuts
+  setNameShort: Crit Chance
+  tiers:
+  - {fileID: 11400000, guid: df3580a35d8f67942af0cca517cc4dde, type: 2}
+  - {fileID: 11400000, guid: 1850585e1cec82d47ad64c0fe0dbb378, type: 2}
+  - {fileID: 11400000, guid: e221e2e925f9fd9469aa4d3f1a34df07, type: 2}
+  - {fileID: 11400000, guid: efc3ede454f26c44698059f9ce59ae3f, type: 2}
+  - {fileID: 11400000, guid: b8698e3c086d5184b873d9d73021694c, type: 2}
