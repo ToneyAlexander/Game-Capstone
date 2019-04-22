@@ -183,19 +183,19 @@ public class GenerateIsland : MonoBehaviour
 
 	}
 
-    void Update()
+    /*void Update()
     {
         //return;
-        /*if (makeNavmesh)
-        {
+        //if (makeNavmesh)
+        //{
             // It takes some time for the navMesh to update based on the new island.
             // if (updateNavMeshTimer > 0)
             // {
             //     surface.UpdateNavMesh(surface.navMeshData);
             //     updateNavMeshTimer--;
             // }
-            surface.UpdateNavMesh(surface.navMeshData);
-        }*/
+            //surface.UpdateNavMesh(surface.navMeshData);
+        //}
 
         if (Input.GetButtonDown("Regenerate"))
         {
@@ -218,7 +218,7 @@ public class GenerateIsland : MonoBehaviour
             updateNavMeshTimer = 500;
             string islandName = nameGenerator.generateName();
 		    Debug.Log(islandName);
-		    islandNameDisplay.DisplayName(islandName);*/
+		    islandNameDisplay.DisplayName(islandName);
         }
         else if (Input.GetButtonDown("Terrain"))
         {
@@ -262,7 +262,7 @@ public class GenerateIsland : MonoBehaviour
             }
             NUMBER_OF_TILES = TILES_PER_LAYER * (LAYERS_ABOVE_BEACH + 1) + 1;
 
-            layersChanged = true;*/
+            layersChanged = true;
         }
         else if (Input.GetButtonDown("Island Radius"))
         {
@@ -285,7 +285,7 @@ public class GenerateIsland : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
     #region Menu Connection
 
     private string LinkIslandStat()

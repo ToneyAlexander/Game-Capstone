@@ -25,15 +25,15 @@ public sealed class KillablePlayer : MonoBehaviour, IKillable
         //Destroy(gameObject);
         //gameStateChanger.ChangeGameState();
     }
-
-    //TODO: REMOVE
+    
+    /*
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Period))
         {
             Die();
         }
-    }
+    }*/
 
     #region MonoBehaviour Messages
     private void Awake()
