@@ -118,7 +118,7 @@ public class HUDBuffs : MonoBehaviour
 		BuffItem item = data.pointerCurrentRaycast.gameObject.GetComponent<BuffItem>();
 		if(item.buff != null){
 			toolTip.SetActive(true);
-            toolTip.transform.position = data.pointerCurrentRaycast.gameObject.transform.position - new Vector3(150,-75);
+            toolTip.transform.position = data.pointerCurrentRaycast.gameObject.transform.position - new Vector3(100,-50);
 			Text txt = toolTip.transform.GetChild(0).GetComponent<Text>();
 			txt.text = item.buff.BuffName;
             Text txt2 = toolTip.transform.GetChild(1).GetComponent<Text>();

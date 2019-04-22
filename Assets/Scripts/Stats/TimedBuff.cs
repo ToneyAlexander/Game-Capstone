@@ -43,7 +43,8 @@ public class TimedBuff : IEquatable<TimedBuff>
             DurationLeft = DurationLeft,
             IsUnique = IsUnique,
             IsNegative = IsNegative,
-            Stats = Stats
+            Stats = Stats,
+            icon = icon
         };
 
         return tb;
