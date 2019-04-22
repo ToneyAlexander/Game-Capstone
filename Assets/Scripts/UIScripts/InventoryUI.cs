@@ -144,6 +144,8 @@ public class InventoryUI : MonoBehaviour
                 textfield.text = "";
                 textfield.color = Color.black;
                 inventoryButtonScript.item = Item.Null;
+                buttonImage.sprite = null;
+                buttonImage.color = new Color(0.13333333333333333333333333333f, 0.12549019607f, 0.12549019607f, 1.0f);
             }
         }
         for (int i = 0; i < 6; i++)
