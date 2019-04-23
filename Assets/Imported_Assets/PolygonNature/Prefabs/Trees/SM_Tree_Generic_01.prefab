@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4388383215679704}
   - component: {fileID: 205676229864877180}
+  - component: {fileID: 1154059143598315960}
+  - component: {fileID: 906227561026901433}
   m_Layer: 0
   m_Name: SM_Tree_Generic_01
   m_TagString: Untagged
@@ -133,6 +135,33 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23490243049051832}
   m_Enabled: 1
+--- !u!65 &1154059143598315960
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325612589990884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 10, z: 1}
+  m_Center: {x: 0, y: 4.5, z: 0}
+--- !u!136 &906227561026901433
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1325612589990884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 4
+  m_Height: 10
+  m_Direction: 2
+  m_Center: {x: 0, y: 12, z: 0}
 --- !u!1 &1458548897862386
 GameObject:
   m_ObjectHideFlags: 0

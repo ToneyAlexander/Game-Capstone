@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 4091860562062044}
   - component: {fileID: 205654868191982114}
   - component: {fileID: 110403206677927328}
+  - component: {fileID: 8964311505637644253}
+  - component: {fileID: 912173808110446784}
   m_Layer: 0
   m_Name: SM_Tree_Willow_Large_01
   m_TagString: Untagged
@@ -150,6 +152,32 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 3.5, z: 0}
   m_TimeToStationary: 0.5
+--- !u!65 &8964311505637644253
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387755814615386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 8, z: 1}
+  m_Center: {x: 0, y: 3, z: 0}
+--- !u!135 &912173808110446784
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387755814615386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &1851958537525858
 GameObject:
   m_ObjectHideFlags: 0

@@ -88,6 +88,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4188878019612106}
   - component: {fileID: 205670617719592218}
+  - component: {fileID: 5925428468028532583}
+  - component: {fileID: 5578505193777581378}
   m_Layer: 0
   m_Name: SM_Tree_Pine_Small_01
   m_TagString: Untagged
@@ -134,6 +136,33 @@ LODGroup:
     renderers:
     - renderer: {fileID: 23495053559401334}
   m_Enabled: 1
+--- !u!65 &5925428468028532583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137204502678828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 8, z: 1}
+  m_Center: {x: 0, y: 4, z: 0}
+--- !u!136 &5578505193777581378
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137204502678828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 8
+  m_Direction: 1
+  m_Center: {x: 0, y: 7, z: 0}
 --- !u!1 &1783114842634712
 GameObject:
   m_ObjectHideFlags: 0
