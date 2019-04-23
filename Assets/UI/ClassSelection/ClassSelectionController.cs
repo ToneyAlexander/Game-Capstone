@@ -62,9 +62,11 @@ public sealed class ClassSelectionController : MonoBehaviour
             {
                 sprite.color = Color.Lerp(backdropColor, darkenedColor, (v.z + 3) / 2.0f);
             }
-            
-           
         }
+
+        // The current class should always be set to the first class in the 
+        // class list since that is the one that is always initially selected.
+        bloodlineController.CurrentClass = bloodlineController.ClassList[0];
     }
 
     private void Update()
