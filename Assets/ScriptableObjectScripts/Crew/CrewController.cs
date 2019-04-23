@@ -64,15 +64,19 @@ public class CrewController : ScriptableObject
             if (fullCrew[i] == empty)
             {
                 fullCrew[i] = AllCrewMembers[(int)Random.Range(0, AllCrewMembers.Count)];
+                AllCrewMembers.Remove(fullCrew[i]);
             }
         }
     }
     public void dismiss(int i)
     {
-       // selectedCrew[i].Active = false;
+        // selectedCrew[i].Active = false;
+        AllCrewMembers.Add(fullCrew[i]);
+        selectedCrew.Remove(fullCrew[i]);
         fullCrew[i] = empty;
+        
        // fullCrew[i].Active = false;
-      // fullCrew.RemoveAt(i);
+       // fullCrew.RemoveAt(i);
     }
    public int selectTheme()
     {

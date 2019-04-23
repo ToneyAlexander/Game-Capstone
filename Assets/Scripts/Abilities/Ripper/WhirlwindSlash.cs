@@ -49,7 +49,7 @@ public class WhirlwindSlash : AbilityBase
         pbh.dmg = stats.RealDamage(dmg);
         TimedBuff tb = slowdown.Instance;
         Stat stat = tb.Stats.Find(item => item.Name == Stat.MOVE_SPEED_MULT);
-        Debug.Log("just like the white winged dove : " + stat.Name + stat.Value + slowdownMult);
+       // Debug.Log("just like the white winged dove : " + stat.Name + stat.Value + slowdownMult);
         stat = new Stat(stat.Name, StatBlock.CalcMult(stat.Value, slowdownMult));
         tb.Stats.Remove(new Stat(Stat.MOVE_SPEED_MULT));
         tb.Stats.Add(stat);
