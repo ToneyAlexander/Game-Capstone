@@ -14,6 +14,9 @@ public class LineDash : AbilityBase
     private float fastness = 0;
     private float duration;
     private float ttl = 0;
+    private float doubletapTolerance = 0.5f;
+    private float taptime = 0;
+    private float MajorCooldown = 8.0f;
     private Vector3 destination = new Vector3();
 
     private readonly string AbilName = "Line Dash";
@@ -33,10 +36,12 @@ public class LineDash : AbilityBase
         if (fasttimes)
         {
             abil.cdRemain = 0.1f;
+            taptime = doubletapTolerance;
         }
         else
         {
-            abil.cdRemain = 2.8f;
+            abil.cdRemain = MajorCooldown;
+            
         }
         fasttimes = !fasttimes;
 
@@ -60,7 +65,16 @@ public class LineDash : AbilityBase
     // Update is called once per frame
      void Update()
     {
+          if (taptime > 0 && !fasttimes)
+        {
+            taptime -= Time.deltaTime;
+            if (taptime <= 0)
+            {
+                fasttimes = true;
+                abil.cdRemain = MajorCooldown;
+            }
 
+        }
             if (abil.cdRemain > 0f)
             {
                 float mult = 1;
@@ -90,6 +104,10 @@ public class LineDash : AbilityBase
            // Debug.Log("big if true");
             ttl -= Time.deltaTime;
             destination.y = transform.position.y;
+            if (Vector3.Distance(destination, this.transform.position) < 1.0f)
+            {
+                destination = this.transform.position;
+            }
             transform.position = Vector3.MoveTowards(transform.position, destination, fastness * Time.deltaTime);
 
         }
