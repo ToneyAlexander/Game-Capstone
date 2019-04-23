@@ -133,7 +133,7 @@ public class ControlStatBlock : MonoBehaviour
         stats.RangedAttackMult = 0f;
         stats.HealthBase = 0f;
         stats.HealthMult = 0f;
-        stats.HealthRegen = 15f;
+        stats.HealthRegen = 0f;
         stats.HealthRegenMult = 0f;
         stats.MeleeAttack = 0f;
         stats.MeleeAttackMult = 0f;
@@ -370,7 +370,7 @@ public class ControlStatBlock : MonoBehaviour
 
         float strReal = StatBlock.CalcMult(Str, StrMult);
         stats.HealthBase += strReal * 10f;
-        stats.HealthRegen += strReal / 15f;
+        stats.HealthRegen += strReal / 10f;
         stats.MeleeAttackMult += strReal / 1000f;
 
         float dexReal = StatBlock.CalcMult(Dex, DexMult);
