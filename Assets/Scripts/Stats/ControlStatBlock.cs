@@ -52,16 +52,16 @@ public class ControlStatBlock : MonoBehaviour
 
     public void AgeUp()
     {
-        float rand = Random.Range(0f, pClass.bloodlineController.Age/2);
+        float rand = Random.Range(0f, pClass.bloodlineController.Age/2f);
 
         Debug.Log("Age: " + pClass.bloodlineController.Age + " Rand: " + rand + " Fort: " + StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult));
-        if (rand > StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
+        if (rand - 3f > StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
         {
             Affliction aff = init.BadAffList.afflictions[Random.Range(0, init.BadAffList.afflictions.Count)];
             Debug.Log("Gained affliction: " + aff.AfflictionName);
             afflictions.Add(aff);
         }
-        else if (rand + 1f < StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
+        else if (rand + 1.5f < StatBlock.CalcMult(stats.AfflictRes, stats.AfflictResMult))
         {
             Affliction aff = init.GoodAffList.afflictions[Random.Range(0, init.GoodAffList.afflictions.Count)];
             Debug.Log("Gained affliction: " + aff.AfflictionName);
