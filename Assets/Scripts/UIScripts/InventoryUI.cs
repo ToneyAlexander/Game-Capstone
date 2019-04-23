@@ -114,15 +114,18 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(storedButtons.Length);
         for (int i = 0; i < storedButtons.Length; i++)
         {
             InventoryButton inventoryButtonScript = storedButtons[i].GetComponent<InventoryButton>();
             Image buttonImage = storedButtons[i].transform.GetChild(1).GetComponent<Image>();
-
+            Debug.Log(user.Items.Count);
             if (user.Items.Count > i)
             {
                 Item go = user.Items[i];
                 string name = go.Name;
+                //Debug.Log(user.Items[i].Name);
+               // Debug.Log(go.Name);
                 if (name.Length > strLength)
                 {
                     name = name.Substring(0, strLength) + "...";
@@ -226,16 +229,18 @@ public class InventoryUI : MonoBehaviour
     {
         //.GetComponent<Image>();
 
+  
         if (data.button == PointerEventData.InputButton.Left)
         {
-            euser.EquipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+            euser.EquipItem(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item);
         }
         else if (data.button == PointerEventData.InputButton.Right)
         {
-            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
-            data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
-            user.RemoveItem(data.selectedObject.GetComponent<InventoryButton>().item);
-            euser.CheckAndDisequipItem(data.selectedObject.GetComponent<InventoryButton>().item);
+           // data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().sprite = null;
+          //  data.pointerCurrentRaycast.gameObject.transform.GetComponent<Image>().color = new Color(0.13333333333333333333333333333f,0.12549019607f, 0.12549019607f, 1.0f);
+            
+            euser.CheckAndDisequipItem(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item);
+            user.RemoveItem(data.pointerCurrentRaycast.gameObject.transform.parent.GetComponent<InventoryButton>().item);
 
         }
         Debug.Log(user.CurrentCapacity);
