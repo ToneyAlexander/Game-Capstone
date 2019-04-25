@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandProcessor: {fileID: 11400000, guid: e0e3ec200259f475ab3fbf4d83434a5d, type: 2}
+  dontDropItem: 0
   itemGenerator: {fileID: 11400000, guid: 73939f2dc5c1d1f4b9718eab2f4251bf, type: 2}
 --- !u!114 &5468862817785211541
 MonoBehaviour:
@@ -4992,6 +4993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afflictions: []
+  afflictionStorage: {fileID: 0}
 --- !u!136 &3951755541092686336
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5002,10 +5004,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.73430383
-  m_Height: 3.0099597
+  m_Radius: 0.9
+  m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0.06425381, y: 1.0049798, z: 0.17005002}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &8976498988668152334
 Rigidbody:
   m_ObjectHideFlags: 0
