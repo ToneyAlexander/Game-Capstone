@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: RipperAttackSpeed
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: e941b1620759fc14b8d82ffe6f8d2b13, type: 2}
+  - {fileID: 11400000, guid: 4df44e65a99a3264ca6f23462e5dcf35, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
@@ -24,9 +26,9 @@ MonoBehaviour:
     statValue: 0.2
   - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
     statValue: 0.2
-  Name: 
+  Name: Fastest Knife in the West
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  uiCoords: {x: 600, y: 240}
+  sprite: {fileID: 21300000, guid: 2ed86bc40f940d84e91f6954595920fd, type: 3}

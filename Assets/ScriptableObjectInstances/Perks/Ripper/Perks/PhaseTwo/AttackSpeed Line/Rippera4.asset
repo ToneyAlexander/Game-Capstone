@@ -15,15 +15,17 @@ MonoBehaviour:
   Require:
   - {fileID: 11400000, guid: fbcb5506ecbe88b4db267c7b1d172875, type: 2}
   BlockedBy: []
-  Children: []
+  Children:
+  - {fileID: 11400000, guid: 9dff5d0c46cb2af43b38fbfb6b2119d3, type: 2}
+  - {fileID: 11400000, guid: c07774a50de511644840d78f7961b167, type: 2}
   Blocks: []
   RequireAll: 0
   Stats:
   - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
     statValue: 0.15
-  Name: 
+  Name: Rapid Attack 4
   Desc: 
   grants: []
   Changes: []
   uiCoords: {x: 550, y: 180}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1b50f401a96b3c848bd888e84e6ad716, type: 3}

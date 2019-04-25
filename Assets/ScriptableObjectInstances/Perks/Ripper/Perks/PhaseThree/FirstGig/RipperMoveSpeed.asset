@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: RipperMoveSpeed
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: bf54b54046942d24c90d60aa2bf467a0, type: 2}
+  - {fileID: 11400000, guid: a881290e69c12d044a0ba80fa85a7a93, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
@@ -20,9 +22,9 @@ MonoBehaviour:
   Stats:
   - statName: {fileID: 11400000, guid: e40122d757506bd43be8a660eed0edea, type: 2}
     statValue: 0.5
-  Name: 
+  Name: Travelling at the Speed of Light
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  uiCoords: {x: 600, y: 0}
+  sprite: {fileID: 21300000, guid: 9f1f5fa37e294084d828ec89c6cf0531, type: 3}
