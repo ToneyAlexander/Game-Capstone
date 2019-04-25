@@ -107,7 +107,7 @@ public class DemonBoss : BaseBoss
             ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
             obj.transform.rotation = transform.rotation;
             obj.transform.Translate(Vector3.forward * (3 + made * 3.5f));
-            Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, true, false);
+            Damage dmg = new Damage(0f, Random.Range(100f, 120f) * Level, true, true, false);
             pbh.dmg = stats.RealDamage(dmg);
             ++made;
             yield return new WaitForSeconds(0.15f);
@@ -152,7 +152,7 @@ public class DemonBoss : BaseBoss
             obj.transform.localScale = new Vector3(size, size, size);
             obj.transform.Translate(Vector3.forward * 3);
             pbh.speed = 18f;
-            Damage dmg = new Damage(0f, Random.Range(55f * size * Level, 90f * size * Level), true, false, true);
+            Damage dmg = new Damage(0f, Random.Range(55f * size, 90f * size) * Level, true, false, true);
             pbh.dmg = stats.RealDamage(dmg);
             pbh.ttl = 0.9f + Random.Range(-0.05f, 0.1f);
             ++made;

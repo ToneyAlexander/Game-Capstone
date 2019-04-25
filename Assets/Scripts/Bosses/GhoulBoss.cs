@@ -71,35 +71,34 @@ public class GhoulBoss : BaseBoss
     IEnumerator AbilZeroAsync()
     {
         playerTracker.pause = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.25f);
+        Vector3 rotateOffset = new Vector3(0, -25f, 0);
         int made = 0;
-        while (made < 10)
+        while (made < 3)
         {
-            GameObject obj = Instantiate(MeleeAttackPrefab, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
-            ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
+            GameObject obj = Instantiate(MeleeAttackPrefab, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
+            ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
             obj.transform.rotation = transform.rotation;
-            obj.transform.Translate(Vector3.forward * ((transform.localScale.x + 0.5f) + made * 3.5f));
-            Damage dmg = new Damage(bonusDmg + Random.Range(100 * Level, 120 * Level), 0f, true, true, false);
+            obj.transform.Rotate(rotateOffset);
+            obj.transform.Translate(Vector3.forward * (transform.localScale.x/2f));
+            Damage dmg = new Damage(bonusDmg + Random.Range(50 * Level, 60 * Level), 0f, true, true, false);
             dmg.buffs.Add(poison.Instance);
             pbh.dmg = stats.RealDamage(dmg);
+            if (made == 0)
+                rotateOffset = new Vector3(0, 25f, 0);
+            if (made == 1)
+                rotateOffset = new Vector3();
             ++made;
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.2f);
         }
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
 
         if (!isDead)
             playerTracker.pause = false;
         inUse = false;
         float choice = Random.Range(0f, 1f);
-        if (choice < 0.4)
-        {
-            nextAttack = 0;
-        }
-        else
-        {
-            nextAttack = 1;
-        }
+        nextAttack = 1;
     }
 
     void AbilityOne()
@@ -129,7 +128,7 @@ public class GhoulBoss : BaseBoss
     IEnumerator AbilOneAsync(GameObject target)
     {
         target.GetComponent<StatBlock>().HealthCur = -100;
-        bonusDmg += 40 * Level;
+        bonusDmg += 20 * Level;
         playerTracker.pause = true;
         transform.rotation = new Quaternion();
         transform.position = target.transform.position + new Vector3(0f, 0f, -2f);
@@ -142,7 +141,7 @@ public class GhoulBoss : BaseBoss
                 ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
                 obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
                 obj.transform.Translate(Vector3.forward * 0.5f);
-                Damage dmg = new Damage(0f, bonusDmg / 3 + Random.Range(20 * Level, 30 * Level), true, false, true);
+                Damage dmg = new Damage(0f, bonusDmg / 3f + Random.Range(20 * Level, 30 * Level), true, false, true);
                 dmg.buffs.Add(poison.Instance);
                 pbh.dmg = stats.RealDamage(dmg);
                 pbh.ttl = 2.5f;
@@ -151,7 +150,7 @@ public class GhoulBoss : BaseBoss
             yield return new WaitForSeconds(0.2f);
         }
         transform.localScale = transform.localScale + new Vector3(0.3f, 0.3f, 0.3f);
-        stats.HealthCur += 800 * Level;
+        stats.HealthCur += 600 * Level;
         if (!isDead)
             playerTracker.pause = false;
         inUse = false;
@@ -169,11 +168,11 @@ public class GhoulBoss : BaseBoss
     IEnumerator AsyncMelee()
     {
         yield return new WaitForSeconds(0.1f);
-        GameObject obj = Instantiate(MeleeAttackPrefab, gameObject.transform.position + new Vector3(0, 1f, 0), new Quaternion());
-        ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
+        GameObject obj = Instantiate(MeleeAttackPrefab, gameObject.transform.position + new Vector3(0, 1.5f, 0), new Quaternion());
+        ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
         obj.transform.rotation = transform.rotation;
-        obj.transform.Translate(Vector3.forward * (transform.localScale.x + 1.1f));
-        Damage dmg = new Damage(bonusDmg + Random.Range(50, 70) * Level, 0, false, true, false);
+        obj.transform.Translate(Vector3.forward * (transform.localScale.x/2f));
+        Damage dmg = new Damage(bonusDmg + Random.Range(40, 45) * Level, 0, false, true, false);
         dmg.buffs.Add(poison.Instance);
         pbh.dmg = stats.RealDamage(dmg);
         yield return new WaitForSeconds(0.3f);
@@ -199,9 +198,9 @@ public class GhoulBoss : BaseBoss
             if(!inUse && !isDead && timeSinceSpawn > spawnCd)
             {
                 timeSinceSpawn = 0;
-                cooldown += 3f;
                 spawnCd += 1.5f;
-                nextAttack = 1;
+                cooldown += 1.5f;
+                nextAttack = 0;
                 SpawnAdd();
             }
 
@@ -224,7 +223,7 @@ public class GhoulBoss : BaseBoss
                     {
                         animator.SetTrigger("idle");
                     }
-                    if (timeSinceMelee > 0.6f)
+                    if (timeSinceMelee > 0.9f)
                     {
                         timeSinceMelee = 0;
                         MeleeAttackPlayer();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlienBeetle : BaseBoss
 {
-    private readonly float AbilityZeroCd = 2f;
+    private readonly float AbilityZeroCd = 1f;
     private readonly float AbilityOneCd = 1f;
     private readonly float AbilityTwoCd = 1f;
 
@@ -61,7 +61,7 @@ public class AlienBeetle : BaseBoss
             EggBehave eb = o.GetComponent<EggBehave>();
             eb.ttl = 4.5f;
             eb.maxScale = 3f + Level/4f;
-            Damage dmg = stats.RealDamage(new Damage(2f * Level, 2f * Level, false, true, true));
+            Damage dmg = stats.RealDamage(new Damage(10f * Level, 10f * Level, false, true, true));
             dmg.buffs.Add(Ooze.Instance);
             eb.dmg = dmg;
             yield return new WaitForSeconds(2f/(rangeX * rangeZ / 2));
@@ -106,7 +106,7 @@ public class AlienBeetle : BaseBoss
             obj.transform.Rotate(Vector3.up * 90 * Random.Range(-0.03f, 0.03f), Space.World);
             obj.transform.localScale = new Vector3(1f, 1f, 1f);
             pbh.speed = 35f;
-            Damage dmg = new Damage(0f, Random.Range(17.5f * Level, 22.5f * Level), true, false, false);
+            Damage dmg = new Damage(0f, Random.Range(45f, 60f) * Level, true, false, false);
             pbh.dmg = stats.RealDamage(dmg);
             pbh.ttl = 3f;
             
@@ -143,10 +143,10 @@ public class AlienBeetle : BaseBoss
         GameObject obj = Instantiate(TrackerPrefab, gameObject.transform.position + new Vector3(0, 2f, 0), new Quaternion());
         ProjectileBehave pbh = obj.GetComponent<ProjectileBehave>();
         obj.transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
-        pbh.speed = 9f + Level / 5;
-        Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, false, true);
+        pbh.speed = 8f + Level / 5f;
+        Damage dmg = new Damage(0f, Random.Range(150f, 200f) * Level, true, false, true);
         pbh.dmg = stats.RealDamage(dmg);
-        pbh.ttl = 5f /*+ Level/2f*/;//had to remove scaling due to fixed duration of projectile particle system.
+        pbh.ttl = 5f + Level/2f;
         TrackingBehave tbh = obj.GetComponent<TrackingBehave>();
         tbh.RotSpeed = 2.5f + Level / 5f;
         tbh.Target = player;

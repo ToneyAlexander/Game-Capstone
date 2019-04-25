@@ -44,7 +44,7 @@ public class DragonBoss : BaseBoss
             obj.transform.Rotate(rotateOffset);
             obj.transform.Translate(Vector3.forward * 2);
             pbh.speed = 11f + Level / 2;
-            Damage dmg = new Damage(0f, Random.Range(82.5f * Level, 97.5f * Level), true, false, false);
+            Damage dmg = new Damage(0f, Random.Range(82.5f, 97.5f) * Level, true, false, false);
             pbh.dmg = stats.RealDamage(dmg);
             pbh.ttl = 5f;
             if(made > 2 && made < 8)
@@ -131,7 +131,7 @@ public class DragonBoss : BaseBoss
         obj.transform.localScale = new Vector3(6.5f, 6.5f, 6.5f);
         pbh.speed = 0f;
         pbh.destroyable = false;
-        Damage dmg = new Damage(0f, Random.Range(35f * Level, 65f * Level), false, false, true);
+        Damage dmg = new Damage(0f, Random.Range(70f, 100f) * Level, false, false, true);
         pbh.dmg = stats.RealDamage(dmg);
         pbh.ttl = 0.2f;
         Destroy(o);
@@ -153,10 +153,10 @@ public class DragonBoss : BaseBoss
         obj.transform.rotation = transform.rotation;
         obj.transform.Translate(Vector3.forward * 2);
         pbh.speed = 8f;
-        Damage dmg = new Damage(0f, Random.Range(20f * Level, 40f * Level), true, false, false);
+        Damage dmg = new Damage(0f, Random.Range(100f, 120f) * Level, true, false, false);
         pbh.dmg = stats.RealDamage(dmg);
         pbh.ttl = 2.5f;
-        Damage dmgChild = new Damage(0f, Random.Range(50f * Level, 75f * Level), true, false, true);
+        Damage dmgChild = new Damage(0f, Random.Range(50f, 75f) * Level, true, false, true);
         pbh.childDamage = stats.RealDamage(dmgChild);
         yield return new WaitForSeconds(1.75f);
         inUse = false;
