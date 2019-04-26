@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: RipperCriticals
   m_EditorClassIdentifier: 
-  Require: []
+  Require:
+  - {fileID: 11400000, guid: e941b1620759fc14b8d82ffe6f8d2b13, type: 2}
+  - {fileID: 11400000, guid: 8e76b45cf665c374db56af1bc4c73bbc, type: 2}
   BlockedBy: []
   Children: []
   Blocks: []
@@ -22,9 +24,9 @@ MonoBehaviour:
     statValue: 0.2
   - statName: {fileID: 11400000, guid: c13512a77709a154c86e5ad1e3abf603, type: 2}
     statValue: 1.2
-  Name: 
+  Name: Surgical Precision
   Desc: 
   grants: []
   Changes: []
-  uiCoords: {x: 0, y: 0}
-  sprite: {fileID: 0}
+  uiCoords: {x: 600, y: 320}
+  sprite: {fileID: 21300000, guid: c1c4d41516dca744ea9d98de44aa6ec7, type: 3}

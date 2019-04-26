@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a27879174489c245b6a6563717b6aa4, type: 3}
   m_Name: Rippera3
   m_EditorClassIdentifier: 
-  Require: []
-  BlockedBy:
+  Require:
   - {fileID: 11400000, guid: e0f2508ef5975df4eaa9ee1ef36f5671, type: 2}
+  BlockedBy: []
   Children:
   - {fileID: 11400000, guid: 4df44e65a99a3264ca6f23462e5dcf35, type: 2}
   Blocks: []
@@ -22,9 +22,9 @@ MonoBehaviour:
   Stats:
   - statName: {fileID: 11400000, guid: d6dea12d7e4f3774c997b59798174945, type: 2}
     statValue: 0.12
-  Name: 
+  Name: Rapid Attack 3
   Desc: 
   grants: []
   Changes: []
   uiCoords: {x: 470, y: 180}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1b50f401a96b3c848bd888e84e6ad716, type: 3}
