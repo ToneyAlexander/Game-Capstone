@@ -43,7 +43,7 @@ public class WhirlwindSlash : AbilityBase
         var lookPos = mpd.CalculateWorldPosition() - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        obj.transform.localScale = new Vector3(-5f, -5f, -5f);
+        obj.transform.localScale = new Vector3(5f, 5f, 5f);
         pbh.speed = projSpeed;
         Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), false, false, true);
         pbh.dmg = stats.RealDamage(dmg);
