@@ -81,9 +81,9 @@ public class DemonBoss : BaseBoss
         ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
         obj.transform.rotation = transform.rotation;
         obj.transform.Translate(Vector3.forward * 4.3f);
-        Damage dmg = new Damage(Random.Range(65, 85) * Level, Random.Range(25, 35) * Level, false, true, false);
+        Damage dmg = new Damage(Random.Range(75, 95) * Level, Random.Range(25, 35) * Level, false, true, false);
         pbh.dmg = stats.RealDamage(dmg);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.1f);
         if(!isDead)
             playerTracker.pause = false;
         inUse = false;
@@ -107,7 +107,7 @@ public class DemonBoss : BaseBoss
             ProjectileBehave pbh = obj.GetComponentInChildren<ProjectileBehave>();
             obj.transform.rotation = transform.rotation;
             obj.transform.Translate(Vector3.forward * (3 + made * 3.5f));
-            Damage dmg = new Damage(0f, Random.Range(100f, 120f) * Level, true, true, false);
+            Damage dmg = new Damage(0f, Random.Range(120f, 150f) * Level, true, true, false);
             pbh.dmg = stats.RealDamage(dmg);
             ++made;
             yield return new WaitForSeconds(0.15f);
@@ -152,7 +152,7 @@ public class DemonBoss : BaseBoss
             obj.transform.localScale = new Vector3(size, size, size);
             obj.transform.Translate(Vector3.forward * 3);
             pbh.speed = 18f;
-            Damage dmg = new Damage(0f, Random.Range(55f * size, 90f * size) * Level, true, false, true);
+            Damage dmg = new Damage(0f, Random.Range(45f, 75f) * size * Level, true, false, true);
             pbh.dmg = stats.RealDamage(dmg);
             pbh.ttl = 0.9f + Random.Range(-0.05f, 0.1f);
             ++made;
