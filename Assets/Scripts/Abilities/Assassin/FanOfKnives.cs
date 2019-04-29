@@ -46,7 +46,7 @@ public class FanOfKnives : AbilityBase
 			currRot += (int)((2*size) / projCount);
 			obj.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 			pbh.speed = 15f;
-			Damage dmg = new Damage(0f, Random.Range(dmgMin, dmgMax), true, false, false);
+			Damage dmg = new Damage(0f, 0.45f * Random.Range(dmgMin, dmgMax), true, false, false);
 			pbh.dmg = stats.RealDamage(dmg);
 			pbh.ttl = 2f;
 			pbh.friendly = true;
