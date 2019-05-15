@@ -5,8 +5,9 @@ Download the built version of the game from: http://web.cse.ohio-state.edu/~craw
 Unzip the Install to your desired location.
 The install comes with a folder called "place contents into LocalLow",
 The following needs to be done for every windows user that will be playing the game
-* Place the contents of that folder into C:\Users\<<username>>\AppData\LocalLow
-* The final structure should look like this: C:\Users\<<username>>\AppData\LocalLow\CreakingC⚙️ogCreations\Game Capstone
+* Place the contents of that folder into C:\Users\\<\<username\>\>\AppData\LocalLow
+* Rename "RenameMe" to "CreakingC⚙️ogCreations"
+* The final structure should look like this: C:\Users\\<\<username\>\>\AppData\LocalLow\CreakingC⚙️ogCreations\Game Capstone
 * if you set up your users directory to not be on C: I assume you probably know enough about computers to find it.
 
 Our game is not compatible with Macs, and was only tested on Windows 10.
