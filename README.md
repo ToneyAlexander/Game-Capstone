@@ -1,5 +1,7 @@
 # The Timeless Archipelago by Creaking Cog Creations
 
+Download the built version of the game from: http://web.cse.ohio-state.edu/~crawfis.3/cse786/2019Spring/CreakingCogCreations/The%20Timeless%20Archipelago.zip
+
 Unzip the Install to your desired location.
 The install comes with a folder called "place contents into LocalLow",
 The following needs to be done for every windows user that will be playing the game
